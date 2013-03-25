@@ -169,21 +169,21 @@
                             </ul>
                         </li>
                         <li>
-                            <%= link_to "<span class='icon16 minia-icon-cog'></span>Features".html_safe, "#", :class => "hasUl", :id => "feature_management_link" %>
-                            <ul class="sub" id="feature_management">
-                                <li><a href="<%= announcements_path %>" id="features_announcement"><span class="icon16 minia-icon-cog"></span>Announcements</a></li>
-                                <li><a href="<%= manage_social_path %>" id="features_social"><span class="icon16 minia-icon-cog"></span>Social</a></li>
-                                <li><a href="<%= constrains_configs_path %>"><span class="icon16 minia-icon-cog"></span>Requirements</a></li>
-                                <li><a href="<%= manage_properties_tab_path(:tab => "rewards") %>"><span class="icon16 minia-icon-cog"></span>Rewards</a></li>
+                            <%= link_to "<span class='icon16 cut-icon-locked'></span>Features".html_safe, "#", :class => "hasUl" %>
+                            <ul class="sub">
+                                <li><a href="<%= announcements_path %>"><span class="icon16 brocco-icon-mic"></span>Announcements</a></li>
+                                <li><a href="<%= manage_social_path %>"><span class="icon16 brocco-icon-earth"></span>Social</a></li>
+                                <li><a href="<%= constrains_configs_path %>"><span class="icon16 brocco-icon-window"></span>Requirements</a></li>
+                                <li><a href="<%= manage_properties_tab_path(:tab => "rewards") %>"><span class="icon16 entypo-icon-trophy"></span>Rewards</a></li>
                             </ul>
                         </li>
                         <li>
-                            <%= link_to "<span class='icon16 minia-icon-cog'></span>Look & Feel".html_safe, "#", :class => "hasUl" %>
+                            <%= link_to "<span class='icon16 brocco-icon-coffee'></span>Look & Feel".html_safe, "#", :class => "hasUl" %>
                             <ul class="sub">
                                 <li><a href="<%= manage_appearance_path %>"><span class="icon16 minia-icon-cog"></span>Appearance</a></li>
-                                <li><a href="<%= manage_content_path %>"><span class="icon16 minia-icon-cog"></span>Content</a></li>
-                                <li><a href="<%= themes_path %>"><span class="icon16 minia-icon-cog"></span>Themes</a></li>
-                                <li><a href="<%= widgets_path %>"><span class="icon16 minia-icon-cog"></span>Widgets</a></li>
+                                <li><a href="<%= manage_content_path %>"><span class="icon16 brocco-icon-diary"></span>Content</a></li>
+                                <li><a href="<%= themes_path %>"><span class="icon16  entypo-icon-palette"></span>Themes</a></li>
+                                <li><a href="<%= widgets_path %>"><span class="icon16 entypo-icon-palette"></span>Widgets</a></li>
                             </ul>
                         </li>
                         <li>
