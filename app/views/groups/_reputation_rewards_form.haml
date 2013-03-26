@@ -1,9 +1,13 @@
-.field
-  =reputation_rewards_form.label :daily_cap, t("activerecord.attributes.group.daily_cap"), :class => "label"
-  =reputation_rewards_form.number_field :daily_cap, :class => "text_field"
+.form-row.row-fluid
+  .span12
+    .row-fluid
+      =reputation_rewards_form.label :daily_cap, t("activerecord.attributes.group.daily_cap"), :class => "form-label span3"
+      =reputation_rewards_form.number_field :daily_cap, :class => "span3 text counter-steper"
 
 -@group.reputation_rewards.sort.each do |key, value|
-  .field
-    -name = "group[reputation_rewards[#{key}]]"
-    =label_tag name, Group.humanize_reputation_constrain(key), :class => "label"
-    =number_field_tag name, value, :class => "text_field"
+  .form-row.row-fluid
+    .span12
+      .row-fluid
+        -name = "group[reputation_rewards[#{key}]]"
+        =label_tag name, Group.humanize_reputation_constrain(key), :class => "form-label span3"
+        =number_field_tag name, value, :class => "counter-steper"
