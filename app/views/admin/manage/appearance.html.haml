@@ -1,32 +1,63 @@
-%h1
-  = t(".title")
-%p.description
+.row-fluid
+  .span12
+    .box
+      .title
+        %h4
+          %span{:class => "icon16  minia-icon-cog"}
+          %span
+            = t(".title")
+        %form{:class => "box-form right", :action => "", :style => "margin-top:-27px !important"}
+          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" style="padding: 4px 10px !important; border-width: 1px !important; border-style: solid !important">
+          <span class="icon16 iconic-icon-cog"></span>
+          <span class="caret"></span>
+          </a>
+          %ul{:class => "dropdown-menu"}
+            %li
+              = link_to "<span class='icon16 brocco-icon-plus'></span>Add option".html_safe, "#", :id => "openModalDialog"
+        = link_to "Minimize", "#", :class => "minimize"
+      .content{:style => "Padding-bottom: 0px !important"}
+        %p.description
+        = form_for(@group, :html => {:class => "form", :multipart => true}) do |f|
+          = f.error_messages
+          .form-row.row-fluid
+            .span12
+              .row-fluid
+                = f.label :logo, t('logo', :scope => "activerecord.attributes.group"), :class => "form-label span3 adjust-class"
+                = f.file_field :logo
+                -unless @group.new?
+                  = image_tag(logo_path(@group))
+          .form-row.row-fluid
+            .span12
+              .row-fluid
+                = f.label :Width, :class => "form-label span3"
+                = text_field_tag "group[logo_info][width]", @group.logo_info["width"] || 215, :class => 'span3 text counter-steper'
+          .form-row.row-fluid
+            .span12
+              .row-fluid
+                = f.label :Height, :class => "form-label span3"
+                = text_field_tag "group[logo_info][height]", @group.logo_info["height"] || 60, :class => 'span3 text counter-steper'
+          .form-row.row-fluid
+            .span12
+              .row-fluid
+                %span.span3
+                = t('.logo_legend')
 
-= form_for(@group, :html => {:class => "form", :multipart => true}) do |f|
-  = f.error_messages
+          .form-row.row-fluid
+            .span12
+              .row-fluid
+                = f.label :custom_favicon, "Favicon", :class => "form-label span3"
+                = f.file_field :custom_favicon
+                -if @group.has_custom_favicon?
+                  = image_tag(favicon_group_path(@group))
+                -else
+                  = image_tag("/favicon.ico")
 
-  .field.group-logo
-    .img-up
-      = f.label :logo, t('logo', :scope => "activerecord.attributes.group"), :class => "label"
-      -unless @group.new?
-        = image_tag(logo_path(@group))
-      = f.file_field :logo
-    .size
-
-      = text_field_tag "group[logo_info][width]", @group.logo_info["width"] || 215
-      %span x
-      = text_field_tag "group[logo_info][height]", @group.logo_info["height"] || 60
-
-    %small
-      = t('.logo_legend')
-
-  .field
-    = f.label :custom_favicon, "Favicon", :class => "label"
-    -if @group.has_custom_favicon?
-      = image_tag(favicon_group_path(@group))
-    -else
-      = image_tag("/favicon.ico")
-    = f.file_field :custom_favicon
-
-  .buttons
-    = f.submit t('scaffold.update'), :class => "save"
+          .form-row.row-fluid
+            .span12
+              .row-fluid
+                .form-actions{:style => "width: 100% !important; margin-left: -10px !important; margin-bottom: -18px !important"}
+                  .span9
+                    &nbsp;
+                  .span3.controls
+                    = f.button "Save Changes", :class => "btn marginR10", :style => "padding: 4px 10px !important; border-width: 1px !important; border-style: solid !important"
+                    = link_to "Cancel", admin_path, :class => "btn btn-danger", :style => "padding: 5px 10px !important; border-width: 1px !important; border-style: solid !important"

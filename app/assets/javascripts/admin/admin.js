@@ -11,4 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery_ujs
+//= require ui.core.js
+//= require ui.spinner.js
+//= require counterStepper.js
 

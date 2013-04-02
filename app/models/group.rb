@@ -32,7 +32,7 @@ class Group
   field :analytics_vendor, :type => String
   field :has_custom_analytics, :type => Boolean, :default => true
 
-  field :auth_providers, :type => Array, :default => %w[Google Twitter Facebook]
+  field :auth_providers, :type => Array, :default => %w[Google Twitter Facebook OpenID]
   field :allow_any_openid, :type => Boolean, :default => true
 
   field :language, :type => String
@@ -65,9 +65,10 @@ class Group
   field :enable_mathjax, :type => Boolean, :default => false
   field :logo_version, :type => Integer, :default => 0
   field :custom_favicon_version, :type => Integer, :default => 0
+  field :custom_shortcut_icon_version, :type => Integer, :default => 0
 
   field :custom_pagination_length, :type => Integer, :default => 20
-
+  field :question_default_length, :type => Integer, :default => 10
   field :slogan_short_ask, :type => String
   field :slogan_long_ask, :type => String
 
@@ -102,6 +103,7 @@ class Group
   file_key :logo, :max_length => 2.megabytes
   file_key :custom_css, :max_length => 256.kilobytes
   file_key :custom_favicon, :max_length => 256.kilobytes
+  file_key :custom_shortcut_icon, :max_length => 256.kilobytes
   file_list :thumbnails
 
   field :used_quota, :type => Float, :default => 0.0

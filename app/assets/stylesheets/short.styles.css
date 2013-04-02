@@ -1,0 +1,26 @@
+.textarea-3column{
+    height:50px;
+}
+.adjust-class{
+	padding-top: 18px !important;
+}
+.full-width{
+	width:209px !important;
+}
+.right-now
+  li{
+    line-height:30px;
+  }
+.right-now-text-bold{
+	color:#2C7282;
+	font-size: 18px;
+    	font-weight: bold;
+	width:25% !important;
+	display:inline-block;
+	text-align:right !important;
+}
+.checkbox-adjust{
+	padding-top:7px !important;
+	display: inline-block;
+	/*margin-left: -17px;*/
+}

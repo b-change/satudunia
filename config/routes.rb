@@ -244,25 +244,6 @@ Rails.application.routes.draw do
   resources :tier7
 
   scope '/manage' do
-    resources :widgets do
-      member do
-        post :move
-      end
-    end
-
-    resources :themes do
-      member do
-        get :remove_bg_image
-        put :apply
-        get :ready
-        get :download
-      end
-
-      collection do
-        post :import
-      end
-    end
-    resources :constrains_configs
     resources :members
     resources :service_categories
     resources :providers
@@ -275,22 +256,47 @@ Rails.application.routes.draw do
     resources :manage_faqs
     resources :manage_contacts
   end
+  
+  scope '/admin' do
+    resources :widgets do
+      member do
+        post :move
+      end
+    end
+    resources :themes do
+      member do
+        get :remove_bg_image
+        put :apply
+        get :ready
+        get :download
+      end
+      collection do
+        post :import
+      end
+    end
+    resources :constrains_configs,:path => "requirements"
+  end
 
   scope '/manage', :as => 'manage' do
     controller 'admin/manage' do
       match 'dashboard' => :dashboard
       match 'edit_card' => :edit_card
-      match 'social' => :social
       match 'properties' => :properties
       match 'theme' => :theme
       match 'actions' => :actions
       match 'stats' => :stats
       match 'reputation' => :reputation
-      match 'content' => :content
       match 'invitations' => :invitations
-      match 'appearance' => :appearance
       match 'access' => :access
-      match 'close_group' => :close_group
+    end
+  end
+  scope '/admin', :as => 'manage' do
+    controller 'admin/manage' do
+      match 'social' => :social
+      match 'appearance' => :appearance
+      match 'close_group' => :close_group, :path => "close-group"
+      match 'content' => :content
+      match 'rewards' => :rewards
     end
   end
   match '/manage/properties/:tab' => 'admin/manage#properties', :as => :manage_properties_tab

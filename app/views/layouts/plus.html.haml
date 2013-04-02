@@ -19,8 +19,8 @@
     %meta{'http-equiv' => "Content-Language", :content => "en-US"}
     %meta{'http-equiv' => "imagetoolbar", :content => "no"}
     / favicon
-    %link{:href => "plus/favicon.ico", :rel => "icon"}/
-    %link{:href => "plus/favicon-large.png", :rel => "shortcut icon"}/
+    %link{:href => favicon_group_path(current_group), :rel => "icon"}/
+    %link{:href => "plus/logo.png", :rel => "shortcut icon"}/
     %link{:href => "plus/iOS_icon.png", :rel => "apple-touch-icon"}
     %link{:href => "plus/iOS_icon.png", :rel => "apple-touch-startup-image"}
     / CSS
@@ -54,21 +54,27 @@
                         = link_to "About", about_path, :id => "about_nav"
                       %li
                         = link_to "Questions", questions_path, :id => "question_nav"
+                      %li
+                        %a{:href => "index-4.html"} News & Activites
                       %li 
-                        = link_to "Services Map", 'services-map', :id => "service_providers_nav"
+                        = link_to "Services Locator", 'services-map', :id => "service_providers_nav"
                       %li
                         = link_to "Community", users_path, :id => "community_nav"
                       %li
+                        %a{:href => "#"} FAQ
+                      %li
                         = link_to "Contact", contact_path, :id => "contact_nav"
-                      - if !current_user.nil? && current_user.owner_of?(current_group)
-                        %li
-                          = link_to "Admin", "/admin"
+                      / - if !current_user.nil? && current_user.owner_of?(current_group)
+                      /   %li
+                      /     = link_to "Admin", "/admin"
                   .language
                     %span
                       = render :partial => '/shared/translation_widget'
                 .grid_24.title1
                   .logo
                     = link_to image_tag("plus/logo.jpg"), "/"
+                    %span
+                      = h current_group.slogan_short_ask
                   .right_l
                     .wrapper1
                       - if current_user.nil?
@@ -94,14 +100,14 @@
                           .grid_18_1
                             .grid_9_1
                               = form_for :user, :url => session_path(:user), :html => {:id => "login_form"} do |f|
-                                %spam{:class => "email"}
+                                %span{:class => "email"}
                                   %label{:class => "name"}
                                     Email
-                                  = f.text_field :email
+                                  = f.text_field :email,:class =>"input-class"
                                 %span{:class => "password"}
                                   %label{:class => "name"}
                                     Password
-                                  = f.password_field :password
+                                  = f.password_field :password,:class =>"input-class"
                                   - if params[:pp] && params[:format] != 'mobile'
                                     = hidden_field_tag :pp, 1
                                 .signs
@@ -125,6 +131,9 @@
                                   = link_to image_tag("plus/gl.jpg"), '/first-auth/google', :class => "auth-provider #{provider}", :id => dprovider
                                 - elsif provider == 'Twitter'
                                   = link_to image_tag("plus/tw1.jpg"), '/first-auth/twitter', :class => "auth-provider #{provider}", :id => dprovider
+                                - elsif provider == 'OpenID'
+                                  = link_to image_tag("plus/oi.jpg"), '/first-auth/MyOpenID', :class => "auth-provider #{provider}", :id => dprovider
+                              %a#cancel1_1{:href => "javascript:void(0);"} close
                       #obj1
                         #cancel1
                           %ul
@@ -355,7 +364,7 @@
       
       
     });
-    $('#cancel').click(function(){
+    $('#cancel1_1').click(function(){
       $('#obj').css('display', 'none');
     });
     $('#cancel2').click(function(){
@@ -375,3 +384,12 @@
     window.close();
   }
   }
+  
+:javascript
+  $("#user_password").keypress(function(event){
+    if(event.which == 13){
+      event.preventDefault();
+      $("#login_form").submit();
+    }
+  });
+

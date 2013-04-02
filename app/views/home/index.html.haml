@@ -43,20 +43,20 @@
     .grid_5
       = image_tag "plus/banner1.png"
       %p{:style => "font-size:18px;font-family:'Calibri';color:#0075ce;font-weigth:bold;padding-top:10px"}
-        Know The Basics 
+        Knowledge Base
       %p{:class => "p12_1"}
         Get the information you need to know and 
         stay in touch via our regular newsletter or social media feeds
     .grid_5
       = image_tag "plus/banner2.png"
       %p{:style => "font-size:18px;font-family:'Calibri';color:#0075ce;font-weigth:bold;padding-top:10px"}
-        Ask a Question
+        = link_to("Questions",questions_path,:class=>"front_link_style")
       %p{:class => "p12_1"}
         Learn from other people's experience of living with HIV - the diversity of answers might be the food for though that you needed.
     .grid_5
       = image_tag "plus/banner3.png"
       %p{:style => "font-size:18px;font-family:'Calibri';color:#0075ce;font-weigth:bold;padding-top:10px"}
-        Search the Service Map
+        = link_to("Services",service_providers_path,:class=>"front_link_style")
       %p{:class => "p12_1"}
         Find HIV health specialists in your local areas and help us map other services that people should know about.
 .grid_8.omega
@@ -65,88 +65,40 @@
       %li
         .slide12
           Latest Questions
-        .slide13
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem.
-          %br{:style => "color:#000"}
-            9s ago
-          = image_tag "plus/l1.jpg", :class => "ms1"
-        .slide13
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem.
-          %br{:style => "color:#919191"}
-            9s ago
-          = image_tag "plus/l1.jpg", :class => "ms1"
-        .slide13
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem.
-          %br{:style => "color:#919191"}
-            9s ago
-          = image_tag "plus/l1.jpg", :class => "ms1"
-        .slide13
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem.
-          %br{:style => "color:#919191"}
-            9s ago
-          = image_tag "plus/l1.jpg", :class => "ms1"
-        .slide13
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem.
-          %br{:style => "color:#919191"}
-            9s ago
-          = image_tag "plus/l1.jpg", :class => "ms1"
+        - @collectionAll.each do |item|
+          .slide13
+            =item.title
+            %br{:style => "color:#000"}
+              %span
+                - @timeDiff = ((@timeNow - item.created_at)/ 3600).round
+                = pluralize(@timeDiff,'Hr')
+                Ago
+            = image_tag "plus/l1.jpg", :class => "ms1"
       %li
         .slide12
           Latest Questions
-        .slide13
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem.
-          %br{:style => "color:#000"}
-            9s ago
-          = image_tag "plus/l1.jpg", :class => "ms1"
-        .slide13
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem.
-          %br{:style => "color:#919191"}
-            9s ago
-          = image_tag "plus/l1.jpg", :class => "ms1"
-        .slide13
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem.
-          %br{:style => "color:#919191"}
-            9s ago
-          = image_tag "plus/l1.jpg", :class => "ms1"
-        .slide13
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem.
-          %br{:style => "color:#919191"}
-            9s ago
-          = image_tag "plus/l1.jpg", :class => "ms1"
-        .slide13
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem.
-          %br{:style => "color:#919191"}
-            9s ago
-          = image_tag "plus/l1.jpg", :class => "ms1"
+        - @collectionAll.each do |item|
+          .slide13
+            =item.title
+            %br{:style => "color:#000"}
+              %span
+                - @timeDiff = ((@timeNow - item.created_at)/ 3600).round
+                = pluralize(@timeDiff,'Hr')
+                Ago
+            = image_tag "plus/l1.jpg", :class => "ms1"
       %li
         .slide12
           Latest Questions
-        .slide13
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem.
-          %br{:style => "color:#000"}
-            9s ago
-          = image_tag "plus/l1.jpg", :class => "ms1"
-        .slide13
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem.
-          %br{:style => "color:#919191"}
-            9s ago
-          = image_tag "plus/l1.jpg", :class => "ms1"
-        .slide13
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem.
-          %br{:style => "color:#919191"}
-            9s ago
-          = image_tag "plus/l1.jpg", :class => "ms1"
-        .slide13
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem.
-          %br{:style => "color:#919191"}
-            9s ago
-          = image_tag "plus/l1.jpg", :class => "ms1"
-        .slide13
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem.
-          %br{:style => "color:#919191"}
-            9s ago
-          = image_tag "plus/l1.jpg", :class => "ms1"
-    = link_to image_tag "plus/view.jpg", :class => "view"
-
+        - @collectionAll.each do |item|
+          .slide13
+            =item.title
+            %br{:style => "color:#000"}
+              %span
+                - @timeDiff = ((@timeNow - item.created_at)/ 3600).round
+                = pluralize(@timeDiff,'Hr')
+                Ago
+            = image_tag "plus/l1.jpg", :class => "ms1"
+    = @timeAgo
+    = link_to(image_tag("plus/view.jpg"),questions_path)
 :javascript
   $('#home_nav').addClass('active');

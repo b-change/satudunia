@@ -1,45 +1,86 @@
-%h1
-  = t(".title")
-%p.description
-  = t(".description")
+.row-fluid
+  .span12
+    %ul{:class => "nav nav-pills"}
+      %li{:class => "#{'active' if @activeTabClass == "head_tag" ||  @activeTabClass == nil}"}
+        = link_to h("<head>"), manage_content_path(:tab=>"head_tag")
+      %li{:class => "#{'active' if @activeTabClass == "question_help"}"}
+        = link_to t(".question_help"), manage_content_path(:tab=>"question_help")
+      %li{:class => "#{'active' if @activeTabClass == "question_prompt"}"}
+        = link_to t(".question_prompt"), manage_content_path(:tab=>"question_prompt")
+      %li{:class => "#{'active' if @activeTabClass == "head"}"}
+        = link_to t(".head"), manage_content_path(:tab=>"head")
+      %li{:class => "#{'active' if @activeTabClass == "top_bar"}"}
+        = link_to t(".top_bar"), manage_content_path(:tab=>"top_bar")
+      %li{:class => "#{'active' if @activeTabClass == "footer"}"}
+        = link_to t(".footer"), manage_content_path(:tab=>"footer")
+.row-fluid
+  .span12
+    .box
+      .title
+        %h4
+          %span{:class => "icon16  brocco-icon-diary"}
+          %span
+            = t(".title")
+        %form{:class => "box-form right", :action => "", :style => "margin-top:-27px !important"}
+          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" style="padding: 4px 10px !important; border-width: 1px !important; border-style: solid !important">
+          <span class="icon16 iconic-icon-cog"></span>
+          <span class="caret"></span>
+          </a>
+          %ul{:class => "dropdown-menu"}
+            %li
+              = link_to "<span class='icon16 brocco-icon-plus'></span>Add new content".html_safe, "#", :id => "openModalDialog"
+        = link_to "Minimize", "#", :class => "minimize"
+      .content{:style => "Padding-bottom: 0px !important"}
+        %p.description
+          = t(".description")
+        / %h1
+        / %ul.admin-nav
+        /   %li.head_tag
+        /     = link_to h("<head>"), manage_content_path(:tab=>"head_tag")
+        /   %li.question_help
+        /     = link_to t(".question_help"), manage_content_path(:tab=>"question_help")
+        /   %li.question_prompt
+        /     = link_to t(".question_prompt"), manage_content_path(:tab=>"question_prompt")
+        /   %li.head
+        /     = link_to t(".head"), manage_content_path(:tab=>"head")
+        /   %li.top_bar
+        /     = link_to t(".top_bar"), manage_content_path(:tab=>"top_bar")
+        /   %li.footer
+        /     = link_to t(".footer"), manage_content_path(:tab=>"footer")
 
-%ul.admin-nav
-  %li.head_tag
-    = link_to h("<head>"), manage_content_path(:tab=>"head_tag")
-  %li.question_help
-    = link_to t(".question_help"), manage_content_path(:tab=>"question_help")
-  %li.question_prompt
-    = link_to t(".question_prompt"), manage_content_path(:tab=>"question_prompt")
-  %li.head
-    = link_to t(".head"), manage_content_path(:tab=>"head")
-  %li.top_bar
-    = link_to t(".top_bar"), manage_content_path(:tab=>"top_bar")
-  %li.footer
-    = link_to t(".footer"), manage_content_path(:tab=>"footer")
+        = form_for @group, :html => {:class => "form"} do |form|
+          = form.error_messages
+          =hidden_field_tag :source, domain_url(:custom => @group.domain, :controller => "admin/manage", :action => "content", :tab=>@active_subtab)
+          - langs = @group.languages.sort
+          - default_lang = langs.delete(@group.language) || @group.language
 
+          -if @active_subtab == "head_tag"
+            .form-row.row-fluid
+              .span12
+                .row-fluid
+                  =form.label "_#{@active_subtab}[#{default_lang}]", language_desc(default_lang), :class => "form-label span3"
+                  = text_area_tag "group[custom_html][#{@active_subtab}]", @group.custom_html.send(@active_subtab), :class => "span9 uniform"
+          -elsif %w[question_help question_prompt head top_bar footer]
+            .form-row.row-fluid
+              .span12
+                .row-fluid
+                  =form.label "_#{@active_subtab}[#{default_lang}]", language_desc(default_lang), :class => "form-label span3"
+                  =text_area_tag "group[custom_html][#{@active_subtab}[#{default_lang}]]", @group.custom_html.send(@active_subtab)[default_lang], :class => "span9 uniform"
+            .lang-fields
+              %ul
+                -langs.each do |lang|
+                  %li
+                    = link_to language_desc(lang), "##{@active_subtab}-#{lang}"
+              -langs.each do |lang|
+                .field{:id => "#{@active_subtab}-#{lang}"}
+                  =text_area_tag "group[custom_html][#{@active_subtab}[#{lang}]]", @group.custom_html.send(@active_subtab)[lang], :class => "text_field"
 
-= form_for @group, :html => {:class => "form"} do |form|
-  = form.error_messages
-  =hidden_field_tag :source, domain_url(:custom => @group.domain, :controller => "admin/manage", :action => "content", :tab=>@active_subtab)
-  - langs = @group.languages.sort
-  - default_lang = langs.delete(@group.language) || @group.language
-
-  -if @active_subtab == "head_tag"
-    .field
-      = text_area_tag "group[custom_html][#{@active_subtab}]", @group.custom_html.send(@active_subtab), :class => "text_area"
-  -elsif %w[question_help question_prompt head top_bar footer]
-    .field
-      =form.label "_#{@active_subtab}[#{default_lang}]", language_desc(default_lang), :class => "label"
-      =text_area_tag "group[custom_html][#{@active_subtab}[#{default_lang}]]", @group.custom_html.send(@active_subtab)[default_lang], :class => "text_field"
-    .lang-fields
-      %ul
-        -langs.each do |lang|
-          %li
-            = link_to language_desc(lang), "##{@active_subtab}-#{lang}"
-      -langs.each do |lang|
-        .field{:id => "#{@active_subtab}-#{lang}"}
-          =text_area_tag "group[custom_html][#{@active_subtab}[#{lang}]]", @group.custom_html.send(@active_subtab)[lang], :class => "text_field"
-
-
-  .buttons
-    = form.submit t("scaffold.update"), :class => "save"
+          .form-row.row-fluid
+            .span12
+              .row-fluid
+                .form-actions{:style => "width: 100% !important; margin-left: -10px !important; margin-bottom: -18px !important"}
+                  .span9
+                    &nbsp;
+                  .span3.controls
+                    = form.button "Save Changes", :class => "btn marginR10", :style => "padding: 4px 10px !important; border-width: 1px !important; border-style: solid !important"
+                    = link_to "Cancel", admin_path, :class => "btn btn-danger", :style => "padding: 5px 10px !important; border-width: 1px !important; border-style: solid !important"

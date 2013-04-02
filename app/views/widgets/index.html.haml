@@ -1,76 +1,118 @@
-#edit-widget-dialog
-%h1
-  = t('layouts.manage.widgets')
-%p.description
-  =t(".description")
+.row-fluid
+  .span12
+    %ul{:class => "nav nav-pills"}
+      %li{:class => "active"}
+        = link_to t(".mainlist_widgets"), widgets_path(:tab=>"mainlist"), :title => t(".mainlist_widgets_title")
+      %li
+        = link_to t(".question_widgets"), widgets_path(:tab=>"question"), :title => t(".question_widgets_title")
+      %li
+        = link_to t(".external_widgets"), widgets_path(:tab=>"external"), :title => t(".external_widgets_title")
+.row-fluid
+  .span12
+    .box
+      .title
+        %h4
+          %span{:class => "icon16  entypo-icon-popup"}
+          %span
+            = t(".title")
+        %form{:class => "box-form right", :action => "", :style => "margin-top:-27px !important"}
+          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" style="padding: 4px 10px !important; border-width: 1px !important; border-style: solid !important">
+          <span class="icon16 iconic-icon-cog"></span>
+          <span class="caret"></span>
+          </a>
+          %ul{:class => "dropdown-menu"}
+            %li
+              = link_to "<span class='icon16 brocco-icon-plus'></span>Add new widgets".html_safe, "#", :id => "openModalDialog"
+        = link_to "Minimize", "#", :class => "minimize"
+      .content{:style => "Padding-bottom: 50px !important"}
+        %p.description
+          =t(".description")
+        %table{:cellpadding=>0,:cellspacing=>0,:border=>0,:class=>"responsive dynamicTable display table table-bordered",:width=>"100%"}
+          %thead
+            %tr
+              %th
+                Name
+              %th 
+                Category
+              %th 
+                Action
+          %tbody
+            
 
-%ul.admin-nav
-  %li.mainlist_widgets
-    = link_to t(".mainlist_widgets"), widgets_path(:tab=>"mainlist"), :title => t(".mainlist_widgets_title")
-  %li.question_widgets
-    = link_to t(".question_widgets"), widgets_path(:tab=>"question"), :title => t(".question_widgets_title")
-  %li.external_widgets
-    = link_to t(".external_widgets"), widgets_path(:tab=>"external"), :title => t(".external_widgets_title")
 
-.widgets-admin
+          / #edit-widget-dialog
+          / %h1
+          /   = t('layouts.manage.widgets')
+          / %p.description
+          /   =t(".description")
 
-  .select-widget
-    = error_messages_for(:widget)
-    = form_tag widgets_path(:tab => @active_subtab), :class => "add-widget" do
-      .field
-        = label :limit, t(".new_widget", :default => "Add new widget"), :class => "label"
-        = select :widget, "_type", Widget.types(params[:tab],current_group.shapado_version.has_custom_ads?).map {|w| [w.sub("Widget", "").titleize, w]}
-        -if @active_subtab == "mainlist"
-          = select :widget, "position", WidgetList::POSITIONS.map {|ps| [ps.titleize, ps]}
-        -else
-          = hidden_field_tag "widget[position]", "sidebar"
-      .buttons
-        =submit_tag t("scaffold.add"), :class => "save"
+          / %ul.admin-nav
+          /   %li.mainlist_widgets
+          /     = link_to t(".mainlist_widgets"), widgets_path(:tab=>"mainlist"), :title => t(".mainlist_widgets_title")
+          /   %li.question_widgets
+          /     = link_to t(".question_widgets"), widgets_path(:tab=>"question"), :title => t(".question_widgets_title")
+          /   %li.external_widgets
+          /     = link_to t(".external_widgets"), widgets_path(:tab=>"external"), :title => t(".external_widgets_title")
 
-    .type
-      %p
-        %strong= t('widgets.index.type')
-        =t('widgets.index.name')
-      =image_tag "zone-header.gif"
-    -if @active_subtab == "mainlist"
-      .zone
-        %p
-          %strong= t('widgets.index.zone')
-          = t('widgets.index.header')
-        =image_tag "zone-header.gif"
+          / .widgets-admin
+
+          /   .select-widget
+          /     = error_messages_for(:widget)
+          /     = form_tag widgets_path(:tab => @active_subtab), :class => "add-widget" do
+          /       .field
+          /         = label :limit, t(".new_widget", :default => "Add new widget"), :class => "label"
+          /         = select :widget, "_type", Widget.types(params[:tab],current_group.shapado_version.has_custom_ads?).map {|w| [w.sub("Widget", "").titleize, w]}
+          /         -if @active_subtab == "mainlist"
+          /           = select :widget, "position", WidgetList::POSITIONS.map {|ps| [ps.titleize, ps]}
+          /         -else
+          /           = hidden_field_tag "widget[position]", "sidebar"
+          /       .buttons
+          /         =submit_tag t("scaffold.add"), :class => "save"
+
+          /     .type
+          /       %p
+          /         %strong= t('widgets.index.type')
+          /         =t('widgets.index.name')
+          /       =image_tag "zone-header.gif"
+          /     -if @active_subtab == "mainlist"
+          /       .zone
+          /         %p
+          /           %strong= t('widgets.index.zone')
+          /           = t('widgets.index.header')
+          /         =image_tag "zone-header.gif"
 
 
-  .widget-containers
-    -if @active_subtab == "mainlist"
-      .container.header
-        .header
-          = t('widgets.index.header')
-          = link_to t('widgets.index.add_new'), "#"
-        -@widget_list.header.each do |widget|
-          = render "widget", :widget => widget, :position => "header"
+          /   .widget-containers
+          /     -if @active_subtab == "mainlist"
+          /       .container.header
+          /         .header
+          /           = t('widgets.index.header')
+          /           = link_to t('widgets.index.add_new'), "#"
+          /         -@widget_list.header.each do |widget|
+          /           = render "widget", :widget => widget, :position => "header"
 
-      .container.navbar
-        .header
-          = t('widgets.index.navbar')
-          = link_to t('widgets.index.add_new'), "#"
-        -@widget_list.navbar.each do |widget|
-          = render "widget", :widget => widget, :position => "navbar"
+          /       .container.navbar
+          /         .header
+          /           = t('widgets.index.navbar')
+          /           = link_to t('widgets.index.add_new'), "#"
+          /         -@widget_list.navbar.each do |widget|
+          /           = render "widget", :widget => widget, :position => "navbar"
 
-      .container.sidebar
-        .header
-          = t('widgets.index.sidebar')
-          = link_to t('widgets.index.add_new'), "#"
-        -@widget_list.sidebar.each do |widget|
-          = render "widget", :widget => widget, :position => "sidebar"
+          /       .container.sidebar
+          /         .header
+          /           = t('widgets.index.sidebar')
+          /           = link_to t('widgets.index.add_new'), "#"
+          /         -@widget_list.sidebar.each do |widget|
+          /           = render "widget", :widget => widget, :position => "sidebar"
 
-      .container.footer
-        .header
-          = t('widgets.index.footer')
-          = link_to t('widgets.index.add_new'), "#"
-        -@widget_list.footer.each do |widget|
-          = render "widget", :widget => widget, :position => "footer"
+          /       .container.footer
+          /         .header
+          /           = t('widgets.index.footer')
+          /           = link_to t('widgets.index.add_new'), "#"
+          /         -@widget_list.footer.each do |widget|
+          /           = render "widget", :widget => widget, :position => "footer"
 
-      -else
+          /       -else
 
-        -@widget_list.sidebar.each do |widget|
-          = render "widget", :widget => widget, :position => "sidebar"
+          /         -@widget_list.sidebar.each do |widget|
+          /           = render "widget", :widget => widget, :position => "sidebar"

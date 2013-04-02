@@ -25,11 +25,16 @@
     <%= javascript_include_tag "admin/jquery.dataTables.min" %>
     <%= javascript_include_tag "app/modules/editor" %>
     <%= javascript_include_tag "vendor/jHtmlArea" %>
+    <!-- favicon link tag -->
+    <%= favicon_link_tag(favicon_group_path(current_group), :rel=>'icon')%>
+    <%= favicon_link_tag(favicon_group_path(current_group), :rel=>'shortcut icon')%>
+    <!-- favicon link tag -->
     <%#= javascript_include_tag "admin/statistic" %>
     <%#= javascript_include_tag "admin/main" %>
     <%= csrf_meta_tags %>
   </head>
   <body>
+
 <!-- loading animation -->
     <div id="qLoverlay"></div>
     <div id="qLbar"></div>
@@ -37,6 +42,7 @@
     <div id="header">
 
         <div class="navbar">
+      
             <div class="navbar-inner">
               <div class="container-fluid">
                 <a class="brand" href="<%= admin_dashboard_path %>">Plus.<span class="slogan">admin</span></a>
@@ -174,7 +180,7 @@
                                 <li><a href="<%= announcements_path %>" id="features_announcement"><span class="icon16 brocco-icon-mic" ></span>Announcements</a></li>
                                 <li><a href="<%= manage_social_path %>" id="features_social"><span class="icon16 brocco-icon-earth"></span>Social</a></li>
                                 <li><a href="<%= constrains_configs_path %>"><span class="icon16 brocco-icon-window"></span>Requirements</a></li>
-                                <li><a href="<%= manage_properties_tab_path(:tab => "rewards") %>"><span class="icon16 entypo-icon-trophy"></span>Rewards</a></li>
+                                <li><a href="<%= manage_rewards_path %>"><span class="icon16 entypo-icon-trophy"></span>Rewards</a></li>
                             </ul>
                         </li>
                         <li>
@@ -183,19 +189,51 @@
                                 <li><a href="<%= manage_appearance_path %>"><span class="icon16 minia-icon-cog"></span>Appearance</a></li>
                                 <li><a href="<%= manage_content_path %>"><span class="icon16 brocco-icon-diary"></span>Content</a></li>
                                 <li><a href="<%= themes_path %>"><span class="icon16  entypo-icon-palette"></span>Themes</a></li>
-                                <li><a href="<%= widgets_path %>"><span class="icon16 entypo-icon-palette"></span>Widgets</a></li>
+                                <li><a href="<%= widgets_path %>"><span class="icon16 entypo-icon-popup"></span>Widgets</a></li>
                             </ul>
                         </li>
                         <li>
-                            <%= link_to "<span class='icon16 minia-icon-cog'></span>Close Group".html_safe, "#", :class => "hasUl" %>
+                            <%= link_to "<span class='icon16 entypo-icon-close'></span>Close Group".html_safe, "#", :class => "hasUl" %>
                             <ul class="sub">
-                                <li><a href="<%= manage_close_group_path %>"><span class="icon16 minia-icon-cog"></span>Close group</a></li>
+                                <li class="full-width"><a href="<%= manage_close_group_path %>"><span class="icon16 entypo-icon-close"></span>Close group</a></li>
                             </ul>
                         </li>
                     </ul>
+                   
+                   
+                    
                 </div>
             </div><!-- End sidenav -->
+            <!-- rigth now starts from here-->
+            <div class="sidebar-widget" style="margin: -1px 0 0 0;">
+                <h5 class="title" style="margin-bottom:0">Right now</h5>
+            </div>
+            <div class="mainnav">
+                <ul class="right-now">
+                    <li>
+                        <span class="right-now-text-bold">34</span>
+                        <span class="icon16 icomoon-icon-new"></span>
+                        <span>Posts</span>
+                    </li>
+                    <li>
+                        <span class="right-now-text-bold">7</span>
+                        <span class="icon16 cut-icon-file"></span>
+                        <span>Pages</span>
+                    </li>
+                    <li>
+                        <span class="right-now-text-bold">14</span>
+                        <span class="icon16 brocco-icon-list"></span>
+                        <span>Categories</span>
+                    </li>
+                    <li>
+                        <span class="right-now-text-bold">201</span>
+                        <span class="icon16 brocco-icon-tag"></span>
+                        <span>Tags</span>
+                    </li>
+                </ul>
+            </div>
 
+            <!-- rigth now starts from here-->
         </div><!-- End #sidebar -->
         <!--Body content-->
         <div id="content" class="clearfix">

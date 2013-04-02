@@ -1,7 +1,22 @@
-%h1
-  = t(".title", :default => "New theme")
-%p.description
-  In here you can create a new look and feel for your project, define colors, backgrounds and all that needs to be set in order to get you custom look.
-
-= form_for @theme, :html => {:multipart => true} do |form|
-  = render "form", :form => form
+.row-fluid
+  .span12
+    .box
+      .title
+        %h4
+          %span{:class => "icon16  entypo-icon-palette"}
+          %span
+            = t(".title")
+        %form{:class => "box-form right", :action => "", :style => "margin-top:-27px !important"}
+          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" style="padding: 4px 10px !important; border-width: 1px !important; border-style: solid !important">
+          <span class="icon16 iconic-icon-cog"></span>
+          <span class="caret"></span>
+          </a>
+          %ul{:class => "dropdown-menu"}
+            %li
+              = link_to "<span class='icon16 brocco-icon-plus'></span>Add new theme".html_safe, new_theme_path, :id => "openModalDialog"
+        = link_to "Minimize", "#", :class => "minimize"
+      .content{:style => "Padding-bottom: 0px !important"}
+        %p.description
+          In here you can create a new look and feel for your project, define colors, backgrounds and all that needs to be set in order to get you custom look.
+        = form_for @theme, :html => {:multipart => true} do |form|
+          = render "form", :form => form

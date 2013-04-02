@@ -19,6 +19,7 @@ class Admin::ManageController < ApplicationController
                        [:head_tag, "head_tag"],
                        [:head, "head"], [:footer, "footer"],
                        [:top_bar, "top_bar"]]
+
   subtabs :social => [[:post_to_twitter, "post_to_twitter"],
                      [:ask_from_twitter, "ask_from_twitter"],
                      [:facebook_app, "facebook_app"],
@@ -67,6 +68,7 @@ class Admin::ManageController < ApplicationController
   end
 
   def content
+    @activeTabClass = params[:tab];
     @active_subtab ||= "head_tag"
     @page_title = "Content"
     unless @group.has_custom_html
@@ -95,6 +97,13 @@ class Admin::ManageController < ApplicationController
   end
 
   def close_group
+    @page_title ="Close group"
+  end
+  #newly action added for reward
+  def rewards
+    @page_title ="Rewards"
+    @active_subtab ||= "rewards"
+    @active_page ="rewards"
   end
 
   protected

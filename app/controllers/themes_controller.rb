@@ -12,13 +12,12 @@ class ThemesController < ApplicationController
 
     if params[:tab] == "all"
       conditions[:$or] = [{:community => true}, {:group_id => current_group.id}]
-
       @themes = Theme.where(conditions).page(params["page"])
     end
-
-
     respond_to do |format|
       format.html # index.html.haml
+      pagination = render_to_string(:partial => "shared/pagination", :object => @themes,
+                                      :format => "html")
       format.json  { render :json => @themes }
     end
   end

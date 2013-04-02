@@ -18,9 +18,9 @@
           = link_to h(tag), tag_path(:id => CGI.escape(tag)), :class => "tags2_1", :style => "margin-right: 10px;"
     %ul{:class => "tags3"}
       %li
-        = link_to "<span>Flag</span>".html_safe, new_question_flag_path(question), :class => "q_tag1"
-        = link_to "<span>Follow</span>".html_safe, follow_question_path(question), :class => "q_tag2"
-        = link_to "<span>Answer</span>".html_safe, question_path(question, :anchor => "to_answer"), :class => "q_tag3"
+        = link_to "<span class='underline-decoration-link'>Flag</span>".html_safe, new_question_flag_path(question), :class => "q_tag1"
+        = link_to "<span class='underline-decoration-link'>Follow</span>".html_safe, follow_question_path(question), :class => "q_tag2"
+        = link_to "<span class='underline-decoration-link'>Answer</span>".html_safe, question_path(question, :anchor => "to_answer"), :class => "q_tag3"
     %span{:id => "ps2"}
       = question.views_count
       views

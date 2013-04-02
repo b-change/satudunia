@@ -1,12 +1,23 @@
-%h1
-  = t('layouts.manage.close_group')
-%p.description
-  = t('admin.manage.close_group.description')
-
-= form_for :group, :url => close_group_path(current_group) do |form|
-  = text_area_tag t('admin.manage.close_group.feedback')
-  .form-options
-    .buttons
-      = form.submit t('scaffold.close')
-
-
+.row-fluid
+  .span12
+    .box
+      .title
+        %h4
+          %span{:class => "icon16 entypo-icon-close"}
+          = t(".title")
+        = link_to "Minimize", "#", :class => "minimize"
+      .content{:style => "Padding-bottom: 0px !important"}
+        %p.description
+          = t('admin.manage.close_group.description')
+        = form_for :group, :url => close_group_path(current_group) do |form|
+          = text_area_tag t('admin.manage.close_group.feedback')
+          .form-row.row-fluid
+            .span12
+              .row-fluid
+                .form-actions{:style => "width: 100% !important; margin-left: -10px !important; margin-bottom: -18px !important"}
+                  .span9
+                    &nbsp;
+                  .span3.controls
+                    = form.button "Close", :class => "btn marginR10", :style => "padding: 4px 10px !important; border-width: 1px !important; border-style: solid !important"
+                    = link_to "Cancel", admin_path, :class => "btn btn-danger", :style => "padding: 5px 10px !important; border-width: 1px !important; border-style: solid !important"
+             

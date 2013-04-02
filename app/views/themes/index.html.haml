@@ -1,34 +1,71 @@
-%h1
-  = t("layouts.manage.themes")
-%p.description
-  = t('themes.index.description')
+.row-fluid
+  .span12
+    .box
+      .title
+        %h4
+          %span{:class => "icon16  entypo-icon-palette"}
+          %span
+            = t(".title")
+        %form{:class => "box-form right", :action => "", :style => "margin-top:-27px !important"}
+          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" style="padding: 4px 10px !important; border-width: 1px !important; border-style: solid !important">
+          <span class="icon16 iconic-icon-cog"></span>
+          <span class="caret"></span>
+          </a>
+          %ul{:class => "dropdown-menu"}
+            %li
+              = link_to "<span class='icon16 brocco-icon-plus'></span>Add new theme".html_safe, new_theme_path, :id => "openModalDialog"
+            %li
+              = link_to "<span class='icon16 brocco-icon-plus'></span>Import".html_safe, "#", class: "import_theme", :id => "openModalDialog"
+            %li
+              = link_to "<span class='icon16 brocco-icon-plus'></span>Filter".html_safe, "#", class: "", :id => "openModalDialog"
+        = link_to "Minimize", "#", :class => "minimize"
+      .content{:style => "Padding-bottom: 50px !important"}
+        %p.description
+          = t('themes.index.description')
+        %table{:cellpadding=>0,:cellspacing=>0,:border=>0,:class=>"responsive dynamicTable display table table-bordered",:width=>"100%"}
+          %thead
+            %tr
+              %th
+                Name
+              %th 
+                Description
+              %th
+                Color
+              %th
+                Date
+              %th 
+                Action
+          %tbody
+            -@themes.each do |theme|
+              = render :partial => "theme", :object => theme
+        / commented can be use in future
+        
 
-.toolbar
-  %ul.menubar
-    %li.action
-      = link_to "Add new theme", new_theme_path
-    %li.action
-      = link_to "Import", "#", class: "import_theme"
-    %li.more.current.action
-      = link_to "Filter", "#"
-      %ul.drop-menu
-        %li
-          = link_to t('themes.index.group_themes'), themes_path
-        %li
-          = link_to t('themes.index.all_themes'), themes_path(:tab => "all")
+        / .toolbar
+        /   %ul.menubar
+        /     %li.action
+        /       = link_to "Add new theme", new_theme_path
+        /     %li.action
+        /       = link_to "Import", "#", class: "import_theme"
+        /     %li.more.current.action
+        /       = link_to "Filter", "#"
+        /       %ul.drop-menu
+        /         %li
+        /           = link_to t('themes.index.group_themes'), themes_path
+        /         %li
+        /           = link_to t('themes.index.all_themes'), themes_path(:tab => "all")
 
+        / = form_tag import_themes_path, :method => :post, :class => "import_dialog form_dialog" do |f|
+        /   =file_field_tag :theme_file
+        /   =submit_tag "import"
 
-= form_tag import_themes_path, :method => :post, :class => "import_dialog form_dialog" do |f|
-  =file_field_tag :theme_file
-  =submit_tag "import"
+        / %section.themes
+        /   = render "theme", :theme => current_group.current_theme || Theme.where(:is_default => true).first
 
-%section.themes
-  = render "theme", :theme => current_group.current_theme || Theme.where(:is_default => true).first
+        /   -if @themes.empty?
+        /     = render "shared/empty", :type => "themes", :url => new_theme_path
+        /   -else
+        /     -@themes.each do |theme|
+        /       = render "theme", :theme => theme
 
-  -if @themes.empty?
-    = render "shared/empty", :type => "themes", :url => new_theme_path
-  -else
-    -@themes.each do |theme|
-      = render "theme", :theme => theme
-
-  = paginate @themes
+        /   = paginate @themes

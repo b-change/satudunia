@@ -153,7 +153,13 @@
               .span12
                 .row-fluid
                   = f.label :per_page_limit, "Per Page Limit", :class => "form-label span3"
-                  = f.text_field :custom_pagination_length, :value => @group.custom_pagination_length, :class => "span9"
+                  = f.text_field :custom_pagination_length, :value => @group.custom_pagination_length, :class => "span9 counter-steper"
+
+            .form-row.row-fluid
+              .span12
+                .row-fluid
+                  = f.label :Question_slider_default_stepper, "Default Stepper", :class => "form-label span3"
+                  = f.text_field :question_default_length, :value => @group.question_default_length, :class => "span9 counter-steper"
 
             .form-row.row-fluid
               .span12
@@ -165,7 +171,7 @@
               .span12
                 .row-fluid
                   = f.label :slogan_long_ask, "Slogan Long Ask", :class => "form-label span3"
-                  = f.text_area :slogan_long_ask, :value => @group.slogan_long_ask, :class => "span9"
+                  = f.text_area :slogan_long_ask, :value => @group.slogan_long_ask, :class => "span9 textarea-3column"
 
             .form-row.row-fluid
               .span12
@@ -177,7 +183,7 @@
               .span12
                 .row-fluid
                   = f.label :slogan_long_location, "Slogan Long Location", :class => "form-label span3"
-                  = f.text_area :slogan_long_location, :value => @group.slogan_long_location, :class => "span9"
+                  = f.text_area :slogan_long_location, :value => @group.slogan_long_location, :class => "span9 textarea-3column"
 
             .form-row.row-fluid
               .span12
@@ -188,7 +194,7 @@
               .span12
                 .row-fluid
                   = f.label :slogan_long_sign, "Slogan Long Signup", :class => "form-label span3"
-                  = f.text_area :slogan_long_sign, :value => @group.slogan_long_sign, :class => "span9"
+                  = f.text_area :slogan_long_sign, :value => @group.slogan_long_sign, :class => "span9 textarea-3column"
 
             .form-row.row-fluid
               .span12
