@@ -95,4 +95,17 @@ class SearchesController < ApplicationController
       format.html { redirect_to root_path }
     end
   end
+  # search ajax action
+  def search_ajax
+    @params = params[:q]
+    unless @params.blank?
+      @params.scan(/\[(\w+)\]/).flatten
+      @params.gsub(/\[(\w+)\]/, "")
+      @search = Question.filter(@params)
+      respond_to do |format|
+        format.json {render:json =>@search.to_json}
+      end
+    end
+  end
+
 end

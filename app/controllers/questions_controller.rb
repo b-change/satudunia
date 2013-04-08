@@ -23,7 +23,7 @@ class QuestionsController < ApplicationController
           :show => [[:votes, [:votes_average, Mongo::DESCENDING]], [:oldest, [:created_at, Mongo::ASCENDING]], [:newest, [:created_at, Mongo::DESCENDING]]]
   helper :votes
 
-  layout "plus", :only => ["index", "show"]
+  layout "plus", :only => ["index", "show","question_search"]
 
   # GET /questions
   # GET /questions.xml
@@ -403,6 +403,16 @@ class QuestionsController < ApplicationController
 
   # DELETE /questions/1
   # DELETE /questions/1.xml
+  # action added for new ajax search show
+  def question_search
+    @body_id = "page3"
+    @params = params[:hidden_keys].split(",")
+    @tags = current_group.tags
+    @questions = Question.where(:group_id=>current_group.id).in(_id:@params).page(params["page"]).order_by(current_order)
+    respond_to do |format|
+      format.html {render(:action=>"index")}
+    end
+  end
   def destroy
     if @question.user_id == current_user.id
       @question.user.update_reputation(:delete_question, current_group)

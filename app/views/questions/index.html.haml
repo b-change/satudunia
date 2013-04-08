@@ -12,7 +12,7 @@
 .alpha.grid_18.body_about{:id => "firstElement"}
   %span{:class => "p_a"}
     Questions
-  %span{:class => "p_a1"}
+  %span{:class => "p_a1 i3_1"}
     = link_to "Home", "/"
     > Questions
   .sort
@@ -39,12 +39,14 @@
         %ul
           - @questions.each do |question|
             = render "questions/plus_question", :question => question
-    = paginate @questions, :left => 5, :right => 1
-    .per_page{:style => "float:right;"}
-      = link_to 15, '/questions?per_page=15', :id => "per_page_15"
-      = link_to 30, '/questions?per_page=30', :id => "per_page_30"
-      = link_to 50, '/questions?per_page=50', :id => "per_page_50"
-      per page
+  = paginate @questions
+.grid_6.omega.body1_about{:id => "secondElement"}
+  = paginate @questions, :left => 5, :right => 1
+  .per_page{:style => "float:right;"}
+    = link_to 15, '/questions?per_page=15', :id => "per_page_15"
+    = link_to 30, '/questions?per_page=30', :id => "per_page_30"
+    = link_to 50, '/questions?per_page=50', :id => "per_page_50"
+    per page
 .grid_6.omega.body1_about{:id => "secondElement", :style => "top: -43px !important; width: 242px !important"}
   .tagsl1
     %span{:class => "t_l1"} 67
@@ -59,10 +61,10 @@
     %span{:class => "t_l1_3"} 36
     %br
     %span{:class => "t_l2_3"} Followers
-  %p{:style => "color: #000000;font-family: Calibri;font-size: 24px;margin-top: 105px;padding: 10px 30px;"}
+  %p.i3_4
     %strong
       Recent Tags
-  %ul{:class => "tags", :style => "padding-left: 25px"}
+  %ul.tags
     - @tags.each do |tag|
       %li{:style => "float:left; padding-left:0px !important;"}
         %span{:class => "tags1_1"}
@@ -74,8 +76,6 @@
   %ul{:class => "users"}
     = render :partial => "widgets/plus_users"
   = link_to "<span style='color:#0075ce;padding-left: 30px;text-decoration: none;font-weight: bold;font-family:Arial'>More>></span>".html_safe, users_path
-  
-
 :javascript
   $('#slider211').bxSlider({
     mode: 'vertical',

@@ -44,18 +44,39 @@
 .alpha.grid_19.body_about
   %span{:class => "p_a"}
     Contact Us
-  %span{:class => "p_a1"}
+  %span{:class => "p_a1", :style => "position: relative !important; left: -169px;"}
     = link_to "Home", "/"
     > Contact Us
   %h2
     Contact Us
   %div{:style => "padding: 10px 30px; font-size: 13px; font-family: Arial; color: #000000"}
     #map_canvas{:style => "width: 690px; height: 300px; margin-bottom: 10px"}
+
+  .tabs2
+    %div#first.i4_1.serv_loc6
+      %div.bx-wrapper{:style =>"width: 953px; position: relative;"}
+        %div.bx-window{:style=>"width: 953px; height: 963px; position: relative; overflow: hidden;"}
+          %ul#slider41.i3_2
+            %li.pager
+              %ul
+                %li.grid_12.serv_loc4
+                  %span.s1 Webmaster
+                  %br/
+                  %p.srv_loc2
+                    #{@contact.street_address_safe}
+                    = succeed "Phone:" do
+                      %br/
+                    (65) 6555 8000
+                    %br/
+                    Fax: (65) 6602 3700
+                    %br/
+                    Email:
+                    %a{:href => "mailto:webmaster@email.com"} webmaster@email.com
+                  %img.srv_loc3{:alt => "", :src => "assets/gmap_icon.png"}/
+                  %a{:href => "#"} View on map
+
     
 .grid_5.omega.body1_about
-  %p{:class => "about"}
-    %strong
-      About Plus
   = render :partial => "shared/about_nav_bar"
 
 :javascript

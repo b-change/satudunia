@@ -10,7 +10,11 @@ module Shapado
                         :logo_group_path,
                         :question_attachment_path,
                         :javascript_group_path,
-                        :bg_image_path
+                        :bg_image_path,
+			                  :shortcut_group_path,
+                        :apple_group_path,
+                        :applest_group_path,
+                        :metro_group_path
         end
       end
 
@@ -29,7 +33,18 @@ module Shapado
       def favicon_group_path(group)
         "/_files/groups/favicon/#{CGI.escape(group.id)}/#{group.custom_favicon_version}.png"
       end
-
+      def shortcut_group_path(group)
+        "/_files/groups/shortcut/#{CGI.escape(group.id)}/#{group.custom_favicon_version}.png"
+      end
+      def apple_group_path(group)
+        "/_files/groups/apple/#{CGI.escape(group.id)}/#{group.custom_favicon_version}.png"
+      end
+      def applest_group_path(group)
+        "/_files/groups/applest/#{CGI.escape(group.id)}/#{group.custom_favicon_version}.png"
+      end
+      def metro_group_path(group)
+        "/_files/groups/metro/#{CGI.escape(group.id)}/#{group.custom_favicon_version}.png"
+      end
       def tag_icon_path(group,tag_name)
         if tag_name.is_a?(Tag)
           tag_name = tag_name.name

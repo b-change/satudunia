@@ -31,8 +31,9 @@ class Group
   field :analytics_id, :type => String
   field :analytics_vendor, :type => String
   field :has_custom_analytics, :type => Boolean, :default => true
+  field :metro_color, :type => String, :default => "FFFFFF"
 
-  field :auth_providers, :type => Array, :default => %w[Google Twitter Facebook OpenID]
+  field :auth_providers, :type => Array, :default => %w[Google Twitter Facebook MyOpenID]
   field :allow_any_openid, :type => Boolean, :default => true
 
   field :language, :type => String
@@ -60,12 +61,18 @@ class Group
   field :has_custom_html, :type => Boolean, :default => true
   field :has_custom_js, :type => Boolean, :default => true
   field :fb_button, :type => Boolean, :default => true
-
+  field :has_custom_shortcut, :type => Boolean, :default => true
+  field :has_custom_apple, :type => Boolean, :default => true
+  field :has_custom_applest, :type => Boolean, :default => true
+  field :has_custom_metro, :type => Boolean, :default => true
   field :enable_latex, :type => Boolean, :default => false
   field :enable_mathjax, :type => Boolean, :default => false
   field :logo_version, :type => Integer, :default => 0
   field :custom_favicon_version, :type => Integer, :default => 0
-  field :custom_shortcut_icon_version, :type => Integer, :default => 0
+  field :custom_shortcut_version, :type => Integer, :default => 0
+  field :custom_apple_version, :type => Integer, :default => 0
+  field :custom_applest_version, :type => Integer, :default => 0
+  field :custom_metro_version, :type => Integer, :default => 0
 
   field :custom_pagination_length, :type => Integer, :default => 20
   field :question_default_length, :type => Integer, :default => 10
@@ -101,9 +108,12 @@ class Group
   field :columns, :type => Array, :default => ["column1", "column2", "column3"]
 
   file_key :logo, :max_length => 2.megabytes
+  file_key :custom_shortcut, :max_length => 2.megabytes
   file_key :custom_css, :max_length => 256.kilobytes
   file_key :custom_favicon, :max_length => 256.kilobytes
-  file_key :custom_shortcut_icon, :max_length => 256.kilobytes
+  file_key :custom_apple, :max_length => 256.kilobytes
+  file_key :custom_applest, :max_length => 2.megabytes
+  file_key :custom_metro, :max_length => 256.kilobytes
   file_list :thumbnails
 
   field :used_quota, :type => Float, :default => 0.0
@@ -300,7 +310,7 @@ class Group
   end
 
   def self.find_file_from_params(params, request)
-    if request.path =~ /\/(logo|big|medium|small|css|favicon)\/([^\/\.?]+)/
+    if request.path =~ /\/(logo|big|medium|small|css|favicon|shortcut|apple|applest|metro)\/([^\/\.?]+)/
       @group = Group.find($2)
 
       logo = @group.has_logo? ? @group.logo : Shapado::FileWrapper.new("#{Rails.root}/app/assets/images/logo.png", "image/png")
@@ -319,6 +329,14 @@ class Group
         css
       when "favicon"
         @group.custom_favicon if @group.has_custom_favicon?
+      when "shortcut"
+        @group.custom_shortcut if @group.has_custom_shortcut?
+      when "apple"
+        @group.custom_apple if @group.has_custom_apple?
+      when "applest"
+        @group.custom_applest if @group.has_custom_applest?
+      when "metro"
+        @group.custom_metro if @group.has_custom_metro?
       end
     end
   end

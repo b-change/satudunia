@@ -79,7 +79,7 @@ class GroupsController < ApplicationController
     if params[:group][:languages]
       params[:group][:languages].reject! { |lang| lang.blank? }
     end
-    @group.safe_update(%w[languages name legend description default_tags subdomain logo forum enable_mathjax enable_latex custom_favicon language theme signup_type custom_css wysiwyg_editor], params[:group])
+    @group.safe_update(%w[languages name metro_color legend description default_tags subdomain logo forum enable_mathjax enable_latex custom_apple custom_applest custom_metro custom_favicon custom_shortcut language theme signup_type custom_css wysiwyg_editor], params[:group])
 
     @group.safe_update(%w[isolate domain private], params[:group]) if current_user.admin?
 
@@ -109,9 +109,9 @@ class GroupsController < ApplicationController
     if params[:group][:languages]
       params[:group][:languages].reject! { |lang| lang.blank? }
     end
-    @group.safe_update(%w[track_users name legend description default_tags subdomain logo logo_info forum enable_latex enable_mathjax
-                          custom_favicon language languages current_theme_id reputation_rewards daily_cap reputation_constrains
-                          has_adult_content registered_only enable_anonymous signup_type custom_css wysiwyg_editor layout
+    @group.safe_update(%w[track_users name metro_color legend description default_tags subdomain logo logo_info forum enable_latex enable_mathjax
+                          custom_favicon custom_shortcut custom_applest custom_metro custom_apple language languages current_theme_id reputation_rewards daily_cap reputation_constrains
+                          has_custom_metro has_custom_apple has_custom_applest has_custom_shortcut has_adult_content registered_only enable_anonymous signup_type custom_css wysiwyg_editor layout
                           fb_button notification_opts auth_providers allow_any_openid custom_pagination_length question_default_length slogan_short_ask slogan_long_ask
                           slogan_short_location slogan_long_location slogan_short_sign slogan_long_sign], params[:group])
     @group.share.safe_update(%w[fb_app_id fb_secret_key fb_active starts_with ends_with enable_twitter twitter_user twitter_pattern], params[:group][:share]) if params[:group][:share]
@@ -136,6 +136,18 @@ class GroupsController < ApplicationController
     end
     if params[:group][:custom_favicon]
       @group.custom_favicon_version += 1
+    end
+    if params[:group][:custom_apple]
+      @group.custom_apple_version += 1
+    end
+    if params[:group][:custom_shortcut]
+      @group.custom_shortcut_version += 1
+    end
+    if params[:group][:custom_applest]
+      @group.custom_applest_version += 1
+    end
+    if params[:group][:custom_metro]
+      @group.custom_metro_version += 1
     end
 
     respond_to do |format|

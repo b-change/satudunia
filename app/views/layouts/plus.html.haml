@@ -20,15 +20,23 @@
     %meta{'http-equiv' => "imagetoolbar", :content => "no"}
     / favicon
     %link{:href => favicon_group_path(current_group), :rel => "icon"}/
-    %link{:href => "plus/logo.png", :rel => "shortcut icon"}/
-    %link{:href => "plus/iOS_icon.png", :rel => "apple-touch-icon"}
-    %link{:href => "plus/iOS_icon.png", :rel => "apple-touch-startup-image"}
+    %link{:href => shortcut_group_path(current_group), :rel => "shortcut icon"}/
+    %link{:href => apple_group_path(current_group), :rel => "apple-touch-icon"}/
+    %link{:href => applest_group_path(current_group), :rel => "apple-touch-startup-image"}/
+    %meta{:content => metro_group_path(current_group), :name=>"msapplication-TileImage"}/
+    %meta{:content => "<%= current_group.metro_color %>", :name=>"msapplication-TileColo"}/
+    
     / CSS
     = stylesheet_link_tag "plus/style"
+    = stylesheet_link_tag "tool-tip.css"
     = stylesheet_link_tag "plus/jquery.bxslider.css"
     = stylesheet_link_tag "plus/popup.css"
     / JS
     = javascript_include_tag "plus"
+    = javascript_include_tag "tool-tip.js"
+    = javascript_include_tag "plus/searchAjax.js"
+    
+
 
     /[if lt IE 8]
       %div{:style => ' clear: both; text-align:center; position: relative;'}
@@ -55,7 +63,7 @@
                       %li
                         = link_to "Questions", questions_path, :id => "question_nav"
                       %li 
-                        = link_to "Services Map", 'services-map', :id => "service_providers_nav"
+                        = link_to "Services Map", '', :id => "service_providers_nav"
                       %li
                         = link_to "Community", users_path, :id => "community_nav"
                       %li
@@ -171,9 +179,13 @@
             .main
               .container_24
                 .bg2_1
-                  = form_tag "/",:id => "search" do
-                    = text_field_tag "search", "What is your question?"
-                    = button_tag "search"
+                  %div#search-container
+                    %span.text-style-drop
+                      No result found!
+                  = form_tag "#{question_search_path}",:id => "search" do
+                    = text_field_tag "search-ajax", "What is your question?", :class => "search-tag",:alt => "What is your question?",:autocomplete=>"off"
+                    = hidden_field_tag "hidden_keys"
+                    = button_tag "search",:class=>"search-btn"
                     .clear
                 = yield :search_form
                 .grid_24
@@ -186,9 +198,13 @@
                 .main
                   .container_24
                     .bg2_1
-                      = form_tag "/",:id => "search" do
-                        = text_field_tag "search", "What is your question?"
-                        = button_tag "search"
+                      %div#search-container
+                        %span.text-style-drop
+                          No result found!
+                      = form_tag "#{question_search_path}",:id => "search" do
+                        = text_field_tag "search-ajax", "What is your question?", :class => "search-tag",:alt => "What is your question?",:autocomplete=>"off"
+                        = hidden_field_tag "hidden_keys"
+                        = button_tag "search",:class=>"search-btn"
                         .clear
                     .grid_24
                       = yield
@@ -269,7 +285,7 @@
                       %li
                         = link_to "Questions", questions_path, :id => "question_nav"
                       %li 
-                        = link_to "Services Map", '/services-map', :id => "service_providers_nav"
+                        = link_to "Services Map",'/services-map', :id => "service_providers_nav"
                       %li
                         = link_to "Community", users_path, :id => "community_nav"
                       %li
@@ -287,9 +303,11 @@
               .clear
 
 
-
-
 :javascript
+  
+  $(function() {
+    $(".tool-tip").tooltip();
+  });
   $('.bxslider').bxSlider({
     nextSelector: '#slider-next',
     prevSelector: '#slider-prev',
@@ -374,11 +392,11 @@
 
 %script
   function closePopup(){
-  if(window.opener!=null){
-  - unless current_user.nil?
-    window.opener.location.reload(true);
-    window.close();
-  }
+    if(window.opener!=null){
+      - unless current_user.nil?
+      window.opener.location.reload(true);
+      window.close();
+    }
   }
   
 :javascript
@@ -388,4 +406,5 @@
       $("#login_form").submit();
     }
   });
-
+  
+  

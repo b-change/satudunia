@@ -141,7 +141,9 @@ class Question
 
   xapit do
     language :language
-    text :title
+    text :title do |title|
+      title.gsub(/<\/?[^>]*>/, " ").gsub(/[\S]{245,}/, "") unless title.nil?
+    end
     text :body do |body|
       body.gsub(/<\/?[^>]*>/, " ").gsub(/[\S]{245,}/, "") unless body.nil?
     end

@@ -96,7 +96,7 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :service_providers
+  resources :service_providers, :path=>'services-map'
   resources :news
   resources :polls
 
@@ -185,6 +185,8 @@ Rails.application.routes.draw do
     resources :close_requests
     resources :open_requests
   end
+  get '/search_ajax' => 'searches#search_ajax'
+  post '/question_search'=>'questions#question_search#index'
 
   match 'questions/tags/:tags' => 'tags#show', :as => :question_tag
   match 'questions/tagged/:tags' => redirect { |env, req| "/questions/tags/#{req.params[:tags].gsub(' ', '+')}" }, :tags => /.+/ #support se url

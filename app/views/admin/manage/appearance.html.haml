@@ -48,11 +48,55 @@
                 = f.label :custom_favicon, "Favicon", :class => "form-label span3"
                 = f.file_field :custom_favicon
                 -if @group.has_custom_favicon?
-                  = image_tag(favicon_group_path(@group))
+                  = image_tag(favicon_group_path(@group),:Height=>"20px")
                 -else
                   = image_tag("/favicon.ico")
-
+          / shortcut icon
           .form-row.row-fluid
+            .span12
+              .row-fluid
+                = f.label :custom_shortcut, "Shortcut Icon", :class => "form-label span3"
+                = f.file_field :custom_shortcut
+                -if @group.has_custom_shortcut?
+                  = image_tag(shortcut_group_path(@group),:height=>"20px")
+                -else
+                  = image_tag("/favicon.ico")
+          / apple favicon icon
+          .form-row.row-fluid
+            .span12
+              .row-fluid
+                = f.label :custom_apple, "Apple Touch Icon", :class => "form-label span3"
+                = f.file_field :custom_apple
+                -if @group.has_custom_apple?
+                  = image_tag(apple_group_path(@group),:height=>"20px")
+                -else
+                  = image_tag("/favicon.ico")
+          / apple start image
+          .form-row.row-fluid
+            .span12
+              .row-fluid
+                = f.label :custom_applest, "Apple Start Image", :class => "form-label span3"
+                = f.file_field :custom_applest
+                -if @group.has_custom_applest?
+                  = image_tag(applest_group_path(@group),:height=>"20px")
+                -else
+                  = image_tag("/favicon.ico")
+          / metro favicon
+          .form-row.row-fluid
+            .span12
+              .row-fluid
+                = f.label :custom_metro, "Metro Favicon", :class => "form-label span3"
+                = f.file_field :custom_metro,:id=>"metro"
+                -if @group.has_custom_metro?
+                  = image_tag(metro_group_path(@group),:height=>"20px")
+                -else
+                  = image_tag("/favicon.ico")
+          .form-row.row-fluid
+            .span12
+              .row-fluid
+                = f.label :metro_color, "Metro Color Pallette", :class => "form-label span3"
+                = f.text_field :metro_color, :class => "color-picker-input" ,:id=>"color-picker"
+          .form-row.row-fluid 
             .span12
               .row-fluid
                 .form-actions{:style => "width: 100% !important; margin-left: -10px !important; margin-bottom: -18px !important"}
@@ -61,3 +105,17 @@
                   .span3.controls
                     = f.button "Save Changes", :class => "btn marginR10", :style => "padding: 4px 10px !important; border-width: 1px !important; border-style: solid !important"
                     = link_to "Cancel", admin_path, :class => "btn btn-danger", :style => "padding: 5px 10px !important; border-width: 1px !important; border-style: solid !important"
+  :javascript
+    $("#color-picker").jPicker({
+      window:
+      {
+        expandable: true
+      },
+      color:
+      {
+        alphaSupport: true,
+        active: new $.jPicker.Color({ ahex: '99330099' })
+      }
+
+
+    });

@@ -1,0 +1,31 @@
+.row-fluid
+  .span12
+    .box
+      .title
+        %h4
+          %span{:class => "icon16 brocco-icon-home"}
+          = t(".#{@active_subtab}")
+        = link_to "Minimize", "#", :class => "minimize"
+      .content{:style => "Padding-bottom: 0px !important"}
+        = form_for(@group, :html => {:class => "form-horizontal", :multipart => true}) do |f|
+
+          = f.error_messages
+
+          =hidden_field_tag :source, domain_url(:custom => @group.domain, :controller => "admin/manage", :action => "properties", :tab => @active_subtab)
+
+          %h2.title
+            =t(".reputation_rewards_subtitle")
+
+          %p
+            =t(".reputation_rewards_description")
+
+          = render :partial => "groups/reputation_rewards_form", :object => f
+          .form-row.row-fluid
+            .span12
+              .row-fluid
+                .form-actions{:style => "width: 100% !important; margin-left: -10px !important; margin-bottom: -18px !important"}
+                  .span9
+                    &nbsp;
+                  .span3.controls
+                    = f.button "Save Changes", :class =>"btn marginR10", :style => "padding: 4px 10px !important; border-width: 1px !important; border-style: solid !important"
+                    = link_to "Cancel", admin_dashboard_path, :class => "btn btn-danger", :style => "padding: 5px 10px !important; border-width: 1px !important; border-style: solid !important"

@@ -24,3 +24,7 @@
 	display: inline-block;
 	/*margin-left: -17px;*/
 }
+.color-picker-input{
+	width:195px !important;
+	height:25px !important;
+}

@@ -4,6 +4,7 @@
   position: relative; /* make this element an absolute positioning container */
   text-align: left; /* make the zero width children position to the left of container */
   width: 25px; /* change this value if using a different sized color picker icon */
+  display:inline-block !important;
 }
 .jPicker .Icon span.Color, .jPicker .Icon span.Alpha {
   background-position: 2px 2px;

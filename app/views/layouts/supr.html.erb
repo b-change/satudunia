@@ -12,6 +12,7 @@
     <%= javascript_include_tag "admin/jquery.mousewheel" %>
     <%= javascript_include_tag "admin/jquery.sparkline.min" %>
     <%= javascript_include_tag "admin/fullcalendar.min" %>
+    <%= javascript_include_tag "jpicker" %>
     <%= javascript_include_tag "admin/jquery.qtip.min" %>
     <%= javascript_include_tag "admin/jquery.flot" %>
     <%= javascript_include_tag "admin/jquery.flot.grow" %>
@@ -27,10 +28,12 @@
     <%= javascript_include_tag "vendor/jHtmlArea" %>
     <!-- favicon link tag -->
     <%= favicon_link_tag(favicon_group_path(current_group), :rel=>'icon')%>
-    <%= favicon_link_tag(favicon_group_path(current_group), :rel=>'shortcut icon')%>
+    <%= favicon_link_tag(shortcut_group_path(current_group), :rel=>'shortcut icon')%>
+    <%= favicon_link_tag(apple_group_path(current_group), :rel=>'apple-touch-startup-image')%>
+    <%= favicon_link_tag(applest_group_path(current_group), :rel=>'apple-touch-icon')%>
+    <meta name="msapplication-TileImage" content="<%= metro_group_path(current_group)%>">
+    <meta name="msapplication-TileColor" content="<%= current_group.metro_color %>">
     <!-- favicon link tag -->
-    <%#= javascript_include_tag "admin/statistic" %>
-    <%#= javascript_include_tag "admin/main" %>
     <%= csrf_meta_tags %>
   </head>
   <body>
