@@ -48,7 +48,7 @@
         %li.pagination-float
           = link_to 50, '/questions?per_page=50', :id => "per_page_50"
 .grid_6.omega.body1_about{:id => "secondElement", :style => "width: 242px !important"}
-  .tagsl1
+  .tagsl12
     %span{:class => "t_l1"} 67
     %br
     %span{:class => "t_l2"} Reputation
@@ -69,6 +69,8 @@
       %li{:style => "float:left; padding-left:0px !important;"}
         %span{:class => "tags1_1"}
           = link_to h(tag.name).html_safe, tag_path(:id => CGI.escape(tag.name))
+          %span.avoid_link_color{:style=>"font-weight:600"}
+            = current_group.questions.where(:tags=>tag.name).count
     .clear
   %p{:class => "about1"}
     %strong

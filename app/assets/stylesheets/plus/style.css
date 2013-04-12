@@ -25,6 +25,11 @@ margin-bottom:30px;margin-top:30px;}
     position: absolute;
     top: -90px;
     width: 211px;}
+.tagsl12{background: url("tagsl1.png") repeat scroll center 0 transparent;
+    min-height: 88px;
+    position: absolute;
+    top: -90px;
+    width: 211px;}
 .tagsl1_p{background: url("tagsl1.png") repeat scroll center 0 transparent;
     min-height: 189px;
     position: absolute;
@@ -565,7 +570,7 @@ ul li{color: #b3b3b3;
     font-size: 13px;} 
 #slider21 > li{
     width: 710px!important;
-    min-height: 500px!important;
+    min-height: 115px!important;
 }
 #slider31 > li{
     height: 810px !important;
@@ -1624,14 +1629,15 @@ a.next:hover {background-position:right bottom;}
 .tags9{float: right;
     margin-right: 100px;
     margin-top: 10px;}
-.q_i1_tag1{background: url("aq_i_button1.jpg") repeat-x scroll 0 0 transparent;
+.q_i1_tag1{background: url("aq_i_button1.jpg") no-repeat scroll 0 0 transparent;
     border: 1px solid #AAB9BF;
     border-radius: 3px 3px 3px 3px;
     margin-left: 25px;
     padding-bottom: 6px;
     padding-right: 15px;
+    background-color:#EA1D24;
     padding-top: 8px;
-    position: relative;
+    /*position: relative;*/
     top: 20px;}
 .tags1 a{color: #0075CE;}
 .not{color: #474747;
@@ -1747,9 +1753,8 @@ a.next:hover {background-position:right bottom;}
  .ask_tag2 span, .ask_tag1 span, .q_i1_tag1 span{   color: #FFFFFF;
     font-family: Calibri;
     font-size: 15px;
-    margin-left: 36px;
-    position: relative;
-    top: -3px;}
+    margin-left: 40px;
+    }
 .ask_tag1 span, .ask_tag2 span,{    color: #FFFFFF;
     font-family: Calibri;
     font-size: 15px;
@@ -1833,7 +1838,7 @@ position: absolute;
     font-family: Calibri;
     font-size: 18px;
     font-weight: bold;
-    left: 5px;
+    left: 0px;
     width: 60px;
     text-align: center;
     position: absolute;
@@ -2484,3 +2489,19 @@ footer {
 .pagination-float{
     float:right;
 }
+/*tinyMce*/
+.answer-field{
+    width:97% !important;
+}
+.tinyMcetext{
+    
+}
+/*adjustment in left vote*/
+.vote-up-adjust{
+    background-color: #0079A7;
+    width: 75px; 
+    margin-top: -10px; 
+    padding-top: 5px; 
+    padding-right:2px;    
+}
+

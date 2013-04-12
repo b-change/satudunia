@@ -10,10 +10,8 @@
   %span{:class => "p_a1 i3_1"}
     = link_to "Home", "/"
     >
-    = link_to "Questions", "/questions"
-    >
     %span.underline-decoration-link
-      = link_to "#{@question.title}", "/questions/#{@question.slug}",:style => "color: white;"
+      = link_to "#{h truncate(@question.title, :length => 80)}", "/questions/#{@question.slug}",:style => "color: white;"
   .q_height2
     = link_to image_tag("plus/reiting_num1.png"), "#"
     %p{:class => "reiting_num5"}
@@ -34,8 +32,9 @@
         = link_to tag, "#", :class => "tags2_1"
   %ul{:class => "tags3 tags9_2"}
     %li
-      = link_to "<span class='underline-decoration-link'>Flag</span>".html_safe, "#", :class => "q_tag1 tool-tip",:title=>"Flag this question"
-      = link_to "<span class='underline-decoration-link'>Follow</span>".html_safe, "#", :class => "q_tag2 tool-tip",:title=>"Follow this question"
+      = link_to "<span class='underline-decoration-link'>Flag</span>".html_safe, new_question_flag_path(@question), :class => "q_tag1 tool-tip",:title=>"Flag this question"
+      = link_to "<span class='underline-decoration-link'>Follow</span>".html_safe, follow_question_path(@question), :class => "q_tag2 tool-tip",:title=>"Follow this question"
+      = link_to "<span class='underline-decoration-link'>Answer</span>".html_safe, question_path(@question, :anchor => "to_answer"), :class => "q_tag3 tool-tip",:title=>"Answer this question"
   .clear
   .tabs4
     %ul{:class => "tabNavigation"}
@@ -67,34 +66,14 @@
                 .clear
             %span{:class => "serv_loc1_2", :style => "top:10px"}
               Your Answer
-            = image_tag "plus/edit_area.jpg", :class => "Fleft", :style => "margin-top:20px"
-            %p
-              = link_to "<span class='underline-decoration-link'>Post your Answer</span>".html_safe, "#", :class => "q_i1_tag1 tool-tip", :title => "Post your Answer"
+        %p{:style=>"margin-left:30px;"} 
+          = text_area_tag :text,nil,:class =>"tinymce answer-field tinyMcetext",:size=>"50x20"
+        %p
+          = link_to "<span class='underline-decoration-link'>Post your Answer</span>".html_safe, "#", :class => "q_i1_tag1 tool-tip", :title => "Post your Answer"
 
 .grid_6.omega.body1_about.body_qwest1{:id => "secondElement", :style => "width: 242px !important"}
-  .tagsl1
-    %span{:class => "t_l1"}
-      = @question.flags_count
-    %br
-    %span{:class => "t_l2"}
-      Flagged
-    %span{:class => "t_l1_1"}
-      = @question.answers_count
-    %br
-    %span{:class => "t_l2_1"}
-      Answers
-    %span{:class => "t_l1_2"}
-      = @question.views_count
-    %br
-    %span{:class => "t_l2_2"}
-      View
-    %span{:class => "t_l1_3"}
-      = @question.followers_count
-    %br
-    %span{:class => "t_l2_3"}
-      Followers
   .clear
-  %p{:class => "i3_11", :style => "margin-top:100px"}
+  %p{:class => "i3_11"}
     %strong
       Related
   %ul{:class => "tags1"}
@@ -115,6 +94,16 @@
         $(this).addClass('selected');
         return false;
       }).filter(':first').click();
-    });
+  });
+  tinyMCE.init({
+    theme:"advanced",
+    language: "en",
+    mode:"textareas",
+    theme_advanced_toolbar_location:"top",
+    theme_advanced_buttons1: "bold,italic,underline,separator,hyperlink,blockquote,code,image,separator,numlist,bullist,align,charmap,hr,separator,undo,redo",
+    theme_advanced_buttons2 :"",
+    theme_advanced_buttons3 :"",
+    dialog_type :"modal",
+    theme_advanced_path :false
   });
 

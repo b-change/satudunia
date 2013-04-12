@@ -27,7 +27,7 @@
     %meta{:content => "#{current_group.metro_color}", :name=>"msapplication-TileColo"}/
     
     / CSS
-
+    = stylesheet_link_tag "plus/plus.css"
     = stylesheet_link_tag "plus/style"
     = stylesheet_link_tag "tool-tip.css"
     = stylesheet_link_tag "plus/jquery.bxslider.css"
@@ -37,9 +37,7 @@
     = javascript_include_tag "plus"
     = javascript_include_tag "tool-tip.js"
     = javascript_include_tag "plus/searchAjax.js"
-    
-    
-
+    = javascript_include_tag "plus/plus.js"
 
     /[if lt IE 8]
       %div{:style => ' clear: both; text-align:center; position: relative;'}
