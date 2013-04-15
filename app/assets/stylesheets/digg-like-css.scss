@@ -1,4 +1,7 @@
 .pagination-div{
+    margin-bottom: 20px;
+    margin-left: 5px;
+    padding-bottom: 15px;
 	ul{border:0; margin:0; padding:0;}
 	#pagination-digg li{
 	  border:0; margin:0; padding:0;
@@ -22,8 +25,9 @@
 	}
 	#pagination-digg .next a,
 	#pagination-digg .previous a {
-	  font-weight:bold;
-	  font-size:10px;
+	  font-weight:550 !important;
+	  font-size:10px !important;
+	  display:inline-block !important;
 	  
 	}
 	#pagination-digg .active{

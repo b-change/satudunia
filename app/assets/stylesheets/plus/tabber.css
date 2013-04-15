@@ -26,10 +26,11 @@
 ul.tabbernav
 {
  margin:0;
+margin-right:15px;
  padding: 3px 0;
 /* border-bottom: 1px solid #778;*/
  font: bold 12px Verdana, sans-serif;
-margin-top:-22px;
+margin-top:-50px;
 float:right;
 }
 
@@ -44,19 +45,19 @@ ul.tabbernav li a
 {
  padding: 3px 0.5em;
  margin-left: 3px;
- /*border: 1px solid #778;
- border-bottom: none;*/
- background: #DDE;
+ border: 1px solid #D0D3D6;
+ border-bottom: none;
+ background: #F0F0EE;
  text-decoration: none;
 }
 
-ul.tabbernav li a:link { color: #448; }
+ul.tabbernav li a:link { color: #757678; }
 ul.tabbernav li a:visited { color: #667; }
 
 ul.tabbernav li a:hover
 {
  color: #000;
- background: #AAE;
+ background: #C6B9A6;
  /*border-color: #227;*/
 }
 
