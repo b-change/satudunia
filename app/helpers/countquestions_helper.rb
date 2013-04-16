@@ -1,0 +1,2 @@
+module CountquestionsHelper
+end

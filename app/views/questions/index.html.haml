@@ -52,15 +52,10 @@
     %span{:class => "t_l1"} 67
     %br
     %span{:class => "t_l2"} Reputation
-    %span{:class => "t_l1_1"} 30
     %br
-    %span{:class => "t_l2_1"} Following
     %span{:class => "t_l1_2"} 90
     %br
     %span{:class => "t_l2_2"} View
-    %span{:class => "t_l1_3"} 36
-    %br
-    %span{:class => "t_l2_3"} Followers
   %p.i3_4
     %strong
       Recent Tags
@@ -69,6 +64,8 @@
       %li{:style => "float:left; padding-left:0px !important;"}
         %span{:class => "tags1_1"}
           = link_to h(tag.name).html_safe, tag_path(:id => CGI.escape(tag.name))
+          %span
+            x
           %span.avoid_link_color{:style=>"font-weight:600"}
             = current_group.questions.where(:tags=>tag.name).count
     .clear

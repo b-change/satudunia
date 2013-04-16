@@ -85,7 +85,7 @@ Rails.application.routes.draw do
       get :activity
     end
   end
-
+  resources :countquestions
   resources :badges
 
   resources :searches, :path => "search", :as => "search"

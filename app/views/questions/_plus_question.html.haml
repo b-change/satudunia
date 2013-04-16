@@ -22,7 +22,7 @@
         = link_to "<span class='underline-decoration-link'>Follow</span>".html_safe, follow_question_path(question), :class => "q_tag2 tool-tip",:title=>"Follow this question"
         = link_to "<span class='underline-decoration-link'>Answer</span>".html_safe, question_path(question, :anchor => "to_answer"), :class => "q_tag3 tool-tip",:title=>"Answer this question"
     %span{:id => "ps2"}
-      = question.views_count
+      = question.countquestions.sum(:qus_count).to_i
       views
     .ago
       %span{:style => "color:#006893"}

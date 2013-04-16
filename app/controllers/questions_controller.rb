@@ -177,7 +177,26 @@ class QuestionsController < ApplicationController
   # GET /questions/1.xml
   def show
     @body_id = "page3"
-    
+    # counting question counter
+    @ipaddress = request.remote_ip.to_s
+    @selectQuery = @question.countquestions.where(:ip_add=>@ipaddress,:user_id=>current_user.id)
+    if @selectQuery.empty?
+        # insert new ip address
+        @paramsToAdd = {:ip_add=>@ipaddress, :question_id=>@question.id,:user_id=>current_user.id,:qus_count=>1}
+        @paramsToSave = Countquestion.create(@paramsToAdd )
+    else
+        #update ip address
+        updatedDate = @selectQuery.first.updated_at
+        qus_count = @selectQuery.first.qus_count
+        # checking difference
+        differenceDate = ((Time.now - updatedDate)/86400).to_i
+        # update in one week
+        if differenceDate > 7
+         @updateQuery = @question.countquestions.where(:ip_add=>@ipaddress,:user_id=>current_user.id).update(:qus_count => qus_count+1)
+        end
+    end
+    # counting question counter 
+
     if current_group.current_theme.has_questions_show_html?
       @template_format = 'mustache'
       request.format = :mustache
@@ -186,7 +205,6 @@ class QuestionsController < ApplicationController
     if @question.reward && @question.reward.ends_at < Time.now
       Jobs::Questions.async.close_reward(@question.id).commit!(1)
     end
-
     options = {:banned => false}
     options[:_id] = {:$ne => @question.answer_id} if @question.answer_id
     @answers = @question.answers.where(options).
@@ -224,6 +242,8 @@ class QuestionsController < ApplicationController
       format.json  { render :json => @question.to_json(:except => %w[_keywords slug watchers]) }
       format.atom
     end
+    
+
   end
 
   # GET /questions/new
