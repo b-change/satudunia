@@ -38,7 +38,18 @@ class ApplicationController < ActionController::Base
 
   rescue_from Error404, :with => :render_404
   rescue_from Mongoid::Errors::DocumentNotFound, :with => :render_404
+  #layout for devise
+  layout :layout_by_resource
+  protected
 
+  def layout_by_resource
+    if devise_controller?
+      "plus"
+    else
+      "plus"
+    end
+  end
+  #layout for devise
   protected
 
   def check_mobile_logout

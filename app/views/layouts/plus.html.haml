@@ -74,7 +74,7 @@
                         = link_to "Ask a Question", "/questions/new", :id => "new_question_nav"
                       - if !current_user.nil? && current_user.owner_of?(current_group)
                         %li
-                          = link_to "Admin", "/admin"
+                          = link_to "Admin", "/admin",:target=>"_blank"
                   .language
                     %span
                       = render :partial => '/shared/translation_widget'
@@ -125,9 +125,9 @@
                                 = f.check_box :remember_me
                                 %span{:class => "chek"}
                                   Remember me
-                                .sgn
-                                  Sign up with
-                                  = link_to "email address", "javascript:void(0);", :id => "trigg1"
+                                / .sgn
+                                /   Sign up with
+                                /   = link_to "email address", "javascript:void(0);", :id => "trigg1"
                             .grid_9_1
                               Login with
                               - current_group.auth_providers.each do |provider|
@@ -142,34 +142,34 @@
                                 - elsif provider == 'OpenID'
                                   = link_to image_tag("plus/oi.jpg"), '/first-auth/MyOpenID', :class => "auth-provider #{provider}", :id => dprovider
                               %a#cancel1_1{:href => "javascript:void(0);"} close
-                      #obj1
-                        #cancel1
-                          %ul
-                            = form_for :user, :url => users_path, :html => {:id => "signup_form"} do |f|
-                              %li{:class => "name1"}
-                                %label{:class => "name"}
-                                  Login
-                                = f.text_field :login
-                              %li{:class => "r_name"}
-                                %label{:class => "name"}
-                                  Name
-                                = f.text_field :name
-                              %li{:class => "email"}
-                                %label{:class => "name"}
-                                  Email
-                                = f.text_field :email
-                              %li{:class => "password"}
-                                %label{:class => "name"}
-                                  Password
-                                = f.text_field :password
-                              %li{:class => "r_password"}
-                                %label{:class => "name"}
-                                  Retype Password
-                                = f.text_field :password_confirmation
-                          .signs1
-                            = link_to "Sign up", "#", :id => "signup_button"
-                          .signs2
-                            = link_to "Back", "javascript:void(0);", :id => "trigg2"
+                      / #obj1
+                      /   #cancel1
+                      /     %ul
+                      /       = form_for :user, :url => users_path, :html => {:id => "signup_form"} do |f|
+                      /         %li{:class => "name1"}
+                      /           %label{:class => "name"}
+                      /             Login
+                      /           = f.text_field :login
+                      /         %li{:class => "r_name"}
+                      /           %label{:class => "name"}
+                      /             Name
+                      /           = f.text_field :name
+                      /         %li{:class => "email"}
+                      /           %label{:class => "name"}
+                      /             Email
+                      /           = f.text_field :email
+                      /         %li{:class => "password"}
+                      /           %label{:class => "name"}
+                      /             Password
+                      /           = f.text_field :password
+                      /         %li{:class => "r_password"}
+                      /           %label{:class => "name"}
+                      /             Retype Password
+                      /           = f.text_field :password_confirmation
+                      /     .signs1
+                      /       = link_to "Sign up", "#", :id => "signup_button"
+                      /     .signs2
+                      /       = link_to "Back", "javascript:void(0);", :id => "trigg2"
 
                     .soc_icon{:style => "float: right !important"}
                       = link_to image_tag("plus/twitter1.png"), "http://www.twitter.com", :target => "blank"

@@ -230,8 +230,9 @@ Rails.application.routes.draw do
   end
 
   resources :tier_sample
-  match 'tier-sample' => 'tier_sample#index'
+  match '/survey/sample/tier-sample' => 'tier_sample#index'
 
+  scope '/survey/sample/' do
   resources :tier1
 
   resources :tier2
@@ -245,6 +246,7 @@ Rails.application.routes.draw do
   resources :tier6
 
   resources :tier7
+  end
 
   scope '/manage' do
     resources :members

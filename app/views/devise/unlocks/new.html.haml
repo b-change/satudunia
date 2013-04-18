@@ -1,14 +1,23 @@
-%h1
-  Resend unlock instructions
-%p.description
-  After several attempts to log who are not successful the account is locked for safety, here you can unlock.
-
-= form_for resource, :as => resource_name, :url => unlock_path(resource_name) do |f|
-  = f.error_messages
-  .field
-    = f.label :email
-    = f.text_field :email
-  .buttons
-    = f.submit "Resend unlock instructions", :class => "save"
-
-= render :partial => "shared/devise_links"
+ = image_tag "plus/body_about1.jpg", :class => "body_header"
+.alpha.grid_24.body_about{:id => "firstElement", :style => "margin-bottom:20px"}
+  %span{:class => "p_a"}
+    Resend unlock instructions
+  %span{:class => "p_a1 il_ask", :style => "left:-500px !important"}
+    = link_to "Home", "/"
+    > Resend unlock instructions
+  %h2
+    Resend unlock instructions
+  .ask
+    %p{:class => "ask1"}
+      After several attempts to log who are not successful the account is locked for safety, here you can unlock.
+    = form_for resource, :as => resource_name, :url => unlock_path(resource_name) do |f|
+      = f.error_messages
+      %p{:class => "ask2"}
+        %strong
+          = f.label :email
+        .search3
+          = f.text_field :email
+      .ask1
+        .buttons
+          = f.submit "Resend unlock instructions", :class => "save"
+        = render :partial => "shared/devise_links"

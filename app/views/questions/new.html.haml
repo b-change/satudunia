@@ -20,7 +20,7 @@
         %strong
           Tags
       .search3
-        = f.select :tags, current_group.default_tags, {},{:multiple => true, :selected => @question.tags}
+        = f.select :tags, current_group.default_tags, {},{:multiple => true, :selected => @question.tags,:style=>"width:650px"}
       %p{:class => "ask2"}
         Use tags to add more information about your question.
       %p{:class => "ask2"}
@@ -58,6 +58,8 @@
       %li{:style => "float:left; padding-left:0px !important;"}
         %span{:class => "tags1_1"}
           = link_to h(tag).html_safe, tag_path(:id => CGI.escape(tag))
+          %span
+            x
           %span.avoid_link_color{:style=>"font-weight:600"}
             = current_group.questions.where(:tags=>tag).count
     .clear

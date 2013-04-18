@@ -177,6 +177,8 @@ class QuestionsController < ApplicationController
   # GET /questions/1.xml
   def show
     @body_id = "page3"
+    # related tags count
+    @tags = @question.tags
     # counting question counter
     @ipaddress = request.remote_ip.to_s
     @selectQuery = @question.countquestions.where(:ip_add=>@ipaddress,:user_id=>current_user.id)
@@ -195,8 +197,9 @@ class QuestionsController < ApplicationController
          @updateQuery = @question.countquestions.where(:ip_add=>@ipaddress,:user_id=>current_user.id).update(:qus_count => qus_count+1)
         end
     end
-    # counting question counter 
-
+    # counting question counter
+    # related question tags
+    @relatedQuestion = current_group.questions.where(:tags=>@question.tags).not_in(_id:[@question.id]) 
     if current_group.current_theme.has_questions_show_html?
       @template_format = 'mustache'
       request.format = :mustache
