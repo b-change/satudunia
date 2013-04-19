@@ -1,39 +1,48 @@
-%h1
-  Sign in to Plus
-%p.description
+= image_tag "plus/body_about1.jpg", :class => "body_header"
+.alpha.grid_24.body_about{:id => "firstElement", :style => "margin-bottom:20px"}
+  %span{:class => "p_a"}
+    Sign in to Plus
+  %span{:class => "p_a1 il_ask", :style => "left:-250px !important"}
+    = link_to "Home", "/"
+    > Sign in to Plus
+  %h2
+    Sign in to Plus   
+  .container-new-plus
+    %p   
+      -session["return_to"] = request.referrer unless request.referrer.blank?
 
--session["return_to"] = request.referrer unless request.referrer.blank?
+      -if current_group.registered_only
+        .error
+          = t('devise.sessions.registered_only')
 
--if current_group.registered_only
-  .error
-    = t('devise.sessions.registered_only')
+      - unless params[:open_id]
+        -unless current_group.is_noemail_signup?
 
-- unless params[:open_id]
-  -unless current_group.is_noemail_signup?
+          = form_for resource, :url => session_path(resource_name), :html => {:class => "form"} do |f|
 
-    = form_for resource, :url => session_path(resource_name), :html => {:class => "form"} do |f|
-      .field
-        =f.label :email, t("email", :scope => "activerecord.attributes.user")
-        =f.text_field :email, :class => "text_field"
-      .field
-        =f.label :password, t("password", :scope => "activerecord.attributes.user")
-        =f.password_field :password, :class => "password"
-        - if params[:pp] && params[:format] != 'mobile'
-          = hidden_field_tag :pp, 1
-      -if devise_mapping.rememberable?
-        .checkbox
-          =f.check_box :remember_me
-          =f.label :remember_me, t(".remember_me")
-
-      .buttons
-        =f.submit t('devise.sessions.link'), :class => "save"
-- else
-  %form{"accept-charset"=>"UTF-8", :action=>"/users/auth/open_id", :class=>"form", :method=>"get"}
-    .field
-      = label_tag "OpenID", t(".openid_url")
-      = text_field_tag :openid_url, params[:url], :class => "text_field"
-      - if params[:pp] && params[:format] != 'mobile'
-        = hidden_field_tag :pp, 1
-      .buttons
-        = submit_tag t('devise.sessions.link'), :class => "save"
-= render :partial => "shared/devise_links"
+            %strong
+              =f.label :email, t("email", :scope => "activerecord.attributes.user")
+            .input-style
+              =f.text_field :email, :class => "text_field"
+            %strong
+              =f.label :password, t("password", :scope => "activerecord.attributes.user")
+            .input-style
+              =f.password_field :password, :class => ""
+              - if params[:pp] && params[:format] != 'mobile'
+                = hidden_field_tag :pp, 1
+            -if devise_mapping.rememberable?
+              =f.check_box :remember_me,:class=>"check-box-style"
+              .check-box-style
+                =f.label :remember_me, t(".remember_me") 
+            .buttons
+              =f.submit t('devise.sessions.link'), :class => "ask_tag2_common"
+      - else
+        %form{"accept-charset"=>"UTF-8", :action=>"/users/auth/open_id", :class=>"form", :method=>"get"}
+          .input-style
+            = label_tag "OpenID", t(".openid_url")
+            = text_field_tag :openid_url, params[:url], :class => "text_field"
+            - if params[:pp] && params[:format] != 'mobile'
+              = hidden_field_tag :pp, 1
+          .buttons
+            = submit_tag t('devise.sessions.link'), :class => "ask_tag2_common"
+      = render :partial => "shared/devise_links"

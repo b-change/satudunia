@@ -1,16 +1,23 @@
-
-.top
-  %h1
+= image_tag "plus/body_about1.jpg", :class => "body_header"
+.alpha.grid_18.body_about{:id => "firstElement", :style => "margin-bottom:20px"}
+  %span{:class => "p_a"}
+    Tags
+  %span{:class => "p_a1 il_ask", :style => "left:-50px !important"}
+    = link_to "Home", "/"
+    > Tags
+  %h2
     = t('activerecord.models.tags')
-  .filter
-    = form_tag "/questions/tags", :class => "form", :id => "filter_tags", :method => "get" do
-      .field
-        = text_field_tag "q", params[:q], :class => "text_field filter_field", placeholder: t(".filter")
-        = submit_tag("filter")
+  .container-new-plus
+    %p      
+      .filter
+        = form_tag "/questions/tags", :class => "form", :id => "filter_tags", :method => "get" do
+          .input-style
+            = text_field_tag "q", params[:q], :class => "text_field filter_field", placeholder: t(".filter")
+          = submit_tag("filter",:class=>"ask_tag2_common")
 
-  -if logged_in? && current_user.mod_of?(current_group)
-    = link_to t("scaffold.new", :model =>"tag"), new_tag_url
+      -if logged_in? && current_user.mod_of?(current_group)
+        .add-a-new-tag
+          = link_to t("scaffold.new", :model =>"tag"), new_tag_url
 
-#tag_table
-  = render(:partial => "tag_table", :locals => {:tag_table => @tags})
-
+    #tag_table
+      = render(:partial => "tag_table", :locals => {:tag_table => @tags})

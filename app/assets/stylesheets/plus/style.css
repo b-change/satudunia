@@ -1676,17 +1676,6 @@ a.next:hover {background-position:right bottom;}
     padding-right: 15px;
     padding-top: 10px;
     margin-top: 20px;}
-/*ask tag2 for common*/
-.ask_tag2_common{background-image: url("ask_button2.jpg") repeat-x scroll 0 0 transparent;
-    border: 1px solid #AAB9BF;
-    display:inline-block;
-    border-radius: 3px 3px 3px 3px;
-    margin-right: 35px;
-    float:right;
-    padding-bottom: 3px;
-    padding-right: 15px;
-    padding-top: 10px;
-    margin-top: 20px;}
 .ask_tag3{background: url("upload1.jpg") repeat-x scroll 0 0 transparent;
     border: 1px solid #AAB9BF;
     border-radius: 3px 3px 3px 3px;
@@ -2578,4 +2567,129 @@ footer {
     margin-right: 2px;
     margin-top: 4px;
     width: 32px;
+}
+/*adjustments for new plus theme*/
+/*ask tag2 for common*/
+.ask_tag2_common{
+    background-image: url("ask_button2.jpg");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    float: right;
+    border: 1px solid #AAB9BF;
+    border-radius:4px;
+    margin-top: 20px;
+    padding-bottom: 3px;
+    font-weight: bold;
+    padding-right: 15px;
+    padding-top: 5px;
+    color: #FFFFFF;
+    padding-left: 40px;
+    background-color: #00ADEF;
+    font-family: Calibri;
+    font-size: 15px;
+    cursor:pointer;
+}
+.container-new-plus{
+    padding-bottom: 10px !important;
+    padding-left: 30px !important;
+    padding-top: 10px !important;
+    margin-bottom: 50px;
+    width:627px;
+
+}
+.container-new-plus p {
+    font-size:12px;
+    font-weight: bold;
+}
+.container-new-plus label {
+    font-size:14px;
+    font-weight: bold;
+    line-height: 30px;
+}
+.container-new-plus .input-style input{
+    width:624px;
+    height:30px;
+    border: 1px solid #B9AB96;
+    border-radius:4px;
+    box-shadow: 1px 1px 1px 1px #C6B9A6;
+    font-size:14px;
+    color:#3C3B37;
+    padding-left:5px;
+    font-weight:bold;
+    outline: none;
+}
+.container-new-plus .field_with_errors{
+    color:#FF0000;
+    line-height: 30px;
+}
+.container-new-plus .field_with_errors input{
+    border: 1px dashed #FF0000 !important;
+
+}
+.container-new-plus .errorExplanation{
+    border:2px solid #FF0000;
+    width:99%;
+    margin-bottom: 15px;
+}
+.container-new-plus .errorExplanation h2{
+    background-color: #FF0000;
+    width:99%;
+    display:inline-block !important;
+    color:#fff;
+    padding:4px;
+    font-size:12px;
+    margin-left:0px;
+}
+.container-new-plus .errorExplanation ul li{
+    padding-left:5px;
+    padding-bottom:5px;
+    color:#FF0000;
+    list-style:inside;
+}
+.container-new-plus .errorExplanation p{
+    padding-left:5px;
+    margin-bottom:2px;
+}
+.container-new-plus .options li{
+    float:left;
+    margin-left: 15px;
+    display:inline-block !important;
+
+}
+.container-new-plus .options{
+    width:100%;
+    margin-left: -15px;
+    margin-top: 70px;
+}
+.container-new-plus .options li a{
+    color:#013A55;
+}
+.container-new-plus .check-box-style{
+    display:inline-block !important;
+    margin-left: 0px !important;
+    margin-top: 11px;
+}
+.container-new-plus input[type='checkbox']{
+    display:inline-block !important;
+    margin-left: 0px !important;
+    margin-top: 20px !important;
+}
+#tag_table{
+    float: left;
+    clear:both;
+}
+.add-a-new-tag {
+    padding-top:5px;
+    font-size:12px;
+}
+.add-a-new-tag a{
+    color:#044B68;
+}
+.container-new-plus h2{
+    margin-left:0px;
+}
+.add-a-new-tag .each .tools{
+    float: right;
+    margin-right: 15px;
+    margin-top: -20px;
 }

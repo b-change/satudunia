@@ -1,13 +1,16 @@
--feed_url = url_for(:format => "atom", :tags => @tag_names.join("+"))
-
--content_for :rss do
-  %link{:rel=>"alternate", :type=>"application/atom+xml", :title => "atom", :href=> feed_url}
-
-.tags-list
-
-  %h1
-    = t('layouts.application.tags')
-  .tags
+= image_tag "plus/body_about1.jpg", :class => "body_header"
+.alpha.grid_18.body_about{:id => "firstElement", :style => "margin-bottom:20px"}
+  %span{:class => "p_a"}
+    Tags
+  %span{:class => "p_a1 il_ask", :style => "left:-35px !important"}
+    = link_to "Home", "/"
+    > Tags
+    /%h2
+    / = t('layouts.application.tags')  
+  -feed_url = url_for(:format => "atom", :tags => @tag_names.join("+"))
+  -content_for :rss do
+    %link{:rel=>"alternate", :type=>"application/atom+xml", :title => "atom", :href=> feed_url}
+  .add-a-new-tag
     -@tags.each do |tag|
       .each
         = render "tag", :tag => tag, :show_counter => true
@@ -16,12 +19,12 @@
         %p
           = tag.description
 
-  %section
-    -if @questions.empty?
-      %article.question
-        %li.highlight
-        = t(".empty")
-    -@questions.each do |question|
-      = render "questions/question", :question => question
+    %section
+      -if @questions.empty?
+        %article.question
+          %li.highlight
+          = t(".empty")
+      -@questions.each do |question|
+        = render "questions/question", :question => question
 
-  = paginate @questions
+    = paginate @questions
