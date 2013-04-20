@@ -278,9 +278,9 @@ a:hover {text-decoration:underline;}
 .tabNavigation li a{color: #0075CE;
     font-family: Arial;
     font-size: 13px;
-    padding: 2px 25px 11px;
+    padding: 2px 15px 15px;
     position: relative;
-    top: 10px;
+    top: 8px;
     }
 .tabNavigation li a:hover{background: none repeat scroll 0 0 #FDFDFD;
     border: 1px solid #CED1D4;
@@ -289,9 +289,10 @@ a:hover {text-decoration:underline;}
     font-family: Arial;
     font-size: 13px;
     margin-left: 0;
-    padding-bottom: 8px;
+    padding: 1px 14px 14px;
     position: relative;
-    top: 5px;
+    top: 6px;
+    height:10px;
     border-radius: 5px 5px 0 0;
     }
 .tabNavigation1 li a{background-attachment: scroll;
@@ -373,10 +374,12 @@ textarea{background: none repeat scroll 0 0 #FFFFFF;
     float: left;
     font-family: Arial;
     font-size: 13px;
-    padding-bottom: 8px;
-    position: relative;
-    top: 5px;
+    margin-left: 0;
     border-radius: 5px 5px 0 0;
+    padding: 1px 14px 14px;
+    position: relative;
+    top: 6px;
+    height:10px;
     }
     .tabs .tabNavigation li{float: left;
     position: relative;
@@ -1635,6 +1638,7 @@ a.next:hover {background-position:right bottom;}
     border-radius: 3px;
     margin-left: 5px;
     padding-right:15px;
+    display: inline-block;
     min-height: 30px;
     width: 68px;}
 .underline-decoration-link{}
@@ -1817,7 +1821,9 @@ a.next:hover {background-position:right bottom;}
     margin-left: 5px;
     padding-right:15px;
     min-height: 30px;
-    width: 78px;}   
+    width: 78px;
+    display: inline-block;
+    }   
 .tags a{color:#00AEEF}
 .q_tag3{background: url("q_teg3.jpg") repeat-x scroll 0 0 transparent;
     border: 1px solid #AAB9BF;
@@ -1825,7 +1831,9 @@ a.next:hover {background-position:right bottom;}
     margin-left: 5px;
     padding-right:15px;
     min-height: 30px;
-    width: 78px;}   
+    width: 78px;
+    display: inline-block;
+    }   
 
 .Fleft{margin-left:25px;}
 .q_ff{background: url("q_f.png") no-repeat scroll 0 0 transparent;
@@ -2606,7 +2614,7 @@ footer {
     font-weight: bold;
     line-height: 30px;
 }
-.container-new-plus .input-style input{
+.container-new-plus .input-style input,select{
     width:624px;
     height:30px;
     border: 1px solid #B9AB96;
@@ -2617,6 +2625,21 @@ footer {
     padding-left:5px;
     font-weight:bold;
     outline: none;
+}
+.container-new-plus .input-style select{
+    width:632px;
+    height:30px;
+    border: 1px solid #B9AB96;
+    border-radius:4px;
+    box-shadow: 1px 1px 1px 1px #C6B9A6;
+    font-size:14px;
+    color:#3C3B37;
+    padding-left:5px;
+    padding-top:4px;
+    margin-left: 4px;
+    font-weight:bold;
+    outline: none;
+    background-color: #fffffff;
 }
 .container-new-plus .field_with_errors{
     color:#FF0000;
@@ -2692,4 +2715,7 @@ footer {
     float: right;
     margin-right: 15px;
     margin-top: -20px;
+}
+.q_i_tag111_re_tag{float: right;
+    margin-bottom: 10px;
 }
