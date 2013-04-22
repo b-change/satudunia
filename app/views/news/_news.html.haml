@@ -1,10 +1,17 @@
-%li
-  .summary
-    - if news.has_news_image?
-      = image_tag news_image_path(news,"small"), :height => 64, :alt => news.slug, :class => 'gravatar'
-    %h3{:style => 'margin-top: -5px !important;'}
-      = link_to news.news_title, news_path(news.slug)
-    .badges
-      = truncate(strip_tags(news.news_body), :length => 200)
-    .owner-data
-      by #{news.user.name} on #{news.created_at.strftime("%d %b %Y - %I:%M %p")}
+
+.q_ff-for-image
+  - if news.has_news_image?
+    = image_tag news_image_path(news,"small"), :height => 130,:width=>160, :alt => news.slug
+.grid_14.Fright2
+  %span.s1
+    = link_to truncate(strip_tags(news.news_title.capitalize),:length=>64), news_path(news.slug),:class=>"avoid_link_color"
+  .news_block
+    .small
+      %strong
+        By #{news.user.name} on #{news.created_at.strftime("%d %b %Y - %I:%M %p")}
+    = truncate(strip_tags(news.news_body), :length => 300)
+  .news_block2
+    %span.i3_3
+      = link_to "Continue Reading >",news_path(news.slug),:class=>"avoid_link_color"
+  .news_block
+.clear

@@ -4,7 +4,10 @@
     Tags
   %span{:class => "p_a1 il_ask", :style => "left:-35px !important"}
     = link_to "Home", "/"
-    > Tags
+    >
+    = link_to "Tags", tags_path
+    > 
+    = @tags.first.name
     /%h2
     / = t('layouts.application.tags')  
   -feed_url = url_for(:format => "atom", :tags => @tag_names.join("+"))
@@ -18,13 +21,15 @@
           = image_tag tag_icon_path(current_group,tag.name)
         %p
           = tag.description
+    -if @questions.empty?
+      %article.question
+        %li.highlight
+        = t(".empty")
+  .bx-wrapper
+    %ul#slider21
+      %li.pager.ps1
+        %ul
+          -@questions.each do |question|
+            = render "questions/question", :question => question
 
-    %section
-      -if @questions.empty?
-        %article.question
-          %li.highlight
-          = t(".empty")
-      -@questions.each do |question|
-        = render "questions/question", :question => question
-
-    = paginate @questions
+        = paginate @questions

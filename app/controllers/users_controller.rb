@@ -35,9 +35,7 @@ class UsersController < ApplicationController
         :expertise => tab_config,
         :feed => tab_config,
         :contributed => tab_config
-
-  layout "plus", :only => "index"
-
+  layout "plus", :only => [:index,:new,:create]
   def index
     set_page_title(t("users.index.title"))
 
@@ -48,9 +46,11 @@ class UsersController < ApplicationController
     if order == "reputation"
       order = %w(reputation desc)
     end
-
-    @memberships = current_group.memberships.where(conditions).order_by(order).page(params["page"])
-
+    @memberships = current_group.memberships.where(conditions)
+    @reputation = @memberships .order_by(order).page(params["page"])
+    @membersNew = @memberships.order_by(:created_at=>:desc).page(params["page"])
+    @membersOld = @memberships.order_by(:created_at=>:ASC).page(params["page"])
+    @membersName = @memberships.order_by(:display_name=>:ASC).page(params["page"])
     respond_to do |format|
       format.html
       format.json {
@@ -425,5 +425,4 @@ class UsersController < ApplicationController
     @user.viewed_on!(current_group, request.remote_ip) if @user != current_user && !is_bot?
   end
 end
-
 

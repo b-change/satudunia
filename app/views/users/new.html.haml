@@ -1,13 +1,23 @@
-%h1
-  = t('.join_group', :group => current_group.name)
-%p.description
-  = t('.description')
+= image_tag "plus/body_about1.jpg", :class => "body_header"
+.alpha.grid_24.body_about{:id => "firstElement", :style => "margin-bottom:20px"}
+  %span{:class => "p_a"}
+    Sign in to Plus
+  %span{:class => "p_a1 il_ask", :style => "left:-250px !important"}
+    = link_to "Home", "/"
+    > Sign in to Plus
+  %h2
+    = t('.join_group', :group => current_group.name)
+  .container-new-plus
+    %p
+      = t('.description')
+    - @user.password = @user.password_confirmation = nil
+    = error_messages_for :user
+    = form_for @user, :url => users_path, :html => {:class => "form"} do |f|
+      = hidden_field_tag 'invitation_id', params[:invitation_id]
+      =render :partial => "form", :locals => {:f => f}
+      .buttons
+        = submit_tag t('.submit'), :class => "ask_tag2_common"
+  
 
-- @user.password = @user.password_confirmation = nil
-= error_messages_for :user
-= form_for @user, :url => users_path, :html => {:class => "form"} do |f|
-  = hidden_field_tag 'invitation_id', params[:invitation_id]
-  =render :partial => "form", :locals => {:f => f}
+  
 
-  .buttons
-    = submit_tag t('.submit'), :class => "save"

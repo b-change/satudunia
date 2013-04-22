@@ -8,74 +8,109 @@
     - @updated = true
   - else
     - @updated = false
-  .bx-wrapper
-    %ul#slider21
-      %li.pager.ps1
-        %ul
-          %li
-            %article{:class => class_for_question(question), :id => question.id}
-              %h2
-                -if question.wiki
-                  = pjax_link_to t('.wiki_title', :title => title), "question", question_path(question), :title => truncate(strip_tags(question.body), :length => 200)
-                -else
-                  = pjax_link_to title, "question", question_path(question), :title => truncate(strip_tags(question.body), :length => 200)
-              %ul.tag-list.clearfix
-                - question.tags.each do |tag|
-                  %li
-                    = tag_link(tag)
-                - if logged_in? && (current_user.can_modify?(question) || current_user.can_retag_others_questions_on?(current_group))
-                  %li.retag
-                    = link_to t('.retag'), retag_question_path(question), :class => 'retag-link'
-
-              .toolbar
-                %ul.menubar
-                  -if question.accepted && question.answered
-                    %li.solution.action
-                      = link_to I18n.t('questions.show.solution'), question_path(question, :anchor => "answer#{question.answer_id}"), :rel => 'nofollow'
-                  %li.answers.action
-                    = link_to t('questions.question.has_answers', :count => question.answers_count), question_path(question)
-
-                  %li.action
-                    = link_to t(question.views_count.to_s + ' views')
-
-                  -if question.followers_count.to_i > 0
-                    %li.followers.action
-                      %span
-                        = t('questions.index.has_followers', :count => question.followers_count)
-
-                  %li.action
-                    - if logged_in? && question.follower?(current_user)
-                      = link_to t('global.unfollow'), unfollow_question_path(question), :class => 'unfollow-q toggle-action', "data-undo" =>  follow_question_path(question), "data-title" => t("questions.show.follow_tooltip"), :title => t("questions.show.unfollow_tooltip"), 'data-text' => t('global.follow')
-                    - elsif !logged_in? || !question.follower?(current_user)
-                      = link_to t('global.follow'), follow_question_path(question), :title => t("questions.show.follow_tooltip"), :class => 'follow-q toggle-action', "data-undo" =>  unfollow_question_path(question), "data-title" => t("questions.show.unfollow_tooltip"), 'data-text' => t('global.unfollow'), "rel" => 'nofollow'
-
-                  %li.action
-                    =link_to t('.answer_verb'), question_path(question, :anchor => "to_answer")
-
-                  -if !logged_in? || !current_user.mod_of?(current_group) && (current_user != question.user && current_user.has_flagged?(question).nil?)
-                    %li.spam.action
-                      = link_to t(".flag", :default => :"questions.show.flag"), new_question_flag_path(question), :class => "flag-link-index", :rel => 'nofollow'
-                  = render "questions/requests_menu", :question => question, :i18n_scope => "questions.show"
-
-                  %li{style: "float: right" }
-                    .user-data
-                      -if owner
-                        =render :partial => "users/user_data", :locals => {:user => owner}
-                      -else
-                        = I18n.t('shared.by_anon')
-                      %time{:pubdate => "pubdate", :datetime => last_target_date.iso8601}
-                        = pjax_link_to t("time.ago", :time => time_ago_in_words(last_target_date)), "question", question_path(question, :anchor => last_target_id)
-
-                .panel-forms
-
-              .clear
-
+  / vote and answer box starts
+  %li
+    .q_ff
+      %span{:class => "q_f"}
+        = question.flags_count
+      %span{:class => "q_f_1"}
+        votes
+      %span{:class => "q_fs1 vote-up-adjust"}
+        = question.answers_count
+      %span{:class => "q_fs_1"}
+        answers
+    / vote and answer box ends here
+    .grid_14.Fright
+      %article{:class => class_for_question(question), :id => question.id}
+        %div.s1
+          -if question.wiki
+            = pjax_link_to t('.wiki_title', :title => title), "question", question_path(question), :title => truncate(strip_tags(question.body), :length => 200),:class => "avoid_link_color",:style=>"text-decoration:none;"
           -else
-            %article{:class => "#{class_for_question(question)} #{local_assigns[:lite] ? 'lite' : ''}"}
-              %h3
-                = pjax_link_to title, "question", question_path(question)
+            = pjax_link_to title, "question", question_path(question), :title => truncate(strip_tags(question.body), :length => 200),:class => "avoid_link_color",:style=>"text-decoration:none;"
+        %ul.tags2
+          - question.tags.each do |tag|
+            %li
+              = tag_link(tag)
+          - if logged_in? && (current_user.can_modify?(question) || current_user.can_retag_others_questions_on?(current_group))
+            %li.retag
+              = link_to t('.retag'), retag_question_path(question),:class => "tags2_1", :style => "margin-right: 10px; padding-left:5px; padding-right:5px;"
+        %ul{:class => "tags3"}
+          %li
+            = link_to "<span class='underline-decoration-link'>Flag</span>".html_safe, new_question_flag_path(question), :class => "q_tag1 tool-tip",:title=>"Flag this question"
+            = link_to "<span class='underline-decoration-link'>Follow</span>".html_safe, follow_question_path(question), :class => "q_tag2 tool-tip",:title=>"Follow this question"
+            = link_to "<span class='underline-decoration-link'>Answer</span>".html_safe, question_path(question, :anchor => "to_answer"), :class => "q_tag3 tool-tip",:title=>"Answer this question"
+        %span{:id => "ps2"}
+          = question.countquestions.sum(:qus_count).to_i
+          views
+        .ago
+          %span{:style => "color:#006893"}
+            = owner.name
+    / user image box
+    %span{:class => "q_i_tag111_re_tag", :href => "#",:style => "background-color: #F3F7FA; padding: 5px 0 10px 10px;width:165px; border-style:solid; border-width:1px; border-color:#CFD3D6;"}
+      %a{:style=>"color:black; font-size:13px; padding-bottom:5px"}
+        Asked
+        - if ((Time.now - last_target_date)/86400).to_i > 1
+          = (last_target_date).strftime("%b %d '%y")
+          at 
+          = (last_target_date).strftime("%I:%M")
+        - else 
+          = time_ago_in_words(last_target_date)
+          Ago
+      %br/
+      = image_tag "",:class=>"info-image", :style=>"height:32px;width:32px;"
+      %a{:style=>"color:#00ADEF; font-size:12px; position:relative; top:3px;"}
+        / = @question.user.name.capitalize
+        / user image box
+        / .toolbar
+        /   %ul.menubar
+        /     -if question.accepted && question.answered
+        /       %li.solution.action
+        /         = link_to I18n.t('questions.show.solution'), question_path(question, :anchor => "answer#{question.answer_id}"), :rel => 'nofollow'
+        /     %li.answers.action
+        /       = link_to t('questions.question.has_answers', :count => question.answers_count), question_path(question)
 
-              .toolbar
-                %ul
-                  %li.answers
-                    = link_to "#{format_number(question.answers_count)} #{t(:answers, :scope => "activerecord.attributes.question")}"
+        /     %li.action
+        /       = link_to t(question.views_count.to_s + ' views')
+
+        /     -if question.followers_count.to_i > 0
+        /       %li.followers.action
+        /         %span
+        /           = t('questions.index.has_followers', :count => question.followers_count)
+
+        /     %li.action
+        /       - if logged_in? && question.follower?(current_user)
+        /         = link_to t('global.unfollow'), unfollow_question_path(question), :class => 'unfollow-q toggle-action', "data-undo" =>  follow_question_path(question), "data-title" => t("questions.show.follow_tooltip"), :title => t("questions.show.unfollow_tooltip"), 'data-text' => t('global.follow')
+        /       - elsif !logged_in? || !question.follower?(current_user)
+        /         = link_to t('global.follow'), follow_question_path(question), :title => t("questions.show.follow_tooltip"), :class => 'follow-q toggle-action', "data-undo" =>  unfollow_question_path(question), "data-title" => t("questions.show.unfollow_tooltip"), 'data-text' => t('global.unfollow'), "rel" => 'nofollow'
+
+        /     %li.action
+        /       =link_to t('.answer_verb'), question_path(question, :anchor => "to_answer")
+
+        /     -if !logged_in? || !current_user.mod_of?(current_group) && (current_user != question.user && current_user.has_flagged?(question).nil?)
+        /       %li.spam.action
+        /         = link_to t(".flag", :default => :"questions.show.flag"), new_question_flag_path(question), :class => "flag-link-index", :rel => 'nofollow'
+        /     = render "questions/requests_menu", :question => question, :i18n_scope => "questions.show"
+
+        /     %li{style: "float: right" }
+        /       .user-data
+        /         -if owner
+        /           =render :partial => "users/user_data", :locals => {:user => owner}
+        /         -else
+        /           = I18n.t('shared.by_anon')
+        /         %time{:pubdate => "pubdate", :datetime => last_target_date.iso8601}
+        /           = pjax_link_to t("time.ago", :time => time_ago_in_words(last_target_date)), "question", question_path(question, :anchor => last_target_id)
+
+        /   .panel-forms
+
+
+    .clear
+
+-else
+  %article{:class => "#{class_for_question(question)} #{local_assigns[:lite] ? 'lite' : ''}"}
+    %h3
+      = pjax_link_to title, "question", question_path(question)
+
+    .toolbar
+      %ul
+        %li.answers
+          = link_to "#{format_number(question.answers_count)} #{t(:answers, :scope => "activerecord.attributes.question")}"

@@ -623,7 +623,10 @@ border-bottom: 1px solid #D0D3D6;
     }
 .news_block{color: #000000;
     font-family: Arial;
+    padding-top: 5px;
+    text-align: justify;
     font-size: 13px;
+    clear: both;
     margin-left: 15px;}
 .Fright{
     float: right;
@@ -2477,6 +2480,7 @@ footer {
 }
 .avoid_link_color{
     color:#0075CE !important;
+    text-decoration: none;
 }
 /*seach styles*/
 #search-container{
@@ -2719,3 +2723,9 @@ footer {
 .q_i_tag111_re_tag{float: right;
     margin-bottom: 10px;
 }
+.q_ff-for-image{
+    min-height:130px;
+    width:160px;
+    position: absolute;
+    box-shadow: 1px 1px 1px 1px #999999;
+}  

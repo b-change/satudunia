@@ -5,6 +5,8 @@ require 'magent_web'
 #require 'bug_hunter'
 
 Rails.application.routes.draw do
+  get "survey/index"
+
   devise_for(:users,
              :path_names => {:sign_in => 'login', :sign_out => 'logout'},
              :controllers => {:registrations => 'users', :omniauth_callbacks => "multiauth/sessions"}) do
@@ -229,6 +231,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :survey
   resources :tier_sample
   match '/survey/sample/tier-sample' => 'tier_sample#index'
 

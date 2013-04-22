@@ -522,9 +522,8 @@ module ApplicationHelper
     elsif tag.is_a? Array
       tag.join('+')
     end
-    x=link_to h(tag), tag_path(:id => CGI.escape(tag)), :rel => "tag", :title => t("questions.tags.tooltip", :tag => tag), :class => "tag ajax-tooltip" unless tag.blank?
+    x=link_to h(tag), tag_path(:id => CGI.escape(tag)), :rel => "tag", :title => t("questions.tags.tooltip", :tag => tag),:style => "margin-right: 10px; padding-left:5px; padding-right:5px; float:left;  margin-top: -3px; ", :class => "tags2_1 ajax-tooltip" unless tag.blank?
   end
-
   def cache_for(name, *args, &block)
     cache(cache_key_for(name, *args), &block)
   end
