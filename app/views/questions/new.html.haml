@@ -4,7 +4,12 @@
     = t(".title")
   %span{:class => "p_a1 il_ask"}
     = link_to "Home", "/"
-    > Ask Question
+    > 
+  %span{:class => "p_a1 i3_1", :style => "left:-197px"}
+    = link_to "Questions", "/questions"
+    >
+    %span.underline-decoration-link
+      = link_to "Ask a Question", "/questions/new",:style => "color: white;"
   .ask
     %p{:class => "ask1"}
       = raw(current_group.question_help)
@@ -12,15 +17,15 @@
       %p{:class => "ask2"}
         %strong
           Title*
-      .search3
-        = f.text_field :title
       %p{:class => "ask2"}
         = raw(current_group.question_prompt)
+      .search3
+        = f.text_field :title
       %p{:class => "ask2"}
         %strong
           Tags
       .search3
-        = f.select :tags, current_group.default_tags, {},{:multiple => true, :selected => @question.tags,:style=>"width:650px"}
+        = f.select :tags, current_group.default_tags, {},{:multiple => true, :selected => @question.tags,:style=>"width:650px;"}
       %p{:class => "ask2"}
         Use tags to add more information about your question.
       %p{:class => "ask2"}
@@ -28,16 +33,20 @@
           Questions
       .search3
         = f.text_area :body, :class => "wysiwyg_editor"
-      .checkbox
-        = f.check_box :wiki
-        Wiki
-      .checkbox
-        = f.check_box :anonymous, {:class => "checkbox"}, true, false
-        = t("scaffold.post_as_anonymous")
-      -if current_group.has_adult_content
-        .checkbox
-          = f.check_box :adult_content, :class => "checkbox"
-          = f.label :adult_content, t(".adult_content"), :class => "radio"
+      %table
+        %tr
+          %td
+            .checkbox
+              = f.check_box :wiki
+              Wiki
+          %td    
+            .checkbox
+              = f.check_box :anonymous, {:class => "checkbox"}, true, false
+              = t("scaffold.post_as_anonymous")
+            -if current_group.has_adult_content
+              .checkbox
+                = f.check_box :adult_content, :class => "checkbox"
+                = f.label :adult_content, t(".adult_content"), :class => "radio"
 
       #attachments{:style => "margin:20px"}
         #fields{:style => "margin-bottom:10px; font-size:13px; font-family:Arial;"}
@@ -57,7 +66,7 @@
     - current_group.default_tags.each do |tag|
       %li{:style => "float:left; padding-left:0px !important;"}
         %span{:class => "tags1_1"}
-          = link_to h(tag).html_safe, tag_path(:id => CGI.escape(tag))
+          = link_to h(tag).html_safe, tag_path(:id => CGI.escape(tag)), :style => "text-decoration:none"
           %span
             x
           %span.avoid_link_color{:style=>"font-weight:600"}

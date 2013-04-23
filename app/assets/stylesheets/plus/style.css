@@ -641,7 +641,7 @@ border-bottom: 1px solid #D0D3D6;
     width: 570px !important;padding-right: 20px;}
 .s1{color: #0075CE;
     font-family: arial;
-    font-size: 17px;
+    font-size: 18px;
     left: 15px;
     position: relative;
     float: left;
@@ -719,7 +719,7 @@ border-bottom: 1px solid #D0D3D6;
     text-align: justify;
     font-family: arial;
     font-size: 13px;
-    left: 15px;
+    left: 10px;
     position: relative;
     word-wrap: break-word;
     float: left;
@@ -731,7 +731,7 @@ border-bottom: 1px solid #D0D3D6;
     font-size: 24px;
     margin-left: 25px;
     position: relative;}
-.ms_fr{margin-top: 20px;}
+.ms_fr{margin-top: 5px;}
 #slider21 > li > ul .page_q_list{border-bottom:none;}
 .reiting_num1{color: #000000;
     font-size: 20px;
@@ -897,7 +897,7 @@ ul.info{margin-top: 30px;}
 .buttons a:hover {cursor:pointer;}
 .ago{left: 15px;
     position: absolute;
-    top: 95px;
+    top: 98px;
     font-weight: bold;
     color:#000;}
 .news_block2{left: 15px;
