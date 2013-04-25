@@ -1,27 +1,30 @@
 - content_for :title do
   Step 2
-
-Terms of use page 2
-%br
-2. Values
-%br
-PLUS is being managed under guidance of some core values, which we ask all registered users to acknowledge. 
-%br
-The core values the PLUS team seeks to upload with the Website and Services are:
-%ul
-  %li
-    Cooperation: work to help each other
-  %li
-    Dignity: treat each other with mutual respect
-  %li
-    Diversity: seek to create a vibrant space where multiple, sometimes differing perspectives can thrive.
-  %li
-    Privacy: respect people’s right to private information and freedom from interference. 
-  %li
-    Health & Well-being: seek to deliver up-to-date information that supports physical and mental health.
-  %li
-    Fair and Equitable Access: seek to ensure that all people living with HIV or affected by HIV  have access to services that support health and well-being, without prejudice.
-  %li
-    Informed Choice: respect people'≈s ability to make their own decisions when they are supplied with relevant information and advice, without duress.
- 
-= button_to "Acknowledge", "/third-auth/#{@auth_provider}"
+.modalbox-title-div
+  =@auth_provider.capitalize
+.modal-box-content
+  .modal-box-heading
+    Terms of use page 1
+  2. Values
+  %br
+  PLUS is being managed under guidance of some core values, which we ask all registered users to acknowledge. 
+  %br
+  The core values the PLUS team seeks to upload with the Website and Services are:
+  %ul
+    %li
+      Cooperation: work to help each other
+    %li
+      Dignity: treat each other with mutual respect
+    %li
+      Diversity: seek to create a vibrant space where multiple, sometimes differing perspectives can thrive.
+    %li
+      Privacy: respect people’s right to private information and freedom from interference. 
+    %li
+      Health & Well-being: seek to deliver up-to-date information that supports physical and mental health.
+    %li
+      Fair and Equitable Access: seek to ensure that all people living with HIV or affected by HIV  have access to services that support health and well-being, without prejudice.
+    %li
+      Informed Choice: respect people'≈s ability to make their own decisions when they are supplied with relevant information and advice, without duress.
+.modalbox-footer-div
+  .modal-box-button
+    = button_to "Acknowledge", "/third-auth/#{@auth_provider}"

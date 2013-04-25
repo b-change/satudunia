@@ -13,14 +13,10 @@
     .bg
       .bg2
         / ==============================header=================================
-        %header
-          .header-bg
-            .main
-              .container_24
-                .wrapper
-                  %nav
-                    %ul{:class => "menu"}
-                      %li
-                        = image_tag("plus/logo.jpg")
-        %section
-          = yield
+        .modal-box-header
+          %ul
+            %li.modal-box-header-text
+              = "Authentication"
+              / = image_tag("plus/logo.jpg")
+      %section
+        = yield

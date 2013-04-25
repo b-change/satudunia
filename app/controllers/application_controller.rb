@@ -138,7 +138,13 @@ class ApplicationController < ActionController::Base
       add_feeds_url(url_for({:format => "atom", :tags => params[:tags]}.merge(feed_params)),
                     "#{t("feeds.tag")} #{params[:tags].inspect}")
     end
-
+    # sorting question with the tabs
+    @questionsHot = Question.where(:activity_at => {"$gt" => 5.days.ago}).order_by(current_order)
+    @questionsUnanswered = current_group.questions.where(:answers_count => 0).order(:created_at=>:desc)
+    @questionsVotes = current_group.questions.order(:votes_count=>:desc)
+    @questionsViews = current_group.questions.order(:Views_count=>:desc)
+    @questionsActive = current_group.questions.where(:closed=>false).order(:created_at=>:desc)
+    # sorting question with the tabs
     respond_to do |format|
       format.html { render :layout => layout_for_theme }
       format.mobile

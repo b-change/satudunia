@@ -429,6 +429,13 @@ class QuestionsController < ApplicationController
   # action added for new ajax search show
   def question_search
     @body_id = "page3"
+    # sorting question with the tabs
+    @questionsHot = Question.where(:activity_at => {"$gt" => 5.days.ago}).order_by(current_order)
+    @questionsUnanswered = current_group.questions.where(:answers_count => 0).order(:created_at=>:desc)
+    @questionsVotes = current_group.questions.order(:votes_count=>:desc)
+    @questionsViews = current_group.questions.order(:Views_count=>:desc)
+    @questionsActive = current_group.questions.where(:closed=>false).order(:created_at=>:desc)
+    # sorting question with the tabs
     @params = params[:hidden_keys].split(",")
     @tags = current_group.tags
     @questions = Question.where(:group_id=>current_group.id).in(_id:@params).page(params["page"]).order_by(current_order)

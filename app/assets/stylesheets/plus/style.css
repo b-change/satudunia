@@ -689,7 +689,7 @@ border-bottom: 1px solid #D0D3D6;
     margin-left: 125px;
     margin-top: -62px;}
 .q_i_tag2{float: right;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     margin-top: 20px;
 }
 .q_i_tag2 span{color: #0075CE;
@@ -2728,4 +2728,82 @@ footer {
     width:160px;
     position: absolute;
     box-shadow: 1px 1px 1px 1px #999999;
-}  
+}
+/*modal box css*/
+.modal-box-header{
+    background:#202020;
+    height: auto !important;
+    padding-bottom: 5px;
+    padding-left:5px;
+    padding-top:5px;
+   
+
+}
+.modal-box-header-text{
+    font-size:18px;
+}
+.modalbox-title-div{
+    background-color: #F1ECE3;
+    width:100%;
+    border: 1px solid #F9CF5F;
+    padding:8px;
+    font-size:12px;
+    margin-bottom:2px;
+    
+}
+.modal-box-content{
+    padding:8px;
+    text-align: justify;
+    width: 904px;
+    color: #202020;
+    font-size: 12px;
+    line-height: 1.5;
+    min-height: 227px;
+}
+.modal-box-button{
+    float: right;
+    margin-right: 70px;
+}
+.modal-box-heading{
+    font-weight: bold;
+    margin-bottom:10px;
+}
+.modalbox-footer-div{
+    background-color: #F1ECE3;
+    width:100%;
+    border: 1px solid #F9CF5F;
+    padding:8px;
+    font-size:12px;;
+    height:30px;
+    
+}
+.modal-box-content ul li{
+    color: #202020;
+    font-size:10px;
+}
+.sortTab .tabberlive .tabbernav{
+    margin-top:1px !important;
+}
+.sortTab .tabberlive .tabbertab{
+    padding-left:0px !important;
+}
+.line-break{
+    margin-top:-20px;
+    padding-top:4px;
+    line-height: 1.5;
+
+}
+.line-break li{
+    color:#454545;
+    font-size:13px;
+    border-top:dotted 1px #A8A8A8;
+    padding-top:5px;
+    padding-bottom:5px;
+    background-color:#F3F7FA;
+    padding-left:12px;
+
+}
+.by-user{
+    color:#00ADEF !important;
+    display: inline-block !important;
+}

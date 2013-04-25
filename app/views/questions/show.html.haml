@@ -6,7 +6,7 @@
 = image_tag "plus/body_about1.jpg", :class => "body_header"
 .alpha.grid_18.body_about{:id => "firstElement"}
   %span{:class => "p_a"}
-    Questions
+    Question
   %span{:class => "p_a1 i3_1"}
     = link_to "Home", "/"
     >
@@ -14,7 +14,7 @@
     = link_to "Questions", "/questions"
     >
     %span.underline-decoration-link
-      = link_to "#{h truncate(@question.title, :length => 65)}", "/questions/#{@question.slug}",:style => "color: white;"
+      = link_to "#{h truncate(@question.title, :length => 65)}", question_path(@question),:style => "color: white;"
   .q_height2
     = link_to image_tag("plus/reiting_num1.png"), "#"
     %p{:class => "reiting_num5"}
@@ -26,6 +26,7 @@
     .grid_14.ms_fr
       %span{:class => "s1_q_i"}
         = question_body.html_safe
+
     / %a{:class => "q_i_tag111", :href => "#"}
     / user image box
     %span{:class => "q_i_tag111", :href => "#",:style => "background-color: #F3F7FA; padding: 5px 0 10px 10px;width:165px; border-style:solid; border-width:1px; border-color:#CFD3D6;"}
@@ -54,6 +55,18 @@
       = link_to "<span class='underline-decoration-link'>Follow</span>".html_safe, follow_question_path(@question), :class => "q_tag2 tool-tip",:title=>"Follow this question"
       = link_to "<span class='underline-decoration-link'>Answer</span>".html_safe, question_path(@question, :anchor => "to_answer"), :class => "q_tag3 tool-tip",:title=>"Answer this question"
   .clear
+  / questions comments
+  %ul.Fright3.line-break
+    -@question.comments.each do |comments|
+      %li.comments-body
+        %span
+          = comments.body
+        %span.by-user
+          ="-"
+          =comments.user.name.capitalize
+
+  .clear
+  / question comments ends
   .tabs4
     %ul
       %span{:class => "serv_loc1_1"}
@@ -84,7 +97,19 @@
                               %a{:class => "q_i_tag2", :href => "#"}
                                 = image_tag "plus/q_user_i.jpg"
                               
-                            .clear
+                        .clear
+                        / questions comments
+                        %ul.Fright3.line-break
+                          -answer.comments.each do |ans|
+                            %li.comments-body
+                              %span
+                                = ans.body
+                              %span.by-user
+                                ="-"
+                                =ans.user.name.capitalize
+
+                        .clear
+                        / question comments ends
               %div.tabbertab
                 %h2
                   Votes 

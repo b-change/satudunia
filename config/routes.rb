@@ -135,14 +135,15 @@ Rails.application.routes.draw do
 
   match 'questions/unanswered' => redirect("/questions?unanswered=1")
 
-  resources :questions do
+  match 'question/:id' => 'questions#show', :as => :question
+
+  resources :questions, :except => [:show] do
 
     resources :votes
     resources :flags
     collection do
       get :tags_for_autocomplete
       get :related_questions
-      get :random
       get 'page/:page', :action => :index
       match '/:filter' => 'questions#index', :as => :filtered, :constraints => { :filter => /all|unanswered|by_me|feed|preferred|contributed|expertise/ }
     end

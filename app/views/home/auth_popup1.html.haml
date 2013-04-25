@@ -1,17 +1,21 @@
 - content_for :title do
   Step 1
-
-Terms of use page 1
-%br
-1. Purpose
-The aim of PLUS is to enhance connections between gay, bisexual men and transgender people living with HIV
-%br
-so that we can help each other and understand that we are not alone.
-PLUS operates under a Policy of Inclusion where people affected by HIV, 
-%br 
-or interested to learn more about HIV, are welcome to join
-the discussion once they become registered members. Upon registration, 
-%br
-it is assumed that all users acknowledge that PLUS is primarily a space for the empowerment of people living with HIV, led by people living with HIV.
-
-= button_to "Agree", "/second-auth/#{@auth_provider}"
+.modalbox-title-div
+  =@auth_provider.capitalize
+.modal-box-content
+  .modal-box-heading
+    Terms of use page 1
+  1. Purpose
+  The aim of PLUS is to enhance connections between gay, bisexual men and transgender people living with HIV
+  %br
+  so that we can help each other and understand that we are not alone.
+  PLUS operates under a Policy of Inclusion where people affected by HIV, 
+  %br 
+  or interested to learn more about HIV, are welcome to join
+  the discussion once they become registered members. Upon registration, 
+  %br
+  it is assumed that all users acknowledge that PLUS is primarily a space for the empowerment of people livin
+  with HIV, led by people living with HIV.
+.modalbox-footer-div
+  .modal-box-button
+    = button_to "Agree", "/second-auth/#{@auth_provider}"

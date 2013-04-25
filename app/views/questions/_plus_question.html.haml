@@ -11,7 +11,7 @@
       answers
   .grid_14.Fright
     %span{:class => "s1"}
-      = link_to truncate(strip_tags(question.title), :length => 200), "/questions/#{question.slug}",:class => "avoid_link_color"
+      = link_to truncate(strip_tags(question.title), :length => 200), question_path(question),:class => "avoid_link_color"
     .grid_14.ms_fr
       %span.s1_q_i
         = truncate(strip_tags(question.body), :length => 180)

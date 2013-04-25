@@ -2,10 +2,10 @@
 .alpha.grid_18.body_about{:id => "firstElement", :style => "margin-bottom:20px"}
   %span{:class => "p_a"}
     = t(".title")
-  %span{:class => "p_a1 il_ask"}
+  %span{:class => "p_a1 il_ask", :style => "left:-224px"}
     = link_to "Home", "/"
     > 
-  %span{:class => "p_a1 i3_1", :style => "left:-197px"}
+  %span{:class => "p_a1 i3_1", :style => "left:-224px"}
     = link_to "Questions", "/questions"
     >
     %span.underline-decoration-link
@@ -32,7 +32,7 @@
         %strong
           Questions
       .search3
-        = f.text_area :body, :class => "wysiwyg_editor"
+        = f.text_area :body, :class => "text-default wysiwyg_editor"
       %table
         %tr
           %td

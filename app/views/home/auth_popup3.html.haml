@@ -1,31 +1,34 @@
 - content_for :title do
   Step 3
+.modalbox-title-div
+  =@auth_provider.capitalize
+.modal-box-content
+  .modal-box-heading
+    Terms of use page 3
+  3. Code of Conduct 
+  %br
+  All registered users to PLUS are given access to the basic Website and Services upon acceptance of the Terms of Use that includes a Code of Conduct. 
+  %br
+  PLUS registered users agree to act under a Code of Conduct, summarised as follows:
 
-Terms of use page 3
-%br
-3. Code of Conduct 
-%br
-All registered users to PLUS are given access to the basic Website and Services upon acceptance of the Terms of Use that includes a Code of Conduct. 
-%br
-PLUS registered users agree to act under a Code of Conduct, summarised as follows:
-
-%ul
-  %li
-    Act with responsibility - You take responsibility for your contributions to the Website.
-  %li
-    Act with civility -  You support an environment of mutual respect and do not harass other users.
-  %li
-    Do no harm -  You do not damage or cause injury to other registered users of the Website or our technology infrastructure.
-  %li
-    Observe the Terms of Use and Policies -  You adhere to the below Terms of Use and to the applicable community policies when you visit 
-  %li 
-    our sites or participate in our communities.
-%br
-Read the full test of the Terms of Use (including Code of Conduct and Privacy Policy).
-
-- if @auth_provider == 'facebook' && current_group.has_facebook_login?
-  = button_to "Next", '/users/auth/facebook'
-- elsif @auth_provider == 'google'
-  = button_to "Next", multiauth_url("Google")
-- elsif @auth_provider == 'twitter'
-  = button_to "Next", multiauth_url("Twitter")
+  %ul
+    %li
+      Act with responsibility - You take responsibility for your contributions to the Website.
+    %li
+      Act with civility -  You support an environment of mutual respect and do not harass other users.
+    %li
+      Do no harm -  You do not damage or cause injury to other registered users of the Website or our technology infrastructure.
+    %li
+      Observe the Terms of Use and Policies -  You adhere to the below Terms of Use and to the applicable community policies when you visit 
+    %li 
+      our sites or participate in our communities.
+  %br
+  Read the full test of the Terms of Use (including Code of Conduct and Privacy Policy).
+.modalbox-footer-div
+  .modal-box-button
+    - if @auth_provider == 'facebook' && current_group.has_facebook_login?
+      = button_to "Next", '/users/auth/facebook'
+    - elsif @auth_provider == 'google'
+      = button_to "Next", multiauth_url("Google")
+    - elsif @auth_provider == 'twitter'
+      = button_to "Next", multiauth_url("Twitter")
