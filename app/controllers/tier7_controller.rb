@@ -25,6 +25,6 @@ class Tier7Controller < ApplicationController
       flash[:error] = "Tier7 update Failed"
     end
 
-    redirect_to "/survey/sample/tier6"
+    redirect_to survey_user_path(current_user.id)
   end
 end

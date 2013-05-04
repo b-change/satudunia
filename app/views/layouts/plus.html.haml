@@ -82,14 +82,17 @@
                   .logo
                     = link_to image_tag("plus/logo.jpg"), "/"
                     %span
-                      Living positively, together.
+                      = current_group.site_slogan.capitalize
                   .right_l
                     .wrapper1
                       - if current_user.nil?
                         = link_to image_tag("plus/sign_in.png", :class => "sign_in"), "javascript:void(0);", :id => "trigg", :class => "sign_in"
                       -else
                         .profile_small
-                          = avatar_img(current_user, :size => "small")
+                          -if current_user.use_gravatar?
+                            = image_tag avatar_user_path(current_user),:size=>'35x35',:class => "a5"
+                          -else
+                            = image_tag(default_avatar_url('small'))
                           %span{:class => "wayne"}
                             = h(current_user.display_name)
                           = link_to image_tag("plus/arrows21.jpg"), "javascript:void(0);", :id => "trigg4"
@@ -100,6 +103,10 @@
                               = link_to "Profile Settings", user_path(current_user)
                             %li
                               = link_to t('.connect'), social_connect_path
+                            %li
+                              = link_to t('.following'), follows_user_path(current_user)
+                            %li
+                              = link_to t('.followers'), follows_user_path(current_user)+"?sort=followers"
                             %li
                               = link_to t("layouts.application.logout"), destroy_user_session_path
                       #obj
@@ -202,6 +209,9 @@
                 .main
                   .container_24
                     .bg2_1.bg_search
+                      %div#search-container
+                        %span.text-style-drop
+                          No result found!
                       = form_tag "#{question_search_path}",:id => "search" do
                         = text_field_tag "search-ajax", "What is your question?", :class => "search-tag",:alt => "What is your question?",:autocomplete=>"off"
                         = hidden_field_tag "hidden_keys"

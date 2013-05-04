@@ -41,16 +41,41 @@
             = link_to category.category_name, "/services-map?category_id=#{category.id}"
 
   .tabs2
-    %ul{:class => "tabNavigation"}
-      %span{:class => "serv_loc1"}
-        Sort by
-      %li
-        = link_to "A - J", "#first", :class => "selected", :id => "first_tab"
-      %li
-        = link_to "K - T", "#second", :id => "second_tab"
-      %li
-        = link_to "U - Z", "#third", :id => "third_tab"
-    .clear
+    %div.tabber
+      %div.tabbertab
+        %h2
+          A - J
+        %p.i4_1.serv_loc6{:id => ""} 
+          .bx-wrapper
+            %div.bx-window
+              %ul{:id => "slider21", :style => "position: relative;"}
+                %li{:class => "pager ps1"}
+                  %ul
+
+                  .clear
+      %div.tabbertab
+        %h2
+          K - T
+        %p.i4_1.serv_loc6{:id => ""} 
+          .bx-wrapper
+            %div.bx-window
+              %ul{:id => "slider21", :style => "position: relative;"}
+                %li{:class => "pager ps1"}
+                  %ul
+
+                  .clear
+      %div.tabbertab
+        %h2
+          U - Z
+        %p.i4_1.serv_loc6{:id => ""} 
+          .bx-wrapper
+            %div.bx-window
+              %ul{:id => "slider21", :style => "position: relative;"}
+                %li{:class => "pager ps1"}
+                  %ul
+
+                  .clear
+      
     .i4_1.serv_loc6{:id => "first"}
       %ul{:class => "i3_2", :id => "slider41", :style => "position:relative;"}
         %li{:class => "pager"}

@@ -1,16 +1,30 @@
 = form_for(@tag, :html => {:class => "form", :multipart => true}) do |form|
   = error_messages_for(:tag)
-  .field
-    = form.label :name
-    = form.text_field :name, :class => "textfield"
+  %div{:class => "ask2_1"}
+    %strong
+      Name
+  .appender
+    #appender
+      = text_field_tag :new_tag,nil,:class=>"new_tag",:size=>"55"
+      = hidden_field_tag :my_hidden,nil,:class=>"my_hidden"
 
-  .field
-    = form.label :icon
+  .loader-gif
+  / = form.text_field :name, :class => "textfield"
+  .already-exist
+    = "Tag already exists"
+  = form.hidden_field :name,:class=>"tag-name-submit"
+    
+  %div{:class => "ask2_1"}
+    %strong
+      = form.label :icon
+  .search4
     = form.file_field :icon
 
-  .field
-    = form.label :description
-    = form.text_area :description, :class => "textarea"
+  %div{:class => "ask2_1"}
+    %strong
+      = form.label :description
+  .search4
+    = form.text_area :description, :class => "textarea-width"
 
   -if !(@tag.new_record? || @tag.errors[:name].blank?)
     == The tag '#{@name_changes.last}' already exists
@@ -18,5 +32,127 @@
       = check_box_tag "merge"
       == "MERGE"
 
-  .buttons
-    =form.submit nil, :class => "save"
+:javascript
+  $(document).ready(function(){
+    var fields = $("#attachments #fields");
+    var template = fields.find(".template");
+    template.find("input").attr("name", "question[attachments[id]]");
+    template.hide();
+
+    $("#attachments #fields .attachment_field .remove_attachment").live("click", function(e) {
+      $(this).parent().remove();
+      return false;
+    });
+
+    $(".remove_attachment_link").live("click", function(e) {
+      var url = $(this).attr("href");
+      var remove = confirm("are you sure?"); //TODO; i18n
+      if (remove) {
+        $.ajax({url: url, dataType: 'json', context: $(this), success: function(data, textStatus, XMLHttpRequest){
+          $(this).parent().remove();
+        }});
+      }
+      return false;
+    });
+
+    var count = -1;
+    $("#attachments .add_attachment").live("click", function(e) {
+      var template = fields.find(".template");
+      var new_field = template.clone();
+      new_field.removeClass("template");
+      count++;
+      var new_name = new_field.find("input").attr("name").replace(/(id)/, count);
+      new_field.find("input").attr("name",new_name)
+
+      new_field.show();
+
+      fields.append(new_field);
+
+      return false;
+    });
+
+    $("#ask_question_link").click(function (){
+      $("#ask_question").submit();
+    });
+
+    $("#question_tags").ajaxChosen({
+      method: 'GET',
+      url: '/questions/tags_for_autocomplete.js',
+      dataType: 'json'
+    }, function (data) {
+      var terms = {};
+      $.each(data, function (i, val) {
+          console.log('i: '+i)
+          console.log('val: '+val)
+        terms[val["value"]] = val["caption"];
+      });
+
+      return terms;
+    });
+  });
+
+  var valueRawArray = '#{Tag.all.map{|u|u.name}}'
+  var valueArray = eval(valueRawArray);
+  // new appender array
+  var appenderArray =[];
+  // $.each(valueArray,function(key,value){
+    
+  // });
+  $(".new_tag").keyup(function(evt) {
+    var thisTag = $(this);
+    var sizeOfTag = thisTag.attr("size");
+    if(sizeOfTag==55)
+      thisTag.attr("size",1);
+    else
+      thisTag.attr("size",parseInt(sizeOfTag)+parseInt(1));
+    $(".already-exist").hide();
+    // alert(evt.keyCode);
+    if (evt.keyCode == 32) {
+      var inputValueTaker = thisTag.val().trim();
+      // alert(inputValueTaker.length);
+      if(inputValueTaker.length !=0){
+        $(".my_hidden").val(inputValueTaker);
+        var MatchThis = $(".my_hidden").val();
+        var arraySize = appenderArray.length;
+        // merginig both array to create one combo array
+        var combineArray = valueArray.concat(appenderArray);
+        // alert(combineArray.toSource());
+        var testingValueInArray = jQuery.inArray(MatchThis,combineArray);
+        if(testingValueInArray<0){
+          $(".loader-gif").show();
+          // settimeOut function
+          setTimeout(function(){
+            $("#appender").append("<li class='"+arraySize+" list-class'><span>"+MatchThis+"<span>&nbsp;<span class='new-close-tags'>x</span> </li>");
+            // removed function
+            $("."+arraySize).click(function(){
+                $(this).fadeOut('slow',"linear");
+                appenderArray.splice(arraySize,1);
+                $(".tag-name-submit").val(appenderArray);
+            });
+            appenderArray.push(MatchThis);
+            // alert("Newely added "+appenderArray.toSource());
+            thisTag.val("");
+            // alert(valueArray.toSource());
+            $(".my_hidden").val("");
+            $(".loader-gif").hide();
+            $(".list-class-active").removeClass("list-class-active").addClass("list-class");
+            $(".tag-name-submit").val(appenderArray);
+            thisTag.attr("size",1);
+          },800);
+          // set time out ends           
+        }
+        else{
+            $(".list-class-active").removeClass("list-class-active").addClass("list-class");
+            var activeValueTaker = jQuery.inArray(MatchThis,appenderArray);
+            if(activeValueTaker<0)
+              $(".already-exist").show();
+            $("."+activeValueTaker).removeClass("list-class").addClass("list-class-active");
+            thisTag.val(""); 
+            $(".my_hidden").val("");
+            $(".tag-name-submit").val(appenderArray);
+        }
+      }
+      // if lenght not is equal to zero  ends here
+    }
+          
+  });

@@ -9,3 +9,6 @@
     = render "answers/answer", :question => resource.question, :answer => resource
   -else
     = render :partial => "questions/question", :object => resource
+/ pagination    
+-@paginator = @resources
+= render :partial =>"pagination/pagination"

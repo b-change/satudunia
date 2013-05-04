@@ -10,15 +10,20 @@
     - @updated = false
   / vote and answer box starts
   %li
-    .q_ff
-      %span{:class => "q_f"}
-        = question.flags_count
-      %span{:class => "q_f_1"}
-        votes
-      %span{:class => "q_fs1 vote-up-adjust"}
-        = question.answers_count
-      %span{:class => "q_fs_1"}
-        answers
+    .q_ff-container
+      .q_ff
+        %span{:class => "q_f"}
+          = question.flags_count
+        %span{:class => "q_f_1"}
+          votes
+        %span{:class => "q_fs1 vote-up-adjust"}
+          = question.answers_count
+        %span{:class => "q_fs_1"}
+          answers
+      .q_ff-bottom
+        %span
+          = question.countquestions.sum(:qus_count).to_i
+        views
     / vote and answer box ends here
     .grid_14.Fright
       %article{:class => class_for_question(question), :id => question.id}
@@ -27,38 +32,45 @@
             = pjax_link_to t('.wiki_title', :title => title), "question", question_path(question), :title => truncate(strip_tags(question.body), :length => 200),:class => "avoid_link_color",:style=>"text-decoration:none;"
           -else
             = pjax_link_to title, "question", question_path(question), :title => truncate(strip_tags(question.body), :length => 200),:class => "avoid_link_color",:style=>"text-decoration:none;"
+        .grid_14.ms_fr
+          %span.s1_q_i
+            = truncate(strip_tags(question.body), :length => 180)
         %ul.tags2
           - question.tags.each do |tag|
             %li
               = tag_link(tag)
           - if logged_in? && (current_user.can_modify?(question) || current_user.can_retag_others_questions_on?(current_group))
             %li.retag{:style => "margin-top: -3px !important;"}
-              = link_to t('.retag'), retag_question_path(question),:class => "tags2_1", :style => "margin-right: 10px; padding-left:5px; padding-right:5px;"
-        %ul{:class => "tags3"}
-          %li
-            = link_to "<span class='underline-decoration-link'>Flag</span>".html_safe, new_question_flag_path(question), :class => "q_tag1 tool-tip",:title=>"Flag this question"
-            = link_to "<span class='underline-decoration-link'>Follow</span>".html_safe, follow_question_path(question), :class => "q_tag2 tool-tip",:title=>"Follow this question"
-            = link_to "<span class='underline-decoration-link'>Answer</span>".html_safe, question_path(question, :anchor => "to_answer"), :class => "q_tag3 tool-tip",:title=>"Answer this question"
-        %span{:id => "ps2"}
-          = question.countquestions.sum(:qus_count).to_i
-          views
+              = link_to t('.retag'), retag_question_path(question),:class => "tags2_1 tool-tip", :style => "margin-right: 10px; padding-left:5px; padding-right:5px;",:title=>"Retag this question"
+        / %ul{:class => "tags3"}
+        /   %li
+        /     = link_to "<span class='underline-decoration-link'>Flag</span>".html_safe, new_question_flag_path(question), :class => "q_tag1 tool-tip",:title=>"Flag this question"
+        /     = link_to "<span class='underline-decoration-link'>Follow</span>".html_safe, follow_question_path(question), :class => "q_tag2 tool-tip",:title=>"Follow this question"
+        /     = link_to "<span class='underline-decoration-link'>Answer</span>".html_safe, question_path(question, :anchor => "to_answer"), :class => "q_tag3 tool-tip",:title=>"Answer this question"
+        / %span{:id => "ps2"}
+        /   = question.countquestions.sum(:qus_count).to_i
+        /   views
         .ago
           %span{:style => "color:#006893"}
             = owner.name
-    / user image box
-    %span{:class => "q_i_tag111_re_tag", :href => "#",:style => "background-color: #F3F7FA; padding: 5px 0 10px 10px;width:165px; border-style:solid; border-width:1px; border-color:#CFD3D6;"}
-      %a{:style=>"color:black; font-size:13px; padding-bottom:5px"}
-        Asked
-        - if ((Time.now - last_target_date)/86400).to_i > 1
-          = (last_target_date).strftime("%b %d '%y")
-          at 
-          = (last_target_date).strftime("%I:%M")
-        - else 
-          = time_ago_in_words(last_target_date)
+          asked
+          %span
+            = time_ago_in_words(last_target_date)
           Ago
-      %br/
-      = image_tag "",:class=>"info-image", :style=>"height:32px;width:32px;"
-      %a{:style=>"color:#00ADEF; font-size:12px; position:relative; top:3px;"}
+        / user image box
+        / %span{:class => "q_i_tag111_re_tag", :href => "#",:style => "background-color: #F3F7FA; padding: 5px 0 10px 10px;width:165px; border-style:solid; border-width:1px; border-color:#CFD3D6;"}
+        /   %a{:style=>"color:black; font-size:13px; padding-bottom:5px"}
+        /     Asked
+        /     - if ((Time.now - last_target_date)/86400).to_i > 1
+        /       = (last_target_date).strftime("%b %d '%y")
+        /       at 
+        /       = (last_target_date).strftime("%I:%M")
+        /     - else 
+        /       = time_ago_in_words(last_target_date)
+        /       Ago
+        /   %br/
+        /   = image_tag "",:class=>"info-image", :style=>"height:32px;width:32px;"
+        /   %a{:style=>"color:#00ADEF; font-size:12px; position:relative; top:3px;"}
         / = @question.user.name.capitalize
         / user image box
         / .toolbar

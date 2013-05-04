@@ -56,6 +56,11 @@
                 toolbar.width(textarea.width() - 2);
 
                 if (opts.loaded) { opts.loaded.call(this); }
+		// to set default font size
+                
+                this.editor.execCommand('decreasefontsize', false, -2);
+                this.editor.execCommand("fontName", false, "Arial");
+
             }
         },
         dispose: function() {

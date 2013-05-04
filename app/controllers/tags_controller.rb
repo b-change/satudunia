@@ -49,17 +49,24 @@ class TagsController < ApplicationController
   end
 
   def create
-    @tag = Tag.new
-    @tag.safe_update(%w[name icon description], params[:tag])
-
-    @tag.group = current_group
-    @tag.user = current_user
-
-    if @tag.save
-      redirect_to "/questions/tags"
-    else
-      render :action => :new
+    @tagName = params[:tag][:name]
+    @tagNameArray = @tagName.split(",")
+    @tagNameArray.each do |tagName|
+      Tag.create({name:tagName,icon:params[:tag][:name],description:params[:tag][:description],
+        group_id:current_group.id})
+      
     end
+    redirect_to "/questions/tags"
+    # if @tag.save
+    #     redirect_to "/questions/tags"
+    #   else
+    #     render :action => :new
+    # end
+    # @tag = Tag.new
+    # @tag.safe_update(%w[name icon description], params[:tag])
+
+    # @tag.group = current_group
+    # @tag.user = current_user
   end
 
   def update

@@ -1,3 +1,5 @@
 
 -@resources.each do |resource|
   = render :partial => "questions/question", :object => resource
+-@paginator = @resources
+= render :partial =>"pagination/pagination"

@@ -18,7 +18,7 @@
     = link_to "Questions", "/questions"
     >
     %span.underline-decoration-link
-      = link_to "#{h truncate(@question.title, :length => 65)}", question_path(@question),:style => "color: white;"
+      = link_to "#{h truncate(@question.title, :length => 95)}", question_path(@question),:style => "color: white;"
   .q_height2
     = link_to image_tag("plus/reiting_num1.png"), "#"
     %p{:class => "reiting_num5"}
@@ -44,7 +44,10 @@
           = time_ago_in_words(@question.created_at)
           Ago
       %br/
-      = image_tag avatar_user_path(@question.user),:class=>"info-image", :style=>"height:32px;width:32px;"
+      -if @question.user.use_gravatar?
+        = image_tag avatar_user_path(@question.user),:size=>'35x35'
+      -else
+        = image_tag(default_avatar_url('small'))
       %a{:style=>"color:#00ADEF; font-size:12px; position:relative; top:3px;"}
         = @question.user.name.capitalize
       / user image box
@@ -55,11 +58,12 @@
         = link_to tag, "#", :class => "tags2_1"
   %ul{:class => "tags3 tags9_2"}
     %li
-      = link_to "<span class='underline-decoration-link'>Flag</span>".html_safe, new_question_flag_path(@question), :class => "q_tag1 tool-tip",:title=>"Flag this question"
+      / = link_to "<span class='underline-decoration-link'>Flag</span>".html_safe, new_question_flag_path(@question), :class => "q_tag1 tool-tip",:title=>"Flag this question"
       = link_to "<span class='underline-decoration-link'>Follow</span>".html_safe, follow_question_path(@question), :class => "q_tag2 tool-tip",:title=>"Follow this question"
-      = link_to "<span class='underline-decoration-link'>Answer</span>".html_safe, question_path(@question, :anchor => "to_answer"), :class => "q_tag3 tool-tip",:title=>"Answer this question"
+      / = link_to "<span class='underline-decoration-link'>Answer</span>".html_safe, question_path(@question, :anchor => "to_answer"), :class => "q_tag3 tool-tip",:title=>"Answer this question"
   .clear
   / questions comments
+  %br
   %ul.Fright3.line-break
     -@question.comments.each do |comments|
       %li.comments-body
@@ -158,14 +162,15 @@
                             .clear
                   
                 .clear          
-      = form_for([@question,@answer],:method=>:post,:html => {:multipart => true,:name=>'answer_form',:id=>'answer_form'}) do |f|
-        %p{:style=>"margin-left:30px;"}
-          = f.text_area :body, :class => "wysiwyg_editor",:size=>"40x20"
-          / = render :partial => 'shared/rich_text_partial'
+  = form_for([@question,@answer],:method=>:post,:html => {:multipart => true,:name=>'answer_form',:id=>'answer_form'}) do |f|
+    %p{:style=>"margin-left:30px;"}
+      = f.text_area :body, :class => "wysiwyg_editor",:size=>"40x20"
+      / = render :partial => 'shared/rich_text_partial'
+    .clear
+    .save_footer.tool-tip{:style=>"width:710px;margin-left:0px;"}
+      = link_to "<span>Post your Answer</span>".html_safe,"javascript:void(0)", :class => "ask_tag5", :id => "edit-user-link",:title => "Post your Answer",:style => "margin-right:31px",:onclick=>"document.answer_form.submit();"
 
-          = link_to "<span class='underline-decoration-link'>Post your Answer</span>".html_safe, "javascript:void(0)", :class => "q_i1_tag1 tool-tip", :title => "Post your Answer",:onclick=>"document.answer_form.submit();", :style => "position: relative; margin-left: 0px !important"
-
-.grid_6.omega.body1_about.body_qwest1{:id => "secondElement", :style => "width: 242px !important"}
+.grid_6.omega.body1_about.body_qwest1{:id => "secondElement"}
   .clear
   %p{:class => "i3_11"}
     %strong

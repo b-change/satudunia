@@ -1,7 +1,23 @@
+= image_tag "plus/body_about.jpg", :class => "body_header"
+%span{:class => "p_a"}
+  Tags
+%span{:class => "p_a1 i3_1", :style => "margin-left: 84px;"}
+  = link_to "Home", "/"
+  >
+  = link_to "Questions", "/questions"
+  >
+  = link_to Tag, "/questions/tags/new",:style => "color: white;"
+.grid_24.body_about
+  .container-new-plus
+    = render "form"
+    .clear
+  .save_footer{:style => "margin-top: 30px;margin-left: 0px"}
+    = link_to "<span>Create Tag</span>".html_safe, "javascript:void(0)", :class => "ask_tag5", :id => "new_tag_create"
+      
+:javascript
+  $('#new_tag_create').click(function(){
+    $('#new_tag').submit();
+  });
+  
 
 
--content_for :subtabs do
-  .navtitle
-    = t(".title")
-
-= render "form"

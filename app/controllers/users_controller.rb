@@ -105,13 +105,11 @@ class UsersController < ApplicationController
     @body_id = "page3"
     @resources = @user.questions.where(:group_id => current_group.id,
                                        :banned => false,
-                                       :anonymous => false).
-                       order_by(current_order).
-                       page(params["page"])
+                                       :anonymous => false).order_by(current_order).page(params["page"]).per(session[:per_page].blank? ? 15 : session[:per_page])
 
     respond_to do |format|
       format.html
-      format.atom { @questions = @resources }
+      format.atom { @questions = @resources}
       format.json {
         if params[:tooltip]
           html = render_to_string(:partial => "users/show/show_json", :object => @user)
@@ -210,6 +208,15 @@ class UsersController < ApplicationController
   end
 
   def update
+    # checking for gravatar
+    @paramsUpdated = params[:user]
+    # to push value of gravatar to true
+    if (params[:user].has_key?(:avatar))
+      unless current_user.use_gravatar?
+        @paramsUpdated = params[:user].merge(:use_gravatar=>true)
+      end
+    end
+    # checking for gravatar
     if params[:id] == 'login' && params[:user].nil? # HACK for facebook-connectable
       redirect_to root_path
       return
@@ -228,7 +235,7 @@ class UsersController < ApplicationController
     @user.networks = params[:networks]
     @user.safe_update(%w[preferred_languages login email name hide_realname
                          language timezone bio hide_country hide_age hide_hiv_condition
-                         country_name user_age hiv_condition website avatar use_gravatar], params[:user])
+                         country_name user_age hiv_condition website avatar use_gravatar], @paramsUpdated)
     @user.notification_opts.safe_update(%w[new_answer give_advice activities reports
        questions_to_twitter badges_to_twitter favorites_to_twitter answers_to_twitter
        comments_to_twitter], params[:user][:notification_opts]) if params[:user][:notification_opts]

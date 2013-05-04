@@ -1,10 +1,13 @@
 - config = @user.config_for(current_group)
 
 = image_tag "plus/body_my_prof.jpg", :class => "body_header1"
-.grid_18{:style => "width: 750px;"}
+.grid_18
   .user_profile1
     .grid_4
-      = big_avatar_img @user, :size => 140, :class => "a5"
+      -if @user.use_gravatar?
+        = image_tag avatar_user_path(@user),:size=>'140x140',:class => "a5"
+      -else
+        = image_tag(default_avatar_url('small'))
       .a6
         = image_tag "plus/a1.png"
         %span
@@ -28,6 +31,7 @@
         = link_to @user.website, @user.website
       = link_to "<span>HIV Condition: #{user_hiv_condition(@user)}</span>".html_safe, "#", :class => "qwest_tag1"
       = link_to "<span>Edit Profile</span>".html_safe, settings_path, :class => "qwest_tag15"
+  .extra-tags
     - unless @user.profile_tiers.blank?
       = link_to "<span>Sample</span>".html_safe, "#", :class => "qwest_tag12"
     -unless @user.profile_support.nil?
@@ -35,6 +39,19 @@
     - for i in 2..7 do
       -unless eval "@user.profile_tier#{i}.nil?"
         = link_to "<span>Tier #{i}</span>".html_safe, "#", :class => "qwest_tag12"
+  / .extra-tags
+  /   %a.qwest_tag11
+  /     %span
+  /       Addict
+  /   %a.qwest_tag12
+  /     %span
+  /       Commentator
+  /   %a.qwest_tag13
+  /     %span
+  /       Editor
+  /   %a.qwest_tag14
+  /     %span
+  /       Good Answer
 .alpha.grid_18.body_about{:id=>"firstElement", :style => "margin-top: -25px"}
   .body_tabse
     123
@@ -47,7 +64,7 @@
       = tab_entry "li", "Survey", survey_user_path(@user), {:selected => "selected"}, {:class => "activity"}
     #first1{:style => "display: block"}
       .tabs3
-        %ul{:class => "tabNavigation"}
+        %ul{:class => "tabbernav"}
           = render "users/show/user_#{params[:action]}_filters"
         .i4_1{:id => "first"}
           .bx-wrapper
@@ -91,23 +108,41 @@
 
 :javascript
   $(window).load(function (){
-    $('#sort_newest').removeClass('selected');
-    $('#sort_oldest').removeClass('selected');
-    $('#sort_views').removeClass('selected');
-    $('#sort_votes').removeClass('selected');
 
     switch('#{params[:sort]}'){
       case "oldest":
-        $('#sort_oldest').addClass('selected');
+        $('#sort_oldest').addClass('active-tab');
         break;
       case "views":
-        $('#sort_views').addClass('selected');
+        $('#sort_views').addClass('active-tab');
         break;
       case "votes":
-        $('#sort_votes').addClass('selected');
+        $('#sort_votes').addClass('active-tab');
+        break;
+      case "questions":
+        $('#question-tab').addClass('active-tab');
+        $('#question1-tab').addClass('active-tab');
+        break;
+      case "answers":
+        $('#answer-tab').addClass('active-tab');
+        break;
+      case "following":
+        $('#following-tab').addClass('active-tab');
+        break;
+      case "followers":
+        $('#followers-tab').addClass('active-tab');
+        break;
+      case "all":
+        $('#all-tab').addClass('active-tab');
+        break;
+      case "users":
+        $('#user-tab').addClass('active-tab');
+        break;
+      case "pages":
+        $('#page-tab').addClass('active-tab');
         break;
       default:
-        $('#sort_newest').addClass('selected');
+        $('#sort_newest,#question-tab,#all-tab').addClass('active-tab');
         break;
     }
   });

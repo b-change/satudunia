@@ -2,74 +2,62 @@
   Community
 
 = image_tag "plus/body_com.jpg", :class => "body_header"
-.alpha.grid24.body_about{:style => "margin-bottom: 20px !important;"}
+.alpha.grid24.body_about{:style => "margin-bottom: 20px !important; width: 959px;"}
   %span{:class => "p_a"}
     Community
   %span{:class => "p_a1", :style => "position: relative !important; left: -169px;"}
     = link_to "Home", "/"
     > Community
-  %ul{:class => "Fright1"}
-    %li
-      = link_to "Week", "#", :class => "selected1"
-    %li
-      = link_to "Month", "#"
-    %li
-      = link_to "Quarter", "#"
-    %li
-      = link_to "Year", "#"
-    %li
-      = link_to "All", "#"
-  .tabs
-    %ul{:class => "tabNavigation"}
-      %li
-        = link_to "Reputation", "javascript:void(0)", :class => "selected",:alt=>"tab-reputation"
-      %li
-        = link_to "New Users", "javascript:void(0)",:alt=>"tab-new-user"
-      %li
-        = link_to "Oldest", "javascript:void(0)",:alt=>"tab-old-user"
-      %li
-        = link_to "Name", "javascript:void(0)",:alt=>"tab-name-user"
-      %li
-        = link_to "Nearby", "javascript:void(0)"
-    .clear
-    = form_tag "/users", :id => "search1", :method => "get" do
-      = text_field_tag "q", params[:q]
-      = link_to image_tag("plus/serch12.png", :class => "img12_1"), "#", :id => "search_user_link"
-      .clear
-    .tab-reputation.alltabs{:style => "display:block"}
-      %ul{:class => "slider22", :style => "position:relative;"}
-        %li{:class => "pager", :style => "width: 960px; overflow: hidden; list-style: none; outside: none;color:#000;"}
-          %ul
-            -@reputation.each do |membership|
-              = render "users/plus_membership", :membership => membership
-          = paginate @reputation
-    .tab-new-user.alltabs{:style => "display:none"}
-      %ul{:class => "slider22", :style => "position:relative;"}
-        %li{:class => "pager", :style => "width: 960px; overflow: hidden; list-style: none; outside: none;color:#000;"}
-          %ul
-            -@membersNew.each do |membership|
-              = render "users/plus_membership", :membership => membership
-          = paginate @membersNew
-    .tab-old-user.alltabs{:style => "display:none"}
-      %ul{:class => "slider22", :style => "position:relative;"}
-        %li{:class => "pager", :style => "width: 960px; overflow: hidden; list-style: none; outside: none;color:#000;"}
-          %ul
-            -@membersOld.each do |membership|
-              = render "users/plus_membership", :membership => membership
-          = paginate @membersOld
-    .tab-name-user.alltabs{:style => "display:none"}
-      %ul{:class => "slider22", :style => "position:relative;"}
-        %li{:class => "pager", :style => "width: 960px; overflow: hidden; list-style: none; outside: none;color:#000;"}
-          %ul
-            -@membersName.each do |membership|
-              = render "users/plus_membership", :membership => membership
-          = paginate @membersName
-:javascript
-  $(".tabNavigation li a").click(function(){
-    $(".tabNavigation li a").removeClass("selected");
-    $(this).addClass("selected");
-    VarTakeValue = $(this).attr("alt");
-    $(".alltabs").hide();
-    $("."+VarTakeValue).fadeIn('slow','linear');
+  .tabs2
+    %div.tabber
+      %div.tabbertab
+        %h2
+          Reputation
+        .tab-reputation.alltabs{:style => "display:block"}
+          %ul{:class => "slider22", :style => "position:relative;"}
+            %li{:class => "pager", :style => "width: 960px; overflow: hidden; list-style: none; outside: none;color:#000;"}
+              %ul
+                -@reputation.each do |membership|
+                  = render "users/plus_membership", :membership => membership
+              = paginate @reputation
+      %div.tabbertab
+        %h2
+          New Users
+        .tab-reputation.alltabs{:style => "display:block"}
+          %ul{:class => "slider22", :style => "position:relative;"}
+            %li{:class => "pager", :style => "width: 960px; overflow: hidden; list-style: none; outside: none;color:#000;"}
+              %ul
+                -@membersNew.each do |membership|
+                  = render "users/plus_membership", :membership => membership
+              = paginate @membersNew
+      %div.tabbertab
+        %h2
+          Oldest
+        .tab-reputation.alltabs{:style => "display:block"}
+          %ul{:class => "slider22", :style => "position:relative;"}
+            %li{:class => "pager", :style => "width: 960px; overflow: hidden; list-style: none; outside: none;color:#000;"}
+              %ul
+                -@membersOld.each do |membership|
+                  = render "users/plus_membership", :membership => membership
+              = paginate @membersOld
+      %div.tabbertab
+        %h2
+          Name
+        .tab-reputation.alltabs{:style => "display:block"}
+          %ul{:class => "slider22", :style => "position:relative;"}
+            %li{:class => "pager", :style => "width: 960px; overflow: hidden; list-style: none; outside: none;color:#000;"}
+              %ul
+                -@membersName.each do |membership|
+                  = render "users/plus_membership", :membership => membership
+              = paginate @membersName
 
-  });
+      %div.tabbertab
+        %h2
+          Nearby
+        .tab-reputation.alltabs{:style => "display:block"}
+          %ul{:class => "slider22", :style => "position:relative;"}
+            %li{:class => "pager", :style => "width: 960px; overflow: hidden; list-style: none; outside: none;color:#000;"}
+              %ul
+                -@membersName.each do |membership|
+                  = render "users/plus_membership", :membership => membership
+              = paginate @membersName

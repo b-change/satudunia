@@ -25,6 +25,6 @@ class Tier2Controller < ApplicationController
       flash[:error] = "Tier2 update Failed: #{@profile_tier2.errors.first[1]}"
     end
 
-    redirect_to "/survey/sample/tier2"
+    redirect_to "/survey/sample/tier3"
   end
 end

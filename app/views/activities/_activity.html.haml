@@ -1,16 +1,47 @@
 -# FIXME: use t('activity.humanized', :user=>user, :action=> action, :target=> target) after styling
--if activity[:target_type] || activity[:trackable_type]
-  %article.activity
-    %p
-      = pjax_link_to activity.user.display_name, "user", user_path(activity.user)
-      = activity.humanize_action
-    %h2
-      - if activity.action == "destroy"
-        = activity.target_name
-      - else
-        = pjax_link_to activity.target_name, activity.url_for_trackable(request.host), activity.params_for_trackable
 
-    %p
-      %time{:pubdate => "pubdate", :datetime => activity.created_at.iso8601}
-        = t("time.ago", :time => time_ago_in_words(activity.created_at, true))
-        = activity.created_at
+-if activity[:target_type] || activity[:trackable_type]
+
+  / vote and answer box starts
+  %li
+    .q_ff-container
+      .q_ff
+        %span{:class => "q_f"}
+          0
+          / = activity
+        %span{:class => "q_f_1"}
+          votes
+        %span{:class => "q_fs1 vote-up-adjust"}
+          0
+          / = activity
+        %span{:class => "q_fs_1"}
+          answers
+      .q_ff-bottom
+        %span
+          / = activity.sum(:qus_count).to_i
+        0 views
+    / vote and answer box ends here
+    .grid_14.Fright
+      %span{:class => "s1"}
+        - if activity.action == "destroy"
+          = activity.target_name
+        - else
+          = pjax_link_to activity.target_name, activity.url_for_trackable(request.host), activity.params_for_trackable
+
+      .grid_14.ms_fr
+        %span.s1_q_i
+          / = pjax_link_to activity.user.display_name, "user", user_path(activity.user)
+          / = activity.humanize_action
+          
+
+      %ul.ago
+        %span{:style => "color:#006893 !important;"}
+          / yy= owner.name
+          = pjax_link_to activity.user.display_name, "user", user_path(activity.user)
+          = activity.humanize_action.capitalize
+        %span
+          = time_ago_in_words(activity.updated_at)
+          / = t("time.ago", :time => time_ago_in_words(activity.updated_at, true))
+          / = activity.updated_at
+          Ago
+    .clear

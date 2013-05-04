@@ -1,4 +1,4 @@
-class Group
+ class Group
   include Mongoid::Document
   include Mongoid::Timestamps
 
@@ -77,6 +77,7 @@ class Group
   field :custom_pagination_length, :type => Integer, :default => 20
   field :question_default_length, :type => Integer, :default => 10
   field :slogan_short_ask, :type => String
+  field :site_slogan, :type => String, :default => "Living positively, together." 
   field :slogan_long_ask, :type => String
 
   field :slogan_short_location, :type => String
@@ -158,7 +159,7 @@ class Group
 
   validates_presence_of     :owner
   validates_presence_of     :name
-
+  validates_presence_of     :site_slogan, :maximum => 50
   validates_length_of       :name,           :in => 3..40
   validates_length_of       :description,    :in => 3..10000, :allow_blank => true
   validates_length_of       :legend,         :maximum => 50

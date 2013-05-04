@@ -1,6 +1,17 @@
--@resources.each do |resource|
-  %li
-    .grid_14.Fright
-      %span{:class => "s1"}
-        = link_to resource, "/survey/sample/#{resource}" 
-    .clear
+/ -@resources.each do |resource|
+/   %li
+/     .grid_14.Fright
+/       %span{:class => "s1"}
+/         = link_to resource, "/survey/sample/#{resource}" 
+/     .clear
+%li
+  .grid_14.Fright
+    %span{:class => "s1"}
+      = link_to "Tier-Sample", "/survey/sample/tier-sample" 
+  .clear
+
+%li
+  .grid_14.Fright
+    %span{:class => "s1"}
+      = link_to "Sample", "/survey/sample/tier1" 
+  .clear

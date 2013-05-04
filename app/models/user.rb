@@ -70,7 +70,7 @@ class User
   embeds_one :notification_opts, :class_name => "NotificationConfig"
 
   file_key :avatar, :max_length => 1.megabytes
-  field :use_gravatar, :type => Boolean, :default => true
+  field :use_gravatar, :type => Boolean, :default => false
   file_list :thumbnails
 
   referenced_in :friend_list
