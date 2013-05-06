@@ -27,7 +27,7 @@
                       = render "questions/plus_question", :question => question
         %div.pagination-div
           = paginate @questions, :left => 5, :right => 1
-          %ul#pagination-digg{:style => "float:right;"}
+          %ul#pagination-digg{:style => "float:right;",:class=>"apart-class"}
             %li.pagination-float
               = link_to 15, '/questions?per_page=15', :id => "per_page_15"
             %li.pagination-float

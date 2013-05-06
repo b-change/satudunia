@@ -2961,6 +2961,7 @@ footer {
     font-size: 15px;
     height: 24px;
     width:auto;
+    float:left;
 }
 .appender{
     min-height:24px;
@@ -3005,8 +3006,14 @@ footer {
     display:none;
     margin-left: 10px;
     padding-top:7px;
+    clear:both;
 }
 .textarea-width{
     width:542px;
     border:2px solid #D3C9BA;
-} 
+}
+#drop-appender{
+    z-index: 1000px;
+    background-color: #fff;
+    position:absolute;
+}
