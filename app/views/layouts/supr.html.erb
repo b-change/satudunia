@@ -178,7 +178,7 @@
                             </ul>
                         </li>
                         <li>
-                            <%= link_to "<span class='icon16 cut-icon-locked'></span>Features".html_safe, "#", :class => "hasUl" %>
+                            <%= link_to "<span class='icon16 cut-icon-locked'></span>Features".html_safe, "#", :class => "hasUl", :id => "feature_management_link" %>
                             <ul class="sub" id="feature_management">
                                 <li><a href="<%= announcements_path %>" id="features_announcement"><span class="icon16 brocco-icon-mic" ></span>Announcements</a></li>
                                 <li><a href="<%= manage_social_path %>" id="features_social"><span class="icon16 brocco-icon-earth"></span>Social</a></li>
@@ -187,8 +187,8 @@
                             </ul>
                         </li>
                         <li>
-                            <%= link_to "<span class='icon16 brocco-icon-coffee'></span>Look & Feel".html_safe, "#", :class => "hasUl" %>
-                            <ul class="sub">
+                            <%= link_to "<span class='icon16 brocco-icon-coffee'></span>Look & Feel".html_safe, "#", :class => "hasUl", :id => "look_management_link" %>
+                            <ul class="sub" id="look_management">
                                 <li><a href="<%= manage_appearance_path %>"><span class="icon16 minia-icon-cog"></span>Appearance</a></li>
                                 <li><a href="<%= manage_content_path %>"><span class="icon16 brocco-icon-diary"></span>Content</a></li>
                                 <li><a href="<%= themes_path %>"><span class="icon16  entypo-icon-palette"></span>Themes</a></li>
@@ -286,27 +286,49 @@
     </div><!-- End #wrapper -->
 <script type="text/javascript">
     function site_management_drawer_opened(){
+
         $('#content_management').removeClass('expand');
         $('#content_management_link').removeClass('drop');
+        $('#look_management_link').removeClass('drop');
+        $('#look_management').removeClass('expand');
+        $('#user_management').removeClass('expand');
+        $('#user_management_link').removeClass('drop');
+        $('#feature_management').removeClass('expand');
+        $('#feature_management_link').removeClass('drop');
+        $('#moderator_management').removeClass('expand');
+        $('#moderator_management_link').removeClass('drop');
 
         $('#site_management').addClass('expand');
         $('#site_management_link').addClass('drop');
     }
 
     function content_management_drawer_opened(){
-        $('#content_management').addClass('expand');
-        $('#content_management_link').addClass('drop');
 
+        $('#look_management_link').removeClass('drop');
+        $('#look_management').removeClass('expand');
+        $('#user_management').removeClass('expand');
+        $('#user_management_link').removeClass('drop');
+        $('#feature_management').removeClass('expand');
+        $('#feature_management_link').removeClass('drop');
+        $('#moderator_management').removeClass('expand');
+        $('#moderator_management_link').removeClass('drop');
         $('#site_management').removeClass('expand');
         $('#site_management_link').removeClass('drop');
+
+        $('#content_management').addClass('expand');
+        $('#content_management_link').addClass('drop');
     }
 
     function user_management_drawer_opened(){
         $('#content_management').removeClass('expand');
         $('#content_management_link').removeClass('drop');
-
         $('#site_management').removeClass('expand');
         $('#site_management_link').removeClass('drop');
+        $('#look_management_link').removeClass('drop');
+        $('#look_management').removeClass('expand');
+        $('#feature_management_link').removeClass('drop');
+        $('#feature_management').removeClass('expand');
+
 
         $('#user_management').addClass('expand');
         $('#user_management_link').addClass('drop');
@@ -315,12 +337,12 @@
     function feature_management_drawer_opened(){
         $('#content_management').removeClass('expand');
         $('#content_management_link').removeClass('drop');
-
         $('#site_management').removeClass('expand');
         $('#site_management_link').removeClass('drop');
-
         $('#user_management').removeClass('expand');
         $('#user_management_link').removeClass('drop');
+        $('#look_management_link').removeClass('drop');
+        $('#look_management').removeClass('expand');
 
         $('#feature_management').addClass('expand');
         $('#feature_management_link').addClass('drop');
@@ -329,19 +351,34 @@
     function moderation_drawer_opened(){
         $('#content_management').removeClass('expand');
         $('#content_management_link').removeClass('drop');
-
+        $('#look_management_link').removeClass('drop');
+        $('#look_management').removeClass('expand');
         $('#site_management').removeClass('expand');
         $('#site_management_link').removeClass('drop');
-
         $('#user_management').removeClass('expand');
         $('#user_management_link').removeClass('drop');
-
         $('#feature_management').removeClass('expand');
         $('#feature_management_link').removeClass('drop');
 
         $('#moderator_management').addClass('expand');
         $('#moderator_management_link').addClass('drop');
     }
+    function look_drawer_opened(){
+        $('#content_management').removeClass('expand');
+        $('#content_management_link').removeClass('drop');
+        $('#site_management').removeClass('expand');
+        $('#site_management_link').removeClass('drop');
+        $('#user_management').removeClass('expand');
+        $('#user_management_link').removeClass('drop');
+        $('#feature_management').removeClass('expand');
+        $('#feature_management_link').removeClass('drop');
+        $('#moderator_management').removeClass('expand');
+        $('#moderator_management_link').removeClass('drop');
+
+        $('#look_management_link').addClass('drop');
+        $('#look_management').addClass('expand');
+    }
+
 
     $(document).ready(function(){
         $('.search-btn').addClass('nostyle');//tell uniform to not style this element

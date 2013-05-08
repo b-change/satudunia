@@ -137,8 +137,9 @@ Rails.application.routes.draw do
   match 'questions/unanswered' => redirect("/questions?unanswered=1")
 
   match 'question/:id' => 'questions#show', :as => :question
+  match 'questions/ask-a-question' => "questions#new"
 
-  resources :questions, :except => [:show] do
+  resources :questions, :except => [:show, :new] do
 
     resources :votes
     resources :flags

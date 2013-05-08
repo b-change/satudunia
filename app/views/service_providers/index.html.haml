@@ -106,6 +106,7 @@
 %script{:src => "http://maps.googleapis.com/maps/api/js?key=AIzaSyBmJE9KrYdmPiW16lAHDJOiCvS1Fwen7BU&sensor=true"}
 
 :javascript
+  site_management_drawer_opened();
   $(window).load(function(){
     $('div.tabs2 ul.tabNavigation a').click(function () {
       $('#first').hide();

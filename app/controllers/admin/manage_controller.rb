@@ -56,6 +56,7 @@ class Admin::ManageController < ApplicationController
 
   def appearance
     @page_title = "Appearance"
+    @active_page = "look_appeareance"
   end
 
   def actions

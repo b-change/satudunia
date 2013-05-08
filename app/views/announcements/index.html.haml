@@ -79,7 +79,6 @@
 
 :javascript
   $(document).ready(function(){
-    feature_management_drawer_opened();
 
     //--------------- Dialogs ------------------//
     $('#openModalDialog').click(function(){
@@ -100,4 +99,8 @@
     });
 
     $("div.dialog button").addClass("btn");
+    setTimeout(function(){
+      feature_management_drawer_opened();
+
+    },800);
   });

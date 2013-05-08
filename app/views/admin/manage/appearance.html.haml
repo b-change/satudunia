@@ -113,6 +113,7 @@
                     = link_to "Cancel", admin_path, :class => "btn btn-danger", :style => "padding: 5px 10px !important; border-width: 1px !important; border-style: solid !important"
   :javascript
     // colorPicker
+    look_drawer_opened();
     var f = $.farbtastic('#color-picker');
     var p = $('#color-picker').css('opacity', 0.25);
     var selected;
@@ -123,4 +124,8 @@
       f.linkTo(this);
       p.css('opacity', 1);
       $(selected = this).css('opacity', 1).addClass('colorwell-selected');
+      setTimeout(function(){
+        look_drawer_opened();
+
+    },800);
     });

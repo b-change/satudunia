@@ -43,7 +43,11 @@
   }
 
   $(document).ready(function(){
-    feature_management_drawer_opened();
+    setTimeout(function(){
+        feature_management_drawer_opened();
+
+    },800);
+    
 
     activeLink();
   });
