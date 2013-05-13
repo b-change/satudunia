@@ -150,7 +150,7 @@
                 <div class="mainnav">
                     <ul>
                         <li>
-                            <%= link_to "<span class='icon16 minia-icon-cog'></span>Site Management".html_safe, "#", :class => "hasUl", :id => "site_management_link" %>
+                            <%= link_to "<span class='icon16 minia-icon-cog'></span>Site Management".html_safe, "#", :class => "hasUl",:title=>"site_management", :id => "site_management_link" %>
                             <ul class="sub" id="site_management">
                                 <li><a id="site_config" href="<%= admin_config_path %>"><span class="icon16 brocco-icon-home"></span>Site Config</a></li>
                                 <li><a id="service_providers" href="<%= service_providers_index_path %>"><span class="icon16 brocco-icon-database"></span>Service Providers</a></li>
@@ -161,7 +161,7 @@
                             </ul>
                         </li>
                         <li>
-                            <%= link_to "<span class='icon16 brocco-icon-list'></span>Content Management".html_safe, "#", :class => "hasUl", :id => "content_management_link" %>
+                            <%= link_to "<span class='icon16 brocco-icon-list'></span>Content Management".html_safe, "#", :class => "hasUl",:title=>"content_management", :id => "content_management_link" %>
                             <ul class="sub" id="content_management">
                                 <li><a id="cms_terms" href="<%= cms_terms_path %>"><span class="icon16 brocco-icon-file"></span>Terms of Use</a></li>
                                 <li><a id="cms_about" href="<%= cms_abouts_path %>"><span class="icon16 brocco-icon-file"></span>About</a></li>
@@ -170,7 +170,7 @@
                             </ul>
                         </li>
                         <li>
-                            <%= link_to "<span class='icon16 brocco-icon-user'></span>User Management".html_safe, "#", :class => "hasUl", :id => "user_management_link" %>
+                            <%= link_to "<span class='icon16 brocco-icon-user'></span>User Management".html_safe, "#", :class => "hasUl",:title=>"user_management", :id => "user_management_link" %>
                             <ul class="sub" id="user_management">
                                 <li><a href="<%= admin_user_access_path %>" id="user_access"><span class="icon16 brocco-icon-wrench"></span>Access</a></li>
                                 <li><a href="<%= admin_members_path %>" id="user_members"><span class="icon16 cut-icon-board"></span>Members</a></li>
@@ -178,31 +178,31 @@
                             </ul>
                         </li>
                         <li>
-                            <%= link_to "<span class='icon16 cut-icon-locked'></span>Features".html_safe, "#", :class => "hasUl", :id => "feature_management_link" %>
+                            <%= link_to "<span class='icon16 cut-icon-locked'></span>Features".html_safe, "#", :class => "hasUl",:title=>"feature_management", :id => "feature_management_link" %>
                             <ul class="sub" id="feature_management">
-                                <li><a href="<%= announcements_path %>" id="features_announcement"><span class="icon16 brocco-icon-mic" ></span>Announcements</a></li>
-                                <li><a href="<%= manage_social_path %>" id="features_social"><span class="icon16 brocco-icon-earth"></span>Social</a></li>
-                                <li><a href="<%= constrains_configs_path %>"><span class="icon16 brocco-icon-window"></span>Requirements</a></li>
-                                <li><a href="<%= manage_rewards_path %>"><span class="icon16 entypo-icon-trophy"></span>Rewards</a></li>
+                                <li><a id="features_announcement" href="<%= announcements_path %>"><span class="icon16 brocco-icon-mic" ></span>Announcements</a></li>
+                                <li><a id="features_social" href="<%= manage_social_path %>"><span class="icon16 brocco-icon-earth"></span>Social</a></li>
+                                <li><a href="<%= constrains_configs_path %>" id="features_requirement"><span class="icon16 brocco-icon-window"></span>Requirements</a></li>
+                                <li><a id="features_rewards" href="<%= manage_rewards_path %>"><span class="icon16 entypo-icon-trophy"></span>Rewards</a></li>
                             </ul>
                         </li>
                         <li>
-                            <%= link_to "<span class='icon16 brocco-icon-coffee'></span>Look & Feel".html_safe, "#", :class => "hasUl", :id => "look_management_link" %>
+                            <%= link_to "<span class='icon16 brocco-icon-coffee'></span>Look & Feel".html_safe, "#", :class => "hasUl", :id => "look_management_link", :title => "look_management" %>
                             <ul class="sub" id="look_management">
-                                <li><a href="<%= manage_appearance_path %>"><span class="icon16 minia-icon-cog"></span>Appearance</a></li>
-                                <li><a href="<%= manage_content_path %>"><span class="icon16 brocco-icon-diary"></span>Content</a></li>
-                                <li><a href="<%= themes_path %>"><span class="icon16  entypo-icon-palette"></span>Themes</a></li>
-                                <li><a href="<%= widgets_path %>"><span class="icon16 entypo-icon-popup"></span>Widgets</a></li>
+                                <li><a id="look-appear" href="<%= manage_appearance_path %>"><span class="icon16 minia-icon-cog"></span>Appearance</a></li>
+                                <li><a id="look-content" href="<%= manage_content_path %>"><span class="icon16 brocco-icon-diary"></span>Content</a></li>
+                                <li><a id="look-theme" href="<%= themes_path %>"><span class="icon16  entypo-icon-palette"></span>Themes</a></li>
+                                <li><a id="look-widget" href="<%= widgets_path %>"><span class="icon16 entypo-icon-popup"></span>Widgets</a></li>
                             </ul>
                         </li>
                         <li>
-                            <%= link_to "<span class='icon16 entypo-icon-close'></span>Close Group".html_safe, "#", :class => "hasUl" %>
-                            <ul class="sub">
-                                <li class="full-width"><a href="<%= manage_close_group_path %>"><span class="icon16 entypo-icon-close"></span>Close group</a></li>
+                            <%= link_to "<span class='icon16 entypo-icon-close'></span>Close Group".html_safe, "#", :class=> "hasUl",:id=>"close_group_link",:title=>"close_group" %>
+                            <ul class="sub" id="close_group">
+                                <li class="full-width"><a id="close-group" href="<%= manage_close_group_path %>"><span class="icon16 entypo-icon-close"></span>Close group</a></li>
                             </ul>
                         </li>
                         <li>
-                            <%= link_to "<span class='icon16 cut-icon-hash'></span>Moderation".html_safe, "#", :class => "hasUl", :id => "moderator_management_link" %>
+                            <%= link_to "<span class='icon16 cut-icon-hash'></span>Moderation".html_safe, "#", :class => "hasUl", :id => "moderator_management_link",:title=>"moderator_management" %>
                             <ul class="sub" id="moderator_management">
                                 <li class="full-width">
                                     <a href="<%= admin_manage_flags_path %>" id="moderator_flag"><span class="icon16 entypo-icon-flag"></span>Flag</a>
@@ -285,101 +285,7 @@
     
     </div><!-- End #wrapper -->
 <script type="text/javascript">
-    function site_management_drawer_opened(){
-
-        $('#content_management').removeClass('expand');
-        $('#content_management_link').removeClass('drop');
-        $('#look_management_link').removeClass('drop');
-        $('#look_management').removeClass('expand');
-        $('#user_management').removeClass('expand');
-        $('#user_management_link').removeClass('drop');
-        $('#feature_management').removeClass('expand');
-        $('#feature_management_link').removeClass('drop');
-        $('#moderator_management').removeClass('expand');
-        $('#moderator_management_link').removeClass('drop');
-
-        $('#site_management').addClass('expand');
-        $('#site_management_link').addClass('drop');
-    }
-
-    function content_management_drawer_opened(){
-
-        $('#look_management_link').removeClass('drop');
-        $('#look_management').removeClass('expand');
-        $('#user_management').removeClass('expand');
-        $('#user_management_link').removeClass('drop');
-        $('#feature_management').removeClass('expand');
-        $('#feature_management_link').removeClass('drop');
-        $('#moderator_management').removeClass('expand');
-        $('#moderator_management_link').removeClass('drop');
-        $('#site_management').removeClass('expand');
-        $('#site_management_link').removeClass('drop');
-
-        $('#content_management').addClass('expand');
-        $('#content_management_link').addClass('drop');
-    }
-
-    function user_management_drawer_opened(){
-        $('#content_management').removeClass('expand');
-        $('#content_management_link').removeClass('drop');
-        $('#site_management').removeClass('expand');
-        $('#site_management_link').removeClass('drop');
-        $('#look_management_link').removeClass('drop');
-        $('#look_management').removeClass('expand');
-        $('#feature_management_link').removeClass('drop');
-        $('#feature_management').removeClass('expand');
-
-
-        $('#user_management').addClass('expand');
-        $('#user_management_link').addClass('drop');
-    }
-
-    function feature_management_drawer_opened(){
-        $('#content_management').removeClass('expand');
-        $('#content_management_link').removeClass('drop');
-        $('#site_management').removeClass('expand');
-        $('#site_management_link').removeClass('drop');
-        $('#user_management').removeClass('expand');
-        $('#user_management_link').removeClass('drop');
-        $('#look_management_link').removeClass('drop');
-        $('#look_management').removeClass('expand');
-
-        $('#feature_management').addClass('expand');
-        $('#feature_management_link').addClass('drop');
-    }
-
-    function moderation_drawer_opened(){
-        $('#content_management').removeClass('expand');
-        $('#content_management_link').removeClass('drop');
-        $('#look_management_link').removeClass('drop');
-        $('#look_management').removeClass('expand');
-        $('#site_management').removeClass('expand');
-        $('#site_management_link').removeClass('drop');
-        $('#user_management').removeClass('expand');
-        $('#user_management_link').removeClass('drop');
-        $('#feature_management').removeClass('expand');
-        $('#feature_management_link').removeClass('drop');
-
-        $('#moderator_management').addClass('expand');
-        $('#moderator_management_link').addClass('drop');
-    }
-    function look_drawer_opened(){
-        $('#content_management').removeClass('expand');
-        $('#content_management_link').removeClass('drop');
-        $('#site_management').removeClass('expand');
-        $('#site_management_link').removeClass('drop');
-        $('#user_management').removeClass('expand');
-        $('#user_management_link').removeClass('drop');
-        $('#feature_management').removeClass('expand');
-        $('#feature_management_link').removeClass('drop');
-        $('#moderator_management').removeClass('expand');
-        $('#moderator_management_link').removeClass('drop');
-
-        $('#look_management_link').addClass('drop');
-        $('#look_management').addClass('expand');
-    }
-
-
+ 
     $(document).ready(function(){
         $('.search-btn').addClass('nostyle');//tell uniform to not style this element
 
@@ -633,7 +539,54 @@
             sticker: false
         });
       <% end %>
+      
+    //empty cookies
+      $(".container-fluid").click(function(){
+        // expiring cookies
+        $.cookie("tabCoookie",null,{path:'/admin/'});
+        $.cookie("activeTabCoookie",null,{path:'/admin/'});
+        $.cookie("tabCoookie",null,{path:'/'});
+        $.cookie("activeTabCoookie",null,{path:'/'});
+
+
+      });
+    // by clicking on sub li a 
+      $("ul.sub > li  > a").click(function(){
+        var idofActiveTab = $(this).attr("id");
+        //setting cookie activeTabCookie
+
+        $.cookie("activeTabCoookie",null,{path:'/'});
+        $.cookie("activeTabCoookie",idofActiveTab,{path:'/',expires:1});
+        $.cookie("activeTabCoookie",null,{path:'/admin/'});
+        $.cookie("activeTabCoookie",idofActiveTab,{path:'/admin/',expires:1});
+        
+      });
+      // $.cookie("activeTabCoookie",null,{path:'/admin'})
+      $(".hasUl").click(function(){
+
+        if($(this).hasClass("drop")){
+            var titleTaken = $(this).attr("title");
+            //setting cookie tabCookie
+            //destroy cookie    
+            $.cookie("tabCoookie",null,{path:'/admin/'});
+            $.cookie("tabCoookie", titleTaken,{path:'/admin/',expires:1});
+            $.cookie("tabCoookie",null,{path:'/'});
+            $.cookie("tabCoookie", titleTaken,{path:'/',expires:1});
+        }
+      });
+
+      var tabCoookie = $.cookie("tabCoookie");
+      // alert(tabCoookie);
+      $("ul").removeClass("expand");
+      $("#"+tabCoookie).addClass("expand");
+
+      var activeTabCoookie = $.cookie("activeTabCoookie");
+      // alert(activeTabCoookie);
+      $("li a").removeClass("current");
+      $("#"+activeTabCoookie).addClass("current");
+
     });
+    
 </script>
   </body>
 </html>

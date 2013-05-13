@@ -99,10 +99,6 @@
             -@providers.each_with_index do |provider|
               = render :partial => "providers/provider", :object => provider
 
-:javascript
-  $(document).ready(function(){
-    site_management_drawer_opened();
-  });
 
 %script
   $(document).ready(function(){

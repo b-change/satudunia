@@ -49,10 +49,6 @@
             -@faqs.each do |faq|
               = render :partial => "faq", :object => faq
 
-:javascript
-  $(document).ready(function(){
-    site_management_drawer_opened();
-  });
 
 %script
   $(document).ready(function(){

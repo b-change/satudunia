@@ -25,13 +25,3 @@
           %tbody
             -@members.each do |member|
               = render :partial => "member", :object => member
-
-
-:javascript
-  $(document).ready(function(){
-    setTimeout(function(){
-      user_management_drawer_opened();
-
-    },800);
-    
-  });

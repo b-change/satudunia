@@ -159,9 +159,7 @@ class GroupsController < ApplicationController
           elsif params[:group][:custom_domain]
             redirect_to "#{request.protocol}#{@group.domain}:#{request.port}/manage/properties/domain"
           else
-            # debugger
-            # redirect_to(params[:source] ? params[:source] : 'admin/appearance')
-            redirect_to "#{request.protocol}#{@group.domain}:#{request.port}/admin/appearance"
+            redirect_to (params[:source])? params[:source] : "#{request.protocol}#{@group.domain}:#{request.port}/admin/appearance"
           end
         }
         format.json  { head :ok }

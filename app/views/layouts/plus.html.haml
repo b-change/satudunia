@@ -268,8 +268,9 @@
                         Help and Support
                       %p{:class => "p1_1"}
                         Knowledgebase
-                        %br Contact Support
-                        About PLUS
+                        %br 
+                          = link_to "Contact Support",contact_path,:class=>"avoid_link_color_to_white"
+                        = link_to "About PLUS!",about_path,:class=>"avoid_link_color_to_white"
                       %p{:class => "p2"}
                         %span{:style => "font-size:16px;font-weigth:bold;font-family:Calibri;color:#fff"}
                         %br

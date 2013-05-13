@@ -3017,3 +3017,9 @@ footer {
     background-color: #fff;
     position:absolute;
 }
+.avoid_link_color_to_white
+{
+    color:#fff;
+    text-decoration:none;
+
+}
