@@ -49,15 +49,15 @@
       %p{:class => "p12_1"}
         Weather you’re newly diagnosed, or you’ve been living with HIV for years, it’s important to know the basics and stay up-to-date with breakthroughs in health and living well with HIV. 
     .grid_5
-      = link_to (image_tag "plus/banner2.png"),questions_path
+      = link_to (image_tag "plus/banner2.png"),service_providers_path
       %p{:style => "font-size:18px;font-family:'Calibri';color:#0075ce;font-weigth:bold;padding-top:10px"}
         = link_to("Search the Service Map",service_providers_path,:class=>"front_link_style")
       %p{:class => "p12_1"}
         Do you know the HIV health specialists in your local areas? Do you know what other options are available? How would you describe the quality of service you received? Check out our map of services available near you. Leave feedback about the services that are available. And help us map more services that other people living with HIV should know about.
     .grid_5
-      = link_to (image_tag "plus/banner3.png"),service_providers_path
+      = link_to (image_tag "plus/banner3.png"),"/questions/ask-a-question"
       %p{:style => "font-size:18px;font-family:'Calibri';color:#0075ce;font-weigth:bold;padding-top:10px"}
-        = link_to("Ask a Question",questions_path,:class=>"front_link_style")
+        = link_to("Ask a Question","/questions/ask-a-question",:class=>"front_link_style")
       %p{:class => "p12_1"}
         Have you ever wanted to know how others cope with their HIV diagnosis? Do you want to learn how others found a way to disclose their status to the people they love? How about questions about sex? Now is your chance to ask and answer questions from people just like you - people who want to live, laugh, love, have fun and stay healthy, positively. 
 .grid_8.omega

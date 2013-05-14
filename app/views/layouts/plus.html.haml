@@ -196,7 +196,7 @@
                     %span.text-style-drop
                       No result found!
                   = form_tag "#{question_search_path}",:id => "search" do
-                    = text_field_tag "search-ajax", "What is your question?", :class => "search-tag",:alt => "What is your question?",:autocomplete=>"off"
+                    = text_field_tag "search_ajax", "What is your question?", :class => "search-tag",:alt => "What is your question?",:autocomplete=>"off"
                     = hidden_field_tag "hidden_keys"
                     = button_tag "search",:class=>"search-btn"
                     .clear
@@ -210,12 +210,12 @@
               .centerBg
                 .main
                   .container_24
-                    .bg2_1.bg_search
+                    .bg2_1
                       %div#search-container
                         %span.text-style-drop
                           No result found!
                       = form_tag "#{question_search_path}",:id => "search" do
-                        = text_field_tag "search-ajax", "What is your question?", :class => "search-tag",:alt => "What is your question?",:autocomplete=>"off"
+                        = text_field_tag "search_ajax", "What is your question?", :class => "search-tag",:alt => "What is your question?",:autocomplete=>"off"
                         = hidden_field_tag "hidden_keys"
                         = button_tag "search",:class=>"search-btn"
                     .grid_24
@@ -232,7 +232,7 @@
                         %span.text-style-drop
                           No result found!
                       = form_tag "#{question_search_path}",:id => "search" do
-                        = text_field_tag "search-ajax", "What is your question?", :class => "search-tag",:alt => "What is your question?",:autocomplete=>"off"
+                        = text_field_tag "search_ajax", "What is your question?", :class => "search-tag",:alt => "What is your question?",:autocomplete=>"off"
                         = hidden_field_tag "hidden_keys"
                         = button_tag "search",:class=>"search-btn"
                         .clear

@@ -25,7 +25,7 @@ $(document).ready(function(){
     $("#search-container").fadeIn("slow");
     // set time out function to get exact search keyword
     setTimeout(function(){
-      var ajaxValueData = $("#search-ajax").val();
+      var ajaxValueData = $("#search_ajax").val();
       // ajax action
       $.ajax({
         method:"GET",
@@ -62,7 +62,7 @@ $(document).ready(function(){
   // event to select search result from the drop down
   $(".my-drop").live("click",function(){
     var valueTaker = $(this).html();
-    $("#search-ajax").val(valueTaker);
+    $("#search_ajax").val(valueTaker);
     var altTagTaker = $(this).attr("alt");
     $("#hidden_keys").val(altTagTaker+",");
     $("#search-container").html("").fadeOut('fast','linear');

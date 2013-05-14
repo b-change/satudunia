@@ -18,7 +18,7 @@
       %p{:class => "ask2"}
         = raw(current_group.question_prompt)
       .search3
-        = f.text_field :title
+        = f.text_field :title,:value=>@newQuestionTitle
       %p{:class => "ask2"}
         %strong
           Tags

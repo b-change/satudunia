@@ -254,6 +254,16 @@ class QuestionsController < ApplicationController
   def new
     @question = Question.new(params[:question])
 
+    # checking session is present or not
+    if session[:newQuestionValue].present?
+      @newQuestionTitle = session[:newQuestionValue]
+      # destroying session
+      session.delete(:newQuestionValue)
+    else
+      @newQuestionTitle=''
+    end
+    # checking session if conditions ends here
+
     if params[:from_question]
       @original_question = Question.minimal.without(:comments).where(:_id => params[:from_question]).first
 
@@ -439,8 +449,14 @@ class QuestionsController < ApplicationController
     @params = params[:hidden_keys].split(",")
     @tags = current_group.tags
     @questions = Question.where(:group_id=>current_group.id).in(_id:@params).page(params["page"]).order_by(current_order)
-    respond_to do |format|
-      format.html {render(:action=>"index")}
+    if @questions.empty?
+      # creation of session
+      session[:newQuestionValue] = params[:search_ajax];
+      redirect_to "/questions/ask-a-question"
+    else
+      respond_to do |format|
+        format.html {render(:action=>"index")}
+      end
     end
   end
   def destroy

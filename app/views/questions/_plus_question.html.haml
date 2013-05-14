@@ -27,7 +27,7 @@
 
     %ul.ago
       %span{:style => "color:#006893"}
-        = owner.name
+        = owner.login.capitalize
       asked 
       %span
         = time_ago_in_words(last_target_date)
