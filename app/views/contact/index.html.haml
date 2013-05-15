@@ -2,7 +2,7 @@
   Contact Us
 
 = image_tag "plus/body_about.jpg", :class => "body_header"
-.alpha.grid_24.body_about{:id => "firstElement", :style => "margin-bottom: 15px;width: 958px;"}
+.alpha.grid_24.body_about{:id => "firstElement", :style => "margin-bottom: 15px;width: 710px; height:634px !important"}
   %span{:class => "p_a"}
     Contact Us
   %span{:class => "p_a1", :style => "position: relative !important; left: -169px;"}
@@ -27,6 +27,26 @@
         = f.text_area :comment, :style => "width: 621px"
       .search3
         = link_to "<span>Submit</span>".html_safe, "#", :class => "ask_tag2", :id => "ask_question_link", :style => "margin-bottom: 10px;"
+.grid_6.omega.body1_about{:id => "secondElement", :style => "width: 235px !important; height:634px; !important"}
+  %p.i3_4
+    %strong
+      Recent Tags
+  %ul.tags
+    - current_group.default_tags.each do |tag|
+      %li{:style => "float:left; padding-left:0px !important;"}
+        %span{:class => "tags1_1"}
+          = link_to h(tag).html_safe, tag_path(:id => CGI.escape(tag)), :style => "text-decoration:none"
+          %span
+            x
+          %span.avoid_link_color{:style=>"font-weight:600"}
+            = current_group.questions.where(:tags=>tag).count
+    .clear
+  %p{:class => "about1"}
+    %strong
+      Latest Users
+  %ul{:class => "users"}
+    = render :partial => "widgets/plus_users"
+  = link_to "<span style='color:#0075ce;padding-left: 30px;text-decoration: none;font-weight: bold;font-family:Arial'>More>></span>".html_safe, users_path
 
 
     

@@ -162,18 +162,13 @@
               = link_to 50, '/questions?per_page=50', :id => "per_page_50"
         .clear
 .grid_6.omega.body1_about{:id => "secondElement"}
-  / .tags-for-question
-  /   %div{:style=>"float:left; width:80px;"}
-  /     %span{:class => "t_l1-for"}
-  /       = current_group.questions.count
-  /     %br
-  /     %span{:class => "t_l2-for"} Following
-  /     %br
-  /   %div{:style=>"float:right;  width:120px;"}
-  /     %span{:class => "t_l1-for"}
-  /       = current_group.questions.sum(:followers_count).to_i
-  /     %br
-  /     %span{:class => "t_l2-for"} Followers
+  .tags-for-question
+    %div{:style=>"float:left; margin-left:42px; width:80px;"}
+      %span{:class => "t_l1-for"}
+        = @questions.all.count
+      %br
+      %span{:class => "t_l2-for"} Questions
+      %br
   %p.i3_4
     %strong
       Recent Tags

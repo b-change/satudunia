@@ -7,7 +7,7 @@ require 'magent_web'
 Rails.application.routes.draw do
   get "survey/index"
 
-  devise_for(:users,
+  devise_for(:users, :path => '/',
              :path_names => {:sign_in => 'login', :sign_out => 'logout'},
              :controllers => {:registrations => 'users', :omniauth_callbacks => "multiauth/sessions"}) do
   end
@@ -88,6 +88,8 @@ Rails.application.routes.draw do
       get :survey
     end
   end
+  # match 'towns' => 'towns#index'
+  get 'faq' =>"manage_faqs#public_faq"
   resources :countquestions
   resources :badges
 
@@ -137,7 +139,7 @@ Rails.application.routes.draw do
   match 'questions/unanswered' => redirect("/questions?unanswered=1")
 
   match 'question/:id' => 'questions#show', :as => :question
-  match 'questions/ask-a-question' => "questions#new"
+  match 'questions/ask-a-question' => "questions#new", :as => :new_question
 
   resources :questions, :except => [:show, :new] do
 

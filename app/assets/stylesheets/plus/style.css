@@ -760,14 +760,18 @@ border-bottom: 1px solid #D0D3D6;
 p {margin-bottom:18px;}
 .reiting_num2{float: left;
     margin-top: 37px;}
-.reiting_num5{color: #000000;
+.reiting_num5{ color: #000000;
+    display: inline-block;
     font-size: 20px;
     font-weight: bold;
-    left: 24px;
-    position: absolute;
-    top: 33px;}
-.reiting_num6{float: left;
-    margin-top: 37px;}
+    left: 6px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    text-align: center;
+    top: 9px;
+    width: 65px;}
+.reiting_num6{float: left;}
 p {margin-bottom:18px;}
 .p12_1 {color: #000000;
     font-family: Arial;
@@ -1789,12 +1793,11 @@ a.next:hover {background-position:right bottom;}
 .qwest_tag15{background: url("button_profile.jpg") repeat-x scroll 0 0 transparent;
     border-radius: 3px 3px 3px 3px;
     float: right;
+    left: 214px;
     padding-right: 60px;
     padding-top: 12px;
-   /* position: relative;*/
-   margin-top:0px;
-   margin-top: -5px;
-
+    position: relative;
+    top: -35px;
 }
     .ask_tag4{background: url("remove1.jpg") repeat-x scroll 0 0 transparent;
     border: 1px solid #AAB9BF;

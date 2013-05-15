@@ -57,7 +57,7 @@
               .container_24
                 .wrapper
                   %nav
-                    %ul{:class => "menu"}
+                    %ul{:class => "menu"} 
                       %li
                         0.9.1
                       %li
@@ -135,8 +135,8 @@
                                 %span{:class => "chek"}
                                   Remember me
                                 / .sgn
-                                /   Sign up with
-                                /   = link_to "email address", "javascript:void(0);", :id => "trigg1"
+                                / Sign up with
+                                / = link_to "email address", "javascript:void(0);", :id => "trigg1"
                             .grid_9_1
                               Login with
                               - current_group.auth_providers.each do |provider|
@@ -152,37 +152,37 @@
                                   = link_to image_tag("plus/oi.jpg"), '/first-auth/MyOpenID', :class => "auth-provider #{provider}", :id => dprovider
                               %a#cancel1_1{:href => "javascript:void(0);"} close
                       / #obj1
-                      /   #cancel1
-                      /     %ul
-                      /       = form_for :user, :url => users_path, :html => {:id => "signup_form"} do |f|
-                      /         %li{:class => "name1"}
-                      /           %label{:class => "name"}
-                      /             Login
-                      /           = f.text_field :login
-                      /         %li{:class => "r_name"}
-                      /           %label{:class => "name"}
-                      /             Name
-                      /           = f.text_field :name
-                      /         %li{:class => "email"}
-                      /           %label{:class => "name"}
-                      /             Email
-                      /           = f.text_field :email
-                      /         %li{:class => "password"}
-                      /           %label{:class => "name"}
-                      /             Password
-                      /           = f.text_field :password
-                      /         %li{:class => "r_password"}
-                      /           %label{:class => "name"}
-                      /             Retype Password
-                      /           = f.text_field :password_confirmation
-                      /     .signs1
-                      /       = link_to "Sign up", "#", :id => "signup_button"
-                      /     .signs2
-                      /       = link_to "Back", "javascript:void(0);", :id => "trigg2"
+                      / #cancel1
+                      / %ul
+                      / = form_for :user, :url => users_path, :html => {:id => "signup_form"} do |f|
+                      / %li{:class => "name1"}
+                      / %label{:class => "name"}
+                      / Login
+                      / = f.text_field :login
+                      / %li{:class => "r_name"}
+                      / %label{:class => "name"}
+                      / Name
+                      / = f.text_field :name
+                      / %li{:class => "email"}
+                      / %label{:class => "name"}
+                      / Email
+                      / = f.text_field :email
+                      / %li{:class => "password"}
+                      / %label{:class => "name"}
+                      / Password
+                      / = f.text_field :password
+                      / %li{:class => "r_password"}
+                      / %label{:class => "name"}
+                      / Retype Password
+                      / = f.text_field :password_confirmation
+                      / .signs1
+                      / = link_to "Sign up", "#", :id => "signup_button"
+                      / .signs2
+                      / = link_to "Back", "javascript:void(0);", :id => "trigg2"
 
                     .soc_icon{:style => "float: right !important"}
-                      = link_to image_tag("plus/twitter1.png"), "http://www.twitter.com", :target => "blank"
-                      = link_to image_tag("plus/facebook1.png"), "http://www.facebook.com", :target => "blank"
+                      = link_to image_tag("plus/twitter1.png"),"https://twitter.com/share","data-count"=>"none",:target=>"_blank"
+                      = link_to image_tag("plus/facebook1.png"), "javascript:void(0)",:onclick=>"fb_share()"
                 .clear
         /==============================slider================================
         = yield :slider_content
@@ -248,16 +248,16 @@
                   .grid_6.info
                     %ul{:class => "info"}
                       %li
-                        &nbsp; 
+                        &nbsp;
                   .grid_8
                     %h3{:class => "p4"}
                       Follow Us
                     %ul
                       %li
-                        = link_to image_tag("plus/twitter.png", :class => "marker1"), "http://www.twitter.com", :target => "blank"
+                        = link_to image_tag("plus/twitter.png", :class => "marker1"),"https://twitter.com/share","data-count"=>"none",:target=>"_blank"
                         Follow us on Twitter
                       %li
-                        = link_to image_tag("plus/facebook.png", :class => "marker1"), "http://www.facebook.com", :target => "blank"
+                        = link_to image_tag("plus/facebook.png", :class => "marker1"), "javascript:void(0)",:onclick=>"fb_share()"
                         Be a fan on Facebook
                       %li
                         = link_to image_tag("plus/rss.png", :class => "marker1"), "#", :target => "blank"
@@ -268,7 +268,7 @@
                         Help and Support
                       %p{:class => "p1_1"}
                         Knowledgebase
-                        %br 
+                        %br
                           = link_to "Contact Support",contact_path,:class=>"avoid_link_color_to_white"
                         = link_to "About PLUS!",about_path,:class=>"avoid_link_color_to_white"
                       %p{:class => "p2"}
@@ -425,15 +425,19 @@
     }
   }
   $(".authproviders").fancybox({
-    'width'           : '75%',
-    'height'          : '75%',
-    'autoScale'       : false,
-    'transitionIn'    : 'none',
-    'transitionOut'   : 'none',
-    'scrolling'       : 'no',
-    'titleShow'       : true,
-    'type'            : 'iframe',
-    'overlayShow'     : false,
+    'width' : '75%',
+    'height' : '75%',
+    'autoScale' : false,
+    'transitionIn' : 'none',
+    'transitionOut' : 'none',
+    'scrolling' : 'no',
+    'titleShow' : true,
+    'type' : 'iframe',
+    'overlayShow' : false,
     'showCloseButton' : true
   });
-  
+
+  function fb_share(){
+    window.open("http://www.facebook.com/share.php?u=http://dev3.b-change.org",width="200",heigth="100");
+  }
+  !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');

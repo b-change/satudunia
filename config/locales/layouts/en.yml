@@ -16,7 +16,7 @@ en:
       badges: Badges
       unanswered: Unanswered
       pages: Pages
-      logout: Log out
+      logout: Sign out
       logged: Logged in as %{login}
       search: Search
       forgot: Forgot?
