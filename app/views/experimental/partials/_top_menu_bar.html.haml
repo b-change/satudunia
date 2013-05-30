@@ -1,0 +1,46 @@
+#top-menu-wrapper
+	/ begin top menu
+	.ribbon-shadow-left  
+	#top-menu
+		.container.mid
+			.menu
+				%ul#menu-top-menu
+					%li
+						%a{:href => public_about_experimental_index_path,:title=>"About",:alt=>"About"} About Plus
+					%li
+						%a{:href => questions_path,:title=>"Questions",:alt=>"Questions"} Questions 
+					%li
+						%a{:href => '/services-map',:title=>"Services Map",:alt=>"Services Map"} Services map
+					%li
+						%a{:href => contact_path,:title=>"Contact",:alt=>"Contact"} Contact
+					%li
+						%a{:href => '/questions/ask-a-question',:title=>"Ask a Question",:alt=>"Ask a Question"} Ask a Question
+			%select#select-menu-top-menu
+				%option Page Navigation
+				%option{:value => "page-jquery-extras.html"} jQuery Extras
+				%option{:value => "page-jquery-extras.html"}      Sliders
+				%option{:value => "page-jquery-extras.html"}      Toggles
+				%option{:value => "page-jquery-extras.html"}      Tabs
+				%option{:value => "page-fancy-boxes.html"} Styled Goodies
+				%option{:value => "page-fancy-boxes.html"}      Fancy Boxes
+				%option{:value => "page-styled-lists.html"}      Styled Lists
+				%option{:value => "page-buttons.html"}      Buttons
+				%option{:value => "page-columns.html"}      Columns
+				%option{:value => "page-styled-html-elements.html"}      More HTML Elements
+				%option{:value => "404.html"} Custom 404 Page
+				%option{:value => "page-full-width.html"} Full-Width Page
+				%option{:value => "page-contributors.html"} Contributors Listing
+		#top-widget
+			.top-social
+				%a.rss{:href => rss_feed_experimental_index_path}  
+				%a.facebook{:href =>"javascript:void(0)",:onclick=>"fb_share()"}  
+				%a.twitter{:href =>"javascript:void(0)",:onclick=>"twitter_twit()"}  
+				
+		#search
+			.wrapper
+				.inner
+					/ SEARCH
+					%form#searchformtop{:action => "search.html", :method => "get"}
+						%input#s{:name => "s", :onblur => "if (this.value == '') {this.value = 'search';}", :onfocus => "if (this.value == 'search') {this.value = '';}", :type => "text", :value => "search"}/
+		%br.clearer/
+	.ribbon-shadow-right 

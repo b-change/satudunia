@@ -1,0 +1,654 @@
+.clearer.hide-responsive  
+%br.hide-responsive/
+.main-content-left
+  .page-content.review.single-post
+    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+    .review-content
+      .ribbon-shadow-left  
+      .section-wrapper
+        / full article header
+        .section
+          .comment-bubble
+            %a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 0
+          %span.posted-label Posted
+          June 19, 2012 by
+          %a{:href => "http://www.industrialthemes.com", :rel => "author external", :title => "Visit Brian McCulloh’s website"} Brian McCulloh
+          %span.category-label
+            in
+            %a{:href => "#"} Blog
+      .ribbon-shadow-right  
+      .section-arrow  
+      %h1.title 
+        =@title.upcase
+      .content-panel
+        / .article-image
+        /   %a.darken{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-300x225.jpg"}
+        /     %img{:alt => "misc1", :height => "225", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-300x225.jpg", :title => "misc1", :width => "300"}/
+        / responsive purposes - hidden for standard desktop view
+        / .article-image.responsive
+        /   %img{:alt => "misc1", :height => "225", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-300x225.jpg", :title => "misc1", :width => "300"}/
+        / end responsive purposes
+        .the-content
+          .box-wrapper.info
+            .box.info
+              This page lists Frequently Asked Questions
+              pertaining to this theme and is meant to answer questions for users who
+              have already purchased it. We will continue to add to this FAQ as we
+              find helpful tips for using the theme. For theme-related support, please
+              see our
+              = succeed "." do
+                %a{:href => "http://industrialthemes.ticksy.com/faq/743"} Support Policy
+          /faq content starts from here
+          %div{:style => "float: left;"}
+            %a{:href => "http://industrialthemes.ticksy.com/"}
+              %img{:alt => "", :src => "/assets/experimental/images/support-forum.png"}/
+          %div{:style => "float: left;"}
+            %a{:href => "http://www.industrialthemes.com/made/faq/"}
+              %img{:alt => "", :src => "/assets/experimental/images/faqs.png"}/
+          %div{:style => "clear: both;"}
+          %p  
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 1. Screencasts
+              .toggle-content{:style => "display: none;"}
+                %h6 How to setup your front page:
+                %p
+                  %iframe{:frameborder => "0", :height => "356", :src => "FAQ%20%7C%20Made_files/EK48.html", :width => "585"}
+                %p  
+                %h6 How to create review types and write reviews part 1
+                %p
+                  %iframe{:frameborder => "0", :height => "356", :src => "FAQ%20%7C%20Made_files/ti48.html", :width => "585"}
+                %p  
+                %h6 How to create review types and write reviews part 2
+                %p
+                  %iframe{:frameborder => "0", :height => "356", :src => "FAQ%20%7C%20Made_files/oi48.html", :width => "585"}
+                %p  
+                %h6 How to setup non-review posts within your review types
+                %p
+                  %iframe{:frameborder => "0", :height => "356", :src => "FAQ%20%7C%20Made_files/XI48.html", :width => "585"}
+                %p  
+                %h6 More to come…
+                %p  
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 2. How do I import the demo content?
+              .toggle-content{:style => "display: none;"}
+                .box-wrapper.tip
+                  .box.tip
+                    See FAQ item “3. Can I import the demo MySql
+                    database directly via a .sql file?” to learn how to do a direct MySql
+                    import of the demo database.
+                %p
+                  The demo xml file that comes with the theme contains all of the
+                  content from the live demo. Before you import this file, you need to
+                  create the five review types in your Review Options page. Then you need
+                  to specify all of the necessary options, which are detailed in
+                  %a.cboxElement{:href => "http://www.brianmcculloh.com/files/made-review-options.jpg"} this screenshot
+                  of the demo review options.
+                %p
+                  After you setup the review types, go to Tools >> Import and
+                  choose WordPress. Upload the demo xml file that came in your Made-Theme
+                  folder and click Upload File and Import. Do not make any selections or
+                  assignments for the authors.
+                %p
+                  After the import finishes, go to Appearance >> Menus and in the
+                  Theme Locations panel select the menu for each of the menu locations
+                  (for some reason the import process creates the menus correctly but does
+                  not assign them to these three spots).
+                %p
+                  Then, you will need to go to Appearance >> Widgets and setup
+                  your widgets since the import file does not contain widget information.
+                %p
+                  Finally, you will need to go to Appearance >> Theme Options and
+                  setup your theme options to match the demo. All of the demo theme
+                  options are detailed in
+                  = succeed "." do
+                    %a.cboxElement{:href => "http://www.brianmcculloh.com/files/made-demo-theme-options.jpg"} this screenshot
+                %p
+                  We also provide a screenshot of the full review options from the main Made demo which is located here:
+                  = succeed "." do
+                    %a.cboxElement{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/made-review-options.jpg"} Made Demo Review Options
+                  Some browsers have trouble displaying an image of this size in the
+                  colorbox. If you have this issue, right-click on the link and open the
+                  image in a new window (or save it to your computer) to view it.
+                .box-wrapper.alert
+                  .box.alert
+                    If you notice that your images are not sized
+                    correctly, install and run the plugin called AJAX Thumbnail Rebuild
+                    which should resize your images correctly. You will only need to run
+                    this once and shouldn’t ever have to run it again unless you deactivate
+                    this theme and upload images while it is deactivated.
+                .box-wrapper.alert
+                  .box.alert
+                    If you still experience incorrectly sized images,
+                    it is likely that you have neglected to fill out your theme options all
+                    the way. Make sure you fill out all options, especially in places where
+                    you can select one of several options, like Front Page >> Latest
+                    Posts >> Latest Layout. If there is no selection at all it could
+                    cause your theme to act weird.
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 3. Can I import the demo MySql database directly via a .sql file?
+              .toggle-content{:style => "display: none;"}
+                Yes! A .sql file is included that you can import directly into your mysql database via phpMyAdmin. Here is how you do this:
+                %p
+                %ol
+                  %li Backup your database!
+                  %li Open your WordPress database using phpMyAdmin on your web server
+                  %li Drop all of your tables: Structure >> Check All >> With Selected: Drop
+                  %li Click Import tab at the top
+                  %li Click Choose File and select the .sql file in your Made-Theme folder
+                  %li Click Go
+                  %li Open your wp_options table
+                  %li
+                    Change the value in the siteurl and home records to your domain
+                    (currently they are pointing to
+                    http://www.brianmcculloh.com/wp-made-demo)
+                %p After you make these changes, you can access your WordPress admin panel using the following credentials:
+                %p
+                  Username: demo
+                  %br/
+                  Password: industrialthemes
+                %p
+                  Once logged in you should see all of the demo content and settings
+                  except for the images (you will have to populate your own images – they
+                  are not contained in the SQL file.)
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 4. How do I upgrade from Swagger or Continuum to Made?
+              .toggle-content{:style => "display: none;"}
+                %p
+                  %b Upgrading from Swagger:
+                %ol
+                  %li Install Made and activate it.
+                  %li
+                    Go to Appearance >> Menus and re-assign your menus in the
+                    Theme Locations panel. The layout of the menus is not exactly the same
+                    in Made as in Swagger, so you might have to do a little tweaking to get
+                    them where you want them.
+                  %li
+                    Install and run the free plugin called AJAX Thumbnail Rebuild. It is
+                    only necessary to run this once right after you first activate the
+                    theme.
+                  %li
+                    Go to Appearance >> Theme Options >> Front Page and
+                    select a size for your Featured Slider Size and specify a layout for
+                    your Latest Posts >> Latest Layout and click Save Options.
+                  %li Go to Appearance >> Review Options and click Save Options.
+                  %li
+                    Go to Appearance >> Widgets and open each Extended: Latest
+                    Reviews, Extended: Latest Review Tabs, and Extended: Post Tabs widget in
+                    all of your sidebars and click Save on each one (this fixes thumbnail
+                    sizes).
+                  %li Go to Appearance >> Miscellaneous and specify a color for your Main Color Scheme.
+                  %li
+                    Your review types, rating info, posts, pages, categories, tags,
+                    taxonomies, etc. will all be visible without any further modifications.
+                    Keep in mind Made is not the exact same theme as Swagger so you will
+                    definitely need to spend some time getting your site settings how you
+                    want them.
+                %p
+                  %b Upgrading from Continuum: (more involved)
+                %p
+                  See
+                  %a{:href => "http://support.industrialthemes.com/viewtopic.php?f=6&t=5668"} this awesome guide
+                  written by Continuum/Made user randallflagg34.
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 5. How do I use the mini-sites for non-review types?
+              .toggle-content{:style => "display: none;"}
+                You need to go through the exact same steps as if your site was a review
+                site. That means creating your “review types” (which will just be
+                regular posts on the front-end of your site), filling out all the
+                settings for each review type, and writing “reviews” (regular posts on
+                the front-end). The difference is that when you write your “reviews”,
+                you need to use the settings in the Rating Info panel below the post
+                content editor and hide the rating, overview, and full article bar.
+                Also, go to your Review Options, expand your review type, and expand the
+                Global Settings panel and tick Hide “Review” Verbiage. Now your
+                “reviews” will appear as if they are regular posts within that review
+                type, but you also get the functionality of the mini-sites. Also note
+                that you can have non-reviews and reviews in the same mini-site.
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 6. I created my review types but they’re not showing up in my admin panel.
+              .toggle-content{:style => "display: none;"}
+                It’s possible, but rare, that another plugin is “overwriting” the menu
+                location of the review types. Try disabling your plugins and see if the
+                review type begins displaying in your sidebar.
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 7. On a taxonomy listing page, the page completely stops loading after the category menu.
+              .toggle-content{:style => "display: none;"}
+                This is because you have attempted to view a taxonomy that doesn’t
+                contain any reviews. Add a new review and assign it the taxonomy you are
+                trying to access and the page will begin displaying correctly.
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 8. There are a bunch of widgets at the bottom of my front page that are supposed to be in the sidebar.
+              .toggle-content{:style => "display: none;"}
+                Depending on whether you are installing this theme on a brand new
+                WordPress installation or just changing themes on an existing install,
+                your widgets that used to be in the sidebar might get thrown into the
+                Frontpage Main widget panel. Go to Appearance >> Widgets and move
+                the widgets from the Frontpage Main widget panel into the Frontpage
+                Sidebar widget panel.
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 9. My Featured slider layout does not look correct, and images are displaying incorrectly.
+              .toggle-content{:style => "display: none;"}
+                If you have images that were uploaded prior to installing this theme and
+                you are trying to show them in the featured slider, you need to install
+                and run the free plugin called AJAX Thumbnail Rebuild.
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 10. My featured slider is completely broken and nothing is displaying in it at all.
+              .toggle-content{:style => "display: none;"}
+                There are three steps necessary in getting articles to display in your main featured slider:
+                %p
+                %p
+                  1. You must make sure the value in Appearance >> Theme Options
+                  \>> Front Page >> Featured Slider >> Featured Tag
+                  matches the name of the tag you want to use. To find the slug of the tag
+                  you want to use, go to Posts >> Tags and locate the tag in the
+                  list and look at the slug to the right of the tag name. Here is a
+                  screenshot to help you:
+                %p
+                  2. You must tag your articles with the tag you want to use. So, if
+                  you have chosen to use “featured” as your tag, you must tag your posts
+                  “featured”. Here is a screenshot to help you:
+                %p
+                  %img.aligncenter.size-full.wp-image-4386{:alt => "", :height => "367", :src => "/assets/experimental/images/tags2.jpg", :title => "tags2", :width => "414"}/
+                %p 3. You must assign featured images to the posts that you have tagged “featured”. Here is a screenshot to help you.
+                %p
+                  %img.aligncenter.size-full.wp-image-4387{:alt => "", :height => "421", :src => "/assets/experimental/images/tags3.jpg", :title => "tags3", :width => "435"}/
+                %p
+                  If after doing these steps your featured slider still does not
+                  display anything at all, it is due to one of the following two reasons:
+                %p
+                  1) You have a plugin conflict which is causing a javascript error.
+                  Test to see if this is the case by temporarily disabling all of your
+                  plugins and see if the featured slider begins working.
+                %p …or…
+                %p
+                  2) Another slider on the page is broken, which will also cause the
+                  Featured Slider to not work. Make sure your Latest Slider, Spotlight
+                  Slider, Trending Slider, Don’t Miss slider, and Category Panels are all
+                  setup correctly on your home page (see Theme Options >> Front Page
+                  and Miscellaneous tabs to setup these sliders).
+                %p
+                  If, after making sure you try all of these steps, you are still
+                  unable to get the featured slider to work, please post a question on our
+                  support forum.
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 11. My ratings are not showing up on my single review page and the page is broken.
+              .toggle-content{:style => "display: none;"}
+                In Review Options make sure you have filled in all of the text fields
+                for Rating Criteria under the Ratings, Colors and Styles toggle panel.
+                You can adjust the number of rating criteria using the drop down above
+                the input fields.
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 12. I see an error when viewing my site that mentions the functions/oswc-post-types.php file
+              .toggle-content{:style => "display: none;"}
+                This means you have not fully filled out all of your review options for
+                your review type. Go to Appearance >> Review Options and for each
+                review type expand the panels and fill out the necessary fields. Pay
+                particular attention to the Taxonomies, Rating Criteria, and Meta
+                Fields, and make sure there are no blank fields. These are the minimum
+                required fields for the review type to work.
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 13. How can I change the sizes of my post featured thumbnail images?
+              .toggle-content{:style => "display: none;"}
+                You can change the sizes of any of the images used in various places
+                throughout the site for post thumbnails by editing the
+                functions/custom.php file. There is a function that dictates all the
+                various sizes on lines 209 – 229. The function should look like this:
+                %p
+                %p
+                  %code
+                    %br/
+                    \//add thumbnail support
+                    %br/
+                    if ( function_exists( 'add_theme_support' ) ) { // Added in 2.9
+                    %br/
+                    add_theme_support( 'post-thumbnails' );
+                    %br/
+                    set_post_thumbnail_size( 160, 160, true ); // default post thumbnails
+                    %br/
+                    add_image_size( 'latest', 163, 109, true );
+                    %br/
+                    add_image_size( 'featured-full', 1000, 550, true );
+                    %br/
+                    add_image_size( 'featured-small', 650, 360, true );
+                    %br/
+                    add_image_size( 'footer-thumbnail', 40, 40, true );
+                    %br/
+                    add_image_size( 'spotlight', 300, 170, true );
+                    %br/
+                    add_image_size( 'spotlight-small', 230, 135, true );
+                    %br/
+                    add_image_size( 'loop-large', 630, 350, true );
+                    %br/
+                    add_image_size( 'loop-large-full', 960, 450, true );
+                    %br/
+                    add_image_size( 'panel-small', 190, 108, true );
+                    %br/
+                    add_image_size( 'trending', 105, 70, true );
+                    %br/
+                    add_image_size( 'widget-thumbnail', 70, 70, true );
+                    %br/
+                    add_image_size( 'single', 625 );
+                    %br/
+                    add_image_size( 'single-medium', 300 );
+                    %br/
+                    add_image_size( 'single-small', 180 );
+                    %br/
+                    add_image_size( 'single-full', 960 );
+                    %br/
+                    add_image_size( 'single-review', 350 );
+                    %br/
+                    add_image_size( 'related', 110, 70, true );
+                    %br/
+                    }
+                    %br/
+                %p
+                  Find the line that corresponds to the image size you want to change.
+                  For instance, if you want to change the size of the images that appear
+                  in the spotlight slider, you would edit line 216. The two numbers on
+                  that line represent the width followed by the height in pixels. So, if
+                  you want to change the spotlight images from 170px height to 200px in
+                  height, you would change line 216 to this:
+                %p
+                  %code add_image_size( 'spotlight', 300, 200, true );
+                %p
+                  %strong IMPORTANT
+                  – after changing any of these values, you must install and run the
+                  %a{:href => "http://wordpress.org/extend/plugins/ajax-thumbnail-rebuild/"} AJAX Thumbnail Rebuild
+                  plugin so your existing images can be resized to fit the new
+                  dimensions. It will not be necessary to run the plugin again after the
+                  first time (unless you change a value again).
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 14. When I post a new review and try to view it I get a 404 error.
+              .toggle-content{:style => "display: none;"}
+                Go to Theme Options >> Other Pages >> More Page Options and
+                change the number specified for Reviews Per Page to match the number
+                specified in Settings >> Reading >> Blog pages show at most.
+                If you still have trouble after doing so, go to Settings >>
+                Permalinks and click Save and then see if it begins working.
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 15. When I enable the Disqus plugin my featured slider stops working.
+              .toggle-content{:style => "display: none;"}
+                Go to the Disqus plugin-settings (not the general Disqus-setting) and
+                enable “Output JavaScript in footer” under Advanced Options.
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle
+                16. I receive the following message on my review
+                mini-site front page: ‘The specified review type does not match a review
+                type in the system.’
+              .toggle-content{:style => "display: none;"}
+                Make sure your review types all start with a capital letter in Review
+                Options. Then, when you’re creating your review mini-site front page,
+                make sure you capitalize the name of the review type in the custom field
+                that you add.
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 17. How do I translate the PO file that came with this theme and apply it to my theme?
+              .toggle-content{:style => "display: none;"}
+                I merely provide a translation-ready PO file with this theme that you
+                can then take and translate using software such as Poedit
+                (http://www.poedit.net/). I have not translated a WordPress theme
+                myself, nor do I really know how to translate one, so I am not the best
+                resource to help you with this specific task. I do know that the PO file
+                I provide works, because hundreds of customers have successfully used
+                it to translate their themes. To get much better information than what I
+                can provide you, start with this resource:
+                http://codex.wordpress.org/Translating_WordPress, and then ask any
+                specific questions on WordPress Answers:
+                http://wordpress.stackexchange.com/, or the WordPress support forums:
+                http://wordpress.org/support/.
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 18. The Don’t Miss slider stops rotating after it has shown all of the posts and does not loop.
+              .toggle-content{:style => "display: none;"}
+                Increase the number of posts that display in this slider to 6 (or more)
+                in Theme Options >> Miscellaneous >> Don’t Miss Bar until it
+                begins looping. If you have very short post titles it might take more
+                than the minimum 5 posts that is selected by default.
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 19. The Latest Slider only shows one post, or it is broken and not working properly.
+              .toggle-content{:style => "display: none;"}
+                You need at least 3 posts in the latest slider or else it will only display 1 post (or none at all).
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 20. There is extra white space below my spotlight slider.
+              .toggle-content{:style => "display: none;"}
+                If missing the more button in the spotlight slider, increase the height
+                of the panels, since if a taller element is not displayed at first and
+                rather rotated into, its height is ignored when coming up with the
+                height of the slider, which is why 450px had to be selected as the
+                defined height of this area. look for this in the style.css file:
+                \#spotlight .post-panel
+                {float:left;margin-top:20px;margin-right:20px;width:300px;height:450px;position:relative;}
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 21. I can’t put more than one slider or tabs shortcode on a page/post at once.
+              .toggle-content{:style => "display: none;"}
+                Because the slider and tab shortcodes both use jQuery and have specific
+                ID’s, you cannot put more than one slider or tab shortcode inside of
+                each page/post content (you can have one of each, however, since they
+                don’t affect each other).
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 22. My tabbed widgets are broken in the sidebar or footer and are displaying all the items at once instead of in tabbed format.
+              .toggle-content{:style => "display: none;"}
+                You cannot add more than one of the exact same type of tabbed widget to
+                any one page. That means you cannot put the Extended: Latest Review Tabs
+                widget both in the sidebar and in a footer panel, or else it will cause
+                them both to break.
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle
+                23. When viewing a taxonomy listing or single review
+                page, the review menu item in the main menu is not highlighted with the
+                appropriate color.
+              .toggle-content{:style => "display: none;"}
+                Use the title attribute in the custom menu to make the main menu
+                ancestor highlight appropriately. It must match the name of your review
+                type (but the title can be anything you want, as well as the name of the
+                page and the page slug). Basically, review page custom field value and
+                custom menu item title attribute must exactly match the review type name
+                you have specified.
+                %p
+                .box-wrapper.warning
+                  .box.warning Make sure the capitalization matches! Do not use lower case for one and upper case for the other.
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 24. How do I keep my current permalinks when switching from my previous theme to Made?
+              .toggle-content{:style => "display: none;"}
+                See this handy
+                = succeed "." do
+                  %a{:href => "http://support.industrialthemes.com/viewtopic.php?f=6&t=3290#p16250"} step-by-step guide
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle
+                25. When viewing my site on a mobile phone, the top
+                and main menus are displaying the non-responsive version in addition to
+                the responsive select box version.
+              .toggle-content{:style => "display: none;"}
+                This is because you haven’t named your menus correctly. When you create
+                your menus, you must name the top menu “Top Menu” and the main menu
+                “Main Menu”. If you name them something else, they will not display
+                correctly when viewing on a mobile phone.
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 26. How do I use Jetpack Gallery plugin or Next-gen Gallery plugin with this theme?
+              .toggle-content{:style => "display: none;"}
+                If you’re using a photo gallery plugin that has a built in lightbox
+                effect, such as the ones mentioned, you should disable the Colorbox
+                jQuery plugin in the theme by going to Theme Options >>
+                Miscellaneous >> More Options and disabling it there. If you want
+                the Colorbox to still apply to your featured images but not your
+                galleries, you can alternatively open footer.php and delete lines 187
+                and 188. Those lines look like this for reference:
+                %p
+                %pre
+                  :preserve
+                    jQuery(".page-content a[href$='.jpg'],a[href$='.png'],a[href$='.gif']").colorbox(); 
+                      jQuery('.page-content .gallery a').colorbox({  rel:'gallery' });.toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 27. Help! I made a change in my Review Options and my site broke (all my taxonomies disappeared from my admin review menus)!
+              .toggle-content{:style => "display: none;"}
+                You probably have a caching plugin such as W3 Total Cache active.
+                Disable the plugin and perform your changes to your Review Options page,
+                and when you’re done, re-enable your caching plugin.
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 28. Page 2 of review type mini-sites give 404 errors.
+              .toggle-content{:style => "display: none;"}
+                Make sure you don’t have any taxonomies, categories, or meta data with the same name as the name of the review page.
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 29. How do the user ratings (added in Made version 1.5) work, exactly?
+              .toggle-content{:style => "display: none;"}
+                This is just the first version of user rating integration and I’d like
+                to add even more features in the future. Here are some things worth
+                noting regarding user ratings:
+                %p
+                .fancylist
+                  %ul
+                    %li Users can rate both by posting a comment or in the rating overview panel without having to leave a comment
+                    %li
+                      Ratings are stored both in the comment meta data and as a custom
+                      field on the review itself called “user_rating” (don’t delete the custom
+                      field or you will lose the total number of ratings!)
+                    %li All or nothing right now – can’t hide certain parts of user ratings
+                    %li Users can only rate once (tracked via IP Address)
+                    %li
+                      You must go to your Review Options and click Save before you will
+                      see user ratings on your site (the setting is marked as “enabled” by
+                      default but it’s not actually active until you click Save)
+                    %li You can enable user ratings on a per review type basis, but not on a per review basis
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 30. On the front page of my review mini-site(s) I get a 404 error when I attempt to move to any pages past page 1.
+              .toggle-content{:style => "display: none;"}
+                Make sure the title of your review mini-site page does not match the
+                name of your review type. For instance, if the name of your review type
+                is “Movie”, then the title of your review mini-site front page cannot
+                also be “Movie”. Change it to something else, like “Movies”. Important:
+                if you change the name of your review type rather than the name of your
+                review mini-site front page title, you will lose all of your settings
+                for that review type and you’ll also have to run a post type converter
+                to convert all of your reviews in the old review type name to the new
+                review type name.
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 31. How to I get Yoast SEO to work with Made?
+              .toggle-content{:style => "display: none;"}
+                %a{:href => "http://support.industrialthemes.com/viewtopic.php?f=6&t=4543#p21529"}> Check out this forum post
+                , much thanks to Made user JackYu!
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 32. None of my custom permalinks structures are working.
+              .toggle-content{:style => "display: none;"}
+                Make sure you don’t put a trailing forward slash after your permalink
+                structure. This was affected by changes in WordPress 3.4. So, if your
+                permalink structure looks like this: /%postname%/%post_id%/ you should
+                remove the trailing forward slash so it looks like this instead:
+                \/%postname%/%post_id%
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 33. I get an error when I try adding new taxonomies.
+              .toggle-content{:style => "display: none;"}
+                Try renaming your review type and then naming it back. For instance, go
+                to Review Options and look at your list of review types. If you have a
+                review type named, for instance, Movie, change it to Movie2 and click
+                Update Review Types. Then change it back to Movie and click Update
+                Review Types again. That should fix your issue of being able to add new
+                taxonomies.
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 34. What’s the difference between regular WordPress categories and review type taxonomies?
+              .toggle-content{:style => "display: none;"}
+                Let’s say I have two review types: Movies and Music. Let’s say my
+                primary taxonomy for Movies is Genre and for Music it’s Artist. Now,
+                lets say I usually write 3 different types of posts generally speaking:
+                Newly Released, Classics, and Announcements. So, in my Movies mini-site I
+                will have reviews about newly released movies, classic movies, and
+                announcements about upcoming movies (announcements would not be reviews
+                and would have the rating information hidden so they look like regular
+                posts – see theme documentation or the FAQ for information on how to do
+                this), and I will also have those same three general types of posts in
+                my Music review type. So, I create three standard categories: Newly
+                Released, Classics, and Announcements. Notice how all three of those
+                categories could be applied to any types of posts, both reviews and
+                regular. Then I put those in the menu so that when I click on, say,
+                Classics, I am taken to a post listing page of all posts or reviews in
+                the Classics category (I will see both Music reviews and Movie reviews
+                listed together). However, if I click on one of the artists within the
+                Music review type it will keep me within the Music review type and only
+                list music reviews, since that has nothing to do with my other review
+                type(s).
+                %p
+                %p
+                  This is just one example. There is no one right way to setup your
+                  site. You can do it a million different ways, whichever best suits your
+                  site and how you want to organize your content.
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 35. Why do my BuddyPress pages look and act all weird and messed up?
+              .toggle-content{:style => "display: none;"}
+                Made requires that you install the
+                %a{:href => "http://wordpress.org/extend/plugins/bp-template-pack/"} BuddyPress Template Pack
+                plugin if you are going to use BuddyPress. If you don’t install this
+                plugin, you will lose a lot of the styling and fancy AJAX functionality.
+                This plugin is made by the creators of BuddyPress and is meant for
+                enabling themes to work with BuddyPress, so it’s very reliable,
+                trustworthy, and recommended, and doesn’t add any strain to your server
+                load at all. Note: this plugin is obviously not required if you are not
+                going to install BuddyPress
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 36. I can’t create more than x number of review types
+              .toggle-content{:style => "display: none;"}
+                Add php_value max_input_vars 5000 to your .htaccess file.
+          .toggle-box-wrapper
+            .toggle-box
+              %h3.toggle 37. How do I make my site faster?
+              .toggle-content{:style => "display: none;"}
+                Here are some good tips for making your Made-based WordPress site faster:
+                %a{:href => "http://support.industrialthemes.com/viewtopic.php?f=6&t=6459"} http://support.industrialthemes.com/viewtopic.php?f=6&t=6459
+
+        /faq content ends here
+          
+
+/side bar
+.sidebar
+  = render "experimental/partials/left_bar"
+  /widget top
+  = render "experimental/partials/widget_top"
+  / .clearer.hide-responsive
+  / %br.clearer/
+  / newly reviewd
+  = render "experimental/partials/newly_reviewed"
+  /popular box
+  = render "experimental/partials/popular_box"
+  /rating box
+  = render "experimental/partials/rating_box"
+  /banner box
+  = render "experimental/partials/banner_box"
+
+:javascript
+  jQuery.noConflict();
+  jQuery(document).ready(function() { 
+  
+    jQuery('#related > ul').tabs({ fx: { opacity: 'toggle', duration: 150 } });
+    
+  });

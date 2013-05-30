@@ -1,0 +1,273 @@
+!!!
+%html
+	%head
+		%title
+			= yield :title
+		%meta{:charset => "utf-8"}
+		/ SEO
+		%meta{:content => "#{current_group.legend rescue ''}", :name => "description"}
+		%meta{:content => "#{current_group.default_tags.join(',') rescue ''}", :name => "keywords"}
+		%meta{:content => "BChange",:name => "author"}
+		%meta{:content => "width=device-width, initial-scale=1, maximum-scale=1", :name => "viewport"}
+		%meta{:content => "no", :name => "apple-mobile-web-app-capable"}
+		%meta{:content => "black-translucent", :name => "apple-mobile-web-app-status-bar-style"}
+		%meta{:content => "noindex,nofollow,noimageindex,noimageclick", :name => "robots"}
+		%meta{:content => "Bchange/plus", :name => "generator"}
+		%meta{'http-equiv' => "Content-Type", :content => "text/html; charset=utf-8"}
+		%meta{'http-equiv' => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
+		%meta{'http-equiv' => "expires", :content => "0"}
+		%meta{'http-equiv' => "Content-Language", :content => "en-US"}
+		%meta{'http-equiv' => "imagetoolbar", :content => "no"}
+		/ favicon
+		%link{:href => favicon_group_path(current_group), :rel => "icon"}/
+		%link{:href => shortcut_group_path(current_group), :rel => "shortcut icon"}/
+		%link{:href => apple_group_path(current_group), :rel => "apple-touch-icon"}/
+		%link{:href => applest_group_path(current_group), :rel => "apple-touch-startup-image"}/
+		%meta{:content => metro_group_path(current_group), :name=>"msapplication-TileImage"}/
+		%meta{:content => "#{current_group.metro_color}", :name=>"msapplication-TileColo"}/
+		/ CSS
+		= stylesheet_link_tag "experimental/experimental"
+		/ JS
+		= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js?ver=3.3.1"
+		= javascript_include_tag "experimental/experimental"
+
+		%body
+			/top menu bar
+			= render "experimental/partials/top_menu_bar"
+			/ page wrapper starts from here
+			#page-wrapper
+				/ everything below the top menu should be inside the page wrapper div
+				#logo-bar-wrapper
+					/ begin the main header logo area
+					#logo-bar
+						#logo-wrapper
+							#logo
+								/ logo and section header area
+								%a{:href => "index.html"}
+									%img#site-logo{:alt => "Plus", :src => "/assets/plus/logo.jpg"}/
+									%img#site-logo-iphone{:alt => "Plus", :src => "/assets/plus/logo.jpg"}/
+									%img#site-logo-ipad{:alt => "Plus", :src => "/assets/plus/logo.jpg"}/
+							%br.clearer/
+							.subtitle
+						%br.clearer/
+					#logo-bar-shadow  
+				/ end the logo area
+				#cat-menu.cat-menu
+					%a.home-link{:href => experimental_index_path}  
+					%ul#menu-main-menu
+						%li
+							%a{:href => "archive-a.html"} Layouts
+							%ul
+								%li
+									%a{:href => "archive-a.html"} Archive Layout A
+								%li
+									%a{:href => "archive-b.html"} Archive Layout B
+								%li
+									%a{:href => "archive-c.html"} Archive Layout C
+								%li
+									%a{:href => "archive-d.html"} Archive Layout D
+								%li
+									%a{:href => "archive-e.html"} Archive Layout E
+								%li
+									%a{:href => "archive-f.html"} Archive Layout F
+						%li
+							%a{:href => "single-post.html"} Single Blog Post
+						%li
+							%a{:href => "single-review-numbers.html"} Single Reviews
+							%ul
+								%li
+									%a{:href => "single-review-numbers.html"} Number Ratings
+								%li
+									%a{:href => "single-review-percentages.html"} Percentage Ratings
+								%li
+									%a{:href => "single-review-stars.html"} Star Ratings
+								%li
+									%a{:href => "single-review-letters.html"} Letter Grade Ratings
+						%li
+							%a{:href => "#"} Drop Down Menu
+							%ul
+								%li
+									%a{:href => "#"} Sub Menu Item
+								%li
+									%a{:href => "#"} Sub Menu Item
+								%li
+									%a{:href => "#"} Second Level Drop Down
+									%ul
+										%li
+											%a{:href => "#"} Sub Menu Item
+										%li
+											%a{:href => "#"} Third Level Drop Down
+											%ul
+												%li
+													%a{:href => "#"} Sub Menu Item
+												%li
+													%a{:href => "#"} Sub Menu Item
+												%li
+													%a{:href => "#"} Sub Menu Item
+										%li
+											%a{:href => "#"} Sub Menu Item
+								%li
+									%a{:href => "#"} Sub Menu Item
+								%li
+									%a{:href => "#"} Sub Menu Item
+								%li
+									%a{:href => "#"} Sub Menu Item
+						%li
+							%a{:href => "review-directory-a.html"} Review Directory Layout A
+						%li
+							%a{:href => "review-directory-b.html"} Review Directory Layout B
+					%select#select-menu-main-menu
+						%option Category Navigation
+						%option{:value => "archive-a.html"} Layouts
+						%option{:value => "index-full-width.html"}      Full-Width Homepage
+						%option{:value => "archive-a.html"}      Archive Layout A
+						%option{:value => "archive-b.html"}      Archive Layout B
+						%option{:value => "archive-c.html"}      Archive Layout C
+						%option{:value => "archive-d.html"}      Archive Layout D
+						%option{:value => "archive-e.html"}      Archive Layout E
+						%option{:value => "archive-f.html"}      Archive Layout F
+						%option{:value => "single-post.html"} Single Blog Post
+						%option{:value => "single-review-numbers.html"} Single Reviews
+						%option{:value => "single-review-numbers.html"}      Number Ratings
+						%option{:value => "single-review-percentages.html"}      Percentage Ratings
+						%option{:value => "single-review-stars.html"}      Star Ratings
+						%option{:value => "single-review-letters.html"}      Letter Grade Ratings
+						%option{:value => "review-directory-a.html"} Review Directory layout A
+						%option{:value => "review-directory-b.html"} Review Directory layout B
+					#random-article
+						%a{:href => "single-review-numbers.html", :title => "Random Article"}
+							%img{:alt => "Random Article", :src => "/assets/experimental/images/random-article.png"}/
+				%br.clearer.hide-responsive-small/
+				.cat-menu.tax
+					%ul#menu-sub-menu.menu
+						%li
+							%a{:href => "search.html"} Search Results
+						%li
+							%a{:href => "404.html"} 404 page
+						%li
+							%a{:href => "page-styled-html-elements.html"} Styled HTML Elements
+						%li
+							%a{:href => "page-full-width.html"} Full-Width Page
+						%li
+							%a{:href => "page-contributors.html"} Contributors Listing
+				%br.clearer.hide-responsive-small
+				/ page wrapper ends here
+				/ dont miss bar starts from here
+				= render "experimental/partials/dont_miss_bar"
+				/ end of dont miss bar
+				/ main wrapper starts from here
+				#main-wrapper
+					#main-wrapper-dark
+						= render "experimental/partials/social_side_bar"
+						= yield
+				/footer
+				%iframe.twitter-share-button.twitter-count-vertical{:allowtransparency => "true", "data-twttr-rendered" => "false", :frameborder => "0", :scrolling => "no", :src => "http://platform.twitter.com/widgets/tweet_button.1368146021.html#_=1369838120686&count=vertical&id=twitter-widget-0&lang=en&original_referer=http%3A%2F%2Fwww.industrialthemes.com%2Fmade%2Ffaq%2F&size=m&text=FAQ&url=http%3A%2F%2Fwww.industrialthemes.com%2Fmade%2Ffaq%2F&via=IndustrialTheme", :style => "width: 55px; height: 62px;", :title => "Twitter Tweet Button"}
+				= render "experimental/partials/footer"
+		= javascript_include_tag "https://apis.google.com/js/plusone.js"
+		= javascript_include_tag "http://assets.pinterest.com/js/pinit.js"
+		= javascript_include_tag "http://platform.tumblr.com/v1/share.js"
+		= javascript_include_tag "http://platform.twitter.com/widgets.js"
+		= javascript_include_tag "http://widgets.digg.com/buttons.js"
+
+:javascript
+	jQuery.noConflict();
+		//DOCUMENT.READY
+		jQuery(document).ready(function() { 
+			//loop through each post type and setup a jquery tabs object
+			jQuery('#tabbed-Restaurant-reviews > ul').tabs({ fx: { opacity: 'toggle', duration: 150 } });
+			jQuery('#tabbed-Music-reviews > ul').tabs({ fx: { opacity: 'toggle', duration: 150 } });
+			jQuery('#tabbed-Movie-reviews > ul').tabs({ fx: { opacity: 'toggle', duration: 150 } });
+			jQuery('#tabbed-Fashion-reviews > ul').tabs({ fx: { opacity: 'toggle', duration: 150 } });
+			jQuery('#tabbed-Product-reviews > ul').tabs({ fx: { opacity: 'toggle', duration: 150 } });	
+			//colorbox
+			jQuery('.review .article-image a').colorbox({transition:'fade', speed:250});
+			jQuery('.single-post .content .article-image a').colorbox({transition:'fade', speed:250});
+			jQuery('.colorbox').colorbox({transition:'fade', speed:250});
+			jQuery('.colorboxiframe').colorbox({transition:'fade', speed:250, iframe:true,innerWidth:640, innerHeight:390});
+			jQuery(".page-content a[href$='.jpg'],a[href$='.png'],a[href$='.gif']").colorbox();
+			jQuery('.page-content .gallery a').colorbox({  rel:'gallery' });
+			//initialize smooth div scroll on Don't Miss slider
+			jQuery("#dontmiss").smoothDivScroll({ 
+				autoScrollingMode: "always",
+				autoScrollingDirection: "endlessloopright",
+				autoScrollingStep: 1,
+				autoScrollingInterval: 50
+			});
+			// Logo parade event handlers
+			jQuery("#dontmiss").bind("mouseover", function() {
+				jQuery(this).smoothDivScroll("stopAutoScrolling");
+			}).bind("mouseout", function() {
+				jQuery(this).smoothDivScroll("startAutoScrolling");
+			});
+			/* uitotop scroller:
+			var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear'
+			};
+			*/
+			jQuery().UItoTop({ easingType: 'easeOutExpo' });	
+		});
+		//the reason they are here instead of in custom.js is because they contain php variables which can't
+		//be applied in a .js file. Also, make sure these come before the darken function.
+		//WINDOW.LOAD
+		jQuery(window).load(function() {
+			//spotlight slider
+			jQuery(function() {
+				jQuery(".main-content #spotlight-slider, .main-content #spotlight-slider-responsive").jCarouselLite({
+					// auto: 3000,
+					// easing: "easeInOutExpo",
+					// speed: 1100,
+					visible: 3
+				});
+			});
+			//featured slider
+			jQuery('#featured').nivoSlider({
+				effect: 'random', // Specify sets like: 'fold,fade,sliceDown'
+				slices: 10, // For slice animations
+				boxCols: 6, // For box animations
+				boxRows: 3, // For box animations
+				animSpeed: 200, // Slide transition speed
+				pauseTime: 3000, // How long each slide will show
+				startSlide: 0, // Set starting Slide (0 index)
+				directionNav: true, // Next and Prev navigation
+				directionNavHide: false, // Only show on hover
+				controlNav: false, // 1,2,3... navigation
+				controlNavThumbs: false, // Use thumbnails for Control Nav
+				pauseOnHover: true, // Stop animation while hovering
+				manualAdvance: false, // Force manual transitions
+				prevText: 'Prev', // Prev directionNav text
+				nextText: 'Next', // Next directionNav text
+				beforeChange: function(){}, // Triggers before a slide transition
+				afterChange: function(){}, // Triggers after a slide transition
+				slideshowEnd: function(){}, // Triggers after all slides have been shown
+				lastSlide: function(){}, // Triggers when last slide is shown
+				afterLoad: function(){} // Triggers when slider has loaded
+			});
+		});
+
+	// facebook share button
+	function fb_share(){
+		var w = 500;
+		var h = 320;
+		var left = (screen.width/2)-(w/2);
+		var top = (screen.height/2)-(h/2);
+		window.open("http://www.facebook.com/share.php?u=http://dev3.b-change.org","sharer","width="+w+",height="+h+",top="+top+",left="+left+",scrollbars='no',resize='yes'");
+	}
+	// twitter share button code
+	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+	function twitter_twit(){
+		var w = 500;
+		var h = 320;
+		var left = (screen.width/2)-(w/2);
+		var top = (screen.height/2)-(h/2);
+		window.open("https://twitter.com/share","sharer","width="+w+",height="+h+",top="+top+",left="+left+",scrollbars='no',resize='no'");
+
+	}
+
+
+	
+
+	

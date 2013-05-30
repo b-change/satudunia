@@ -5,6 +5,18 @@ require 'magent_web'
 #require 'bug_hunter'
 
 Rails.application.routes.draw do
+  
+  scope :module => "experimental" do
+    resources :experimental do
+      collection do
+        get :public_about,:path=>"about"
+        get :rss_feed,:path=>"rss"
+        get :terms, :path=>"terms-of-use"
+        get :faq
+      end
+    end
+  end 
+
   get "survey/index"
 
   devise_for(:users, :path => '/',
@@ -90,8 +102,12 @@ Rails.application.routes.draw do
   end
   # match 'towns' => 'towns#index'
   get 'faq' =>"manage_faqs#public_faq"
+  get 'experimental/about' => "manage_abouts#experimental_about"
+  get 'question/:question_id/votesup/:vote_up'=>"votes#create",:as=>:vote_question_up
+  get 'question/:question_id/votesdown/:vote_down'=>"votes#create",:as=>:vote_question_down
   resources :countquestions
   resources :badges
+  resources :news_letter, :path=>'/newsletter'
 
   resources :searches, :path => "search", :as => "search"
   

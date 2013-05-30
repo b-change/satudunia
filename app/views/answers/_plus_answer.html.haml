@@ -34,7 +34,7 @@
       = form_for [answer.question, answer, comment ||= Comment.new], remote: true, html: {class: "answer_comment_form", data: {commentable: answer.id, editor: current_group.wysiwyg_editor ? 'wysiwyg_editor' : 'markdown_editor', "login-required" => true}} do |f|
         %p
           = f.text_area :body, :size=>"10x10", :style => "margin: 10px; width: 670px;"
-        %p{:style => "margin-left: 555px;"}
-          = submit_tag t("comments.shared.comment_submit")
-          = t("global.or")
-          = link_to t('scaffold.cancel'), 'javascript:void(0)', :class => 'cancel cancel_comment', :onclick => "hideAnswerComment('#{answer.id}')"
+        %p{:style => "margin-left: 548px;"}
+          = submit_tag t("comments.shared.comment_submit"),:class=>"button-style-change comment-check","data-tag"=>answer.id,"data-type"=>"answer"
+          = "&nbsp; &nbsp;".html_safe
+          = link_to t('scaffold.cancel'), 'javascript:void(0)', :class => 'button-style-change', :onclick => "hideAnswerComment('#{answer.id}')"

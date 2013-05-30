@@ -1,0 +1,25 @@
+- content_for :title do
+  NewsLetter
+
+= image_tag "plus/body_about.jpg", :class => "body_header"
+.alpha.grid_19.body_about{:id => "firstElement", :style => "height: 622px !important;"}
+  %span{:class => "p_a"}
+    NewsLetter
+  %span{:class => "p_a1"}
+    = link_to "Home", "/"
+    > NewsLetter
+  %h2
+    NewsLetter
+  %div{:class => "about"}
+    = @about.static_content.html_safe rescue "" 
+.grid_5.omega.body1_about{:id => "secondElement-about"}
+  %p{:class => "about"}
+    %strong
+      About Plus
+  = render :partial => "shared/about_nav_bar"
+
+:javascript
+  $('#about_nav').addClass('active');
+
+
+  

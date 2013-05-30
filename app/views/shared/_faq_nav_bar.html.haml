@@ -1,0 +1,39 @@
+-counterQuestion = 1
+%span{:class => "faq-question-slide"}
+  %ul
+    - @faqs.each do |faq|
+      %li.faq-divide
+        = link_to faq.faq_question, "javascript:void(0)",:id=>"#{counterQuestion}","data-type"=>"question",:class=>"question-class"
+      -counterQuestion+= 1
+-counterAnswer = 1
+%span{:class => "faq-answer-slide"}
+  %ul
+    - @faqs.each do |faq|
+      %li.faq-divide{:class=>"#{counterAnswer}_ans_li class-hide-link"}
+        = link_to faq.faq_answer, "javascript:void(0)",:id=>"#{counterAnswer}_ans","data-type"=>"answer",:class=>"question-class"
+      -counterAnswer+=1 
+    %li.faq-divide
+      = link_to "Back", "javascript:void(0)",:id=>"back_id","data-type"=>"back",:class=>"question-class"
+
+:javascript
+  $(".question-class").click(function(){
+  	var thisVar = $(this);
+  	var getType = $(this).attr("data-type");
+  	if(getType=="question"){
+  		var takeAnswerId =thisVar.attr("id");
+  		$("."+takeAnswerId+"_ans_li").show(); 
+  		$(".faq-question-slide").hide('slide', {direction: 'left',easing:'linear'}, 400);
+  		$(".faq-answer-slide").show('slide', {direction: 'right',easing:'linear'}, 400);
+  	}
+  	else if(getType=="back"){
+  		$(".class-hide").hide();
+  		$(".class-hide-link").hide();
+  		$(".faq-question-slide").show('slide', {direction: 'left',easing:'linear'}, 400);
+  		$(".faq-answer-slide").hide('slide', {direction: 'right',easing:'linear'}, 400);
+  	}
+  	else{
+  		$(".class-hide").hide();
+  		var idTaker = thisVar.attr("id");
+  		$("."+idTaker).fadeIn('fast');
+  	}
+  });

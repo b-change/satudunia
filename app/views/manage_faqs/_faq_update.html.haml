@@ -1,0 +1,54 @@
+- if @faqs.blank?
+  %li{:class => "pager ps1"}
+    %ul
+      %li
+        .summary
+          %h3
+            No FAQ Yet
+%li{:class=>"#{@clasCounterVariable}_ans class-hide"}
+  .q_ff-container
+    .q_ff
+      %span{:class => "q_f"}
+        = "0"
+      %span{:class => "q_f_1"}
+        votes
+      %span{:class => "q_fs1 vote-up-adjust"}
+        = "0"
+      %span{:class => "q_fs_1"}
+        answers
+    .q_ff-bottom
+      %span
+        = "0"
+      views
+  .grid_14.Fright
+    %span{:class => "s1"}
+      = faq_update.faq_question
+    .grid_14.ms_fr
+      %span.s1_q_i
+        = faq_update.faq_answer
+  .clear
+  .control.center
+    = link_to "<span class='icon12 icomoon-icon-pencil'></span>".html_safe, "#", :class => "tip", :title => "Edit FAQ", :id => "openDialog#{faq_update.id}"
+    = link_to "<span class='icon12 icomoon-icon-remove'></span>".html_safe, manage_faq_path(:id => faq_update.id), :method => :delete, :confirm => "Are you sure? This FAQ will no longer exist"
+
+  .dialog{:id => "dialog#{faq_update.id}", :title => "Edit FAQ"}
+    = form_for faq_update, :url => manage_faq_path(:id => faq_update.id), :html => {:class => "form", :id => "filter_members", :method => "put"} do |f|
+      .form-row.row-fluid
+        .span12
+          .row-fluid
+            = label_tag :q, "Question *", :class => "form-label span4"
+            %br
+            = f.text_field :faq_question, :class => "span8"
+      .form-row.row-fluid
+        .span12
+          .row-fluid
+            = label_tag :q, "Answer *", :class => "form-label span4"
+            %br
+            = f.text_area :faq_answer, :class => "span8"
+      .form-row.row-fluid{:style=>"clear:both !important"}
+        .span12
+          .row-fluid   
+            .span4
+              &nbsp;   
+        = submit_tag t("scaffold.update"), :class => "btn nostyle span2", :style => "paddin: 4px 10px !important; border-width: 1px !important; border-style: solid !important"
+-@clasCounterVariable+=1

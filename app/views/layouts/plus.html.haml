@@ -187,6 +187,8 @@
         /==============================slider================================
         = yield :slider_content
         /==============================content================================
+        -requestName = request.fullpath
+        -classNameForSearch = (requestName == "/questions" || "/question/:slug")? '' : 'bg_search'
         %section{:id => "content"}
           - if @body_id == "page1"
             .main
@@ -196,7 +198,7 @@
                     %span.text-style-drop
                       No result found!
                   = form_tag "#{question_search_path}",:id => "search" do
-                    = text_field_tag "search_ajax", "What is your question?", :class => "search-tag",:alt => "What is your question?",:autocomplete=>"off"
+                    = text_field_tag "search_ajax", "What is your question?", :class => "search-tag",:alt => "What is your question?",:autocomplete=>"off","data-show"=>"What is your question?"
                     = hidden_field_tag "hidden_keys"
                     = button_tag "search",:class=>"search-btn"
                     .clear
@@ -210,12 +212,12 @@
               .centerBg
                 .main
                   .container_24
-                    .bg2_1
+                    .bg2_1{:class => "#{classNameForSearch}"}
                       %div#search-container
                         %span.text-style-drop
                           No result found!
                       = form_tag "#{question_search_path}",:id => "search" do
-                        = text_field_tag "search_ajax", "What is your question?", :class => "search-tag",:alt => "What is your question?",:autocomplete=>"off"
+                        = text_field_tag "search_ajax", "What is your question?", :class => "search-tag",:alt => "What is your question?",:autocomplete=>"off","data-show"=>"What is your question?"
                         = hidden_field_tag "hidden_keys"
                         = button_tag "search",:class=>"search-btn"
                     .grid_24
@@ -232,7 +234,7 @@
                         %span.text-style-drop
                           No result found!
                       = form_tag "#{question_search_path}",:id => "search" do
-                        = text_field_tag "search_ajax", "What is your question?", :class => "search-tag",:alt => "What is your question?",:autocomplete=>"off"
+                        = text_field_tag "search_ajax", "What is your question?", :class => "search-tag",:alt => "What is your question?",:autocomplete=>"off","data-show"=>"What is your question?"
                         = hidden_field_tag "hidden_keys"
                         = button_tag "search",:class=>"search-btn"
                         .clear
@@ -292,27 +294,27 @@
                   %nav
                     %ul{:class => "menu"}
                       %li
-                        = link_to "Home", "/", :id => "home_nav"
+                        = link_to "Home", "/", :alt => 'Home', :id => "home_nav",:title =>'Home'
                       %li
-                        = link_to "About", about_path, :id => "about_nav"
+                        = link_to "About", about_path, :alt => 'About',:title =>'About', :id => "about_nav"
                       %li
-                        = link_to "Questions", questions_path, :id => "question_nav"
+                        = link_to "Questions", questions_path,:title =>'Questions', :alt => 'Questions', :id => "question_nav"
                       %li
-                        = link_to "Services Map",'/services-map', :id => "service_providers_nav"
+                        = link_to "Services Map",'/services-map',:title =>'Services Map', :alt => 'Services Map', :id => "service_providers_nav"
                       %li
-                        = link_to "Community", users_path, :id => "community_nav"
+                        = link_to "Community", users_path,:title =>'Community', :alt => 'Community', :id => "community_nav"
                       %li
-                        = link_to "Contact", contact_path, :id => "contact_nav"
+                        = link_to "Contact", contact_path, :alt => 'Contact',:title =>'Contact', :id => "contact_nav"
                       %li
-                        = link_to "Ask a Question", "/questions/ask-a-question", :id => "new_question_nav"
+                        = link_to "Ask a Question", "/questions/ask-a-question", :alt => 'Ask a Question', :title =>'Ask a Question', :id => "new_question_nav"
                       - if !current_user.nil? && current_user.admin?
                         %li
-                          = link_to "Admin", "/admin"
+                          = link_to "Admin", "/admin", :alt => 'Admin', :title =>'Admin'
                   .footer-text
                     Copyright 2013 All Rights Reserved&nbsp; | &nbsp;
-                    = link_to "Privacy Policy", "privacy-policy", :class => "link"
-                    | &nbsp;
-                    = link_to "Terms of Use", "terms-of-use", :class => "link"
+                    / = link_to "Privacy Policy", "/privacy-policy", :class => "link"
+                    / | &nbsp;
+                    = link_to "Terms of Use", "/terms-of-use", :class => "link"
                   .bl
                     = link_to image_tag("plus/footer_logo.png"), "/"
               .clear
@@ -424,6 +426,7 @@
       window.close();
     }
   }
+  
   $(".authproviders").fancybox({
     'width' : '75%',
     'height' : '75%',
@@ -438,6 +441,6 @@
   });
 
   function fb_share(){
-    window.open("http://www.facebook.com/share.php?u=http://dev3.b-change.org",width="200",heigth="100");
+    window.open("http://www.facebook.com/share.php?u=http://dev3.b-change.org","sharer","width=500,heigth=100, scrollbars='no',resize='yes'");
   }
   !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');

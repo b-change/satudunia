@@ -1,0 +1,29 @@
+= image_tag "plus/body_about1.jpg", :class => "body_header"
+.alpha.grid_18.body_about{:id => "firstElement",:style=>"width:750 !important"}
+  %span{:class => "p_a"}
+    FAQ
+  %span{:class => "p_a1 about-bread-crumb"}
+    = link_to "Home", "/"
+    > FAQ
+  
+  %p.i4_1.serv_loc6{:id => ""} 
+    .bx-wrapper
+      %div
+        %ul{:id => "slider21", :style => "position: relative;"}
+          %li{:class => "pager ps1"}
+            %ul
+            - if @faqs.blank?
+              %li
+                .summary
+                  %h3
+                    No FAQ Yet
+            -@faqs.each do |faqquestion|
+              = render :partial => "faq_update",:object =>faqquestion
+        = paginate @faqs
+.grid_5.omega.body1_about{:id => "secondElement", :style => "height: 622px !important;"}
+  %p{:class => "about"}
+    %strong
+      FAQ List
+  = render :partial => "shared/faq_nav_bar"
+
+    

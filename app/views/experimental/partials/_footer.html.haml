@@ -1,0 +1,242 @@
+#footer-wrapper
+  / begin footer wrapper
+  #footer
+    .footer-menu
+      %a.home-link{:href => experimental_index_path}  
+      %ul#menu-footer-menu.menu
+        %li
+          %a{:href => public_about_experimental_index_path, :title=>"About", :alt=>"About"} About Plus
+        %li
+          %a{:href => questions_path, :title=>"Questions", :alt=>"Questions"} Questions
+        %li
+          %a{:href => "/services-map", :title=>"Services Map", :alt=>"Services Map"} Services Map
+        %li
+          %a{:href => "/users", :title=>"Community", :alt=>"Community"} Community
+        %li
+          %a{:href => contact_path, :title=>"Contact", :alt=>"Contact"} Contact
+        %li
+          %a{:href => "/questions/ask-a-question", :title=>"Ask a Question", :alt=>"Ask a Question"} Ask a Question
+    %br.clearer/
+    .inner
+      .panel
+        .complex-list.all_reviews.small
+          .widget
+            %h2 Reviewed This Week
+            %ul
+              %li.first
+                .floatleft
+                  %a.thumbnail.darken.small{:href => "single-review-numbers.html", :title => "A Sandwich a Day: Fried Scallops from Brucie"}
+                    %img{:alt => "restaurants7", :height => "40", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/restaurants7-40x40.jpg", :width => "40"}/
+                .floatleft
+                  %a.post-title{:href => "single-review-numbers.html", :title => "A Sandwich a Day: Fried Scallops from Brucie"} A Sandwich a Day: Fried Scallops from Brucie
+                  %br.clearer/
+                  .icon
+                    %img{:alt => "icon", :height => "16", :src => "http://www.industrialthemes.com/made/wp-content/themes/made/images/review-restaurant-dark.png", :width => "16"}/
+                  .rating-wrapper.small
+                    .stars.yellow
+                      .star.full  
+                      .star.full  
+                      .star  
+                      .star  
+                      .star  
+                %br.clearer/
+              %li
+                .floatleft
+                  %a.thumbnail.darken.video.small{:href => "single-review-numbers.html", :title => "Yohji Yamamoto Autumn (Fall) / Winter 2012 men's"}
+                    %img{:alt => "fashion4", :height => "40", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/fashion4-40x40.jpg", :width => "40"}/
+                .floatleft
+                  %a.post-title{:href => "single-review-numbers.html", :title => "Yohji Yamamoto Autumn (Fall) / Winter 2012 men's"} Yohji Yamamoto Autumn (Fall) / Winter 2012 men's
+                  %br.clearer/
+                  .icon
+                    %img{:alt => "icon", :height => "16", :src => "http://www.industrialthemes.com/made/wp-content/themes/made/images/review-fashion-dark.png", :width => "16"}/
+                  .rating-wrapper.small
+                    .letter.color4 B+
+                %br.clearer/
+              %li
+                .floatleft
+                  %a.thumbnail.darken.small{:href => "single-review-numbers.html", :title => "Gotye – Mirrors"}
+                    %img{:alt => "rock concert", :height => "40", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/07/photodune-277307-rock-concert-s-40x40.jpg", :width => "40"}/
+                .floatleft
+                  %a.post-title{:href => "single-review-numbers.html", :title => "Gotye – Mirrors"} Gotye – Mirrors
+                  %br.clearer/
+                  .icon
+                    %img{:alt => "icon", :height => "16", :src => "http://www.industrialthemes.com/made/wp-content/themes/made/images/review-music-dark.png", :width => "16"}/
+                  .rating-wrapper.small
+                    .number.color4 7.4
+                %br.clearer/
+              %li
+                .floatleft
+                  %a.thumbnail.darken.video.small{:href => "single-review-numbers.html", :title => "The Hobbit: An Unexpected Journey"}
+                    %img{:alt => "movies3", :height => "40", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-40x40.jpg", :width => "40"}/
+                .floatleft
+                  %a.post-title{:href => "single-review-numbers.html", :title => "The Hobbit: An Unexpected Journey"} The Hobbit: An Unexpected Journey
+                  %br.clearer/
+                  .icon
+                    %img{:alt => "icon", :height => "16", :src => "http://www.industrialthemes.com/made/wp-content/themes/made/images/review-movie-dark.png", :width => "16"}/
+                  .rating-wrapper.small
+                    .number.color5 88%
+                %br.clearer/
+              %li
+                .floatleft
+                  %a.thumbnail.darken.video.small{:href => "single-review-numbers.html", :title => "Coffee Common: Bringing Coffee Power to the People"}
+                    %img{:alt => "restaurants9", :height => "40", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/restaurants9-40x40.jpg", :width => "40"}/
+                .floatleft
+                  %a.post-title{:href => "single-review-numbers.html", :title => "Coffee Common: Bringing Coffee Power to the People"} Coffee Common: Bringing Coffee Power to the People
+                  %br.clearer/
+                  .icon
+                    %img{:alt => "icon", :height => "16", :src => "http://www.industrialthemes.com/made/wp-content/themes/made/images/review-restaurant-dark.png", :width => "16"}/
+                  .rating-wrapper.small
+                    .stars.yellow
+                      .star.full  
+                      .star.full  
+                      .star.full  
+                      .star.full  
+                      .star.half  
+                %br.clearer/
+              %li.last  
+              / easiest way to hide the last border - i know, it's hacky
+      .panel
+        .widget
+          #tabbed-Movie-reviews.simple-list.review-cats
+            .review-header Movie Reviews by category
+            %ul.tabnav
+              %li
+                %a.first{:href => "#tabs-movie_genre"} Genre
+              %li
+                %a{:href => "#tabs-movie_director"} Director
+              %li
+                %a{:href => "#tabs-movie_actor"} Actor
+              %li
+                %a{:href => "#tabs-movie_mpaa_rating"} MPAA Rating
+            %br.clearer/
+            .tabdiv-wrapper
+              #tabs-movie_genre.tabdiv
+                %ul
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Action"} Action
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Animated"} Animated
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Comedy"} Comedy
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Drama"} Drama
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Horror"} Horror
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Independent"} Independent
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Romantic Comedy"} Romantic Comedy
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Sci-Fi"} Sci-Fi
+                  %li.last  
+              #tabs-movie_director.tabdiv
+                %ul
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Woody Allen"} Woody Allen
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Ron Howard"} Ron Howard
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Michael Mann"} Michael Mann
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Quentin Terantino"} Quentin Terantino
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Robert Zemeckis"} Robert Zemeckis
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Tim Burton"} Tim Burton
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Steven Spielberg"} Steven Spielberg
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Ridley Scott"} Ridley Scott
+                  %li.last  
+              #tabs-movie_actor.tabdiv
+                %ul
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Anne Hathaway"} Anne Hathaway
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Kristen Stewart"} Kristen Stewart
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Leonardo DiCaprio"} Leonardo DiCaprio
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Penelope Cruz"} Penelope Cruz
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Robert Pattinson"} Robert Pattinson
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Ryan Gosling"} Ryan Gosling
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Scarlett Johansson"} Scarlett Johansson
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Tom Cruise"} Tom Cruise
+                  %li.last  
+              #tabs-movie_mpaa_rating.tabdiv
+                %ul
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under G"} G
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under PG"} PG
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under PG-13"} PG-13
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under R"} R
+                  %li.last  
+        .widget
+          %h2 Meta
+          %ul
+            %li
+              %a{:href => "#"} Site Admin
+            %li
+              %a{:href => "#"} Log out
+            %li
+              %a{:href => "#", :title => "Syndicate this site using RSS 2.0"}
+                Entries
+                %abbr{:title => "Really Simple Syndication"} RSS
+            %li
+              %a{:href => "#", :title => "The latest comments to all posts in RSS"}
+                Comments
+                %abbr{:title => "Really Simple Syndication"} RSS
+            %li
+              %a{:href => "http://wordpress.org/", :title => "Powered by WordPress, state-of-the-art semantic personal publishing platform."} WordPress.org
+      .panel
+        .widget
+          %h2 Latest Tweets
+          :javascript
+            jQuery(function($){
+                jQuery(".tweet").tweet({
+                  join_text: "auto",
+                  username: "IndustrialTheme",
+                  avatar_size: 32,
+                  count: 5,
+                  auto_join_text_default: "we said,",
+                  auto_join_text_ed: "we",
+                  auto_join_text_ing: "we were",
+                  auto_join_text_reply: "we replied",
+                  auto_join_text_url: "we were checking out",
+                  loading_text: "loading tweets...",
+                  refresh_interval: 60					  	
+                });
+              });
+          .tweet.query.complex-list
+          .footer-fix  
+      .panel.right
+        .widget
+          .textwidget
+            %p
+              %img{:alt => "logo", :src => "/assets/plus/logo.jpg"}/
+            %p This is the third generation of Magazine Review themes built by Industrial Themes and it is our best yet. Super-powerful, built for industrial-strength use, optimized, and overflowing with features, there is nothing out there that can do what Made Magazine can do. You can harness the power of this theme to increase site traffic and visit duration of your website. And with 5-star outstanding customer support and an active forum community, your experience will be arguably the best you’ve ever had with a premium theme.
+            %p Play around as much as you want with the site, ask any pre-sale questions you have on the ThemeForest item comments, and have fun!
+      %br.clearer/
+    .copyright
+      .ribbon-shadow-left  
+      .floatleft
+        Copyright 2013 All Rights Reserved
+        | 
+        %a{:href=>terms_experimental_index_path}
+          Terms of Use
+      .floatright
+        .floatleft
+          .textwidget
+            / %p
+            /   Theme by
+            /   = succeed "." do
+            /     %a{:href => "http://www.industrialthemes.com"} Industrial Themes
+      %br.clearer/
+      .ribbon-shadow-right  

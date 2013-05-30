@@ -52,6 +52,12 @@ class ManageAboutsController < ApplicationController
     end
   end
 
+  def experimental_about
+    @about = StaticPage.where(:static_key => 'about').first
+
+    render :layout => "plus"
+  end
+
   protected
   def check_permissions
     @group = current_group

@@ -20,10 +20,10 @@
     %span.underline-decoration-link
       = link_to "#{h truncate(@question.title, :length => 95)}", question_path(@question),:style => "color: white;"
   .q_height2
-    = link_to image_tag("plus/reiting_num1.png"), "#"
+    = link_to image_tag("plus/reiting_num1.png"), vote_question_up_path(@question.id,1)
     %p{:class => "reiting_num5"}
-      456
-    = link_to image_tag("plus/reiting_num2.png"), "#", :class => "reiting_num6"
+      = calculate_votes_average(@question)
+    = link_to image_tag("plus/reiting_num2.png"), vote_question_down_path(@question.id,-1), :class => "reiting_num6"
   .grid_14.Fright3
     %span{:class => "s1"}
       = @question.title
@@ -74,14 +74,14 @@
           =comments.user.name.capitalize
 
   .panel-link-comment{:id => "question-comment-panel-link"}
-    = link_to "Comment","javascript:void(0)", :class => "ask_tag5", :id => "question-comment-link",:title => "Post your Answer", :style => "font-family: arial; font-size: 13px; color: white; padding: 5px; margin-bottom:20px; text-transform: none !important;"
+    = link_to "Comment","javascript:void(0)", :class => "ask_tag5 comment-button-style", :id => "question-comment-link",:title => "Post your Answer"
   .panel-comments{:id => "question-comment-panel", :style => "display: none;"}
     = form_for [@question, @comment ||= Comment.new], remote: true, html: {class: "question_comment_form", data: {commentable: @question.id, editor: current_group.wysiwyg_editor ? 'wysiwyg_editor' : 'markdown_editor', "login-required" => true}} do |f|
       %p
         = f.text_area :body, :size=>"30x10", :style => "margin: 10px; width: 670px;"
       %p
-        = link_to "Cancel","javascript:void(0)", :class => "ask_tag5", :id => "cancel-question-comment-link",:title => "Post your Answer", :style => "font-family: arial; font-size: 13px; color: white; padding: 5px; margin-bottom:20px; text-transform: none !important;"
-        = f.submit t("comments.shared.comment_submit"), data: {"disable-with" => "Saving..."}, :class => "ask_tag5", :style => "font-family: arial; font-size: 13px; color: white; padding: 5px; margin-bottom:20px"
+        = link_to "Cancel","javascript:void(0)", :class => "ask_tag5 comment-button-style", :id => "cancel-question-comment-link",:title => "Post your Answer"
+        = f.submit t("comments.shared.comment_submit"), data: {"disable-with" => "Saving..."}, :class => "ask_tag5 comment-button-style comment-check"
         
 
   .clear
@@ -184,3 +184,26 @@
         return false;
       }).filter(':first').click();
   });
+  $(".comment-check").click(function(){
+    var commentBoxId = $("#comment_body");
+    var takeValueofComment = commentBoxId.val();
+    var thisVar = $(this);
+    var dataTypeTake = thisVar.attr("data-type");
+    // if comment box is empty
+    if(takeValueofComment==''){
+      // for answer comment
+      // if(dataTypeTake=="answer"){
+      //   var idTakerComment = thisVar.attr("data-tag");
+      //   hideAnswerComment(idTakerComment);
+      //   return false;
+      // } 
+      // else{
+        $('#cancel-question-comment-link').trigger("click");
+        return false;
+      // }
+      
+    }
+    
+  });
+  
+  

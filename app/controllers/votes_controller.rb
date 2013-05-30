@@ -130,7 +130,8 @@ class VotesController < ApplicationController
 
     if @voteable.user == voter
       error = I18n.t(:flash_error, :scope => "votes.create") + " "
-      error += @voteable.class.human_name.downcase
+      # below line is commented to resolve the issue during vote_up and vote_down 
+      # error += @voteable.class.human_name.downcase
       flash[:error] = error
       return false
     end

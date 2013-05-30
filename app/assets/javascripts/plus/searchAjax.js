@@ -3,7 +3,7 @@ $(document).ready(function(){
   var varValueTaker;
   $(".search-tag").focus(function(){
     varValueTaker = $(this).val();
-    var varTakeAlt = $(this).attr("alt");
+    var varTakeAlt = $(this).attr("data-show");
     if(varValueTaker==varTakeAlt){
       $("#search-container").fadeOut("slow");
       $(this).val("");
@@ -12,7 +12,7 @@ $(document).ready(function(){
   // on blur action
   $(".search-tag").blur(function(){
     var varValueTakerBlur = $(this).val();
-    var varTakeAlt = $(this).attr("alt");
+    var varTakeAlt = $(this).attr("data-show");
     if(varValueTakerBlur==""){
       if(varValueTaker==varValueTaker)
         $(this).val(varTakeAlt);
