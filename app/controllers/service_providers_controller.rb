@@ -21,12 +21,13 @@ class ServiceProvidersController < ApplicationController
         @alphabetical_providers[letter_counter] << provider
       end
     end
-
     @categories = ServiceCategory.all
+    # all service alphabetical_providers
+    @serviceProviders = ServiceProvider.all
   end
 
   def show
-      @service_provider = ServiceProvider.by_slug(params[:id])
+      @service_provider = ServiceProvider.by_slug(params[:slug])
 
       if @service_provider.nil?
         flash[:error] = "Service Provider not found"

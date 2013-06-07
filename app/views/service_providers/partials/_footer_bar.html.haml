@@ -1,0 +1,22 @@
+#BW_footer
+  .col.col_left
+    %a.button{:href => "/consumer/reviewslead.aspx?clinicid=117419"} Review this clinic
+    %span Your feedback is important
+  .col.col_center
+    %a.button.thickbox{:href => "/consumer/reportwronginformation.aspx?clinicid=117419&TB_iframe=true&height=435&width=530&inlineId=MsgDivNoEmail117419"}
+      Incorrect information?
+    %span We will correct it immediately
+  .col.col_right
+    %a.button{:href => "/accountmanagement/"} Log in
+    %span Add or update your information
+  .clear
+  .row
+    Reviews are subject to our
+    = succeed "," do
+      %a{:href => "javascript:OpenWindow('/viewprivacy.aspx','Printer','800','600','100','100','0','1','0','0','1','1');"} Privacy Policy
+    and our
+    = succeed "." do
+      %a{:href => "javascript:OpenWindow('/reviewpolicy.aspx','Printer','800','600','100','100','0','1','0','0','1','1');"} Review Guidelines
+    = succeed "." do
+      %a{:href => "/about/disclaimer_popup.aspx"} Disclaimer
+  .row Visit Singapore International Cleft-Craniofacial Team a Plastic Surgery Clinic in Tanglin, Singapore. See contact details, prices, reviews and more.

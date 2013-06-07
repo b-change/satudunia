@@ -1,0 +1,12 @@
+.BW_contact.panel_wrapper
+  %span.icon
+  .inner_content
+    .contact_holder
+      .contact_green
+        ="Contact Clinic"
+    %span.tel
+      %span.pseudoLink
+        ="Show numbers"
+    %span.adr.clinic_address
+      %span{:property=>"address"} 
+        =@service_provider.address

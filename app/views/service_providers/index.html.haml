@@ -13,55 +13,96 @@
   %span{:class => "p_a1", :style => "position: relative !important; left:-219px !important;"}
     = link_to "Home", "/"
     > Services Map
-
   #map
     %figure{:class => "p5"}
       #services_map{:style => "width:955px; height:450px"}
 
   .tabs2
-    %div.tabber
-      %div.tabbertab
-        %h2
-          A - J
-        %p.i4_1.serv_loc6{:id => ""} 
+    #firstElement{:style=>"width:742px; min-height:800px;"}
+      %div.tabber
+        %div.tabbertab
+          %h2
+            A - J
+          %p.i4_1.serv_loc6{:id => ""} 
+            .bx-wrapper 
+            - unless @alphabetical_providers[0].nil?
+              - @alphabetical_providers[0].each do |provider|
+                - next if provider.blank?
+                = render "provider", :provider => provider
+                    
+        %div.tabbertab
+          %h2
+            K - T
+          %p.i4_1.serv_loc6{:id => ""} 
+            .bx-wrapper
+            - unless @alphabetical_providers[1].nil?
+              - @alphabetical_providers[1].each do |provider|
+                - next if provider.blank?
+                = render "provider", :provider => provider
+        %div.tabbertab
+          %h2
+            U - Z
+          %p.i4_1.serv_loc6{:id => ""} 
+            .bx-wrapper
+            - unless @alphabetical_providers[2].nil?
+              - @alphabetical_providers[2].each do |provider|
+                - next if provider.blank?
+                = render "provider", :provider => provider
+        %div.tabbertab
+          %h2
+            Singapore
+          %p.i4_1.serv_loc6{:id => ""} 
+            .bx-wrapper
+            - unless @serviceProviders.nil?
+              - @serviceProviders.where(:country=>/#{"singapore"}/i).each do |provider|
+                - next if provider.blank?
+                = render "provider", :provider => provider
+                 
+        %div.tabbertab
+          %h2
+            Indonesia
+          %p.i4_1.serv_loc6{:id => ""} 
+            .bx-wrapper
+            - unless @serviceProviders.nil?
+              - @serviceProviders.where(:country=>/#{"indonesia"}/i).each do |provider|
+                - next if provider.blank?
+                = render "provider", :provider => provider
+        %div.tabbertab
+          %h2
+            Malaysia
           .bx-wrapper
-            %div.bx-window
-              %ul{:class => "i3_2", :id => "slider41", :style => "position: relative;"}
-                %li{:class => "pager ps1"}
-                  %ul
-                    - unless @alphabetical_providers[0].nil?
-                      - @alphabetical_providers[0].each do |provider|
-                        - next if provider.blank?
-                        = render "provider", :provider => provider
-                  .clear
-      %div.tabbertab
-        %h2
-          K - T
-        %p.i4_1.serv_loc6{:id => ""} 
-          .bx-wrapper
-            %div.bx-window
-              %ul{:class => "i3_2", :id => "slider41", :style => "position: relative;"}
-                %li{:class => "pager ps1"}
-                  %ul
-                    - unless @alphabetical_providers[1].nil?
-                      - @alphabetical_providers[1].each do |provider|
-                        - next if provider.blank?
-                        = render "provider", :provider => provider
-                  .clear
-      %div.tabbertab
-        %h2
-          U - Z
-        %p.i4_1.serv_loc6{:id => ""} 
-          .bx-wrapper
-            %div.bx-window
-              %ul{:class => "i3_2", :id => "slider41", :style => "position: relative;"}
-                %li{:class => "pager ps1"}
-                  %ul
-                    - unless @alphabetical_providers[2].nil?
-                      - @alphabetical_providers[2].each do |provider|
-                        - next if provider.blank?
-                        = render "provider", :provider => provider
-                  .clear
+            - unless @serviceProviders.nil?
+              -@serviceProviders.where(:country=>/#{"malaysia"}/i).each do |provider|
+                - next if provider.blank?
+                = render "provider", :provider => provider
+        %div.tabbertab
+          %h2
+            philippines
+          %p.i4_1.serv_loc6{:id => ""} 
+            .bx-wrapper
+            - unless @serviceProviders.nil?
+              - @serviceProviders.where(:country=>/#{"philippines"}/i).each do |provider|
+                - next if provider.blank?
+                = render "provider", :provider => provider
+        %div.tabbertab
+          %h2
+            Thailand
+          %p.i4_1.serv_loc6{:id => ""} 
+            .bx-wrapper
+            - unless @serviceProviders.nil?
+              - @serviceProviders.where(:country=>/#{"thailand"}/i).each do |provider|
+                - next if provider.blank?
+                = render "provider", :provider => provider
+                    
+          
+
+
+    #secondElement.grid_5.omega.body1_about{:style=>"background-color:#F3F7FA; min-height:800px; !important;"}
+      %p{:class => "about"}
+        %strong
+          Services Map
+      = render :partial => "shared/about_nav_bar"
+
             
 %script{:src => "http://maps.googleapis.com/maps/api/js?key=AIzaSyBmJE9KrYdmPiW16lAHDJOiCvS1Fwen7BU&sensor=true"}
 
@@ -90,7 +131,7 @@
   }
 
   function generateMap(lat,lng){
-    map = showMap(lat,lng,15, "services_map");
+    map = showMap(lat,lng,12, "services_map");
 
     setMarker();
   }

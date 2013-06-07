@@ -1,3 +1,6 @@
+/ content variable
+-unless @tos.nil?
+  - contentVarible = strip_tags(@tos.static_content)
 .clearer.hide-responsive  
 %br.hide-responsive/
 .main-content-left
@@ -23,11 +26,10 @@
       .content-panel
         .the-content.justify-content
           .dropcap.prociono
-            -unless @tos.static_content.nil? 
-              = @tos.static_content.html_safe.capitalize[0..0]
-          %p
-            -unless @tos.static_content.nil?
-              = @tos.static_content.html_safe[1..-1]  rescue "" 
+            -unless @tos.nil? 
+              = strip_tags(@tos.static_content).strip.to(0).upcase
+          %p.filter-content
+            /content is pushing by the jquery
           .pullquote-wrapper.left
             .pullquote.prociono
               = current_group.site_slogan.capitalize
@@ -72,29 +74,18 @@
                   %a{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/music9.jpg"}>
                     %img.aligncenter.size-medium.wp-image-461{:alt => "", :height => "295", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/music9-300x295.jpg", :title => "music9", :width => "300"}/
                   Donec sollicitudin venenatis mattis. Vestibulum fermentum, risus a luctus fermentum, enim purus aliquet tellus, id interdum nisl velit nec diam. Etiam mauris odio, aliquam a elementum eu, vulputate eu nunc. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-          / %p Maecenas faucibus mattis elit, vitae rutrum arcu suscipit et. Sed blandit convallis convallis. Etiam iaculis porttitor massa, quis tincidunt sapien varius at. Quisque sapien lectus, suscipit venenatis sagittis sed, ullamcorper vitae leo. Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet egestas. Maecenas adipiscing nibh eu augue ultricies laoreet eu sed eros. Maecenas lectus dui, tristique ut sollicitudin vel, pellentesque quis diam.
-          / .checklist
-          /   %ul
-          /     %li Aenean fermentum ipsum sit amet ante facilisis euismod.
-          /     %li Aenean fermentum ipsum sit amet ante facilisis euismod.
-          /     %li Aenean fermentum ipsum sit amet ante facilisis euismod.
-          / %h3 Aenean fermentum ipsum sit amet ante facilisis euismod.
-          / %p Aenean fermentum ipsum sit amet ante facilisis euismod. Aenean pellentesque scelerisque eros, sit amet convallis arcu imperdiet sed. Donec sit amet nisi orci, vitae suscipit ipsum. Donec sollicitudin venenatis mattis. Vestibulum fermentum, risus a luctus fermentum, enim purus aliquet tellus, id interdum nisl velit nec diam. Etiam mauris odio, aliquam a elementum eu, vulputate eu nunc. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-          / .pullquote-wrapper.right
-          /   .pullquote.prociono Maecenas faucibus mattis elit, vitae rutrum arcu suscipit et. Sed blandit convallis convallis.
-          / %p Etiam iaculis porttitor massa, quis tincidunt sapien varius at. Quisque sapien lectus, suscipit venenatis sagittis sed, ullamcorper vitae leo. Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet egestas. Maecenas adipiscing nibh eu augue ultricies laoreet eu sed eros. Maecenas lectus dui, tristique ut sollicitudin vel, pellentesque quis diam.
           .toggle-box-wrapper
             .toggle-box
               %h3.toggle Read More Details About This Review
               .toggle-content
-                / %p Maecenas faucibus mattis elit, vitae rutrum arcu suscipit et. Sed blandit convallis convallis. Etiam iaculis porttitor massa, quis tincidunt sapien varius at. Quisque sapien lectus, suscipit venenatis sagittis sed, ullamcorper vitae leo. Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet egestas. Maecenas adipiscing nibh eu augue ultricies laoreet eu sed eros. Maecenas lectus dui, tristique ut sollicitudin vel, pellentesque quis diam.
-                / .quote-wrapper
-                /   .quote Proin sit amet mi non lorem porttitor interdum. In odio diam, pretium sit amet tincidunt a, rutrum vitae est. Nunc cursus hendrerit sem sed elementum. Mauris elit velit, vulputate eu tincidunt sit amet, sodales a dolor.
-                / %p Maecenas faucibus mattis elit, vitae rutrum arcu suscipit et. Sed blandit convallis convallis. Etiam iaculis porttitor massa, quis tincidunt sapien varius at. Quisque sapien lectus, suscipit venenatis sagittis sed, ullamcorper vitae leo. Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet egestas. Maecenas adipiscing nibh eu augue ultricies laoreet eu sed eros. Maecenas lectus dui, tristique ut sollicitudin vel, pellentesque quis diam.
-                / %p Maecenas faucibus mattis elit, vitae rutrum arcu suscipit et. Sed blandit convallis convallis. Etiam iaculis porttitor massa, quis tincidunt sapien varius at. Quisque sapien lectus, suscipit venenatis sagittis sed, ullamcorper vitae leo. Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet egestas. Maecenas adipiscing nibh eu augue ultricies laoreet eu sed eros. Maecenas lectus dui, tristique ut sollicitudin vel, pellentesque quis diam.
-                / %p Maecenas faucibus mattis elit, vitae rutrum arcu suscipit et. Sed blandit convallis convallis. Etiam iaculis porttitor massa, quis tincidunt sapien varius at. Quisque sapien lectus, suscipit venenatis sagittis sed, ullamcorper vitae leo. Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet egestas. Maecenas adipiscing nibh eu augue ultricies laoreet eu sed eros. Maecenas lectus dui, tristique ut sollicitudin vel, pellentesque quis diam.
-                / .box-wrapper.tip
-                /   .box.tip Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet egestas. Maecenas adipiscing nibh eu augue ultricies laoreet eu sed eros. Maecenas lectus dui, tristique ut sollicitudin vel, pellentesque quis diam.
+                %p Maecenas faucibus mattis elit, vitae rutrum arcu suscipit et. Sed blandit convallis convallis. Etiam iaculis porttitor massa, quis tincidunt sapien varius at. Quisque sapien lectus, suscipit venenatis sagittis sed, ullamcorper vitae leo. Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet egestas. Maecenas adipiscing nibh eu augue ultricies laoreet eu sed eros. Maecenas lectus dui, tristique ut sollicitudin vel, pellentesque quis diam.
+                .quote-wrapper
+                  .quote Proin sit amet mi non lorem porttitor interdum. In odio diam, pretium sit amet tincidunt a, rutrum vitae est. Nunc cursus hendrerit sem sed elementum. Mauris elit velit, vulputate eu tincidunt sit amet, sodales a dolor.
+                %p Maecenas faucibus mattis elit, vitae rutrum arcu suscipit et. Sed blandit convallis convallis. Etiam iaculis porttitor massa, quis tincidunt sapien varius at. Quisque sapien lectus, suscipit venenatis sagittis sed, ullamcorper vitae leo. Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet egestas. Maecenas adipiscing nibh eu augue ultricies laoreet eu sed eros. Maecenas lectus dui, tristique ut sollicitudin vel, pellentesque quis diam.
+                %p Maecenas faucibus mattis elit, vitae rutrum arcu suscipit et. Sed blandit convallis convallis. Etiam iaculis porttitor massa, quis tincidunt sapien varius at. Quisque sapien lectus, suscipit venenatis sagittis sed, ullamcorper vitae leo. Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet egestas. Maecenas adipiscing nibh eu augue ultricies laoreet eu sed eros. Maecenas lectus dui, tristique ut sollicitudin vel, pellentesque quis diam.
+                %p Maecenas faucibus mattis elit, vitae rutrum arcu suscipit et. Sed blandit convallis convallis. Etiam iaculis porttitor massa, quis tincidunt sapien varius at. Quisque sapien lectus, suscipit venenatis sagittis sed, ullamcorper vitae leo. Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet egestas. Maecenas adipiscing nibh eu augue ultricies laoreet eu sed eros. Maecenas lectus dui, tristique ut sollicitudin vel, pellentesque quis diam.
+                .box-wrapper.tip
+                  .box.tip Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet egestas. Maecenas adipiscing nibh eu augue ultricies laoreet eu sed eros. Maecenas lectus dui, tristique ut sollicitudin vel, pellentesque quis diam.
           .signoff-wrapper
             .signoff Did you enjoy this article? If so, we’d love to hear your thoughts in the comments below. It would be great if you subscribed to our RSS feed or signed up for email updates to get more goodness. There’s lots more where this came from!
         .clearer
@@ -171,5 +162,7 @@
   jQuery(document).ready(function() { 
   
     jQuery('#related > ul').tabs({ fx: { opacity: 'toggle', duration: 150 } });
+    // for making first character styled
+    Experimental.getMainContent("#{contentVarible}");
     
   });

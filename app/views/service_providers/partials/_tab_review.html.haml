@@ -1,0 +1,64 @@
+.provider_all_Reviews
+  .banner
+    .stats
+      %span.n1 88%
+      Average satisfaction from 1 review
+    .star_box
+      %span.stars_row
+        %span.ratingname Communication
+        %span.stars.rate10{:title => "100 for Communication"}
+      %span.stars_row
+        %span.ratingname Friendliness
+        %span.stars.rate10{:title => "100 for Friendliness"}
+      %span.stars_row
+        %span.ratingname Price
+        %span.stars.rate6{:title => "60 for Price"}
+      %span.stars_row
+        %span.ratingname Location
+        %span.stars.rate8{:title => "80 for Location"}
+      %span.stars_row
+        %span.ratingname Satisfaction
+        %span.stars.rate10{:title => "100 for Satisfaction"}
+    .write_review
+      %a.button{:href => "/consumer/reviewslead.aspx?clinicid=117419&source=0&recommend=1"}
+        Recommend
+        %br/
+        this Clinic
+    .clear
+  #reviewTab_pnlReviews.provider_reviews.jq_reviews_section.panel_wrapper
+    #review_29987.review.hreview{:property => "review", :typeof => "Review"}
+      %a{:name => "review_29987"}
+      .review_box
+        .user_box
+          %span.userpic_holder{:title => "This person is a confirmed WhatClinic user"}
+            %span.userpic
+            %span.confirmed
+          %span.name{:property => "author", :title => "Sat"} Sat
+          %span
+          %span#reviewTab_reviewsList_ctl00_ReviewsPatient_litPatientFrom.date
+            %span.locality{:property => "address"}> Johor Bahru
+            ,
+            %span.dtreviewed 22 Apr 13
+            %span.status Sat is a WhatClinic user
+            %span.name
+              %img{:src => "/assets/plus/clinic/phone_tick.png"}>/
+              Confirmed by phone
+        .pointballon
+        .usertext
+          .user_review_text
+            %span#reviewTab_reviewsList_ctl00_ReviewsPatient_litOverAll.user_rate{:property => "reviewRating"} 88%
+            %span{:property => "headline"}
+              Extremely professional
+          %p{:property => "reviewBody"}
+            %b Were you pleased with the treatment?
+            I happened to be quite lucky as there was a team of Doctors who were residing on the appointment that I had. So I had encountered few Doctors together reviewing my son's condition. They were extremely professional & most of all, gave me a lot of confidence and reassurance on the treatment plan.
+          %a.report_review.thickbox{:href => "/consumer/reportreview.aspx?clinicid=117419&reviewid=29987&reviewsrc=0&TB_iframe=true&height=435&width=530&inlineId=MsgDivNoEmail4665&modal=true"} Report this review
+          .clear
+        .clear
+#setFavorite{:style => "display: none;"}
+  %p
+    You must have a professional account to set your favorite review.
+    %br/
+    Click
+    %a{:href => "/accountmanagement/SubscriptionPayment.aspx?panel=subscription&type=2"} here
+    to upgrade now!

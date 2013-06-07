@@ -2879,9 +2879,9 @@ footer {
     display: inline-block !important;
 }
 .tabs2 .tabberlive .tabbernav{
-    float: left;
+    float: right;
     margin-left: 10px;
-    margin-top: -31px;
+    margin-top: -32px;
 }
 #first1 .tabbernav{
     margin-top:-22px !important;

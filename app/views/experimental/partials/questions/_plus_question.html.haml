@@ -1,0 +1,41 @@
+-last_target_id, last_target_date, owner = question.find_last_target
+%li
+  .q_ff-container
+    .q_ff
+      %span{:class => "q_f"}
+        = question.votes_count
+      %span{:class => "q_f_1"}
+        votes
+      %span{:class => "q_fs1 vote-up-adjust"}
+        = question.answers_count
+      %span{:class => "q_fs_1"}
+        answers
+    .q_ff-bottom
+      %span
+        = question.countquestions.sum(:qus_count).to_i
+      views
+  .grid_14.Fright
+    %span{:class => "s1"}
+      = link_to truncate(strip_tags(question.title), :length => 200), question_show_experimental_index_path(question),:class => "avoid_link_color"
+    .grid_14.ms_fr
+      %span.s1_q_i
+        = truncate(strip_tags(question.body), :length => 180)
+    %ul{:class => "tags2"}
+      - question.tags.each do |tag|
+        %li
+          = link_to h(tag), tag_path(:id => CGI.escape(tag)), :class => "tags2_1 tool-tip", :style => "margin-right: 10px;", :title => "#{tag}"
+
+    %ul.ago
+      %span{:style => "color:#006893"}
+        = owner.login.capitalize
+      asked 
+      %span
+        = time_ago_in_words(last_target_date)
+      Ago
+    %ul{:class => "tags3"}
+      %li
+        = link_to "<span class='underline-decoration-link'>Flag</span>".html_safe, new_question_flag_path(question), :class => "q_tag1 tool-tip",:title=>"Flag this question"
+        = link_to "<span class='underline-decoration-link'>Follow</span>".html_safe, follow_question_path(question), :class => "q_tag2 tool-tip",:title=>"Follow this question"
+        = link_to "<span class='underline-decoration-link'>Answer</span>".html_safe, question_path(question, :anchor => "to_answer"), :class => "q_tag3 tool-tip",:title=>"Answer this question"
+
+  .clear
