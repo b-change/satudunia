@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
-  before_filter :check_cookies
+  before_filter :check_cookies,:static_content
   before_filter :find_group
   before_filter :check_group_access
   before_filter :set_locale
@@ -287,5 +287,13 @@ class ApplicationController < ActionController::Base
 
   def close
 
+  end
+  # footer content for experimental
+  def static_content
+    @staticContent = StaticPage.all
+    @aboutContent = @staticContent.where(:static_key => 'about').first
+    @questionContent = @staticContent.where(:static_key => 'qus_ans').first
+    @commentContent = @staticContent.where(:static_key => 'comments').first
+    @serviceContent = @staticContent.where(:static_key => 'service').first
   end
 end

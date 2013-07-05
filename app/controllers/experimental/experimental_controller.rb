@@ -104,6 +104,11 @@ class Experimental::ExperimentalController < ApplicationController
     end
     # plus code
   end
+
+  #partners action
+  def partners
+    
+  end
   # before filter action
   def check_age
     @question = current_group.questions.by_slug(params[:id])

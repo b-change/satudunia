@@ -1,0 +1,19 @@
+.widget-wrapper
+  .widget
+    .section-wrapper
+      .section Login
+    .login-form
+      %form#loginform{:action => "http://www.industrialthemes.com/made/wp-login.php", :method => "post", :name => "loginform"}
+        %p.login-username
+          %label{:for => "user_login"} Username
+          %input#user_login.input{:name => "log", :size => "20", :type => "text", :value => ""}/
+        %p.login-password
+          %label{:for => "user_pass"} Password
+          %input#user_pass.input{:name => "pwd", :size => "20", :type => "password", :value => ""}/
+        %p.login-remember
+          %label
+            %input#rememberme{:name => "rememberme", :type => "checkbox", :value => "forever"}/
+            Remember Me
+        %p.login-submit
+          %input#wp-submit.button-primary{:name => "wp-submit", :type => "submit", :value => "Log In"}/
+          %input{:name => "redirect_to", :type => "hidden", :value => "http://www.industrialthemes.com/made/"}/

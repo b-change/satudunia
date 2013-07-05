@@ -14,7 +14,26 @@
 					%li
 						%a{:href => contact_path,:title=>"Contact",:alt=>"Contact"} Contact
 					%li
+						%a{:href => partners_experimental_index_path,:title=>"Partners",:alt=>"Partners"} Partners
+					%li
 						%a{:href => '/questions/ask-a-question',:title=>"Ask a Question",:alt=>"Ask a Question"} Ask a Question
+					%li
+						- if current_user.nil?
+							%a{:href => '/login',:title=>"Sign in",:alt=>"Sign in"}  Login in / Sign Up 
+						-else
+							= link_to "Login as #{h(current_user.display_name)}","#",:style=>"color:#027DB2;"
+							%ul
+								%li
+									= link_to "Profile Settings", user_path(current_user)
+								%li
+									= link_to t('.connect'), social_connect_path
+								%li
+									= link_to t('.following'), follows_user_path(current_user)
+								%li
+									= link_to t('.followers'), follows_user_path(current_user)+"?sort=followers"
+								%li
+									= link_to t("layouts.application.logout"), destroy_user_session_path
+								
 			%select#select-menu-top-menu
 				%option Page Navigation
 				%option{:value => "page-jquery-extras.html"} jQuery Extras
@@ -37,10 +56,9 @@
 				%a.twitter{:href =>"javascript:void(0)",:onclick=>"twitter_twit()"}  
 				
 		#search
-			.wrapper
-				.inner
-					/ SEARCH
-					%form#searchformtop{:action => "search.html", :method => "get"}
-						%input#s{:name => "s", :onblur => "if (this.value == '') {this.value = 'search';}", :onfocus => "if (this.value == 'search') {this.value = '';}", :type => "text", :value => "search"}/
+			/ SEARCH
+			= render :partial => '/shared/translation_widget'
+			/ %form#searchformtop{:action => "search.html", :method => "get"}
+			/ 	%input#s{:name => "s", :onblur => "if (this.value == '') {this.value = 'search';}", :onfocus => "if (this.value == 'search') {this.value = '';}", :type => "text", :value => "search"}/
 		%br.clearer/
 	.ribbon-shadow-right 

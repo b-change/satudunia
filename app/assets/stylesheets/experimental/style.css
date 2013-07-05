@@ -256,7 +256,7 @@ a.selectBox {display:none !important;}
 header area
 *************************************************/
 #page-wrapper {width:1000px;margin:0px auto;}
-#logo-bar-wrapper {background:#C32C0D url(images/logo-bar-bg.png) repeat-x 0px 0px;}
+#logo-bar-wrapper {background:#039EE1 url(images/logo-bar-bg.png) repeat-x 0px 0px;}
 #logo-bar-shadow {width:1000px;height:12px;background:url(images/logo-bar-shadow.png) repeat-x 0px 0px;}
 #logo-bar {padding:30px 20px 5px 30px;}
 #logo-wrapper {float:left;}
@@ -2236,4 +2236,73 @@ fonts
 /*some modified styles*/
 .justify-content{
 	text-align: justify;
+}
+.login-form {
+    padding-bottom: 20px;
+    padding-left: 15px;
+    padding-right: 10px;
+    padding-top: 10px;
+}
+.login-form label {
+    display: block;
+    padding-bottom: 8px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 5px;
+}
+.login-form input[type="text"], .login-form input[type="password"] {
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    width: 240px;
+}
+
+/*widget list*/
+
+.sidebar .widget .item-avatar {
+    display: inline-block;
+    padding-bottom: 0;
+    padding-left: 17px;
+    padding-right: 0;
+    padding-top: 15px;
+}
+.sidebar .widget .item-list .item-avatar {
+    float: left;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+}
+.sidebar .widget .item-list .item {
+    min-height: 80px;
+}
+.sidebar .widget ul.item-list {
+    list-style-type: none;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+}
+.sidebar .widget ul.item-list li {
+    padding-bottom: 0;
+    padding-left: 15px;
+    padding-right: 10px;
+    padding-top: 10px;
+}
+.sidebar .widget .item-options {
+    color: #BBBBBB;
+    float: right;
+    margin-top: -30px;
+    padding-right: 10px;
+}
+.sidebar .widget .item-options a {
+    color: #BBBBBB;
+    font-size: 11px;
+}
+.sidebar .widget .item-options a:hover {
+    color: #666666;
+}
+.sidebar .widget .item-options a.selected {
+    color: #666666;
 }

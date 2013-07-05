@@ -181,10 +181,11 @@
         .widget
           %h2 Meta
           %ul
+            - if !current_user.nil? && current_user.owner_of?(current_group)
+              %li
+                = link_to "Admin", "/admin",:target=>"_blank"
             %li
-              %a{:href => "#"} Site Admin
-            %li
-              %a{:href => "#"} Log out
+              = link_to t("layouts.application.logout"), destroy_user_session_path
             %li
               %a{:href => "#", :title => "Syndicate this site using RSS 2.0"}
                 Entries
@@ -193,8 +194,6 @@
               %a{:href => "#", :title => "The latest comments to all posts in RSS"}
                 Comments
                 %abbr{:title => "Really Simple Syndication"} RSS
-            %li
-              %a{:href => "http://wordpress.org/", :title => "Powered by WordPress, state-of-the-art semantic personal publishing platform."} WordPress.org
       .panel
         .widget
           %h2 Latest Tweets
@@ -220,9 +219,10 @@
         .widget
           .textwidget
             %p
-              %img{:alt => "logo", :src => "/assets/plus/logo.jpg"}/
-            %p This is the third generation of Magazine Review themes built by Industrial Themes and it is our best yet. Super-powerful, built for industrial-strength use, optimized, and overflowing with features, there is nothing out there that can do what Made Magazine can do. You can harness the power of this theme to increase site traffic and visit duration of your website. And with 5-star outstanding customer support and an active forum community, your experience will be arguably the best you’ve ever had with a premium theme.
-            %p Play around as much as you want with the site, ask any pre-sale questions you have on the ThemeForest item comments, and have fun!
+              %img{:alt => "logo", :src => "/assets/plus/footer_logo.png"}/
+            - unless @about.blank?
+              %p 
+                = truncate(strip_tags(@aboutContent.static_content), :omission => "", :length => 833)
       %br.clearer/
     .copyright
       .ribbon-shadow-left  

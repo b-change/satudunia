@@ -16,6 +16,7 @@ Rails.application.routes.draw do
         get :terms, :path=>"terms-of-use"
         get :faq
         get :questions
+        get :partners
         get 'questions/:id' => 'experimental#question_show', :as => :question_show
       end
     end
