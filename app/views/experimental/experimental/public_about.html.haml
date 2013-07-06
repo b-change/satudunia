@@ -7,17 +7,11 @@
 	.page-content.review.single-post
 		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
 		.review-content
-			/ post by removed from here
-			%h1.title
-				=@title.capitalize
+			.ribbon-shadow-left
+			.section-wrapper
+				.section-about= @title.capitalize
+			.section-arrow
 			.content-panel
-				.article-image
-					%a.darken{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-300x225.jpg"}
-						%img{:alt => "misc1", :height => "225", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-300x225.jpg", :title => "misc1", :width => "300"}/
-				/ responsive purposes - hidden for standard desktop view
-				.article-image.responsive
-					%img{:alt => "misc1", :height => "225", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-300x225.jpg", :title => "misc1", :width => "300"}/
-				/ end responsive purposes
 				.the-content.justify-content
 					.dropcap.prociono
 						-unless @about.nil? 
@@ -84,14 +78,27 @@
 						.signoff Did you enjoy this article? If so, we’d love to hear your thoughts in the comments below. It would be great if you subscribed to our RSS feed or signed up for email updates to get more goodness. There’s lots more where this came from!
 				.clearer
 				%br/
-				.tags
-					%a.hybird{:href => "archive-a.html", :title => "hybird Tag"} hybird
-					%a.men{:href => "archive-a.html", :title => "men Tag"} men
-					%a.modern{:href => "archive-a.html", :title => "modern Tag"} modern
-					%a.old-fashion{:href => "archive-a.html", :title => "old fashion Tag"} old fashion
-					%a.prototype{:href => "archive-a.html", :title => "prototype Tag"} prototype
-					%a.ready-to-wear{:href => "archive-a.html", :title => "ready to wear Tag"} ready to wear
-					%a.red-carpet{:href => "archive-a.html", :title => "red carpet Tag"} red carpet
+				.tags-exp
+					%span{:class=>"tags1_2"}
+						%a{:href=>"#", :title=>"hybrid tag"} Hybrid
+					%span{:class=>"tags1_2"}
+						%a{:href=>"#", :title=>"men tag"} men
+					%span{:class=>"tags1_2"}
+						%a{:href=>"#", :title=>"modern tag"} modern
+					%span{:class=>"tags1_2"}
+						%a{:href=>"#", :title=>"old fashion tag"} old
+					%span{:class=>"tags1_2"}
+						%a{:href=>"#", :title=>"prototype tag"} prototype
+					%span{:class=>"tags1_2"}
+						%a{:href=>"#", :title=>"red carpet tag"} red carpet
+
+					/ %a.hybird{:href => "archive-a.html", :title => "hybird Tag"} hybird
+					/ %a.men{:href => "archive-a.html", :title => "men Tag"} men
+					/ %a.modern{:href => "archive-a.html", :title => "modern Tag"} modern
+					/ %a.old-fashion{:href => "archive-a.html", :title => "old fashion Tag"} old fashion
+					/ %a.prototype{:href => "archive-a.html", :title => "prototype Tag"} prototype
+					/ %a.ready-to-wear{:href => "archive-a.html", :title => "ready to wear Tag"} ready to wear
+					/ %a.red-carpet{:href => "archive-a.html", :title => "red carpet Tag"} red carpet
 				.clearer
 				#authorbox
 					%h2 Industrial Themes
