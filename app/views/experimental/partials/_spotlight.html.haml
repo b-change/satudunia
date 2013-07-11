@@ -24,15 +24,16 @@
                 %img{:alt => "movies2", :height => "170", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies2-300x170.jpg", :width => "300"}/
               .inner
                 %h2
-                  %a{:href => "single-review-numbers.html"} Know the Basics
+                  %a{:href => "/questions"} 
+                    = current_group.block_one_header.html_safe
                 .excerpt.full-align-style
-                  = @questionContent.static_content.html_safe rescue "" 
+                  = current_group.block_one_info.html_safe rescue "" 
               .more-bar
                 .arrow-catpanel-top  
                 / .rating-wrapper.small
                 /   .number.color3 42%
                 .comments
-                  %a{:href => "single-review-numbers.html", :title => "Comment on The Bourne Legacy"} 0 comments
+                  %a{:href => "single-review-numbers.html", :title => "Comment on The Bourne Legacy"} 0 Views
                 .more
                   %a{:href => "/questions"} More
           %li
@@ -47,15 +48,16 @@
                 %img{:alt => "fashion3", :height => "170", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/fashion3-300x170.jpg", :width => "300"}/
               .inner
                 %h2
-                  %a{:href => "single-review-numbers.html"} Locate your nearby providers
+                  %a{:href => service_providers_path}
+                    =current_group.block_two_header.html_safe
                 .excerpt.full-align-style
-                  = @serviceContent.static_content.html_safe rescue ""
+                  = current_group.block_two_info.html_safe rescue ""
               .more-bar
                 .arrow-catpanel-top  
                 / .rating-wrapper.small
                 /   .letter.color3 C
                 .comments
-                  %a{:href => "single-review-numbers.html", :title => "Comment on 5 Colorful Watches From Zappos for under $50"} 0 comments
+                  %a{:href => "single-review-numbers.html", :title => "Comment on 5 Colorful Watches From Zappos for under $50"} 0 Views
                 .more
                   %a{:href => service_providers_path} More
             .clearer
@@ -67,13 +69,14 @@
                 .catname
                   Knowledge Base 
                 .category-arrow  
-              %a.darken.video{:href => "single-review-numbers.html"}
+              %a.darken.video{:href => "/questions/ask-a-question"}
                 %img{:alt => "restaurants6", :height => "170", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/restaurants6-300x170.jpg", :width => "300"}/
               .inner
                 %h2
-                  %a{:href => "/knowledgebase"} Share the Knowledge
+                  %a{:href => "/questions/ask-a-question"} 
+                    =current_group.block_three_header.html_safe
                 .excerpt.full-align-style
-                  = @commentContent.static_content.html_safe rescue ""
+                  =current_group.block_three_info.html_safe rescue ""
               .more-bar
                 .arrow-catpanel-top  
                 / .rating-wrapper.small
@@ -84,7 +87,7 @@
                 /     .star  
                 /     .star  
                 .comments
-                  %a{:href => "single-review-numbers.html", :title => "Comment on Sugar Rush: Banana Stracciatella Gelato from Eataly"} 0 comments
+                  %a{:href => "/questions/ask-a-question", :title => "Comment on Sugar Rush: Banana Stracciatella Gelato from Eataly"} 0 Views
                 .more
-                  %a{:href => "/knowledgebase"} More
+                  %a{:href => "/questions/ask-a-question"} More
             .clearer

@@ -1,0 +1,39 @@
+- if params[:dataSend]== "newest"
+	- @newest_member.each do |newest_member| 
+		%li.vcard
+			.item-avatar
+				- if newest_member.use_gravatar?
+					= image_tag avatar_user_path(newest_member),:width => "50",:class=>"avatar"
+				- else
+					= image_tag(default_avatar_url('small'),:width => "50",:class=>"avatar") 
+			.item
+				.item-title.fn
+					= newest_member.name
+				.item-meta
+					%span.activity
+						= newest_member.current_sign_in_at
+- elsif params[:dataSend]== "active"
+	- @active_member.each do |active_member| 
+		%li.vcard
+			.item-avatar
+				= image_tag(default_avatar_url('small'),:width => "50",:class=>"avatar") 
+			.item
+				.item-title.fn
+					= active_member.display_name
+				.item-meta
+					%span.activity
+						= active_member.joined_at
+- else
+	- @popular.each do |popular| 
+		%li.vcard
+			.item-avatar
+				- if popular.use_gravatar?
+					= image_tag avatar_user_path(popular),:width => "50",:class=>"avatar"
+				- else
+					= image_tag(default_avatar_url('small'),:width => "50",:class=>"avatar") 
+			.item
+				.item-title.fn
+					= popular.display_name
+				.item-meta
+					%span.activity
+						= popular.current_sign_in_at

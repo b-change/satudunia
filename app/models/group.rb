@@ -76,15 +76,15 @@
 
   field :custom_pagination_length, :type => Integer, :default => 20
   field :question_default_length, :type => Integer, :default => 10
-  field :slogan_short_ask, :type => String
+  field :block_one_header, :type => String
   field :site_slogan, :type => String, :default => "Living positively, together." 
-  field :slogan_long_ask, :type => String
+  field :block_one_info, :type => String
 
-  field :slogan_short_location, :type => String
-  field :slogan_long_location, :type => String
+  field :block_two_header, :type => String
+  field :block_two_info, :type => String
 
-  field :slogan_short_sign, :type => String
-  field :slogan_long_sign, :type => String
+  field :block_three_header, :type => String
+  field :block_three_info, :type => String
 
   field :sso_url, :type => String
   field :layout, :type => String, :default => 'application'

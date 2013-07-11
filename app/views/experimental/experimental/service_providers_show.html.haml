@@ -1,0 +1,125 @@
+#map
+	%figure{:class => "p5"}
+		#services_map{:style => "width:999px; height:450px"}
+.clearer.hide-responsive  
+%br.hide-responsive/
+.main-content-left
+	.post-loop.search-loop
+		.ribbon-shadow-left
+		.section-wrapper
+			.section-header Listed Services 
+		.section-arrow
+		- unless @serviceProviders.nil?
+			- @serviceProviders.all.each do |provider|
+				- next if provider.blank?
+				= render "experimental/partials/provider", :provider => provider
+
+	%br.clearer/
+%br.clearer/
+
+
+%script{:src => "http://maps.googleapis.com/maps/api/js?key=AIzaSyBmJE9KrYdmPiW16lAHDJOiCvS1Fwen7BU&sensor=true"}
+
+:javascript
+	var map;
+	var gl;
+	var currentLatitude = '1.305300';
+	var currentLongitude = '103.835303';
+	
+	try {
+		if (typeof navigator.geolocation === 'undefined'){
+			gl = google.gears.factory.create('beta.geolocation');
+		} else {
+			gl = navigator.geolocation;
+		}
+	} catch(e) {}
+	
+	function initMap() {
+		if (gl) {
+			gl.getCurrentPosition(function displayMap(position){
+				generateMap(position.coords.latitude,position.coords.longitude);
+			}, displayErrorWithMap);
+		} else {
+			displayError();
+		}
+	}
+
+	function generateMap(lat,lng){
+		map = showMap(lat,lng,12, "services_map");
+
+		setMarker();
+	}
+	
+	google.maps.event.addDomListener(window, 'load', initMap);
+
+	// Show a map centered at (position.coords.latitude, position.coords.longitude).
+	function showMap(posLat,posLng,zoomValue, mapElement){
+		var map;
+		var mapOptions = {
+			center: new google.maps.LatLng(posLat, posLng),
+			zoom: zoomValue,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+
+		map = new google.maps.Map(document.getElementById(mapElement), mapOptions);
+		
+		return map;
+	}
+
+	// Marked on locations along with the info window
+	function showMarker(map, latLng, titleName, infoContent){
+		var marker = new google.maps.Marker({
+			position: latLng,
+			map: map,
+			title: titleName
+		});
+		
+		var infoWindow = new google.maps.InfoWindow();
+		
+		google.maps.event.addListener(marker, 'click', (function setInfoWindow(marker){
+			return function(){
+				infoWindow.setPosition(latLng);
+				infoWindow.setContent(infoContent);
+				infoWindow.open(map, marker); 
+			}    
+		})(marker));
+		
+		return marker;
+	}
+
+	// Show location error
+	function displayErrorWithMap(positionError) {
+		console.log("Could not determine location: Geolocation is not supported");
+		generateMap(currentLatitude,currentLongitude);
+	}
+
+	// Show location error
+	function displayError(positionError) {
+		console.log("Could not determine location: Geolocation is not supported");
+	}
+
+	// Return facility description for infoWindow
+	function getFacilityInformation(serviceDesc, completeAddress, locationName, phone, email){
+		var completeDescription = '<b>'+locationName+'</b><br>'+ serviceDesc;
+		
+		completeDescription += '<br><small>'+ completeAddress +'</small><br><small>Phone: '+ phone +'</small><br><small>Email: '+ email +'</small>';
+		
+		return completeDescription;
+	}
+
+%script
+	function setMarker() {
+	var geocoder = new google.maps.Geocoder();
+
+	- @service_providers.each do |provider|
+		- next if provider.address.nil? || provider.address.blank?
+		geocoder.geocode( { 'address': '#{escape_javascript provider.address}'}, function(results, status) {
+		centered = results[0].geometry.location;
+		showMarker(map, centered, '#{provider.name}', getFacilityInformation('#{escape_javascript provider.description}','#{escape_javascript provider.address}', '#{escape_javascript provider.name}', '#{escape_javascript provider.telephone}', '#{escape_javascript provider.email}'));
+		});
+	}
+
+
+
+
+		

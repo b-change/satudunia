@@ -6,22 +6,22 @@
 			.menu
 				%ul#menu-top-menu
 					%li
-						%a{:href => public_about_experimental_index_path,:title=>"About",:alt=>"About"} About Plus
+						%a{:href => public_about_experimental_index_path,:title=>"About Plus",:alt=>"About Plus"} About Plus
 					%li
 						%a{:href => questions_experimental_index_path,:title=>"Questions",:alt=>"Questions"} Questions 
 					%li
-						%a{:href => '/services-map',:title=>"Services Map",:alt=>"Services Map"} Services map
+						%a{:href => service_providers_show_experimental_index_path,:title=>"Services Map",:alt=>"Services Map"} Services map
 					%li
 						%a{:href => contact_path,:title=>"Contact",:alt=>"Contact"} Contact
-					%li
-						%a{:href => partners_experimental_index_path,:title=>"Partners",:alt=>"Partners"} Partners
+					/ %li
+					/ 	%a{:href => partners_experimental_index_path,:title=>"Partners",:alt=>"Partners"} Partners
 					%li
 						%a{:href => '/questions/ask-a-question',:title=>"Ask a Question",:alt=>"Ask a Question"} Ask a Question
 					%li
 						- if current_user.nil?
 							%a{:href => '/login',:title=>"Sign in",:alt=>"Sign in"}  Login in / Sign Up 
 						-else
-							= link_to "Login as #{h(current_user.display_name)}","#",:style=>"color:#027DB2;"
+							= link_to "Login as #{h(current_user.login)}","#",:style=>"color:#027DB2;"
 							%ul
 								%li
 									= link_to "Profile Settings", user_path(current_user)
@@ -56,9 +56,10 @@
 				%a.twitter{:href =>"javascript:void(0)",:onclick=>"twitter_twit()"}  
 				
 		#search
-			/ SEARCH
-			= render :partial => '/shared/translation_widget'
-			/ %form#searchformtop{:action => "search.html", :method => "get"}
-			/ 	%input#s{:name => "s", :onblur => "if (this.value == '') {this.value = 'search';}", :onfocus => "if (this.value == 'search') {this.value = '';}", :type => "text", :value => "search"}/
+			.wrapper
+				.inner
+					/ SEARCH
+					%form#searchformtop{:action => "search.html", :method => "get"}
+						%input#s{:name => "s", :onblur => "if (this.value == '') {this.value = 'search';}", :onfocus => "if (this.value == 'search') {this.value = '';}", :type => "text", :value => "search"}/
 		%br.clearer/
 	.ribbon-shadow-right 

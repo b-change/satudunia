@@ -1,0 +1,17 @@
+.post-panel
+	.post-thumbnail
+		%a.darken.small{:href => "single-review-numbers.html"}
+			%img{:alt => "misc3", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc3-70x70.jpg", :style => "opacity: 1;", :width => "70"}/
+	.inner
+		%h2
+			=link_to "#{provider.name}",service_map_provider_path(provider.country.downcase, provider.slug)
+		.category
+			.catname Blog
+		.comments
+			%a{:href => "#", :title => "Comments"} 2 comments
+		.date July 19, 2013
+		.more
+			%a{:href => "#"} More
+
+	%br.clearer/
+%br.clearer/

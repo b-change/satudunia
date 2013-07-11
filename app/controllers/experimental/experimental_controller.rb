@@ -24,6 +24,7 @@ class Experimental::ExperimentalController < ApplicationController
   def public_about
     @title = "about plus+"
   	@about = StaticPage.where(:static_key => 'about').first
+    @about_content =@about.static_content.split('P',2)
   end
   #rss feed
   def rss_feed
@@ -41,6 +42,7 @@ class Experimental::ExperimentalController < ApplicationController
   # questions
   def questions
     @title = "questions"
+    @tags = current_group.tags
     # code from the plus template
     unless params[:per_page].blank?
       session[:per_page] = params[:per_page]
@@ -109,6 +111,31 @@ class Experimental::ExperimentalController < ApplicationController
   def partners
     
   end
+
+  #service_providers action
+  def service_providers_show
+    conditions = {:service_category_id => params[:category_id]} if params[:category_id]
+    @service_providers = ServiceProvider.where(conditions)
+    # all service alphabetical_providers
+    @serviceProviders = ServiceProvider.all
+  end
+  
+  # action for admin tab
+  def show_member
+    @caseVarible = params[:dataSend]
+    case @caseVarible
+      when "newest"
+        @newest_member = User.order_by(:created_at=>:desc).limit(5)
+        render layout =>false
+      when "active"
+        @active_member = Membership.where(state: "active").limit(5)
+        render layout =>false
+      when "popular"
+        @popular = User.order_by(:created_at=>:desc).limit(5)
+        render layout =>false
+      end
+  end
+
   # before filter action
   def check_age
     @question = current_group.questions.by_slug(params[:id])

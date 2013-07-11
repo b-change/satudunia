@@ -9,25 +9,25 @@
             = link_to image_tag("plus/image1.jpg"), "#"
             .banner.my_banner
               .par_s1
-                =h current_group.slogan_short_ask
+                =h current_group.block_one_header
               .par_s2
-                =h current_group.slogan_long_ask
+                =h current_group.block_one_info
               = link_to "<span>Ask Now</span>".html_safe, "/questions", :class => "mms"
           %li
             = link_to image_tag("plus/image2.jpg"), "#"
             .banner.my_banner
               .par_s1
-                =h current_group.slogan_short_location
+                =h current_group.block_two_header
               .par_s2
-                =h current_group.slogan_long_location
+                =h current_group.block_two_info
               = link_to "<span>Locate Now</span>".html_safe, "/services-map", :class => "mms1"
           %li
             = link_to image_tag("plus/image3.jpg"), "#"
             .banner.my_banner
               .par_s1
-                =h current_group.slogan_short_sign
+                =h current_group.block_three_header
               .par_s2
-                =h current_group.slogan_long_sign
+                =h current_group.block_three_info
               = link_to "<span>Sign Up Now</span>".html_safe, "/users/login", :class => "mms2"
         = link_to "prev", "#", :class => "prev"
         = link_to "next", "#", :class => "next"

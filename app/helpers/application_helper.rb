@@ -578,4 +578,19 @@ module ApplicationHelper
 
     hiv_condition
   end
+
+  # for custom login in devise
+  def resource_name
+    :user
+  end
+
+  def resource
+    @resource ||= User.new
+  end
+
+  def devise_mapping
+    @devise_mapping ||= Devise.mappings[:user]
+  end
+  # for custom login in devise
+
 end

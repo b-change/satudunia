@@ -15,7 +15,7 @@ class StaticPage
   validates_presence_of :street_address, :if => :is_contact_page?, :message => "Street Address can't be blank!"
 
   validates_uniqueness_of :static_key
-  validates_inclusion_of :static_key, :in => %w( about tos eula privacy contact qus_ans comments service), :message => "Static page not registered yet."
+  validates_inclusion_of :static_key, :in => %w( about tos eula privacy contact), :message => "Static page not registered yet."
 
   attr_accessible :static_content, :latitude, :longitude, :street_address, :static_key
 

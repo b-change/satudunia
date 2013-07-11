@@ -10,10 +10,7 @@
       .ribbon-shadow-left  
       .section-wrapper
         / full article header
-        .section
-          .comment-bubble
-            / %a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 0
-          %span.posted-label 
+        .section-header
           %b TERMS OF USE
       .ribbon-shadow-right  
       .section-arrow  
@@ -31,21 +28,10 @@
           .tabs-shortcode
             %ul.tabnav
               %li
-                %a.first{:href => "#1"} Details
-              %li
                 %a{:href => "#2"} Top Critic Reviews
               %li
                 %a{:href => "#3"} Full Cast and Crew
-              / %li
-              /   %a{:href => "#4"} Buy Tickets Online
             .tabdiv-wrapper
-              #1.tabdiv
-                %h3 Details
-                %p
-                  Donec sollicitudin venenatis mattis. Vestibulum fermentum, risus a luctus fermentum, enim purus aliquet tellus, id interdum nisl velit nec diam. Etiam mauris odio, aliquam a elementum eu, vulputate eu nunc. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                  %a{:href => "#"}>
-                    %img.aligncenter.size-medium.wp-image-458{:alt => "", :height => "300", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/music6-300x300.jpg", :title => "music6", :width => "300"}/
-                  Donec sollicitudin venenatis mattis. Vestibulum fermentum, risus a luctus fermentum, enim purus aliquet tellus, id interdum nisl velit nec diam. Etiam mauris odio, aliquam a elementum eu, vulputate eu nunc. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
               #2.tabdiv
                 %h3 Top Critic Reviews
                 %p
@@ -59,22 +45,7 @@
                   Donec sollicitudin venenatis mattis. Vestibulum fermentum, risus a luctus fermentum, enim purus aliquet tellus, id interdum nisl velit nec diam. Etiam mauris odio, aliquam a elementum eu, vulputate eu nunc. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
                   %a{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies1.jpg"}
                     %img.aligncenter.size-medium.wp-image-443{:alt => "", :height => "203", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies1-300x203.jpg", :title => "movies1", :width => "300"}/
-          .toggle-box-wrapper
-            .toggle-box
-              %h3.toggle Read More Details About This Review
-              .toggle-content
-                %p Maecenas faucibus mattis elit, vitae rutrum arcu suscipit et. Sed blandit convallis convallis. Etiam iaculis porttitor massa, quis tincidunt sapien varius at. Quisque sapien lectus, suscipit venenatis sagittis sed, ullamcorper vitae leo. Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet egestas. Maecenas adipiscing nibh eu augue ultricies laoreet eu sed eros. Maecenas lectus dui, tristique ut sollicitudin vel, pellentesque quis diam.
-                .quote-wrapper
-                  .quote Proin sit amet mi non lorem porttitor interdum. In odio diam, pretium sit amet tincidunt a, rutrum vitae est. Nunc cursus hendrerit sem sed elementum. Mauris elit velit, vulputate eu tincidunt sit amet, sodales a dolor.
-                %p Maecenas faucibus mattis elit, vitae rutrum arcu suscipit et. Sed blandit convallis convallis. Etiam iaculis porttitor massa, quis tincidunt sapien varius at. Quisque sapien lectus, suscipit venenatis sagittis sed, ullamcorper vitae leo. Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet egestas. Maecenas adipiscing nibh eu augue ultricies laoreet eu sed eros. Maecenas lectus dui, tristique ut sollicitudin vel, pellentesque quis diam.
-                %p Maecenas faucibus mattis elit, vitae rutrum arcu suscipit et. Sed blandit convallis convallis. Etiam iaculis porttitor massa, quis tincidunt sapien varius at. Quisque sapien lectus, suscipit venenatis sagittis sed, ullamcorper vitae leo. Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet egestas. Maecenas adipiscing nibh eu augue ultricies laoreet eu sed eros. Maecenas lectus dui, tristique ut sollicitudin vel, pellentesque quis diam.
-                %p Maecenas faucibus mattis elit, vitae rutrum arcu suscipit et. Sed blandit convallis convallis. Etiam iaculis porttitor massa, quis tincidunt sapien varius at. Quisque sapien lectus, suscipit venenatis sagittis sed, ullamcorper vitae leo. Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet egestas. Maecenas adipiscing nibh eu augue ultricies laoreet eu sed eros. Maecenas lectus dui, tristique ut sollicitudin vel, pellentesque quis diam.
-                .box-wrapper.tip
-                  .box.tip Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet egestas. Maecenas adipiscing nibh eu augue ultricies laoreet eu sed eros. Maecenas lectus dui, tristique ut sollicitudin vel, pellentesque quis diam.
-          .signoff-wrapper
-            .signoff Did you enjoy this article? If so, we’d love to hear your thoughts in the comments below. It would be great if you subscribed to our RSS feed or signed up for email updates to get more goodness. There’s lots more where this came from!
-        .clearer.hide-responsive
-        %br.clearer/
+        
   / partial for trending
   = render "experimental/partials/trending_short"
 

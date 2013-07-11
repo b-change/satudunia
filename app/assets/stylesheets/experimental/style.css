@@ -148,7 +148,8 @@ section headers
 .section-wrapper {border:1px solid #E0E0E0;}
 .section {background:#FFF;padding:10px 10px 8px 15px;color:#333;text-transform:uppercase;font-size:18px;font-family:BebasNeueRegular, Arial, Sans-Serif;}
 .section-arrow {position:absolute;width:28px;height:12px;background:url(images/section-wrapper-arrow.png) no-repeat 0px 0px;}
-.section-about {background: none repeat scroll 0 0 #FFFFFF;color: #333333;font-family: BebasNeueRegular,arial,sans-serif;font-size: 18px;padding: 10px 10px 8px 15px;text-transform: uppercase;}
+.section-header {background: none repeat scroll 0 0 #FFF;color: #333;font-size: 18px;padding: 10px 10px 8px 15px;text-transform: uppercase;font-family: BebasNeueRegular,arial,sans-serif;}
+
 /*************************************************
 ribbon shadows
 *************************************************/
@@ -738,10 +739,10 @@ standard page
 .page-content h1 {font-size:2.2em;}
 .page-content h2 {font-size:1.7em;}
 .page-content h3 {font-size:1.2em;}
-.page-content h4, .page-content h5, .page-content h6 {font-family:BebasNeueRegular, Arial, Sans-Serif;color:#444;font-weight:normal;margin:0px 0px 20px 0px;line-height:1.2em;}
+.page-content h4, .page-content h5, .page-content h6 {font-family:BebasNeueRegular, Arial, Sans-Serif;color:#444;font-weight:normal;line-height:1.2em;}
 .page-content h4 {font-size:2.2em;}
 .page-content h5 {font-size:1.8em;}
-.page-content h6 {font-size:1.4em;}
+.page-content h6 {font-size:1.4em; margin: -10px 0 5px;}
 .page-content h1.title {margin-left:10px;}
 .page-content h1.error {padding:10px 0px 50px 65px;background:url(images/404.png) no-repeat 0px 0px;margin:40px 0px 0px 140px;}
 .page-content p {margin-bottom:20px;}
@@ -1000,7 +1001,7 @@ ol.commentlist ul.children ul.children ul.children ul.children {margin-left:0px;
 /*************************************************
 sidebar
 *************************************************/	
-.sidebar a {line-height:1.5em;}
+
 .sidebar {width:300px;margin-left:25px;margin-right:10px;margin-top:18px;float:left;font-size:12px;color:#777;}
 .sidebar.front-page-large-featured {margin-top:0px;}
 .sidebar .widget-wrapper {background:#FFF;border:1px solid #E0E0E0;margin-bottom:20px;-moz-border-radius: 3px;border-radius: 3px;}
@@ -2270,12 +2271,20 @@ fonts
     border-radius: 2px 2px 2px 2px;
     margin-left: 5px;
     padding: 3px 6px;
+    margin-bottom: 10px;
     }
 .tags1_2 a {
     color: #003B54;
     font-family: Arial;
     font-size: 12px;
     font-weight: bold;
+}
+.tags-list {
+    border-bottom: 1px solid #D0D3D6;
+    padding-top: 10px;
+    position: relative;
+    display: inline-block;
+    margin :0 10px;
 }
 /*tags list*/
 
@@ -2327,3 +2336,174 @@ fonts
 .sidebar .widget .item-options a.selected {
     color: #666666;
 }
+
+/*questions display css*/
+.qa-q-list-item {
+    padding: 5px;
+    color: #2F313F;
+}
+.qa-q-item-stats {
+    float: left;
+}
+.qa-voting {
+    background: none repeat scroll 0 0 #E2EEF4;
+    border: 1px solid #C5D6DF;
+    float: left;
+    height: 60px;
+    margin-right: 5px;
+    padding: 0;
+    width: 60px;
+}
+.qa-vote-buttons {
+    float: left;
+    height: 60px;
+    overflow: hidden;
+    position: relative;
+    width: 16px;
+}
+.qa-netvote-count {
+    display: block;
+    text-align: center;
+}
+.qa-netvote-count-data {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+.qa-a-count {
+    background: none repeat scroll 0 0 #EAFFF4;
+    border: 1px solid #C1DAA6;
+    float: left;
+    height: 60px;
+    margin-right: 5px;
+    padding: 0;
+    text-align: center;
+    width: 60px;
+}
+.qa-a-count-data {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    margin-top: 10px;
+}
+.qa-a-count-pad {
+    font-size: 11px;
+}
+.qa-view-count {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #DDDDDD;
+    float: left;
+    height: 60px;
+    margin-right: 5px;
+    overflow: hidden;
+    padding: 0;
+    text-align: center;
+    width: 60px;
+}
+.qa-view-count-data {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    margin-top: 10px;
+}
+.qa-q-item-main {
+    padding-left: 10px;
+    width: 620px;
+}
+.qa-q-item-title {
+    color: #000000;
+    font-size: 13px;
+}
+.qa-body-wrapper a:link, .qa-body-wrapper a:visited {
+    color: #006699;
+    text-decoration: none;
+}
+.qa-q-item-title a {
+	color: #004470;
+    font-family: Arial,Helvetica,sans-serif;
+    font-weight: 700;
+    line-height: normal;
+}
+.qa-q-item-avatar-meta {
+    margin: 10px 0 0;
+}
+.qa-q-item-meta {
+    float: left;
+    font-family: arial;
+    font-size: 12px;
+    line-height: 20px;
+    position: relative;
+    text-align: justify;
+    vertical-align: middle;
+    word-wrap: break-word;
+    padding-bottom: 10px;
+}
+.back-class-exp {
+    background-color: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 3px 3px 3px 3px;
+    margin-left: 10px;
+    width: 640px;
+}
+.qa-q-list {
+    margin-left: -20px;
+}
+.qa-q-item-tags {
+    margin-top: 20px;
+}
+.tags-adj{
+	margin-right: 10px;
+}
+.tags2.tags-experimental{
+    margin-left: 145px !important;
+    margin-top: -20px;
+}
+.section-width {
+	width :640px;
+}
+
+.qa-vote-up-button, .qa-vote-up-hover, .qa-vote-up-disabled {
+    background: url(images/vote-buttons.png) no-repeat scroll 0 0 transparent !important;
+    border: 0 none !important;
+    color: #F1C96B !important;
+    font-size: 1px !important;
+    height: 20px !important;
+    width: 16px !important;
+    display: inline-block !important; 
+}
+
+
+.qa-vote-second-button {
+    bottom: 6px;
+    left: 2px;
+    position: absolute;
+}
+.qa-vote-first-button {
+    left: 2px;
+    position: absolute;
+    top: 6px;
+}
+.qa-vote-up-button, .qa-vote-up-hover, .qa-vote-down-button, .qa-vote-down-hover, .qa-vote-one-button {
+	text-indent: 9999px;
+}
+.qa-body-wrapper input[type="submit"] {
+    cursor: pointer;
+}
+.qa-vote-down-button, .qa-vote-down-hover, .qa-vote-down-disabled {
+    background: url(images/vote-buttons.png) no-repeat scroll 0 0 transparent !important;
+    border: 0 none !important;
+    color: #F1C96B !important;
+    font-size: 1px !important;
+    height: 20px !important;
+    width: 16px !important;
+}
+.qa-vote-down-disabled {
+    background-position: -16px -80px !important;
+    color: #CCCCCC;
+}
+/*questions display css*/

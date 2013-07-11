@@ -1,6 +1,3 @@
-/ content variable
--unless @about.nil?
-	- contentVarible = strip_tags(@about.static_content)
 .clearer.hide-responsive  
 %br.hide-responsive/
 .main-content-left
@@ -9,7 +6,7 @@
 		.review-content
 			.ribbon-shadow-left
 			.section-wrapper
-				.section-about= @title.capitalize
+				.section-header= @title.capitalize
 			.section-arrow
 			.content-panel
 				.the-content.justify-content
@@ -17,7 +14,7 @@
 						-unless @about.nil? 
 							= strip_tags(@about.static_content).strip.to(0)
 					%p.filter-content
-						/ pushing content values through jquery 
+						= strip_tags(@about_content[1])
 					.pullquote-wrapper.left
 						.pullquote.prociono
 							= current_group.site_slogan.capitalize
@@ -158,12 +155,3 @@
 	/banner box
 	= render "experimental/partials/banner_box"
 
-:javascript
-	jQuery.noConflict();
-	jQuery(document).ready(function() { 
-		
-		jQuery('#related > ul').tabs({ fx: { opacity: 'toggle', duration: 150 } });
-		// for making first character styled
-		Experimental.getMainContent("#{contentVarible}");
-		
-	});

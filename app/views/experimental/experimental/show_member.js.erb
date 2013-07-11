@@ -1,0 +1,7 @@
+<% if params[:dataSend]== "newest" %>
+	jQuery('#members-list').html("<%= escape_javascript( render 'experimental/partials/show_member' ,:locals=>{:newest_member=>@newest_member})%>");
+<% elsif params[:dataSend]== "active"%>
+	jQuery('#members-list').html("<%= escape_javascript( render 'experimental/partials/show_member' ,:locals=>{:active_member=>@active_member})%>");
+<% else %>
+	jQuery('#members-list').html("<%= escape_javascript( render 'experimental/partials/show_member' ,:locals=>{:popular=>@popular})%>");
+<%end%>

@@ -11,6 +11,8 @@
         %li
           %a{:href => "/services-map", :title=>"Services Map", :alt=>"Services Map"} Services Map
         %li
+          %a{:href => partners_experimental_index_path,:title=>"Partners",:alt=>"Partners"} Partners
+        %li
           %a{:href => "/users", :title=>"Community", :alt=>"Community"} Community
         %li
           %a{:href => contact_path, :title=>"Contact", :alt=>"Contact"} Contact
@@ -220,9 +222,9 @@
           .textwidget
             %p
               %img{:alt => "logo", :src => "/assets/plus/footer_logo.png"}/
-            - unless @about.blank?
+            - unless @aboutContent.blank?
               %p 
-                = truncate(strip_tags(@aboutContent.static_content), :omission => "", :length => 833)
+                = truncate(strip_tags(@aboutContent.static_content), :omission => "", :length => 833) rescue ""
       %br.clearer/
     .copyright
       .ribbon-shadow-left  

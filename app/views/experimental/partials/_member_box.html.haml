@@ -3,62 +3,46 @@
     .section-wrapper
       .section Members
     #members-list-options.item-options
-      %a#newest-members{:href => "http://www.industrialthemes.com/made/members"} Newest
+      %a#newest-members.ajax-class-call{:href => "#1",:data_send=>"newest"} Newest
+      %span{:id=>"newest",:class=>"display-hidden"}
       |
-      %a#recently-active-members.selected{:href => "http://www.industrialthemes.com/made/members"} Active
+      %a#recently-active-members.selected.ajax-class-call{:href => "#2",:data_send=>"active"} Active
+      %span{:id=>"active",:class=>"display-hidden"}
       |
-      %a#popular-members{:href => "http://www.industrialthemes.com/made/members"} Popular
+      %a#popular-members.ajax-class-call{:href => "#3",:data_send=>"popular"} Popular
+      %span{:id=>"popular",:class=>"display-hidden"}
     %ul#members-list.item-list
-      %li.vcard
-        .item-avatar
-          %a{:href => "http://www.industrialthemes.com/made/members/sisebreef/", :title => "sisebreefVV"}
-            %img.avatar.user-1091-avatar.avatar-.photo{:alt => "Profile picture of sisebreefVV", :height => "50", :src => "http://gravatar.com/avatar/e54f803bf297019cc23a8e0769221fcf?d=http://www.industrialthemes.com/made/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg&s=50&r=G", :width => "50"}/
-        .item
-          .item-title.fn
-            %a{:href => "http://www.industrialthemes.com/made/members/sisebreef/", :title => "sisebreefVV"} sisebreefVV
-          .item-meta
-            %span.activity
-              active 2 hours, 28 minutes ago
-      %li.vcard
-        .item-avatar
-          %a{:href => "http://www.industrialthemes.com/made/members/nasysyncgrown/", :title => "nasysyncgrownWK"}
-            %img.avatar.user-1098-avatar.avatar-.photo{:alt => "Profile picture of nasysyncgrownWK", :height => "50", :src => "http://gravatar.com/avatar/9bf87110e005e80a5114b7c8a4442cb9?d=http://www.industrialthemes.com/made/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg&s=50&r=G", :width => "50"}/
-        .item
-          .item-title.fn
-            %a{:href => "http://www.industrialthemes.com/made/members/nasysyncgrown/", :title => "nasysyncgrownWK"} nasysyncgrownWK
-          .item-meta
-            %span.activity
-              active 20 hours, 31 minutes ago
-      %li.vcard
-        .item-avatar
-          %a{:href => "http://www.industrialthemes.com/made/members/industrialthemes/", :title => "Industrial Themes"}
-            %img.avatar.user-494-avatar.avatar-.photo{:alt => "Profile picture of Industrial Themes", :height => "50", :src => "http://gravatar.com/avatar/8a567031a8d520b2f97089e715b64e00?d=http://www.industrialthemes.com/made/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg&s=50&r=G", :width => "50"}/
-        .item
-          .item-title.fn
-            %a{:href => "http://www.industrialthemes.com/made/members/industrialthemes/", :title => "Industrial Themes"} Industrial Themes
-          .item-meta
-            %span.activity
-              active 1 day, 10 hours ago
-      %li.vcard
-        .item-avatar
-          %a{:href => "http://www.industrialthemes.com/made/members/unupponneve/", :title => "unupponneveHZ"}
-            %img.avatar.user-1104-avatar.avatar-.photo{:alt => "Profile picture of unupponneveHZ", :height => "50", :src => "http://gravatar.com/avatar/365136d3a5d2df4e556e6ec7b93516de?d=http://www.industrialthemes.com/made/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg&s=50&r=G", :width => "50"}/
-        .item
-          .item-title.fn
-            %a{:href => "http://www.industrialthemes.com/made/members/unupponneve/", :title => "unupponneveHZ"} unupponneveHZ
-          .item-meta
-            %span.activity
-              active 1 day, 19 hours ago
-      %li.vcard
-        .item-avatar
-          %a{:href => "http://www.industrialthemes.com/made/members/kicklakly/", :title => "kicklaklyPJ"}
-            %img.avatar.user-1103-avatar.avatar-.photo{:alt => "Profile picture of kicklaklyPJ", :height => "50", :src => "http://gravatar.com/avatar/91ca938b7220dd153eab6c5acb89e163?d=http://www.industrialthemes.com/made/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg&s=50&r=G", :width => "50"}/
-        .item
-          .item-title.fn
-            %a{:href => "http://www.industrialthemes.com/made/members/kicklakly/", :title => "kicklaklyPJ"} kicklaklyPJ
-          .item-meta
-            %span.activity
-              active 1 day, 20 hours ago
+      - @active_member.each do |active_member| 
+        %li.vcard
+          .item-avatar
+            = image_tag(default_avatar_url('small'),:width => "50",:class=>"avatar") 
+          .item
+            .item-title.fn
+              %a
+                = active_member.display_name
+            .item-meta
+              %span.activity
+                %a
+                  = active_member.joined_at
+     
+        
     %input#_wpnonce-members{:name => "_wpnonce-members", :type => "hidden", :value => "c12155629d"}/
     %input{:name => "_wp_http_referer", :type => "hidden", :value => "/made/"}/
     %input#members_widget_max{:name => "members_widget_max", :type => "hidden", :value => "5"}/
+
+:javascript
+  jQuery(".ajax-class-call").click(function(){
+    // data taken to idetify tab
+    var dataTaker = jQuery(this).attr("data_send");
+    // loader image show
+    jQuery("#"+dataTaker).show().html("<img src='/assets/ajax-loader.gif' width='10' height='10'/>");
+    jQuery.ajax({
+      url: "/experimental/show_member",
+      type: "GET",
+      data:"dataSend="+dataTaker,
+      success:function(sucessObject){
+        jQuery("#"+dataTaker).hide();
+      }
+
+    }); 
+  });

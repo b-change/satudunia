@@ -292,8 +292,7 @@ class ApplicationController < ActionController::Base
   def static_content
     @staticContent = StaticPage.all
     @aboutContent = @staticContent.where(:static_key => 'about').first
-    @questionContent = @staticContent.where(:static_key => 'qus_ans').first
-    @commentContent = @staticContent.where(:static_key => 'comments').first
-    @serviceContent = @staticContent.where(:static_key => 'service').first
+    @active_member = Membership.where(state: "active").limit(5)
+
   end
 end
