@@ -16,7 +16,7 @@
 					%li
 						%a{:href => partners_experimental_index_path,:title=>"Partners",:alt=>"Partners"} Partners
 					%li
-						%a{:href => '/questions/ask-a-question',:title=>"Ask a Question",:alt=>"Ask a Question"} Ask a Question
+						%a{:href => ask_question_experimental_index_path,:title=>"Ask a Question",:alt=>"Ask a Question"} Ask a Question
 					%li
 						- if current_user.nil?
 							%a{:href => '/login',:title=>"Sign in",:alt=>"Sign in"}  Login in / Sign Up 
@@ -24,7 +24,9 @@
 							= link_to "Login as #{h(current_user.display_name)}","#",:style=>"color:#027DB2;"
 							%ul
 								%li
-									= link_to "Profile Settings", user_path(current_user)
+									= link_to "Profile", profile_experimental_index_path
+								%li
+									= link_to "Profile Settings", "/profile/settings"
 								%li
 									= link_to t('.connect'), social_connect_path
 								%li

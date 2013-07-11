@@ -18,7 +18,7 @@ class Experimental::ExperimentalController < ApplicationController
   # code from the plus template in order to set current order
 
   def index
-
+    @active_member = Membership.where(state: "active").limit(3)
   end
   # action public about
   def public_about
@@ -32,6 +32,8 @@ class Experimental::ExperimentalController < ApplicationController
   def terms
     @title = "terms of use"
     @tos = StaticPage.where(:static_key => 'tos').first
+    @tou=@tos.static_content.split('.',2)
+
   end
   #faq
   def faq
@@ -127,4 +129,33 @@ class Experimental::ExperimentalController < ApplicationController
     end
   end
 
+  def show_member
+    
+    @caseVarible = params[:dataSend]
+    case @caseVarible
+      when "newest"
+        @newest_member = User.order_by(:created_at=>:desc).limit(3)
+        render layout =>false
+      when "active"
+        @active_member = Membership.where(state: "active").limit(3)
+        render layout =>false
+      when "popular"
+        @popular = User.order_by(:created_at=>:desc).limit(3)
+        render layout =>false
+      end
+  end
+
+  def profile
+    
+  end
+
+  def profile_settings
+    
+  end
+  def ask_question
+     
+  end
+
+   
+ 
 end

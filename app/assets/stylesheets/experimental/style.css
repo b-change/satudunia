@@ -148,7 +148,7 @@ section headers
 .section-wrapper {border:1px solid #E0E0E0;}
 .section {background:#FFF;padding:10px 10px 8px 15px;color:#333;text-transform:uppercase;font-size:18px;font-family:BebasNeueRegular, Arial, Sans-Serif;}
 .section-arrow {position:absolute;width:28px;height:12px;background:url(images/section-wrapper-arrow.png) no-repeat 0px 0px;}
-.section-about {background: none repeat scroll 0 0 #FFFFFF;color: #333333;font-family: BebasNeueRegular,arial,sans-serif;font-size: 18px;padding: 10px 10px 8px 15px;text-transform: uppercase;}
+.section-header {background: none repeat scroll 0 0 #FFFFFF;color: #333333;font-family: BebasNeueRegular,arial,sans-serif;font-size: 18px;padding: 10px 10px 8px 15px;text-transform: uppercase;}
 /*************************************************
 ribbon shadows
 *************************************************/
@@ -2327,3 +2327,4 @@ fonts
 .sidebar .widget .item-options a.selected {
     color: #666666;
 }
+
