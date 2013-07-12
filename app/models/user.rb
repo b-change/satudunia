@@ -8,7 +8,7 @@ class User
   include Shapado::Models::GeoCommon
   include Shapado::Models::Networks
 
-  devise :database_authenticatable, :recoverable, :registerable, :rememberable,
+  devise :database_authenticatable, :recoverable, :registerable, :rememberable,:rpx_connectable,
          :lockable, :token_authenticatable, :encryptable, :trackable, :omniauthable, :encryptor => :restful_authentication_sha1
 
   ROLES = %w[user moderator admin]
@@ -53,6 +53,8 @@ class User
 
   field :followers_count,           :type => Integer, :default => 0
   field :following_count,           :type => Integer, :default => 0
+  # rpx_identifire
+  field :rpx_identifier,            :type=>String
 
   field :group_ids,                 :type => Array, :default => []
 
@@ -108,10 +110,10 @@ class User
   validates_inclusion_of :role,  :in => ROLES
 
   with_options :unless => :anonymous do |v|
-    v.validates_presence_of     :login
-    v.validates_length_of       :login,    :in => 3..40
+    # v.validates_presence_of     :login
+    # v.validates_length_of       :login,    :in => 3..40
     v.validates_uniqueness_of   :login
-    v.validates_format_of       :login,    :with => /\w+/
+    # v.validates_format_of       :login,    :with => /\w+/
   end
 
   validates_length_of       :name,     :maximum => 100
@@ -121,7 +123,7 @@ class User
   validates_length_of       :email,    :in => 6..100, :allow_nil => true, :if => lambda { |e| !e.email.blank? }
 
   with_options :if => :password_required? do |v|
-    v.validates_presence_of     :password
+    # v.validates_presence_of     :password
     v.validates_confirmation_of :password
     v.validates_length_of       :password, :in => 6..20, :allow_blank => true
   end

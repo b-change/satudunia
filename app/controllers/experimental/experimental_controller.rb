@@ -137,7 +137,10 @@ class Experimental::ExperimentalController < ApplicationController
         render layout =>false
       end
   end
-
+  # community experimental
+  def community
+    
+  end
   # before filter action
   def check_age
     @question = current_group.questions.by_slug(params[:id])
@@ -180,9 +183,12 @@ class Experimental::ExperimentalController < ApplicationController
     
   end
   def ask_question
-     
+    @question = Question.new(params[:question]) 
   end
-
+  #ERROR PAGE FOR EXPERIMENTAL
+  def routing_error
+    render "404", :status => 404
+  end
    
  
 end
