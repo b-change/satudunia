@@ -951,4 +951,8 @@ Time.zone.now ? 1 : 0)
     read_list = ReadList.create
     self.read_list = read_list
   end
+  # rpx success
+  def before_rpx_auto_create(rpx_user)
+
+  end
 end

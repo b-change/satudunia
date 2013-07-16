@@ -8,5 +8,10 @@
 //= require 'experimental/custom'
 //= require 'experimental/customFunction'
 //= require tabber.js
+//= require vendor/chosen.jquery.min.js
+//= require vendor/ajax-chosen.js
+//= require vendor/jquery.textarea.js
+//= require vendor/jHtmlArea.js
+//= require app/modules/editor.js
 
 

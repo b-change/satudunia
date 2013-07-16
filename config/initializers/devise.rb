@@ -32,6 +32,9 @@ Devise.setup do |config|
   config.rpx_application_name = "b-change"
   RPXNow.api_key = "a330999e75f91b0cc77d5c6879590c70b2c0e264"
   config.http_authentication_realm = AppConfig.application_name
+  # janrain.settings.noReturnExperience = true;
+  config.rpx_extended_user_data = true
+  config.rpx_additional_user_data = [:verifiedEmail, :url, :providerName,:photo]
 
   # ==> Configuration for :database_authenticatable
   # For bcrypt, this is the cost for hashing the password and defaults to 10. If

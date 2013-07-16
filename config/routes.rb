@@ -6,32 +6,6 @@ require 'magent_web'
 
 Rails.application.routes.draw do
   
-  # experimetal routes
-  scope :module => "experimental" do
-    resources :experimental do
-      collection do
-        get :index,:path=>"/index"
-        get :public_about,:path=>"about"
-        get :rss_feed,:path=>"rss"
-        get :terms, :path=>"terms-of-use"
-        get :faq
-        get :questions
-        get :partners
-        get :show_member
-        get '/questions/ask-a-question' => 'experimental#ask_question', :as => :ask_question
-        get 'questions/:id' => 'experimental#question_show', :as => :question_show
-        get :community
-        get 'services-map' => 'experimental#service_providers_show', :as => :service_providers_show
-        get :profile
-        get :profile_settings, :path=> "/profile/settings"
-        # experimental routes
-        get "*a", :to => "experimental#routing_error"
-      end
-    end
-  end 
-  
-  
-
   get "survey/index"
 
   devise_for(:users, :path => '/',
@@ -57,7 +31,7 @@ Rails.application.routes.draw do
   match '/feedback' => 'welcome#fake_feedback'
   match '/send_feedback' => 'welcome#send_shapado_feedback', :as => :send_feedback
   match '/send_shapado_feedback' => 'welcome#send_feedback', :as => :send_feedback
-  match '/profile/settings' => 'users#edit', :as => :settings
+  #match '/profile/settings' => 'users#edit', :as => :settings
   match '/tos' => 'manage_terms#public_terms', :as => :tos
   match '/privacy' => 'manage_privacy#public_privacy', :as => :privacy
   match '/widgets/embedded/:id' => 'widgets#embedded', :as => :embedded_widget
@@ -70,9 +44,9 @@ Rails.application.routes.draw do
 
   match '/eula' => 'manage_eulas#public_eula'
   match '/privacy-policy' => 'manage_privacy#public_privacy'
-  match '/terms-of-use' => 'manage_terms#public_terms'
-  match '/about' => 'manage_abouts#public_about'
-  match '/faq' => 'manage_faqs#public_faq'
+  #match '/terms-of-use' => 'manage_terms#public_terms'
+  #match '/about' => 'manage_abouts#public_about'
+  #match '/faq' => 'manage_faqs#public_faq'
   match '/first-auth/:auth_provider' => 'home#auth_popup1'
   match '/second-auth/:auth_provider' => 'home#auth_popup2'
   match '/third-auth/:auth_provider' => 'home#auth_popup3'
@@ -132,12 +106,10 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :service_providers, :except => [:show], :path=>'services-map'
+  # resources :service_providers, :except => [:show], :path=>'services-map'
   get '/services-map/:id/:slug' => "service_providers#show", :as=>:service_map_provider
   resources :news
   resources :polls
-
-  match '/services-map' => 'service_providers#index'
 
   resources :pages do
     member do
@@ -171,60 +143,60 @@ Rails.application.routes.draw do
   match 'questions/unanswered' => redirect("/questions?unanswered=1")
 
   match 'question/:id' => 'questions#show', :as => :question
-  match 'questions/ask-a-question' => "questions#new", :as => :new_question
+  #match 'questions/ask-a-question' => "questions#new", :as => :new_question
 
-  resources :questions, :except => [:show, :new] do
+  # resources :questions, :except => [:show, :new] do
 
-    resources :votes
-    resources :flags
-    collection do
-      get :tags_for_autocomplete
-      get :related_questions
-      get 'page/:page', :action => :index
-      match '/:filter' => 'questions#index', :as => :filtered, :constraints => { :filter => /all|unanswered|by_me|feed|preferred|contributed|expertise/ }
-    end
+  #   resources :votes
+  #   resources :flags
+  #   collection do
+  #     get :tags_for_autocomplete
+  #     get :related_questions
+  #     get 'page/:page', :action => :index
+  #     match '/:filter' => 'questions#index', :as => :filtered, :constraints => { :filter => /all|unanswered|by_me|feed|preferred|contributed|expertise/ }
+  #   end
 
-    member do
-      get :solve
-      get :unsolve
-      get :flag
-      get :follow
-      get :unfollow
-      get :history
-      get :revert
-      get :diff
-      get :move
-      put :move_to
-      get :retag
-      put :retag_to
-      get :remove_attachment
-      get :twitter_share
-    end
+  #   member do
+  #     get :solve
+  #     get :unsolve
+  #     get :flag
+  #     get :follow
+  #     get :unfollow
+  #     get :history
+  #     get :revert
+  #     get :diff
+  #     get :move
+  #     put :move_to
+  #     get :retag
+  #     put :retag_to
+  #     get :remove_attachment
+  #     get :twitter_share
+  #   end
 
-    resources :comments do
-      resources :votes
-    end
+  #   resources :comments do
+  #     resources :votes
+  #   end
 
-    resources :answers do
-      resources :votes
-      resources :flags
-      member do
-        get :favorite
-        get :unfavorite
-        get :flag
-        get :history
-        get :diff
-        get :revert
-      end
+  #   resources :answers do
+  #     resources :votes
+  #     resources :flags
+  #     member do
+  #       get :favorite
+  #       get :unfavorite
+  #       get :flag
+  #       get :history
+  #       get :diff
+  #       get :revert
+  #     end
 
-      resources :comments do
-        resources :votes
-      end
-    end
+  #     resources :comments do
+  #       resources :votes
+  #     end
+  #   end
 
-    resources :close_requests
-    resources :open_requests
-  end
+  #   resources :close_requests
+  #   resources :open_requests
+  # end
   get '/search_ajax' => 'searches#search_ajax'
   post '/question_search'=>'questions#question_search#index'
 
@@ -400,10 +372,88 @@ Rails.application.routes.draw do
     resources :users
   end
 
+   # experimetal routes
+  scope :module => "experimental" do
+    resources :experimental, :path => "/" do
+      collection do
+        get :index,:path=>"/index"
+        get :public_about,:path=>"/about"
+        get :rss_feed,:path=>"rss"
+        get :terms, :path=>"terms-of-use"
+        get :faq
+        get :questions
+        get :partners
+        get :show_member
+        get '/questions/ask-a-question' => 'experimental#ask_question', :as => :ask_question
+        get 'questions/:id' => 'experimental#question_show', :as => :question_show
+        get :community
+        get 'services-map' => 'experimental#service_providers_show', :as => :service_providers_show
+        get :profile
+        get :profile_settings, :path=> "/profile/settings"
+        # experimental routes
+        get "*a", :to => "experimental#routing_error"
+      end
+    end
+  end 
+
+  resources :questions, :except => [:show, :new] do
+
+    resources :votes
+    resources :flags
+    collection do
+      get :tags_for_autocomplete
+      get :related_questions
+      get 'page/:page', :action => :index
+      match '/:filter' => 'questions#index', :as => :filtered, :constraints => { :filter => /all|unanswered|by_me|feed|preferred|contributed|expertise/ }
+    end
+
+    member do
+      get :solve
+      get :unsolve
+      get :flag
+      get :follow
+      get :unfollow
+      get :history
+      get :revert
+      get :diff
+      get :move
+      put :move_to
+      get :retag
+      put :retag_to
+      get :remove_attachment
+      get :twitter_share
+    end
+
+    resources :comments do
+      resources :votes
+    end
+
+    resources :answers do
+      resources :votes
+      resources :flags
+      member do
+        get :favorite
+        get :unfavorite
+        get :flag
+        get :history
+        get :diff
+        get :revert
+      end
+
+      resources :comments do
+        resources :votes
+      end
+    end
+
+    resources :close_requests
+    resources :open_requests
+  end
+
+
   match '/moderate' => 'moderate/questions#index'
 #   match '/search' => 'searches#index', :as => :search
   match '/about' => 'groups#show', :as => :about
-  root :to => 'home#index'
+  root :to => 'experimental/experimental#index'
   #match '/:controller(/:action(/:id))'
   match '*a', :to => 'public_errors#routing'
 end

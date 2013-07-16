@@ -44,11 +44,11 @@
                 .catname
                   Services Map
                 .category-arrow  
-              %a.darken{:href => service_providers_path}
+              %a.darken{:href => service_providers_show_experimental_index_path}
                 %img{:alt => "fashion3", :height => "170", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/fashion3-300x170.jpg", :width => "300"}/
               .inner
                 %h2
-                  %a{:href => service_providers_path}
+                  %a{:href => service_providers_show_experimental_index_path}
                     =current_group.block_two_header.html_safe
                 .excerpt.full-align-style
                   = current_group.block_two_info.html_safe rescue ""
@@ -59,7 +59,7 @@
                 .comments
                   %a{:href => "single-review-numbers.html", :title => "Comment on 5 Colorful Watches From Zappos for under $50"} 0 Views
                 .more
-                  %a{:href => service_providers_path} More
+                  %a{:href => service_providers_show_experimental_index_path} More
             .clearer
           %li
             .post-panel

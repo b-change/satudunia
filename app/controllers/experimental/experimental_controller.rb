@@ -33,8 +33,6 @@ class Experimental::ExperimentalController < ApplicationController
   def terms
     @title = "terms of use"
     @tos = StaticPage.where(:static_key => 'tos').first
-    @tou=@tos.static_content.split('.',2)
-
   end
   #faq
   def faq

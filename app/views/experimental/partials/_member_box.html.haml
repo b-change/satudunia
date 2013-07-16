@@ -37,7 +37,7 @@
     // loader image show
     jQuery("#"+dataTaker).show().html("<img src='/assets/ajax-loader.gif' width='10' height='10'/>");
     jQuery.ajax({
-      url: "/experimental/show_member",
+      url: "/show_member",
       type: "GET",
       data:"dataSend="+dataTaker,
       success:function(sucessObject){

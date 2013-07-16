@@ -1,6 +1,4 @@
 / content variable
--unless @tos.nil?
-  - contentVarible = strip_tags(@tos.static_content)
 .clearer.hide-responsive  
 %br.hide-responsive/
 .main-content-left
@@ -20,10 +18,8 @@
         .the-content.justify-content
           .dropcap.prociono
           %p 
-            -if !@tos.static_content.nil? 
-              %h1.title= @tou[0].html_safe
-              = @tou[1].html_safe
-            
+            -unless @tos.nil? 
+              = @tos.static_content.html_safe
           %p
             / the tabs
           .tabs-shortcode
@@ -71,6 +67,5 @@
   
     jQuery('#related > ul').tabs({ fx: { opacity: 'toggle', duration: 150 } });
     // for making first character styled
-    Experimental.getMainContent("#{contentVarible}");
     
   });

@@ -35,6 +35,10 @@
 									= link_to t('.followers'), follows_user_path(current_user)+"?sort=followers"
 								%li
 									= link_to t("layouts.application.logout"), destroy_user_session_path
+
+					%li
+						= link_to_rpx "Sign up with janrain", user_session_url
+
 								
 			%select#select-menu-top-menu
 				%option Page Navigation
@@ -65,3 +69,4 @@
 						%input#s{:name => "s", :onblur => "if (this.value == '') {this.value = 'search';}", :onfocus => "if (this.value == 'search') {this.value = '';}", :type => "text", :value => "search"}/
 		%br.clearer/
 	.ribbon-shadow-right 
+=javascript_include_rpx(user_session_url)
