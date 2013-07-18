@@ -43,7 +43,6 @@ gem 'mongo_store', :git => 'https://github.com/Houdini/mongo_store.git'
 gem 'redis'
 gem 'redis-store'
 gem 'redis-rails'
-gem 'html_truncator'
 
 # utils
 gem 'whatlanguage', '1.0.0'
@@ -77,8 +76,6 @@ gem 'multiauth', :git => 'http://github.com/dcu/multiauth.git'
 
 gem 'orm_adapter'
 gem 'devise', '~> 1.4.0'
-gem 'devise_rpx_connectable'
-
 
 gem 'whenever', :require => false
 gem 'rack-ssl', :require => false
@@ -122,8 +119,6 @@ end
 group :development do
   gem 'pry'
   gem 'pry-rails'
-  gem 'debugger'
-  gem 'quiet_assets'
   gem 'database_cleaner'
   gem 'rspec', '>= 2.0.1'
   gem 'rspec-rails', '>= 2.0.1'

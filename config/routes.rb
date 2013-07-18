@@ -5,36 +5,7 @@ require 'magent_web'
 #require 'bug_hunter'
 
 Rails.application.routes.draw do
-  
-  # experimetal routes
-  scope :module => "experimental" do
-    resources :experimental do
-      collection do
-        get :index,:path=>"/index"
-        get :public_about,:path=>"about"
-        get :rss_feed,:path=>"rss"
-        get :terms, :path=>"terms-of-use"
-        get :faq
-        get :questions
-        get :partners
-        get :show_member
-        get '/questions/ask-a-question' => 'experimental#ask_question', :as => :ask_question
-        get 'questions/:id' => 'experimental#question_show', :as => :question_show
-        get :community
-        get 'services-map' => 'experimental#service_providers_show', :as => :service_providers_show
-        get :profile
-        get :profile_settings, :path=> "/profile/settings"
-        # experimental routes
-        get "*a", :to => "experimental#routing_error"
-      end
-    end
-  end 
-  
-  
-
-  get "survey/index"
-
-  devise_for(:users, :path => '/',
+  devise_for(:users,
              :path_names => {:sign_in => 'login', :sign_out => 'logout'},
              :controllers => {:registrations => 'users', :omniauth_callbacks => "multiauth/sessions"}) do
   end
@@ -115,12 +86,7 @@ Rails.application.routes.draw do
       get :survey
     end
   end
-  # match 'towns' => 'towns#index'
-  get 'faq' =>"manage_faqs#public_faq"
-  get 'experimental/about' => "manage_abouts#experimental_about"
-  get 'question/:question_id/votesup/:vote_up'=>"votes#create",:as=>:vote_question_up
-  get 'question/:question_id/votesdown/:vote_down'=>"votes#create",:as=>:vote_question_down
-  resources :countquestions
+
   resources :badges
   resources :news_letter, :path=>'/newsletter'
 

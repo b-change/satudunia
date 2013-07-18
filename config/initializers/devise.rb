@@ -13,7 +13,6 @@ Devise.setup do |config|
   # (bson_ext recommended) and :data_mapper (experimental).
   require "devise/orm/mongoid"
 
-
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating an user. By default is
   # just :email. You can configure it to use [:username, :subdomain], so for
@@ -29,8 +28,6 @@ Devise.setup do |config|
   # config.http_authenticatable = true
 
   # The realm used in Http Basic Authentication
-  config.rpx_application_name = "b-change"
-  RPXNow.api_key = "a330999e75f91b0cc77d5c6879590c70b2c0e264"
   config.http_authentication_realm = AppConfig.application_name
 
   # ==> Configuration for :database_authenticatable

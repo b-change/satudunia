@@ -8,7 +8,7 @@ class User
   include Shapado::Models::GeoCommon
   include Shapado::Models::Networks
 
-  devise :database_authenticatable, :recoverable, :registerable, :rememberable,:rpx_connectable,
+  devise :database_authenticatable, :recoverable, :registerable, :rememberable,
          :lockable, :token_authenticatable, :encryptable, :trackable, :omniauthable, :encryptor => :restful_authentication_sha1
 
   ROLES = %w[user moderator admin]
@@ -53,8 +53,6 @@ class User
 
   field :followers_count,           :type => Integer, :default => 0
   field :following_count,           :type => Integer, :default => 0
-  # rpx_identifire
-  field :rpx_identifier,            :type=>String
 
   field :group_ids,                 :type => Array, :default => []
 

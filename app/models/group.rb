@@ -33,7 +33,7 @@
   field :has_custom_analytics, :type => Boolean, :default => true
   field :metro_color, :type => String, :default => "FFFFFF"
 
-  field :auth_providers, :type => Array, :default => %w[Google Twitter Facebook MyOpenID]
+  field :auth_providers, :type => Array, :default => %w[Google Twitter Facebook]
   field :allow_any_openid, :type => Boolean, :default => true
 
   field :language, :type => String
