@@ -1,22 +1,50 @@
-= image_tag "plus/body_about1.jpg", :class => "body_header"
-.alpha.grid_24.body_about{:id => "firstElement", :style => "margin-bottom:20px"}
-  %span{:class => "p_a"}
-    Sign in to Plus
-  %span{:class => "p_a1 il_ask", :style => "left:-250px !important"}
-    = link_to "Home", "/"
-    > Sign in to Plus
-  %h2
-    = t('.join_group', :group => current_group.name)
-  .container-new-plus
-    %p
-      = t('.description')
-    - @user.password = @user.password_confirmation = nil
-    = error_messages_for :user
-    = form_for @user, :url => users_path, :html => {:class => "form"} do |f|
-      = hidden_field_tag 'invitation_id', params[:invitation_id]
-      =render :partial => "form", :locals => {:f => f}
-      .buttons
-        = submit_tag t('.submit'), :class => "ask_tag2_common"
+.clearer.hide-responsive  
+%br.hide-responsive/
+.main-content-left
+  .page-content.review.single-post
+    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+    .review-content
+      .ribbon-shadow-left
+      .section-wrapper
+        .section-header
+          Join
+          =current_group.name
+      .section-arrow
+      .content-panel
+        .the-content
+          / old plus content
+          %h1
+            = t('.description')
+          - @user.password = @user.password_confirmation = nil
+          = error_messages_for :user
+          = form_for @user, :url => users_path, :html => {:class => "exp-contact-form"} do |f|
+            = hidden_field_tag 'invitation_id', params[:invitation_id]
+            =render :partial => "form", :locals => {:f => f}
+            %br
+            %p
+              = button_tag t('.submit'), :type =>"submit" 
+      
+
+
+/side bar
+.sidebar
+  = render "experimental/partials/left_bar"
+  /widget top
+  = render "experimental/partials/widget_top"
+  / .clearer.hide-responsive
+  / %br.clearer/
+  / newly reviewd
+  = render "experimental/partials/newly_reviewed"
+  /popular box
+  = render "experimental/partials/popular_box"
+  /rating box
+  = render "experimental/partials/rating_box"
+  /banner box
+  = render "experimental/partials/banner_box"
+
+
+
+    
   
 
   

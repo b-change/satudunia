@@ -1,12 +1,21 @@
-.list-users
-  %ul.items
-    - if @polls.blank?
-      %li
-        .summary
-          %h3
+.clearer.hide-responsive  
+%br.hide-responsive/
+.main-content-left
+  .page-content.review.single-post
+    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+    .review-content
+      .ribbon-shadow-left
+      .section-wrapper
+        .section-header Polls
+      .section-arrow
+      / post by removed from here
+      %h1.title Polls
+      .content-panel
+        .the-content.justify-content
+          - if @polls.blank?
             No Polls Yet
-    -@polls.each do |poll|
-      = render :partial => "poll", :object => poll
-      
-  = paginate @polls
-    
+          -@polls.each do |poll|
+            = render :partial => "poll", :object => poll  
+.sidebar
+  = render "experimental/partials/login_box"
+

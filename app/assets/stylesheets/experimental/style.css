@@ -148,7 +148,7 @@ section headers
 .section-wrapper {border:1px solid #E0E0E0;}
 .section {background:#FFF;padding:10px 10px 8px 15px;color:#333;text-transform:uppercase;font-size:18px;font-family:BebasNeueRegular, Arial, Sans-Serif;}
 .section-arrow {position:absolute;width:28px;height:12px;background:url(images/section-wrapper-arrow.png) no-repeat 0px 0px;}
-.section-header {background: none repeat scroll 0 0 #FFFFFF;color: #333333;font-family: BebasNeueRegular,arial,sans-serif;font-size: 18px;padding: 10px 10px 8px 15px;text-transform: uppercase;}
+.section-header {background: none repeat scroll 0 0 #FFFFFF;color: #333333;font-family: BebasNeueRegular,arial,sans-serif !important; font-size: 18px;padding: 10px 10px 8px 15px;text-transform: uppercase;}
 /*************************************************
 ribbon shadows
 *************************************************/
@@ -415,7 +415,7 @@ a.nivo-prevNav:hover {background-position:0 -30px;}
 .nivo-caption a {text-decoration:none;color:#FFF !important;line-height:1.5em;font-size:.9em;}
 .nivo-caption p {padding:0px;margin:0px;}
 .nivo-caption h1 {margin-bottom:5px;padding-bottom:0px;}
-.nivo-caption h1 a {line-height:1.2em !important;font-family:ProcionoRegular, Georia, serif;font-size:.7em;}
+.nivo-caption h1 a {line-height:1.2em !important;font-family:ProcionoRegular, Georia, serif;font-size:14px !important;}
 #featured-wrapper.full .nivo-caption h1 a {font-size:.8em;}
 .nivo-html-caption {display:none;width:650px;}
 #featured-wrapper.full .nivo-html-caption {width:1000px;}
@@ -427,7 +427,7 @@ a.nivo-prevNav:hover {background-position:0 -30px;}
 #featured-wrapper .video {opacity:0.65;position:absolute;display:inline-block;width:70px;height:70px;bottom:160px;left:290px;background:url(images/darken-bg-video.png) no-repeat 0px 0px;z-index:9;}
 #featured-wrapper.full .video {bottom:250px;left:465px;}
 #featured .title {float:left;width:560px;padding:15px 15px 10px 20px;border-right:2px solid #000;}
-#featured-wrapper.full .title {width:750px;}
+#featured-wrapper.full .title {width:880px;}
 /*ratings*/
 #featured-wrapper .stars, #featured-wrapper .number, #featured-wrapper .letter {position:absolute;bottom:320px;right:0px;float:left;}
 #featured-wrapper.full .stars, #featured-wrapper.full .number, #featured-wrapper.full .letter {bottom:7px;right:90px;}
@@ -2334,5 +2334,56 @@ fonts
 }
 .sidebar .widget .item-options a.selected {
     color: #666666;
+}
+.widget .item-avatar img.avatar, .widget .bbp-logged-in img.avatar {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #F0F0F0;
+    background-image: none;
+    background-origin: padding-box;
+    background-position: 0 0;
+    background-repeat: repeat;
+    background-size: auto auto;
+    border-bottom-color: #DDDDDD;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-image-outset: 0 0 0 0;
+    border-image-repeat: stretch stretch;
+    border-image-slice: 100% 100% 100% 100%;
+    border-image-source: none;
+    border-image-width: 1 1 1 1;
+    border-left-color-ltr-source: physical;
+    border-left-color-rtl-source: physical;
+    border-left-color-value: #DDDDDD;
+    border-left-style-ltr-source: physical;
+    border-left-style-rtl-source: physical;
+    border-left-style-value: solid;
+    border-left-width-ltr-source: physical;
+    border-left-width-rtl-source: physical;
+    border-left-width-value: 1px;
+    border-right-color-ltr-source: physical;
+    border-right-color-rtl-source: physical;
+    border-right-color-value: #DDDDDD;
+    border-right-style-ltr-source: physical;
+    border-right-style-rtl-source: physical;
+    border-right-style-value: solid;
+    border-right-width-ltr-source: physical;
+    border-right-width-rtl-source: physical;
+    border-right-width-value: 1px;
+    border-top-color: #DDDDDD;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-top-style: solid;
+    border-top-width: 1px;
+    padding-bottom: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 8px;
 }
 

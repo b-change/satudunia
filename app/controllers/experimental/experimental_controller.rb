@@ -41,15 +41,19 @@ class Experimental::ExperimentalController < ApplicationController
   end
   # questions
   def questions
-    @title = "questions"
-    @tags = current_group.tags
-    # code from the plus template
-    unless params[:per_page].blank?
-      session[:per_page] = params[:per_page]
+     if current_user.present?
+      @title = "questions"
+      @tags = current_group.tags
+      # code from the plus template
+      unless params[:per_page].blank?
+        session[:per_page] = params[:per_page]
+      end
+      current_order = (params[:current_order].nil?)? 'created_at' : params[:current_order]
+      find_questions
+      # code from the plus template
+    else 
+      redirect_to new_user_session_path
     end
-    current_order = (params[:current_order].nil?)? 'created_at' : params[:current_order]
-    find_questions
-    # code from the plus template
   end
   # question show
   def question_show

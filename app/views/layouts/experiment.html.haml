@@ -163,6 +163,11 @@
 				#main-wrapper
 					#main-wrapper-dark
 						= render "experimental/partials/social_side_bar"
+						- flash.each do |name, msg|
+							- if msg.is_a?(String)
+								%div{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
+									/ %a.close{"data-dismiss" => "alert"} ×
+									= content_tag :div, msg, :id => "flash_#{name}"
 						= yield
 				/footer
 				= render "experimental/partials/footer"
