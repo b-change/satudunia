@@ -44,9 +44,9 @@
 							#logo
 								/ logo and section header area
 								%a{:href => experimental_index_path,:title=>"Plus Home",:title=>"Plus Home"}
-									%img#site-logo{:alt => "plus", :src => "/assets/plus/footer_logo.png"}/
-									%img#site-logo-iphone{:alt => "plus", :src => "/assets/plus/logo.jpg"}/
-									%img#site-logo-ipad{:alt => "plus", :src => "/assets/plus/logo.jpg"}/
+									%img#site-logo{:alt => "plus", :src => "/assets/plus/logo.png"}/
+									%img#site-logo-iphone{:alt => "plus", :src => "/assets/plus/logo.png"}/
+									%img#site-logo-ipad{:alt => "plus", :src => "/assets/plus/logo.png"}/
 							%br.clearer/
 							.subtitle
 						#ad-header
@@ -163,6 +163,11 @@
 				#main-wrapper
 					#main-wrapper-dark
 						= render "experimental/partials/social_side_bar"
+						- flash.each do |name, msg|
+							- if msg.is_a?(String)
+								%div{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
+									/ %a.close{"data-dismiss" => "alert"} ×
+									= content_tag :div, msg, :id => "flash_#{name}"
 						= yield
 				/footer
 				= render "experimental/partials/footer"

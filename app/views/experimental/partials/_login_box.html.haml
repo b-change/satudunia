@@ -21,4 +21,4 @@
               =f.check_box :remember_me,:class=>"check-box-style",:id=>"rememberme"
               Remember Me 
           %p.login-submit
-            = submit_tag t('devise.sessions.link'),:value=>"Login"
+            = button_tag "<i class='icon-login'></i>Login".html_safe,:type=>"submit"

@@ -1,21 +1,42 @@
-= image_tag "plus/body_about.jpg", :class => "body_header"
-.alpha.grid_24.body_about{:id => "firstElement"}
-  %span{:class => "p_a"}
-    Forgot password
-  %span{:class => "p_a1",:style=>"position: relative !important; left: -309px;"}
-    = link_to "Home", "/"
-    > Forgot password
-  %h2
-    = t('devise.passwords.link')
-  .container-new-plus
-    %p
-      = t('devise.passwords.send_instructions')
-    = form_for resource, :as => resource_name, :url => password_path(resource_name) do |f|
-      = f.error_messages
-      %strong
-        = f.label :email
-        .input-style
-          = f.text_field :email
-      .buttons
-        = f.submit t('devise.passwords.send_button'), :class => "ask_tag2_common"
-      = render :partial => "shared/devise_links"
+.clearer.hide-responsive  
+%br.hide-responsive/
+.main-content-left
+  .page-content.review.single-post
+    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+    .review-content
+      .ribbon-shadow-left
+      .section-wrapper
+        .section-header Forgot Password
+      .section-arrow
+      .content-panel
+        .the-content
+          / old plus content
+          %h1
+            = t('devise.passwords.send_instructions')
+          = form_for resource, :as => resource_name, :url => password_path(resource_name), :html => {:class => "exp-contact-form"} do |f|
+            = f.error_messages
+            %br
+              = f.label :email,"Email*",:class=>"label"
+              = f.text_field :email, :class=>"input-class", :placeholder=>"Please Enter Your Registered Email"
+            %p
+              = button_tag t('.devise.passwords.send_button'), :type=>"submit"
+          = render :partial => "shared/devise_links"
+
+/side bar
+.sidebar
+  = render "experimental/partials/login_box"
+
+
+:javascript
+  jQuery("#new_user").validate({
+    rules:{
+      "user[email]":{
+        required:true
+      }
+    },
+    messages:{
+      "user[email]":{
+        required:"Email Can't be Blank"
+      }
+    }
+  });

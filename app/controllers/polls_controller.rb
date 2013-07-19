@@ -1,4 +1,5 @@
 class PollsController < ApplicationController
+   layout "experiment"
   def index
     set_page_title("Polls")
     @polls = Poll.where(:is_active => true).page(params[:page])

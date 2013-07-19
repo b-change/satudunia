@@ -13,24 +13,16 @@
       .content-panel
         .the-content.justify-content
           %p.filter-content= raw(current_group.question_help)
-      = form_for(@question, html: {class: "question-form", id: "ask_question", multipart: true, data: {'login-required' => true}}) do |f|
-        .clearer
-        %br/
-        %h6{:class => "margin-top"}
-          Title*
-        %p= raw(current_group.question_prompt)
-        .search-bar
-          = f.text_field :title,:value=>@newQuestionTitle
-        .clearer
-        %br/
-        %h6{:class => "margin-top"}
-          Tags
-        .search3
-          = f.select :tags, current_group.default_tags, {},{:multiple => true, :class => "chzn-select" , :selected => @question.tags,:style=>"width:650px;"}
+      = form_for(@question, html: {class: "exp-contact-form", id: "ask_question", multipart: true, data: {'login-required' => true}}) do |f|
+        %br
+          = f.label :title, "Title*", :class=>"label"
+          = f.text_field :title,:value=>@newQuestionTitle, :placeholder=>"#{raw(current_group.question_prompt)}", :class=>"input-class"
+        %br
+          = f.label :tags, "Tags", :class=>"label"
+          = f.select :tags, current_group.default_tags, {},{:multiple => true, :class => "chzn-select" , :selected => @question.tags,:style=>"width:633px;"}
         %p Use tags to add more information about your question.
-        %h6{:class => "margin-top"}
-          Questions
-        .search3
+        %br
+          = f.label :body, "Questions*", :class=>"label"
           = f.text_area :body, :class => "text-default wysiwyg_editor textarea-class"
         %table
           %tr
@@ -47,15 +39,15 @@
                   = f.check_box :adult_content, :class => "checkbox"
                   = f.label :adult_content, t(".adult_content"), :class => "radio"
 
-        #attachments{:style => "margin:20px"}
-          #fields{:style => "margin-bottom:10px; font-size:13px; font-family:Arial;"}
+        #attachments{:style => "margin:20px 0px 20px 0px"}
+          #fields
             .attachment_field.template
               = f.file_field "attachments[0]"
               = link_to t('.remove_attachment'), "#", :class => "remove_attachment"
-          = link_to "<span>Upload Image</span>".html_safe, "#", :class => "add_attachment ask_tag1", :style => "margin-left:5px !important;"
+          = link_to "<i class='icon-upload'></i>Upload Image".html_safe, "#", :class => "add_attachment extra-buttons"
 
         .save_footer{:style=>"margin-left: -4px; padding-bottom: 5px; width: 710px;"}
-          = link_to "<span>Ask Now</span>".html_safe, "#", :class => "ask_tag5", :id => "ask_question_link", :style => "margin-bottom: 10px;"
+          = link_to "<i class='icon-thumbs-up'></i>Ask Now".html_safe, "javascript:void(0)", :class => "submit-button", :id => "ask_question_link"
 = render :partial => 'shared/rich_text_partial'
 :javascript
   jQuery(document).ready(function($){
@@ -113,6 +105,25 @@
       });
 
       return terms;
+    });
+
+    jQuery("#ask_question").validate({
+      rules:{
+        "question[title]":{
+          required:true
+        },
+        "question[body]":{
+          required:true
+        }
+      },
+      messages:{
+        "question[title]":{
+          required:"Title Can't be Blank"
+        },
+        "question[body]":{
+          required:"Question Can't be Blank"
+        }
+      }
     });
   });
   

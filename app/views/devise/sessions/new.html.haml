@@ -1,48 +1,158 @@
-= image_tag "plus/body_about1.jpg", :class => "body_header"
-.alpha.grid_24.body_about{:id => "firstElement", :style => "margin-bottom:20px"}
-  %span{:class => "p_a"}
-    Sign in to Plus
-  %span{:class => "p_a1 i3_1", :style => "margin-left: -75px;"}
-    = link_to "Home", "/"
-    > Sign in to Plus
-  %h2
-    Sign in to Plus   
-  .container-new-plus
-    %p   
-      -session["return_to"] = request.referrer unless request.referrer.blank?
+#main-wrapper
+  #main-wrapper-dark
+    / this is only used for the dark skin since it already uses an image for the background texture and light does not
+    .main-content-left
+      .page-content.review
+        %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
+        .overview-wrapper
+          %h1.title Login
+          .overview
+            .arrow-catpanel-bottom  
+            .left-panel
+              .article-image.video
+                / %iframe{:allowfullscreen => "", :frameborder => "0", :height => "197", :src => "http://www.youtube.com/embed/sftuxbvGwiU", :width => "350"}
+              %br.clearer/
+              .category
+                .ribbon-shadow-left  
+                .catname
+                  Quick Stats
+                .category-arrow  
+              %br.clearer/
+              = succeed ":" do
+                %span.taxName Genre
+              %span.taxContent
+                %a{:href => "archive-a.html", :rel => "tag"}> Action
+                ,
+                %a{:href => "archive-a.html", :rel => "tag"} Sci-Fi
+              .separator  
+              = succeed ":" do
+                %span.taxName Director
+              %span.taxContent
+                %a{:href => "archive-a.html", :rel => "tag"}> Quentin Terantino
+                ,
+                = succeed "," do
+                  %a{:href => "archive-a.html", :rel => "tag"} Ridley Scott
+                %a{:href => "archive-a.html", :rel => "tag"} Ron Howard
+              .separator  
+              = succeed ":" do
+                %span.taxName Actor
+              %span.taxContent
+                %a{:href => "archive-a.html", :rel => "tag"}> Leonardo DiCaprio
+                ,
+                = succeed "," do
+                  %a{:href => "archive-a.html", :rel => "tag"} Penelope Cruz
+                %a{:href => "archive-a.html", :rel => "tag"} Scarlett Johansson
+              .separator  
+              = succeed ":" do
+                %span.taxName MPAA Rating
+              %span.taxContent
+                %a{:href => "archive-a.html", :rel => "tag"} R
+              .separator  
+              = succeed ":" do
+                %span.metaName Release Date
+              %span.metaContent July 2012
+              .separator  
+              = succeed ":" do
+                %span.metaName Length
+              %span.metaContent 2 hours 10 minutes
+              .separator  
+              = succeed ":" do
+                %span.metaName Storyline
+              %span.metaContent Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet egestas. Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet egestas.
+              .separator  
+              = succeed ":" do
+                %span.metaName Studio
+              %span.metaContent Paramount Pictures
+              .separator  
+              = succeed ":" do
+                %span.metaName Producer
+              %span.metaContent Joel Silver
+              .separator  
+              = succeed ":" do
+                %span.metaName Composer
+              %span.metaContent James Horner
+              .separator  
+            %br.clearer/
+            %br/
+            .excerpt
+              .bottom-line Our Final Take
+              %p Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet egestas. Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet egestas.
+            .bottom
+              .comment-bubble
+                %a{:href => "http://www.industrialthemes.com/made/movie/the-hobbit-an-unexpected-journey/#respond", :title => "Comment on The Hobbit: An Unexpected Journey"} 0
+              .section
+                Posted April 15, 2012 by
+                %a{:href => "http://www.google.com", :rel => "author external", :title => "Visit Claude Debussey’s website"} Claude Debussey
+        %br.clearer/
 
-      -if current_group.registered_only
-        .error
-          = t('devise.sessions.registered_only')
+    .sidebar
+      /login box
+      = render "experimental/partials/login_box"        
 
-      - unless params[:open_id]
-        -unless current_group.is_noemail_signup?
 
-          = form_for resource, :url => session_path(resource_name), :html => {:class => "form"} do |f|
+/ .clearer.hide-responsive  
+/ %br.hide-responsive/
+/ .main-content-left
+/   .page-content.review.single-post
+/     %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+/     .review-content
+/       .ribbon-shadow-left
+/       .section-wrapper
+/         .section-header="Sign-in for Plus"
+/       .section-arrow
+/       .content-panel
+/         .the-content.justify-content
+/           / old plus content
+/           -session["return_to"] = request.referrer unless request.referrer.blank?
 
-            %strong
-              =f.label :email, t("email", :scope => "activerecord.attributes.user")
-            .input-style
-              =f.text_field :email, :class => "text_field"
-            %strong
-              =f.label :password, t("password", :scope => "activerecord.attributes.user")
-            .input-style
-              =f.password_field :password, :class => ""
-              - if params[:pp] && params[:format] != 'mobile'
-                = hidden_field_tag :pp, 1
-            -if devise_mapping.rememberable?
-              =f.check_box :remember_me,:class=>"check-box-style"
-              .check-box-style
-                =f.label :remember_me, t(".remember_me") 
-            .buttons
-              =f.submit t('devise.sessions.link'), :class => "ask_tag2_common"
-      - else
-        %form{"accept-charset"=>"UTF-8", :action=>"/users/auth/open_id", :class=>"form", :method=>"get"}
-          .input-style
-            = label_tag "OpenID", t(".openid_url")
-            = text_field_tag :openid_url, params[:url], :class => "text_field"
-            - if params[:pp] && params[:format] != 'mobile'
-              = hidden_field_tag :pp, 1
-          .buttons
-            = submit_tag t('devise.sessions.link'), :class => "ask_tag2_common"
-      = render :partial => "shared/devise_links"
+/           -if current_group.registered_only
+/             .error
+/               = t('devise.sessions.registered_only')
+
+/           - unless params[:open_id]
+/             -unless current_group.is_noemail_signup?
+
+/               = form_for resource, :url => session_path(resource_name), :html => {:class => "exp-contact-form"} do |f|
+
+/                 %strong
+/                   =f.label :email, t("email", :scope => "activerecord.attributes.user")
+/                 %br
+/                   =f.text_field :email
+/                 %br
+/                 %strong
+/                   =f.label :password, t("password", :scope => "activerecord.attributes.user")
+/                 %br
+/                   =f.password_field :password
+/                   - if params[:pp] && params[:format] != 'mobile'
+/                     = hidden_field_tag :pp, 1
+/                 -if devise_mapping.rememberable?
+/                   %br
+/                   =f.check_box :remember_me,:class=>"check-box-style"
+/                   =f.label :remember_me, t(".remember_me") 
+/                 %p
+/                   %br
+/                   =f.button t('devise.sessions.link'),:type=>"submit"
+/           - else
+/             %form{"accept-charset"=>"UTF-8", :action=>"/users/auth/open_id", :class=>"form", :method=>"get"}
+/               .input-style
+/                 = label_tag "OpenID", t(".openid_url")
+/                 = text_field_tag :openid_url, params[:url], :class => "text_field"
+/                 - if params[:pp] && params[:format] != 'mobile'
+/                   = hidden_field_tag :pp, 1
+/               %p
+/                 %br
+/                 =f.button t('devise.sessions.link'),:type=>"submit"
+/           = render :partial => "shared/devise_links"
+      
+
+
+/ /side bar
+/ .sidebar
+/   = render "experimental/partials/login_box"
+  
+
+  
+
+
+
+    

@@ -1,64 +1,84 @@
-- content_for :title do
-  Contact Us
+.clearer.hide-responsive  
+%br.hide-responsive/
+.main-content-left
+	.page-content.review.single-post
+		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+		.review-content
+			.ribbon-shadow-left
+			.section-wrapper
+				.section-header="Contact us"
+			.section-arrow
+			.content-panel
+				.the-content.justify-content
+					/ old plus content
+					= form_for @contact, :url => send_contact_us_contact_index_path,:html=>{:class=>"exp-contact-form"} do |f|
+						%br
+							= f.label "Name*",:class => "label"
+							= f.text_field :name,:placeholder=>"Please Enter Name",:class=>"input-class"
+						%br
+							= f.label "Email*",:class => "label"
+							= f.text_field :email,:placeholder=>"Please Enter Email",:class=>"input-class"
+						%br
+							= f.label "Comment*",:class => "label"
+							= f.text_area :comment, :style => "width: 630px",:placeholder=>"Please Enter Comment"
+							%p
+								%br
+								= f.button "<i class='icon-check'></i>Submit".html_safe, :id => "ask_question_link",:type=>"submit"
 
-= image_tag "plus/body_about.jpg", :class => "body_header"
-.alpha.grid_24.body_about{:id => "firstElement", :style => "margin-bottom: 15px;width: 710px; height:634px !important"}
-  %span{:class => "p_a"}
-    Contact Us
-  %span{:class => "p_a1", :style => "position: relative !important; left: -169px;"}
-    = link_to "Home", "/"
-    > Contact Us
-  .ask
-    = form_for @contact, :url => send_contact_us_contact_index_path do |f|
-      %p{:class => "ask2"}
-        %strong
-          Name*
-      .search3
-        = f.text_field :name
-      %p{:class => "ask2"}
-        %strong
-          Email*
-      .search3
-        = f.text_field :email
-      %p{:class => "ask2"}
-        %strong
-          Comment*
-      .search3{:style => "width: 100%"}
-        = f.text_area :comment, :style => "width: 621px"
-      .search3
-        = link_to "<span>Submit</span>".html_safe, "#", :class => "ask_tag2", :id => "ask_question_link", :style => "margin-bottom: 10px;"
-.grid_6.omega.body1_about{:id => "secondElement", :style => "width: 235px !important; height:634px; !important"}
-  %p.i3_4
-    %strong
-      Recent Tags
-  %ul.tags
-    - current_group.default_tags.each do |tag|
-      %li{:style => "float:left; padding-left:0px !important;"}
-        %span{:class => "tags1_1"}
-          = link_to h(tag).html_safe, tag_path(:id => CGI.escape(tag)), :style => "text-decoration:none"
-          %span
-            x
-          %span.avoid_link_color{:style=>"font-weight:600"}
-            = current_group.questions.where(:tags=>tag).count
-    .clear
-  %p{:class => "about1"}
-    %strong
-      Latest Users
-  %ul{:class => "users"}
-    = render :partial => "widgets/plus_users"
-  = link_to "<span style='color:#0075ce;padding-left: 30px;text-decoration: none;font-weight: bold;font-family:Arial'>More>></span>".html_safe, users_path
+			
+
+/side bar
+.sidebar
+	= render "experimental/partials/left_bar"
+	/widget top
+	= render "experimental/partials/widget_top"
+	/ .clearer.hide-responsive
+	/ %br.clearer/
+	/ newly reviewd
+	= render "experimental/partials/newly_reviewed"
+	/popular box
+	= render "experimental/partials/popular_box"
+	/rating box
+	= render "experimental/partials/rating_box"
+	/banner box
+	= render "experimental/partials/banner_box"
 
 
-    
-/ .grid_5.omega.body1_about
-/   = render :partial => "shared/about_nav_bar"
 
 :javascript
-  $('#contact_nav').addClass('active');
+	// client side validations
+	jQuery("#new_contact").validate({
 
-  $("#ask_question_link").click(function (){
-    $("#new_contact").submit();
-  });
-    
-  
+			rules:{
+				"contact[name]":{
+					required:true
+				},
+
+				"contact[email]":{
+					required:true
+				},
+
+				"contact[comment]":{
+					required:true
+				}
+
+			},
+			messages:{
+				"contact[name]":{
+					required:"Name Can't be Blank"
+				},
+
+				"contact[email]":{
+					required:"Email Can't be Blank"
+				},
+
+				"contact[comment]":{
+					required:"Comment Can't be Blank"
+				}
+
+			}
+
+	});
+		
+	
 

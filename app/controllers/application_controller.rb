@@ -44,9 +44,9 @@ class ApplicationController < ActionController::Base
 
   def layout_by_resource
     if devise_controller?
-      "plus"
+      "experiment"
     else
-      "plus"
+      "experiment"
     end
   end
   #layout for devise
