@@ -1,93 +1,99 @@
-- content_for :title do
-  Tier 6
-    
-= image_tag "plus/body_about.jpg", :class => "body_header"
-.alpha.grid_24.body_about{:id => "firstElement", :style => "margin-bottom: 15px;width: 958px;"}
-  %span{:class => "p_a"}
-    Tier 6
-  %span{:class => "p_a1", :style => "position: absolute !important; left: 25px;"}
-    = link_to "Home", "/"
-    > Tier 6
-  .ask
-    = form_for @profile_tier6, :url => {:controller => :tier6, :action => :create}, :method => :post do |f|
-      %p{:class => "ask2"}
-        %strong
-          = label_tag "Your preferred role"
-      %table
-        %tr
-          %td
-            .checkbox
-              = radio_button("profile_tier6", "preferred_role", "Top", :disabled => @is_disable)
-              Top
-      %table
-        %tr
-          %td
-            .checkbox
-              = radio_button("profile_tier6", "preferred_role", "Bottom", :disabled => @is_disable)
-              Bottom
-      %table
-        %tr
-          %td
-            .checkbox
-              = radio_button("profile_tier6", "preferred_role", "Versatile", :disabled => @is_disable)
-              Versatile
-      %table
-        %tr
-          %td
-            .checkbox
-              = radio_button("profile_tier6", "preferred_role", "Vers Top", :disabled => @is_disable)
-              Vers Top
-      %table
-        %tr
-          %td
-            .checkbox
-              = radio_button("profile_tier6", "preferred_role", "Versatile Bottom", :disabled => @is_disable)
-              Versatile Bottom
-      %p{:class => "ask2"}
-        %strong
-          = label_tag "What are you into?"
-      %table
-        %tr
-          %td
-            .checkbox
-              = radio_button("profile_tier6", "preferred_into", "Anal", :disabled => @is_disable)
-              Anal
-      %table
-        %tr
-          %td
-            .checkbox
-              = radio_button("profile_tier6", "preferred_into", "Bears", :disabled => @is_disable)
-              Bears
-      %table
-        %tr
-          %td
-            .checkbox
-              = radio_button("profile_tier6", "preferred_into", "Body Contact", :disabled => @is_disable)
-              Body Contact
-      %table
-        %tr
-          %td
-            .checkbox
-              = radio_button("profile_tier6", "preferred_into", "Body Odor, Smells", :disabled => @is_disable)
-              Body Odor, Smells
-      %table
-        %tr
-          %td
-            .checkbox
-              = radio_button("profile_tier6", "preferred_into", "Bondage/Restraints", :disabled => @is_disable)
-              Bondage/Restraints
-      %table
-        %tr
-          %td
-            .checkbox
-              = radio_button("profile_tier6", "preferred_into", "CBD", :disabled => @is_disable)
-              CBD
+.clearer.hide-responsive  
+%br.hide-responsive/
+.main-content-left{:style=>"width:70%"}
+  .page-content.review.single-post
+    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+    .review-content
+      .ribbon-shadow-left
+      .section-wrapper
+        .section-header
+          Tier 6
+      .section-arrow
+      / post by removed from here
+      .content-panel
+        .the-content.justify-content
+          %p 
+            = link_to "Home", "/"
+            > Tier 6
+          = form_for @profile_tier6, :url => {:controller => :tier6, :action => :create},:html => {:class => "exp-contact-form"}, :method => :post do |f|
+            %p{:class => "ask2"}
+              %strong
+                = f.label "Your preferred role", :class=>"label"
+            %table
+              %tr
+                %td
+                  .checkbox
+                    = radio_button("profile_tier6", "preferred_role", "Top", :disabled => @is_disable)
+                    Top
+            %table
+              %tr
+                %td
+                  .checkbox
+                    = radio_button("profile_tier6", "preferred_role", "Bottom", :disabled => @is_disable)
+                    Bottom
+            %table
+              %tr
+                %td
+                  .checkbox
+                    = radio_button("profile_tier6", "preferred_role", "Versatile", :disabled => @is_disable)
+                    Versatile
+            %table
+              %tr
+                %td
+                  .checkbox
+                    = radio_button("profile_tier6", "preferred_role", "Vers Top", :disabled => @is_disable)
+                    Vers Top
+            %table
+              %tr
+                %td
+                  .checkbox
+                    = radio_button("profile_tier6", "preferred_role", "Versatile Bottom", :disabled => @is_disable)
+                    Versatile Bottom
+            %p{:class => "ask2"}
+              %strong
+                = f.label "What are you into?", :class=>"label"
+            %table
+              %tr
+                %td
+                  .checkbox
+                    = radio_button("profile_tier6", "preferred_into", "Anal", :disabled => @is_disable)
+                    Anal
+            %table
+              %tr
+                %td
+                  .checkbox
+                    = radio_button("profile_tier6", "preferred_into", "Bears", :disabled => @is_disable)
+                    Bears
+            %table
+              %tr
+                %td
+                  .checkbox
+                    = radio_button("profile_tier6", "preferred_into", "Body Contact", :disabled => @is_disable)
+                    Body Contact
+            %table
+              %tr
+                %td
+                  .checkbox
+                    = radio_button("profile_tier6", "preferred_into", "Body Odor, Smells", :disabled => @is_disable)
+                    Body Odor, Smells
+            %table
+              %tr
+                %td
+                  .checkbox
+                    = radio_button("profile_tier6", "preferred_into", "Bondage/Restraints", :disabled => @is_disable)
+                    Bondage/Restraints
+            %table
+              %tr
+                %td
+                  .checkbox
+                    = radio_button("profile_tier6", "preferred_into", "CBD", :disabled => @is_disable)
+                    CBD
 
-      .search3
-        - unless @is_disable
-          = link_to "<span>Submit</span>".html_safe, "#", :class => "ask_tag2", :id => "ask_question_link", :style => "margin-bottom: 10px;"
+            %br
+            - unless @is_disable
+              = link_to "<span>Submit</span>".html_safe, "javascript:void(0)", :class => "submit-button", :id => "ask_question_link", :style => "margin-bottom: 10px;"
 
 :javascript
-  $("#ask_question_link").click(function (){
-    $("#new_profile_tier6,#edit_profile_tier6").submit();
+  jQuery("#ask_question_link").click(function (){
+    jQuery("#new_profile_tier6,#edit_profile_tier6").submit();
   });

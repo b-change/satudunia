@@ -1,109 +1,40 @@
-- content_for :title do
-  Services Map
+#map
+  %figure{:class => "p5"}
+    #services_map{:style => "width:999px; height:450px"}
+.clearer.hide-responsive  
+%br.hide-responsive/
+.main-content-left
+  .post-loop.search-loop
+    .ribbon-shadow-left
+    .section-wrapper
+      .section-header Listed Services 
+    .section-arrow
+    - unless @serviceProviders.nil?
+      - @serviceProviders.all.each do |provider|
+        - next if provider.blank?
+        = render "experimental/partials/provider", :provider => provider
 
-- content_for :search_form do
-  = form_tag "/services-map", :id => "search2", :method => "get" do
-    = text_field_tag "search", params[:search]
-    = link_to image_tag("plus/serch12.png", :class => "img12_1"), "#", :id => "search_services_link"
+  %br.clearer/
 
-= image_tag "plus/body_com.jpg", :class => "body_header"
-.alpha.grid24.body_about{:id => "firstElement",:style => "width:955px !important"}
-  %span{:class => "p_a"}
-    Services Map
-  %span{:class => "p_a1", :style => "position: relative !important; left:-219px !important;"}
-    = link_to "Home", "/"
-    > Services Map
-  #map
-    %figure{:class => "p5"}
-      #services_map{:style => "width:955px; height:450px"}
-
-  .tabs2
-    #firstElement{:style=>"width:742px; min-height:800px;"}
-      %div.tabber
-        %div.tabbertab
-          %h2
-            A - J
-          %p.i4_1.serv_loc6{:id => ""} 
-            .bx-wrapper 
-            - unless @alphabetical_providers[0].nil?
-              - @alphabetical_providers[0].each do |provider|
-                - next if provider.blank?
-                = render "provider", :provider => provider
-                    
-        %div.tabbertab
-          %h2
-            K - T
-          %p.i4_1.serv_loc6{:id => ""} 
-            .bx-wrapper
-            - unless @alphabetical_providers[1].nil?
-              - @alphabetical_providers[1].each do |provider|
-                - next if provider.blank?
-                = render "provider", :provider => provider
-        %div.tabbertab
-          %h2
-            U - Z
-          %p.i4_1.serv_loc6{:id => ""} 
-            .bx-wrapper
-            - unless @alphabetical_providers[2].nil?
-              - @alphabetical_providers[2].each do |provider|
-                - next if provider.blank?
-                = render "provider", :provider => provider
-        %div.tabbertab
-          %h2
-            Singapore
-          %p.i4_1.serv_loc6{:id => ""} 
-            .bx-wrapper
-            - unless @serviceProviders.nil?
-              - @serviceProviders.where(:country=>/#{"singapore"}/i).each do |provider|
-                - next if provider.blank?
-                = render "provider", :provider => provider
-                 
-        %div.tabbertab
-          %h2
-            Indonesia
-          %p.i4_1.serv_loc6{:id => ""} 
-            .bx-wrapper
-            - unless @serviceProviders.nil?
-              - @serviceProviders.where(:country=>/#{"indonesia"}/i).each do |provider|
-                - next if provider.blank?
-                = render "provider", :provider => provider
-        %div.tabbertab
-          %h2
-            Malaysia
-          .bx-wrapper
-            - unless @serviceProviders.nil?
-              -@serviceProviders.where(:country=>/#{"malaysia"}/i).each do |provider|
-                - next if provider.blank?
-                = render "provider", :provider => provider
-        %div.tabbertab
-          %h2
-            philippines
-          %p.i4_1.serv_loc6{:id => ""} 
-            .bx-wrapper
-            - unless @serviceProviders.nil?
-              - @serviceProviders.where(:country=>/#{"philippines"}/i).each do |provider|
-                - next if provider.blank?
-                = render "provider", :provider => provider
-        %div.tabbertab
-          %h2
-            Thailand
-          %p.i4_1.serv_loc6{:id => ""} 
-            .bx-wrapper
-            - unless @serviceProviders.nil?
-              - @serviceProviders.where(:country=>/#{"thailand"}/i).each do |provider|
-                - next if provider.blank?
-                = render "provider", :provider => provider
-                    
-          
+/side bar
+.sidebar
+  = render "experimental/partials/left_bar"
+  /widget top
+  = render "experimental/partials/widget_top"
+  / .clearer.hide-responsive
+  / %br.clearer/
+  / newly reviewd
+  = render "experimental/partials/newly_reviewed"
+  /popular box
+  = render "experimental/partials/popular_box"
+  /rating box
+  = render "experimental/partials/rating_box"
+  /banner box
+  = render "experimental/partials/banner_box"
 
 
-    #secondElement.grid_5.omega.body1_about{:style=>"background-color:#F3F7FA; min-height:800px; !important;"}
-      %p{:class => "about"}
-        %strong
-          Services Map
-      = render :partial => "shared/about_nav_bar"
 
-            
+
 %script{:src => "http://maps.googleapis.com/maps/api/js?key=AIzaSyBmJE9KrYdmPiW16lAHDJOiCvS1Fwen7BU&sensor=true"}
 
 :javascript
@@ -204,8 +135,3 @@
     showMarker(map, centered, '#{provider.name}', getFacilityInformation('#{escape_javascript provider.description}','#{escape_javascript provider.address}', '#{escape_javascript provider.name}', '#{escape_javascript provider.telephone}', '#{escape_javascript provider.email}'));
     });
   }
-
-
-
-
-    

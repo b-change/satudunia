@@ -1,19 +1,18 @@
-.grid_24
-  %img.body_header{:alt => "", :src => "/assets/plus/body_news1.jpg"}/
-  #firstElement.alpha.grid_18.body_about
-    %span.p_a News & Activites
-    %span.p_a1.i3__news
-      %a{:href => "index.html"} Home
-      > News & Activites
-    .bx-wrapper
-      %ul#slider31
-        %li.pager.ps1
-          %ul
+.clearer.hide-responsive  
+%br.hide-responsive/
+.main-content-left
+  .page-content.review
+    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
+    .overview-wrapper
+      %h1.title News & Activites
+      .overview
+        .arrow-catpanel-bottom  
+        .excerpt-new
+          %p
             - if @news.blank?
-              %li
-                %h3
-                  No Recent News Yet
+              No Recent News Yet
             -@news.each do |news|
-              %li
-                = render :partial => "news", :object => news
-      = paginate @news
+              = render :partial => "news", :object => news  
+          = paginate @news
+.sidebar
+  = render "experimental/partials/login_box"

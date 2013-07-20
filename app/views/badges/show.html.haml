@@ -1,19 +1,46 @@
-#badges_show
-  .description
-    .name
-      = render :partial => "badges/badge", :object => @badge, :locals => {:hide_user => true}
-    %p
-      = @badge.description
+.clearer.hide-responsive  
+%br.hide-responsive/
+.main-content-left
+  .page-content.review.single-post
+    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+    .review-content
+      .ribbon-shadow-left
+      .section-wrapper
+        .section-header
+          Badges
+      .section-arrow
+      .content-panel
+        .the-content
+          / old plus content
+          %h1
+            = render :partial => "badges/badge", :object => @badge, :locals => {:hide_user => true}
+          %p
+            = @badge.description
+          .counter
+            %p
+              %b
+                =@badges.total_count
+              =t(".description")
+          .users
+            %ul
+              -@users.each do |user|
+                = render :partial => "user", :object => user, :locals => {:badge => @badge}
 
-  .counter
-    %p
-      %b
-        =@badges.total_count
-      =t(".description")
+          =paginate @badges
 
-  .users
-    %ul
-      -@users.each do |user|
-        = render :partial => "user", :object => user, :locals => {:badge => @badge}
 
-  =paginate @badges
+/side bar
+.sidebar
+  = render "experimental/partials/left_bar"
+  /widget top
+  = render "experimental/partials/widget_top"
+  / .clearer.hide-responsive
+  / %br.clearer/
+  / newly reviewd
+  = render "experimental/partials/newly_reviewed"
+  /popular box
+  = render "experimental/partials/popular_box"
+  /rating box
+  = render "experimental/partials/rating_box"
+  /banner box
+  = render "experimental/partials/banner_box"

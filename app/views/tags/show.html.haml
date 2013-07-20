@@ -1,35 +1,34 @@
-= image_tag "plus/body_about1.jpg", :class => "body_header"
-.alpha.grid_18.body_about{:id => "firstElement", :style => "margin-bottom:20px"}
-  %span{:class => "p_a"}
-    Tags
-  %span{:class => "p_a1 il_ask", :style => "left:-35px !important"}
-    = link_to "Home", "/"
-    >
-    = link_to "Tags", tags_path
-    > 
-    = @tags.first.name
-    /%h2
-    / = t('layouts.application.tags')  
-  -feed_url = url_for(:format => "atom", :tags => @tag_names.join("+"))
-  -content_for :rss do
-    %link{:rel=>"alternate", :type=>"application/atom+xml", :title => "atom", :href=> feed_url}
-  .add-a-new-tag
-    -@tags.each do |tag|
-      .each
-        = render "tag", :tag => tag, :show_counter => true
-        -if tag.has_icon?
-          = image_tag tag_icon_path(current_group,tag.name)
-        %p
-          = tag.description
-    -if @questions.empty?
-      %article.question
-        %li.highlight
-        = t(".empty")
-  .bx-wrapper
-    %ul#slider21
-      %li.pager.ps1
-        %ul
-          -@questions.each do |question|
-            = render "questions/question", :question => question
+/ content variable
+.clearer.hide-responsive  
+%br.hide-responsive/
+.main-content-left
+  .page-content.review
+    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
+    .overview-wrapper
+      %h1.title Tags
+      .overview
+        .arrow-catpanel-bottom  
+        .excerpt-new
+          -feed_url = url_for(:format => "atom", :tags => @tag_names.join("+"))
+          -content_for :rss do
+            %link{:rel=>"alternate", :type=>"application/atom+xml", :title => "atom", :href=> feed_url}
+          .add-a-new-tag
+            -@tags.each do |tag|
+              .each
+                = render "tag", :tag => tag, :show_counter => true
+                -if tag.has_icon?
+                  = image_tag tag_icon_path(current_group,tag.name)
+                %p
+                  = tag.description
+            -if @questions.empty?
+              %article.question
+                %li.highlight
+                = t(".empty")
+          .bx-wrapper{:style=>"margin-left:-15px;"}
+            %ul#slider21
+              %li.pager.ps1
+                %ul
+                  -@questions.each do |question|
+                    = render "experimental/partials/questions/plus_question", :question => question
 
-        = paginate @questions
+                = paginate @questions

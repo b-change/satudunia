@@ -1,81 +1,76 @@
-- content_for :title do
-  Tier 7
-    
-= image_tag "plus/body_about.jpg", :class => "body_header"
-.alpha.grid_24.body_about{:id => "firstElement", :style => "margin-bottom: 15px;width: 958px;"}
-  %span{:class => "p_a"}
-    Tier 7
-  %span{:class => "p_a1", :style => "position: absolute !important; left: 25px;"}
-    = link_to "Home", "/"
-    > Tier 7
-  .ask
-    = form_for @profile_tier7, :url => {:controller => :tier7, :action => :create}, :method => :post do |f|
-      %p{:class => "ask2"}
-        %strong
-          = label_tag "(first diagnosis) Who was the first person you spoke to after you received your initial positive test result? Why did you choose to tell this person?"
-      .search3
-        = f.text_area :first_diagnosis, :disabled => @is_disable, :rows => 5
-      %p{:class => "ask2"}
-        %strong
-          = label_tag "(sex & HIV) How has your HIV status affected your sex life?"
-      .search3
-        = f.text_area :sex_hiv, :disabled => @is_disable, :rows => 5
-      %p{:class => "ask2"}
-        %strong
-          = label_tag "(relationships & HIV) How has it affected love and relationships?"
-      .search3  
-        = f.text_area :relationship_hiv, :disabled => @is_disable, :rows => 5
-      %p{:class => "ask2"}
-        %strong
-          = label_tag "(disclosure) How do you decide whether to tell someone your HIV status?"
-      .search3
-        = f.text_area :disclosure, :disabled => @is_disable, :rows => 5
-      %p{:class => "ask2"}
-        %strong
-          = label_tag "(relationships & HIV) Has your relationship with your family and friends changed or evolved after you found out you are HIV-positive? If so, how?"
-      .search3
-        = f.text_area :family_hiv, :disabled => @is_disable, :rows => 5
-      %p{:class => "ask2"}
-        %strong
-          = label_tag "(work & HIV) How has living with HIV affected your current work?"
-      .search3
-        = f.text_area :work_hiv, :disabled => @is_disable, :rows => 5
-      %p{:class => "ask2"}
-        %strong
-          = label_tag "(discrimination) Have you ever experienced discrimination on the basis of your HIV status from government agencies (eg. police, health workers, schools, employment officials, immigration agencies) or other areas (employers, businesses, clubs, etc). If so, please tell us what happened"
-      .search3
-        = f.text_area :discrimination, :disabled => @is_disable, :rows => 5
-      %p{:class => "ask2"}
-        %strong
-          = label_tag "(disclosure, stigma) What needs to happen in order for people living with HIV to feel more comfortable about telling people about their status?"
-      .search3
-        = f.text_area :disclosure_stigma, :disabled => @is_disable, :rows => 5
-      %p{:class => "ask2"}
-        %strong
-          = label_tag "(acceptance) Stigma and discrimination against people living with HIV is often quite challenging for everyone. What is one simple thing that people could do to encourage more acceptance in the community?"
-      .search3
-        = f.text_area :acceptance, :disabled => @is_disable, :rows => 5
-      %p{:class => "ask2"}
-        %strong
-          = label_tag "(treatment) How do you feel about antiretrovial treatment?"
-      .search3
-        = f.text_area :treatment, :disabled => @is_disable, :rows => 5
-      %p{:class => "ask2"}
-        %strong
-          = label_tag "Can you share one humorous or odd thing about your life with HIV?"
-      .search3
-        = f.text_area :humorous_odd, :disabled => @is_disable, :rows => 5
-      %p{:class => "ask2"}
-        %strong 
-          = label_tag "How do you feel about your future?"
-      .search3
-        = f.text_area :future_life, :disabled => @is_disable, :rows => 5
+.clearer.hide-responsive  
+%br.hide-responsive/
+.main-content-left{:style=>"width:70%"}
+  .page-content.review.single-post
+    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+    .review-content
+      .ribbon-shadow-left
+      .section-wrapper
+        .section-header
+          Tier 7
+      .section-arrow
+      / post by removed from here
+      .content-panel
+        .the-content.justify-content
+          %p 
+            = link_to "Home", "/"
+            > Tier 7
+          = form_for @profile_tier7, :url => {:controller => :tier7, :action => :create},:html => {:class => "exp-contact-form"}, :method => :post do |f|
+            %p{:class => "ask2"}
+              %strong
+                = f.label "(first diagnosis) Who was the first person you spoke to after you received your initial positive test result? Why did you choose to tell this person?",:class=>"label"
+            = f.text_area :first_diagnosis, :disabled => @is_disable, :rows => 5, :class=>"textarea", :style => "width: 630px"
+            %p{:class => "ask2"}
+              %strong
+                = f.label "(sex & HIV) How has your HIV status affected your sex life?",:class=>"label"
+            = f.text_area :sex_hiv, :disabled => @is_disable, :rows => 5, :class=>"textarea", :style => "width: 630px"
+            %p{:class => "ask2"}
+              %strong
+                = f.label "(relationships & HIV) How has it affected love and relationships?",:class=>"label"
+            = f.text_area :relationship_hiv, :disabled => @is_disable, :rows => 5, :class=>"textarea", :style => "width: 630px"
+            %p{:class => "ask2"}
+              %strong
+                = f.label "(disclosure) How do you decide whether to tell someone your HIV status?",:class=>"label"
+            = f.text_area :disclosure, :disabled => @is_disable, :rows => 5, :class=>"textarea", :style => "width: 630px"
+            %p{:class => "ask2"}
+              %strong
+                = f.label "(relationships & HIV) Has your relationship with your family and friends changed or evolved after you found out you are HIV-positive? If so, how?",:class=>"label"
+            = f.text_area :family_hiv, :disabled => @is_disable, :rows => 5, :class=>"textarea", :style => "width: 630px"
+            %p{:class => "ask2"}
+              %strong
+                = f.label "(work & HIV) How has living with HIV affected your current work?",:class=>"label"
+            = f.text_area :work_hiv, :disabled => @is_disable, :rows => 5, :class=>"textarea", :style => "width: 630px"
+            %p{:class => "ask2"}
+              %strong
+                = f.label "(discrimination) Have you ever experienced discrimination on the basis of your HIV status from government agencies (eg. police, health workers, schools, employment officials, immigration agencies) or other areas (employers, businesses, clubs, etc). If so, please tell us what happened",:class=>"label"
+            = f.text_area :discrimination, :disabled => @is_disable, :rows => 5, :class=>"textarea", :style => "width: 630px"
+            %p{:class => "ask2"}
+              %strong
+                = f.label "(disclosure, stigma) What needs to happen in order for people living with HIV to feel more comfortable about telling people about their status?",:class=>"label"
+            = f.text_area :disclosure_stigma, :disabled => @is_disable, :rows => 5, :class=>"textarea", :style => "width: 630px"
+            %p{:class => "ask2"}
+              %strong
+                = f.label "(acceptance) Stigma and discrimination against people living with HIV is often quite challenging for everyone. What is one simple thing that people could do to encourage more acceptance in the community?",:class=>"label"
+            = f.text_area :acceptance, :disabled => @is_disable, :rows => 5, :class=>"textarea", :style => "width: 630px"
+            %p{:class => "ask2"}
+              %strong
+                = f.label "(treatment) How do you feel about antiretrovial treatment?",:class=>"label"
+            = f.text_area :treatment, :disabled => @is_disable, :rows => 5, :class=>"textarea", :style => "width: 630px"
+            %p{:class => "ask2"}
+              %strong
+                = f.label "Can you share one humorous or odd thing about your life with HIV?",:class=>"label"
+            = f.text_area :humorous_odd, :disabled => @is_disable, :rows => 5, :class=>"textarea", :style => "width: 630px"
+            %p{:class => "ask2"}
+              %strong 
+                = f.label "How do you feel about your future?", :class=>"label"
+            = f.text_area :future_life, :disabled => @is_disable, :rows => 5, :class=>"textarea", :style => "width: 630px"
 
-      .search3
-        - unless @is_disable
-          = link_to "<span>Submit</span>".html_safe, "#", :class => "ask_tag2", :id => "ask_question_link", :style => "margin-bottom: 10px;"
+            %p
+            - unless @is_disable
+              = link_to "<span>Submit</span>".html_safe, "javascript:void(0)", :class => "submit-button", :id => "ask_question_link", :style => "margin-bottom: 10px;"
+
 
 :javascript
-  $("#ask_question_link").click(function (){
-    $("#new_profile_tier7,#edit_profile_tier7").submit();
+  jQuery("#ask_question_link").click(function (){
+    jQuery("#new_profile_tier7,#edit_profile_tier7").submit();
   });

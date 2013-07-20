@@ -440,4 +440,40 @@ form.exp-contact-form{
 .extra-buttons:hover{
     color:#DDDDDD !important; 
 }
-
+.add-a-new-tag .each .tools{
+    float: right;
+    margin-right: 15px;
+    margin-top: -40px;
+}
+.page-content .content-panel ul.social-provider-list li a.facebook {
+    background: url("/assets/share/facebook.png") no-repeat scroll 0 0 transparent;
+}
+.page-content .content-panel ul.social-provider-list li a.twitter {
+    background: url("/assets/share/twitter-fdd685039fe95c8e0a4ebce4911b5f29.png") no-repeat scroll 0 0 transparent;
+}
+.page-content .content-panel ul.social-provider-list li a.linkedin {
+    background: url("/assets/share/linkedin-cfb3552a8f88da8c590598a8783861bf.png") no-repeat scroll 0 0 transparent;
+}
+.page-content .content-panel ul.social-provider-list li a.identica {
+    background: url("/assets/share/identi-0e65cdc491e3a07036171310b0763aa9.png") no-repeat scroll 0 0 transparent;
+}
+.page-content .content-panel ul.social-provider-list {
+    margin: 0 0 30px 30px;
+    overflow: hidden;
+}
+.page-content .content-panel ul.social-provider-list li {
+    display: inline;
+    height: 24px;
+    width: 24px;
+}
+.page-content .content-panel ul.social-provider-list li a {
+    border: medium none;
+    display: block;
+    float: left;
+    height: 24px;
+    margin: 0 5px 0 0;
+    overflow: hidden;
+    padding: 0 !important;
+    text-indent: -9999px;
+    width: 24px;
+}

@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   match '/feedback' => 'welcome#fake_feedback'
   match '/send_feedback' => 'welcome#send_shapado_feedback', :as => :send_feedback
   match '/send_shapado_feedback' => 'welcome#send_feedback', :as => :send_feedback
-  #match '/profile/settings' => 'users#edit', :as => :settings
+  match '/profile/settings' => 'users#edit', :as => :settings
   match '/tos' => 'manage_terms#public_terms', :as => :tos
   match '/privacy' => 'manage_privacy#public_privacy', :as => :privacy
   match '/widgets/embedded/:id' => 'widgets#embedded', :as => :embedded_widget
@@ -106,7 +106,7 @@ Rails.application.routes.draw do
     end
   end
   
-  # resources :service_providers, :except => [:show], :path=>'services-map'
+  resources :service_providers, :except => [:show], :path=>'services-map'
   get '/services-map/:id/:slug' => "service_providers#show", :as=>:service_map_provider
   resources :news
   resources :polls
@@ -387,7 +387,6 @@ Rails.application.routes.draw do
         get '/questions/ask-a-question' => 'experimental#ask_question', :as => :ask_question
         get 'questions/:id' => 'experimental#question_show', :as => :question_show
         get :community
-        get 'services-map' => 'experimental#service_providers_show', :as => :service_providers_show
         get :profile
         get :profile_settings, :path=> "/profile/settings"
         # experimental routes

@@ -35,7 +35,7 @@ class UsersController < ApplicationController
         :expertise => tab_config,
         :feed => tab_config,
         :contributed => tab_config
-  layout "experiment", :only => [:index,:new,:create, :show, :answers, :follows, :activity, :edit, :survey]
+  layout "experiment", :only => [:index,:new,:create, :show, :answers, :follows, :activity, :edit, :survey, :social_connect]
   def index
     set_page_title(t("users.index.title"))
 
