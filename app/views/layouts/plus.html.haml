@@ -422,8 +422,7 @@
   function closePopup(){
     var nilUser = "#{current_user.nil?}";
     if(window.opener!=null && nilUser != "true"){
-      window.opener.location.host = window.opener.location.host + '/questions'
-      //window.opener.location.reload(true);
+      window.opener.location.href = '/questions';
       window.close();
     }
   }
