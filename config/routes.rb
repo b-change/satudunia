@@ -87,6 +87,12 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'faq' =>"manage_faqs#public_faq"
+  get 'experimental/about' => "manage_abouts#experimental_about"
+  get 'question/:question_id/votesup/:vote_up'=>"votes#create",:as=>:vote_question_up
+  get 'question/:question_id/votesdown/:vote_down'=>"votes#create",:as=>:vote_question_down
+  resources :countquestions
+
   resources :badges
   resources :news_letter, :path=>'/newsletter'
 
