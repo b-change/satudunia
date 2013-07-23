@@ -1,22 +1,22 @@
 #featured-wrapper.full
 	#featured
-		%a{:href => "single-review-numbers.html"}
-			%img{:alt => "restaurants6", :height => "550", :src => "/assets/plus/test1.jpg", :title => "#div1", :width => "1000"}/
-		%a{:href => "single-review-numbers.html"}
-			%img{:alt => "movies1", :height => "550", :src => "/assets/plus/test2.jpg", :title => "#div2", :width => "1000"}/
-		%a{:href => "single-review-numbers.html"}
-			%img{:alt => "music2", :height => "550", :src => "/assets/plus/test3.jpg", :title => "#div3", :width => "1000"}/
+		%a{:href => "/questions"}
+			%img{:alt => "Questions",:title=>"Questions", :height => "550", :src => "/assets/plus/new1.jpg", :title => "#div1", :width => "1000"}/
+		%a{:href => "/services-map"}
+			%img{:alt => "Services-map",:title=>"Services-map", :height => "550", :src => "/assets/plus/new2.jpg", :title => "#div2", :width => "1000"}/
+		%a{:href => "/questions/ask-a-question"}
+			%img{:alt => "Ask-a-question",:title=>"Ask-a-question", :height => "550", :src => "/assets/plus/new3.jpg", :title => "#div3", :width => "1000"}/
 	#div1.nivo-html-caption
 		/ %a.video{:href => "single-review-numbers.html"}  
 		.category
 			.ribbon-shadow-left  
-			.icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-restaurant-dark.png) no-repeat 0px 0px;"}  
+			/ .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-restaurant-dark.png) no-repeat 0px 0px;"}  
 			.catname
-				Know The Basics: Living with HIV
+				="<i class='icon-help'></i>Know The Basics: Living with HIV".html_safe
 			.category-arrow  
 		.title
 			%h1
-				%a.bebas{:href => "single-review-numbers.html"} Know The Basics: Get the information you need to know and stay in touch via our regular newsletter or social media feeds
+				%a.bebas{:href => "single-review-numbers.html"} Know The Basics: Get the information you need to know. 
 		/ .rating-wrapper
 		/ 	.stars.yellow
 		/ 		.star.full  
@@ -29,13 +29,13 @@
 		/ %a.video{:href => "single-review-numbers.html"}  
 		.category
 			.ribbon-shadow-left  
-			.icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-movie-dark.png) no-repeat 0px 0px;"}  
+			/ .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-movie-dark.png) no-repeat 0px 0px;"}  
 			.catname
-				Search the Service Map
+				="<i class='icon-location'></i>Search the Service Map".html_safe
 			.category-arrow  
 		.title
 			%h1
-				%a.bebas{:href => "single-review-numbers.html"} Service Map : Find HIV health specialists in your local areas and help us map other services that people should know about.
+				%a.bebas{:href => "single-review-numbers.html"} Service Map : Find HIV health specialists in your local areas.
 		/ .rating-wrapper
 		/ 	.number.color1 15%	
 		%br.clearer/
@@ -43,13 +43,13 @@
 		/ %a.video{:href => "single-review-numbers.html"}  
 		.category
 			.ribbon-shadow-left  
-			.icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-music-dark.png) no-repeat 0px 0px;"}  
+			/ .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-music-dark.png) no-repeat 0px 0px;"}  
 			.catname
-				Ask a Question
+				="<i class='icon-circled-help'></i>Ask a Question".html_safe
 			.category-arrow  
 		.title
 			%h1
-				%a.bebas{:href => "single-review-numbers.html"} Ask A Question : Learn from other people’s experience of living with HIV - the diversity of answers might be the food for thought that you needed.
+				%a.bebas{:href => "single-review-numbers.html"} Ask A Question : Learn from other people’s experience of living with HIV.
 		/ .rating-wrapper
 		/ 	.number.color5 8.6
 		%br.clearer/

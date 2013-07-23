@@ -91,7 +91,7 @@
 
   field :track_users, :type => Boolean, :default => true
   field :mobile_layout, :type => Boolean, :default => false
-
+  field :footer_content, :type => String  
   # can be:
   # * 'all': email, openid, oauth
   # * 'noemail': openid and oauth only

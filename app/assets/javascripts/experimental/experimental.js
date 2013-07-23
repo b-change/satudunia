@@ -14,6 +14,8 @@
 //= require vendor/jHtmlArea.js
 //= require app/modules/editor.js
 //= require 'experimental/jquery.validate'
+//= require 'experimental/jquery.tipsy'
+
 
 
 

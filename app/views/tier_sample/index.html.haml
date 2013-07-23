@@ -1,6 +1,6 @@
 .clearer.hide-responsive  
 %br.hide-responsive/
-.main-content-left{:style=>"width:70%"}
+.main-content-left
   .page-content.review.single-post
     %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
     .review-content
@@ -13,8 +13,7 @@
       .content-panel
         .the-content.justify-content
           = form_tag tier_sample_path(:id => current_user.id), :class => "exp-contact-form", :id => "tier-form", :method => :put do
-            %h1
-              = label_tag "What is the reason for visiting the site?", "What is the reason for visiting the site?", :class => "label"
+            = label_tag "What is the reason for visiting the site?", "What is the reason for visiting the site?", :class => "label"
             %table
               %tr
                 %td
@@ -51,10 +50,11 @@
                   .checkbox
                     = check_box_tag "tier1[]", "I want to know more about living with HIV", false, :class=> "text_field", :disabled => @is_disable
                     I want to know more about living with HIV
-            %p
-              - unless @is_disable
-                = link_to "<span>submit</span>".html_safe, "javascript:void(0)", :class => "submit-button", :id => "ask_question_link", :style => "margin-bottom: 10px;"
-
+            %br
+            - unless @is_disable
+              = link_to "<i class='icon-check'></i>Submit".html_safe, "javascript:void(0)", :class => "submit-button", :id => "ask_question_link", :style => "margin-bottom: 10px;"
+.sidebar
+  = render "experimental/partials/left_bar"
 :javascript
   jQuery(document).ready(function(){
     jQuery("#ask_question_link").click(function (){

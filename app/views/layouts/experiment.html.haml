@@ -27,11 +27,16 @@
 		%meta{:content => "#{current_group.metro_color}", :name=>"msapplication-TileColo"}/
 		/ CSS
 		= stylesheet_link_tag "experimental/experimental"
+		
 		/ JS
-		= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js?ver=3.3.1"
+		= javascript_include_tag "experimental/jquery.min.js?ver=3.3.1"
 		= javascript_include_tag "experimental/experimental"
 
 		%body
+			/ page loader starts
+			#div-load
+			#div-another-image
+			/page loader ends
 			/top menu bar
 			= render "experimental/partials/top_menu_bar"
 			/ page wrapper starts from here
@@ -77,49 +82,110 @@
 						%li
 							%a{:href => "single-post.html"} Single Blog Post
 						%li
-							%a{:href => "single-review-numbers.html"} Single Reviews
+							%a{:href => "single-review-numbers.html"} Service Areas
 							%ul
 								%li
-									%a{:href => "single-review-numbers.html"} Number Ratings
+									%a{:href => "single-review-numbers.html"} Singapore 
 								%li
-									%a{:href => "single-review-percentages.html"} Percentage Ratings
+									%a{:href => "single-review-percentages.html"} Thailand 
 								%li
-									%a{:href => "single-review-stars.html"} Star Ratings
+									%a{:href => "single-review-stars.html"} Indonesia 
 								%li
-									%a{:href => "single-review-letters.html"} Letter Grade Ratings
+									%a{:href => "single-review-letters.html"} philippines 
+						/ question drop starts
 						%li
-							%a{:href => "#"} Drop Down Menu
+							%a{:href => "#"} Questions
 							%ul
 								%li
-									%a{:href => "#"} Sub Menu Item
-								%li
-									%a{:href => "#"} Sub Menu Item
-								%li
-									%a{:href => "#"} Second Level Drop Down
+									%a{:href => "#"} Disclosure
 									%ul
 										%li
-											%a{:href => "#"} Sub Menu Item
+											%a{:href => "#"} Casual Partners
 										%li
-											%a{:href => "#"} Third Level Drop Down
-											%ul
-												%li
-													%a{:href => "#"} Sub Menu Item
-												%li
-													%a{:href => "#"} Sub Menu Item
-												%li
-													%a{:href => "#"} Sub Menu Item
+											%a{:href => "#"} Family
 										%li
-											%a{:href => "#"} Sub Menu Item
+											%a{:href => "#"} Friends
+										%li
+											%a{:href => "#"} Regular Partners
 								%li
-									%a{:href => "#"} Sub Menu Item
+									%a{:href => "#"} Drugs
+									%ul
+										%li
+											%a{:href => "#"} Partying
+										%li
+											%a{:href => "#"} Sex
 								%li
-									%a{:href => "#"} Sub Menu Item
+									%a{:href => "#"} First Diagnosis
+									%ul
+										%li
+											%a{:href => "#"} Situation
 								%li
-									%a{:href => "#"} Sub Menu Item
-						%li
-							%a{:href => "review-directory-a.html"} Review Directory Layout A
-						%li
-							%a{:href => "review-directory-b.html"} Review Directory Layout B
+									%a{:href => "#"} Maintaining Treatment
+									%ul
+										%li
+											%a{:href => "#"} Compliance
+										%li
+											%a{:href => "#"} Regular Access to Medication
+								%li
+									%a{:href => "#"} Relationships
+									%ul
+										%li
+											%a{:href => "#"} Dating
+										%li
+											%a{:href => "#"} Family
+										%li
+											%a{:href => "#"} Friends
+								%li
+									%a{:href => "#"} Sex
+									%ul
+										%li
+											%a{:href => "#"} Minimising-risk
+										%li
+											%a{:href => "#"} Safer Sex
+								%li
+									%a{:href => "#"} Starting Medication
+									%ul
+										%li
+											%a{:href => "#"} Accessing Medication
+										%li
+											%a{:href => "#"} Cost
+										%li
+											%a{:href => "#"} Selecting Medication
+										%li
+											%a{:href => "#"} Side Effects
+								%li
+									%a{:href => "#"} Starting Treatment
+									%ul
+										%li
+											%a{:href => "#"} Clinics
+										%li
+											%a{:href => "#"} Cost
+										%li
+											%a{:href => "#"} Doctors
+								%li
+									%a{:href => "#"} Travel
+									%ul
+										%li
+											%a{:href => "#"} Migration
+										%li
+											%a{:href => "#"} Tourism
+								%li
+									%a{:href => "#"} Well-being
+									%ul
+										%li
+											%a{:href => "#"} Fitness
+										%li
+											%a{:href => "#"} Nutrition
+								%li
+									%a{:href => "#"} Work
+									%ul
+										%li
+											%a{:href => "#"} Health Checks
+										%li
+											%a{:href => "#"} Health Insurance
+										%li
+											%a{:href => "#"} Inclusion & Discrimination
+						/ question drop ends
 					%select#select-menu-main-menu
 						%option Category Navigation
 						%option{:value => "archive-a.html"} Layouts
@@ -145,15 +211,17 @@
 				.cat-menu.tax
 					%ul#menu-sub-menu.menu
 						%li
-							%a{:href => "search.html"} Search Results
+							%a{:href => public_about_experimental_index_path,:title=>"About us",:alt=>"About us"} About us
 						%li
-							%a{:href => "404.html"} 404 page
+							%a{:href => "/badges",:title=>"Badges",:alt=>"Badges"} Badges
 						%li
-							%a{:href => "page-styled-html-elements.html"} Styled HTML Elements
+							%a{:href => "/polls",:title=>"Polls",:alt=>"Polls"} Polls
 						%li
-							%a{:href => "page-full-width.html"} Full-Width Page
+							%a{:href => "/survey",:title=>"Survey",:alt=>"Survey"} Surveys
 						%li
-							%a{:href => "page-contributors.html"} Contributors Listing
+							%a{:href => "/questions",:title=>"Questions",:alt=>"Questions"} Questions 
+						%li
+							%a{:href => "/answers",:title=>"Answers",:alt=>"Answers"} Answers
 				%br.clearer.hide-responsive-small
 				/ page wrapper ends here
 				/ dont miss bar starts from here
@@ -161,8 +229,9 @@
 				/ end of dont miss bar
 				/ main wrapper starts from here
 				#main-wrapper
-					#main-wrapper-dark
-						= render "experimental/partials/social_side_bar"
+					#main-wrapper-dark		
+						- unless check_valid
+							= render "experimental/partials/social_side_bar"
 						- flash.each do |name, msg|
 							- if msg.is_a?(String)
 								%div{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
@@ -274,6 +343,28 @@
 		window.open("https://twitter.com/share","sharer","width="+w+",height="+h+",top="+top+",left="+left+",scrollbars='no',resize='no'");
 
 	}
+
+	jQuery(window).load(function(){
+		jQuery("#div-load").hide();
+		jQuery("#div-another-image").hide();
+	});
+	jQuery(document).ready(function(){
+		jQuery("#main-wrapper").fadeIn('slow','linear');
+	});
+
+	jQuery(function($) {
+		$('.tool-tip').tipsy({
+			delayIn: 50,
+			delayOut: 50,
+			fade: true, 
+			gravity: 'n', 
+			opacity: 100,
+			});
+	});
+
+
+	
+	
 
 
 	

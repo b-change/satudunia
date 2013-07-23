@@ -2541,3 +2541,7 @@ form input.valid {border: 1px solid #9FC569 !important;}
 .jHtmlArea iframe {
   border: solid 1px #c4c4c4 !important;
 }
+.row-fluid .textarea {
+    width: 73.415%;
+    height:80px;
+}

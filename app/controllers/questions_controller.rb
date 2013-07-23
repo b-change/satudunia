@@ -23,7 +23,7 @@ class QuestionsController < ApplicationController
           :show => [[:votes, [:votes_average, Mongo::DESCENDING]], [:oldest, [:created_at, Mongo::ASCENDING]], [:newest, [:created_at, Mongo::DESCENDING]]]
   helper :votes
 
-  layout "plus", :only => ["index", "show","question_search", "new", "create"]
+  layout "experiment", :only => ["index", "show","question_search", "new", "create"]
 
   # GET /questions
   # GET /questions.xml
@@ -176,6 +176,7 @@ class QuestionsController < ApplicationController
   # GET /questions/1
   # GET /questions/1.xml
   def show
+    @title = @question.try(:title)
     @body_id = "page3"
     # related tags count
     @tags = @question.tags
@@ -381,7 +382,11 @@ class QuestionsController < ApplicationController
         format.js {render :json => {:success => true, :message => flash[:notice], :html => html} }
       else
         @question.errors.add(:captcha, "is invalid") unless recaptcha_valid?
-        format.html { render :action => "new" }
+        format.html { 
+          # render :action => "new" 
+          redirect_to ask_question_experimental_index_path
+          flash[:alert] = "Question Not Created"
+        }
         format.json { render :json => @question.errors+@question.user.errors }
         format.js { render :json => {:success => false, :message => (@question.errors+@question.user.errors).join(", ")} }
       end

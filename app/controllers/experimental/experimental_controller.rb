@@ -55,61 +55,6 @@ class Experimental::ExperimentalController < ApplicationController
       redirect_to new_user_session_path
     end
   end
-  # question show
-  def question_show
-    # plus code
-    @title = @question.try(:title)
-    # related tags count
-    @tags = @question.tags
-    # counting question counter
-    @relatedQuestion = current_group.questions.where(:tags=>@question.tags).not_in(_id:[@question.id]) 
-    if current_group.current_theme.has_questions_show_html?
-      @template_format = 'mustache'
-      request.format = :mustache
-    end
-
-    if @question.reward && @question.reward.ends_at < Time.now
-      Jobs::Questions.async.close_reward(@question.id).commit!(1)
-    end
-    options = {:banned => false}
-    options[:_id] = {:$ne => @question.answer_id} if @question.answer_id
-    @answers = @question.answers.where(options).
-                                order_by(current_order).
-                                without(:_keywords).
-                                page(params["page"])
-
-    @answer = Answer.new(params[:answer])
-
-    if @question.user != current_user && !is_bot?
-      @question.viewed!(request.remote_ip)
-
-      if (@question.views_count % 10) == 0
-        sweep_question_views
-      end
-    end
-
-    set_page_title(@question.title)
-    add_feeds_url(url_for(:format => "atom"), t("feeds.question"))
-
-    if current_user && (rl=ReadList.where(:user_id => current_user.id, :"questions.#{@question.id}" => {:$exists => true}).only(:"questions.#{@question.id}").first)
-      @last_read_at = rl.questions[@question.id]
-    end
-
-    respond_to do |format|
-      format.html {
-        if @question.views_count >= 1000
-          Jobs::Questions.async.on_view_question(@question.id).commit!(5)
-        end
-        current_user.after_viewing(@question) if current_user
-
-        render :layout => layout_for_theme
-      }
-      format.mobile
-      format.json  { render :json => @question.to_json(:except => %w[_keywords slug watchers]) }
-      format.atom
-    end
-    # plus code
-  end
 
   #partners action
   def partners

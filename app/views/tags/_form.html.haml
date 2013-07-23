@@ -1,11 +1,10 @@
-= form_for(@tag, :html => {:class => "form",:id=>"new-tag-form", :multipart => true}) do |form|
+= form_for(@tag, :html => {:class => "exp-contact-form",:id=>"new-tag-form", :multipart => true}) do |form|
   = error_messages_for(:tag)
-  %div{:class => "ask2_1"}
-    %strong
-      Name
+  %br
+    = form.label :name, "Name", :class => "label"
   .appender
     #appender
-      = text_field_tag :new_tag,nil,:class=>"new_tag",:size=>"55"
+      = text_field_tag :new_tag,nil,:class=>"input-class",:size=>"55"
       = hidden_field_tag :my_hidden,nil,:class=>"my_hidden"
 
   .loader-gif
@@ -14,17 +13,15 @@
     = "Tag already exists"
   = form.hidden_field :name,:class=>"tag-name-submit"
     
-  %div{:class => "ask2_1"}
-    %strong
-      = form.label :icon
+  %br
+    = form.label :icon, :class => "label"
   .search4
     = form.file_field :icon
 
-  %div{:class => "ask2_1"}
-    %strong
-      = form.label :description
+  %br
+    = form.label :description, :class => "label"
   .search4
-    = form.text_area :description, :class => "textarea-width"
+    = form.text_area :description, :class => "textarea", :style => "width:630px;"
 
   -if !(@tag.new_record? || @tag.errors[:name].blank?)
     == The tag '#{@name_changes.last}' already exists
@@ -98,7 +95,7 @@
   // $.each(valueArray,function(key,value){
     
   // });
-  $(".new_tag").keyup(function(evt) {
+  $(".input-class").keyup(function(evt) {
     var thisTag = $(this);
     var sizeOfTag = thisTag.attr("size");
     if(sizeOfTag==55)
@@ -122,7 +119,7 @@
           $(".loader-gif").show();
           // settimeOut function
           setTimeout(function(){
-            $("#new_tag").before("<li class='"+arraySize+" list-class'><span>"+MatchThis+"<span>&nbsp;<span class='new-close-tags'>x</span> </li>");
+            $("#input-class").before("<li class='"+arraySize+" list-class'><span>"+MatchThis+"<span>&nbsp;<span class='new-close-tags'>x</span> </li>");
             // removed function
             $("."+arraySize).click(function(){
                 $(this).fadeOut('slow',"linear");

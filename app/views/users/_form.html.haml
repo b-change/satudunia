@@ -170,7 +170,8 @@
 
       rules:{
         "user[login]":{
-          required:true
+          required:true,
+          maxlength:15
         },
 
         "user[email]":{
@@ -178,7 +179,8 @@
         },
 
         "user[password]":{
-          required:true
+          required:true,
+          minlength:5
         },
         "user[current_password]":{
           required:true
@@ -190,13 +192,15 @@
       },
       messages:{
         "user[login]":{
-          required:"Name Can't be Blank" 
+          required:"Name Can't be Blank",
+          maxlength:"Maximum 15 characters",
         },
         "user[email]":{
           required:"Email Can't be Blank" 
         },
         "user[password]":{
-          required:"Password Can't be Blank" 
+          required:"Password Can't be Blank", 
+          minlength:"Minimum 5 characters"
         },
         "user[current_password]":{
           required:"Current Password Can't be Blank" 

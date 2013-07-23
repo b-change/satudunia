@@ -1,18 +1,23 @@
-%ul.options
+%ul.options-exp
   - if controller_name != 'sessions'
-    %li
-      = link_to t('devise.sessions.link'), new_session_path(resource_name)
-  %li
-    = link_to t('devise.registrations.link'), new_user_path
+    %li{:class=>"new-exp-link"}
+      %span
+        = link_to "<i class='icon-login'></i>Sign in".html_safe, new_session_path(resource_name), :class=>"extra-buttons"
+  %li{:class=>"new-exp-link"}
+    %span
+      = link_to "<i class='icon-plus'></i>Sign up".html_safe, new_user_path, :class => "extra-buttons"
 
   - if devise_mapping.recoverable? && controller_name != 'passwords'
-    %li
-      = link_to t('devise.passwords.link'), new_password_path(resource_name)
+    %span
+      %li{:class=>"new-exp-link"}
+        = link_to "<i class='icon-help'></i>Forgot Password".html_safe, new_password_path(resource_name), :class=>"extra-buttons"
 
   - if devise_mapping.confirmable? && controller_name != 'confirmations'
-    %li
-      = link_to t('devise.confirmations.link'), new_confirmation_path(resource_name)
+    %span
+      %li{:class=>"new-exp-link"}
+        = link_to t('devise.confirmations.link'), new_confirmation_path(resource_name)
 
   - if devise_mapping.lockable? && controller_name != 'unlocks'
-    %li
-      = link_to t('devise.unlocks.link'), new_unlock_path(resource_name)
+    %span
+      %li{:class=>"new-exp-link"}
+        = link_to "<i class='icon-help'></i>Did not receive unlock instructions?".html_safe, new_unlock_path(resource_name), :class=>"extra-buttons"

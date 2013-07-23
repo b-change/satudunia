@@ -43,7 +43,7 @@ class ManageFaqsController < ApplicationController
   def public_faq
     @faqs = Faq.all.page(params[:page])
 
-    render :layout => "plus"
+    render :layout => "experiment"
   end
 
   def destroy

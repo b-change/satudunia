@@ -1,6 +1,6 @@
 .clearer.hide-responsive  
 %br.hide-responsive/
-.main-content-left{:style=>"width:70%"}
+.main-content-left
   .page-content.review.single-post
     %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
     .review-content
@@ -12,13 +12,9 @@
       / post by removed from here
       .content-panel
         .the-content.justify-content
-          %p 
-            = link_to "Home", "/"
-            > Tier 4
           = form_for @profile_tier4, :url => {:controller => :tier4, :action => :create},:html => {:class => "exp-contact-form"}, :method => :post do |f|
             %p{:class => "ask2"}
-              %strong
-                = f.label "Height", :class=> "label"
+              = f.label "Height", :class=> "label"
             %table
               %tr
                 %td
@@ -33,8 +29,7 @@
                     cm
             = f.text_field :height, :disabled => @is_disable, :class=>"input-class"
             %p{:class => "ask2"}
-              %strong
-                = f.label "Weight",:class=>"label"
+              = f.label "Weight",:class=>"label"
             %table
               %tr
                 %td
@@ -49,8 +44,7 @@
                     lbs
             = f.text_field :weight, :disabled => @is_disable, :class=>"input-class"
             %p{:class => "ask2"}
-              %strong
-                = f.label "Build", :class=>"label"
+              = f.label "Build", :class=>"label"
             %table
               %tr
                 %td
@@ -78,8 +72,9 @@
               
             %br
             - unless @is_disable
-              = link_to "<span>Submit</span>".html_safe, "javascript:void(0)", :class => "submit-button", :id => "ask_question_link", :style => "margin-bottom: 10px;"
-
+              = link_to "<i class='icon-check'></i>Submit".html_safe, "javascript:void(0)", :class => "submit-button", :id => "ask_question_link", :style => "margin-bottom: 10px;"
+.sidebar
+  = render "experimental/partials/left_bar"
 :javascript
   jQuery("#ask_question_link").click(function (){
     jQuery("#new_profile_tier4,#edit_profile_tier4").submit();

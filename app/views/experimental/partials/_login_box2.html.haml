@@ -1,0 +1,24 @@
+.widget-wrapper
+	.widget
+		.section-wrapper
+			.section xxx
+		.login-form
+			%p
+		/   = form_for resource, :url => session_path(resource), :html => {:class => "form"} do |f|
+		/     / %form#loginform{:action => "http://www.industrialthemes.com/made/wp-login.php", :method => "post", :name => "loginform"}
+		/     %p.login-username
+		/       %label{:for => "user_login"} Username
+		/       =f.text_field :email, :class => "input"
+		/       / %input#user_login.input{:name => "log", :size => "20", :type => "text", :value => ""}/
+		/     %p.login-password
+		/       %label{:for => "user_pass"} Password
+		/       =f.password_field :password, :class => ""
+		/       - if params[:pp] && params[:format] != 'mobile'
+		/         = hidden_field_tag :pp, 1
+		/       / %input#user_pass.input{:name => "pwd", :size => "20", :type => "password", :value => ""}/
+		/     %p.login-remember
+		/       -if devise_mapping.rememberable?
+		/         =f.check_box :remember_me,:class=>"check-box-style",:id=>"rememberme"
+		/         Remember Me 
+		/     %p.login-submit
+		/       = button_tag "<i class='icon-login'></i>Login".html_safe,:type=>"submit"

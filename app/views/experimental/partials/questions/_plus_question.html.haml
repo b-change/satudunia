@@ -21,7 +21,7 @@
     .qa-q-item-main
       .qa-q-item-title
         %h6{:class => "title-adj"}
-          = link_to truncate(strip_tags(question.title), :length => 50), question_show_experimental_index_path(question)
+          = link_to truncate(strip_tags(question.title), :length => 50), question_path(question)
       %span{:class => "qa-q-item-avatar-meta"}
         %span{:class => "qa-q-item-meta"}
           = truncate(strip_tags(question.body), :length => 60)

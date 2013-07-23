@@ -1,9 +1,19 @@
-%li
-  .summary
-    %h3
-      = link_to poll.poll_title, poll_path(poll.slug)
-    .badges
-      Participant: #{poll.contributors_count}
-    .owner-data
-      by #{poll.user.try(:name)}
-      at #{poll.created_at.to_datetime.strftime("%d %b %Y - %I:%M %p")}
+.post-panel
+	/ As image is not present therefore giving default image
+	.post-thumbnail
+		%a.darken.small{:href => "single-review-numbers.html"}
+			%img{:alt => "misc3", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc3-70x70.jpg", :width => "70"}/
+	.inner
+		%h2
+			%a{:href => "single-review-numbers.html"}
+				= link_to poll.poll_title, poll_path(poll.slug)
+		.category
+			.catname
+				by: #{poll.user.try(:name)}
+			.catname
+				Participant: #{poll.contributors_count}
+		.comments
+			%a{:href => "single-review-numbers.html", :title => "Comment on Made Magazine Is 2 Years In The Making!"} 0 comments
+		.date
+			at #{poll.created_at.to_datetime.strftime("%d %b %Y - %I:%M %p")}
+	%br.clearer/

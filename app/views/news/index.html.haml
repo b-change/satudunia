@@ -1,18 +1,48 @@
-.clearer.hide-responsive  
+.clearer.hide-responsive  
 %br.hide-responsive/
 .main-content-left
-  .page-content.review
-    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
-    .overview-wrapper
-      %h1.title News & Activites
-      .overview
-        .arrow-catpanel-bottom  
-        .excerpt-new
-          %p
-            - if @news.blank?
-              No Recent News Yet
-            -@news.each do |news|
-              = render :partial => "news", :object => news  
-          = paginate @news
+  .post-loop
+    .ribbon-shadow-left  
+    .section-wrapper
+      .section
+        Movie Reviews
+    .ribbon-shadow-right 
+    .section-arrow
+    - if @news.blank?
+      No Recent News Yet
+    -@news.each do |news|
+      - @class = cycle('','right')
+      = render :partial => "news", :object => news
+      - if @class == 'right'
+        .clearer
+        
+      = paginate @news
+
 .sidebar
   = render "experimental/partials/login_box"
+  = render "experimental/partials/left_bar"
+
+
+
+
+
+
+
+
+
+/ .clearer.hide-responsive  
+/ %br.hide-responsive/
+/ .main-content-left
+/   .page-content.review
+/     %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
+/     .overview-wrapper
+/       %h1.title News & Activites
+/       .overview
+/         .arrow-catpanel-bottom  
+/         .excerpt-new
+/           %p
+/             - if @news.blank?
+/               No Recent News Yet
+/             -@news.each do |news|
+/               = render :partial => "news", :object => news  
+/           = paginate @news

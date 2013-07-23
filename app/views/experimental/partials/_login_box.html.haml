@@ -8,11 +8,11 @@
           / %form#loginform{:action => "http://www.industrialthemes.com/made/wp-login.php", :method => "post", :name => "loginform"}
           %p.login-username
             %label{:for => "user_login"} Username
-            =f.text_field :email, :class => "input"
+            =f.text_field :email, :class => "input",:placeholder=>"Username"
             / %input#user_login.input{:name => "log", :size => "20", :type => "text", :value => ""}/
           %p.login-password
             %label{:for => "user_pass"} Password
-            =f.password_field :password, :class => ""
+            =f.password_field :password, :class => "",:placeholder=>"Password"
             - if params[:pp] && params[:format] != 'mobile'
               = hidden_field_tag :pp, 1
             / %input#user_pass.input{:name => "pwd", :size => "20", :type => "password", :value => ""}/

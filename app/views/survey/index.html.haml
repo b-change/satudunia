@@ -1,19 +1,18 @@
-.grid_24
-  %img.body_header{:alt => "", :src => "/assets/plus/body_news1.jpg"}/
-  #firstElement.alpha.grid_18.body_about
-    %span.p_a Survey
-    %span.p_a1.i3__news{:style => "margin-left:165px"}
-      %a{:href => "index.html"} Home
-      > Survey
-    .bx-wrapper
-      %ul#slider31
-        %li.pager.ps1
-          %ul
-            - if @news.blank?
-              %li
-                %h3
-                  No Recent News Yet
-            -@news.each do |news|
-              %li
-                = render :partial => "news/news", :object => news
-      = paginate @news
+%br.hide-responsive/
+.main-content-left
+  .post-loop.search-loop
+    .ribbon-shadow-left
+    .section-wrapper
+      .section-header Survey
+    .section-arrow
+    - if @news.blank?
+      %h3
+        No Recent News Yet
+    -@news.each do |news|
+      = render :partial => "news", :object => news
+    = paginate @news
+
+.sidebar
+  = render "experimental/partials/login_box"
+  = render "experimental/partials/left_bar"
+

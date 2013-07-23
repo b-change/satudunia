@@ -1,23 +1,61 @@
-= image_tag "plus/body_about.jpg", :class => "body_header"
-%span{:class => "p_a"}
-  Tags
-%span{:class => "p_a1 i3_1", :style => "margin-left: 84px;"}
-  = link_to "Home", "/"
-  >
-  = link_to "Questions", "/questions"
-  >
-  = link_to Tag, "/questions/tags/new",:style => "color: white;"
-.grid_24.body_about
-  .container-new-plus
-    = render "form"
-    .clear
-  .save_footer{:style => "margin-top: 30px;margin-left: 0px"}
-    = link_to "<span>Create Tag</span>".html_safe, "javascript:void(0)", :class => "ask_tag5", :id => "new_tag_create"
+.clearer.hide-responsive  
+%br.hide-responsive/
+.main-content-left
+  .page-content.review.single-post
+    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+    .review-content
+      .ribbon-shadow-left
+      .section-wrapper
+        .section-header Tags
+      .section-arrow
+      .content-panel
+        .the-content
+          / old plus content
+          %h1 Tags
+        .container-new-plus
+          = render "form"
+          
+        .save_footer{:style => "margin-top: 30px;margin-left: 0px"}
+          = link_to "<i class='icon-thumbs-up'></i>Create Tag".html_safe, "javascript:void(0)", :class => "submit-button", :id => "new_tag_create"
       
 :javascript
   $('#new_tag_create').click(function(){
     $('#new-tag-form').submit();
   });
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+/ = image_tag "plus/body_about.jpg", :class => "body_header"
+/ %span{:class => "p_a"}
+/   Tags
+/ %span{:class => "p_a1 i3_1", :style => "margin-left: 84px;"}
+/   = link_to "Home", "/"
+/   >
+/   = link_to "Questions", "/questions"
+/   >
+/   = link_to Tag, "/questions/tags/new",:style => "color: white;"
+/ .grid_24.body_about
+/   .container-new-plus
+/     = render "form"
+/     .clear
+/   .save_footer{:style => "margin-top: 30px;margin-left: 0px"}
+/     = link_to "<span>Create Tag</span>".html_safe, "javascript:void(0)", :class => "ask_tag5", :id => "new_tag_create"
+      
+/ :javascript
+/   $('#new_tag_create').click(function(){
+/     $('#new-tag-form').submit();
+/   });
   
 
 

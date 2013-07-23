@@ -1,17 +1,20 @@
+.post-panel{:class => "#{@class}"}
+  .article-image
+    %a
+      .thumbnail.darken.video{:href => "single-review-numbers.html"}
+        - if news.has_news_image?
+          = image_tag news_image_path(news,"small"), :height => 170,:width=>300, :alt => news.slug
+      .inner
+        %h2
+          = link_to truncate(strip_tags(news.news_title.capitalize),:length=>64), news_path(news.slug),:class=>"avoid_link_color"
+        .excerpt
+          By #{news.user.name} on #{news.created_at.strftime("%d %b %Y - %I:%M %p")}
+          = truncate(strip_tags(news.news_body), :length => 300)
+      .more-bar
+        .arrow-catpanel-top
+        .rating-wrapper.small
+        .comments
+        .more
+          %a{:href => "single-review-numbers.html"} 
+            = link_to "More",news_path(news.slug),:class=>"avoid_link_color"
 
-.q_ff-for-image
-  - if news.has_news_image?
-    = image_tag news_image_path(news,"small"), :height => 130,:width=>160, :alt => news.slug
-.grid_14.Fright2
-  %span.s1
-    = link_to truncate(strip_tags(news.news_title.capitalize),:length=>64), news_path(news.slug),:class=>"avoid_link_color"
-  .news_block
-    .small
-      %strong
-        By #{news.user.name} on #{news.created_at.strftime("%d %b %Y - %I:%M %p")}
-    = truncate(strip_tags(news.news_body), :length => 300)
-  .news_block2
-    %span.i3_3
-      = link_to "Continue Reading >",news_path(news.slug),:class=>"avoid_link_color"
-  .news_block
-.clear

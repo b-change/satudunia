@@ -1,11 +1,27 @@
-.userDescription
-  .basicInfo{:style => "margin-left: 10px !important"}
-    %h2
-      = @news.news_title
-    %small
-      by #{@news.user.name} on #{@news.created_at.strftime("%d %b %Y - %I:%M %p")}
+.clearer.hide-responsive  
+%br.hide-responsive/
+.main-content-left
+	.page-content.review.single-post
+		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+		.review-content
+			.ribbon-shadow-left
+			.section-wrapper
+				.section-header
+					= @news.news_title
+			.section-arrow
+			/ post by removed from here
+			.content-panel
+				.the-content.justify-content			
+					.userDescription
+						.basicInfo{:style => "margin-left: 10px !important"}
+							%h2
+								= @news.news_title
+							%small
+								by #{@news.user.name} on #{@news.created_at.strftime("%d %b %Y - %I:%M %p")}
 
-- if @news.has_news_image?
-  = image_tag news_image_path(@news,"small"), :alt => @news.slug, :class => 'gravatar', :style => "margin: 10px"
-#service_information{:style => "margin: 10px"}
-  = @news.news_body.html_safe
+					- if @news.has_news_image?
+						= image_tag news_image_path(@news,"small"), :alt => @news.slug, :class => 'gravatar', :style => "margin: 10px", :size=>'500x400'
+					#service_information{:style => "margin: 10px"}
+						= @news.news_body.html_safe
+.sidebar
+	= render "experimental/partials/left_bar"

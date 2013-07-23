@@ -115,21 +115,25 @@
               #tabs-movie_genre.tabdiv
                 %ul
                   %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Action"} Action
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Travel"} Travel
                   %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Animated"} Animated
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Well being"} Well being
                   %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Comedy"} Comedy
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Drugs"} Drugs
                   %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Drama"} Drama
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Relationships"} Relationships
                   %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Horror"} Horror
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Work"} Work
                   %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Independent"} Independent
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Sex"} Sex
                   %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Romantic Comedy"} Romantic Comedy
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Disclouser"} Disclouser
                   %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Sci-Fi"} Sci-Fi
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Diagnosis"} Diagnosis
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Treatment"} Treatment
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Medication"} Medication
                   %li.last  
               #tabs-movie_director.tabdiv
                 %ul
@@ -186,8 +190,12 @@
             - if !current_user.nil? && current_user.owner_of?(current_group)
               %li
                 = link_to "Admin", "/admin",:target=>"_blank"
-            %li
-              = link_to t("layouts.application.logout"), destroy_user_session_path
+            - if current_user.present?
+              %li
+                = link_to t("layouts.application.logout"), destroy_user_session_path
+            - else
+              %li
+                = link_to "Signin", new_user_session_path 
             %li
               %a{:href => "#", :title => "Syndicate this site using RSS 2.0"}
                 Entries
@@ -203,7 +211,7 @@
             jQuery(function($){
                 jQuery(".tweet").tweet({
                   join_text: "auto",
-                  username: "IndustrialTheme",
+                  username: "b-change",
                   avatar_size: 32,
                   count: 5,
                   auto_join_text_default: "we said,",

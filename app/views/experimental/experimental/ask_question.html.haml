@@ -49,6 +49,8 @@
         .save_footer{:style=>"margin-left: -4px; padding-bottom: 5px; width: 710px;"}
           = link_to "<i class='icon-thumbs-up'></i>Ask Now".html_safe, "javascript:void(0)", :class => "submit-button", :id => "ask_question_link"
 = render :partial => 'shared/rich_text_partial'
+.sidebar
+  = render "experimental/partials/left_bar"
 :javascript
   jQuery(document).ready(function($){
     var fields = $("#attachments #fields");

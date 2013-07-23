@@ -173,7 +173,7 @@
               .span12
                 .row-fluid
                   = f.label :block_one_info, :class => "form-label span3"
-                  = f.text_field :block_one_info, :value => @group.block_one_info, :class => "span9"
+                  = f.text_area :block_one_info, :value => @group.block_one_info, :class => "textarea"
 
             .form-row.row-fluid
               .span12
@@ -185,23 +185,28 @@
               .span12
                 .row-fluid
                   = f.label :block_two_info,  :class => "form-label span3"
-                  = f.text_field :block_two_info, :value => @group.block_two_info, :class => "span9"
+                  = f.text_area :block_two_info, :value => @group.block_two_info, :class => "textarea"
 
             .form-row.row-fluid
               .span12
                 .row-fluid
                   = f.label :block_three_header, :class => "form-label span3"
                   = f.text_field :block_three_header, :value => @group.block_three_header, :class => "span9"
-            .form-row.row-fluid
-              .span12
-                .row-fluid
-                  = f.label :slogan_long_sign, "Slogan Long Signup", :class => "form-label span3"
-                  = f.text_field :slogan_long_sign, :value => @group.slogan_long_sign, :class => "span9"
+            / .form-row.row-fluid
+            /   .span12
+            /     .row-fluid
+            /       = f.label :slogan_long_sign, "Slogan Long Signup", :class => "form-label span3"
+            /       = f.text_field :slogan_long_sign, :value => @group.slogan_long_sign, :class => "span9"
             .form-row.row-fluid
               .span12
                 .row-fluid
                   = f.label :block_three_info, :class => "form-label span3"
-                  = f.text_field :block_three_info, :value => @group.block_three_info, :class => "span9"
+                  = f.text_area :block_three_info, :value => @group.block_three_info, :class => "textarea"
+            .form-row.row-fluid
+              .span12
+                .row-fluid
+                  = f.label :footer_content, :class => "form-label span3"
+                  = f.text_area :footer_content, :value => @group.footer_content, :class => "textarea"
             .form-row.row-fluid
               .span12
                 .row-fluid

@@ -1,111 +1,145 @@
 - config = @user.config_for(current_group)
 
-= image_tag "plus/body_my_prof.jpg", :class => "body_header1"
-.grid_18
-  .user_profile1
-    .grid_4
-      -if @user.use_gravatar?
-        = image_tag avatar_user_path(@user),:size=>'140x140',:class => "a5"
-      -else
-        = image_tag(default_avatar_url('small'))
-      .a6
-        = image_tag "plus/a1.png"
-        %span
-          Country: 
-          = user_country(@user)
-        %br
-        = image_tag "plus/a2.png"
-        %span
-          Age: 
-          = user_age(@user)
-    .grid_13
-      %p{:class => "a1"}
-        = user_realname(@user)
-      %p{:class => "a2"}
-        Joined 
-        = t("time.ago", :time => time_ago_in_words(config.joined_at))
-      %p{:class => "a3"}
-        = @user.bio
-      %p{:class => "a4"}
-        Website:
-        = link_to @user.website, @user.website
-      = link_to "<span>HIV Condition: #{user_hiv_condition(@user)}</span>".html_safe, "#", :class => "qwest_tag1"
-      = link_to "<span>Edit Profile</span>".html_safe, settings_path, :class => "qwest_tag15"
-  .extra-tags
-    - unless @user.profile_tiers.blank?
-      = link_to "<span>Sample</span>".html_safe, "#", :class => "qwest_tag12"
-    -unless @user.profile_support.nil?
-      = link_to "<span>Tier 1</span>".html_safe, "#", :class => "qwest_tag12"
-    - for i in 2..7 do
-      -unless eval "@user.profile_tier#{i}.nil?"
-        = link_to "<span>Tier #{i}</span>".html_safe, "#", :class => "qwest_tag12"
-  / .extra-tags
-  /   %a.qwest_tag11
-  /     %span
-  /       Addict
-  /   %a.qwest_tag12
-  /     %span
-  /       Commentator
-  /   %a.qwest_tag13
-  /     %span
-  /       Editor
-  /   %a.qwest_tag14
-  /     %span
-  /       Good Answer
-.alpha.grid_18.body_about{:id=>"firstElement", :style => "margin-top: -25px"}
-  .body_tabse
-    123
-  .tabs5
-    %ul{:class => "tabNavigation1"}
-      = tab_entry "li", t(:questions, :scope => "activerecord.models"), user_path(@user), {:selected => "selected"}, {:class => "questions"}
-      = tab_entry "li", t(:answers, :scope => "activerecord.models"), answers_user_path(@user), {:selected => "selected"}, {:class => "answers"}
-      = tab_entry "li", t('global.following'), follows_user_path(@user), {:selected => "selected"}
-      = tab_entry "li", t(:activity, :scope => "activerecord.models"), activity_user_path(@user), {:selected => "selected"}, {:class => "activity"}
-      = tab_entry "li", "Survey", survey_user_path(@user), {:selected => "selected"}, {:class => "activity"}
-    #first1{:style => "display: block"}
-      .tabs3
-        %ul{:class => "tabbernav"}
-          = render "users/show/user_#{params[:action]}_filters"
-        .i4_1{:id => "first"}
-          .bx-wrapper
-            %div.bx-window
-              %ul{:id => "slider21", :class => "i3_2", :style => "position: relative;"}
-                %li{:class => "pager ps1"}
-                  %ul
-                    = render "users/show/user_#{params[:action]}_content"
-.grid_6.omega.body1_about.my_prof12.bdd1{:id => "secondElement1", :style => "margin-top: 19px"}
-  .tagsl1_p1
-    %span{:class => "t_l1"}
-      = @user.reputation_on(current_group).to_i
-    %br
-    %span{:class => "t_l2"}
-      Reputation
-    %span{:class => "t_l1_1"}
-      = @user.following_count
-    %br
-    %span{:class => "t_l2_1"}
-      Following
-    %br
-    %span{:class => "t_l1_2"}
-      0
-    %br
-    %span{:class => "t_l2_2"}
-      View
-    %span{:class => "t_l1_3"}
-      = @user.followers_count
-    %br
-    %span{:class => "t_l2_3"}
-      Followers
-  %p{:class => "about1"}
-    %strong
-      Following Users
-  %ul{:class => "users tags"}
-    - @user.followers.each do |user|
-      %li
-        = avatar_img user, :size => "small"
-        %span{:class => "i3_5"}
-          = user.display_name
-
+.clearer.hide-responsive  
+%br.hide-responsive/
+.main-content-left
+  .page-content.review.single-post
+    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+    .review-content
+      .ribbon-shadow-left
+      .section-wrapper
+        .section-header
+          My Profile
+      .section-arrow
+      / post by removed from here
+      .content-panel
+        .the-content.justify-content
+          .grid_18
+            .user_profile1
+              .grid_4
+                -if @user.use_gravatar?
+                  = image_tag avatar_user_path(@user),:size=>'140x140',:class => "a5"
+                -else                       
+                  = image_tag(default_avatar_url('small'))
+                .a6
+                  = image_tag "plus/a1.png"
+                  %span
+                    Country: 
+                    = user_country(@user)
+                  %br
+                  = image_tag "plus/a2.png"
+                  %span
+                    Age: 
+                    = user_age(@user)
+              .grid_13
+                %p{:class => "a1"}
+                  = user_realname(@user)
+                %p{:class => "a2"}
+                  Joined 
+                  = t("time.ago", :time => time_ago_in_words(config.joined_at))
+                %p{:class => "a3"}
+                  = @user.bio
+                %p{:class => "a4"}
+                  Website:
+                  = link_to @user.website, @user.website
+                = link_to "<span>HIV Condition: #{user_hiv_condition(@user)}</span>".html_safe, "#", :class => "qwest_tag1"
+                =# link_to "<span>Edit Profile</span>".html_safe, settings_path, :class => "qwest_tag15"
+            .extra-tags
+              - unless @user.profile_tiers.blank?
+                = link_to "<span>Sample</span>".html_safe, "#", :class => "qwest_tag12"
+              -unless @user.profile_support.nil?
+                = link_to "<span>Tier 1</span>".html_safe, "#", :class => "qwest_tag12"
+              - for i in 2..7 do
+                -unless eval "@user.profile_tier#{i}.nil?"
+                  = link_to "<span>Tier #{i}</span>".html_safe, "#", :class => "qwest_tag12"
+            / .extra-tags
+            /   %a.qwest_tag11
+            /     %span
+            /       Addict
+            /   %a.qwest_tag12
+            /     %span
+            /       Commentator
+            /   %a.qwest_tag13
+            /     %span
+            /       Editor
+            /   %a.qwest_tag14
+            /     %span
+            /       Good Answer
+          .alpha.grid_18.body_about{:id=>"firstElement", :style => "margin-top: -25px"}
+            .body_tabse
+              123
+            .tabs-shortcode1
+              %ul.tabnav1
+                = tab_entry "li", t(:questions, :scope => "activerecord.models"), user_path(@user), {:selected => "selected"}, {:class => "questions"}
+                = tab_entry "li", t(:answers, :scope => "activerecord.models"), answers_user_path(@user), {:selected => "selected"}, {:class => "answers"}
+                = tab_entry "li", t('global.following'), follows_user_path(@user), {:selected => "selected"}
+                = tab_entry "li", t(:activity, :scope => "activerecord.models"), activity_user_path(@user), {:selected => "selected"}, {:class => "activity"}
+                = tab_entry "li", "Survey", survey_user_path(@user), {:selected => "selected"}, {:class => "activity"}
+            .tabdiv-wrapper
+              #first1{:style => "display: block"}
+                .tabs3
+                  %ul{:class => "tabbernav1"}
+                    = render "users/show/user_#{params[:action]}_filters"
+                  .i4_1{:id => "first"}
+                    .bx-wrapper
+                      %div.bx-window
+                        %ul{:id => "slider21", :class => "i3_2", :style => "position: relative;"}
+                          %li{:class => "pager ps1"}
+                            %ul
+                              = render "users/show/user_#{params[:action]}_content"
+              
+            / .tabs5
+            /   %ul{:class => "tabNavigation1"}
+            /     = tab_entry "li", t(:questions, :scope => "activerecord.models"), user_path(@user), {:selected => "selected"}, {:class => "questions"}
+            /     = tab_entry "li", t(:answers, :scope => "activerecord.models"), answers_user_path(@user), {:selected => "selected"}, {:class => "answers"}
+            /     = tab_entry "li", t('global.following'), follows_user_path(@user), {:selected => "selected"}
+            /     = tab_entry "li", t(:activity, :scope => "activerecord.models"), activity_user_path(@user), {:selected => "selected"}, {:class => "activity"}
+            /     = tab_entry "li", "Survey", survey_user_path(@user), {:selected => "selected"}, {:class => "activity"}
+            /   #first1{:style => "display: block"}
+            /     .tabs3
+            /       %ul{:class => "tabbernav"}
+            /         = render "users/show/user_#{params[:action]}_filters"
+            /       .i4_1{:id => "first"}
+            /         .bx-wrapper
+            /           %div.bx-window
+            /             %ul{:id => "slider21", :class => "i3_2", :style => "position: relative;"}
+            /               %li{:class => "pager ps1"}
+            /                 %ul
+            /                   = render "users/show/user_#{params[:action]}_content"
+          .grid_6.omega.body1_about.my_prof12.bdd1{:id => "secondElement1", :style => "margin-top: 19px"}
+            .tagsl1_p1
+              %span{:class => "t_l1"}
+                = @user.reputation_on(current_group).to_i
+              %br
+              %span{:class => "t_l2"}
+                Reputation
+              %span{:class => "t_l1_1"}
+                = @user.following_count
+              %br
+              %span{:class => "t_l2_1"}
+                Following
+              %br
+              %span{:class => "t_l1_2"}
+                0
+              %br
+              %span{:class => "t_l2_2"}
+                View
+              %span{:class => "t_l1_3"}
+                = @user.followers_count
+              %br
+              %span{:class => "t_l2_3"}
+                Followers
+            %p{:class => "about1"}
+              %strong
+                Following Users
+            %ul{:class => "users tags"}
+              - @user.followers.each do |user|
+                %li
+                  = avatar_img user, :size => "small"
+                  %span{:class => "i3_5"}
+                    = user.display_name
+.sidebar
+  = render "experimental/partials/left_bar"
 :javascript
   $(window).load(function (){
 
@@ -146,10 +180,3 @@
         break;
     }
   });
-
-
-
-
-
-
-

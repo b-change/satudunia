@@ -1,6 +1,6 @@
 .clearer.hide-responsive  
 %br.hide-responsive/
-.main-content-left{:style=>"width:70%"}
+.main-content-left
   .page-content.review.single-post
     %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
     .review-content
@@ -12,13 +12,9 @@
       / post by removed from here
       .content-panel
         .the-content.justify-content
-          %p 
-            = link_to "Home", "/"
-            > Tier 3
           = form_for @profile_tier3, :url => {:controller => :tier3, :action => :create},:html => {:class => "exp-contact-form"}, :method => :post do |f|
             %p{:class => "ask2"}
-              %strong
-                = f.label "Relationship Status" , :class=> "label"
+              = f.label "Relationship Status" , :class=> "label"
             %table
               %tr
                 %td
@@ -63,12 +59,10 @@
                     Prefer not to say
 
             %p{:class => "ask2"}
-              %strong
-                = f.label 'If "HIV Positive" = YES and "Relationship Status" ≠ SINGLE',:class=>"label"
+              = f.label 'If "HIV Positive" = YES and "Relationship Status" ≠ SINGLE',:class=>"label"
 
             %p{:class => "ask2"}
-              %strong
-                = f.label "Does your partner know your HIV status?",:class=>"label"
+              = f.label "Does your partner know your HIV status?",:class=>"label"
             %table
               %tr
                 %td
@@ -83,8 +77,7 @@
                     No
 
             %p{:class => "ask2"}
-              %strong
-                = f.label "Do you know your partner's HIV status?",:class=>"label"
+              = f.label "Do you know your partner's HIV status?",:class=>"label"
             %table
               %tr
                 %td
@@ -100,7 +93,9 @@
 
             %br
             - unless @is_disable
-              = link_to "<span>Submit</span>".html_safe, "javascript:void(0)", :class => "submit-button", :id => "ask_question_link", :style => "margin-bottom: 10px;"
+              = link_to "<i class='icon-check'></i>Submit".html_safe, "javascript:void(0)", :class => "submit-button", :id => "ask_question_link", :style => "margin-bottom: 10px;"
+.sidebar
+  = render "experimental/partials/left_bar"
 :javascript
   jQuery("#ask_question_link").click(function (){
     jQuery("#new_profile_tier3,#edit_profile_tier3").submit();

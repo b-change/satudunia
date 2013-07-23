@@ -6,38 +6,46 @@
 			.menu
 				%ul#menu-top-menu
 					%li
-						%a{:href => public_about_experimental_index_path,:title=>"About Plus",:alt=>"About Plus"} About Plus
+						%a{:href => public_about_experimental_index_path,:title=>"About Plus",:alt=>"About Plus",:class=>"tool-tip"} 
+							="<i class='icon-text-doc'></i>About Plus".html_safe
 					%li
-						%a{:href => questions_experimental_index_path,:title=>"Questions",:alt=>"Questions"} Questions 
+						%a{:href => questions_experimental_index_path,:title=>"Questions",:alt=>"Questions",:class=>"tool-tip"} 
+							="<i class='icon-help'></i>Questions".html_safe
 					%li
-						%a{:href => service_providers_path,:title=>"Services Map",:alt=>"Services Map"} Services map
+						%a{:href => service_providers_path,:title=>"Services Map",:alt=>"Services Map",:class=>"tool-tip"} 
+							="<i class='icon-location'></i>Services map".html_safe
 					%li
-						%a{:href => contact_path,:title=>"Contact",:alt=>"Contact"} Contact
+						%a{:href => contact_path,:title=>"Contact",:alt=>"Contact",:class=>"tool-tip"} 
+							="<i class='icon-phone'></i>Contact".html_safe
 					/ %li
 					/ 	%a{:href => partners_experimental_index_path,:title=>"Partners",:alt=>"Partners"} Partners
 					%li
-						%a{:href => ask_question_experimental_index_path,:title=>"Ask a Question",:alt=>"Ask a Question"} Ask a Question
+						%a{:href => ask_question_experimental_index_path,:title=>"Ask a Question",:alt=>"Ask a Question",:class=>"tool-tip"} 
+							="<i class='icon-circled-help'></i>Ask a Question".html_safe
 					%li
 						- if current_user.nil?
-							%a{:href => '/login',:title=>"Sign in",:alt=>"Sign in"}  Login in / Sign Up 
+							%a{:href => '/login',:title=>"Sign in",:alt=>"sign in",:class=>"tool-tip",:title=>"Sign in"}  
+								="<i class='icon-login'></i>Login in".html_safe
 						-else
 							= link_to "Login as #{h(current_user.role)}","#",:style=>"color:#027DB2;"
 							%ul
 								%li
-									= link_to current_user.login, user_path(current_user)
+								    
+									=# link_to current_user.login, user_path(current_user)
+									= link_to "<i class='icon-user'></i>#{current_user.login}".html_safe , user_path(current_user)
 								%li
-									= link_to "Profile Settings", "/profile/settings"								
+									= link_to "<i class='icon-lock'></i>Profile Settings".html_safe, "/profile/settings"								
 								%li
-									= link_to t('.connect'), social_connect_path
+									= link_to "<i class='icon-retweet'></i>#{t('.connect')}".html_safe, social_connect_path
 								%li
-									= link_to t('.following'), follows_user_path(current_user)
+									= link_to "<i class='icon-circled-right'></i>#{t('.following')}".html_safe, follows_user_path(current_user)
 								%li
-									= link_to t('.followers'), follows_user_path(current_user)+"?sort=followers"
+									= link_to "<i class='icon-right'></i>#{t('.followers')}".html_safe, follows_user_path(current_user)+"?sort=followers"
 								%li
-									= link_to t("layouts.application.logout"), destroy_user_session_path
+									= link_to "<i class='icon-logout'></i>#{t("layouts.application.logout")}".html_safe, destroy_user_session_path
 
 					%li
-						= link_to_rpx "Sign up with janrain", user_session_url
+						= link_to_rpx "<i class='icon-plus'></i>sign up".html_safe, user_session_url,:html=>{:title=>"Sign up with Janrain",:class=>"tool-tip"}
 
 								
 			%select#select-menu-top-menu
@@ -58,7 +66,7 @@
 		#top-widget
 			.top-social
 				%a.rss{:href => rss_feed_experimental_index_path}
-				%a.facebook{:href =>"https://www.facebook.com/pages/B-Change/123954514355408",:title=>"Facebook b-change Home",:alt=>"Facebook b-change Home",:target=>"_blank"}  
+				%a.facebook{:href =>"https://www.facebook.com/pages/B-Change/123954514355408",:title=>"Facebook b-change Home",:alt=>"Facebook b-change Home",:target=>"_blank",:class=>"tool-tip"}  
 				/ %a.facebook{:href =>"javascript:void(0)",:onclick=>"fb_share()"}  
 				%a.twitter{:href =>"javascript:void(0)",:onclick=>"twitter_twit()"}  
 				

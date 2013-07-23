@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   devise_for(:users, :path => '/',
              :path_names => {:sign_in => 'login', :sign_out => 'logout'},
              :controllers => {:registrations => 'users', :omniauth_callbacks => "multiauth/sessions"}) do
+    match "/password-reset", :to => "devise/unlocks#new", :as => :new_user_unlock
   end
   match '/groups/:group_id/check_custom_domain' => 'groups#check_custom_domain',
   :as => 'check_custom_domain'
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
   match '/group_twitter_request_token' => 'groups#group_twitter_request_token', :method => :get
   match 'confirm_age_welcome' => 'welcome#confirm_age', :as => :confirm_age_welcome
   match '/change_language_filter' => 'welcome#change_language_filter', :as => :change_language_filter
+  match '/register' => 'users#new', :as => :new_user
   match '/register' => 'users#create', :as => :register
   match '/signup' => 'users#new', :as => :signup
   match '/plans' => 'doc#plans', :as => :plans
@@ -63,7 +65,9 @@ Rails.application.routes.draw do
 
   match '/facts' => redirect("/")
   match '/users/:id/:slug' => redirect("/users/%{slug}"), :as => :user_se_url, :id => /\d+/
-  resources :users do
+  
+
+  resources :users, :except=>[:new] do
     collection do
       get :autocomplete_for_user_login
       post :connect

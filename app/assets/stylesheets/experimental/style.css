@@ -367,7 +367,7 @@ don't miss
 /*************************************************
 main content wrapper
 *************************************************/	
-#main-wrapper {border-right:1px solid #DDD;border-left:1px solid #DDD;background:#F5F5F5 url(images/main-bg.png) repeat-x 0px 0px;width:998px;margin:0px auto;padding-top:0px;float:left;}
+#main-wrapper {display:none;border-right:1px solid #DDD;border-left:1px solid #DDD;background:#F5F5F5 url(images/main-bg.png) repeat-x 0px 0px;width:998px;margin:0px auto;padding-top:0px;float:left;}
 .main-content-left {width:650px;float:left;}
 .main-content {width:998px;}
 
@@ -415,7 +415,7 @@ a.nivo-prevNav:hover {background-position:0 -30px;}
 .nivo-caption a {text-decoration:none;color:#FFF !important;line-height:1.5em;font-size:.9em;}
 .nivo-caption p {padding:0px;margin:0px;}
 .nivo-caption h1 {margin-bottom:5px;padding-bottom:0px;}
-.nivo-caption h1 a {line-height:1.2em !important;font-family:ProcionoRegular, Georia, serif;font-size:14px !important;}
+.nivo-caption h1 a {line-height:1.2em !important;font-family:ProcionoRegular, Georia, serif;}
 #featured-wrapper.full .nivo-caption h1 a {font-size:.8em;}
 .nivo-html-caption {display:none;width:650px;}
 #featured-wrapper.full .nivo-html-caption {width:1000px;}

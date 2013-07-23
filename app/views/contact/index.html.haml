@@ -25,8 +25,35 @@
 								%br
 								= f.button "<i class='icon-check'></i>Submit".html_safe, :id => "ask_question_link",:type=>"submit"
 
-			
 
+	%br.clearer/
+	#spotlight-wrapper
+		.ribbon-shadow-left  
+		.section-wrapper
+			/ spotlight section header
+			.section
+				Contact
+		.ribbon-shadow-right  
+		.section-arrow  
+	.page-content.review
+		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
+		.overview-wrapper
+			.overview-new
+				.left-panel
+					= form_for @contact, :url => send_contact_us_contact_index_path,:html=>{:id=>"send_contact_us_form", :class=>"exp-contact-form-new"} do |f|
+						%br
+							= f.label "Name*",:class => "label"
+							= f.text_field :name,:placeholder=>"Please Enter Name",:class=>"input-class-new"
+						%br
+							= f.label "Email*",:class => "label"
+							= f.text_field :email,:placeholder=>"Please Enter Email",:class=>"input-class-new"
+						%br
+							= f.label "Comment*",:class => "label"
+							= f.text_area :comment, :style => "width: 595px",:placeholder=>"Please Enter Comment"
+							%p
+								%br
+								= link_to "<span><i class='icon-check'></i>Submit</span>".html_safe, "javascript:void(0);", :id => "send_contact_us_link", :class=>"button_link"
+								= link_to "<span><i class='icon-circled-cross'></i>Cancel</span>".html_safe, "#", :class=>"button_link red"
 /side bar
 .sidebar
 	= render "experimental/partials/left_bar"
@@ -46,6 +73,10 @@
 
 
 :javascript
+	jQuery("#send_contact_us_link").click(function (){
+		jQuery("#send_contact_us_form").submit();
+	});
+
 	// client side validations
 	jQuery("#new_contact").validate({
 
