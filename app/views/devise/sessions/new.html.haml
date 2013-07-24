@@ -19,7 +19,7 @@
           .left-panel
             .article-image.video
               / %iframe{:allowfullscreen => "", :frameborder => "0", :height => "197", :src => "http://www.youtube.com/embed/sftuxbvGwiU", :width => "350"}
-            %br.clearer/
+            / %br.clearer/
             .category
               /.ribbon-shadow-left  
               .catname
@@ -80,8 +80,9 @@
               %span.metaName Composer
             %span.metaContent James Horner
             .separator  
-          %br.clearer/
-          %br/
+            %br.clearer/
+            %br/
+            = render "experimental/partials/columns"
           / .excerpt
           /   .bottom-line Our Final Take
           /   %p Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet egestas. Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet egestas.
@@ -91,7 +92,7 @@
           /   .section
           /     Posted April 15, 2012 by
           /     %a{:href => "http://www.google.com", :rel => "author external", :title => "Visit Claude Debussey’s website"} Claude Debussey
-      %br.clearer/
+          
 
   .sidebar
     /login box

@@ -1,21 +1,223 @@
-.clearer.hide-responsive  
-%br.hide-responsive/
-.main-content-left
-	.page-content.review.single-post
-		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
-		.overview-wrapper
-			%h1.title= @title.upcase
-			.overview
-				.arrow-catpanel-bottom  
-				.excerpt-new.justify-content
-					.dropcap.prociono
-						-unless @about.nil?
-							= strip_tags(@about.static_content).strip.to(0)
-					%p.filter-content-new
-						= strip_tags(@about_content[1])
-
-/side bar
+#main-wrapper-dark
+	/ this is only used for the dark skin since it already uses an image for the background texture and light does not
+	.main-content-left
+		%br.clearer/
+		#spotlight-wrapper
+			.ribbon-shadow-left  
+			.section-wrapper
+				/ spotlight section header
+				.section
+					= @title.upcase
+			.ribbon-shadow-right  
+			.section-arrow  
+		.page-content.review
+			%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
+			.overview-wrapper
+				/ %h1.title Login
+				.overview-new
+					/ .arrow-catpanel-bottom  
+					.left-panel
+						.article-image.video
+							/ %iframe{:allowfullscreen => "", :frameborder => "0", :height => "197", :src => "http://www.youtube.com/embed/sftuxbvGwiU", :width => "350"}
+						%br.clearer/
+						.category
+							/.ribbon-shadow-left  
+							.catname
+								Quick Stats
+							.category-arrow  
+						%br.clearer/
+					.overview
+						.excerpt-new1.justify-content
+							%p.filter-content-new
+								.pullquote-wrapper.left
+									.pullquote.prociono  Living positively,together
+								%p 
+									= @about.static_content.html_safe
+				.content-panel
+					#authorbox
+						%h2 Industrial Themes
+						.arrow-catpanel-bottom  
+						.inner
+							.author-image
+								%img{:alt => "gravatar", :height => "70", :src => "http://www.gravatar.com/avatar/8a567031a8d520b2f97089e715b64e00.png", :width => "70"}/
+							.description
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean semper metus sed est fermentum eget malesuada orci luctus. Integer fringilla venenatis eros, non egestas ligula malesuada sit amet.
+								%a{:href => "http://www.google.com"} test link
+								test test test.
+							%br.clearer/
+							%ul.social-links
+								%li.twitter
+									%a{:href => "http://twitter.com/IndustrialTheme", :title => "Twitter"}  
+								%li.facebook
+									%a{:href => "http://www.facebook.com/facebook", :title => "Facebook"}  
+								%li.linkedin
+									%a{:href => "http://www.linkedin.com/in/username", :title => "LinkedIn"}  
+								%li.googleplus
+									%a{:href => "http://plus.google.com/112286665725634842068", :title => "Google+"}  
+								%li.youtube
+									%a{:href => "http://www.youtube.com/user/brianmcculloh/", :title => "YouTube"}  
+								%li.flickr
+									%a{:href => "http://www.flickr.com/photos/brianmcculloh/", :title => "Flickr"}  
+								%li.digg
+									%a{:href => "http://digg.com/users/digg", :title => "Digg"}  
+								%li.email
+									%a{:href => "mailto:brianmcculloh@gmail.com", :title => "Email"}  
+								%li.url
+									%a{:href => "http://www.outerspiceweb.com", :title => "Website"}  
+							%br.clearer/
+							.more-articles
+								More articles by
+								%a{:href => "archive-a.html", :rel => "author", :title => "Posts by Brian McCulloh"} Brian McCulloh
+								\»		
+					#related
+						%ul.tabnav
+							%li.title Related:
+							%li.arrow  
+							%li
+								%a{:href => "#tab1", :title => "Category 1"} Category 1
+							%li
+								%a{:href => "#tab2", :title => "Category 2"} Category 2
+							%li
+								%a{:href => "#tab3", :title => "Category 3"} Category 3
+						%br.clearer/
+						.tabdiv-wrapper
+							#tab1.tabdiv
+								.panel
+									.rating-wrapper.small
+									%a.darken.small{:href => "single-review-numbers.html"}
+										%img{:alt => "misc3", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc3-110x70.jpg", :width => "110"}/
+									%a.post-title{:href => "single-review-numbers.html"} Made Magazine Is 2 Years In The Making!
+								.panel
+									.rating-wrapper.small
+									%a.darken.small{:href => "single-review-numbers.html"}
+										%img{:alt => "misc2", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc2-110x70.jpg", :width => "110"}/
+									%a.post-title{:href => "single-review-numbers.html"} Built On The Swagger Framework, Made Is Rock-Solid
+								.clear-responsive  
+								.panel.right
+									.rating-wrapper.small
+									%a.darken.small{:href => "single-review-numbers.html"}
+										%img{:alt => "misc1", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-110x70.jpg", :width => "110"}/
+									%a.post-title{:href => "single-review-numbers.html"} Made Magazine Is The First Responsive Theme Released By IndustrialThemes
+								%br.clearer.hide-responsive/
+								.panel
+									.rating-wrapper.small
+										.stars.yellow
+											.star.full  
+											.star.full  
+											.star.full  
+											.star.full  
+											.star.half  
+									%a.darken.small.video{:href => "single-review-numbers.html"}
+										%img{:alt => "restaurants9", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/restaurants9-110x70.jpg", :width => "110"}/
+									%a.post-title{:href => "single-review-numbers.html"} Coffee Common: Bringing Coffee Power to the People
+								.clear-responsive  
+								.panel
+									.rating-wrapper.small
+										.letter.color2 D-
+									%a.darken.small{:href => "single-review-numbers.html"}
+										%img{:alt => "fashion2", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/fashion2-110x70.jpg", :width => "110"}/
+									%a.post-title{:href => "single-review-numbers.html"} Art Deco fashion: the new take
+								.panel.right
+									.rating-wrapper.small
+										.number.color1 1.9
+									%a.darken.small{:href => "single-review-numbers.html"}
+										%img{:alt => "photodune-216844-young-female-jazz-singer-holding-an-retro-microphone--s", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/07/photodune-216844-young-female-jazz-singer-holding-an-retro-microphone-s-110x70.jpg", :width => "110"}/
+									%a.post-title{:href => "single-review-numbers.html"} Cold War Kids – Mine Is Yours
+								%br.clearer.hide-responsive/
+								.clear-responsive  
+								%br.clearer/
+							#tab2.tabdiv
+								.panel
+									.rating-wrapper.small
+										.stars.yellow
+											.star.full  
+											.star.full  
+											.star.full  
+											.star.full  
+											.star.half  
+									%a.darken.small.video{:href => "single-review-numbers.html"}
+										%img{:alt => "restaurants9", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/restaurants9-110x70.jpg", :width => "110"}/
+									%a.post-title{:href => "single-review-numbers.html"} Coffee Common: Bringing Coffee Power to the People
+								.clear-responsive  
+								.panel
+									.rating-wrapper.small
+										.letter.color2 D-
+									%a.darken.small{:href => "single-review-numbers.html"}
+										%img{:alt => "fashion2", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/fashion2-110x70.jpg", :width => "110"}/
+									%a.post-title{:href => "single-review-numbers.html"} Art Deco fashion: the new take
+								.panel.right
+									.rating-wrapper.small
+										.number.color1 1.9
+									%a.darken.small{:href => "single-review-numbers.html"}
+										%img{:alt => "photodune-216844-young-female-jazz-singer-holding-an-retro-microphone--s", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/07/photodune-216844-young-female-jazz-singer-holding-an-retro-microphone-s-110x70.jpg", :width => "110"}/
+									%a.post-title{:href => "single-review-numbers.html"} Cold War Kids – Mine Is Yours
+								%br.clearer.hide-responsive/
+								.panel
+									.rating-wrapper.small
+									%a.darken.small{:href => "single-review-numbers.html"}
+										%img{:alt => "misc3", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc3-110x70.jpg", :width => "110"}/
+									%a.post-title{:href => "single-review-numbers.html"} Made Magazine Is 2 Years In The Making!
+								.panel
+									.rating-wrapper.small
+									%a.darken.small{:href => "single-review-numbers.html"}
+										%img{:alt => "misc2", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc2-110x70.jpg", :width => "110"}/
+									%a.post-title{:href => "single-review-numbers.html"} Built On The Swagger Framework, Made Is Rock-Solid
+								.clear-responsive  
+								.panel.right
+									.rating-wrapper.small
+									%a.darken.small{:href => "single-review-numbers.html"}
+										%img{:alt => "misc1", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-110x70.jpg", :width => "110"}/
+									%a.post-title{:href => "single-review-numbers.html"} Made Magazine Is The First Responsive Theme Released By IndustrialThemes
+								%br.clearer.hide-responsive/
+								.clear-responsive  
+								%br.clearer/
+							#tab3.tabdiv
+								.panel
+									.rating-wrapper.small
+									%a.darken.small{:href => "single-review-numbers.html"}
+										%img{:alt => "misc2", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc2-110x70.jpg", :width => "110"}/
+									%a.post-title{:href => "single-review-numbers.html"} Built On The Swagger Framework, Made Is Rock-Solid
+								.clear-responsive  
+								.panel
+									.rating-wrapper.small
+									%a.darken.small{:href => "single-review-numbers.html"}
+										%img{:alt => "misc3", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc3-110x70.jpg", :width => "110"}/
+									%a.post-title{:href => "single-review-numbers.html"} Made Magazine Is 2 Years In The Making!
+								.panel.right
+									.rating-wrapper.small
+										.number.color1 1.9
+									%a.darken.small{:href => "single-review-numbers.html"}
+										%img{:alt => "photodune-216844-young-female-jazz-singer-holding-an-retro-microphone--s", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/07/photodune-216844-young-female-jazz-singer-holding-an-retro-microphone-s-110x70.jpg", :width => "110"}/
+									%a.post-title{:href => "single-review-numbers.html"} Cold War Kids – Mine Is Yours
+								%br.clearer.hide-responsive/
+								.panel
+									.rating-wrapper.small
+										.letter.color2 D-
+									%a.darken.small{:href => "single-review-numbers.html"}
+										%img{:alt => "fashion2", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/fashion2-110x70.jpg", :width => "110"}/
+									%a.post-title{:href => "single-review-numbers.html"} Art Deco fashion: the new take
+								.panel
+									.rating-wrapper.small
+										.stars.yellow
+											.star.full  
+											.star.full  
+											.star.full  
+											.star.full  
+											.star.half  
+									%a.darken.small.video{:href => "single-review-numbers.html"}
+										%img{:alt => "restaurants9", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/restaurants9-110x70.jpg", :width => "110"}/
+									%a.post-title{:href => "single-review-numbers.html"} Coffee Common: Bringing Coffee Power to the People
+								.clear-responsive  
+								.panel.right
+									.rating-wrapper.small
+									%a.darken.small{:href => "single-review-numbers.html"}
+										%img{:alt => "misc1", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-110x70.jpg", :width => "110"}/
+									%a.post-title{:href => "single-review-numbers.html"} Made Magazine Is The First Responsive Theme Released By IndustrialThemes
+								%br.clearer.hide-responsive/
+								.clear-responsive  
+								%br.clearer/				
 .sidebar
+	= render "experimental/partials/login_box"
 	= render "experimental/partials/left_bar"
 	/widget top
 	= render "experimental/partials/widget_top"

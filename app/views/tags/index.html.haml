@@ -1,60 +1,51 @@
 .clearer.hide-responsive  
 %br.hide-responsive/
 .main-content-left
-  .page-content.review.single-post
-    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
-    .review-content
-      .ribbon-shadow-left
-      .section-wrapper
-        .section-header Tags
-      .section-arrow
-      .content-panel
-        .the-content
+  %br.clearer/
+  #spotlight-wrapper
+    .ribbon-shadow-left  
+    .section-wrapper
+      / spotlight section header
+      .section
+        Contact
+    .ribbon-shadow-right  
+    .section-arrow  
+  .page-content.review
+    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
+    .overview-wrapper
+      .overview-new
+        .left-panel
           / old plus content
-          %h1
+          %h2.title
             = t('activerecord.models.tags')
-          = form_tag "/questions/tags", :class => "exp-contact-form", :id => "filter_tags", :method => "get" do
+          = form_tag "/questions/tags", :class => "exp-contact-form-new", :id => "filter_tags", :method => "get" do
             %p
-              = text_field_tag "q", params[:q], placeholder: t(".filter"), :class=>"input-class"
-            = button_tag("filter", :class => "floatright")
-        -if logged_in? && current_user.mod_of?(current_group)
-          .add-a-new-tag
-            = link_to "<i class='icon-tag'></i>Add Tag".html_safe, new_tag_url,:class=>"extra-buttons"
-      %br
-      #tag_table
-        = render(:partial => "tag_table", :locals => {:tag_table => @tags})
-
-
-
-
-
-
-
-
-
-
-
-
-/ = image_tag "plus/body_about1.jpg", :class => "body_header"
-/ .alpha.grid_18.body_about{:id => "firstElement", :style => "margin-bottom:20px"}
-/   %span{:class => "p_a"}
-/     Tags
-/   %span{:class => "p_a1 il_ask", :style => "left:-50px !important"}
-/     = link_to "Home", "/"
-/     > Tags
-/   %h2
-/     = t('activerecord.models.tags')
-/   .container-new-plus
-/     %p      
-/       .filter
-/         = form_tag "/questions/tags", :class => "form", :id => "filter_tags", :method => "get" do
-/           .input-style
-/             = text_field_tag "q", params[:q], :class => "text_field filter_field", placeholder: t(".filter")
-/           = submit_tag("filter",:class=>"ask_tag2_common")
-
-/       -if logged_in? && current_user.mod_of?(current_group)
-/         .add-a-new-tag
-/           = link_to t("scaffold.new", :model =>"tag"), new_tag_url
-
-/     #tag_table
-/       = render(:partial => "tag_table", :locals => {:tag_table => @tags})
+              = text_field_tag "q", params[:q], placeholder: t(".filter"), :class=>"input-class-new"
+            = button_tag("<i class='icon-cycle'></i>filter".html_safe, :class => "floatright")
+          -if logged_in? && current_user.mod_of?(current_group)
+            .add-a-new-tag
+              = link_to "<i class='icon-tag'></i>Add Tag".html_safe, new_tag_url,:class=>"extra-buttons"
+          %br
+          #tag_table
+            = render(:partial => "tag_table", :locals => {:tag_table => @tags})
+        
+/side bar
+.sidebar
+  /login box
+  = render "experimental/partials/login_box"
+  / member box
+  = render "experimental/partials/member_box"
+  / left bar
+  = render "experimental/partials/left_bar"
+  /widget top
+  = render "experimental/partials/widget_top"
+  / .clearer.hide-responsive
+  / %br.clearer/
+  / newly reviewd
+  = render "experimental/partials/newly_reviewed"
+  /popular box
+  = render "experimental/partials/popular_box"
+  /rating box
+  = render "experimental/partials/rating_box"
+  /banner box
+  = render "experimental/partials/banner_box"

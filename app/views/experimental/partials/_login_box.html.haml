@@ -18,7 +18,37 @@
             / %input#user_pass.input{:name => "pwd", :size => "20", :type => "password", :value => ""}/
           %p.login-remember
             -if devise_mapping.rememberable?
-              =f.check_box :remember_me,:class=>"check-box-style",:id=>"rememberme"
-              Remember Me 
+              %span{:style=>"top:5px; position:relative; top: 2px;"}
+                =f.check_box :remember_me,:class=>"check-box-style",:id=>"rememberme"
+              %span
+                Remember Me
+              %span{:style=>"float:right; margin-right:8px;"}
+                = button_tag "<i class='icon-login'></i>Login".html_safe,:type=>"submit"   
+              
           %p.login-submit
-            = button_tag "<i class='icon-login'></i>Login".html_safe,:type=>"submit"
+            %br
+              =link_to "<i class='icon-lock'></i>Can't Access your account?".html_safe,"/reset-password"
+
+:javascript
+  // client side validations
+  jQuery("#new_user").validate({
+      rules:{
+        "user[email]":{
+          required:true
+        },
+
+        "user[password]":{
+          required:true
+        }
+      },
+      messages:{
+        "user[email]":{
+          required:"Username Can't be Blank"
+        },
+
+        "user[password]":{
+          required:"Password Can't be Blank"
+        }
+      }
+  });
+  

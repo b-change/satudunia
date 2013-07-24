@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   devise_for(:users, :path => '/',
              :path_names => {:sign_in => 'login', :sign_out => 'logout'},
              :controllers => {:registrations => 'users', :omniauth_callbacks => "multiauth/sessions"}) do
-    match "/password-reset", :to => "devise/unlocks#new", :as => :new_user_unlock
+    match "/reset-password", :to => "devise/unlocks#new", :as => :new_user_unlock
   end
   match '/groups/:group_id/check_custom_domain' => 'groups#check_custom_domain',
   :as => 'check_custom_domain'
@@ -383,7 +383,7 @@ Rails.application.routes.draw do
         get :index,:path=>"/index"
         get :public_about,:path=>"/about"
         get :rss_feed,:path=>"rss"
-        get :terms, :path=>"terms-of-use"
+        get :terms
         get :faq
         get :questions
         get :partners

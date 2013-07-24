@@ -242,10 +242,7 @@ form.exp-contact-form{
 				color:#666666;
 				padding-left:5px; 
 		}
-		input.error{
-
-				border:1px dashed #FF6317;
-		}
+		
 	 textarea{
 				border:1px solid #E0E0E0;
 				font-size: 14px;
@@ -272,6 +269,9 @@ form.exp-contact-form{
 
 			 color:#FF6317;
 			 font-weight:bold;
+		}
+		input.error{
+			border:1px dashed #FF6317;
 		}
 	 .label{
 				/*font-size:13px;*/
@@ -556,4 +556,17 @@ ul.tabbernav1 {
     margin-left: 13px;
     margin-top: 20px;
     width: 235px;
+}
+
+input.error{
+	border:1px dashed #FF6317;
+}
+label.error{
+	color:#FF6317;
+	font-weight:bold;
+
+.review .overview .excerpt-new1 {
+    font-size: 12px;
+    padding: 71px 15px 5px;
+
 }
