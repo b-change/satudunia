@@ -15,6 +15,7 @@
 //= require app/modules/editor.js
 //= require 'experimental/jquery.validate'
 //= require 'experimental/jquery.tipsy'
+//= require 'experimental/turnsocialTooltip'
 
 
 

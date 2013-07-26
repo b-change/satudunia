@@ -115,25 +115,21 @@
               #tabs-movie_genre.tabdiv
                 %ul
                   %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Travel"} Travel
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Action"} Action
                   %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Well being"} Well being
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Animated"} Animated
                   %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Drugs"} Drugs
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Comedy"} Comedy
                   %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Relationships"} Relationships
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Drama"} Drama
                   %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Work"} Work
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Horror"} Horror
                   %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Sex"} Sex
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Independent"} Independent
                   %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Disclouser"} Disclouser
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Romantic Comedy"} Romantic Comedy
                   %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Diagnosis"} Diagnosis
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Treatment"} Treatment
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Medication"} Medication
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Sci-Fi"} Sci-Fi
                   %li.last  
               #tabs-movie_director.tabdiv
                 %ul
@@ -190,12 +186,8 @@
             - if !current_user.nil? && current_user.owner_of?(current_group)
               %li
                 = link_to "Admin", "/admin",:target=>"_blank"
-            - if current_user.present?
-              %li
-                = link_to t("layouts.application.logout"), destroy_user_session_path
-            - else
-              %li
-                = link_to "Signin", new_user_session_path 
+            %li
+              = link_to t("layouts.application.logout"), destroy_user_session_path
             %li
               %a{:href => "#", :title => "Syndicate this site using RSS 2.0"}
                 Entries
@@ -207,32 +199,43 @@
       .panel
         .widget
           %h2 Latest Tweets
+          %a.twitter-timeline{"data-widget-id" => "360398649064316928", :href => "https://twitter.com/neelesh_v"} Tweets by @neelesh_v
+
           :javascript
-            jQuery(function($){
-                jQuery(".tweet").tweet({
-                  join_text: "auto",
-                  username: "b-change",
-                  avatar_size: 32,
-                  count: 5,
-                  auto_join_text_default: "we said,",
-                  auto_join_text_ed: "we",
-                  auto_join_text_ing: "we were",
-                  auto_join_text_reply: "we replied",
-                  auto_join_text_url: "we were checking out",
-                  loading_text: "loading tweets...",
-                  refresh_interval: 60					  	
-                });
-              });
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
           .tweet.query.complex-list
-          .footer-fix  
+          .footer-fix 
       .panel.right
         .widget
           .textwidget
             %p
               %img{:alt => "logo", :src => "/assets/plus/footer_logo.png"}/
-            - unless @aboutContent.blank?
+            - unless @footer.blank?
               %p 
-                = truncate(strip_tags(@aboutContent.static_content), :omission => "", :length => 833) rescue ""
+                =  truncate(strip_tags(@footer.footer_content), :omission => "", :length => 833) rescue ""
+              /added links below plus/
+              .widget
+                %h2 links
+                %ul
+                  %li
+                    = image_tag("sw-facebook17.png")
+                    = link_to "Like Us", "#"
+                  %li
+                    = image_tag("sw-twitter17.png")
+                    = link_to "Follow Us", "#"
+                  %li
+                    = image_tag("sw-twitter17.png")
+                    = link_to "Jobs on Twitter", "#"
+                  %li
+                    = image_tag("rss.png")
+                    = link_to "RSS", "#"
+                  %li
+                    = image_tag("youtube.png")
+                    = link_to "Youtube", ""
+                  %li
+                    = image_tag("mail.png")
+                    = link_to "Contact Us", "#"
+        
       %br.clearer/
     .copyright
       .ribbon-shadow-left  
@@ -241,6 +244,10 @@
         | 
         %a{:href=>terms_experimental_index_path}
           Terms of Use
+        |
+        %a{:href=>"/privacy-policy"}
+          Privacy Policy
+        
       .floatright
         .floatleft
           .textwidget

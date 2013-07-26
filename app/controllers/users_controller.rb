@@ -47,10 +47,10 @@ class UsersController < ApplicationController
       order = %w(reputation desc)
     end
     @memberships = current_group.memberships.where(conditions)
-    @reputation = @memberships .order_by(order).page(params["page"])
-    @membersNew = @memberships.order_by(:created_at=>:desc).page(params["page"])
-    @membersOld = @memberships.order_by(:created_at=>:ASC).page(params["page"])
-    @membersName = @memberships.order_by(:display_name=>:ASC).page(params["page"])
+    @reputation = @memberships .order_by(order).page(params["page"]).per(15)
+    @membersNew = @memberships.order_by(:created_at=>:desc).page(params["page"]).per(15)
+    @membersOld = @memberships.order_by(:created_at=>:ASC).page(params["page"]).per(15)
+    @membersName = @memberships.order_by(:display_name=>:ASC).page(params["page"]).per(15)
     respond_to do |format|
       format.html
       format.json {

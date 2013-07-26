@@ -1,16 +1,24 @@
-%span{:class => "my_pr2"}
-  = number_with_delimiter(@resources.total_count)
-  = t(:activities, :scope => "activerecord.models")
-  \-
-  = t('global.filter_by')
+/ %span{:class => "my_pr2"}
+/   = number_with_delimiter(@resources.total_count)
+/   = t(:activities, :scope => "activerecord.models")
+/   \-
+/   = t('global.filter_by')
 
 %li.all
-  = link_to "All", activity_user_path(@user, params.merge(:sort=>"all")), :rel => "nofollow", :class => "pjax", :"data-layout" => "index", :id=>"all-tab"
+	= link_to "All", activity_user_path(@user, params.merge(:sort=>"all")), :rel => "nofollow", :class => "pjax", :"data-layout" => "index", :id=>"all-tab"
 %li.questions
-  = link_to "Questions", activity_user_path(@user, params.merge(:sort=>"questions")), :rel => "nofollow", :class => "pjax", :"data-layout" => "index", :id=>"question1-tab"
+	= link_to "Questions", activity_user_path(@user, params.merge(:sort=>"questions")), :rel => "nofollow", :class => "pjax", :"data-layout" => "index", :id=>"question1-tab"
 %li.answers
-  = link_to "Answers", activity_user_path(@user, params.merge(:sort=>"answers")), :rel => "nofollow", :class => "pjax", :"data-layout" => "answers", :id=>"answer-tab"
+	= link_to "Answers", activity_user_path(@user, params.merge(:sort=>"answers")), :rel => "nofollow", :class => "pjax", :"data-layout" => "answers", :id=>"answer-tab"
 %li.users
-  = link_to "Users", activity_user_path(@user, params.merge(:sort=>"users")), :rel => "nofollow", :class => "pjax", :"data-layout" => "index", :id=>"user-tab"
+	= link_to "Users", activity_user_path(@user, params.merge(:sort=>"users")), :rel => "nofollow", :class => "pjax", :"data-layout" => "index", :id=>"user-tab"
 %li.users
-  = link_to "Pages", activity_user_path(@user, params.merge(:sort=>"pages")), :rel => "nofollow", :class => "pjax", :"data-layout" => "index", :id=>"page-tab"
+	= link_to "Pages", activity_user_path(@user, params.merge(:sort=>"pages")), :rel => "nofollow", :class => "pjax", :"data-layout" => "index", :id=>"page-tab"
+%li#activity-filter-select.last
+	%label{:for => "activity-filter-by"} Show:
+	%select#activity-filter-by
+		%option{:value => "-1"} All
+		%option{:value => "activity_update"} Questions
+		%option{:value => "new_blog_post"} Answers
+		%option{:value => "new_blog_comment"} Users
+		%option{:value => "new_blog_comment"} Pages

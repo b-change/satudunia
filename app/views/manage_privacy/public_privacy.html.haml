@@ -1,19 +1,44 @@
-- content_for :title do
-  Privacy Policy
 
-= image_tag "plus/body_about.jpg", :class => "body_header"
-.alpha.grid_19.body_about{:id => "firstElement"}
-  %span{:class => "p_a"}
-    Privacy Policy
-  %span{:class => "p_a1"}
-    = link_to "Home", "/"
-    > Privacy Policy
-  %h2
-    Privacy Policy
-  %div{:class => "about"}
-    = @privacy.static_content.html_safe rescue ""
-.grid_5.omega.body1_about{:id => "secondElement", :style => "height: 622px !important;"}
-  %p{:class => "about"}
-    %strong
-      About Plus
-  = render :partial => "shared/about_nav_bar"
+#main-wrapper-dark
+  / this is only used for the dark skin since it already uses an image for the background texture and light does not
+  .main-content-left
+    %br.clearer/
+    #spotlight-wrapper
+      .ribbon-shadow-left  
+      .section-wrapper
+        / spotlight section header
+        .section
+          Privacy Policy
+      .ribbon-shadow-right  
+      .section-arrow  
+    .page-content.review
+      %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
+      .overview-wrapper
+        / %h1.title Login
+        .overview-new
+          / .arrow-catpanel-bottom  
+          .left-panel
+            %h2
+              Privacy Policy
+            %div
+              = @privacy.static_content.html_safe
+/side bar
+.sidebar
+  /login box
+  = render "experimental/partials/login_box"
+  / member box
+  = render "experimental/partials/member_box"
+  / left bar
+  = render "experimental/partials/left_bar"
+  /widget top
+  = render "experimental/partials/widget_top"
+  / .clearer.hide-responsive
+  / %br.clearer/
+  / newly reviewd
+  = render "experimental/partials/newly_reviewed"
+  /popular box
+  = render "experimental/partials/popular_box"
+  /rating box
+  = render "experimental/partials/rating_box"
+  /banner box
+  = render "experimental/partials/banner_box"

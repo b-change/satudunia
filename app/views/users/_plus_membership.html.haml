@@ -1,50 +1,101 @@
 - user = membership.user
-%li{:class => "grid_6", :style => "margin: 0 0 15px 20px; width: 212px !important"}
-  .wrapper
-    .com_bg
-      = avatar_img(user, :size => "medium")
-      = image_tag "plus/star.png", :class => "star", :style => "display: block; float: left;"
-      %span{:class => "reit"}
-        100
-      %span{:class => "com_right"}
-        = link_to h(user.display_name), user_path(user)
-      %span{:class => "com_right1", :style => "padding-top: 35px !important;"}
-        = t(:created_at, :scope => "activerecord.attributes.user")
-        = t("time.ago", :time => time_ago_in_words(membership.joined_at || membership.created_at))
-    .com_bg2
-      %span{:class => "com_right2"}
-        HIV Condition: #{user_hiv_condition(user)}
-    .bg_people
-      .data
-        = image_tag "plus/us1.png"
-        %span
-          Lives in #{user_country(user)}
-        %br
-        = image_tag "plus/us2.png"
-        %span
-          Age: #{user_age(user)}
-      .CLeft
-        %span
-          -count = user.questions.where(:group_id => current_group.id).count
-          =format_number(count)
-          %br
-        %span{:class => "fs1"}
-          Questions
-      .CRight
-        %span
-          -count = user.answers.where(:group_id => current_group.id).count
-          =format_number(count)
-          %br
-        %span{:class => "fs1"}
-          Answer
-        = image_tag "plus/line_f.jpg", :class => "line_f"
-      = link_to "<div class='follow'><span class='c_f'>Follow</span></div>".html_safe
+- unless user.nil?
+	#authorbox.categorypanel
+		%h2= link_to h(user.display_name), user_path(user)
+		.arrow-catpanel-bottom  
+		.inner
+		.author-image
+			-if user.use_gravatar? 
+				= image_tag avatar_user_path(user), :size=>'80x80'
+			-else                       
+				= image_tag(default_avatar_url('medium'), :size=>'80x80', :class=>"avatar")
+		.description 
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean semper metus sed est fermentum eget malesuada orci luctus. Integer fringilla venenatis eros, non egestas ligula malesuada sit amet.
+		%br.clearer/
+		%ul.social-links
+			%li.twitter
+			%a{:href => "http://twitter.com/IndustrialTheme", :title => "Twitter"}  
+			%li.facebook
+			%a{:href => "http://www.facebook.com/facebook", :title => "Facebook"}  
+			%li.linkedin
+			%a{:href => "http://www.linkedin.com/in/username", :title => "LinkedIn"}  
+			%li.googleplus
+			%a{:href => "http://plus.google.com/112286665725634842068", :title => "Google+"}  
+			%li.youtube
+			%a{:href => "http://www.youtube.com/user/brianmcculloh/", :title => "YouTube"}  
+			%li.flickr
+			%a{:href => "http://www.flickr.com/photos/brianmcculloh/", :title => "Flickr"}  
+			%li.digg
+			%a{:href => "http://digg.com/users/digg", :title => "Digg"}  
+			%li.email
+			%a{:href => "mailto:brianmcculloh@gmail.com", :title => "Email"}  
+			%li.url
+			%a{:href => "http://www.outerspiceweb.com", :title => "Website"}  
+		%br.clearer/
+		.more-articles
+			Latest:
+			%a{:href => "single-review-numbers.html"} Made Magazine Is 2 Years In The Making!
+		.clearer
+	
+
+/ :javascript
+/   jQuery(document).ready(function() {
+/     $("#switch-view").change(function() {
+/     var selected = $("#switch-view option:selected");   
+/     var output = "";
+/     if(selected.val() != 0){
+/       output = "You Selected " + selected.text();
+/     }
+/     $("#output").html(output);
+/   }
+/     });
+/   });
 
 
 
 
 
 
+/ - user = membership.user
+/ %li{:class => "grid_6", :style => "margin: 0 0 15px 20px; width: 212px !important"}
+/   .wrapper
+/     .com_bg
+/       = avatar_img(user, :size => "medium")
+/       = image_tag "plus/star.png", :class => "star", :style => "display: block; float: left;"
+/       %span{:class => "reit"}
+/         100
+/       %span{:class => "com_right"}
+/         = link_to h(user.display_name), user_path(user)
+/       %span{:class => "com_right1", :style => "padding-top: 35px !important;"}
+/         = t(:created_at, :scope => "activerecord.attributes.user")
+/         = t("time.ago", :time => time_ago_in_words(membership.joined_at || membership.created_at))
+/     .com_bg2
+/       %span{:class => "com_right2"}
+/         HIV Condition: #{user_hiv_condition(user)}
+/     .bg_people
+/       .data
+/         = image_tag "plus/us1.png"
+/         %span
+/           Lives in #{user_country(user)}
+/         %br
+/         = image_tag "plus/us2.png"
+/         %span
+/           Age: #{user_age(user)}
+/       .CLeft
+/         %span
+/           -count = user.questions.where(:group_id => current_group.id).count
+/           =format_number(count)
+/           %br
+/         %span{:class => "fs1"}
+/           Questions
+/       .CRight
+/         %span
+/           -count = user.answers.where(:group_id => current_group.id).count
+/           =format_number(count)
+/           %br
+/         %span{:class => "fs1"}
+/           Answer
+/         = image_tag "plus/line_f.jpg", :class => "line_f"
+/       = link_to "<div class='follow'><span class='c_f'>Follow</span></div>".html_safe
 
 
-  

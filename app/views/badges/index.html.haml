@@ -1,38 +1,35 @@
-#main-wrapper-dark
-  / this is only used for the dark skin since it already uses an image for the background texture and light does not
-  .main-content-left
-    %br.clearer/
-    #spotlight-wrapper
-      .ribbon-shadow-left  
-      .section-wrapper
-        / spotlight section header
-        .section
-          Badges
-      .ribbon-shadow-right  
-      .section-arrow  
-    .page-content.review
-      %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
-      .overview-wrapper
-        %h1
-          = t("badges.index.description")
-        .overview-new
-          / old plus content
-          %ul.menubar.clearfix
-            %li.general-exp
-              = link_to t("badges.index.general"), badges_path(:tab=>"general"), :title => t("badges.index.general_tooltip"), :rel => 'tipsy'
-            %li.tags1_111
-              = link_to t("badges.index.tags"), badges_path(:tab=>"tags"), :title => t("badges.index.tags_tooltip"), :rel => 'tipsy'
-            %li
-              %label
-                = link_to t('shared.filter')
-            %li.general-exp
-              = link_to t("badges.index.all"), badges_path(:filter=>"all"), :title => t("badges.index.all_tooltip"), :rel => 'tipsy'
-            %li.gold-exp
-              = link_to t("badges.index.gold"), badges_path(:filter=>"gold"), :title => t("badges.index.gold_tooltip"), :rel => 'tipsy'
-            %li.silver-exp
-              = link_to t("badges.index.silver"), badges_path(:filter=>"silver"), :title => t("badges.index.silver_tooltip"), :rel => 'tipsy'
-            %li.bronze-exp
-              = link_to t("badges.index.bronze"), badges_path(:filter=>"bronze"), :title => t("badges.index.bronze_tooltip"), :rel => 'tipsy'
+.clearer.hide-responsive  
+%br.hide-responsive/
+.main-content-left
+  #content.page-content
+    %form#members-directory-form.dir-form{:action => "", :method => "post"}
+      %h3 Badges
+      #members-dir-search.dir-search{:role => "search"}
+        %label
+          %input#members_search{:name => "s", :placeholder => "Search Badges...", :type => "text"}/
+        %input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
+    .item-list-tabs.activity-type-tabs{:role => "navigation"}
+      %ul
+        %li#members-order-select.selected
+          %a{:href => "http://www.industrialthemes.com/made/activity/", :title => "The public activity for everyone on this site."}
+            All Badges
+            %span=# @memberships.all.count
+    #subnav.item-list-tabs{:role => "navigation"}
+      %ul
+        %li#members-order-select.last.filter
+          %label{:for => "members-order-by"} Order By:
+          %select#activity-filter-by
+            %option{:value => "new-show"} All
+            %option{:value => "reputation-show"} Gold
+            %option{:value => "old-show"} Silver
+            %option{:value => "name-show"} Bronze
+  .page-content.review
+    .overview-wrapper
+      %h2
+        = t("badges.index.description")
+      .overview-new
+        / old plus content
+        .left-panel
           .badges
             %table
               - @badges.sort_by{|b| b.name}.each do |badge|
@@ -50,5 +47,105 @@
                   %td
                     .badge_description
                       =badge.description
+
+
 .sidebar
   = render "experimental/partials/login_box"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/ #main-wrapper-dark
+/   / this is only used for the dark skin since it already uses an image for the background texture and light does not
+/   .main-content-left
+/     %br.clearer/
+/     #spotlight-wrapper
+/       .ribbon-shadow-left  
+/       .section-wrapper
+/         / spotlight section header
+/         .section
+/           Badges
+/       .ribbon-shadow-right  
+/       .section-arrow  
+/     .page-content.review
+/       %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
+/       .overview-wrapper
+/         %h1
+/           = t("badges.index.description")
+/         .overview-new
+/           / old plus content
+/           %ul.menubar.clearfix
+/             %li.general-exp
+/               = link_to t("badges.index.general"), badges_path(:tab=>"general"), :title => t("badges.index.general_tooltip"), :rel => 'tipsy'
+/             %li.tags1_111
+/               = link_to t("badges.index.tags"), badges_path(:tab=>"tags"), :title => t("badges.index.tags_tooltip"), :rel => 'tipsy'
+/             %li
+/               %label
+/                 = link_to t('shared.filter')
+/             %li.general-exp
+/               = link_to t("badges.index.all"), badges_path(:filter=>"all"), :title => t("badges.index.all_tooltip"), :rel => 'tipsy'
+/             %li.gold-exp
+/               = link_to t("badges.index.gold"), badges_path(:filter=>"gold"), :title => t("badges.index.gold_tooltip"), :rel => 'tipsy'
+/             %li.silver-exp
+/               = link_to t("badges.index.silver"), badges_path(:filter=>"silver"), :title => t("badges.index.silver_tooltip"), :rel => 'tipsy'
+/             %li.bronze-exp
+/               = link_to t("badges.index.bronze"), badges_path(:filter=>"bronze"), :title => t("badges.index.bronze_tooltip"), :rel => 'tipsy'
+/           .badges
+/             %table
+/               - @badges.sort_by{|b| b.name}.each do |badge|
+/                 %tr
+/                   %td
+/                     .badge_item
+/                       -link_params = {:id => badge.token}
+/                       -if badge.for_tag
+/                         -link_params[:type] = badge.type
+
+/                       = pjax_link_to badge.name, "badges", badge_path(link_params), {:class => "badge #{badge.type}", :title => badge.description}
+/                       -if badge["count"].to_i > 1
+/                         .counter
+/                           == × #{badge["count"].to_i}
+/                   %td
+/                     .badge_description
+/                       =badge.description
+/ .sidebar
+/   = render "experimental/partials/login_box"

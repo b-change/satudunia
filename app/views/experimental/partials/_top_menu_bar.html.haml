@@ -29,12 +29,10 @@
 						-else
 							= link_to "Login as #{h(current_user.role)}","#",:style=>"color:#027DB2;"
 							%ul
+								/ %li
+								/ 	= link_to "<i class='icon-user'></i>#{current_user.login}".html_safe , user_path(current_user)
 								%li
-								    
-									=# link_to current_user.login, user_path(current_user)
-									= link_to "<i class='icon-user'></i>#{current_user.login}".html_safe , user_path(current_user)
-								%li
-									= link_to "<i class='icon-lock'></i>Profile Settings".html_safe, "/profile/settings"								
+									= link_to "<i class='icon-lock'></i>Settings".html_safe, "/profile/settings"								
 								%li
 									= link_to "<i class='icon-retweet'></i>#{t('.connect')}".html_safe, social_connect_path
 								%li

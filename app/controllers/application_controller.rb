@@ -294,9 +294,11 @@ class ApplicationController < ActionController::Base
   end
   # footer content for experimental
   def static_content
+    # debugger
     @staticContent = StaticPage.all
     @aboutContent = @staticContent.where(:static_key => 'about').first
     @active_member = Membership.where(state: "active").limit(5)
+    @footer = Group.first
 
   end
 end

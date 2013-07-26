@@ -27,15 +27,14 @@
 		%meta{:content => "#{current_group.metro_color}", :name=>"msapplication-TileColo"}/
 		/ CSS
 		= stylesheet_link_tag "experimental/experimental"
-		
 		/ JS
 		= javascript_include_tag "experimental/jquery.min.js?ver=3.3.1"
 		= javascript_include_tag "experimental/experimental"
 
 		%body
 			/ page loader starts
-			#div-load
-			#div-another-image
+			/#div-load
+			/#div-another-image
 			/page loader ends
 			/top menu bar
 			= render "experimental/partials/top_menu_bar"
@@ -186,6 +185,31 @@
 										%li
 											%a{:href => "#"} Inclusion & Discrimination
 						/ question drop ends
+						/ Login drop starts
+						%li
+							- if current_user.nil?
+								%a{:href => '/login'}  
+									="Login in".html_safe
+							-else
+								= link_to "Login as #{h(current_user.role)}","#"
+								%ul
+									- if current_user.present?
+										%li
+											%a{:href => '/profile/settings'}
+												="<i class='icon-lock'></i>Settings".html_safe
+										%li
+											%a{:href => '/connect'}
+												="<i class='icon-retweet'></i>Connect".html_safe
+										%li
+											%a{:href => follows_user_path(current_user)}
+												= "<i class='icon-circled-right'></i>#{t('.following')}".html_safe
+										%li
+											%a{:href => follows_user_path(current_user)+"?sort=followers"	}
+												= "<i class='icon-right'></i>#{t('.followers')}".html_safe	
+										%li
+											%a{:href => '/logout'	}
+												= "<i class='icon-logout'></i>#{t("layouts.application.logout")}".html_safe						
+						/ Login drop ends
 					%select#select-menu-main-menu
 						%option Category Navigation
 						%option{:value => "archive-a.html"} Layouts
@@ -210,15 +234,17 @@
 				%br.clearer.hide-responsive-small/
 				.cat-menu.tax
 					%ul#menu-sub-menu.menu
-						%li
+						%li.public_about
 							%a{:href => public_about_experimental_index_path,:title=>"About us",:alt=>"About us"} About us
-						%li
+						%li.terms
 							%a{:href => "/terms",:title=>"Terms of Use",:alt=>"Terms of Use"} Terms of Use
-						%li
+						%li.public_privacy
+							%a{:href => "/privacy-policy",:title=>"privacy-policy",:alt=>"privacy-policy"} Privacy-policy
+						%li.badges
 							%a{:href => "/badges",:title=>"Badges",:alt=>"Badges"} Badges
-						%li
+						%li.polls
 							%a{:href => "/polls",:title=>"Polls",:alt=>"Polls"} Polls
-						%li
+						%li.survey
 							%a{:href => "/survey",:title=>"Survey",:alt=>"Survey"} Surveys
 						%li
 							%a{:href => "/questions",:title=>"Questions",:alt=>"Questions"} Questions 
@@ -233,20 +259,23 @@
 				#main-wrapper
 					#main-wrapper-dark		
 						- unless check_valid
-							= render "experimental/partials/social_side_bar"
+							/= render "experimental/partials/social_side_bar"
 						- flash.each do |name, msg|
 							- if msg.is_a?(String)
 								%div{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
 									/ %a.close{"data-dismiss" => "alert"} ×
 									= content_tag :div, msg, :id => "flash_#{name}"
+						/ =params[:controller]
+						/ %br
+						/ =params[:action]
 						= yield
 				/footer
 				= render "experimental/partials/footer"
-		= javascript_include_tag "https://apis.google.com/js/plusone.js"
-		= javascript_include_tag "http://assets.pinterest.com/js/pinit.js"
-		= javascript_include_tag "http://platform.tumblr.com/v1/share.js"
-		= javascript_include_tag "http://platform.twitter.com/widgets.js"
-		= javascript_include_tag "http://widgets.digg.com/buttons.js"
+		/ = javascript_include_tag "https://apis.google.com/js/plusone.js"
+		/ = javascript_include_tag "http://assets.pinterest.com/js/pinit.js"
+		/ = javascript_include_tag "http://platform.tumblr.com/v1/share.js"
+		/ = javascript_include_tag "http://platform.twitter.com/widgets.js"
+		/ = javascript_include_tag "http://widgets.digg.com/buttons.js"
 
 :javascript
 	jQuery.noConflict();
@@ -364,8 +393,23 @@
 			});
 	});
 
+	// active_tab
+	Experimental.getActiveTab("#{params[:action]}","#{params[:controller]}");
+	
+	(function()
+	{ 
+		var t = document.createElement('script'); 
+		t.type = 'text/javascript';
+		t.async = true; t.src = "/assets/experimental/turnsocialTooltip.js"; 
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(t, s); 
+	}
+	)();
+	//to remove social bar icon
 
 	
+	
+
+
 	
 
 

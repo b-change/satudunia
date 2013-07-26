@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   match '/privacy' => 'manage_privacy#public_privacy', :as => :privacy
   match '/widgets/embedded/:id' => 'widgets#embedded', :as => :embedded_widget
   match '/suggestions' => 'users#suggestions', :as => :suggestions
-  match '/activities' => 'activities#index', :as => :activities
+  match '/activity' => 'activities#index', :as => :activities
   match '/contact' => 'contact#index', :as => :contact
   match '/activities/:id' => 'activities#show', :as => :activity, :method => :get
 
@@ -66,8 +66,10 @@ Rails.application.routes.draw do
   match '/facts' => redirect("/")
   match '/users/:id/:slug' => redirect("/users/%{slug}"), :as => :user_se_url, :id => /\d+/
   
+  match '/members' => 'users#index', :as =>:users
+  match '/members/:id' => 'users#show', :as =>:user
 
-  resources :users, :except=>[:new] do
+  resources :users, :except=>[:new, :index, :show] do
     collection do
       get :autocomplete_for_user_login
       post :connect
@@ -140,9 +142,13 @@ Rails.application.routes.draw do
 
   match '/answers(.format)' => 'answers#index', :as => :answers
 
-  scope('questions') do
-    resources :tags, :constraints => { :id => /\S+/ }
-  end
+  # can be used in future 
+  # scope('questions') do
+  #   resources :tags, :constraints => { :id => /\S+/ }
+  # end
+
+  resources :tags, :constraints => { :id => /\S+/ }
+
 
   match 'questions/unanswered' => redirect("/questions?unanswered=1")
 

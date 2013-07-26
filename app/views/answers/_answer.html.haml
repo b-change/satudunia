@@ -1,7 +1,7 @@
 -title = answer.question.title rescue ""
 
 - unless answer.question.nil? || answer.body.nil?
-  %li
+  %li{:class=>"items-linked-new"}
     .q_ff
       %span{:class => "q_f"}
         = format_number(answer.votes_average)
@@ -11,7 +11,7 @@
         = answer.favoriters_count
       %span{:class => "q_fs_1"}
         favorites
-    .grid_14.Fright
+    .grid_14.Fright{:style=>"margin-right:20px;"}
       %span{:class => "s1"}
         = link_to truncate(strip_tags(answer.body), :length => 200), question_path(answer.question, :anchor => "answer#{answer.id}"), :title => title
       .grid_14.ms_fr

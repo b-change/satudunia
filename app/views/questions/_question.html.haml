@@ -9,7 +9,7 @@
   - else
     - @updated = false
   / vote and answer box starts
-  %li
+  %li{:class=>"items-linked-new"}
     .q_ff-container
       .q_ff
         %span{:class => "q_f"}
@@ -25,7 +25,7 @@
           = question.countquestions.sum(:qus_count).to_i
         views
     / vote and answer box ends here
-    .grid_14.Fright
+    .grid_14.Fright{:style=>"margin-right:20px;"}
       %article{:class => class_for_question(question), :id => question.id}
         %div.s1
           -if question.wiki
@@ -35,7 +35,7 @@
         .grid_14.ms_fr
           %span.s1_q_i
             = truncate(strip_tags(question.body), :length => 180)
-        %ul.tags2
+        %ul.tags2.head-left.items-tags-adj
           - question.tags.each do |tag|
             %li
               = tag_link(tag)
@@ -50,13 +50,15 @@
         / %span{:id => "ps2"}
         /   = question.countquestions.sum(:qus_count).to_i
         /   views
-        .ago
-          %span{:style => "color:#006893"}
-            = owner.login.capitalize
-          asked
-          %span
-            = time_ago_in_words(last_target_date)
-          Ago
+        .clearer
+        .items-meta.head-left
+          %span{:class=>"activity"}
+            %span{:style => "color:#006893"}
+              = owner.login.capitalize
+            asked
+            %span
+              = time_ago_in_words(last_target_date)
+            Ago
         / user image box
         / %span{:class => "q_i_tag111_re_tag", :href => "#",:style => "background-color: #F3F7FA; padding: 5px 0 10px 10px;width:165px; border-style:solid; border-width:1px; border-color:#CFD3D6;"}
         /   %a{:style=>"color:black; font-size:13px; padding-bottom:5px"}

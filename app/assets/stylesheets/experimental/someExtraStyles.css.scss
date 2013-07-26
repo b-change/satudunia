@@ -135,7 +135,7 @@
 		margin-left: -20px;
 }
 .qa-q-item-tags {
-		margin-top: 20px;
+		margin-top: 20px !important;
 }
 .tags-adj{
 	margin-right: 10px;
@@ -516,7 +516,7 @@ ul.tabbernav1 {
     width:100%; 
     z-index:1000; 
     height:100%; 
-    background-color: rgb(119, 119, 119); opacity: 0.5;
+    background-color: rgb(119, 119, 119); opacity: 0.7;
     position:fixed; 
 
 }
@@ -524,7 +524,8 @@ ul.tabbernav1 {
     width:100%; 
     z-index:1001; 
     height:100%; 
-    background-image:url('images/ajax-loader.gif');
+    background-image:url('images/loader.gif');
+    opacity: 0.6;
     background-position:center center; 
     background-repeat:no-repeat; 
     position:fixed; 
@@ -569,4 +570,83 @@ label.error{
     font-size: 12px;
     padding: 71px 15px 5px;
 
+}
+
+/*.page-content div.item-list-tabs {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    margin: 25px 0 12px;
+}
+div#subnav.item-list-tabs {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-bottom: 1px solid #EAEAEA;
+    margin: -19px 0 15px;
+    min-height: 35px;
+    overflow: hidden;
+}
+div.item-list-tabs ul li.last {
+    float: right;
+    margin: 7px 20px 0 0;
+    padding-right: 29px;
+}*/
+div.item-list-tabs ul li.feed a {
+    background: url("/assets/atom.png") no-repeat scroll left center transparent;
+    padding-left: 31px;
+}
+
+.page-content ul.item-list.activity-list li, .page-content ul.item-list li {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 6px 6px 6px 6px;
+    list-style-type: none;
+    margin: 0 33px 10px -35px;
+    padding: none;
+    height:130px;
+}
+.activity-list .activity-content .activity-inner, .activity-list .activity-content blockquote {
+    margin: 10px 10px 5px 0;
+    overflow: visible;
+}
+.activity-header a, .comment-meta a, .acomment-meta a {
+    text-decoration: none;
+    padding-left: 10px;
+}
+.activity-inner > p {
+    word-wrap: break-word;
+    padding-left: 15px
+}
+/*important style to hide social icon*/
+#ts_turnsocial_link{
+	display:none !important;
+}
+.items-tags-adj{
+	margin-left: -35px !important;
+}
+.items-linked-new{
+	background: none repeat scroll 0 0 #FFFFFF; border: 1px solid #E0E0E0; border-radius: 6px 6px 6px 6px; list-style-type: none; margin: 0 0 10px -35px; padding: 10px !important;
+}
+.head-test-show{
+	margin-left: 20px;
+	color: #555555;
+	margin-bottom: -25px;
+}
+#pag-top_new > ul {
+    float: left;
+    margin: -10px -5px 30px 305px !important;
+}
+#pag-top_reputation > ul {
+    float: left;
+    margin: -10px -5px 30px 305px !important;
+}
+#pag-top_old > ul {
+    float: left;
+    margin: -10px -5px 30px 305px !important;
+}
+#pag-top_name > ul {
+    float: left;
+    margin: -10px -5px 30px 305px !important;
+}
+#pag-top_nearby > ul {
+    float: left;
+    margin: -10px -5px 30px 305px !important;
 }
