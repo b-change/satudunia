@@ -2467,3 +2467,40 @@ fonts
 .page-content ul.item-list {
     margin-left: 0;
 }
+.standard-form #basic-details-section, .standard-form #blog-details-section, .standard-form #profile-details-section {
+    float: left;
+    width: 48%;
+}
+.standard-form label, .standard-form span.label {
+    display: block;
+    font-weight: bold;
+    margin: 15px 0 5px;
+}
+.standard-form input[type="text"], .standard-form textarea, .form-allowed-tags, #commentform input[type="text"], #commentform textarea {
+    width: 90% !important;
+}
+.standard-form input[type="text"] {
+    width: 75%;
+}
+.standard-form textarea, .standard-form input[type="text"], .standard-form select, .standard-form input[type="password"], .dir-search input[type="text"] {
+    -moz-font-feature-settings: inherit;
+    -moz-font-language-override: inherit;
+    border: 1px inset #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    color: #888888;
+    font-family: inherit;
+    font-size: 14px;
+    font-size-adjust: inherit;
+    font-stretch: inherit;
+    font-style: inherit;
+    font-variant: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    padding: 6px;
+}
+.standard-form #basic-details-section input[type="password"], .standard-form #blog-details-section input#signup_blog_url {
+    width: 35%;
+}
+.standard-form input[type="password"] {
+    margin-bottom: 5px;
+}

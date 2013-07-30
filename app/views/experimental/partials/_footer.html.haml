@@ -258,5 +258,15 @@
             /   = succeed "." do
             /     %a{:href => "http://www.industrialthemes.com"} Industrial Themes
       %br.clearer/
-      .ribbon-shadow-right  
+      .ribbon-shadow-right 
+
+:javascript
+  window.setTimeout(function(){
+    // alert("asdf");
+    jQuery(".twitter-timeline").contents().find("body").find(".stream").css({"overflow":"hidden"});
+    jQuery(".twitter-timeline").contents().find("body").find(".tweet").css({"padding":"15px 8px 6px"});
+    jQuery(".twitter-timeline").contents().find("body").find(".thm-dark").css({'background': 'none', 'border': 'none'});
+    jQuery(".twitter-timeline").contents().find("body").find(".timeline-footer").css({'display': 'none'});
+    jQuery(".twitter-timeline").contents().find("body").find(".timeline-header").css({'display': 'none'});
+  }, 3000);
 

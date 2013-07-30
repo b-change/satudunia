@@ -1,0 +1,23 @@
+.post-panel{:class => "#{@class}"}
+	.article-image
+		%a
+			.thumbnail.darken.video{:href => "single-review-numbers.html"}
+				= image_tag ("banner-250x250.jpg") , :height => 170,:width=>300
+			.inner
+				%h2
+					= announcement.message
+				.excerpt
+					on #{announcement.starts_at.strftime("%d %b %Y - %I:%M %p")}
+					%br
+					= announcement.message
+					
+			.more-bar
+				.arrow-catpanel-top
+				.rating-wrapper.small
+					.number.color5 0%
+				.comments
+				.more1
+					%a{:href => "single-review-numbers.html"} 
+						
+						= link_to "More",announcement_path(announcement),:class=>"avoid_link_color"
+

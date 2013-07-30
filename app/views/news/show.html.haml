@@ -33,5 +33,8 @@
 							= image_tag news_image_path(@news,"small"), :alt => @news.slug, :class => 'gravatar', :style => "margin: 10px", :size=>'500x400'
 						#service_information{:style => "margin: 10px"}
 							= @news.news_body.html_safe
+		/ related box partial
+		= render "experimental/partials/related_box"
+		%br.clearer/
 .sidebar
 	= render "experimental/partials/left_bar"

@@ -253,7 +253,7 @@
 				%br.clearer.hide-responsive-small
 				/ page wrapper ends here
 				/ dont miss bar starts from here
-				=# render "experimental/partials/dont_miss_bar"
+				= render "experimental/partials/dont_miss_bar"
 				/ end of dont miss bar
 				/ main wrapper starts from here
 				#main-wrapper
@@ -397,15 +397,26 @@
 
 	// active_tab
 	Experimental.getActiveTab("#{params[:action]}","#{params[:controller]}");
+
+	(function() {
+	  var t = document.createElement('script'); t.type = 'text/javascript'; t.async = true;
+	  t.src = "//turnsocial.com/bar/bcd979c1bc978abc07fc3dee8e0f453b.js";
+	  var s = document.getElementsByTagName('script')[0];
+	  s.parentNode.insertBefore(t, s);
+	})();
 	
-	(function()
-	{ 
-		var t = document.createElement('script'); 
-		t.type = 'text/javascript';
-		t.async = true; t.src = "/assets/experimental/turnsocialTooltip.js"; 
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(t, s); 
-	}
-	)();
+	//(function()
+	//{ 
+	//	var t = document.createElement('script'); 
+	//	t.type = 'text/javascript';
+	//	t.async = true; t.src = "/assets/experimental/turnsocialTooltip.js"; 
+	//	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(t, s); 
+	//}
+	//)();
+
+
+	
+
 	
 	
 

@@ -123,10 +123,11 @@ Rails.application.routes.draw do
       get :css
     end
   end
-
+  match "/admin/announcements"=> "announcements#index"
   resources :announcements do
     collection do
       get :hide
+      get :announce, :path=>"/"
     end
   end
 
@@ -399,6 +400,7 @@ Rails.application.routes.draw do
         get :profile
         get :profile_settings, :path=> "/profile/settings"
         get :features
+        # get :announce, :path=> "/announcements"
 
         # experimental routes
         get "*a", :to => "experimental#routing_error"

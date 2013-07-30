@@ -496,67 +496,67 @@ ul.tabnav1{
 }
 
 .tabnav1 > li {
-    float: left;
-    margin-left: 55px;
+		float: left;
+		margin-left: 55px;
 }
 .tabnav1:first-child {
-    margin-left: 15px;
+		margin-left: 15px;
 }
 ul.tabbernav1 {
-    float: left;
-    height: 24px;
-    margin: 0 5px 0 0;
-    overflow: hidden;
-    padding: 0 !important;
-    text-indent: -9999px;
-    width: 24px;
+		float: left;
+		height: 24px;
+		margin: 0 5px 0 0;
+		overflow: hidden;
+		padding: 0 !important;
+		text-indent: -9999px;
+		width: 24px;
 }
 
 #div-load{
-    width:100%; 
-    z-index:1000; 
-    height:100%; 
-    background-color: rgb(119, 119, 119); opacity: 0.7;
-    position:fixed; 
+		width:100%; 
+		z-index:1000; 
+		height:100%; 
+		background-color: rgb(119, 119, 119); opacity: 0.7;
+		position:fixed; 
 
 }
 #div-another-image{
-    width:100%; 
-    z-index:1001; 
-    height:100%; 
-    background-image:url('images/loader.gif');
-    opacity: 0.6;
-    background-position:center center; 
-    background-repeat:no-repeat; 
-    position:fixed; 
+		width:100%; 
+		z-index:1001; 
+		height:100%; 
+		background-image:url('images/loader.gif');
+		opacity: 0.6;
+		background-position:center center; 
+		background-repeat:no-repeat; 
+		position:fixed; 
 
 }
 
 
-    
+		
 .tabbernav1 > li {
-    float: left;
-    margin-left: 10px;
+		float: left;
+		margin-left: 10px;
 }
 
 
 .options-exp{
-    margin: 35px 0 0 0 !important;
+		margin: 35px 0 0 0 !important;
 }
 .new-exp-link{
-    display: inline;
+		display: inline;
 }
 .overview-new > li {
-  list-style: none outside none;
+	list-style: none outside none;
 }
 .review .overview-new .summary1 {
-    background: none !important;
-    border: none;
-    border-radius: 8px 8px 8px 8px;
-    color: #00000;
-    margin-left: 13px;
-    margin-top: 20px;
-    width: 235px;
+		background: none !important;
+		border: none;
+		border-radius: 8px 8px 8px 8px;
+		color: #00000;
+		margin-left: 13px;
+		margin-top: 20px;
+		width: 235px;
 }
 
 input.error{
@@ -567,53 +567,57 @@ label.error{
 	font-weight:bold;
 }
 .review .overview .excerpt-new1 {
-    font-size: 12px;
-    padding: 0px 15px 5px;
+
+	font-size: 12px;
+	padding: 71px 15px 5px;
+
 
 }
 
 /*.page-content div.item-list-tabs {
-    background: none repeat scroll 0 0 transparent;
-    border: 0 none;
-    margin: 25px 0 12px;
+		background: none repeat scroll 0 0 transparent;
+		border: 0 none;
+		margin: 25px 0 12px;
 }
 div#subnav.item-list-tabs {
-    background: none repeat scroll 0 0 #FFFFFF;
-    border-bottom: 1px solid #EAEAEA;
-    margin: -19px 0 15px;
-    min-height: 35px;
-    overflow: hidden;
+		background: none repeat scroll 0 0 #FFFFFF;
+		border-bottom: 1px solid #EAEAEA;
+		margin: -19px 0 15px;
+		min-height: 35px;
+		overflow: hidden;
 }
 div.item-list-tabs ul li.last {
-    float: right;
-    margin: 7px 20px 0 0;
-    padding-right: 29px;
+		float: right;
+		margin: 7px 20px 0 0;
+		padding-right: 29px;
 }*/
 div.item-list-tabs ul li.feed a {
-    background: url("/assets/atom.png") no-repeat scroll left center transparent;
-    padding-left: 31px;
+		background: url("/assets/experimental/images/rss_activity.png") no-repeat scroll left center transparent;
+		padding-left: 20px;
 }
 
 .page-content ul.item-list.activity-list li, .page-content ul.item-list li {
-    background: none repeat scroll 0 0 #FFFFFF;
-    border: 1px solid #E0E0E0;
-    border-radius: 6px 6px 6px 6px;
-    list-style-type: none;
-    margin: 0 0px 10px ;
-    padding: none;
-    height:130px;
+
+		background: none repeat scroll 0 0 #FFFFFF;
+		border: 1px solid #E0E0E0;
+		border-radius: 6px 6px 6px 6px;
+		list-style-type: none;
+		margin: 0 0px 10px ;
+		padding: none;
+		height:130px;
+
 }
 .activity-list .activity-content .activity-inner, .activity-list .activity-content blockquote {
-    margin: 10px 10px 5px 0;
-    overflow: visible;
+		margin: 10px 10px 5px 0;
+		overflow: visible;
 }
 .activity-header a, .comment-meta a, .acomment-meta a {
-    text-decoration: none;
-    padding-left: 10px;
+		text-decoration: none;
+		padding-left: 10px;
 }
 .activity-inner > p {
-    word-wrap: break-word;
-    padding-left: 15px
+		word-wrap: break-word;
+		padding-left: 15px
 }
 /*important style to hide social icon*/
 #ts_turnsocial_link{
@@ -631,20 +635,20 @@ div.item-list-tabs ul li.feed a {
 	margin-bottom: -25px;
 }
 #pag-top_new > ul {
-    float: left;
-    margin: -10px -5px 30px 305px !important;
+		float: left;
+		margin: -10px -5px 30px 305px !important;
 }
 #pag-top_reputation > ul {
-    float: left;
-    margin: -10px -5px 30px 305px !important;
+		float: left;
+		margin: -10px -5px 30px 305px !important;
 }
 #pag-top_old > ul {
-    float: left;
-    margin: -10px -5px 30px 305px !important;
+		float: left;
+		margin: -10px -5px 30px 305px !important;
 }
 #pag-top_name > ul {
-    float: left;
-    margin: -10px -5px 30px 305px !important;
+		float: left;
+		margin: -10px -5px 30px 305px !important;
 }
 #pag-top_nearby > ul {
     float: left;
@@ -652,4 +656,18 @@ div.item-list-tabs ul li.feed a {
 }
 .badges-margin-top{
 	margin-top: -92px;
+	float: left;
+	margin: -10px -5px 30px 305px !important;
+}
+
+.post-loop .more1 a {
+    background: url("images/arrow-right-small.png") no-repeat scroll right 9px transparent;
+    color: #999999;
+    display: block;
+    float: right;
+    font-family: BebasNeueRegular,Arial,Sans-Serif;
+    font-size: 0.9em;
+    margin-right: -7px;
+    padding: 8px 11px 0 10px;
+
 }

@@ -1,5 +1,4 @@
 .review .overview-new {
-	color:#444;
 	background:#FFF;
 	border:1px solid #E0E0E0;
 	margin-bottom:15px;
@@ -125,8 +124,31 @@ form.exp-contact-form-new{
     padding: 10px 0 0;
 }
 .section-bottom {
+    background-color: #FFFFFF;
     border: 1px solid #E0E0E0;
-    margin: 10px 0 -1px -15px;
+    margin: -16px 0 -1px;
     padding-left: 15px;
-    width: 630px;
+    width: 613px;
+}
+.section-width-ext1{
+	width:600px;
+	text-align:justify;
+}
+.head-left-ext1{
+	margin-left:14px !important;
+}
+.padd-bottom1{
+	padding-bottom:20px !important;
+}
+.section-bottom .label-ext {
+    margin: 10px 10px 10px 0;
+}
+.badges-title-adj{
+	margin-bottom: -5px;
+}
+.select-text-adj{
+	width:270px;
+}
+#req_clist > option {
+    width: 250px;
 }

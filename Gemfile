@@ -57,7 +57,7 @@ gem 'goalie', '~> 0.0.4'
 gem 'dynamic_form'
 gem 'rinku', '~> 1.2.2', :require => 'rails_rinku'
 
-gem 'rack-recaptcha', '0.2.2', :require => 'rack/recaptcha'
+gem 'rack-recaptcha', '0.6.6', :require => 'rack/recaptcha'
 
 gem 'twitter-text', '1.1.8'
 gem 'twitter_oauth'
@@ -108,7 +108,7 @@ end
 group :scripts do
   gem 'eventmachine', '~> 0.12.10' #'1.0.0'
   gem 'em-websocket', '~> 0.3.0'
-  gem 'twitter', '1.7.2'
+  gem 'twitter', :path=>'twitter-1.7.2'
 end
 
 group :test do

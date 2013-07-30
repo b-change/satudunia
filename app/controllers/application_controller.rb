@@ -2,7 +2,6 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  include Rack::Recaptcha::Helpers
   include Subdomains
   include Sweepers
 
@@ -10,7 +9,8 @@ class ApplicationController < ActionController::Base
   include Shapado::Controllers::Routes
   include Shapado::Controllers::Locale
   include Shapado::Controllers::Utils
-
+  include Rack::Recaptcha::Helpers
+  
   if !AppConfig.recaptcha['activate']
     def recaptcha_valid?
       true

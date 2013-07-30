@@ -70,7 +70,9 @@
                 %td
                   = announcement.message
                 %td
-                  = "#{Time.at(announcement.starts_at).strftime("<b>%x</b> %X")} - #{Time.at(announcement.ends_at).strftime("<b>%x</b> %X")}".html_safe
+                  
+                  / = "#{Time.at(announcement.starts_at).strftime("<b>%x</b> %X")} - #{Time.at(announcement.ends_at).strftime("<b>%x</b> %X")}".html_safe
+                  = "#{(announcement.starts_at).strftime("%x")} - #{(announcement.ends_at).strftime("%x")} "
                 %td
                   = announcement.only_anonymous ? "Yes" : "No"
                 %td

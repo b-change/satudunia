@@ -34,7 +34,7 @@ class AnnouncementsController < ApplicationController
     respond_to do |format|
       if @announcement.valid? && @announcement.save
         flash[:notice] = I18n.t("announcements.create.success")
-        format.html { redirect_to announcements_url }
+        format.html { redirect_to admin_announcements_path }
         format.json  { render :json => @announcement, :status => :created, :location => @announcement }
       else
         @announcements = current_group.announcements.order_by(["updated_at", "desc"]).page(params["page"])
@@ -63,6 +63,18 @@ class AnnouncementsController < ApplicationController
       format.html { redirect_to request.env["HTTP_REFERER"] ? :back : root_path }
       format.js { render :json => {:status => "ok"} }
     end
+  end
+
+  def announce
+    @announcements = Announcement.all
+    render :layout => "experiment"
+    # @announcement = Announcement.where(:only_anonymous=> false ).page(params[:page])
+  end
+
+  def show
+    @announcement = Announcement.find(params[:id])
+    render :layout => "experiment"
+    
   end
 
   protected
