@@ -1,57 +1,79 @@
-.clearer.hide-responsive  
-%br.hide-responsive/
+#main-wrapper-dark
+	/ this is only used for the dark skin since it already uses an image for the background texture and light does not
+	.main-content-left
+		%br.clearer/
+		#spotlight-wrapper
+		.page-content.review.single-post
+			.ribbon-shadow-left  
+			.section-wrapper
+				/ spotlight section header
+				.section
+					.comment-bubble
+						%a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 0
+					Badges
+			.section-arrow  
 .main-content-left
-  #content.page-content
-    %form#members-directory-form.dir-form{:action => "", :method => "post"}
-      %h3 Badges
-      #members-dir-search.dir-search{:role => "search"}
-        %label
-          %input#members_search{:name => "s", :placeholder => "Search Badges...", :type => "text"}/
-        %input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
-    .item-list-tabs.activity-type-tabs{:role => "navigation"}
-      %ul
-        %li#members-order-select.selected
-          %a{:href => "http://www.industrialthemes.com/made/activity/", :title => "The public activity for everyone on this site."}
-            All Badges
-            %span=# @memberships.all.count
-    #subnav.item-list-tabs{:role => "navigation"}
-      %ul
-        %li#members-order-select.last.filter
-          %label{:for => "members-order-by"} Order By:
-          %select#activity-filter-by
-            %option{:value => "new-show"} All
-            %option{:value => "reputation-show"} Gold
-            %option{:value => "old-show"} Silver
-            %option{:value => "name-show"} Bronze
-  .page-content.review
-    .overview-wrapper
-      %h2
-        = t("badges.index.description")
-      .overview-new
-        / old plus content
-        .left-panel
-          .badges
-            %table
-              - @badges.sort_by{|b| b.name}.each do |badge|
-                %tr
-                  %td
-                    .badge_item
-                      -link_params = {:id => badge.token}
-                      -if badge.for_tag
-                        -link_params[:type] = badge.type
+	#content.page-content
+		%form#members-directory-form.dir-form{:action => "", :method => "post"}
+			#members-dir-search.dir-search{:role => "search"}
+				%label
+					%input#members_search{:name => "s", :placeholder => "Search Badges...", :type => "text"}/
+				%input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
+		.item-list-tabs.activity-type-tabs{:role => "navigation"}
+			%ul
+				%li#members-order-select.selected
+					%a{:href => "http://www.industrialthemes.com/made/activity/", :title => "The public activity for everyone on this site."}
+						All Badges
+						%span= @badges.count
+		#subnav.item-list-tabs{:role => "navigation"}
+			%ul
+				%li#members-order-select.last.filter
+					%label{:for => "members-order-by"} Filter:
+					%select#activity-filter-by
+						%option{:value => "new-show"} All
+						%option{:value => "reputation-show"} Gold
+						%option{:value => "old-show"} Silver
+						%option{:value => "name-show"} Bronze
+	.page-content.review
+		.overview-wrapper
+			%h2
+				= t("badges.index.description")
+			.overview-new
+				/ old plus content
+				.left-panel
+					.badges
+						%table
+							- @badges.sort_by{|b| b.name}.each do |badge|
+								%tr
+									%td
+										.badge_item
+											-link_params = {:id => badge.token}
+											-if badge.for_tag
+												-link_params[:type] = badge.type
 
-                      = pjax_link_to badge.name, "badges", badge_path(link_params), {:class => "badge #{badge.type}", :title => badge.description}
-                      -if badge["count"].to_i > 1
-                        .counter
-                          == × #{badge["count"].to_i}
-                  %td
-                    .badge_description
-                      =badge.description
+											= pjax_link_to badge.name, "badges", badge_path(link_params), {:class => "badge #{badge.type}", :title => badge.description}
+											-if badge["count"].to_i > 1
+												.counter
+													== × #{badge["count"].to_i}
+									%td
+										.badge_description
+											=badge.description
 
-
-.sidebar
-  = render "experimental/partials/login_box"
-
+.sidebar.badges-margin-top
+	= render "experimental/partials/login_box"
+	= render "experimental/partials/left_bar"
+	/widget top
+	= render "experimental/partials/widget_top"
+	/ .clearer.hide-responsive
+	/ %br.clearer/
+	/ newly reviewd
+	= render "experimental/partials/newly_reviewed"
+	/popular box
+	= render "experimental/partials/popular_box"
+	/rating box
+	= render "experimental/partials/rating_box"
+	/banner box
+	= render "experimental/partials/banner_box"
 
 
 

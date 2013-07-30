@@ -376,7 +376,7 @@ form.exp-contact-form{
 .tabdiv-exp ul {margin-bottom:0px;}
 .head-left {margin-left:20px !important;}
 .review .overview .excerpt-new{font-size: 12px; padding: 15px 15px 5px;}
-.excerpt-new > h1 {
+.excerpt-new h1 {
 		background: none repeat scroll 0 0 transparent !important;
 		border: medium none !important;
 		padding: 0 !important;
@@ -568,7 +568,7 @@ label.error{
 }
 .review .overview .excerpt-new1 {
     font-size: 12px;
-    padding: 71px 15px 5px;
+    padding: 0px 15px 5px;
 
 }
 
@@ -599,7 +599,7 @@ div.item-list-tabs ul li.feed a {
     border: 1px solid #E0E0E0;
     border-radius: 6px 6px 6px 6px;
     list-style-type: none;
-    margin: 0 33px 10px -35px;
+    margin: 0 0px 10px ;
     padding: none;
     height:130px;
 }
@@ -649,4 +649,7 @@ div.item-list-tabs ul li.feed a {
 #pag-top_nearby > ul {
     float: left;
     margin: -10px -5px 30px 305px !important;
+}
+.badges-margin-top{
+	margin-top: -92px;
 }

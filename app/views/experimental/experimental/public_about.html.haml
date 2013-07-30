@@ -3,30 +3,21 @@
 	.main-content-left
 		%br.clearer/
 		#spotlight-wrapper
+		.page-content.review.single-post
 			.ribbon-shadow-left  
 			.section-wrapper
 				/ spotlight section header
 				.section
+					.comment-bubble
+						%a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 0
 					= @title.upcase
-			.ribbon-shadow-right  
 			.section-arrow  
 		.page-content.review
 			%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
 			.overview-wrapper
 				/ %h1.title Login
-				.overview-new
-					/ .arrow-catpanel-bottom  
-					.left-panel
-						.article-image.video
-							/ %iframe{:allowfullscreen => "", :frameborder => "0", :height => "197", :src => "http://www.youtube.com/embed/sftuxbvGwiU", :width => "350"}
-						%br.clearer/
-						.category
-							/.ribbon-shadow-left  
-							.catname
-								Quick Stats
-							.category-arrow  
-						%br.clearer/
-					.overview
+				.overview-new.nopadding-top
+					.overview.nopadding-top
 						.excerpt-new1.justify-content
 							%p.filter-content-new
 								.pullquote-wrapper.left
@@ -70,22 +61,22 @@
 								%a{:href => "archive-a.html", :rel => "author", :title => "Posts by Brian McCulloh"} Brian McCulloh
 								\»		
 					#related
-						%ul.tabnav
+						%ul.tabnav.ui-tabs-nav
 							%li.title Related:
 							%li.arrow  
 							%li
 								%a{:href => "#tab1", :title => "Category 1"} Category 1
 							%li
 								%a{:href => "#tab2", :title => "Category 2"} Category 2
-							%li
+							%li.ui-tabs-selected
 								%a{:href => "#tab3", :title => "Category 3"} Category 3
 						%br.clearer/
 						.tabdiv-wrapper
-							#tab1.tabdiv
+							#tab1.tabdiv.ui-tabs-panel.ui-tabs-hide{:style => ""}
 								.panel
 									.rating-wrapper.small
 									%a.darken.small{:href => "single-review-numbers.html"}
-										%img{:alt => "misc3", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc3-110x70.jpg", :width => "110"}/
+										%img{:alt => "misc3", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc3-110x70.jpg", :style => "opacity: 1;", :width => "110"}/
 									%a.post-title{:href => "single-review-numbers.html"} Made Magazine Is 2 Years In The Making!
 								.panel
 									.rating-wrapper.small
@@ -126,7 +117,7 @@
 								%br.clearer.hide-responsive/
 								.clear-responsive  
 								%br.clearer/
-							#tab2.tabdiv
+							#tab2.tabdiv.ui-tabs-panel.ui-tabs-hide{:style => ""}
 								.panel
 									.rating-wrapper.small
 										.stars.yellow
@@ -171,17 +162,17 @@
 								%br.clearer.hide-responsive/
 								.clear-responsive  
 								%br.clearer/
-							#tab3.tabdiv
+							#tab3.tabdiv.ui-tabs-panel{:style => ""}
 								.panel
 									.rating-wrapper.small
 									%a.darken.small{:href => "single-review-numbers.html"}
-										%img{:alt => "misc2", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc2-110x70.jpg", :width => "110"}/
+										%img{:alt => "misc2", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc2-110x70.jpg", :style => "opacity: 1;", :width => "110"}/
 									%a.post-title{:href => "single-review-numbers.html"} Built On The Swagger Framework, Made Is Rock-Solid
 								.clear-responsive  
 								.panel
 									.rating-wrapper.small
 									%a.darken.small{:href => "single-review-numbers.html"}
-										%img{:alt => "misc3", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc3-110x70.jpg", :width => "110"}/
+										%img{:alt => "misc3", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc3-110x70.jpg", :style => "opacity: 1;", :width => "110"}/
 									%a.post-title{:href => "single-review-numbers.html"} Made Magazine Is 2 Years In The Making!
 								.panel.right
 									.rating-wrapper.small
@@ -194,7 +185,7 @@
 									.rating-wrapper.small
 										.letter.color2 D-
 									%a.darken.small{:href => "single-review-numbers.html"}
-										%img{:alt => "fashion2", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/fashion2-110x70.jpg", :width => "110"}/
+										%img{:alt => "fashion2", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/fashion2-110x70.jpg", :style => "opacity: 1;", :width => "110"}/
 									%a.post-title{:href => "single-review-numbers.html"} Art Deco fashion: the new take
 								.panel
 									.rating-wrapper.small
@@ -205,17 +196,17 @@
 											.star.full  
 											.star.half  
 									%a.darken.small.video{:href => "single-review-numbers.html"}
-										%img{:alt => "restaurants9", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/restaurants9-110x70.jpg", :width => "110"}/
+										%img{:alt => "restaurants9", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/restaurants9-110x70.jpg", :style => "opacity: 1;", :width => "110"}/
 									%a.post-title{:href => "single-review-numbers.html"} Coffee Common: Bringing Coffee Power to the People
 								.clear-responsive  
 								.panel.right
 									.rating-wrapper.small
 									%a.darken.small{:href => "single-review-numbers.html"}
-										%img{:alt => "misc1", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-110x70.jpg", :width => "110"}/
+										%img{:alt => "misc1", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-110x70.jpg", :style => "opacity: 1;", :width => "110"}/
 									%a.post-title{:href => "single-review-numbers.html"} Made Magazine Is The First Responsive Theme Released By IndustrialThemes
 								%br.clearer.hide-responsive/
 								.clear-responsive  
-								%br.clearer/				
+								%br.clearer/
 .sidebar
 	= render "experimental/partials/login_box"
 	= render "experimental/partials/left_bar"
@@ -231,3 +222,11 @@
 	= render "experimental/partials/rating_box"
 	/banner box
 	= render "experimental/partials/banner_box"
+
+:javascript
+	jQuery.noConflict();
+		jQuery(document).ready(function() { 
+		
+			jQuery('#related > ul').tabs({ fx: { opacity: 'toggle', duration: 150 } });
+			
+		});

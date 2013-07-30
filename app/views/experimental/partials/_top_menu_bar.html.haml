@@ -25,7 +25,7 @@
 					%li
 						- if current_user.nil?
 							%a{:href => '/login',:title=>"Sign in",:alt=>"sign in",:class=>"tool-tip",:title=>"Sign in"}  
-								="<i class='icon-login'></i>Login in".html_safe
+								="<i class='icon-login'></i>Login".html_safe
 						-else
 							= link_to "Login as #{h(current_user.role)}","#",:style=>"color:#027DB2;"
 							%ul

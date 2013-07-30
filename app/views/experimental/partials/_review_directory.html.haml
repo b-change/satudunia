@@ -12,7 +12,11 @@
       .header
         .more
           %a{:href => "single-review-numbers.html"} More
-        %h2{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-movie-dark.png) no-repeat 0px 0px;"} Movie
+        
+        %h2
+          %span{:style=>"margin-left:-25px;"}
+            ="<i class='icon-video'></i>".html_safe
+            Movie
         .arrow-catpanel-bottom  
       .rating-wrapper.small.first
         .number.color5 88%
@@ -42,7 +46,10 @@
       .header
         .more
           %a{:href => "single-review-numbers.html"} More
-        %h2{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-music-dark.png) no-repeat 0px 0px;"} Music
+        %h2  
+          %span{:style=>"margin-left:-25px;"}
+            ="<i class='icon-music'></i>".html_safe
+            Music
         .arrow-catpanel-bottom  
       .rating-wrapper.small.first
         .number.color4 7.4

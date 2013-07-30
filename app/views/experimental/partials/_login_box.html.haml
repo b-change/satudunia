@@ -5,7 +5,6 @@
         .section Login
       .login-form
         = form_for resource, :url => session_path(resource), :html => {:class => "form"} do |f|
-          / %form#loginform{:action => "http://www.industrialthemes.com/made/wp-login.php", :method => "post", :name => "loginform"}
           %p.login-username
             %label{:for => "user_login"} Username
             =f.text_field :email, :class => "input",:placeholder=>"Username"

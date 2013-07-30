@@ -592,5 +592,8 @@ module ApplicationHelper
     @devise_mapping ||= Devise.mappings[:user]
   end
   # for custom login in devise
+  def local_path_experimental
+    $root_experimental = "/assets/experimental/images/images_live/"
+  end
 
 end

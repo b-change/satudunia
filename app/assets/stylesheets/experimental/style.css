@@ -256,9 +256,9 @@ a.selectBox {display:none !important;}
 header area
 *************************************************/
 #page-wrapper {width:1000px;margin:0px auto;}
-#logo-bar-wrapper {background-color:#004969;background-image: url(/assets/plus/body_my_prof.jpg); background-repeat:no-repeat;}
+#logo-bar-wrapper {background-color:#004969;background-image: url(/assets/experimental/images/new_header.jpg); background-repeat:no-repeat; height: 120px;}
 #logo-bar-shadow {width:1000px;height:12px;background:url(images/logo-bar-shadow.png) repeat-x 0px 0px;}
-#logo-bar {padding:30px 20px 5px 30px;}
+#logo-bar {padding:20px 20px 0px 30px;}
 #logo-wrapper {float:left;}
 #logo {float:left}
 #site-logo-iphone {display:none;}

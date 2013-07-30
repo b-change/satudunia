@@ -1,17 +1,18 @@
-
 #main-wrapper-dark
   / this is only used for the dark skin since it already uses an image for the background texture and light does not
   .main-content-left
     %br.clearer/
     #spotlight-wrapper
+    .page-content.review.single-post
       .ribbon-shadow-left  
       .section-wrapper
         / spotlight section header
         .section
-          Privacy Policy
-      .ribbon-shadow-right  
+          .comment-bubble
+            %a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 0
+          Privacy Policy  
       .section-arrow  
-    .page-content.review
+      %br
       %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
       .overview-wrapper
         / %h1.title Login
@@ -21,7 +22,8 @@
             %h2
               Privacy Policy
             %div
-              = @privacy.static_content.html_safe
+              - unless @privacy.nil?
+                = @privacy.static_content.html_safe
 /side bar
 .sidebar
   /login box

@@ -1,0 +1,51 @@
+#main-wrapper-dark
+	/ this is only used for the dark skin since it already uses an image for the background texture and light does not
+	.main-content-left
+		%br.clearer/
+		#spotlight-wrapper
+			.ribbon-shadow-left  
+			.section-wrapper
+				/ spotlight section header
+				.section
+					= @title.upcase
+			.ribbon-shadow-right  
+			.section-arrow  
+		.page-content.review
+			%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
+			.overview-wrapper
+				/ %h1.title Login
+				.overview-new
+					/ .arrow-catpanel-bottom  
+					.left-panel
+						.article-image.video
+							/ %iframe{:allowfullscreen => "", :frameborder => "0", :height => "197", :src => "http://www.youtube.com/embed/sftuxbvGwiU", :width => "350"}
+						%br.clearer/
+						.category
+							/.ribbon-shadow-left  
+							.catname
+								Quick Stats
+							.category-arrow  
+						%br.clearer/
+					/ .overview
+					/ 	.excerpt-new1.justify-content
+					/ 		%p.filter-content-new
+					/ 			.pullquote-wrapper.left
+					/ 				.pullquote.prociono  Living positively,together
+					/ 			%p 
+					/ 				= @about.static_content.html_safe
+				
+.sidebar
+	= render "experimental/partials/login_box"
+	= render "experimental/partials/left_bar"
+	/widget top
+	= render "experimental/partials/widget_top"
+	/ .clearer.hide-responsive
+	/ %br.clearer/
+	/ newly reviewd
+	= render "experimental/partials/newly_reviewed"
+	/popular box
+	= render "experimental/partials/popular_box"
+	/rating box
+	= render "experimental/partials/rating_box"
+	/banner box
+	= render "experimental/partials/banner_box"

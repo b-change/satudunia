@@ -128,6 +128,8 @@ class Experimental::ExperimentalController < ApplicationController
   def routing_error
     render "404", :status => 404
   end
-   
- 
+
+  def features
+     @title = "Features"
+  end 
 end

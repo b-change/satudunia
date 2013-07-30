@@ -253,8 +253,11 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource_or_scope)
     self.current_user.logged!(self.current_group)
-    if resource_or_scope.is_a? User
-      questions_path
+   # debugger
+    if params[:user][:admin].present?
+      admin_path 
+    elsif resource_or_scope.is_a? User
+      questions_path   
     else
       super(resource_or_scope)
     end

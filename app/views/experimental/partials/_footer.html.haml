@@ -28,12 +28,12 @@
               %li.first
                 .floatleft
                   %a.thumbnail.darken.small{:href => "single-review-numbers.html", :title => "A Sandwich a Day: Fried Scallops from Brucie"}
-                    %img{:alt => "restaurants7", :height => "40", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/restaurants7-40x40.jpg", :width => "40"}/
+                    %img{:alt => "restaurants7", :height => "40", :src => "#{local_path_experimental}restaurants7-40x40.jpg", :width => "40"}/
                 .floatleft
                   %a.post-title{:href => "single-review-numbers.html", :title => "A Sandwich a Day: Fried Scallops from Brucie"} A Sandwich a Day: Fried Scallops from Brucie
                   %br.clearer/
                   .icon
-                    %img{:alt => "icon", :height => "16", :src => "http://www.industrialthemes.com/made/wp-content/themes/made/images/review-restaurant-dark.png", :width => "16"}/
+                    %img{:alt => "icon", :height => "16", :src => "#{local_path_experimental}review-restaurant-dark.png", :width => "16"}/
                   .rating-wrapper.small
                     .stars.yellow
                       .star.full  
@@ -45,48 +45,48 @@
               %li
                 .floatleft
                   %a.thumbnail.darken.video.small{:href => "single-review-numbers.html", :title => "Yohji Yamamoto Autumn (Fall) / Winter 2012 men's"}
-                    %img{:alt => "fashion4", :height => "40", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/fashion4-40x40.jpg", :width => "40"}/
+                    %img{:alt => "fashion4", :height => "40", :src => "#{local_path_experimental}fashion4-40x40.jpg", :width => "40"}/
                 .floatleft
                   %a.post-title{:href => "single-review-numbers.html", :title => "Yohji Yamamoto Autumn (Fall) / Winter 2012 men's"} Yohji Yamamoto Autumn (Fall) / Winter 2012 men's
                   %br.clearer/
                   .icon
-                    %img{:alt => "icon", :height => "16", :src => "http://www.industrialthemes.com/made/wp-content/themes/made/images/review-fashion-dark.png", :width => "16"}/
+                    %img{:alt => "icon", :height => "16", :src => "#{local_path_experimental}review-fashion-dark.png", :width => "16"}/
                   .rating-wrapper.small
                     .letter.color4 B+
                 %br.clearer/
               %li
                 .floatleft
                   %a.thumbnail.darken.small{:href => "single-review-numbers.html", :title => "Gotye – Mirrors"}
-                    %img{:alt => "rock concert", :height => "40", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/07/photodune-277307-rock-concert-s-40x40.jpg", :width => "40"}/
+                    %img{:alt => "rock concert", :height => "40", :src => "#{local_path_experimental}photodune-277307-rock-concert-s-40x40.jpg", :width => "40"}/
                 .floatleft
                   %a.post-title{:href => "single-review-numbers.html", :title => "Gotye – Mirrors"} Gotye – Mirrors
                   %br.clearer/
                   .icon
-                    %img{:alt => "icon", :height => "16", :src => "http://www.industrialthemes.com/made/wp-content/themes/made/images/review-music-dark.png", :width => "16"}/
+                    %img{:alt => "icon", :height => "16", :src => "#{local_path_experimental}review-music-dark.png", :width => "16"}/
                   .rating-wrapper.small
                     .number.color4 7.4
                 %br.clearer/
               %li
                 .floatleft
                   %a.thumbnail.darken.video.small{:href => "single-review-numbers.html", :title => "The Hobbit: An Unexpected Journey"}
-                    %img{:alt => "movies3", :height => "40", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-40x40.jpg", :width => "40"}/
+                    %img{:alt => "movies3", :height => "40", :src => "#{local_path_experimental}movies3-40x40.jpg", :width => "40"}/
                 .floatleft
                   %a.post-title{:href => "single-review-numbers.html", :title => "The Hobbit: An Unexpected Journey"} The Hobbit: An Unexpected Journey
                   %br.clearer/
                   .icon
-                    %img{:alt => "icon", :height => "16", :src => "http://www.industrialthemes.com/made/wp-content/themes/made/images/review-movie-dark.png", :width => "16"}/
+                    %img{:alt => "icon", :height => "16", :src => "#{local_path_experimental}review-movie-dark.png", :width => "16"}/
                   .rating-wrapper.small
                     .number.color5 88%
                 %br.clearer/
               %li
                 .floatleft
                   %a.thumbnail.darken.video.small{:href => "single-review-numbers.html", :title => "Coffee Common: Bringing Coffee Power to the People"}
-                    %img{:alt => "restaurants9", :height => "40", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/restaurants9-40x40.jpg", :width => "40"}/
+                    %img{:alt => "restaurants9", :height => "40", :src => "#{local_path_experimental}restaurants9-40x40.jpg", :width => "40"}/
                 .floatleft
                   %a.post-title{:href => "single-review-numbers.html", :title => "Coffee Common: Bringing Coffee Power to the People"} Coffee Common: Bringing Coffee Power to the People
                   %br.clearer/
                   .icon
-                    %img{:alt => "icon", :height => "16", :src => "http://www.industrialthemes.com/made/wp-content/themes/made/images/review-restaurant-dark.png", :width => "16"}/
+                    %img{:alt => "icon", :height => "16", :src => "#{local_path_experimental}review-restaurant-dark.png", :width => "16"}/
                   .rating-wrapper.small
                     .stars.yellow
                       .star.full  
@@ -100,7 +100,7 @@
       .panel
         .widget
           #tabbed-Movie-reviews.simple-list.review-cats
-            .review-header Movie Reviews by category
+            .review-header Questions By Category
             %ul.tabnav
               %li
                 %a.first{:href => "#tabs-movie_genre"} Genre
@@ -115,21 +115,23 @@
               #tabs-movie_genre.tabdiv
                 %ul
                   %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Action"} Action
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Travel"} Travel 
                   %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Animated"} Animated
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Well being"} Well being
                   %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Comedy"} Comedy
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Drugs "} Drugs 
                   %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Drama"} Drama
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Relationship"} Relationship
                   %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Horror"} Horror
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Sex"} Sex
                   %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Independent"} Independent
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Disclosure"} Disclosure
                   %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Romantic Comedy"} Romantic Comedy
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Daignosis"} Daignosis
                   %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Sci-Fi"} Sci-Fi
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Treatment"} Treatment
+                  %li
+                    %a{:href => "archive-a.html", :title => "View all posts filed under Medication"} Medication
                   %li.last  
               #tabs-movie_director.tabdiv
                 %ul
@@ -199,7 +201,7 @@
       .panel
         .widget
           %h2 Latest Tweets
-          %a.twitter-timeline{"data-widget-id" => "360398649064316928", :href => "https://twitter.com/neelesh_v"} Tweets by @neelesh_v
+          %a.twitter-timeline{"data-widget-id" => "360398649064316928",:height=>"600px",:width=>"250px",:href => "https://twitter.com/neelesh_v"} Tweets by @neelesh_v
 
           :javascript
             !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
@@ -212,7 +214,7 @@
               %img{:alt => "logo", :src => "/assets/plus/footer_logo.png"}/
             - unless @footer.blank?
               %p 
-                =  truncate(strip_tags(@footer.footer_content), :omission => "", :length => 833) rescue ""
+                =  truncate(@footer.footer_content.sub("\n","<br>"), :omission => "", :length => 833).html_safe rescue ""
               /added links below plus/
               .widget
                 %h2 links
@@ -257,3 +259,4 @@
             /     %a{:href => "http://www.industrialthemes.com"} Industrial Themes
       %br.clearer/
       .ribbon-shadow-right  
+

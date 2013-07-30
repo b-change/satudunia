@@ -1,17 +1,41 @@
-/ content variable
-.clearer.hide-responsive  
-%br.hide-responsive/
-.main-content-left
-  .page-content.review
-    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
-    .overview-wrapper
-      %h1.title TERMS OF USE
-      .overview
-        .arrow-catpanel-bottom  
-        .excerpt-new
-          %p 
-            -unless @tos.nil? 
-              = @tos.static_content.html_safe
+#main-wrapper-dark
+  / this is only used for the dark skin since it already uses an image for the background texture and light does not
+  =# render "experimental/partials/wrapper_box"
+  .main-content-left
+    %br.clearer/
+    #spotlight-wrapper
+      .ribbon-shadow-left  
+      .section-wrapper
+        / spotlight section header
+        .section TERMS OF USE
+      .ribbon-shadow-right  
+      .section-arrow  
+    .page-content.review
+      %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
+      .overview-wrapper
+        / %h1.title Login
+        .overview-new.nopadding-top
+          .overview.nopadding-top
+            .excerpt-new.justify-content
+              %p.filter-content-new
+                %p 
+                  -unless @tos.nil? 
+                    = @tos.static_content.html_safe
+
+/ / content variable
+/ .clearer.hide-responsive  
+/ %br.hide-responsive/
+/ .main-content-left
+/   .page-content.review
+/     %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
+/     .overview-wrapper
+/       %h1.title TERMS OF USE
+/       .overview
+/         .arrow-catpanel-bottom  
+/         .excerpt-new
+/           %p 
+/             -unless @tos.nil? 
+/               = @tos.static_content.html_safe
 
 /side bar
 .sidebar

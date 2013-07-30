@@ -6,22 +6,32 @@
 		.review-content
 			.ribbon-shadow-left
 			.section-wrapper
-				.section-header
+				.section
+					.comment-bubble
+						%a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 0
+					%span.posted-label Posted
+					June 19, 2012 by
+					%a{:href => "http://www.industrialthemes.com", :rel => "author external", :title => "Visit Brian McCulloh’s website"} Brian McCulloh
+					%span.category-label
+						in
+						%a{:href => "#"} News
+				.ribbon-shadow-right 
 					= @news.news_title
-			.section-arrow
+				.section-arrow
 			/ post by removed from here
-			.content-panel
-				.the-content.justify-content			
-					.userDescription
-						.basicInfo{:style => "margin-left: 10px !important"}
-							%h2
-								= @news.news_title
-							%small
-								by #{@news.user.name} on #{@news.created_at.strftime("%d %b %Y - %I:%M %p")}
+			.overview-new
+				.left-panel
+					.the-content.justify-content			
+						.userDescription
+							.basicInfo{:style => "margin-left: 10px !important"}
+								%h2
+									= @news.news_title
+								%small
+									by #{@news.user.name} on #{@news.created_at.strftime("%d %b %Y - %I:%M %p")}
 
-					- if @news.has_news_image?
-						= image_tag news_image_path(@news,"small"), :alt => @news.slug, :class => 'gravatar', :style => "margin: 10px", :size=>'500x400'
-					#service_information{:style => "margin: 10px"}
-						= @news.news_body.html_safe
+						- if @news.has_news_image?
+							= image_tag news_image_path(@news,"small"), :alt => @news.slug, :class => 'gravatar', :style => "margin: 10px", :size=>'500x400'
+						#service_information{:style => "margin: 10px"}
+							= @news.news_body.html_safe
 .sidebar
 	= render "experimental/partials/left_bar"

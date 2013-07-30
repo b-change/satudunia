@@ -396,11 +396,13 @@ Rails.application.routes.draw do
         get :show_member
         get '/questions/ask-a-question' => 'experimental#ask_question', :as => :ask_question
         get 'questions/:id' => 'experimental#question_show', :as => :question_show
-        get :community
         get :profile
         get :profile_settings, :path=> "/profile/settings"
+        get :features
+
         # experimental routes
         get "*a", :to => "experimental#routing_error"
+
       end
     end
   end 
