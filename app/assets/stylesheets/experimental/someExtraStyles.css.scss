@@ -674,4 +674,33 @@ div.item-list-tabs ul li.feed a {
 	background-position:center center; 
 	background-repeat:no-repeat;
 }
+.contact-button{
+    background: -moz-linear-gradient(center top , #FFFFFF 0%, #EDEDED 100%) repeat scroll 0 0 transparent;
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    color: #777777;
+    cursor: pointer;
+    font: 12px/14px Arial,Tahoma,Verdana,sans-serif;
+    outline: medium none;
+    padding: 4px 10px;
+    text-align: center;
+    text-decoration: none;
 
+}
+.contact-section-bottom {
+    background-color: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    height: 33px;
+    margin: -16px 0 -1px;
+    padding-left: 475px;
+    padding-top: 20px;
+}  
+.recent_tag{
+    color: #E47911;
+    display: inline;
+    font-size: 18px;
+    font-weight: normal;
+}
+.list-show-widget{
+	list-style:disc;
+}

@@ -13,6 +13,7 @@
           .section-for-header
             /%i.icon-vcard
             Questions and Answers  
+      .section-arrow 
   #content.page-content
     %form#members-directory-form.dir-form{:action => "", :method => "post"}
       %h3 Questions
@@ -20,6 +21,7 @@
         %label
           %input#members_search{:name => "s", :placeholder => "Search Questions...", :type => "text"}/
         %input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
+        %input#members_search_submit{:name => "members_search_submit", :type => "reset", :value => "x", :style=>"opacity:1;"}/
     .item-list-tabs.activity-type-tabs{:role => "navigation"}
       %ul
         %li#members-order-select.selected
@@ -47,10 +49,10 @@
         %thead
           %tr
             /%h2 Newest
-            %th#th-question Question
             %th#th-votes Votes
             %th#th-answers Answers
             %th#th-views Views
+            %th#th-question Question
         %tbody
           - @questions.each do |question|
             = render "questions/plus_question", :question => question
@@ -64,10 +66,10 @@
         %thead
           %tr
             /%h2 Hot
-            %th#th-question Question
             %th#th-votes Votes
             %th#th-answers Answers
             %th#th-views Views
+            %th#th-question Question
         %tbody
           - @questionsHot.each do |question|
             = render "questions/plus_question", :question => question
@@ -81,10 +83,10 @@
         %thead
           %tr
             /%h2 Featured
-            %th#th-question Question
             %th#th-votes Votes
             %th#th-answers Answers
             %th#th-views Views
+            %th#th-question Question
         %tbody
           - @questionsViews.each do |question|
             = render "questions/plus_question", :question => question
@@ -98,10 +100,10 @@
         %thead
           %tr
             /%h2 Votes
-            %th#th-question Question
             %th#th-votes Votes
             %th#th-answers Answers
             %th#th-views Views
+            %th#th-question Question
         %tbody
           - @questionsVotes.each do |question|
             = render "questions/plus_question", :question => question
@@ -115,10 +117,10 @@
         %thead
           %tr
             /%h2 Unanswered
-            %th#th-question Question
             %th#th-votes Votes
             %th#th-answers Answers
             %th#th-views Views
+            %th#th-question Question
         %tbody
           - @questionsUnanswered.each do |question|
             = render "questions/plus_question", :question => question
@@ -130,10 +132,10 @@
         %thead
           %tr
             /%h2 XXX
-            %th#th-question Question
             %th#th-votes Votes
             %th#th-answers Answers
             %th#th-views Views
+            %th#th-question Question
         %tbody
           %p xxx
 
@@ -149,6 +151,8 @@
           .section-for-header
             /%i.icon-vcard
             xxxxxxx
+      .section-arrow 
+
 
 .sidebar-new
   = render "experimental/partials/recent_tags"

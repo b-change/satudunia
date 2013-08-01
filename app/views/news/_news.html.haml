@@ -1,6 +1,6 @@
 .post-panel.right.layout-c
   .article-image
-    %a.thumbnail.darken{:href => "single-review-numbers.html"}
+    %a.thumbnail.darken{:href => news_path(news.slug)}
       - if news.has_news_image?
         = image_tag news_image_path(news,"small"), :height => 170,:width=>300, :alt => news.slug
       -else

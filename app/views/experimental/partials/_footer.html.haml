@@ -184,12 +184,13 @@
                   %li.last  
         .widget
           %h2 Meta
-          %ul
+          %ul.list-show-widget
             - if !current_user.nil? && current_user.owner_of?(current_group)
               %li
                 = link_to "Admin", "/admin",:target=>"_blank"
-            %li
-              = link_to t("layouts.application.logout"), destroy_user_session_path
+            - if user_signed_in?
+              %li
+                = link_to t("layouts.application.logout"), destroy_user_session_path
             %li
               %a{:href => "#", :title => "Syndicate this site using RSS 2.0"}
                 Entries

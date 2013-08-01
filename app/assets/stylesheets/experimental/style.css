@@ -6,7 +6,8 @@ css reset and general setup
 body { font-family:Arial, Helvetica, sans-serif; background-color:#E1E1E1;
 	background-image: url("images/background.jpg"); 
 	background-attachment: fixed; 
-	background-position:0 -200px !important; 
+	background-position:center top;
+	background-repeat: no-repeat;
 	width:100%; display:table; }
 .screen-reader-text { position: absolute; left: -9999px; top: -9999px; }
 .clearer { clear: both; line-height:0px !important; font-size:0px !important; height:0px !important; }
@@ -751,8 +752,6 @@ standard page
 .page-content h1.title {margin-left:10px;}
 .page-content h1.error {padding:10px 0px 50px 65px;background:url(images/404.png) no-repeat 0px 0px;margin:40px 0px 0px 140px;}
 .page-content p {margin-bottom:20px;}
-.page-content ul, .page-content ol {margin: 10px 0px 10px 35px;}
-.page-content ul li, .page-content ol li {list-style-image: none !important;padding: 3px 0px;}
 .page-content .home {padding:5px 0px 35px 45px;margin-left:50px;background:url(images/404-home.png) no-repeat 0px 0px;}
 .page-content .menu {padding:3px 0px 35px 45px;margin-left:50px;background:url(images/404-menu.png) no-repeat 0px 0px;}
 .page-content .search {padding:0px 0px 10px 45px;margin-left:50px;background:url(images/404-search.png) no-repeat 0px 0px;}
@@ -922,7 +921,7 @@ blockquote {border-left:4px solid #E6E6E6;background:#F9F9F9;padding:16px 14px 1
 code {color:#9C2E0E;background:#FFF8DF;}
 pre {border:1px solid;border-color:#E6CD22;background:#FFF8DF;padding:10px 14px 12px 20px;color:#9C2E0E;margin:10px 15px 10px 15px;display:block;}
 .page-content ul, .page-content ol {margin:10px 0px 10px 35px;}
-.page-content ul li, .page-content ol li {list-style-image:none !important;padding:3px 0px;}
+.page-content ul li, .page-content ol li {list-style-image:none; padding:3px 0px;}
 .page-content .alignleft {float:left;margin:10px 15px 15px 0px;}
 .page-content .alignright {float:right;margin:10px 0px 15px 15px;}
 .page-content .aligncenter {text-align:center;margin:10px auto;display: block;}
@@ -2590,7 +2589,7 @@ table.forum tr th#th-question, table.forum tr th#th-poster, table.forum tr th#th
     border-image: none;
     border-right: 1px solid #E0E0E0;
     border-style: none solid solid none;
-    border-width: 0 1px 1px 0;
+    border-width: 0 0px 1px 0;
     color: #777777;
     font-family: BebasNeueRegular,Arial,Sans-Serif;
     font-size: 1.5em;

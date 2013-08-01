@@ -26,8 +26,8 @@
                   = f.label :email,"Email*"
                   = f.text_field :email, :class=>"input-class-new", :placeholder => "Please Enter Your Registered Email"
           .section-bottom
-            = f.submit "Resend unlock instructions", :class=>"label-ext"
-            = f.submit "Cancel", :class=>"label-ext"
+            = button_tag "Cancel", :class=>"label-ext floatright"
+            = f.submit "Resend unlock instructions", :class=>"label-ext floatright"
           = render :partial => "shared/devise_links"
 / side bar
 .sidebar

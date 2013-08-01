@@ -15,14 +15,14 @@
 					.userDescription
 						.basicInfo{:style => "margin-left: 10px !important"}
 							%h2
-								= @announcement.message
+								= @announcement.message rescue ""
 							%small
-								on #{@announcement.starts_at.strftime("%x")}
+								on #{@announcement.starts_at.strftime("%x") rescue ""} 
 
 					= image_tag ("banner-250x250.jpg"), :class => 'gravatar', :style => "margin: 10px", :size=>'500x400'
 						
 					#service_information{:style => "margin: 10px"}
-						= @announcement.message
+						= @announcement.message rescue ""
 						= link_to "Back", announce_announcements_path
 .sidebar
 	= render "experimental/partials/left_bar"

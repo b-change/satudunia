@@ -129,6 +129,7 @@ form.exp-contact-form-new{
     margin: -16px 0 -1px;
     padding-left: 15px;
     width: 613px;
+    overflow:auto;
 }
 .section-width-ext1{
 	width:600px;
@@ -159,4 +160,12 @@ form.exp-contact-form-new{
     font-family: BebasNeueRegular,Arial,Sans-Serif !important;
     font-size: 18px !important;
     text-transform: uppercase !important;
+}
+.overview-new.nopadding-top.padding-about {
+    padding: 15px;
+}
+.tags1_3_1 {
+    display: inherit;
+    margin-bottom: 2px;
+    padding: 3px;
 }

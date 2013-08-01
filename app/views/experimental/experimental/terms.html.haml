@@ -57,6 +57,11 @@
   /banner box
   = render "experimental/partials/banner_box"
 
+:css
+  .excerpt-new ul,.excerpt-new ol,.excerpt-new li{
+    list-style-image: url("/assets/experimental/images/li-dark.png") !important;
+  }
+
 :javascript
   jQuery.noConflict();
   jQuery(document).ready(function() { 
@@ -64,7 +69,8 @@
     jQuery('#related > ul').tabs({ fx: { opacity: 'toggle', duration: 150 } });
     // for making first character styled
     
-  });              
+  }); 
+  
 
 
 

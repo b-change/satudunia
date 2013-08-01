@@ -5,7 +5,7 @@
 				= image_tag ("banner-250x250.jpg") , :height => 170,:width=>300
 			.inner
 				%h2
-					= announcement.message
+					= link_to announcement.message, announcement_path(announcement)
 				.excerpt
 					on #{announcement.starts_at.strftime("%d %b %Y - %I:%M %p")}
 					%br

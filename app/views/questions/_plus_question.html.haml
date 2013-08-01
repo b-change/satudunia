@@ -1,5 +1,8 @@
 -last_target_id, last_target_date, owner = question.find_last_target
 %tr
+  %td.td-votescount= question.votes_count
+  %td.td-answerscount= question.answers_count
+  %td.td-viewscount= question.countquestions.sum(:qus_count).to_i
   %td.td-question
     = link_to truncate(strip_tags(question.title), :length => 50), question_path(question), :class=>"topic-title"
     %p.topic-meta
@@ -9,10 +12,6 @@
       %span.topic-by
         = time_ago_in_words(last_target_date)
         ago
-  %td.td-votescount= question.votes_count
-  %td.td-answerscount= question.answers_count
-  %td.td-viewscount= question.countquestions.sum(:qus_count).to_i
-
 
 
 
