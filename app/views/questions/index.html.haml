@@ -33,17 +33,17 @@
         %li#members-order-select.last.filter
           %label{:for => "members-order-by"} Order By:
           %select#activity-filter-by
-            %option{:value => "newest-question-show"} NEWEST
-            %option{:value => "hot-question-show"} HOT
-            %option{:value => "featured-question-show"} FEATURED
-            %option{:value => "votes-question-show"} VOTES
-            %option{:value => "unanswered-question-show"} UNANSWERED
+            %option{:value => "newest-question-show"} Newest
+            %option{:value => "hot-question-show"} Hot 
+            %option{:value => "featured-question-show"} Featured
+            %option{:value => "votes-question-show"} Votes
+            %option{:value => "unanswered-question-show"} Unanswered
             %option{:value => "xxx-question-show"} XXX
     #forums-dir-list-newest.dir-list
       #pag-top.pagination
         #member-dir-count-top.pag-count
-          %h2 Newest
-        #members-dir-list.members.dir-list1.floatright
+          Viewing questions #{@questions.options[:skip]} to #{@questions.options[:skip]+@questions.options[:limit]} (of #{@questions.count} active members)
+        #members-dir-list.members.dir-list1
           = paginate @questions
       %table.forum
         %thead
@@ -59,8 +59,8 @@
     #forums-dir-list-hot.dir-list{:style=>"display:none;"}
       #pag-top.pagination
         #member-dir-count-top.pag-count
-          %h2 Hot
-        #members-dir-list.members.dir-list1.floatright
+          Viewing questions #{@questionsHot.options[:skip]} to #{@questionsHot.options[:skip]+@questionsHot.options[:limit]} (of #{@questionsHot.count} active members)
+        #members-dir-list.members.dir-list1
           = paginate @questionsHot
       %table.forum
         %thead
@@ -76,8 +76,8 @@
     #forums-dir-list-featured.dir-list{:style=>"display:none;"}
       #pag-top.pagination
         #member-dir-count-top.pag-count
-          %h2 Featured
-        #members-dir-list.members.dir-list1.floatright
+          Viewing questions #{@questionsViews.options[:skip]} to #{@questionsViews.options[:skip]+@questionsViews.options[:limit]} (of #{@questionsViews.count} active members)
+        #members-dir-list.members.dir-list1
           = paginate @questionsViews
       %table.forum
         %thead
@@ -93,8 +93,8 @@
     #forums-dir-list-votes.dir-list{:style=>"display:none;"}
       #pag-top.pagination
         #member-dir-count-top.pag-count
-          %h2 Votes
-        #members-dir-list.members.dir-list1.floatright
+          Viewing questions #{@questionsVotes.options[:skip]} to #{@questionsVotes.options[:skip]+@questionsVotes.options[:limit]} (of #{@questionsVotes.count} active members)
+        #members-dir-list.members.dir-list1
           = paginate @questionsVotes
       %table.forum
         %thead
@@ -110,8 +110,8 @@
     #forums-dir-list-unanswered.dir-list{:style=>"display:none;"}
       #pag-top.pagination
         #member-dir-count-top.pag-count
-          %h2 Unanswered
-        #members-dir-list.members.dir-list1.floatright
+          Viewing questions #{@questionsUnanswered.options[:skip]} to #{@questionsUnanswered.options[:skip]+@questionsUnanswered.options[:limit]} (of #{@questionsUnanswered.count} active members)
+        #members-dir-list.members.dir-list1
           = paginate @questionsUnanswered
       %table.forum
         %thead
@@ -127,7 +127,7 @@
     #forums-dir-list-xxx.dir-list{:style=>"display:none;"}
       #pag-top.pagination
         #member-dir-count-top.pag-count
-          %h2 XXX
+          Viewing questions 0 (of 0 active members)
       %table.forum
         %thead
           %tr
@@ -154,7 +154,7 @@
       .section-arrow 
 
 
-.sidebar-new
+.sidebar
   = render "experimental/partials/recent_tags"
   = render "experimental/partials/left_bar"
   /widget top

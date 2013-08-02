@@ -7,8 +7,8 @@ en:
     pagination:
       first: 'First'
       last: 'Last'
-      next: "Next &raquo;"
-      previous: "&laquo; Previous"
+      next: "&rarr;"
+      previous: "&larr;"
       truncate: '...'
   scaffold:
     are_you_sure: "Are you sure?"
