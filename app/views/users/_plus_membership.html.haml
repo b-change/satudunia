@@ -1,41 +1,42 @@
 - user = membership.user
 - unless user.nil?
 	#authorbox.categorypanel
-		%h2= link_to h(user.display_name), user_path(user)
+		%h2
+			= (user.display_name.blank?)? link_to("Name Missing",user_path(user)) : link_to(h(user.display_name).capitalize, user_path(user))
 		.arrow-catpanel-bottom  
 		.inner
-		.author-image
-			-if user.use_gravatar? 
-				= image_tag avatar_user_path(user), :size=>'80x80'
-			-else                       
-				= image_tag(default_avatar_url('medium'), :size=>'80x80', :class=>"avatar")
-		.description 
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean semper metus sed est fermentum eget malesuada orci luctus. Integer fringilla venenatis eros, non egestas ligula malesuada sit amet.
-		%br.clearer/
-		%ul.social-links
-			%li.twitter
-			%a{:href => "http://twitter.com/IndustrialTheme", :title => "Twitter"}  
-			%li.facebook
-			%a{:href => "http://www.facebook.com/facebook", :title => "Facebook"}  
-			%li.linkedin
-			%a{:href => "http://www.linkedin.com/in/username", :title => "LinkedIn"}  
-			%li.googleplus
-			%a{:href => "http://plus.google.com/112286665725634842068", :title => "Google+"}  
-			%li.youtube
-			%a{:href => "http://www.youtube.com/user/brianmcculloh/", :title => "YouTube"}  
-			%li.flickr
-			%a{:href => "http://www.flickr.com/photos/brianmcculloh/", :title => "Flickr"}  
-			%li.digg
-			%a{:href => "http://digg.com/users/digg", :title => "Digg"}  
-			%li.email
-			%a{:href => "mailto:brianmcculloh@gmail.com", :title => "Email"}  
-			%li.url
-			%a{:href => "http://www.outerspiceweb.com", :title => "Website"}  
-		%br.clearer/
-		.more-articles
-			Latest:
-			%a{:href => "single-review-numbers.html"} Made Magazine Is 2 Years In The Making!
-		.clearer
+			#item-header.author-image
+				-if user.use_gravatar? 
+					= image_tag avatar_user_path(user), :size=>'80x80', :class=>"avatar"
+				-else                       
+					= image_tag(default_avatar_url('medium'), :size=>'80x80', :class=>"avatar")
+			.description 
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean semper metus sed est fermentum eget malesuada orci luctus. Integer fringilla venenatis eros, non egestas ligula malesuada sit amet.
+			%br.clearer/
+			%ul.social-links
+				%li.twitter
+					%a{:href => "http://twitter.com/IndustrialTheme", :title => "Twitter"}  
+				%li.facebook
+					%a{:href => "http://www.facebook.com/facebook", :title => "Facebook"}  
+				%li.linkedin
+					%a{:href => "http://www.linkedin.com/in/username", :title => "LinkedIn"}  
+				%li.googleplus
+					%a{:href => "http://plus.google.com/112286665725634842068", :title => "Google+"}  
+				%li.youtube
+					%a{:href => "http://www.youtube.com/user/brianmcculloh/", :title => "YouTube"}  
+				%li.flickr
+					%a{:href => "http://www.flickr.com/photos/brianmcculloh/", :title => "Flickr"}  
+				%li.digg
+					%a{:href => "http://digg.com/users/digg", :title => "Digg"}  
+				%li.email
+					%a{:href => "mailto:brianmcculloh@gmail.com", :title => "Email"}  
+				%li.url
+					%a{:href => "http://www.outerspiceweb.com", :title => "Website"}  
+			%br.clearer/
+			.more-articles
+				Latest:
+				%a{:href => "single-review-numbers.html"} Made Magazine Is 2 Years In The Making!
+			.clearer
 	
 
 / :javascript

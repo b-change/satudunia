@@ -274,7 +274,17 @@
 
 		= javascript_include_tag "experimental/plusone.js"
 		= javascript_include_tag "experimental/pinit.js"
-		= javascript_include_tag "http://platform.tumblr.com/v1/share.js"
+		//= javascript_include_tag "http://platform.tumblr.com/v1/share.js"
+		%script
+			jQuery.getScript("http://platform.tumblr.com/v1/share.js",function(data, textStatus, jqxhr) {
+			console.log(data); //data returned
+			console.log(textStatus); //success
+			console.log(jqxhr.status); //200
+			console.log('Load was performed.');
+			}).fail(function(jqxhr, settings, exception) {
+			console.log(jqxhr);
+			});
+
 		= javascript_include_tag "experimental/widgets.js"
 		= javascript_include_tag "experimental/buttons.js"
 
@@ -406,8 +416,7 @@
 		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(t, s); 
 	}
 	)();
-	// asynchronously script code
-	jQuery.getScript(url, successCallback);
+
 
 
 	

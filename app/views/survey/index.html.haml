@@ -5,12 +5,27 @@
     .section-wrapper
       .section-header Surveys
     .section-arrow
-    - if @news.blank?
+    - if @surveys.blank?
       %h3
-        No Recent News Yet
-    -@news.each do |news|
-      = render :partial => "news", :object => news
-    = paginate @news
+        No Recent  Yet
+    - else
+      -@surveys.each do |survey|
+        = render :partial => "survey", :object => survey
+    =# paginate @surveys
+    - if @survey1.present?
+      = render "survey1"
+    - if @survey2.present?
+      = render "survey2"
+    - if @survey3.present?
+      = render "survey3"
+    - if @survey4.present?
+      = render "survey4"
+    - if @survey5.present?
+      = render "survey5"
+    - if @survey6.present?
+      = render "survey6"
+    - if @survey7.present?
+      = render "survey7"
 
 .sidebar
   = render "experimental/partials/login_box"

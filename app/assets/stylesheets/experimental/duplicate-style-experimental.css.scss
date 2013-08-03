@@ -189,4 +189,16 @@ form.exp-contact-form-new{
 		padding: 6px 8px !important;
 	}
 }
-
+.signoff-wrapper {
+    border: 1px solid #DFDFDF;
+    border-radius: 5px 5px 5px 5px;
+    margin-bottom: 20px;
+}
+.disclaimer {
+    background: url(images/info.png) no-repeat scroll 12px 12px #FCFCFC;
+    border: 1px solid #FFFFFF;
+    border-radius: 5px 5px 5px 5px;
+    color: #666666;
+    font-style: italic;
+    padding: 15px 15px 15px 80px;
+}

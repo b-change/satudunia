@@ -865,6 +865,7 @@ common post elements
 /*authorbox*/
 #authorbox {position:relative;float:left;width:200px;border:1px solid #DFDFDF;-moz-border-radius-topleft: 3px;border-top-left-radius: 3px;-moz-border-radius-topright: 3px;border-top-right-radius: 3px;margin-right:15px;}
 #authorbox h2 {color:#444;padding:8px 10px 8px 15px;background:#FFF;border-bottom:1px solid #DFDFDF;font-family:ProcionoRegular, Georia, serif;font-size:1.2em;margin-bottom:0px;}
+#authorbox h2>a{color:#444;background:#FFF;font-size:1.2em;margin-bottom:0px;}
 #authorbox .arrow-catpanel-bottom {position:absolute;background:url(images/arrow-catpanel-bottom.png) no-repeat 0px 0px;width:52px;height:14px;top:36px;left:78px}
 #authorbox .inner {padding:20px 9px 15px 13px;background:#FFF;}
 #authorbox .author-title {font-size:1.2em;color:#444;font-family:ProcionoRegular, Georia, serif;margin-bottom:11px;}
@@ -885,7 +886,7 @@ common post elements
 #authorbox .more-articles {font-size:11px;margin-top:10px;}
 /*tweak the box for author listing template page*/
 #authorbox.categorypanel {width:295px;margin:25px 28px 10px 2px;}
-#authorbox.categorypanel .arrow-catpanel-bottom {top:40px;left:123px}
+#authorbox.categorypanel .arrow-catpanel-bottom {top:43px;left:123px}
 #authorbox.categorypanel.right {margin-right:0px;margin-left:0px;}
 #authorbox.categorypanel .inner {padding:20px 12px 20px 17px;background:#FFF;}
 #authorbox.categorypanel h2 {font-size:1.1em;}
@@ -2446,7 +2447,7 @@ fonts
 	color: #444444;
 }
 .page-content .dir-list {
-    padding: 5px 0 25px;
+    padding: 5px 0 0px;
 }
 .page-content .pag-count {
     float: left;
@@ -2459,7 +2460,6 @@ fonts
 .page-content .dir-list .pagination, .page-content #item-body .pagination {
     color: #999999;
     float: none;
-    height: 40px;
     padding: 10px 0;
     text-transform: none;
 }

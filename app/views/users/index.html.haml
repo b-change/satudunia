@@ -1,9 +1,25 @@
 .clearer.hide-responsive  
 %br.hide-responsive/
-.main-content-left
-  #content.page-content
+.main-content.head-test-show
+  .single-post
+    #spotlight-wrapper
+      .ribbon-shadow-left
+      .section-wrapper
+        .section
+          .comment-bubble
+            %a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 0
+          / making title stronger
+          .section-for-header
+            %i.icon-bookmark
+            Community
+      .ribbon-shadow-right
+      .section-arrow 
+    / content area 
+  %br
+  %br
+  #content.page-content.review.search-adj
     %form#members-directory-form.dir-form{:action => "", :method => "post"}
-      %h3 Community
+      / %h3 Community
       #members-dir-search.dir-search{:role => "search"}
         %label
           %input#members_search{:name => "s", :placeholder => "Search Members...", :type => "text"}/
@@ -24,59 +40,60 @@
             %option{:value => "old-show"} Oldest
             %option{:value => "name-show"} Name
             %option{:value => "nearby-show"} Nearby
-    #pag-top.pagination
-      #member-dir-count-top.pag-count
-        Viewing members 1 to 15 
-      #members-dir-list.members.dir-list
-        #pag-top_new
-          = paginate @membersNew
-        #pag-top_reputation
-          = paginate @reputation
-        #pag-top_old
-          = paginate @membersOld
-        #pag-top_name
-          = paginate @membersName
-        #pag-top_nearby
-          = paginate @membersName
+    #forums-dir-list-newest.dir-list
+      #pag-top.pagination
+        #member-dir-count-top.pag-count
+          Viewing members #{@membersNew.options[:skip]} to #{@membersNew.options[:limit] + @membersNew.options[:skip]}
+        #members-dir-list.members.dir-list1
+          #pag-top_new
+            = paginate @membersNew
+          #pag-top_reputation
+            = paginate @reputation
+          #pag-top_old
+            = paginate @membersOld
+          #pag-top_name
+            = paginate @membersName
+          #pag-top_nearby
+            = paginate @membersName
 
 #main_community_show.main-content
-%br.clearer/
-#new-show.hide-class
-  %h2{:class=>"head-test-show"}
-    New 
-  #main_community_show.main-content
-    #spotlight-wrapper
-      %ul
-        -@membersNew.each do |membership|
-          = render "users/plus_membership", :membership => membership    
-#reputation-show.hide-class{:style=>"display:none;"}
-  %h2{:class=>"head-test-show"}
-    Reputation
-  #main_community_show.main-content
-    #spotlight-wrapper
-      -@reputation.each do |membership|
-        = render "users/plus_membership", :membership => membership
-#old-show.hide-class{:style=>"display:none;"}
-  %h2{:class=>"head-test-show"}
-    Oldest
-  #main_community_show.main-content
-    #spotlight-wrapper
-      -@membersOld.each do |membership|
-        = render "users/plus_membership", :membership => membership
-#name-show.hide-class{:style=>"display:none;"}
-  %h2{:class=>"head-test-show"}
-    Name
-  #main_community_show.main-content
-    #spotlight-wrapper
-      -@membersName.each do |membership|
-        = render "users/plus_membership", :membership => membership
-#nearby-show.hide-class{:style=>"display:none;"}
-  %h2{:class=>"head-test-show"}
-    Near By
-  #main_community_show.main-content
-    #spotlight-wrapper
-      -@membersName.each do |membership|
-        = render "users/plus_membership", :membership => membership
+  %br.clearer/
+  #new-show.hide-class
+    / %h2{:class=>"head-test-show"}
+    /   New 
+    #main_community_show.main-content
+      #spotlight-wrapper
+        %ul
+          -@membersNew.each do |membership|
+            = render "users/plus_membership", :membership => membership    
+  #reputation-show.hide-class{:style=>"display:none;"}
+    / %h2{:class=>"head-test-show"}
+    /   Reputation
+    #main_community_show.main-content
+      #spotlight-wrapper
+        -@reputation.each do |membership|
+          = render "users/plus_membership", :membership => membership
+  #old-show.hide-class{:style=>"display:none;"}
+    / %h2{:class=>"head-test-show"}
+    /   Oldest
+    #main_community_show.main-content
+      #spotlight-wrapper
+        -@membersOld.each do |membership|
+          = render "users/plus_membership", :membership => membership
+  #name-show.hide-class{:style=>"display:none;"}
+    / %h2{:class=>"head-test-show"}
+    /   Name
+    #main_community_show.main-content
+      #spotlight-wrapper
+        -@membersName.each do |membership|
+          = render "users/plus_membership", :membership => membership
+  #nearby-show.hide-class{:style=>"display:none;"}
+    / %h2{:class=>"head-test-show"}
+    /   Near By
+    #main_community_show.main-content
+      #spotlight-wrapper
+        -@membersName.each do |membership|
+          = render "users/plus_membership", :membership => membership
 
 :javascript
   jQuery(document).ready(function($){

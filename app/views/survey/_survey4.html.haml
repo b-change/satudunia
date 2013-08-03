@@ -1,0 +1,13 @@
+.post-panel
+  .post-thumbnail
+    %a{:style=>"display:block;"}
+      %img{:alt => "misc3", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc3-70x70.jpg", :style => "opacity: 1;", :width => "70"}/
+      
+  .inner
+    %h2
+      Height :#{@survey4.height}
+    .category-exp
+      By #{current_user.name} on #{@survey4.created_at.strftime("%d %b %Y - %I:%M %p")}
+      =# truncate(strip_tags(news.news_body), :length => 300)
+  .more{:style=>"padding-left:70px;"}
+    = link_to "More","/survey/sample/tier4",:class=>"avoid_link_color"

@@ -1,29 +1,52 @@
+.page-content
+  .ribbon-shadow-left  
+  .section-wrapper
+    .section
+      404 - Page Not Found
+  .section-arrow  
+  .content-panel
+    %h1.error That just happened.
+    %p
+      We could not find the page that you requested. It is possible that it was deleted since the last time you viewed it, or that you typed in the wrong URL. In any case, we want you to find what you are looking for, so we offer you the following options:
+    %p
+    .home
+      1. Go back to the
+      %a{:href => "index.html"} home page
+      and start your journey over.
+    .menu 2. Use the menu above to locate the section you wish to view.
+    .search 3. Search our site:
+    .searchform
+      / SEARCH
+      %form#search404{:action => "#", :method => "get"}
+        %input#s{:name => "s", :onblur => "if (this.value == '') {this.value = 'search';}", :onfocus => "if (this.value == 'search') {this.value = '';}", :type => "text", :value => "search"}/
+    .note
+      Enter keyword(s) and press enter
 
 
-%h1= raw(title)
+/ %h1= raw(title)
 
-.error-dialog
-  #dialog-content
-    %span.left
-      = image_tag(error_image)
-    %span.left
-      %p= raw(explanation)
-      .error-options
-        %b= t("errors.options_label")
-        %ul.list
-          %li
-            = raw(t("errors.go_to", :link =>link_to(t("layouts.application.home"), domain_url(:custom => current_group.domain))))
-          %li
-            = raw(t("errors.help_us_answer", :link => link_to(t("layouts.application.questions"), questions_path)))
-          %li
-            - query = request.path.split("/").last
-            - query = query.nil? ? '' : query.split("-").join(" ")
+/ .error-dialog
+/   #dialog-content
+/     %span.left
+/       = image_tag(error_image)
+/     %span.left
+/       %p= raw(explanation)
+/       .error-options
+/         %b= t("errors.options_label")
+/         %ul.list
+/           %li
+/             = raw(t("errors.go_to", :link =>link_to(t("layouts.application.home"), domain_url(:custom => current_group.domain))))
+/           %li
+/             = raw(t("errors.help_us_answer", :link => link_to(t("layouts.application.questions"), questions_path)))
+/           %li
+/             - query = request.path.split("/").last
+/             - query = query.nil? ? '' : query.split("-").join(" ")
 
-            = form_tag search_index_path, :method => :get, :id => "search" do
-              =t("errors.search")
-              .field
-                -# query is nil when path is only '/'
-                = text_field_tag 'q', query, :class => "text_field", :style => "width: 50%"
-                %button{:type => "submit"}
-                  = t('layouts.applications.search', :default => "Go")
-    .clear
+/             = form_tag search_index_path, :method => :get, :id => "search" do
+/               =t("errors.search")
+/               .field
+/                 -# query is nil when path is only '/'
+/                 = text_field_tag 'q', query, :class => "text_field", :style => "width: 50%"
+/                 %button{:type => "submit"}
+/                   = t('layouts.applications.search', :default => "Go")
+/     .clear

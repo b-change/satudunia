@@ -15,51 +15,51 @@
 						Badges
 			.section-arrow 
 		/ content area 
-		#content.page-content.badges-title-adj
-			%form#members-directory-form.dir-form{:action => "", :method => "post"}
-				#members-dir-search.dir-search{:role => "search"}
-					%label
-						%input#members_search{:name => "s", :placeholder => "Search Badges...", :type => "text"}/
-					%input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
-			.item-list-tabs.activity-type-tabs{:role => "navigation"}
-				%ul
-					%li#members-order-select.selected
-						%a{:href => "http://www.industrialthemes.com/made/activity/", :title => "The public activity for everyone on this site."}
-							All Badges
-							%span= @badges.count
-			#subnav.item-list-tabs{:role => "navigation"}
-				%ul
-					%li#members-order-select.last.filter
-						%label{:for => "members-order-by"} Filter:
-						%select#activity-filter-by
-							%option{:value => 100} All
-							%option{:value => 20} Gold
-							%option{:value => 10} Silver
-							%option{:value => 5} Bronze
-		.page-content.review
-			.overview-wrapper
-				
-				.overview-new
-					%h2
-						= t("badges.index.description")
-					.left-panel
-						.badges
-							%table
-								- @badges.sort_by{|b| b.name}.each do |badge|
-									%tr
-										%td
-											.badge_item
-												-link_params = {:id => badge.token}
-												-if badge.for_tag
-													-link_params[:type] = badge.type
+	#content.page-content.badges-title-adj
+		%form#members-directory-form.dir-form{:action => "", :method => "post"}
+			#members-dir-search.dir-search{:role => "search"}
+				%label
+					%input#members_search{:name => "s", :placeholder => "Search Badges...", :type => "text"}/
+				%input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
+		.item-list-tabs.activity-type-tabs{:role => "navigation"}
+			%ul
+				%li#members-order-select.selected
+					%a{:href => "http://www.industrialthemes.com/made/activity/", :title => "The public activity for everyone on this site."}
+						All Badges
+						%span= @badges.count
+		#subnav.item-list-tabs{:role => "navigation"}
+			%ul
+				%li#members-order-select.last.filter
+					%label{:for => "members-order-by"} Filter:
+					%select#activity-filter-by
+						%option{:value => 100} All
+						%option{:value => 20} Gold
+						%option{:value => 10} Silver
+						%option{:value => 5} Bronze
+	.page-content.review
+		.overview-wrapper
+			
+			.overview-new
+				%h2
+					= t("badges.index.description")
+				.left-panel
+					.badges
+						%table
+							- @badges.sort_by{|b| b.name}.each do |badge|
+								%tr
+									%td
+										.badge_item
+											-link_params = {:id => badge.token}
+											-if badge.for_tag
+												-link_params[:type] = badge.type
 
-												= pjax_link_to badge.name, "badges", badge_path(link_params), {:class => "badge #{badge.type}", :title => badge.description}
-												-if badge["count"].to_i > 1
-													.counter
-														== × #{badge["count"].to_i}
-										%td
-											.badge_description
-												=badge.description
+											= pjax_link_to badge.name, "badges", badge_path(link_params), {:class => "badge #{badge.type}", :title => badge.description}
+											-if badge["count"].to_i > 1
+												.counter
+													== × #{badge["count"].to_i}
+									%td
+										.badge_description
+											=badge.description
 
 .sidebar
 	= render "experimental/partials/login_box"
