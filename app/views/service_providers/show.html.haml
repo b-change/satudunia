@@ -1,174 +1,234 @@
 %script{:src => "http://maps.googleapis.com/maps/api/js?key=AIzaSyBmJE9KrYdmPiW16lAHDJOiCvS1Fwen7BU&sensor=true"}
 
-= image_tag "plus/body_about1.jpg", :class => "body_header"
-.alpha.grid_18.body_about{:id => "firstElement",:style=>"background-color:#F0EFEA; width:750px"}
-	%span{:class => "p_a"}
-		= truncate(strip_tags(@service_provider.name), :length => 45)
-	%span{:class => "p_a1 i3_1", :style => "position: absolute !important; left: 20px !important;"}
-		= link_to "Home", "/"
-		>
-		= link_to "Service Providers",'/services-map'
-		>
-		%span.underline-decoration-link
-			= link_to "#{h truncate(@service_provider.name, :length => 95)}", "#",:style => "color: white;"
-	.header-title-clinic
-		%span
-			= @service_provider.name
-		%span.clinic-title-desc
-			= truncate(@service_provider.description,:length=>50)
-	#tabsmenu
-		%ul.ui-tabs-nav
-			%li.tab_overview.ui-tabs-active{"data-find"=>"tab_overview"}
-				%a.ui-tabs-anchor{:href => "javascript:void(0)",  :title => "Overview"}
-					%span.icon
-					Profile
-			%li.tab_prices{"data-find"=>"tab_prices"}
-				%a.ui-tabs-anchor{:href => "javascript:void(0)",  :title => "Treatment & Prices"}
-					%span.icon
-					Treatment & Prices
-			%li.tab_staff{"data-find"=>"tab_staff"}
-				%a.ui-tabs-anchor{:href => "javascript:void(0)",  :title => "Staff"}
-					%span.icon
-					Staff
-			%li.tab_reviews{"data-find"=>"tab_reviews"}
-				%a.ui-tabs-anchor{:href => "javascript:void(0)",  :title => "Review"}
-					%span.icon
-					Review
-			%li.tab_map{"data-find"=>"tab_map"}
-				%a.ui-tabs-anchor{:href => "javascript:void(0)", :title => "Map"}
-					%span.icon
-					Map
-	#main-holder
+.clearer.hide-responsive  
+%br.hide-responsive/
+#main-holder.main-content-left
+	.page-content.review.single-post
+		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+		.review-content
+			.ribbon-shadow-left
+			.section-wrapper
+				.section
+					.comment-bubble
+						%a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 0
+					/ making title stronger
+					.section-for-header
+						%i.icon-numbered-list
+						= @service_provider.name
+			.section-arrow 
+	#tabs-frontpage
+		%ul.tabnav.ui-tabs-nav
+			%li.ui-tabs-selected
+				%a{:href => "#Profile"} Profile
+			%li
+				%a{:href => "#TreatmentPrices"} Treatment & Prices
+			%li
+				%a{:href => "#Staff"} Staff
+			%li
+				%a{:href => "#Review"} Review
+			%li
+				%a{:href => "#Map"} Map
 		/ top contact bar
 		= render "service_providers/partials/contact_bar"
-		#tab_overview.class-hide
-			= render "service_providers/partials/tab_overview"
-			/ bw ends here
-
-
-		/ tab overview ends here
-		#tab_prices.class-hide
-			= render "service_providers/partials/tab_treatment_price"
-		/ tab prices ends here
-		#tab_staff.class-hide
-			= render "service_providers/partials/tab_staff"
-		/ tab staff ends here
-		#tab_reviews.class-hide
-			= render "service_providers/partials/tab_review"
-		/ tab tab_reviews ends here
-		#tab_map.class-hide
-			= render :partial => "service_providers/partials/tab_map"
-		/ tab tab_map ends here
-		/footer partials
+		.tabdiv-wrapper
+			#Profile.tabdiv.nopadding.ui-tabs-panel{:style => ""}
+				= render "service_providers/partials/tab_overview"
+			#TreatmentPrices.tabdiv.ui-tabs-panel.nopadding.ui-tabs-hide{:style => ""}
+				= render "service_providers/partials/tab_treatment_price"
+			#Staff.tabdiv.ui-tabs-panel.nopadding.ui-tabs-hide{:style => ""}
+				= render "service_providers/partials/tab_staff"
+			#Review.ui-tabs-panel.nopadding.ui-tabs-hide{:style => ""}
+				= render "service_providers/partials/tab_review"
+			#Map.tabdiv.ui-tabs-panel.nopadding.ui-tabs-hide{:style => ""}
+				= render :partial => "service_providers/partials/tab_map"
 		= render "service_providers/partials/contact_bar"
-		// bw contact ends here
+		/ bottom contact bar
 		= render "service_providers/partials/footer_bar"
-#secondElement.grid_5.omega.body1_about{:style=>"background-color:#F3F7FA; min-height:800px; !important;"}
-	%p{:class => "about"}
-		%strong
-			Services Map
-	= render :partial => "shared/about_nav_bar"
+				
+/side bar
+.sidebar
+	= render "experimental/partials/left_bar"
+	/widget top
+	= render "experimental/partials/widget_top"
+	/ .clearer.hide-responsive
+
+
+
+
+
+
+
+/ = image_tag "plus/body_about1.jpg", :class => "body_header"
+/ .alpha.grid_18.body_about{:id => "firstElement",:style=>"background-color:#F0EFEA; width:750px"}
+/ 	%span{:class => "p_a"}
+/ 		= truncate(strip_tags(@service_provider.name), :length => 45)
+/ 	%span{:class => "p_a1 i3_1", :style => "position: absolute !important; left: 20px !important;"}
+/ 		= link_to "Home", "/"
+/ 		>
+/ 		= link_to "Service Providers",'/services-map'
+/ 		>
+/ 		%span.underline-decoration-link
+/ 			= link_to "#{h truncate(@service_provider.name, :length => 95)}", "#",:style => "color: white;"
+/ 	.header-title-clinic
+/ 		%span
+/ 			= @service_provider.name
+/ 		%span.clinic-title-desc
+/ 			= truncate(@service_provider.description,:length=>50)
+/ 	#tabsmenu
+/ 		%ul.ui-tabs-nav
+/ 			%li.tab_overview.ui-tabs-active{"data-find"=>"tab_overview"}
+/ 				%a.ui-tabs-anchor{:href => "javascript:void(0)",  :title => "Overview"}
+/ 					%span.icon
+/ 					Profile
+/ 			%li.tab_prices{"data-find"=>"tab_prices"}
+/ 				%a.ui-tabs-anchor{:href => "javascript:void(0)",  :title => "Treatment & Prices"}
+/ 					%span.icon
+/ 					Treatment & Prices
+/ 			%li.tab_staff{"data-find"=>"tab_staff"}
+/ 				%a.ui-tabs-anchor{:href => "javascript:void(0)",  :title => "Staff"}
+/ 					%span.icon
+/ 					Staff
+/ 			%li.tab_reviews{"data-find"=>"tab_reviews"}
+/ 				%a.ui-tabs-anchor{:href => "javascript:void(0)",  :title => "Review"}
+/ 					%span.icon
+/ 					Review
+/ 			%li.tab_map{"data-find"=>"tab_map"}
+/ 				%a.ui-tabs-anchor{:href => "javascript:void(0)", :title => "Map"}
+/ 					%span.icon
+/ 					Map
+/ 	#main-holder
+/ 		/ top contact bar
+/ 		= render "service_providers/partials/contact_bar"
+/ 		#tab_overview.class-hide
+/ 			= render "service_providers/partials/tab_overview"
+/ 			/ bw ends here
+
+
+/ 		/ tab overview ends here
+/ 		#tab_prices.class-hide
+/ 			= render "service_providers/partials/tab_treatment_price"
+/ 		/ tab prices ends here
+/ 		#tab_staff.class-hide
+/ 			= render "service_providers/partials/tab_staff"
+/ 		/ tab staff ends here
+/ 		#tab_reviews.class-hide
+/ 			= render "service_providers/partials/tab_review"
+/ 		/ tab tab_reviews ends here
+/ 		#tab_map.class-hide
+/ 			= render :partial => "service_providers/partials/tab_map"
+/ 		/ tab tab_map ends here
+/ 		/footer partials
+/ 		= render "service_providers/partials/contact_bar"
+/ 		// bw contact ends here
+/ 		= render "service_providers/partials/footer_bar"
+/ #secondElement.grid_5.omega.body1_about{:style=>"background-color:#F3F7FA; min-height:800px; !important;"}
+/ 	%p{:class => "about"}
+/ 		%strong
+/ 			Services Map
+/ 	= render :partial => "shared/about_nav_bar"
 
 :javascript
-	$("#tab_overview").show();
-	$(".ui-tabs-nav li").click(function(){
-		var thisVar = $(this);
-		var idTaker = thisVar.attr("data-find");
-		// removing all active tabs
-		$(".ui-tabs-nav li").removeClass("ui-tabs-active"); 
-		// adding active class
-		$("."+idTaker).addClass("ui-tabs-active");
-		$(".class-hide").hide();
-		$("#"+idTaker).show();
+	jQuery(document).ready(function($){
+		$("#tab_overview").show();
+		$(".ui-tabs-nav li").click(function(){
+			var thisVar = $(this);
+			var idTaker = thisVar.attr("data-find");
+			// removing all active tabs
+			$(".ui-tabs-nav li").removeClass("ui-tabs-active"); 
+			// adding active class
+			$("."+idTaker).addClass("ui-tabs-active");
+			$(".class-hide").hide();
+			$("#"+idTaker).show();
+		});
+		// click function ends here
+
+		// map functions starts from here
+		// function init
+		$(".tab_overview").click(function(){
+			initMap();
+		}).trigger('click');
+		$(".tab_map").click(function(){
+			initMap();
+		});
+		
+		function initMap() {
+			setMarker();
+		}
+		// function generate map
+		function generateMap(lat,lng){
+			map = showMap(lat,lng,12,"services_map");
+			map2 = showMap2(lat,lng,12,"services_map_2");
+		}
+		// Marked on locations along with the info window
+		function showMarker(map, latLng, titleName, infoContent){
+			var marker = new google.maps.Marker({
+			position: latLng,
+			map: map,
+			title: titleName
+		});
+			
+		var infoWindow = new google.maps.InfoWindow();
+			
+		google.maps.event.addListener(marker, 'click', (function setInfoWindow(marker){
+		return function(){
+			infoWindow.setPosition(latLng);
+			infoWindow.setContent(infoContent);
+			infoWindow.open(map, marker);
+			infoWindow.open(map2, marker); 
+		}    
+		})(marker));
+			
+		return marker;
+		}
+		// function show marker ends here
+		function showMap(posLat,posLng,zoomValue, mapElement){
+			var map;
+			var mapOptions = {
+			center: new google.maps.LatLng(posLat, posLng),
+			zoom: zoomValue,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+
+		map = new google.maps.Map(document.getElementById(mapElement), mapOptions);
+		return map;
+		}
+
+		// function show map2
+		function showMap2(posLat,posLng,zoomValue, mapElement){
+			var map2;
+			var mapOptions = {
+			center: new google.maps.LatLng(posLat, posLng),
+			zoom: zoomValue,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+
+		map2 = new google.maps.Map(document.getElementById("services_map_2"), mapOptions);
+		return map;
+		}
+		// show map 2 ends here
+		
+		// function show map ends here
+		
+		function getFacilityInformation(serviceDesc, completeAddress, locationName, phone, email){
+			var completeDescription = '<b>'+locationName+'</b><br>'+ serviceDesc;
+			
+			completeDescription += '<br><small>'+ completeAddress +'</small><br><small>Phone: '+ phone +'</small><br><small>Email: '+ email +'</small>';
+			
+			return completeDescription;
+		}
+		// facility information ends here
+		function setMarker() {
+			var geocoder = new google.maps.Geocoder();
+
+			geocoder.geocode( { 'address': '#{escape_javascript @service_provider.address}'}, function(results, status) {
+			centered = results[0].geometry.location;
+			generateMap(centered.jb,centered.kb);
+			showMarker(map, centered, '#{@service_provider.name}', getFacilityInformation('#{escape_javascript @service_provider.description}','#{escape_javascript @service_provider.address}', '#{escape_javascript @service_provider.name}', '#{escape_javascript @service_provider.telephone}', '#{escape_javascript @service_provider.email}'));
+
+			showMarker(map2, centered, '#{@service_provider.name}', getFacilityInformation('#{escape_javascript @service_provider.description}','#{escape_javascript @service_provider.address}', '#{escape_javascript @service_provider.name}', '#{escape_javascript @service_provider.telephone}', '#{escape_javascript @service_provider.email}'));
+		});
+		}
 	});
-	// click function ends here
-
-	// map functions starts from here
-	// function init
-	$(".tab_overview").click(function(){
-		initMap();
-	}).trigger('click');
-	$(".tab_map").click(function(){
-		initMap();
-	});
-	
-	function initMap() {
-		setMarker();
-	}
-	// function generate map
-	function generateMap(lat,lng){
-		map = showMap(lat,lng,12,"services_map");
-		map2 = showMap2(lat,lng,12,"services_map_2");
-	}
-	// Marked on locations along with the info window
-	function showMarker(map, latLng, titleName, infoContent){
-		var marker = new google.maps.Marker({
-		position: latLng,
-		map: map,
-		title: titleName
-	});
-		
-	var infoWindow = new google.maps.InfoWindow();
-		
-	google.maps.event.addListener(marker, 'click', (function setInfoWindow(marker){
-	return function(){
-		infoWindow.setPosition(latLng);
-		infoWindow.setContent(infoContent);
-		infoWindow.open(map, marker);
-		infoWindow.open(map2, marker); 
-	}    
-	})(marker));
-		
-	return marker;
-	}
-	// function show marker ends here
-	function showMap(posLat,posLng,zoomValue, mapElement){
-		var map;
-		var mapOptions = {
-		center: new google.maps.LatLng(posLat, posLng),
-		zoom: zoomValue,
-		mapTypeId: google.maps.MapTypeId.ROADMAP
-	};
-
-	map = new google.maps.Map(document.getElementById(mapElement), mapOptions);
-	return map;
-	}
-
-	// function show map2
-	function showMap2(posLat,posLng,zoomValue, mapElement){
-		var map2;
-		var mapOptions = {
-		center: new google.maps.LatLng(posLat, posLng),
-		zoom: zoomValue,
-		mapTypeId: google.maps.MapTypeId.ROADMAP
-	};
-
-	map2 = new google.maps.Map(document.getElementById("services_map_2"), mapOptions);
-	return map;
-	}
-	// show map 2 ends here
-	
-	// function show map ends here
-	
-	function getFacilityInformation(serviceDesc, completeAddress, locationName, phone, email){
-		var completeDescription = '<b>'+locationName+'</b><br>'+ serviceDesc;
-		
-		completeDescription += '<br><small>'+ completeAddress +'</small><br><small>Phone: '+ phone +'</small><br><small>Email: '+ email +'</small>';
-		
-		return completeDescription;
-	}
-	// facility information ends here
-	function setMarker() {
-		var geocoder = new google.maps.Geocoder();
-
-		geocoder.geocode( { 'address': '#{escape_javascript @service_provider.address}'}, function(results, status) {
-		centered = results[0].geometry.location;
-		generateMap(centered.jb,centered.kb);
-		showMarker(map, centered, '#{@service_provider.name}', getFacilityInformation('#{escape_javascript @service_provider.description}','#{escape_javascript @service_provider.address}', '#{escape_javascript @service_provider.name}', '#{escape_javascript @service_provider.telephone}', '#{escape_javascript @service_provider.email}'));
-
-		showMarker(map2, centered, '#{@service_provider.name}', getFacilityInformation('#{escape_javascript @service_provider.description}','#{escape_javascript @service_provider.address}', '#{escape_javascript @service_provider.name}', '#{escape_javascript @service_provider.telephone}', '#{escape_javascript @service_provider.email}'));
-	});
-	}
 
 	
 	

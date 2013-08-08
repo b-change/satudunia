@@ -42,6 +42,7 @@ class ManageEulasController < ApplicationController
       redirect_to cms_eula_path
     else
       @eula.static_content = params[:eula_content]
+      @eula.user_id = current_user.id
       if @eula.valid? && @eula.save
         flash[:notice] = "EULA updated"
         redirect_to cms_eula_path

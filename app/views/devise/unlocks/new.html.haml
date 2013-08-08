@@ -32,12 +32,12 @@
                       %li
                         = link_to "<i class='icon-plus'></i>Sign up".html_safe, new_user_path
           .section-bottom
-            %a.button_link.floatright.red{:href =>  unlock_path(resource_name)}
-              %span <i class='icon-circled-cross'></i>Cancel 
-            %a.button_link.floatright{:href =>unlock_path(resource_name)}
-              %span <i class='icon-check'></i>Resend unlock instructions
-            =# button_tag "Cancel", :class=>"label-ext floatright"
-            =# f.submit "Resend unlock instructions", :class=>"label-ext floatright"
+            / %a.button_link.floatright.red{:href =>  unlock_path(resource_name)}
+            /   %span <i class='icon-circled-cross'></i>Cancel 
+            / %a.button_link.floatright{:href =>unlock_path(resource_name)}
+            /   %span <i class='icon-check'></i>Resend unlock instructions
+            = button_tag "Cancel", :class=>"label-ext floatright"
+            = f.submit "Resend unlock instructions", :class=>"label-ext floatright"
           %br
 / side bar
 .sidebar

@@ -27,31 +27,28 @@
 				%li#members-order-select.selected
 					%a{:href => "http://www.industrialthemes.com/made/activity/", :title => "The public activity for everyone on this site."}
 						All Answers
-						%span= @answers.count
+						%span= @answers.count rescue ""
+						.ajax-loader
 		#subnav.item-list-tabs{:role => "navigation"}
 			%ul
 				%li#members-order-select.last.filter
 					%label{:for => "members-order-by"} Order By:
 					%select#activity-filter-by
-						%option{:value => "newest-question-show"} Newest
-						%option{:value => "hot-question-show"} Hot 
-						%option{:value => "featured-question-show"} Featured
-						%option{:value => "votes-question-show"} Votes
-						%option{:value => "unanswered-question-show"} Unanswered
-						%option{:value => "xxx-question-show"} XXX
+						%option{:value => "newest"} Newest
+						%option{:value => "hot"} Hot 
+						%option{:value => "featured"} Featured
+						%option{:value => "votes"} Votes
+						%option{:value => "unanswerd"} Unanswered
+						%option{:value => "xxx"} XXX
 		#forums-dir-list-newest.dir-list
-			-if @answers.count > 15
-				#pag-top.pagination
-					#member-dir-count-top.pag-count
-						/Viewing questions #{@questions.options[:skip]} to #{@questions.options[:skip]+@questions.options[:limit]} (of #{@answers.count} active members)
-					#members-dir-list.members.dir-list1
-						= paginate @answers
+			#pag-top.pagination
+				#member-dir-count-top.pag-count
+					Viewing questions #{@answers.options[:skip]} to #{@answers.options[:skip]+@answers.options[:limit]} (of #{@answers.count} active members)
+				#members-dir-list.members.dir-list1
+					= paginate @answers
 		.activity{:role=>"admin"}
-			%ul#activity-stream.activity-list.item-list
-				-@answers.each do |answer|
-					-@question = answer.question
-					-next if @question.nil?
-					=render 'answers/answer', :answer => answer, :question => @question
+			/ partial for answer
+			=render 'experimental/partials/answer',:question => @question
 		
 	 
 
@@ -85,5 +82,5 @@
 			
 		});
 	});
-	// ajax function 
-	Experimental.getAjaxData("/answer_ajax","GET",".activity");
+	// ajax function
+	Experimental.getAjaxData("#activity-filter-by","/answers","GET","activity-stream","answer");

@@ -94,9 +94,9 @@ body.activity-permalink ul.activity-list li.has-comments {
 }
 .activity-list li.mini .activity-avatar img.avatar,
 .activity-list li.mini .activity-avatar img.FB_profile_pic {
-	height: 20px;
+	/*height: 20px;
 	margin-left: 30px;
-	width: 20px;
+	width: 20px;*/
 }
 .activity-permalink .activity-list li.mini .activity-avatar img.avatar,
 .activity-permalink .activity-list li.mini .activity-avatar img.FB_profile_pic {

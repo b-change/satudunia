@@ -33,8 +33,9 @@
 
 		%body
 			/ page loader starts
-			#div-load
-			#div-another-image
+			- if check_pre_loader
+				#div-load
+				#div-another-image
 			/page loader ends
 			/top menu bar
 			= render "experimental/partials/top_menu_bar"
@@ -93,13 +94,13 @@
 									%a{:href => "single-review-letters.html"} philippines 
 						/ question drop starts
 						%li
-							%a{:href => "#"} Questions
+							%a{:href => "/questions"} Questions
 							%ul
 								%li
-									%a{:href => "#"} Disclosure
+									%a{:href => "/tags/disclosure"} Disclosure
 									%ul
 										%li
-											%a{:href => "#"} Casual Partners
+											%a{:href => "/tags/casual-partners"} Casual Partners
 										%li
 											%a{:href => "#"} Family
 										%li

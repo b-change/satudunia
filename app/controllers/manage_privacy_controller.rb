@@ -42,6 +42,7 @@ class ManagePrivacyController < ApplicationController
       redirect_to cms_privacy_path
     else
       @privacy.static_content = params[:privacy_content]
+      @privacy.user_id = current_user.id
       if @privacy.valid? && @privacy.save
         flash[:notice] = "Privacy Policy updated"
         redirect_to cms_privacy_path

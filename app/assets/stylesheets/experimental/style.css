@@ -908,6 +908,7 @@ common post elements
 #related .panel {float:left;width:110px;margin:0px 20px 20px 0px;}
 .full-width #related .panel {margin:0px 28px 28px 0px;}
 #related .panel.right {margin-right:0px;}
+#related .panel.right-news {margin-right:0px;}
 #related .panel a.post-title {font-size:11px;;color:#666;display:block;padding-top:10px;line-height:1.4em;}
 #related .panel a.post-title:hover {color:#999;}
 /*ratings*/
@@ -2476,7 +2477,7 @@ fonts
     margin: 15px 0 5px;
 }
 .standard-form input[type="text"], .standard-form textarea, .form-allowed-tags, #commentform input[type="text"], #commentform textarea {
-    width: 90% !important;
+    width: 90%;
 }
 .standard-form input[type="text"] {
     width: 75%;

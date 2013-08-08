@@ -1,34 +1,106 @@
-/ content variable
 .clearer.hide-responsive  
 %br.hide-responsive/
 .main-content-left
-  .page-content.review
-    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
-    .overview-wrapper
-      %h1.title Tags
-      .overview
-        .arrow-catpanel-bottom  
-        .excerpt-new
-          -feed_url = url_for(:format => "atom", :tags => @tag_names.join("+"))
-          -content_for :rss do
-            %link{:rel=>"alternate", :type=>"application/atom+xml", :title => "atom", :href=> feed_url}
-          .add-a-new-tag
-            -@tags.each do |tag|
-              .each
-                = render "tag", :tag => tag, :show_counter => true
-                -if tag.has_icon?
-                  = image_tag tag_icon_path(current_group,tag.name)
-                %p
-                  = tag.description
-            -if @questions.empty?
-              %article.question
-                %li.highlight
-                = t(".empty")
-          .bx-wrapper{:style=>"margin-left:-15px;"}
-            %ul#slider21
-              %li.pager.ps1
-                %ul
-                  -@questions.each do |question|
-                    = render "experimental/partials/questions/plus_question", :question => question
+  .page-content.review.single-post
+    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+    .review-content
+      .ribbon-shadow-left
+      .section-wrapper
+        .section
+          .comment-bubble
+            %a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 0
+          / making title stronger
+          .section-for-header
+            /%i.icon-vcard
+            Tags
+      .section-arrow 
+  #content.page-content
+    %form#members-directory-form.dir-form{:action => "", :method => "post"}
+      #members-dir-search.dir-search{:role => "search"}
+        %label
+          %input#members_search{:name => "s", :placeholder => "Search Questions...", :type => "text"}/
+        %input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
+        %input#members_search_submit{:name => "members_search_submit", :type => "reset", :value => "x", :style=>"opacity:1;"}/
+      .add-a-new-tag
+        -@tags.each do |tag|
+          .each
+            = render "tag", :tag => tag, :show_counter => true
+            -if tag.has_icon?
+              = image_tag tag_icon_path(current_group,tag.name)
+            %p
+              = tag.description
+    .item-list-tabs.activity-type-tabs{:role => "navigation"}
+      %ul
+        %li#members-order-select.selected
+          %a{:href => "http://www.industrialthemes.com/made/activity/", :title => "The public activity for everyone on this site."}
+            All Questions
+            %span= @questions.count
+    #subnav.item-list-tabs{:role => "navigation"}
+      %ul
+        %li#members-order-select.last.filter
+          %label{:for => "members-order-by"} Order By:
+          %select#activity-filter-by
+            %option{:value => "newest-question-show"} Newest
+            %option{:value => "hot-question-show"} Hot 
+            %option{:value => "featured-question-show"} Featured
+            %option{:value => "votes-question-show"} Votes
+            %option{:value => "unanswered-question-show"} Unanswered
+            %option{:value => "xxx-question-show"} XXX
+    #forums-dir-list-newest.dir-list
+      //top pagination
+      #pag-top.pagination
+        #member-dir-count-top.pag-count
+          Viewing questions #{@questions.options[:skip]} to #{@questions.options[:skip]+@questions.options[:limit]} (of #{@questions.count} related tag)
+        #members-dir-list.members.dir-list1
+          = paginate @questions
+    .activity{:role=>"admin"}
+      %ul#activity-stream.activity-list.item-list
+        -@questions.each do |question|
+          = render "experimental/partials/tags_show", :question => question
+    //bottom pagination
+    #forums-dir-list-newest.dir-list
+      #pag-top.pagination
+        #member-dir-count-top.pag-count
+          Viewing questions #{@questions.options[:skip]} to #{@questions.options[:skip]+@questions.options[:limit]} (of #{@questions.count} related tag)
+        #members-dir-list.members.dir-list1
+          = paginate @questions
 
-                = paginate @questions
+
+/ content variable
+/ .clearer.hide-responsive  
+/ %br.hide-responsive/
+/ .main-content-left
+/   .page-content.review
+/     %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
+/     .overview-wrapper
+/       %h1.title Tags
+/       .overview
+/         .arrow-catpanel-bottom  
+/         .excerpt-new
+/           -feed_url = url_for(:format => "atom", :tags => @tag_names.join("+"))
+/           -content_for :rss do
+/             %link{:rel=>"alternate", :type=>"application/atom+xml", :title => "atom", :href=> feed_url}
+/           .add-a-new-tag
+/             -@tags.each do |tag|
+/               .each
+/                 = render "tag", :tag => tag, :show_counter => true
+/                 -if tag.has_icon?
+/                   = image_tag tag_icon_path(current_group,tag.name)
+/                 %p
+/                   = tag.description
+/             -if @questions.empty?
+/               %article.question
+/                 %li.highlight
+/                 = t(".empty")
+/           .bx-wrapper{:style=>"margin-left:-15px;"}
+/             %ul#slider21
+/               %li.pager.ps1
+/                 %ul
+/                   -@questions.each do |question|
+/                     = render "experimental/partials/questions/plus_question", :question => question
+
+/                 = paginate @questions
+
+.sidebar
+  /= render "experimental/partials/recent_tags"
+  = render "experimental/partials/left_bar"

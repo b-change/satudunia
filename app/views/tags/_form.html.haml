@@ -30,30 +30,30 @@
       == "MERGE"
 
 :javascript
-  $(document).ready(function(){
-    var fields = $("#attachments #fields");
+  jQuery(document).ready(function(){
+    var fields = jQuery("#attachments #fields");
     var template = fields.find(".template");
     template.find("input").attr("name", "question[attachments[id]]");
     template.hide();
 
-    $("#attachments #fields .attachment_field .remove_attachment").live("click", function(e) {
-      $(this).parent().remove();
+    jQuery("#attachments #fields .attachment_field .remove_attachment").live("click", function(e) {
+      jQuery(this).parent().remove();
       return false;
     });
 
-    $(".remove_attachment_link").live("click", function(e) {
-      var url = $(this).attr("href");
+    jQuery(".remove_attachment_link").live("click", function(e) {
+      var url = jQuery(this).attr("href");
       var remove = confirm("are you sure?"); //TODO; i18n
       if (remove) {
-        $.ajax({url: url, dataType: 'json', context: $(this), success: function(data, textStatus, XMLHttpRequest){
-          $(this).parent().remove();
+        jQuery.ajax({url: url, dataType: 'json', context: jQuery(this), success: function(data, textStatus, XMLHttpRequest){
+          jQuery(this).parent().remove();
         }});
       }
       return false;
     });
 
     var count = -1;
-    $("#attachments .add_attachment").live("click", function(e) {
+    jQuery("#attachments .add_attachment").live("click", function(e) {
       var template = fields.find(".template");
       var new_field = template.clone();
       new_field.removeClass("template");
@@ -68,17 +68,17 @@
       return false;
     });
 
-    $("#ask_question_link").click(function (){
-      $("#ask_question").submit();
+    jQuery("#ask_question_link").click(function (){
+      jQuery("#ask_question").submit();
     });
 
-    $("#question_tags").ajaxChosen({
+    jQuery("#question_tags").ajaxChosen({
       method: 'GET',
       url: '/questions/tags_for_autocomplete.js',
       dataType: 'json'
     }, function (data) {
       var terms = {};
-      $.each(data, function (i, val) {
+      jQuery.each(data, function (i, val) {
           console.log('i: '+i)
           console.log('val: '+val)
         terms[val["value"]] = val["caption"];
@@ -92,61 +92,61 @@
   var valueArray = eval(valueRawArray);
   // new appender array
   var appenderArray =[];
-  // $.each(valueArray,function(key,value){
+  // jQuery.each(valueArray,function(key,value){
     
   // });
-  $(".input-class").keyup(function(evt) {
-    var thisTag = $(this);
+  jQuery(".input-class").keyup(function(evt) {
+    var thisTag = jQuery(this);
     var sizeOfTag = thisTag.attr("size");
     if(sizeOfTag==55)
       thisTag.attr("size",1);
     else
       thisTag.attr("size",parseInt(sizeOfTag)+parseInt(1));
-    $(".already-exist").hide();
+    jQuery(".already-exist").hide();
     // alert(evt.keyCode);
     if (evt.keyCode == 32) {
       var inputValueTaker = thisTag.val().trim();
       // alert(inputValueTaker.length);
       if(inputValueTaker.length !=0){
-        $(".my_hidden").val(inputValueTaker);
-        var MatchThis = $(".my_hidden").val();
+        jQuery(".my_hidden").val(inputValueTaker);
+        var MatchThis = jQuery(".my_hidden").val();
         var arraySize = appenderArray.length;
         // merginig both array to create one combo array
         var combineArray = valueArray.concat(appenderArray);
         // alert(combineArray.toSource());
         var testingValueInArray = jQuery.inArray(MatchThis,combineArray);
         if(testingValueInArray<0){
-          $(".loader-gif").show();
+          jQuery(".loader-gif").show();
           // settimeOut function
           setTimeout(function(){
-            $("#input-class").before("<li class='"+arraySize+" list-class'><span>"+MatchThis+"<span>&nbsp;<span class='new-close-tags'>x</span> </li>");
+            jQuery("#input-class").before("<li class='"+arraySize+" list-class'><span>"+MatchThis+"<span>&nbsp;<span class='new-close-tags'>x</span> </li>");
             // removed function
-            $("."+arraySize).click(function(){
-                $(this).fadeOut('slow',"linear");
+            jQuery("."+arraySize).click(function(){
+                jQuery(this).fadeOut('slow',"linear");
                 appenderArray.splice(arraySize,1);
-                $(".tag-name-submit").val(appenderArray);
+                jQuery(".tag-name-submit").val(appenderArray);
             });
             appenderArray.push(MatchThis);
             // alert("Newely added "+appenderArray.toSource());
             thisTag.val("");
             // alert(valueArray.toSource());
-            $(".my_hidden").val("");
-            $(".loader-gif").hide();
-            $(".list-class-active").removeClass("list-class-active").addClass("list-class");
-            $(".tag-name-submit").val(appenderArray);
+            jQuery(".my_hidden").val("");
+            jQuery(".loader-gif").hide();
+            jQuery(".list-class-active").removeClass("list-class-active").addClass("list-class");
+            jQuery(".tag-name-submit").val(appenderArray);
             thisTag.attr("size",1);
           },800);
           // set time out ends           
         }
         else{
-            $(".list-class-active").removeClass("list-class-active").addClass("list-class");
+            jQuery(".list-class-active").removeClass("list-class-active").addClass("list-class");
             var activeValueTaker = jQuery.inArray(MatchThis,appenderArray);
             if(activeValueTaker<0)
-              $(".already-exist").show();
-            $("."+activeValueTaker).removeClass("list-class").addClass("list-class-active");
+              jQuery(".already-exist").show();
+            jQuery("."+activeValueTaker).removeClass("list-class").addClass("list-class-active");
             thisTag.val(""); 
-            $(".my_hidden").val("");
-            $(".tag-name-submit").val(appenderArray);
+            jQuery(".my_hidden").val("");
+            jQuery(".tag-name-submit").val(appenderArray);
         }
       }
       // if lenght not is equal to zero  ends here

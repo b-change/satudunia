@@ -41,7 +41,7 @@
     #providerDetails_providerDetailsTabOverview_divTreatments.BW_treatment.BW_bordertop
       %span.icon
       .inner_content{:property => "medicalSpecialty", :typeof => "MedicalSpecialty"}
-        %p
+        %p{:style=>"margin:0px;"}
           %b{:property => "name"}
             Plastic Surgeon Consultation
             %span
@@ -49,7 +49,7 @@
         %div{:property => "description"}
     #providerDetails_providerDetailsTabOverview_divReviews.BW_Feedback.BW_bordertop
       %span.icon
-      .inner_content{:style=>"width: 357px;"}
+      .inner_content{:style=>"width: 300px;"}
         %span.h4-alternate-wos
           %span
             %span{:property => "aggregateRating", :typeof => "AggregateRating"}>
@@ -76,7 +76,7 @@
             Recommended
     #divAbout.description.BW_about.BW_bordertop
       %span.icon
-      .inner_content{:style=>"width: 397px; text-align:justify;"}
+      .inner_content{:style=>"width: 300px; text-align:justify;"}
         %span.h4-alternate-wos
           %span
             About
@@ -87,8 +87,8 @@
             =@service_provider.review_text
           %span.button.contact_green.jq_contact{:linkrel => "cid=1&rid=2&dcid=230&location=4312&rpos=0&sids=105010&clinicid=117419&link=4", :trackrel => "4"}
             Get Quote
-        .accred_images
-          %img{:src => "/images/accreditations/453_american_cleft_palate-craniofacial_association.png", :title => "Singapore International Cleft-Craniofacial Team is a member of the American Cleft Palate-Craniofacial Association"}/
+        / .accred_images
+        /   %img{:src => "/images/accreditations/453_american_cleft_palate-craniofacial_association.png", :title => "Singapore International Cleft-Craniofacial Team is a member of the American Cleft Palate-Craniofacial Association"}/
     .BW_special.BW_bordertop
       #providerDetails_providerDetailsTabOverview_divClinicTypes.type.tick_section{:title => "business"}
         %span.h4-alternate

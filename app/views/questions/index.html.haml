@@ -1,460 +1,248 @@
 .clearer.hide-responsive  
 %br.hide-responsive/
 .main-content-left
-  .page-content.review.single-post
-    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
-    .review-content
-      .ribbon-shadow-left
-      .section-wrapper
-        .section
-          .comment-bubble
-            %a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 0
-          / making title stronger
-          .section-for-header
-            /%i.icon-vcard
-            Questions and Answers  
-      .section-arrow 
-  #content.page-content
-    %form#members-directory-form.dir-form{:action => "", :method => "post"}
-      %h3 Questions
-      #members-dir-search.dir-search{:role => "search"}
-        %label
-          %input#members_search{:name => "s", :placeholder => "Search Questions...", :type => "text"}/
-        %input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
-        %input#members_search_submit{:name => "members_search_submit", :type => "reset", :value => "x", :style=>"opacity:1;"}/
-    .item-list-tabs.activity-type-tabs{:role => "navigation"}
-      %ul
-        %li#members-order-select.selected
-          %a{:href => "http://www.industrialthemes.com/made/activity/", :title => "The public activity for everyone on this site."}
-            All Questions
-            %span= @questions.count
-    #subnav.item-list-tabs{:role => "navigation"}
-      %ul
-        %li#members-order-select.last.filter
-          %label{:for => "members-order-by"} Order By:
-          %select#activity-filter-by
-            %option{:value => "newest-question-show"} Newest
-            %option{:value => "hot-question-show"} Hot 
-            %option{:value => "featured-question-show"} Featured
-            %option{:value => "votes-question-show"} Votes
-            %option{:value => "unanswered-question-show"} Unanswered
-            %option{:value => "xxx-question-show"} XXX
-    #forums-dir-list-newest.dir-list
-      #pag-top.pagination
-        #member-dir-count-top.pag-count
-          Viewing questions #{@questions.options[:skip]} to #{@questions.options[:skip]+@questions.options[:limit]} (of #{@questions.count} active members)
-        #members-dir-list.members.dir-list1
-          = paginate @questions
-      %table.forum
-        %thead
-          %tr
-            /%h2 Newest
-            %th#th-votes Votes
-            %th#th-answers Answers
-            %th#th-views Views
-            %th#th-question Question
-        %tbody
-          - @questions.each do |question|
-            = render "questions/plus_question", :question => question
-    #forums-dir-list-hot.dir-list{:style=>"display:none;"}
-      #pag-top.pagination
-        #member-dir-count-top.pag-count
-          Viewing questions #{@questionsHot.options[:skip]} to #{@questionsHot.options[:skip]+@questionsHot.options[:limit]} (of #{@questionsHot.count} active members)
-        #members-dir-list.members.dir-list1
-          = paginate @questionsHot
-      %table.forum
-        %thead
-          %tr
-            /%h2 Hot
-            %th#th-votes Votes
-            %th#th-answers Answers
-            %th#th-views Views
-            %th#th-question Question
-        %tbody
-          - @questionsHot.each do |question|
-            = render "questions/plus_question", :question => question
-    #forums-dir-list-featured.dir-list{:style=>"display:none;"}
-      #pag-top.pagination
-        #member-dir-count-top.pag-count
-          Viewing questions #{@questionsViews.options[:skip]} to #{@questionsViews.options[:skip]+@questionsViews.options[:limit]} (of #{@questionsViews.count} active members)
-        #members-dir-list.members.dir-list1
-          = paginate @questionsViews
-      %table.forum
-        %thead
-          %tr
-            /%h2 Featured
-            %th#th-votes Votes
-            %th#th-answers Answers
-            %th#th-views Views
-            %th#th-question Question
-        %tbody
-          - @questionsViews.each do |question|
-            = render "questions/plus_question", :question => question
-    #forums-dir-list-votes.dir-list{:style=>"display:none;"}
-      #pag-top.pagination
-        #member-dir-count-top.pag-count
-          Viewing questions #{@questionsVotes.options[:skip]} to #{@questionsVotes.options[:skip]+@questionsVotes.options[:limit]} (of #{@questionsVotes.count} active members)
-        #members-dir-list.members.dir-list1
-          = paginate @questionsVotes
-      %table.forum
-        %thead
-          %tr
-            /%h2 Votes
-            %th#th-votes Votes
-            %th#th-answers Answers
-            %th#th-views Views
-            %th#th-question Question
-        %tbody
-          - @questionsVotes.each do |question|
-            = render "questions/plus_question", :question => question
-    #forums-dir-list-unanswered.dir-list{:style=>"display:none;"}
-      #pag-top.pagination
-        #member-dir-count-top.pag-count
-          Viewing questions #{@questionsUnanswered.options[:skip]} to #{@questionsUnanswered.options[:skip]+@questionsUnanswered.options[:limit]} (of #{@questionsUnanswered.count} active members)
-        #members-dir-list.members.dir-list1
-          = paginate @questionsUnanswered
-      %table.forum
-        %thead
-          %tr
-            /%h2 Unanswered
-            %th#th-votes Votes
-            %th#th-answers Answers
-            %th#th-views Views
-            %th#th-question Question
-        %tbody
-          - @questionsUnanswered.each do |question|
-            = render "questions/plus_question", :question => question
-    #forums-dir-list-xxx.dir-list{:style=>"display:none;"}
-      #pag-top.pagination
-        #member-dir-count-top.pag-count
-          Viewing questions 0 (of 0 active members)
-      %table.forum
-        %thead
-          %tr
-            /%h2 XXX
-            %th#th-votes Votes
-            %th#th-answers Answers
-            %th#th-views Views
-            %th#th-question Question
-        %tbody
-          %p xxx
+	.page-content.review.single-post
+		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+		.review-content
+			.ribbon-shadow-left
+			.section-wrapper
+				.section
+					.comment-bubble
+						%a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 0
+					/ making title stronger
+					.section-for-header
+						/%i.icon-vcard
+						Questions and Answers  
+			.section-arrow 
+	#content.page-content
+		%form#members-directory-form.dir-form{:action => "", :method => "post"}
+			%h3 Questions
+			#members-dir-search.dir-search{:role => "search"}
+				%label
+					%input#members_search{:name => "s", :placeholder => "Search Questions...", :type => "text"}/
+				%input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
+				%input#members_search_submit{:name => "members_search_submit", :type => "reset", :value => "x", :style=>"opacity:1;"}/
+		.item-list-tabs.activity-type-tabs{:role => "navigation"}
+			%ul
+				%li#members-order-select.selected
+					%a{:href => "http://www.industrialthemes.com/made/activity/", :title => "The public activity for everyone on this site."}
+						All Questions
+						%span= @questions.count
+		#subnav.item-list-tabs{:role => "navigation"}
+			%ul
+				%li#members-order-select.last.filter
+					%label{:for => "members-order-by"} Order By:
+					%select#activity-filter-by
+						%option{:value => "newest-question-show"} Newest
+						%option{:value => "hot-question-show"} Hot 
+						%option{:value => "featured-question-show"} Featured
+						%option{:value => "votes-question-show"} Votes
+						%option{:value => "unanswered-question-show"} Unanswered
+						%option{:value => "xxx-question-show"} XXX
+		#forums-dir-list-newest.dir-list
+			#pag-top.pagination
+				#member-dir-count-top.pag-count
+					Viewing questions #{@questions.options[:skip]} to #{@questions.options[:skip]+@questions.options[:limit]} (of #{@questions.count} active members)
+				#members-dir-list.members.dir-list1
+					= paginate @questions
+			%table.forum#question_ajax
+				%thead
+					%tr
+						/%h2 Newest
+						%th#th-votes Votes
+						%th#th-answers Answers
+						/ %th#th-views Views
+						%th#th-question Question
+				%tbody
+					- @questions.each do |question|
+						= render "questions/plus_question", :question => question
+		/ #forums-dir-list-hot.dir-list{:style=>"display:none;"}
+		/ 	#pag-top.pagination
+		/ 		#member-dir-count-top.pag-count
+		/ 			Viewing questions #{@questionsHot.options[:skip]} to #{@questionsHot.options[:skip]+@questionsHot.options[:limit]} (of #{@questionsHot.count} active members)
+		/ 		#members-dir-list.members.dir-list1
+		/ 			= paginate @questionsHot
+		/ 	%table.forum
+		/ 		%thead
+		/ 			%tr
+		/ 				/%h2 Hot
+		/ 				%th#th-votes Votes
+		/ 				%th#th-answers Answers
+		/ 				/ %th#th-views Views
+		/ 				%th#th-question Question
+		/ 		%tbody
+		/ 			- @questionsHot.each do |question|
+		/ 				= render "questions/plus_question", :question => question
+		/ #forums-dir-list-featured.dir-list{:style=>"display:none;"}
+		/ 	#pag-top.pagination
+		/ 		#member-dir-count-top.pag-count
+		/ 			Viewing questions #{@questionsViews.options[:skip]} to #{@questionsViews.options[:skip]+@questionsViews.options[:limit]} (of #{@questionsViews.count} active members)
+		/ 		#members-dir-list.members.dir-list1
+		/ 			= paginate @questionsViews
+		/ 	%table.forum
+		/ 		%thead
+		/ 			%tr
+		/ 				/%h2 Featured
+		/ 				%th#th-votes Votes
+		/ 				%th#th-answers Answers
+		/ 				/ %th#th-views Views
+		/ 				%th#th-question Question
+		/ 		%tbody
+		/ 			- @questionsViews.each do |question|
+		/ 				= render "questions/plus_question", :question => question
+		/ #forums-dir-list-votes.dir-list{:style=>"display:none;"}
+		/ 	#pag-top.pagination
+		/ 		#member-dir-count-top.pag-count
+		/ 			Viewing questions #{@questionsVotes.options[:skip]} to #{@questionsVotes.options[:skip]+@questionsVotes.options[:limit]} (of #{@questionsVotes.count} active members)
+		/ 		#members-dir-list.members.dir-list1
+		/ 			= paginate @questionsVotes
+		/ 	%table.forum
+		/ 		%thead
+		/ 			%tr
+		/ 				/%h2 Votes
+		/ 				%th#th-votes Votes
+		/ 				%th#th-answers Answers
+		/ 				/ %th#th-views Views
+		/ 				%th#th-question Question
+		/ 		%tbody
+		/ 			- @questionsVotes.each do |question|
+		/ 				= render "questions/plus_question", :question => question
+		/ #forums-dir-list-unanswered.dir-list{:style=>"display:none;"}
+		/ 	#pag-top.pagination
+		/ 		#member-dir-count-top.pag-count
+		/ 			Viewing questions #{@questionsUnanswered.options[:skip]} to #{@questionsUnanswered.options[:skip]+@questionsUnanswered.options[:limit]} (of #{@questionsUnanswered.count} active members)
+		/ 		#members-dir-list.members.dir-list1
+		/ 			= paginate @questionsUnanswered
+		/ 	%table.forum
+		/ 		%thead
+		/ 			%tr
+		/ 				/%h2 Unanswered
+		/ 				%th#th-votes Votes
+		/ 				%th#th-answers Answers
+		/ 				/ %th#th-views Views
+		/ 				%th#th-question Question
+		/ 		%tbody
+		/ 			- @questionsUnanswered.each do |question|
+		/ 				= render "questions/plus_question", :question => question
+		/ #forums-dir-list-xxx.dir-list{:style=>"display:none;"}
+		/ 	#pag-top.pagination
+		/ 		#member-dir-count-top.pag-count
+		/ 			Viewing questions 0 (of 0 active members)
+		/ 	%table.forum
+		/ 		%thead
+		/ 			%tr
+		/ 				/%h2 XXX
+		/ 				%th#th-votes Votes
+		/ 				%th#th-answers Answers
+		/ 				/ %th#th-views Views
+		/ 				%th#th-question Question
+		/ 		%tbody
+		/ 			%p xxx
+		#forums-dir-list-newest.dir-list
+			#pag-top.pagination
+				#member-dir-count-top.pag-count
+					Viewing questions #{@questions.options[:skip]} to #{@questions.options[:skip]+@questions.options[:limit]} (of #{@questions.count} active members)
+				#members-dir-list.members.dir-list1
+					= paginate @questions
 
-  .page-content.review.single-post
-    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
-    .review-content
-      .ribbon-shadow-left
-      .section-wrapper
-        .section
-          .comment-bubble
-            %a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 0
-          / making title stronger
-          .section-for-header
-            /%i.icon-vcard
-            xxxxxxx
-      .section-arrow 
+	.page-content.review.single-post
+		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+		.review-content
+			.ribbon-shadow-left
+			.section-wrapper
+				.section
+					.comment-bubble
+						%a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 0
+					/ making title stronger
+					.section-for-header
+						/%i.icon-vcard
+						Other Topics
+			.section-arrow 
+	.post-loop.directory
+		.post-panel.wide
+			.header
+				.more
+					%a{:href => "single-review-numbers.html"} More
+				%h2{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-product-dark.png) no-repeat 0px 0px;"} Non-Review
+				.arrow-catpanel-bottom  
+			%a.title.first{:href => "single-review-numbers.html", :style => "color:#262626"} Klipsch Gallery G-17 iPad speaker
+			%a.title.alt{:href => "single-review-numbers.html", :style => "color:#262626"} Kiss removable phone batteries goodbye
+			%a.title{:href => "single-review-numbers.html", :style => "color:#262626"} Graffiti artist unlikely winner in Facebook IPO
+			%a.title.alt{:href => "single-review-numbers.html", :style => "color:#262626"} BitTorrent revolutionizes live streaming
+			%a.title{:href => "single-review-numbers.html", :style => "color:#262626"} LG Spectrum for Verizonx
+			%a.title.alt{:href => "single-review-numbers.html", :style => "color:#262626"} Toshiba Satellite Intel Dual Core 2GHz 16″ LED Laptop for $380 + free shipping
+			%a.title{:href => "single-review-numbers.html", :style => "color:#262626"} Samsung Series 3 AMD Quad Core 1.6GHz 16″ Laptop for $450 + free shipping
+			%a.title.alt.last{:href => "single-review-numbers.html", :style => "color:#262626"} HP Envy 15 (winter 2012)
+		%br.clearer/
+	.page-content.review.single-post
+		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+		.review-content
+			.ribbon-shadow-left
+			.section-wrapper
+				.section
+					.comment-bubble
+						%a{:href => "http://disqus.com.html#disqus_thread"} Link
+					/ making title stronger
+					.section-for-header
+						Disqus
+			.section-arrow 
 
+			
+			#disqus_thread
+			:javascript
+				/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+				var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
+
+				/* * * DON'T EDIT BELOW THIS LINE * * */
+				(function() {
+					var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+					dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js'; 
+					(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); 
+				})();
+			%noscript 
+				Please enable JavaScript to view the 
+				%a{:href => "http://disqus.com/?ref_noscript"} comments powered by Disqus
+			%a.dsq-brlink{:href => "http://disqus.com"}
+				comments powered by
+				%span.logo-disqus Disqus
+			:javascript
+				var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
+				// required: replace example with your forum shortname
+				(function () {
+					var s = document.createElement('script'); s.async = true;
+					s.type = 'text/javascript';
+					s.src = '//'+disqus_shortname+'.disqus.com/count.js';
+					(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+				}());
 
 .sidebar
-  = render "experimental/partials/recent_tags"
-  = render "experimental/partials/left_bar"
-  /widget top
-  =# render "experimental/partials/widget_top"
-  /recent tags
+	= render "experimental/partials/recent_tags"
+	= render "experimental/partials/left_bar"
+	/widget top
+	=# render "experimental/partials/widget_top"
+	/recent tags
 
-  /popular box
-  =# render "experimental/partials/popular_box"
-  /rating box
-  =# render "experimental/partials/rating_box"
-  /banner box
-  =# render "experimental/partials/banner_box"
+	/popular box
+	=# render "experimental/partials/popular_box"
+	/rating box
+	=# render "experimental/partials/rating_box"
+	/banner box
+	=# render "experimental/partials/banner_box"
 
 
 
 :javascript
-  jQuery(document).ready(function($){
-    $("#activity-filter-by").change(function(){
-      //alert("asdf");
-      //event.preventDefault();
-      var valueTaker = $(this).val().split("-");
-
-      $(".dir-list").fadeOut('slow');
-      $("#forums-dir-list-"+valueTaker[0]).fadeIn('slow','linear');
-      
-      
-    });
-  });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/ -# questions_link = questions_link_for(params[:action])
-/ -# content_for :nav_filters do
-/   =# render "questions/nav_filters", :questions_link => questions_link
-/ /%section.questions-index
-/ =# render 'shared/posts'
-/ - content_for :title do
-/   Questions
-/ = image_tag "plus/body_about1.jpg", :class => "body_header"
-/ .alpha.grid_18.body_about{:id => "firstElement"}
-/   %span{:class => "p_a"}
-/     Questions
-/   %span{:class => "p_a1 i3_1"}
-/     = link_to "Home", "/"
-/     > Questions
-/   .sortTab
-/     %div.tabber
-/       %div.tabbertab
-/         %h2
-/           Newest
-/         %p.i4_1.serv_loc6{:id => ""} 
-/           .bx-wrapper
-/             %div.bx-window
-/               %ul{:id => "slider21", :style => "position: relative;"}
-/                 %li{:class => "pager ps1"}
-/                   %ul
-/                     - @questions.each do |question|
-/                       = render "questions/plus_question", :question => question
-/         %div.pagination-div
-/           = paginate @questions, :left => 5, :right => 1
-/           %ul#pagination-digg{:style => "float:right;",:class=>"apart-class"}
-/             %li.pagination-float
-/               = link_to 15, '/questions?per_page=15', :id => "per_page_15"
-/             %li.pagination-float
-/               = link_to 30, '/questions?per_page=30', :id => "per_page_30"
-/             %li.pagination-float
-/               = link_to 50, '/questions?per_page=50', :id => "per_page_50"
-/         .clear
-/       %div.tabbertab
-/         %h2
-/           Hot 
-/         %p.i4_1.serv_loc6{:id => ""} 
-/           .bx-wrapper
-/             %div.bx-window
-/               %ul{:id => "slider21", :style => "position: relative;"}
-/                 %li{:class => "pager ps1"}
-/                   %ul
-/                     - @questionsHot.each do |question|
-/                       = render "questions/plus_question", :question => question
-/         %div.pagination-div
-/           = paginate @questions, :left => 5, :right => 1
-/           %ul#pagination-digg{:style => "float:right;"}
-/             %li.pagination-float
-/               = link_to 15, '/questions?per_page=15', :id => "per_page_15"
-/             %li.pagination-float
-/               = link_to 30, '/questions?per_page=30', :id => "per_page_30"
-/             %li.pagination-float
-/               = link_to 50, '/questions?per_page=50', :id => "per_page_50"
-/         .clear
-/       %div.tabbertab
-/         %h2
-/           featured
-/         %p.i4_1.serv_loc6{:id => ""} 
-/           .bx-wrapper
-/             %div.bx-window
-/               %ul{:id => "slider21", :style => "position: relative;"}
-/                 %li{:class => "pager ps1"}
-/                   %ul
-/                     - @questionsHot.each do |question|
-/                       = render "questions/plus_question", :question => question
-/         %div.pagination-div
-/           = paginate @questions, :left => 5, :right => 1
-/           %ul#pagination-digg{:style => "float:right;"}
-/             %li.pagination-float
-/               = link_to 15, '/questions?per_page=15', :id => "per_page_15"
-/             %li.pagination-float
-/               = link_to 30, '/questions?per_page=30', :id => "per_page_30"
-/             %li.pagination-float
-/               = link_to 50, '/questions?per_page=50', :id => "per_page_50"
-/         .clear
-/       %div.tabbertab
-/         %h2
-/           frequent
-/         %p.i4_1.serv_loc6{:id => ""} 
-/           .bx-wrapper
-/             %div.bx-window
-/               %ul{:id => "slider21", :style => "position: relative;"}
-/                 %li{:class => "pager ps1"}
-/                   %ul
-/                     - @questionsViews.each do |question|
-/                       = render "questions/plus_question", :question => question
-/         %div.pagination-div
-/           = paginate @questions, :left => 5, :right => 1
-/           %ul#pagination-digg{:style => "float:right;"}
-/             %li.pagination-float
-/               = link_to 15, '/questions?per_page=15', :id => "per_page_15"
-/             %li.pagination-float
-/               = link_to 30, '/questions?per_page=30', :id => "per_page_30"
-/             %li.pagination-float
-/               = link_to 50, '/questions?per_page=50', :id => "per_page_50"
-/         .clear
-/       %div.tabbertab
-/         %h2
-/           Votes
-/         %p.i4_1.serv_loc6{:id => ""} 
-/           .bx-wrapper
-/             %div.bx-window
-/               %ul{:id => "slider21", :style => "position: relative;"}
-/                 %li{:class => "pager ps1"}
-/                   %ul
-/                     - @questionsVotes.each do |question|
-/                       = render "questions/plus_question", :question => question
-/         %div.pagination-div
-/           = paginate @questions, :left => 5, :right => 1
-/           %ul#pagination-digg{:style => "float:right;"}
-/             %li.pagination-float
-/               = link_to 15, '/questions?per_page=15', :id => "per_page_15"
-/             %li.pagination-float
-/               = link_to 30, '/questions?per_page=30', :id => "per_page_30"
-/             %li.pagination-float
-/               = link_to 50, '/questions?per_page=50', :id => "per_page_50"
-/         .clear
-/       %div.tabbertab
-/         %h2
-/           Active
-/         %p.i4_1.serv_loc6{:id => ""} 
-/           .bx-wrapper
-/             %div.bx-window
-/               %ul{:id => "slider21", :style => "position: relative;"}
-/                 %li{:class => "pager ps1"}
-/                   %ul
-/                     - @questionsActive.each do |question|
-/                       = render "questions/plus_question", :question => question
-/         %div.pagination-div
-/           = paginate @questions, :left => 5, :right => 1
-/           %ul#pagination-digg{:style => "float:right;"}
-/             %li.pagination-float
-/               = link_to 15, '/questions?per_page=15', :id => "per_page_15"
-/             %li.pagination-float
-/               = link_to 30, '/questions?per_page=30', :id => "per_page_30"
-/             %li.pagination-float
-/               = link_to 50, '/questions?per_page=50', :id => "per_page_50"
-/         .clear
-/       %div.tabbertab
-/         %h2
-/           unanswered
-/         %p.i4_1.serv_loc6{:id => ""} 
-/           .bx-wrapper
-/             %div.bx-window
-/               %ul{:id => "slider21", :style => "position: relative;"}
-/                 %li{:class => "pager ps1"}
-/                   %ul
-/                     - @questionsUnanswered.each do |question|
-/                       = render "questions/plus_question", :question => question
-/         %div.pagination-div
-/           = paginate @questions, :left => 5, :right => 1
-/           %ul#pagination-digg{:style => "float:right;"}
-/             %li.pagination-float
-/               = link_to 15, '/questions?per_page=15', :id => "per_page_15"
-/             %li.pagination-float
-/               = link_to 30, '/questions?per_page=30', :id => "per_page_30"
-/             %li.pagination-float
-/               = link_to 50, '/questions?per_page=50', :id => "per_page_50"
-/         .clear
-/ .grid_6.omega.body1_about{:id => "secondElement"}
-/   .tags-for-question
-/     %div{:style=>"float:left; margin-left:42px; width:80px;"}
-/       %span{:class => "t_l1-for"}
-/         = @questions.all.count
-/       %br
-/       %span{:class => "t_l2-for"} Questions
-/       %br
-/   %p.i3_4
-/     %strong
-/       Recent Tags
-/   %ul.tags
-/     - @tags.each do |tag|
-/       %li{:style => "float:left; padding-left:0px !important;"}
-/         %span{:class => "tags1_1 tool-tip", :title => "#{tag.name}"}
-/           = link_to h(tag.name).html_safe, tag_path(:id => CGI.escape(tag.name))
-/           %span
-/             x
-/           %span.avoid_link_color{:style=>"font-weight:600"}
-/             = current_group.questions.where(:tags=>tag.name).count
-/     .clear
-/   %p{:class => "about1"}
-/     %strong
-/       Latest Users
-/   %ul{:class => "users"}
-/     = render :partial => "widgets/plus_users"
-/   = link_to "<span style='color:#0075ce;padding-left: 30px;text-decoration: none;font-weight: bold;font-family:Arial'>More>></span>".html_safe, users_path
-/ :javascript
-/   $('#slider211').bxSlider({
-/     mode: 'vertical',
-/     auto: false,
-/     pager: true,
-/     speed: 900
-/   });
-
-/   $(window).load(function(){
-/     var sessionPerPage = '#{session[:per_page].blank? ? 15 : session[:per_page]}';
-/     if (sessionPerPage == '15'){
-/       $('a#per_page_15').parent().addClass('active').html("15");
-/       $(this).remove();
-/     } else if (sessionPerPage == '30'){
-/       $('a#per_page_30').parent().addClass('active').html("30");
-/       $(this).remove();
-/     } else if (sessionPerPage == '50'){
-/       $('a#per_page_50').parent().addClass('active').html("50");
-/       $(this).remove();
-/     }
-/   });
-  
+	// jQuery(document).ready(function($){
+	// 	$("#activity-filter-by").change(function(){
+	// 		//alert("asdf");
+	// 		//event.preventDefault();
+	// 		var valueTaker = $(this).val().split("-");
+
+	// 		$(".dir-list").fadeOut('slow');
+	// 		$("#forums-dir-list-"+valueTaker[0]).fadeIn('slow','linear');
+			
+			
+	// 	});
+	// });
+	// get ajax data
+	Experimental.getAjaxData("#activity-filter-by","/question_ajax","GET","question_ajax  tbody","question_ajax");

@@ -19,23 +19,30 @@ var Experimental = {
 		});
 
 	},
-	getAjaxData:function(url,method,classToShow){
-		jQuery("#activity-filter-by").change(function(){
+	//actionId = through event will fire
+	//url = url for ajax action
+	//method = method of sending data
+	//idToLoader = where you want to loade loader and data
+	//nameOfPartial = partial name to show
+	getAjaxData:function(actionId,url,method,idToLoader,nameOfPartial){
+		jQuery(actionId).change(function(){
 		//variable value taker
-		jQuery(classToShow).html("<div class=ajax-loader></div>");
+		jQuery(".ajax-loader").show();
 		var valueTaker = jQuery(this).val();
 		jQuery.ajax({
 			type:method,
 			url:url,
-			data:"queryData="+valueTaker,
+			data:"queryData="+valueTaker+"&idLoad="+idToLoader+"&nameOfPartial="+nameOfPartial,
 			dataType:"script",
 			error:function(errorObject){
 				alert(errorObject.toSource());
 
 			},
 			success:function(successObject){
-					//alert(successObject);
-					jQuery(classToShow).html(eval(successObject));
+				jQuery(".ajax-loader").hide();
+				jQuery("#"+idToLoader).fadeIn('slow');
+				//alert(successObject);
+				//jQuery(classToShow).html(eval(successObject));
 			}
 		});
 	});

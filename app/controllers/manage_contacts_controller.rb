@@ -24,6 +24,7 @@ class ManageContactsController < ApplicationController
       redirect_to manage_contact_us_path
     else
       @contact.safe_update(%w[latitude longitude street_address], params)
+      @contact.user_id = current_user.id
 
       if @contact.save
         flash[:notice] = "Map Updated!"

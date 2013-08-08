@@ -36,12 +36,12 @@ class ManageTermsController < ApplicationController
 
   def update
     @tos = StaticPage.find(params[:id])
-
     if @tos.blank?
       flash[:error] = "Static Page not Found"
       redirect_to cms_terms_path
     else
       @tos.static_content = params[:tos_content]
+      @tos.user_id = current_user.id
       if @tos.valid? && @tos.save
         flash[:notice] = "Terms of Use updated"
         redirect_to cms_terms_path

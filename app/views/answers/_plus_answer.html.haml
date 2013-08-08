@@ -1,40 +1,57 @@
-%ul{:id => "slider21", :class => "i3_2"}
-  %li{:class => "pager ps1"}
-    %ul
-      %li
-        .q_height
-          = link_to image_tag("plus/reiting_num1.png")
-          %p{:class => "reiting_num3"}
-            = answer.votes_count
-          = link_to image_tag("plus/reiting_num2.png"), "#", :class => "reiting_num4"
-        .grid_14.Fright{:style => "margin: 10px !important;"}
-          %span{:class => "s1_q_i"}
-            = answer.body.html_safe
-          %a{:class => "q_i_tag2", :href => "#"}
-            = image_tag "plus/q_user_i.jpg"
-          
-    .clear
-    / questions comments
-    %ul.Fright3.line-break
-      -answer.comments.each do |ans|
-        %li.comments-body{:style => "text-align: right;"}
-          %span
-            = ans.body
-          %span.by-user
-            ="-"
-            =ans.user.name.capitalize
-      %li.comments-body
-        .panel-link-comment{:id => "answer-comment-panel-link-#{answer.id}"}
-          = link_to "Comment","javascript:void(0)", :class => "ask_tag5", :id => "question-comment-link",:title => "Post your Answer", :style => "font-family: arial; font-size: 13px; color: white; padding: 5px; margin-bottom:20px; text-transform: none !important;", :onclick => "showAnswerComment('#{answer.id}')"
-
-    .clear
-    / question comments ends
-
-    .panel-comments{:id => "answer-comment-panel-#{answer.id}", :style => "display: none;"}
-      = form_for [answer.question, answer, comment ||= Comment.new], remote: true, html: {class: "answer_comment_form", data: {commentable: answer.id, editor: current_group.wysiwyg_editor ? 'wysiwyg_editor' : 'markdown_editor', "login-required" => true}} do |f|
+.overview-wrapper
+  / %h1.title Login
+  .overview-new.nopadding-top
+    .overview1.nopadding-top
+      .excerpt-new.justify-content
+        %p.filter-content-new
+          %table{:style=>"width:45%;"}
+            %tbody
+              %tr
+                %td
+                  = link_to image_tag("to_vote_up.png")
+                  %p.reiting_num3{:style => "padding-left:10px;"}
+                    = answer.votes_count
+                  = link_to image_tag("to_vote_down.png"), "#", :class => "reiting_num4"
+                %td
+                  %h6
+                    Re: #{@title.upcase} 
+                  %p 
+                    Posted By: #{answer.user.login}
+                  %p
+                    Posted On: #{answer.created_at.to_datetime.strftime("%d %b %Y - %I:%M %p")}
         %p
-          = f.text_area :body, :size=>"10x10", :style => "margin: 10px; width: 670px;"
-        %p{:style => "margin-left: 548px;"}
-          = submit_tag t("comments.shared.comment_submit"),:class=>"button-style-change comment-check","data-tag"=>answer.id,"data-type"=>"answer"
-          = "&nbsp; &nbsp;".html_safe
-          = link_to t('scaffold.cancel'), 'javascript:void(0)', :class => 'button-style-change', :onclick => "hideAnswerComment('#{answer.id}')"
+          %ul{:id => "slider22", :class => "i3_2"}
+            %li.pager.ps2
+              %ul.page
+                %li
+                  .grid_14.Fright1{:style => "margin: 10px !important;"}
+                    %span{:class => "s1_q_i"}
+                      = answer.body.html_safe
+                    
+                
+                    
+              .clear
+              / questions comments
+              / %ul.Fright3.line-break
+              /   -answer.comments.each do |ans|
+              /     %li.comments-body{:style => "text-align: right;"}
+              /       %span
+              /         = ans.body
+              /       %span.by-user
+              /         ="-"
+              /         =ans.user.name.capitalize
+              /   %li.comments-body
+              /     .panel-link-comment{:id => "answer-comment-panel-link-#{answer.id}"}
+              /       = link_to "Comment","javascript:void(0)", :class => "ask_tag5", :id => "question-comment-link",:title => "Post your Answer", :style => "font-family: arial; font-size: 13px; color: white; padding: 5px; margin-bottom:20px; text-transform: none !important;", :onclick => "showAnswerComment('#{answer.id}')"
+
+              / .clear
+              / / question comments ends
+
+              / .panel-comments{:id => "answer-comment-panel-#{answer.id}", :style => "display: none;"}
+              /   = form_for [answer.question, answer, comment ||= Comment.new], remote: true, html: {class: "answer_comment_form", data: {commentable: answer.id, editor: current_group.wysiwyg_editor ? 'wysiwyg_editor' : 'markdown_editor', "login-required" => true}} do |f|
+              /     %p
+              /       = f.text_area :body, :size=>"10x10", :style => "margin: 10px; width: 540px;"
+              /     %p{:style => "margin-left: 325px;"}
+              /       = submit_tag t("comments.shared.comment_submit"),:class=>"button-style-change comment-check","data-tag"=>answer.id,"data-type"=>"answer"
+              /       =# "&nbsp; &nbsp;".html_safe
+              /       = link_to t('scaffold.cancel'), 'javascript:void(0)', :class => 'button-style-change', :onclick => "hideAnswerComment('#{answer.id}')"

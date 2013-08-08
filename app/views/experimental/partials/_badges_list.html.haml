@@ -1,0 +1,12 @@
+-className = (params[:queryData]=="all")? "" : params[:queryData]
+%table
+	%tbody
+	- @badges.sort_by{|b| b.name}.each do |badge|
+		%tr
+			-if badge.type == className  || className.blank?
+				%td
+					.badge_item
+						=link_to badge.name,"#",:class=>"badge #{badge.type}"
+				%td
+					.badge_description
+						= badge.description

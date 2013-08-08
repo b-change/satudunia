@@ -17,6 +17,7 @@
             - if params[:pp] && params[:format] != 'mobile'
               = hidden_field_tag :pp, 1
             / %input#user_pass.input{:name => "pwd", :size => "20", :type => "password", :value => ""}/
+            = f.hidden_field :admin, :value=>"user-experiment"
           %p.login-remember
             -if devise_mapping.rememberable?
               %span{:style=>"top:5px; position:relative; top: 2px;"}

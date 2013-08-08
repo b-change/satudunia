@@ -202,3 +202,25 @@ form.exp-contact-form-new{
     font-style: italic;
     padding: 15px 15px 15px 80px;
 }
+.review .overview-wrapper .category {
+	position:relative;
+	display:inline-block;
+	bottom:0px;
+	left:-20px;
+	background:#FFF;
+	color:#111;
+	border:1px solid #CCC;
+	border-right:0px;
+	z-index:9;
+	font-family:BebasNeueRegular, Arial, Sans-Serif;
+	font-size:1.3em;margin:5px 0px 15px 0px;
+}
+.review .overview-wrapper .ribbon-shadow-left {top:31px;left:-1px;}
+.review .overview-wrapper .catname {float:left;margin:6px 15px 0px 20px;}
+.review .overview-wrapper .category-arrow {float:left;background:url(images/featured-arrow.png) no-repeat 0px 0px;width:11px;height:32px;margin-right:-10px;margin-top:-1px;}
+.tags-list-about{
+	line-height: 30px;
+	margin-bottom: 15px;
+}
+
+

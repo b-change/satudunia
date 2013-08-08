@@ -485,6 +485,13 @@ class QuestionsController < ApplicationController
       format.json  { head :ok }
     end
   end
+  # action question_ajax
+  def question_ajax
+    @questions = current_group.questions.all
+    respond_to do |format|
+      format.js{render "/experimental/experimental/ajax_entry"}
+    end
+  end
 
   def solve
     @answer = @question.answers.find(params[:answer_id])

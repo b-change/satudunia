@@ -376,7 +376,7 @@ form.exp-contact-form{
 .tabdiv-exp ul {margin-bottom:0px;}
 .head-left {margin-left:20px !important;}
 .review .overview .excerpt-new{font-size: 12px; padding: 15px 15px 5px;}
-.excerpt-new h1 {
+.excerpt-new1 h1 {
 		background: none repeat scroll 0 0 transparent !important;
 		border: medium none !important;
 		padding: 0 !important;
@@ -635,59 +635,96 @@ div.item-list-tabs ul li.feed a {
 	margin-bottom:-85px;
 }
 .post-loop .more1 a {
-    background: url("images/arrow-right-small.png") no-repeat scroll right 9px transparent;
-    color: #999999;
-    display: block;
-    float: right;
-    font-family: BebasNeueRegular,Arial,Sans-Serif;
-    font-size: 0.9em;
-    margin-right: -7px;
-    padding: 8px 11px 0 10px;
+		background: url("images/arrow-right-small.png") no-repeat scroll right 9px transparent;
+		color: #999999;
+		display: block;
+		float: right;
+		font-family: BebasNeueRegular,Arial,Sans-Serif;
+		font-size: 0.9em;
+		margin-right: -7px;
+		padding: 8px 11px 0 10px;
 
 }
 .ajax-loader{
-	background-image:url("images/ajax-loader.gif"); 
-	height:300px !important; 
-	width:100% !important; 
-	background-position:center center; 
-	background-repeat:no-repeat;
+	background-image: url("images/pre-loader");
+    background-position: center center;
+    background-repeat: no-repeat;
+    float: right;
+    height: 23px !important;
+    margin-left: 5px;
+    width: 15px !important;
+    display: none;
 }
 .contact-button{
-    background: -moz-linear-gradient(center top , #FFFFFF 0%, #EDEDED 100%) repeat scroll 0 0 transparent;
-    border: 1px solid #CCCCCC;
-    border-radius: 3px 3px 3px 3px;
-    color: #777777;
-    cursor: pointer;
-    font: 12px/14px Arial,Tahoma,Verdana,sans-serif;
-    outline: medium none;
-    padding: 4px 10px;
-    text-align: center;
-    text-decoration: none;
+		background: -moz-linear-gradient(center top , #FFFFFF 0%, #EDEDED 100%) repeat scroll 0 0 transparent;
+		border: 1px solid #CCCCCC;
+		border-radius: 3px 3px 3px 3px;
+		color: #777777;
+		cursor: pointer;
+		font: 12px/14px Arial,Tahoma,Verdana,sans-serif;
+		outline: medium none;
+		padding: 4px 10px;
+		text-align: center;
+		text-decoration: none;
 
 }
 .contact-section-bottom {
-    background-color: #FFFFFF;
-    border: 1px solid #E0E0E0;
-    height: 33px;
-    margin: -16px 0 -1px;
-    padding-left: 475px;
-    padding-top: 20px;
+		background-color: #FFFFFF;
+		border: 1px solid #E0E0E0;
+		height: 33px;
+		margin: -16px 0 -1px;
+		padding-left: 475px;
+		padding-top: 20px;
 }  
 .recent_tag{
-    color: #E47911;
-    display: inline;
-    font-size: 18px;
-    font-weight: normal;
+		color: #E47911;
+		display: inline;
+		font-size: 18px;
+		font-weight: normal;
 }
 .list-show-widget{
 	list-style:disc;
 }
 .page-content.review.search-adj {
-    margin-right: 25px;
+		margin-right: 25px;
 }
 .head-test-show .single-post .section {
     color: #999999;
     font-family: Arial,Helvetica,sans-serif;
     font-size: 11px;
     text-transform: none;
+}
+.review .overview1 {
+	background: none repeat scroll 0 0 #FFFFFF;
+	border-color: -moz-use-text-color #E0E0E0 #E0E0E0;
+	border-image: none;
+	border-width: 0 1px 1px;
+	color: #444444;
+	margin-bottom: 15px;
+	padding-top: 20px;
+	position: relative;
+}
+
+.review .overview1 .excerpt-new {
+
+	font-size: 12px;
+	padding: 0px 15px 5px;
+}
+
+#slider22 > li > ul > li{
+	border-bottom: 1px solid #D0D3D6;
+	margin-bottom: none;
+	padding:none;
+}
+.ps2{
+	color:#000000;
+	width:466px;
+}
+.fright1{
+	float:left;
+	width:515px;
+}
+
+.page{
+	margin-top:0px !important;
 }

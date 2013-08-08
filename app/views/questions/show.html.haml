@@ -1,130 +1,136 @@
-:css
-  .jHtmlArea iframe, .ToolBar iframe{
-    width: 95% !important;
-  }
-- content_for :title do
-  = @question.title
-
 - question_body = find_and_preserve(shapado_auto_link(markdown(@question.body.present? ? @question.body : @question.title)))
+
 .clearer.hide-responsive  
 %br.hide-responsive/
-.main-content-left
-  .page-content.review.single-post
-    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
-    .review-content
-      / post by removed from here
-      %h1.title 
-        =@title.upcase
-      .content-panel
-        .firstElement
-          / content from plus template
-          .q_height2
-            = link_to image_tag("plus/reiting_num1.png"), vote_question_up_path(@question.id,1)
-            %p{:class => "reiting_num5"}
-              = calculate_votes_average(@question)
-            = link_to image_tag("plus/reiting_num2.png"), vote_question_down_path(@question.id,-1), :class => "reiting_num6"
-          .grid_14.Fright3.margin-left-adjust
-            %span{:class => "s1_show"}
-              = @question.title
-            .grid_14.ms_fr
-              %span.body-content-show
-                = question_body.html_safe
+#main-wrapper-dark
+  .main-content-left
+    .page-content.review.single-post
+      %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+      .overview-wrapper
+        / %h1.title Login
+        .overview-new.nopadding-top
+          .overview1.nopadding-top
+            .excerpt-new.justify-content
+              %p.filter-content-new
+                %table{:style=>"width:45%;"}
+                  %tbody
+                    %tr
+                      %td
+                        = link_to image_tag("to_vote_up.png")
+                        %p.reiting_num3{:style => "padding-left:10px;"}
+                          = @question.votes_count
+                        = link_to image_tag("to_vote_down.png"), "#", :class => "reiting_num4"
+                        =# link_to image_tag("unfavorites.png")
+                      %td
+                        %h6.title 
+                          =@title.upcase
+                        %p
+                          / Posted By: #{@question.user.name}
+                          Posted By: #{@question.user.login}
+                        %p
+                          PostedOn: #{@question.created_at.to_datetime.strftime("%d %b %Y - %I:%M %p")}
+                    %tr
+                      %td
+                        = link_to image_tag("unfavorites.png")
+                      %td
+                        %p
+                          = @question.body.html_safe
+              %ul.Fright3.line-break
+                -@question.comments.each do |comments|
+                  %li.comments-body{:style => "margin-bottom: 10px; border-bottom: dotted 1px #A8A8A8;"}
+                    %span
+                      = comments.body
+                    %span.by-user
+                      ="-"
+                      =comments.user.name.capitalize
 
-            / %a{:class => "q_i_tag111", :href => "#"}
-            / user image box
-            %span{:class => "q_i_tag111", :href => "#",:style => "background-color: #F3F7FA; padding: 5px 0 10px 10px;width:165px; border-style:solid; border-width:1px; border-color:#CFD3D6;"}
-              %a{:style=>"color:black; font-size:13px; padding-bottom:5px"}
-                Asked
-                - if ((Time.now - @question.created_at)/86400).to_i > 1
-                  = (@question.created_at).strftime("%b %d '%y")
-                  at 
-                  = (@question.created_at).strftime("%I:%M")
-                - else 
-                  = time_ago_in_words(@question.created_at)
-                  Ago
-              %br/
-              -if @question.user.use_gravatar?
-                = image_tag avatar_user_path(@question.user),:size=>'35x35'
-              -else
-                = image_tag(default_avatar_url('small'))
-              %a{:style=>"color:#00ADEF; font-size:12px; position:relative; top:3px;"}
-                = @question.user.name.capitalize
-              / user image box
-            
-          %ul{:class => "tags2 tags9_1"}
-            - @question.tags.each do |tag|
-              %li
-                = link_to tag, "#", :class => "tags2_1"
-          %ul{:class => "tags3 tags9_2"}
-            %li
-              / = link_to "<span class='underline-decoration-link'>Flag</span>".html_safe, new_question_flag_path(@question), :class => "q_tag1 tool-tip",:title=>"Flag this question"
-              = link_to "<span class='underline-decoration-link'>Follow</span>".html_safe, follow_question_path(@question), :class => "q_tag2 tool-tip",:title=>"Follow this question"
-              / = link_to "<span class='underline-decoration-link'>Answer</span>".html_safe, question_path(@question, :anchor => "to_answer"), :class => "q_tag3 tool-tip",:title=>"Answer this question"
-          .clear
-          / questions comments
-          %br
-          %ul.Fright3.line-break
-            -@question.comments.each do |comments|
-              %li.comments-body{:style => "margin-bottom: 10px; text-align: right; padding-right:  20px; border-bottom: dotted 1px #A8A8A8;"}
-                %span
-                  = comments.body
-                %span.by-user
-                  ="-"
-                  =comments.user.name.capitalize
+              .panel-link-comment{:id => "question-comment-panel-link"}
+                = link_to "<i class='icon-comment'></i>Comments".html_safe,"javascript:void(0)", :class => "extra-buttons", :id => "question-comment-link",:title => "Post your Answer"
+              .panel-comments{:id => "question-comment-panel", :style => "display: none;"}
+                = form_for [@question, @comment ||= Comment.new], remote: true, html: {:class=>"question_comment_form exp-contact-form", data: {commentable: @question.id, editor: current_group.wysiwyg_editor ? 'wysiwyg_editor' : 'markdown_editor', "login-required" => true}} do |f|
+                  %p
+                    = f.text_area :body, :size=>"20x3", :style => "margin: 10px; width: 560px;"
+                  %p
+                    = f.button "<i class='icon-comment'></i>Comment".html_safe, data: {"disable-with" => "Saving..."}, :class=>"submit-button",:type=>"Submit"
+                    = link_to "<i class='icon-cross'></i>Cancel".html_safe,"javascript:void(0)", :class => "submit-button comment-button-style", :id => "cancel-question-comment-link",:title => "Post your Answer"
+              .clear
+              / question comments ends
+      - @question.answers.order(:created_at => :desc).each do |answer|
+        = render :partial => "answers/plus_answer", :locals => {:answer => answer, :comment => @comment}
+    .main-content-left
+      .page-content.review.single-post
+        %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+        .review-content
+          .ribbon-shadow-left
+          .section-wrapper
+            .section
+              .comment-bubble
+                %a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 0
+              / making title stronger
+              .section-for-header
+                /%i.icon-vcard
+                Your Answer
+          .section-arrow 
+          .overview-wrapper
+            / %h1.title Login
+            .overview-new.nopadding-top
+              .overview1.nopadding-top
+                .excerpt-new.justify-content
+                  %p.filter-content-new
+                    / %h1.title 
+                    /   =@title.upcase
+                  %p
+                    = form_for([@question,@answer],:method=>:post,:html => {:multipart => true,:name=>'answer_form',:id=>'answer_form',:class=>'exp-contact-form'}) do |f|
+                      =# f.text_area :body, :class => "wysiwyg_editor",:size=>"40x20"
+                      = f.label :body, "Your Answer", :class=>"label"
+                      = f.text_area :body, :class => "text-default wysiwyg_editor textarea-class"
+                      / = render :partial => 'shared/rich_text_partial'
+                      %br.clearer/
+                      %p
+                        = link_to "<i class='icon-paper-plane'></i>Post your Answer".html_safe,"javascript:void(0)", :class => "submit-button", :id => "edit-user-link",:title => "Post your Answer",:onclick=>"document.answer_form.submit();"
+                  .signoff-wrapper
+                    .signoff Not the answer you're looking for? Browse other questions tag related to the question or #{link_to "create page for question", "/question/ask_a_question"}.
+    .main-content-left
+      .page-content.review.single-post
+        %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+        .review-content
+          .ribbon-shadow-left
+          .section-wrapper
+            .section
+              .comment-bubble
+                %a{:href => "http://disqus.com.html#disqus_thread"} Link
+              / making title stronger
+              .section-for-header
+                Disqus
+          .section-arrow 
+          #disqus_thread
+          :javascript
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
 
-          .panel-link-comment{:id => "question-comment-panel-link"}
-            = link_to "<i class='icon-comment'></i>Comments".html_safe,"javascript:void(0)", :class => "extra-buttons", :id => "question-comment-link",:title => "Post your Answer"
-          .panel-comments{:id => "question-comment-panel", :style => "display: none;"}
-            = form_for [@question, @comment ||= Comment.new], remote: true, html: {:class=>"question_comment_form exp-contact-form", data: {commentable: @question.id, editor: current_group.wysiwyg_editor ? 'wysiwyg_editor' : 'markdown_editor', "login-required" => true}} do |f|
-              %p
-                = f.text_area :body, :size=>"30x10", :style => "margin: 10px; width: 670px;"
-              %p
-                = f.button "<i class='icon-comment'></i>Comment".html_safe, data: {"disable-with" => "Saving..."}, :class=>"submit-button",:type=>"Submit"
-                = link_to "<i class='icon-cross'></i>Cancel".html_safe,"javascript:void(0)", :class => "submit-button comment-button-style", :id => "cancel-question-comment-link",:title => "Post your Answer"
-               
-                
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js'; 
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); 
+            })();
+          %noscript 
+            Please enable JavaScript to view the 
+            %a{:href => "http://disqus.com/?ref_noscript"} comments powered by Disqus
+          %a.dsq-brlink{:href => "http://disqus.com"}
+            comments powered by
+            %span.logo-disqus Disqus
+          :javascript
+            var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
+            // required: replace example with your forum shortname
+            (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//'+disqus_shortname+'.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+            }());
 
-          .clear
-          / question comments ends
-          .tabs4
-            %ul{:style => "margin-bottom: 35px;"}
-              %span{:class => "serv_loc1_1"}
-                = "#{@question.answers_count} answers"
-              %span{:class => "serv_loc1_2", :style => "top:10px"}
-                / Your Answer
-              %div#first.i4_1.serv_loc6
-                %li
-                  %ul
-                    %div.tabber
-                      %div.tabbertab
-                        %h2
-                          Newest
-                        %p.i4_1.serv_loc6 
-                          - @question.answers.order(:created_at => :desc).each do |answer|
-                            = render :partial => "answers/plus_answer", :locals => {:answer => answer, :comment => @comment}
-                            
-                      %div.tabbertab
-                        %h2
-                          Votes 
-                        %p.i4_1.serv_loc6
-                          - @question.answers.order(:votes_up => :desc).each do |answer|
-                            = render :partial => "answers/plus_answer", :locals => {:answer => answer, :comment => @comment}
-                      %div.tabbertab
-                        %h2
-                          Oldest
-                        %p.i4_1.serv_loc6
-                          - @question.answers.order(:created_at => :ASC).each do |answer|
-                            = render :partial => "answers/plus_answer", :locals => {:answer => answer, :comment => @comment}
-                          
-                        .clear          
-          = form_for([@question,@answer],:method=>:post,:html => {:multipart => true,:name=>'answer_form',:id=>'answer_form',:class=>'exp-contact-form'}) do |f|
-            = f.text_area :body, :class => "wysiwyg_editor",:size=>"40x20"
-            / = render :partial => 'shared/rich_text_partial'
-            %br
-              %p
-                = link_to "<i class='icon-paper-plane'></i>Post your Answer".html_safe,"javascript:void(0)", :class => "submit-button", :id => "edit-user-link",:title => "Post your Answer",:onclick=>"document.answer_form.submit();"
 
-/side bar
 .sidebar
   = render "experimental/partials/left_bar"
   /widget top
@@ -197,4 +203,129 @@
     
   });
   
+
+
+
+
+
+/ .clearer.hide-responsive  
+/ %br.hide-responsive/
+/ .main-content-left
+/   .page-content.review.single-post
+/     %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+/     .review-content
+/       / post by removed from here
+/       %h1.title 
+/         =@title.upcase
+/       .content-panel
+/         .firstElement
+/           / content from plus template
+/           .q_height2
+/             = link_to image_tag("plus/reiting_num1.png"), vote_question_up_path(@question.id,1)
+/             %p{:class => "reiting_num5"}
+/               = calculate_votes_average(@question)
+/             = link_to image_tag("plus/reiting_num2.png"), vote_question_down_path(@question.id,-1), :class => "reiting_num6"
+/           .grid_14.Fright3.margin-left-adjust
+/             %span{:class => "s1_show"}
+/               = @question.title
+/             .grid_14.ms_fr
+/               %span.body-content-show
+/                 = question_body.html_safe
+
+/             / %a{:class => "q_i_tag111", :href => "#"}
+/             / user image box
+/             %span{:class => "q_i_tag111", :href => "#",:style => "background-color: #F3F7FA; padding: 5px 0 10px 10px;width:165px; border-style:solid; border-width:1px; border-color:#CFD3D6;"}
+/               %a{:style=>"color:black; font-size:13px; padding-bottom:5px"}
+/                 Asked
+/                 - if ((Time.now - @question.created_at)/86400).to_i > 1
+/                   = (@question.created_at).strftime("%b %d '%y")
+/                   at 
+/                   = (@question.created_at).strftime("%I:%M")
+/                 - else 
+/                   = time_ago_in_words(@question.created_at)
+/                   Ago
+/               %br/
+/               -if @question.user.use_gravatar?
+/                 = image_tag avatar_user_path(@question.user),:size=>'35x35'
+/               -else
+/                 = image_tag(default_avatar_url('small'))
+/               %a{:style=>"color:#00ADEF; font-size:12px; position:relative; top:3px;"}
+/                 = @question.user.name.capitalize
+/               / user image box
+            
+/           %ul{:class => "tags2 tags9_1"}
+/             - @question.tags.each do |tag|
+/               %li
+/                 = link_to tag, "#", :class => "tags2_1"
+/           %ul{:class => "tags3 tags9_2"}
+/             %li
+/               / = link_to "<span class='underline-decoration-link'>Flag</span>".html_safe, new_question_flag_path(@question), :class => "q_tag1 tool-tip",:title=>"Flag this question"
+/               = link_to "<span class='underline-decoration-link'>Follow</span>".html_safe, follow_question_path(@question), :class => "q_tag2 tool-tip",:title=>"Follow this question"
+/               / = link_to "<span class='underline-decoration-link'>Answer</span>".html_safe, question_path(@question, :anchor => "to_answer"), :class => "q_tag3 tool-tip",:title=>"Answer this question"
+/           .clear
+/           / questions comments
+/           %br
+/           %ul.Fright3.line-break
+/             -@question.comments.each do |comments|
+/               %li.comments-body{:style => "margin-bottom: 10px; text-align: right; padding-right:  20px; border-bottom: dotted 1px #A8A8A8;"}
+/                 %span
+/                   = comments.body
+/                 %span.by-user
+/                   ="-"
+/                   =comments.user.name.capitalize
+
+/           .panel-link-comment{:id => "question-comment-panel-link"}
+/             = link_to "<i class='icon-comment'></i>Comments".html_safe,"javascript:void(0)", :class => "extra-buttons", :id => "question-comment-link",:title => "Post your Answer"
+/           .panel-comments{:id => "question-comment-panel", :style => "display: none;"}
+/             = form_for [@question, @comment ||= Comment.new], remote: true, html: {:class=>"question_comment_form exp-contact-form", data: {commentable: @question.id, editor: current_group.wysiwyg_editor ? 'wysiwyg_editor' : 'markdown_editor', "login-required" => true}} do |f|
+/               %p
+/                 = f.text_area :body, :size=>"30x10", :style => "margin: 10px; width: 670px;"
+/               %p
+/                 = f.button "<i class='icon-comment'></i>Comment".html_safe, data: {"disable-with" => "Saving..."}, :class=>"submit-button",:type=>"Submit"
+/                 = link_to "<i class='icon-cross'></i>Cancel".html_safe,"javascript:void(0)", :class => "submit-button comment-button-style", :id => "cancel-question-comment-link",:title => "Post your Answer"
+               
+                
+
+/           .clear
+/           / question comments ends
+/           .tabs4
+/             %ul{:style => "margin-bottom: 35px;"}
+/               %span{:class => "serv_loc1_1"}
+/                 = "#{@question.answers_count} answers"
+/               %span{:class => "serv_loc1_2", :style => "top:10px"}
+/                 / Your Answer
+/               %div#first.i4_1.serv_loc6
+/                 %li
+/                   %ul
+/                     %div.tabber
+/                       %div.tabbertab
+/                         %h2
+/                           Newest
+/                         %p.i4_1.serv_loc6 
+/                           - @question.answers.order(:created_at => :desc).each do |answer|
+/                             = render :partial => "answers/plus_answer", :locals => {:answer => answer, :comment => @comment}
+                            
+/                       %div.tabbertab
+/                         %h2
+/                           Votes 
+/                         %p.i4_1.serv_loc6
+/                           - @question.answers.order(:votes_up => :desc).each do |answer|
+/                             = render :partial => "answers/plus_answer", :locals => {:answer => answer, :comment => @comment}
+/                       %div.tabbertab
+/                         %h2
+/                           Oldest
+/                         %p.i4_1.serv_loc6
+/                           - @question.answers.order(:created_at => :ASC).each do |answer|
+/                             = render :partial => "answers/plus_answer", :locals => {:answer => answer, :comment => @comment}
+                          
+/                         .clear          
+/           = form_for([@question,@answer],:method=>:post,:html => {:multipart => true,:name=>'answer_form',:id=>'answer_form',:class=>'exp-contact-form'}) do |f|
+/             = f.text_area :body, :class => "wysiwyg_editor",:size=>"40x20"
+/             / = render :partial => 'shared/rich_text_partial'
+/             %br
+/               %p
+/                 = link_to "<i class='icon-paper-plane'></i>Post your Answer".html_safe,"javascript:void(0)", :class => "submit-button", :id => "edit-user-link",:title => "Post your Answer",:onclick=>"document.answer_form.submit();"
+
+/side bar
+
   

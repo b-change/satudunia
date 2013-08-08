@@ -2,7 +2,7 @@
 %tr
   %td.td-votescount= question.votes_count
   %td.td-answerscount= question.answers_count
-  %td.td-viewscount= question.countquestions.sum(:qus_count).to_i
+  / %td.td-viewscount= question.countquestions.sum(:qus_count).to_i
   %td.td-question
     = link_to truncate(strip_tags(question.title), :length => 50), question_path(question), :class=>"topic-title"
     %p.topic-meta

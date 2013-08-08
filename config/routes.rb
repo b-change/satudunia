@@ -208,7 +208,7 @@ Rails.application.routes.draw do
     resources :close_requests
     resources :open_requests
   end
-  get '/answer_ajax' =>"answers#answer_ajax"
+  get '/question_ajax' =>"questions#question_ajax"
   get '/search_ajax' => 'searches#search_ajax'
   post '/question_search'=>'questions#question_search#index'
 
@@ -402,7 +402,6 @@ Rails.application.routes.draw do
         get :features
         get :events
         get :crowdfunding 
-        get :ajax_entry
         # get :announce, :path=> "/announcements"
 
         # experimental routes

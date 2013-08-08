@@ -12,12 +12,15 @@ class AnswersController < ApplicationController
       @question = current_group.questions.by_slug(params[:question_id])
       @answers = @question.answers.without(exclude).page(params["page"])
     else
-      @answers = current_group.answers.without(exclude).page(params["page"]).per(15)
+      @answers = current_group.answers.without(exclude).order(:created_at=>:desc).page(params["page"]).per(15)
     end
-
+    # condition is for ajax data
+    answer_conditional_fetch(params[:queryData],exclude)
     respond_to do |format|
       format.html
       format.json { render :json => @answers }
+      # fetching data through ajax
+      format.js{render "/experimental/experimental/ajax_entry"}
     end
   end
 
@@ -250,13 +253,21 @@ class AnswersController < ApplicationController
       format.json  { head :ok }
     end
   end
-  # ajax fetching answers
-  def answer_ajax
-    exclude = [:votes, :_keywords]
-    @answers = current_group.answers.without(exclude).page(params["page"]).per(15)
+  protected
+  # anwer ajax conditional fetch
+  def answer_conditional_fetch(queryData,exclude)
+    # unless condition for ajax condition
+    unless queryData.blank?
+      case queryData
+        when "newest"
+          @answers = current_group.answers.without(exclude).order(:created_at=>:desc).page(params["page"]).per(15)
+        else
+          @answers = nil
+      end
+    end  
     
   end
-  protected
+  # anwer ajax conditional fetch
   def check_permissions
     if params[:id]
       @answer = current_group.answers.find(params[:id])

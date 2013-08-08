@@ -42,6 +42,7 @@ class ManageAboutsController < ApplicationController
       redirect_to cms_abouts_path
     else
       @about.static_content = params[:about_content]
+      @about.user_id = current_user.id
       if @about.valid? && @about.save
         flash[:notice] = "About updated"
         redirect_to cms_abouts_path

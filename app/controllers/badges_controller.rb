@@ -7,6 +7,7 @@ class BadgesController < ApplicationController
   # GET /badges
   # GET /badges.xml
   def index
+
     conditions = {group_id: current_group.id, for_tag: params[:tab] == "tags"}
     if params[:filter].present? && params[:filter] != "all"
       conditions[:type] = params[:filter]
@@ -24,10 +25,11 @@ class BadgesController < ApplicationController
         end
       end
     end
-
     respond_to do |format|
       format.html # index.html.erb
       format.json  { render :json => @badges }
+      # view for ajax data
+      format.js{render "/experimental/experimental/ajax_entry"}
     end
   end
 

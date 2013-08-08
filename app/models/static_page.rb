@@ -4,6 +4,8 @@ class StaticPage
 
   field :static_key, :type => String
   field :static_content, :type => String
+  referenced_in :user
+  index :user_id
 
   field :latitude, :tipe => String
   field :longitude, :tipe => String
