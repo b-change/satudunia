@@ -1,0 +1,14 @@
+%li.account_details
+	= link_to "Account Details", "#", :rel => "nofollow", :class => "pjax", :"data-layout" => "index", :id=>"all-tab"
+%li.account_settings
+	= link_to "Account Settings", "#", :rel => "nofollow", :class => "pjax", :"data-layout" => "index", :id=>"question1-tab"
+%li.email_settings
+	= link_to "Email Settings", "#", :rel => "nofollow", :class => "pjax", :"data-layout" => "answers", :id=>"answer-tab"
+
+%li#activity-filter-select.last
+	%label{:for => "activity-filter-by"} Show:
+	%select#activity-filter-by
+		%option{:value => "-1"} Account Details
+		%option{:value => "activity_update"} Account Settings
+		%option{:value => "new_blog_post"} Email Settings
+		

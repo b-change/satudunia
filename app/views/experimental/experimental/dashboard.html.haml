@@ -1,0 +1,181 @@
+.clearer.hide-responsive  
+%br.hide-responsive/
+.main-content-left
+  #content.page-content
+    .review-content
+      .ribbon-shadow-left
+      .section-wrapper
+        .section-header
+          Dashboard
+      .section-arrow
+      / post by removed from here
+    #item-header.qa-q-item-tags{:role=>"complementary"}
+      #item-header-avatar
+        %a{:style=>"float:left;"}
+          -if @user.use_gravatar?
+            = image_tag avatar_user_path(@user),:size=>'140x140',:class => "avatar" 
+          -else                       
+            = image_tag(default_avatar_url('big'), :class=>"avatar")
+      #item-header-content
+        %h2
+          = link_to "#{user_realname(@user)}", user_path(@user)
+        .item-meta
+          %span{:class=>"activity"}
+            Joined 
+            =# t("time.ago", :time => time_ago_in_words(config.joined_at))
+        .user-nicename
+          Website:
+          = link_to @user.website, @user.website
+        .user-nicename
+          = link_to "<span>HIV Condition: #{user_hiv_condition(@user)}</span>".html_safe, "#", :class => "qwest_tag1"
+          =# link_to "<span>Edit Profile</span>".html_safe, settings_path, :class => "qwest_tag15"
+        .extra-tags
+          - unless @user.profile_tiers.blank?
+            = link_to "<span>Sample</span>".html_safe, "#", :class => "qwest_tag12"
+          -unless @user.profile_support.nil?
+            = link_to "<span>Tier 1</span>".html_safe, "#", :class => "qwest_tag12"
+          - for i in 2..7 do
+            -unless eval "@user.profile_tier#{i}.nil?"
+              = link_to "<span>Tier #{i}</span>".html_safe, "#", :class => "qwest_tag12"
+        .a6
+          = image_tag "plus/a1.png"
+          %span
+            Country: 
+            = user_country(@user)
+          %br
+          = image_tag "plus/a2.png"
+          %span
+            Age: 
+            = user_age(@user)
+    #item-nav
+      #object-nav.item-list-tabs{:id=>"firstElement"}
+        %ul
+          %li.selected
+            %a{:href=>"javascript:void(0)"}
+              Questions
+              .ajax-loader
+          %li
+            %a{:href=>"javascript:void(0)"}
+              answers
+          %li
+            %a{:href=>"javascript:void(0)"}
+              following
+          %li
+            %a{:href=>"javascript:void(0)"}
+              starred
+      #subnav.item-list-tabs.no-ajax{:role => "navigation"}
+        %ul
+          %li#activity-filter-select.last.filter
+            %label{:for => "activity-filter-by"} Sort by:
+            %select#activity-filter-by
+              %option{:value => "newest"} Newest
+              %option{:value => "Oldest"} Oldest
+              %option{:value => "Views"} Views
+              %option{:value => "Votes"} Votes
+      #forums-dir-list-newest.dir-list
+        #pag-top.pagination
+          #member-dir-count-top.pag-count
+            Viewing questions #{@resources.options[:skip]} to #{@resources.options[:skip]+@resources.options[:limit]} (of #{@resources.count} active members)
+          #members-dir-list.members.dir-list1
+            = paginate @resources
+      %ul#activity-stream.activity-list.item-list
+        -if @resources.blank?
+          = render "experimental/partials/empty_record_message.html"
+        -else
+          -@resources.each do |resource|
+            -#resource = resourc.question
+            -next if  resource.nil?
+            -last_target_id, last_target_date, owner = resource.find_last_target rescue ""
+            -title = resource.title rescue ""
+            - unless resource.nil? || resource.body.nil?
+              %li#activity-1672.xprofile.new_member.activity-item.mini
+                .activity-avatar
+                  -if owner.use_gravatar?
+                    = link_to image_tag avatar_user_path(owner),:size=>'35x35'
+                  -else
+                    %img.avatar.user-1227-avatar.avatar-50.photo{:alt => "Profile picture of zicrainnyRV", :height => "50", :src => "http://gravatar.com/avatar/5a0a1a5e96f190c339221f66d7b09b00?d=http://www.industrialthemes.com/made/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg&s=50&r=G", :width => "50"}/
+                .activity-content
+                  .activity-header
+                    %p
+                      = link_to "#{owner.login.capitalize}"
+                      Posted the question
+                      %a.view.activity-time-since{:href => "#", :title => "View Discussion"}
+                        %span.time-since
+                          = time_ago_in_words(last_target_date)
+                          ago
+                  .activity-inner
+                    = link_to truncate(strip_tags(resource.body), :length => 150), question_path(resource, :anchor => "answer#{resource.id}"), :title => "",:class=>""
+     
+      #forums-dir-list-newest.dir-list
+        #pag-top.pagination
+          #member-dir-count-top.pag-count
+            Viewing questions #{@resources.options[:skip]} to #{@resources.options[:skip]+@resources.options[:limit]} (of #{@resources.count} active members)
+          #members-dir-list.members.dir-list1
+            = paginate @resources
+
+    
+.sidebar
+  = render "experimental/partials/user_info"
+
+
+:javascript
+  jQuery("#object-nav_firstElement > ul > li").click(function(){
+    jQuery("#object-nav_firstElement > ul > li").removeClass('selected');
+    jQuery(this).addClass('selected');
+  });
+  jQuery(document).ready(function($){
+    $("#activity-filter-by").change(function(){
+      //alert("asdf");
+      //event.preventDefault();
+      var valueTaker = $(this).val().split("-");
+
+      $(".dir-list").fadeOut('slow');
+      $("#forums-dir-list-"+valueTaker[0]).fadeIn('slow','linear');
+      
+      
+    });
+  });
+  // ajax function
+  Experimental.getAjaxData("#activity-filter-by","/profile/dashboard","GET","activity-stream","answer");
+
+/   jQuery(window).load(function (){
+
+/     switch('#{params[:sort]}'){
+/       case "oldest":
+/         $('#sort_oldest').addClass('active-tab');
+/         break;
+/       case "views":
+/         $('#sort_views').addClass('active-tab');
+/         break;
+/       case "votes":
+/         $('#sort_votes').addClass('active-tab');
+/         break;
+/       case "questions":
+/         $('#question-tab').addClass('active-tab');
+/         $('#question1-tab').addClass('active-tab');
+/         break;
+/       case "answers":
+/         $('#answer-tab').addClass('active-tab');
+/         break;
+/       case "following":
+/         $('#following-tab').addClass('active-tab');
+/         break;
+/       case "followers":
+/         $('#followers-tab').addClass('active-tab');
+/         break;
+/       case "all":
+/         $('#all-tab').addClass('active-tab');
+/         break;
+/       case "users":
+/         $('#user-tab').addClass('active-tab');
+/         break;
+/       case "pages":
+/         $('#page-tab').addClass('active-tab');
+/         break;
+/       default:
+/         $('#sort_newest,#question-tab,#all-tab').addClass('active-tab');
+/         break;
+/     }
+/   });
+  
+

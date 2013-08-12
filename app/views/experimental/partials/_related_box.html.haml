@@ -11,8 +11,8 @@
   %br.clearer/
   .tabdiv-wrapper
     #tab1.tabdiv.ui-tabs-panel.ui-tabs-hide{:style => ""}
-      .post-panel{:style=>"border:none;"}
-        - filter_updated_at.each do |e|
+      - filter_updated_at.each do |e|
+        .post-panel{:style=>"border:none;"}
           %li
             =render :partial => e.static_key
       %br.clearer.hide-responsive

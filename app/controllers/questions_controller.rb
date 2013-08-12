@@ -487,12 +487,25 @@ class QuestionsController < ApplicationController
   end
   # action question_ajax
   def question_ajax
-    @questions = current_group.questions.all
+    @query=params[:queryData]
+    case @query
+      when "newest-question-show"
+        @questions = current_group.questions.order(:created_at=>:desc).page(params["page"]).per(15)
+      when "hot-question-show"
+        @questions=current_group.questions.not_in(:hotness => [0]).order(:created_at=>:desc).page(params["page"]).per(15)
+      when "votes-question-show"
+        @questions=current_group.questions.not_in(:votes_count => [0]).order(:created_at=>:desc).page(params["page"]).per(15)
+      when "unanswered-question-show"
+        @questions=current_group.questions.where(:answers_count=>"0").order(:created_at=>:desc).page(params["page"]).per(15)
+      else
+        @questions = nil
+      end
     respond_to do |format|
       format.js{render "/experimental/experimental/ajax_entry"}
     end
   end
-
+  # action question_ajax
+  
   def solve
     @answer = @question.answers.find(params[:answer_id])
     @question.answer = @answer

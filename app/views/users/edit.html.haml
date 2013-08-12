@@ -1,80 +1,89 @@
 .clearer.hide-responsive  
 %br.hide-responsive/
 .main-content-left
-  .page-content.review.single-post
-    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
-    .review-content
-      .ribbon-shadow-left
-      .section-wrapper
-        .section-header Profile Settings
-      .section-arrow
-      .content-panel
-        .the-content
-          / old plus content
-          %h1= link_to @user.display_name, user_path(@user)
-        = form_for @user, :html => {:class => "exp-contact-form", :multipart => true, :id => "edit-user-form"} do |f|
-          %br
-            = big_avatar_img @user, :size => 140
-            = f.file_field :avatar
-          %br
-            = f.label :name, "Name*", :class => "label"
-            = f.text_field :name, :class => "input-class"
-          %br
-            = f.label :login, "Login*", :class => "label"
-            = f.text_field :login, :class => "input-class"
-          %br
-            = f.label :website, "Website", :class => "label"
-            = f.text_field :website, :class => "input-class"
-          %br
-            = f.label :user_age, "Age", :class => "label"
-            = f.text_field :user_age, :class => "input-class"
-          %br
-            = f.label :country_name, "Country", :class => "label"
-            = f.text_field :country_name, :class => "input-class"
-          %br
-            = f.label :hiv_condition, "HIV", :class => "label"
-            = f.select :hiv_condition, ["Negative","Positive"],{:selected => @user.hiv_condition}, :class => "select-class"
-          %br
-            = f.label :bio, "Bio", :class=>"label"
-          .search4
-            = f.text_area :bio, :style => "font-size: 13px; width:630px;"
-          .checkbox1
-            = f.check_box :hide_hiv_condition
-            Hide my HIV Condition to other users
-          .checkbox1
-            = f.check_box :hide_country
-            Hide my Country to other users
-          .checkbox1
-            = f.check_box :hide_age
-            Hide my Age to other users
-          .checkbox1
-            = f.check_box :hide_realname
-            Hide my Real Name to other users
-          .save_footer{:style => "margin-top: 30px;"}
-            = link_to "<span>Save</span>".html_safe, "javascript:void(0)", :class => "submit-button", :id => "edit-user-link"
+	.page-content.review.single-post
+		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+		.review-content
+			.ribbon-shadow-left
+			.section-wrapper
+				.section-header Profile Settings
+			.section-arrow
+		#item-header.qa-q-item-tags{:role=>"complementary"}
+			#item-header-avatar
+				%a{:style=>"float:left;"}
+					-if @user.use_gravatar?
+						= image_tag avatar_user_path(@user),:size=>'140x140',:class => "avatar"
+			#item-header-content
+				%h2
+					= link_to "#{user_realname(@user)}", user_path(@user)
+				.item-meta
+					%span{:class=>"activity"}
+						Joined 
+						= t("time.ago", :time => time_ago_in_words(@user.created_at))
+		#item-nav
+			#object-nav.item-list-tabs{:id=>"firstElement"}
+				%ul
+					%li#activity-personal-li
+						%a#user-activity{:href => "javascript:void(0)",:data_send=>"activity"} Activity
+					%li#xprofile-personal-li.current.selected
+						%a#user-xprofile{:href => "javascript:void(0)",:data_send=>"profile",:user_id=>"#{@user.id}"} Profile
+					
+					=# tab_entry "li", "Survey", survey_user_path(@user), {:selected => "selected"}, {:class => "activity"}
+			#subnav.item-list-tabs.no-ajax.activity_sub{:role => "navigation"}
+				%ul
+					= render "users/show/user_activity_filters"
+			#subnav.item-list-tabs.no-ajax.profile_sub{:role => "navigation"}
+				%ul
+					= render "users/profile_subtabs"
+			#members-dir-list.members.dir-list.activity_tab{:style =>"display:none"}
+				%ul#members-list.items-list
+					= render "users/edit_activity"
+			.review-content.user_profile_tab
+				.content-panel
+					.the-content
+						/ old plus content
+						%h1= link_to @user.display_name, user_path(@user)
+					= render "users/edit"
+		 
 
 
+
+
+			
+ 
 /side bar
 .sidebar
-  = render "experimental/partials/left_bar"
+  =# render "experimental/partials/left_bar"
   /widget top
   = render "experimental/partials/widget_top"
   / .clearer.hide-responsive
   / %br.clearer/
   / newly reviewd
-  = render "experimental/partials/newly_reviewed"
+  =# render "experimental/partials/newly_reviewed"
   /popular box
-  = render "experimental/partials/popular_box"
+  =# render "experimental/partials/popular_box"
   /rating box
-  = render "experimental/partials/rating_box"
+  =# render "experimental/partials/rating_box"
   /banner box
   = render "experimental/partials/banner_box"
 
 
 
 :javascript
-  jQuery(window).load(function(){
-    jQuery('#edit-user-link').click(function(){
-      jQuery('#edit-user-form').submit();
-    });
-  });
+	jQuery(window).load(function(){
+		jQuery('#edit-user-link').click(function(){
+			jQuery('#edit-user-form').submit();
+		});
+	});
+	jQuery("#user-activity").click(function(){
+		jQuery(".activity_sub").show();
+		jQuery(".profile_sub").hide();
+	  jQuery(".activity_tab").show();
+	  jQuery(".user_profile_tab").hide();
+	});
+	jQuery("#user-xprofile").click(function(){
+		jQuery(".activity_sub").hide();
+		jQuery(".profile_sub").show();
+	  jQuery(".activity_tab").hide();
+	  jQuery(".user_profile_tab").show();
+	});	

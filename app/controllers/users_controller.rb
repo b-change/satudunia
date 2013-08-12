@@ -205,6 +205,8 @@ class UsersController < ApplicationController
   def edit
     @user = current_user
     @user.timezone = AppConfig.default_timezone if @user.timezone.blank?
+    @activities= @user.activities.page(params["page"]) 
+
   end
 
   def update
@@ -407,6 +409,12 @@ class UsersController < ApplicationController
   def new_password
     sign_out(current_user)
     redirect_to new_user_password_path
+  end
+
+  def edit_activity
+    @user= current_user
+    @activities= @user.activities.page(params["page"]) 
+    
   end
 
   protected

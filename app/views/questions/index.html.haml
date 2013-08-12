@@ -28,6 +28,7 @@
 					%a{:href => "http://www.industrialthemes.com/made/activity/", :title => "The public activity for everyone on this site."}
 						All Questions
 						%span= @questions.count
+						.ajax-loader
 		#subnav.item-list-tabs{:role => "navigation"}
 			%ul
 				%li#members-order-select.last.filter
@@ -46,98 +47,7 @@
 				#members-dir-list.members.dir-list1
 					= paginate @questions
 			%table.forum#question_ajax
-				%thead
-					%tr
-						/%h2 Newest
-						%th#th-votes Votes
-						%th#th-answers Answers
-						/ %th#th-views Views
-						%th#th-question Question
-				%tbody
-					- @questions.each do |question|
-						= render "questions/plus_question", :question => question
-		/ #forums-dir-list-hot.dir-list{:style=>"display:none;"}
-		/ 	#pag-top.pagination
-		/ 		#member-dir-count-top.pag-count
-		/ 			Viewing questions #{@questionsHot.options[:skip]} to #{@questionsHot.options[:skip]+@questionsHot.options[:limit]} (of #{@questionsHot.count} active members)
-		/ 		#members-dir-list.members.dir-list1
-		/ 			= paginate @questionsHot
-		/ 	%table.forum
-		/ 		%thead
-		/ 			%tr
-		/ 				/%h2 Hot
-		/ 				%th#th-votes Votes
-		/ 				%th#th-answers Answers
-		/ 				/ %th#th-views Views
-		/ 				%th#th-question Question
-		/ 		%tbody
-		/ 			- @questionsHot.each do |question|
-		/ 				= render "questions/plus_question", :question => question
-		/ #forums-dir-list-featured.dir-list{:style=>"display:none;"}
-		/ 	#pag-top.pagination
-		/ 		#member-dir-count-top.pag-count
-		/ 			Viewing questions #{@questionsViews.options[:skip]} to #{@questionsViews.options[:skip]+@questionsViews.options[:limit]} (of #{@questionsViews.count} active members)
-		/ 		#members-dir-list.members.dir-list1
-		/ 			= paginate @questionsViews
-		/ 	%table.forum
-		/ 		%thead
-		/ 			%tr
-		/ 				/%h2 Featured
-		/ 				%th#th-votes Votes
-		/ 				%th#th-answers Answers
-		/ 				/ %th#th-views Views
-		/ 				%th#th-question Question
-		/ 		%tbody
-		/ 			- @questionsViews.each do |question|
-		/ 				= render "questions/plus_question", :question => question
-		/ #forums-dir-list-votes.dir-list{:style=>"display:none;"}
-		/ 	#pag-top.pagination
-		/ 		#member-dir-count-top.pag-count
-		/ 			Viewing questions #{@questionsVotes.options[:skip]} to #{@questionsVotes.options[:skip]+@questionsVotes.options[:limit]} (of #{@questionsVotes.count} active members)
-		/ 		#members-dir-list.members.dir-list1
-		/ 			= paginate @questionsVotes
-		/ 	%table.forum
-		/ 		%thead
-		/ 			%tr
-		/ 				/%h2 Votes
-		/ 				%th#th-votes Votes
-		/ 				%th#th-answers Answers
-		/ 				/ %th#th-views Views
-		/ 				%th#th-question Question
-		/ 		%tbody
-		/ 			- @questionsVotes.each do |question|
-		/ 				= render "questions/plus_question", :question => question
-		/ #forums-dir-list-unanswered.dir-list{:style=>"display:none;"}
-		/ 	#pag-top.pagination
-		/ 		#member-dir-count-top.pag-count
-		/ 			Viewing questions #{@questionsUnanswered.options[:skip]} to #{@questionsUnanswered.options[:skip]+@questionsUnanswered.options[:limit]} (of #{@questionsUnanswered.count} active members)
-		/ 		#members-dir-list.members.dir-list1
-		/ 			= paginate @questionsUnanswered
-		/ 	%table.forum
-		/ 		%thead
-		/ 			%tr
-		/ 				/%h2 Unanswered
-		/ 				%th#th-votes Votes
-		/ 				%th#th-answers Answers
-		/ 				/ %th#th-views Views
-		/ 				%th#th-question Question
-		/ 		%tbody
-		/ 			- @questionsUnanswered.each do |question|
-		/ 				= render "questions/plus_question", :question => question
-		/ #forums-dir-list-xxx.dir-list{:style=>"display:none;"}
-		/ 	#pag-top.pagination
-		/ 		#member-dir-count-top.pag-count
-		/ 			Viewing questions 0 (of 0 active members)
-		/ 	%table.forum
-		/ 		%thead
-		/ 			%tr
-		/ 				/%h2 XXX
-		/ 				%th#th-votes Votes
-		/ 				%th#th-answers Answers
-		/ 				/ %th#th-views Views
-		/ 				%th#th-question Question
-		/ 		%tbody
-		/ 			%p xxx
+				= render "questions/plus_question"
 		#forums-dir-list-newest.dir-list
 			#pag-top.pagination
 				#member-dir-count-top.pag-count
@@ -186,8 +96,6 @@
 					.section-for-header
 						Disqus
 			.section-arrow 
-
-			
 			#disqus_thread
 			:javascript
 				/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
@@ -245,4 +153,4 @@
 	// 	});
 	// });
 	// get ajax data
-	Experimental.getAjaxData("#activity-filter-by","/question_ajax","GET","question_ajax  tbody","question_ajax");
+	Experimental.getAjaxData("#activity-filter-by","/question_ajax","GET","question_ajax  ","question_ajax");

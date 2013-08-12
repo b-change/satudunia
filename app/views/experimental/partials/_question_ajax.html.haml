@@ -1,2 +1,4 @@
-- @questions.each do |question|
-	= render "questions/plus_question", :question => question
+-if @questions.blank?
+	= render "experimental/partials/empty_record_message.html"
+-else
+	= render "questions/plus_question"

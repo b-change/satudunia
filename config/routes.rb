@@ -79,6 +79,7 @@ Rails.application.routes.draw do
       get :join
       post :connect
       get :new_password
+      get :edit_activity
     end
 
     member do
@@ -402,11 +403,10 @@ Rails.application.routes.draw do
         get :features
         get :events
         get :crowdfunding 
+        get :dashboard, :path=> "/profile/dashboard"
         # get :announce, :path=> "/announcements"
-
         # experimental routes
         get "*a", :to => "experimental#routing_error"
-
       end
     end
   end 
@@ -416,4 +416,6 @@ Rails.application.routes.draw do
   root :to => 'experimental/experimental#index'
   #match '/:controller(/:action(/:id))'
   match '*a', :to => 'public_errors#routing'
+
+
 end
