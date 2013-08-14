@@ -13,6 +13,8 @@
 				%a{:style=>"float:left;"}
 					-if @user.use_gravatar?
 						= image_tag avatar_user_path(@user),:size=>'140x140',:class => "avatar"
+					-else                       
+						= image_tag(default_avatar_url('big'), :class=>"avatar")
 			#item-header-content
 				%h2
 					= link_to "#{user_realname(@user)}", user_path(@user)
@@ -23,15 +25,15 @@
 		#item-nav
 			#object-nav.item-list-tabs{:id=>"firstElement"}
 				%ul
-					%li#activity-personal-li
+					%li
 						%a#user-activity{:href => "javascript:void(0)",:data_send=>"activity"} Activity
-					%li#xprofile-personal-li.current.selected
+					%li.selected
 						%a#user-xprofile{:href => "javascript:void(0)",:data_send=>"profile",:user_id=>"#{@user.id}"} Profile
 					
 					=# tab_entry "li", "Survey", survey_user_path(@user), {:selected => "selected"}, {:class => "activity"}
 			#subnav.item-list-tabs.no-ajax.activity_sub{:role => "navigation"}
 				%ul
-					= render "users/show/user_activity_filters"
+					= render "users/activity_subtabs"
 			#subnav.item-list-tabs.no-ajax.profile_sub{:role => "navigation"}
 				%ul
 					= render "users/profile_subtabs"
@@ -70,20 +72,24 @@
 
 
 :javascript
-	jQuery(window).load(function(){
-		jQuery('#edit-user-link').click(function(){
-			jQuery('#edit-user-form').submit();
-		});
+	//jQuery(window).load(function(){
+	//	jQuery('#edit-user-link').click(function(){
+	//		jQuery('#edit-user-form').submit();
+	//	});
+	//});
+	jQuery("#object-nav_firstElement > ul > li").click(function(){
+		jQuery("#object-nav_firstElement > ul > li").removeClass('selected');
+		jQuery(this).addClass('selected');
 	});
 	jQuery("#user-activity").click(function(){
 		jQuery(".activity_sub").show();
 		jQuery(".profile_sub").hide();
-	  jQuery(".activity_tab").show();
-	  jQuery(".user_profile_tab").hide();
+		jQuery(".activity_tab").show();
+		jQuery(".user_profile_tab").hide();
 	});
 	jQuery("#user-xprofile").click(function(){
 		jQuery(".activity_sub").hide();
 		jQuery(".profile_sub").show();
-	  jQuery(".activity_tab").hide();
-	  jQuery(".user_profile_tab").show();
+		jQuery(".activity_tab").hide();
+		jQuery(".user_profile_tab").show();
 	});	

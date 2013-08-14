@@ -1,9 +1,9 @@
 %li.account_details
-	= link_to "Account Details", "#", :rel => "nofollow", :class => "pjax", :"data-layout" => "index", :id=>"all-tab"
+	= link_to "Account Details", "javascript:void(0)", :rel => "nofollow", :class => "pjax", :"data-layout" => "index", :id=>"acc-details"
 %li.account_settings
-	= link_to "Account Settings", "#", :rel => "nofollow", :class => "pjax", :"data-layout" => "index", :id=>"question1-tab"
+	= link_to "Account Settings", "javascript:void(0)", :rel => "nofollow", :class => "pjax", :"data-layout" => "index", :id=>"acc_settings"
 %li.email_settings
-	= link_to "Email Settings", "#", :rel => "nofollow", :class => "pjax", :"data-layout" => "answers", :id=>"answer-tab"
+	= link_to "Email Settings", "javascript:void(0)", :rel => "nofollow", :class => "pjax", :"data-layout" => "answers", :id=>"email"
 
 %li#activity-filter-select.last
 	%label{:for => "activity-filter-by"} Show:
@@ -12,3 +12,21 @@
 		%option{:value => "activity_update"} Account Settings
 		%option{:value => "new_blog_post"} Email Settings
 		
+
+:javascript
+	jQuery("#acc-details").click(function(){
+		jQuery("#all_checks").hide();
+		jQuery("#password_settings").hide();
+		jQuery("#details_page").show();
+
+	});
+	jQuery("#acc_settings").click(function(){
+		jQuery("#all_checks").show();
+		jQuery("#details_page").hide();
+		jQuery("#password_settings").hide();	  
+	});
+	jQuery("#email").click(function(){
+		jQuery("#all_checks").hide();
+		jQuery("#details_page").hide();
+		jQuery("#password_settings").show();	 
+	});

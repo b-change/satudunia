@@ -52,9 +52,9 @@ class Experimental::ExperimentalController < ApplicationController
 
   #partners action
   def partners
-    
+
   end
-  
+
   # action for admin tab
   def show_member
     @caseVarible = params[:dataSend]
@@ -112,8 +112,6 @@ class Experimental::ExperimentalController < ApplicationController
     redirect_to :controller=>'experimental/experimental', :action => 'dashboard'
   end
 
-  def dashboard
-  end
 
   def profile_settings
     
@@ -143,6 +141,7 @@ class Experimental::ExperimentalController < ApplicationController
     @body_id = "page3"
     @user= current_user
     @resources = Question.all.order_by(current_order).page(params["page"]).per(session[:per_page].blank? ? 15 : session[:per_page])
+    @questions = @resources
     resources_conditional_fetch(params[:queryData],exclude)
     respond_to do |format|
       format.html
@@ -160,10 +159,10 @@ class Experimental::ExperimentalController < ApplicationController
         else
           #@resources = Question.all.page(params["page"]).per(15) 
           #.order_by(current_order).page(params["page"]).per(session[:per_page].blank? ? 2 : session[:per_page])
-          @answers = nil
+          @resources = nil
       end
     end  
-
   end
+  
 
 end

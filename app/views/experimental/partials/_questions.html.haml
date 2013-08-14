@@ -1,0 +1,27 @@
+%ul#activity-stream.activity-list.item-list
+  -if @resources.blank?
+    = render "experimental/partials/empty_record_message.html"
+  -else
+    -@resources.each do |resource|
+      -#resource = resourc.question
+      -next if  resource.nil?
+      -last_target_id, last_target_date, owner = resource.find_last_target rescue ""
+      -title = resource.title rescue ""
+      - unless resource.nil? || resource.body.nil?
+        %li#activity-1672.xprofile.new_member.activity-item.mini
+          .activity-avatar
+            -if owner.use_gravatar?
+              = link_to image_tag avatar_user_path(owner),:size=>'35x35'
+            -else
+              %img.avatar.user-1227-avatar.avatar-50.photo{:alt => "Profile picture of zicrainnyRV", :height => "50", :src => "http://gravatar.com/avatar/5a0a1a5e96f190c339221f66d7b09b00?d=http://www.industrialthemes.com/made/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg&s=50&r=G", :width => "50"}/
+          .activity-content
+            .activity-header
+              %p
+                = link_to "#{owner.login.capitalize}"
+                Posted the question
+                %a.view.activity-time-since{:href => "#", :title => "View Discussion"}
+                  %span.time-since
+                    = time_ago_in_words(last_target_date)
+                    ago
+            .activity-inner
+              = link_to truncate(strip_tags(resource.body), :length => 150), question_path(resource, :anchor => "answer#{resource.id}"), :title => "",:class=>""

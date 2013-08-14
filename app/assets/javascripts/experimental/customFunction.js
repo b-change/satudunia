@@ -24,10 +24,10 @@ var Experimental = {
 	//method = method of sending data
 	//idToLoader = where you want to loade loader and data
 	//nameOfPartial = partial name to show
-	getAjaxData:function(actionId,url,method,idToLoader,nameOfPartial){
-		jQuery(actionId).change(function(){
+	getAjaxData:function(event,actionId,url,method,idToLoader,nameOfPartial,loaderIdOrClass){
+		jQuery(actionId).on(event,function(){
 		//variable value taker
-		jQuery(".ajax-loader").show();
+		jQuery(loaderIdOrClass).addClass("ajax-loader");
 		var valueTaker = jQuery(this).val();
 		jQuery.ajax({
 			type:method,
@@ -39,7 +39,7 @@ var Experimental = {
 
 			},
 			success:function(successObject){
-				jQuery(".ajax-loader").hide();
+				jQuery(loaderIdOrClass).removeClass("ajax-loader");
 				jQuery("#"+idToLoader).fadeIn('slow');
 				//alert(successObject);
 				//jQuery(classToShow).html(eval(successObject));

@@ -28,7 +28,7 @@
 					%a{:href => "http://www.industrialthemes.com/made/activity/", :title => "The public activity for everyone on this site."}
 						All Answers
 						%span= @answers.count rescue ""
-						.ajax-loader
+						.loader
 		#subnav.item-list-tabs{:role => "navigation"}
 			%ul
 				%li#members-order-select.last.filter
@@ -83,4 +83,4 @@
 		});
 	});
 	// ajax function
-	Experimental.getAjaxData("#activity-filter-by","/answers","GET","activity-stream","answer");
+	Experimental.getAjaxData("change","#activity-filter-by","/answers","GET","activity-stream","answer",".loader");

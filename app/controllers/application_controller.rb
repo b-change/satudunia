@@ -252,7 +252,6 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource_or_scope)
-    # debugger
     self.current_user.logged!(self.current_group)
    
     if resource_or_scope.is_a? User
@@ -300,7 +299,6 @@ class ApplicationController < ActionController::Base
   end
   # footer content for experimental
   def static_content
-    # debugger
     @staticContent = StaticPage.all
     @aboutContent = @staticContent.where(:static_key => 'about').first
     @active_member = Membership.where(state: "active").limit(5)

@@ -6,3 +6,5 @@
 			-else
 				- @activities.each do |activity|
 					= render "activities/activity", :activity => activity
+-@paginator = @activities
+= render :partial =>"pagination/pagination"
