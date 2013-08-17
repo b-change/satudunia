@@ -25,6 +25,17 @@ class BadgesController < ApplicationController
         end
       end
     end
+    
+    if params[:badge_search]
+      @badges = []
+      Badge.TOKENS.each do |token|
+        if params[:badge_search].strip.downcase.tr(" ", "_") == token
+          badge = Badge.new(:token => token)
+          @badges << badge
+        end
+      end
+    end
+
     respond_to do |format|
       format.html # index.html.erb
       format.json  { render :json => @badges }

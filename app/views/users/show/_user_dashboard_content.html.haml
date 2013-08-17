@@ -1,4 +1,2 @@
--@questions.each do |questions|
-  = render :partial => "experimental/partials/questions", :object => questions
--@paginator = @resources
-= render :partial =>"pagination/pagination"
+#return-data-ajax
+	= render :partial => "experimental/partials/questions" ,:locals => {:paginationType=>"questions"}

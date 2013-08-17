@@ -79,7 +79,7 @@ Rails.application.routes.draw do
       get :join
       post :connect
       get :new_password
-      get :edit_activity
+      
     end
 
     member do

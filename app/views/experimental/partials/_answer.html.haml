@@ -1,7 +1,10 @@
-%ul#activity-stream.activity-list.item-list
-	-if @answers.blank?
-		= render "experimental/partials/empty_record_message.html"
-	-else
+-if @answers.blank?
+	= render "experimental/partials/empty_record_message.html"
+-else
+	-@paginator = @answers
+	/ pagination_top
+	= render :partial =>"pagination/pagination",:locals => {:paginationType=>"answers"}
+	%ul#activity-stream.activity-list.item-list
 		-@answers.each do |answer|
 			-@question = answer.question
 			-next if @question.nil?
@@ -25,7 +28,6 @@
 										ago
 						.activity-inner
 							= link_to truncate(strip_tags(answer.body), :length => 150), question_path(answer.question, :anchor => "answer#{answer.id}"), :title => "",:class=>""
+	/ pagination_bottom
+	= render :partial =>"pagination/pagination",:locals => {:paginationType=>"answers"}
 	
-
-
-

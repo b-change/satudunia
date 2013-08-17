@@ -2,4 +2,4 @@
 -@resources.each do |resource|
   = render :partial => "questions/question", :object => resource
 -@paginator = @resources
-= render :partial =>"pagination/pagination"
+= render :partial =>"pagination/pagination",:locals => {:paginationType=>"questions"}

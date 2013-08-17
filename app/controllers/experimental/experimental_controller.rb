@@ -135,20 +135,25 @@ class Experimental::ExperimentalController < ApplicationController
   def crowdfunding
     @title="Crowd Funding"
   end
-  #action dashboard
+  #action dashboard improved by vivek
   def dashboard
-    exclude = [:votes, :_keywords]
-    @body_id = "page3"
-    @user= current_user
-    @resources = Question.all.order_by(current_order).page(params["page"]).per(session[:per_page].blank? ? 15 : session[:per_page])
-    @questions = @resources
-    resources_conditional_fetch(params[:queryData],exclude)
+    @user = current_user
+    current_order = (params[:order_by].nil?)? "created_at desc" :  params[:order_by]
+    # @resources = Question.all.order_by(current_order).page(params["page"]).per(15)
+    # question variable
+    @questions = @user.questions.all.order_by(current_order).page(params[:page]).per(15)
+    # answer variable
+    @answers = @user.answers.page(params[:page]).per(15)
+    #following variable
+    @following = ""
     respond_to do |format|
       format.html
-      format.json { render :json => @resources } 
+      # format.json { render :json => @resources } 
       format.js{render "/experimental/experimental/ajax_entry"}
     end
   end
+  # action dashboard ends here
+
   #action for dashboard
   def resources_conditional_fetch(queryData,exclude)
     # unless condition for ajax condition
@@ -156,6 +161,7 @@ class Experimental::ExperimentalController < ApplicationController
       case queryData
         when "newest"
           @resources = Question.all.order(:created_at=>:desc).page(params["page"]).per(15)
+          @questions = @resources
         else
           #@resources = Question.all.page(params["page"]).per(15) 
           #.order_by(current_order).page(params["page"]).per(session[:per_page].blank? ? 2 : session[:per_page])

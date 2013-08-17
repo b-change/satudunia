@@ -1,1 +1,5 @@
+// jQuery("#<%= params[:idLoad] %>").html("<%= escape_javascript(render 'experimental/partials/'+params[:nameOfPartial]) %>");
 jQuery("#<%= params[:idLoad] %>").html("<%= escape_javascript(render 'experimental/partials/'+params[:nameOfPartial]) %>");
+<% unless params[:subTabId].blank? %>
+	jQuery("#<%= params[:subTabId] %>").html("<%= escape_javascript(render params[:subTabPartial]) %>");
+<% end %>

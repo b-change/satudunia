@@ -1,13 +1,20 @@
--@resources.each do |resource|
-  -if ["followers", "following"].include? @active_subtab.to_s
-    .list-users
-      %ul.items#users
-        = render :partial => "membership", :object => resource
+-if @following.blank?
+	= render "experimental/partials/empty_record_message.html"
+-else
+	-@paginator = @following
+	/ pagination_top
+	= render :partial =>"pagination/pagination",:locals => {:paginationType=>"follows"}
+	%ul#activity-stream.activity-list.item-list
+		-@following.each do |resource|
+			-if ["followers", "following"].include? @active_subtab.to_s
+				.list-users
+					%ul.items#users
+						= render :partial => "membership", :object => resource
 
-  -elsif "answers" == @active_subtab.to_s
-    = render "answers/answer", :question => resource.question, :answer => resource
-  -else
-    = render :partial => "questions/question", :object => resource
-/ pagination    
--@paginator = @resources
-= render :partial =>"pagination/pagination"
+			-elsif "answers" == @active_subtab.to_s
+				= render "answers/answer", :question => resource.question, :answer => resource
+			-else
+				= render :partial => "questions/question", :object => resource 
+	/ pagination_bottom
+	= render :partial =>"pagination/pagination",:locals => {:paginationType=>"follows"}
+		

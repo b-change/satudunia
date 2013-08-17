@@ -294,12 +294,7 @@
                     %option{:value => "Phone"} Phone
                 .editfield
                   = f.label "Other Comments"
-                  = f.text_area :comment, :style => "width: 250px",:placeholder=>"Please Enter Comment"
-                .editfield
-                  = f.label "I am interested in"
-                  %select#req_method{:name => "req_method", :class=>"select-text-adj"}
-                    %option{:value => "Report a Technical Problem"}  I am interested in
-    
+                  = f.text_area :comment, :style => "width: 250px",:placeholder=>"Please Enter Comment"    
           .contact-section-bottom
             = link_to "Submit".html_safe, "javascript:void(0);", :id => "send_contact_us_link", :class=>"contact-button"
             = link_to "Clear".html_safe, "#", :class=>"contact-button"

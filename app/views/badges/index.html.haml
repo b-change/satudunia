@@ -8,7 +8,7 @@
 			.section-wrapper
 				.section
 					.comment-bubble
-						%a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 0
+						/ %a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 0
 					/ making title stronger
 					.section-for-header
 						%i.icon-bookmark
@@ -16,18 +16,18 @@
 			.section-arrow 
 		/ content area 
 	#content.page-content.badges-title-adj
-		%form#members-directory-form.dir-form{:action => "", :method => "post"}
-			#members-dir-search.dir-search{:role => "search"}
-				%label
-					%input#members_search{:name => "s", :placeholder => "Search Badges...", :type => "text"}/
-				%input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
+		/ %form#members-directory-form.dir-form{:action => "/badges"}
+		#members-dir-search.dir-search{:role => "search"}
+			%label
+				%input#members_search{:name => "badge_search", :placeholder => "Search Badges...", :type => "text"}/
+			%input#members_search_submit{:name => "members_search_submit", :type => "button", :value => "Search"}/
 		.item-list-tabs.activity-type-tabs{:role => "navigation"}
 			%ul
 				%li#members-order-select.selected
 					%a{:href => "http://www.industrialthemes.com/made/activity/", :title => "The public activity for everyone on this site."}
 						All Badges
 						%span= @badges.count
-						.ajax-loader
+						.loader
 		#subnav.item-list-tabs{:role => "navigation"}
 			%ul
 				%li#members-order-select.last.filter
@@ -41,7 +41,7 @@
 		.overview-wrapper
 			
 			.overview-new
-				%h2
+				%h2.justify-content.badges-description-adj
 					= t("badges.index.description")
 				.left-panel
 					.badges#badges_ajax
@@ -78,4 +78,25 @@
 	/banner box
 	= render "experimental/partials/banner_box"
 :javascript
-	Experimental.getAjaxData("change","#activity-filter-by","/badges","GET","badges_ajax","badges_list");
+	Experimental.getAjaxData("change","#activity-filter-by","/badges","GET","badges_ajax","badges_list",".loader","","","");
+	jQuery('#members_search_submit').click(function(e){
+	
+	  var badge_search = jQuery("#members_search").val();
+		e.preventDefault();
+		jQuery(".loader").addClass("ajax-loader");
+		jQuery.ajax({			
+			url:'/badges?nameOfPartial=badges_list&idLoad=badges_ajax',
+			data:{ badge_search: badge_search},
+			dataType:"script",
+			error:function(errorObject){				
+
+			},
+			success:function(successObject){
+				jQuery(".loader").removeClass("ajax-loader");
+				
+			}
+		});
+	})
+	
+	
+

@@ -11,4 +11,4 @@
     = render :partial => "questions/question", :object => resource
 / pagination    
 -@paginator = @resources
-= render :partial =>"pagination/pagination"
+= render :partial =>"pagination/pagination",:locals => {:paginationType=>"follows"}

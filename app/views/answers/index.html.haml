@@ -40,19 +40,16 @@
 						%option{:value => "votes"} Votes
 						%option{:value => "unanswerd"} Unanswered
 						%option{:value => "xxx"} XXX
-		#forums-dir-list-newest.dir-list
-			#pag-top.pagination
-				#member-dir-count-top.pag-count
-					Viewing questions #{@answers.options[:skip]} to #{@answers.options[:skip]+@answers.options[:limit]} (of #{@answers.count} active members)
-				#members-dir-list.members.dir-list1
-					= paginate @answers
-		.activity{:role=>"admin"}
+		/ #forums-dir-list-newest.dir-list
+		/ 	#pag-top.pagination
+		/ 		#member-dir-count-top.pag-count
+		/ 			Viewing questions #{@answers.options[:skip]} to #{@answers.options[:skip]+@answers.options[:limit]} (of #{@answers.count} active members)
+		/ 		#members-dir-list.members.dir-list1
+		/ 			= paginate @answers
+		#return-data-ajax
 			/ partial for answer
 			=render 'experimental/partials/answer',:question => @question
 		
-	 
-
-
 .sidebar
 	/= render "experimental/partials/recent_tags"
 	= render "experimental/partials/left_bar"
@@ -67,20 +64,9 @@
 	/banner box
 	=# render "experimental/partials/banner_box"
 
-
-
 :javascript
-	jQuery(document).ready(function($){
-		$("#activity-filter-by").change(function(){
-			//alert("asdf");
-			//event.preventDefault();
-			var valueTaker = $(this).val().split("-");
-
-			$(".dir-list").fadeOut('slow');
-			$("#forums-dir-list-"+valueTaker[0]).fadeIn('slow','linear');
-			
-			
-		});
-	});
 	// ajax function
-	Experimental.getAjaxData("change","#activity-filter-by","/answers","GET","activity-stream","answer",".loader");
+	Experimental.getAjaxData("change","#activity-filter-by","/answers","GET","return-data-ajax","answer",".loader","","","");
+	//pagination_ajax
+	Experimental.getAjaxData("click","#answers_pagination .pagination-ajax","/answers","GET","return-data-ajax","answer",".loader","","","yes");
+	

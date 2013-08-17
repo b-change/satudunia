@@ -1,16 +1,17 @@
-%li.account_details
-	= link_to "Account Details", "javascript:void(0)", :rel => "nofollow", :class => "pjax", :"data-layout" => "index", :id=>"acc-details"
-%li.account_settings
-	= link_to "Account Settings", "javascript:void(0)", :rel => "nofollow", :class => "pjax", :"data-layout" => "index", :id=>"acc_settings"
-%li.email_settings
-	= link_to "Email Settings", "javascript:void(0)", :rel => "nofollow", :class => "pjax", :"data-layout" => "answers", :id=>"email"
-
-%li#activity-filter-select.last
-	%label{:for => "activity-filter-by"} Show:
-	%select#activity-filter-by
-		%option{:value => "-1"} Account Details
-		%option{:value => "activity_update"} Account Settings
-		%option{:value => "new_blog_post"} Email Settings
+/ %li.account_details
+/ 	= link_to "Account Details", "javascript:void(0)", :rel => "nofollow", :class => "pjax", :"data-layout" => "index", :id=>"acc-details"
+/ %li.account_settings
+/ 	= link_to "Account Settings", "javascript:void(0)", :rel => "nofollow", :class => "pjax", :"data-layout" => "index", :id=>"acc_settings"
+/ %li.email_settings
+/ 	= link_to "Email Settings", "javascript:void(0)", :rel => "nofollow", :class => "pjax", :"data-layout" => "answers", :id=>"email"
+#subnav.item-list-tabs.no-ajax{:role => "navigation"}
+	%ul
+		%li#activity-filter-select.last
+			%label{:for => "activity-filter-by"} Show:
+			%select#activity-filter-by
+				%option{:value => "-1", :id=>"acc-details"} Account Details
+				%option{:value => "activity_update", :id=>"acc_settings"} Account Settings
+				%option{:value => "new_blog_post", :id=>"email"} Email Settings
 		
 
 :javascript

@@ -1,24 +1,32 @@
-
-%thead
-  %tr
-    /%h2 Newest
-    %th#th-votes Votes
-    %th#th-answers Answers
-    / %th#th-views Views
-    %th#th-question Question
-%tbody
-  - @questions.each do |question|
-    -last_target_id, last_target_date, owner = question.find_last_target
-    %tr
-      %td.td-votescount= question.votes_count
-      %td.td-answerscount= question.answers_count
-      / %td.td-viewscount= question.countquestions.sum(:qus_count).to_i
-      %td.td-question
-        = link_to truncate(strip_tags(question.title), :length => 50), question_path(question), :class=>"topic-title"
-        %p.topic-meta
-          %span.topic-by
-            Started by
-          %span.topic-in= link_to "#{owner.login.capitalize}"
-          %span.topic-by
-            = time_ago_in_words(last_target_date)
-            ago
+-if @questions.blank?
+  = render "experimental/partials/empty_record_message.html"
+-else
+  -@paginator = @questions
+  / pagination_top
+  = render :partial =>"pagination/pagination",:locals => {:paginationType=>"questions"}
+  %table.forum
+    %thead
+      %tr
+        /%h2 Newest
+        %th#th-votes Votes
+        %th#th-answers Answers
+        / %th#th-views Views
+        %th#th-question Question
+    %tbody
+      - @questions.each do |question|
+        -last_target_id, last_target_date, owner = question.find_last_target
+        %tr
+          %td.td-votescount= question.votes_count
+          %td.td-answerscount= question.answers_count
+          / %td.td-viewscount= question.countquestions.sum(:qus_count).to_i
+          %td.td-question
+            = link_to truncate(strip_tags(question.title), :length => 50), question_path(question), :class=>"topic-title"
+            %p.topic-meta
+              %span.topic-by
+                Started by
+              %span.topic-in= link_to "#{owner.login.capitalize}"
+              %span.topic-by
+                = time_ago_in_words(last_target_date)
+                ago
+  / pagination_bottom
+  = render :partial =>"pagination/pagination",:locals => {:paginationType=>"questions"}

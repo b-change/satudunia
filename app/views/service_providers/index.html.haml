@@ -15,33 +15,31 @@
           / making title stronger
           .section-for-header
             /%i.icon-vcard
-            Questions and Answers  
+            Services Map
       .section-arrow 
   #content.page-content
     %form#members-directory-form.dir-form{:action => "", :method => "post"}
-      %h3 Questions
+      %h3 Mapping
       #members-dir-search.dir-search{:role => "search"}
         %label
-          %input#members_search{:name => "s", :placeholder => "Search Questions...", :type => "text"}/
+          %input#members_search{:name => "s", :placeholder => "Search Services...", :type => "text"}/
         %input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
         %input#members_search_submit{:name => "members_search_submit", :type => "reset", :value => "x", :style=>"opacity:1;"}/
     .item-list-tabs.activity-type-tabs{:role => "navigation"}
       %ul
         %li#members-order-select.selected
           %a{:href => "http://www.industrialthemes.com/made/activity/", :title => "The public activity for everyone on this site."}
-            All Questions
+            All Services
             %span= @serviceProviders.count
     #subnav.item-list-tabs{:role => "navigation"}
       %ul
         %li#members-order-select.last.filter
           %label{:for => "members-order-by"} Order By:
           %select#activity-filter-by
-            %option{:value => "newest-question-show"} Newest
-            %option{:value => "hot-question-show"} Hot 
-            %option{:value => "featured-question-show"} Featured
-            %option{:value => "votes-question-show"} Votes
-            %option{:value => "unanswered-question-show"} Unanswered
-            %option{:value => "xxx-question-show"} XXX
+            %option{:value => ""} Singapore
+            %option{:value => ""} Thailand
+            %option{:value => ""} Indonesia
+            %option{:value => ""} Philippines
     #forums-dir-list-newest.dir-list
       #pag-top.pagination
         #member-dir-count-top.pag-count

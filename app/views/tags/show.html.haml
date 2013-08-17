@@ -24,11 +24,8 @@
       .add-a-new-tag
         -@tags.each do |tag|
           .each
-            = render "tag", :tag => tag, :show_counter => true
-            -if tag.has_icon?
-              = image_tag tag_icon_path(current_group,tag.name)
-            %p
-              = tag.description
+            %h2
+              = tag.name.capitalize rescue ""
     .item-list-tabs.activity-type-tabs{:role => "navigation"}
       %ul
         %li#members-order-select.selected

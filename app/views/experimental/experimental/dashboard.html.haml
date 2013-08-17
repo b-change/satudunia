@@ -54,13 +54,13 @@
             %a{:href=>"javascript:void(0)",:id=>"questions-ajax"}
               Questions
               %span
-                0
+                = (@questions.blank?)? 0 : @questions.count
               .loader
           %li.user-xprofile
             %a{:href=>"javascript:void(0)",:id=>"answer-ajax"}
               answers
               %span
-                0
+                = (@answers.blank?)? 0 : @answers.count
               .loader
           %li.user-following
             %a{:href=>"javascript:void(0)",:id=>"following-ajax"}
@@ -77,12 +77,12 @@
       #subnav.item-list-tabs.no-ajax{:role => "navigation"}
         %ul
           = render "users/show/user_dashboard_filters"
+    / main div for setting ajax data
     #members-dir-list.members.dir-list.content_div
-      %ul#members-list.items-list
-        = render "users/show/user_#{params[:action]}_content"
+      = render "users/show/user_#{params[:action]}_content"
     #members-dir-list.members.dir-list.follows_div{:style=>"display:none"}
-      %ul#members-list.items-list
-        = render "users/show/user_follows_content"
+      / %ul#members-list.items-list
+      /   = render "users/show/user_follows_content"
 .sidebar
   = render "experimental/partials/user_info"
 
@@ -92,76 +92,10 @@
     jQuery("#object-nav_firstElement > ul > li").removeClass('selected');
     jQuery(this).addClass('selected');
   });
-  //ajax-loader
-  jQuery(document).ready(function($){
-    $("#activity-filter-by").change(function(){
-      //alert("asdf");
-      //event.preventDefault();
-      var valueTaker = $(this).val().split("-");
-
-      $(".dir-list").fadeOut('slow');
-      $("#forums-dir-list-"+valueTaker[0]).fadeIn('slow','linear');
-      
-      
-    });
-  });
-  // ajax function
-  Experimental.getAjaxData("click","#answer-ajax","/answers","GET","activity-stream","answer","#answer-ajax .loader");
-  Experimental.getAjaxData("click","#questions-ajax","/profile/dashboard","GET","activity-stream","questions","#questions-ajax .loader");
-  Experimental.getAjaxData("click","#following-ajax","/users/#{current_user.id}/follows","GET","activity-stream","user_follows_content","#following-ajax .loader");
+  // ajax function for answer and answer pagination
+  Experimental.getAjaxData("click","#answer-ajax,#answers_pagination .pagination-ajax","/profile/dashboard","GET","return-data-ajax","answer","#answer-ajax .loader","","","yes");
+  // ajax function for question and question pagination
+  Experimental.getAjaxData("click","#questions-ajax,#questions_pagination .pagination-ajax","/profile/dashboard","GET","return-data-ajax","questions","#questions-ajax .loader","","","yes");
+  // ajax function for follwing and following pagination
+  Experimental.getAjaxData("click","#following-ajax","/users/#{current_user.id}/follows","GET","return-data-ajax","user_follows_content","#following-ajax .loader","","","");
   
-  // jQuery(".user-following").click(function(){
-  //   jQuery(".content_div").hide();
-  //   jQuery(".follows_div").show();
-    
-  // });
-  // jQuery(".user-xprofile").click(function(){
-  //   jQuery(".content_div").show();
-  //   jQuery(".follows_div").hide();
-    
-  // });
-
-
-
-
-/   jQuery(window).load(function (){
-
-/     switch('#{params[:sort]}'){
-/       case "oldest":
-/         $('#sort_oldest').addClass('active-tab');
-/         break;
-/       case "views":
-/         $('#sort_views').addClass('active-tab');
-/         break;
-/       case "votes":
-/         $('#sort_votes').addClass('active-tab');
-/         break;
-/       case "questions":
-/         $('#question-tab').addClass('active-tab');
-/         $('#question1-tab').addClass('active-tab');
-/         break;
-/       case "answers":
-/         $('#answer-tab').addClass('active-tab');
-/         break;
-/       case "following":
-/         $('#following-tab').addClass('active-tab');
-/         break;
-/       case "followers":
-/         $('#followers-tab').addClass('active-tab');
-/         break;
-/       case "all":
-/         $('#all-tab').addClass('active-tab');
-/         break;
-/       case "users":
-/         $('#user-tab').addClass('active-tab');
-/         break;
-/       case "pages":
-/         $('#page-tab').addClass('active-tab');
-/         break;
-/       default:
-/         $('#sort_newest,#question-tab,#all-tab').addClass('active-tab');
-/         break;
-/     }
-/   });
-  
-

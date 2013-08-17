@@ -7,8 +7,8 @@
 var Experimental = {
 	getMainContent: function(contentVariable){
 		// for making first character styled
-    	var firstCharacter = contentVariable.trim().substr(1);
-    	jQuery(".filter-content").html(firstCharacter); 
+			var firstCharacter = contentVariable.trim().substr(1);
+			jQuery(".filter-content").html(firstCharacter); 
 	},
 	// getMainContentEnds here
 	// making current tab active
@@ -19,20 +19,23 @@ var Experimental = {
 		});
 
 	},
+	//event = event is the trigger to fire ajax i.e click,change e.t.c
 	//actionId = through event will fire
 	//url = url for ajax action
 	//method = method of sending data
 	//idToLoader = where you want to loade loader and data
 	//nameOfPartial = partial name to show
-	getAjaxData:function(event,actionId,url,method,idToLoader,nameOfPartial,loaderIdOrClass){
-		jQuery(actionId).on(event,function(){
+	getAjaxData:function(event,actionId,url,method,idToLoader,nameOfPartial,loaderIdOrClass,subTabId,subTabPartial,pagination){
+		jQuery(document).on(event,actionId,function(){
+		var subTab = (subTabId.length==0)? "":"&subTabId="+subTabId+"&subTabPartial="+subTabPartial
 		//variable value taker
 		jQuery(loaderIdOrClass).addClass("ajax-loader");
-		var valueTaker = jQuery(this).val();
+		var valueTaker = (typeof(jQuery(this).attr("value"))=="undefined")? "" : jQuery(this).attr("value");
+		var paginationVar = (pagination.length==0)? "&page=" : "&page="+valueTaker;
 		jQuery.ajax({
 			type:method,
 			url:url,
-			data:"queryData="+valueTaker+"&idLoad="+idToLoader+"&nameOfPartial="+nameOfPartial,
+			data:"queryData="+valueTaker+"&idLoad="+idToLoader+"&nameOfPartial="+nameOfPartial+paginationVar+subTab,
 			dataType:"script",
 			error:function(errorObject){
 				alert(errorObject.toSource());

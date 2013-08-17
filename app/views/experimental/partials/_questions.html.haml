@@ -1,8 +1,11 @@
-%ul#activity-stream.activity-list.item-list
-  -if @resources.blank?
-    = render "experimental/partials/empty_record_message.html"
-  -else
-    -@resources.each do |resource|
+-if @questions.blank?
+  = render "experimental/partials/empty_record_message.html"
+-else
+  -@paginator = @questions
+  / pagination_top
+  = render :partial =>"pagination/pagination",:locals => {:paginationType=>"questions"}
+  %ul#activity-stream.activity-list.item-list
+    -@questions.each do |resource|
       -#resource = resourc.question
       -next if  resource.nil?
       -last_target_id, last_target_date, owner = resource.find_last_target rescue ""
@@ -25,3 +28,5 @@
                     ago
             .activity-inner
               = link_to truncate(strip_tags(resource.body), :length => 150), question_path(resource, :anchor => "answer#{resource.id}"), :title => "",:class=>""
+  / pagination_bottom
+  = render :partial =>"pagination/pagination",:locals => {:paginationType=>"questions"}

@@ -82,7 +82,8 @@
 						%li
 							%a{:href => "single-post.html"} Single Blog Post
 						%li
-							%a{:href => "single-review-numbers.html"} Service Areas
+							/%a{:href => "single-review-numbers.html"} Service Areas
+							=link_to 'Service Areas', service_providers_path
 							%ul
 								%li
 									%a{:href => "single-review-numbers.html"} Singapore 
@@ -205,11 +206,11 @@
 											%a{:href => follows_user_path(current_user)}
 												= "<i class='icon-circled-right'></i>#{t('.following')}".html_safe
 										%li
-											%a{:href => follows_user_path(current_user)+"?sort=followers"	}
-												= "<i class='icon-right'></i>#{t('.followers')}".html_safe	
+											%a{:href => follows_user_path(current_user)+"?sort=followers" }
+												= "<i class='icon-right'></i>#{t('.followers')}".html_safe  
 										%li
-											%a{:href => '/logout'	}
-												= "<i class='icon-logout'></i>#{t("layouts.application.logout")}".html_safe						
+											%a{:href => '/logout' }
+												= "<i class='icon-logout'></i>#{t("layouts.application.logout")}".html_safe           
 						/ Login drop ends
 					%select#select-menu-main-menu
 						%option Category Navigation
@@ -235,28 +236,34 @@
 				%br.clearer.hide-responsive-small/
 				.cat-menu.tax
 					%ul#menu-sub-menu.menu
-						- if change_lower_tab
-							%li.dashboard
-								%a{:href => dashboard_experimental_index_path,:title=>"Dashboard",:alt=>"Dashboard"} Dashboard
-							%li.profile
-								%a{:href => profile_experimental_index_path,:title=>"Dashboard",:alt=>"Dashboard"} Profile
-						- else
-							%li.public_about
-								%a{:href => public_about_experimental_index_path,:title=>"About us",:alt=>"About us"} About us
-							%li.terms
-								%a{:href => "/terms",:title=>"Terms of Use",:alt=>"Terms of Use"} Terms of Use
-						%li.public_privacy
-							%a{:href => "/privacy-policy",:title=>"privacy-policy",:alt=>"privacy-policy"} Privacy-policy
-						%li.badges
-							%a{:href => "/badges",:title=>"Badges",:alt=>"Badges"} Badges
-						%li.polls
-							%a{:href => "/polls",:title=>"Polls",:alt=>"Polls"} Polls
-						%li.survey
-							%a{:href => "/survey",:title=>"Survey",:alt=>"Survey"} Surveys
-						%li
-							%a{:href => "/questions",:title=>"Questions",:alt=>"Questions"} Questions 
-						%li
-							%a{:href => "/answers",:title=>"Answers",:alt=>"Answers"} Answers
+						-if params[:controller] == "questions"
+							= render "experimental/partials/subnavigation/questions_subnavigation"
+						-elsif params[:controller] == "service_providers" 
+							= render "experimental/partials/subnavigation/service_providers_subnavigation"
+						-else
+							= render "experimental/partials/subnavigation/common_subnavigation"
+						/ - if change_lower_tab
+						/   %li.dashboard
+						/     %a{:href => dashboard_experimental_index_path,:title=>"Dashboard",:alt=>"Dashboard"} Dashboard
+						/   %li.profile
+						/     %a{:href => profile_experimental_index_path,:title=>"Dashboard",:alt=>"Dashboard"} Profile
+						/ - else
+						/   %li.public_about
+						/     %a{:href => public_about_experimental_index_path,:title=>"About us",:alt=>"About us"} About us
+						/   %li.terms
+						/     %a{:href => "/terms",:title=>"Terms of Use",:alt=>"Terms of Use"} Terms of Use
+						/ %li.public_privacy
+						/   %a{:href => "/privacy-policy",:title=>"privacy-policy",:alt=>"privacy-policy"} Privacy-policy
+						/ %li.badges
+						/   %a{:href => "/badges",:title=>"Badges",:alt=>"Badges"} Badges
+						/ %li.polls
+						/   %a{:href => "/polls",:title=>"Polls",:alt=>"Polls"} Polls
+						/ %li.survey
+						/   %a{:href => "/survey",:title=>"Survey",:alt=>"Survey"} Surveys
+						/ %li
+						/   %a{:href => "/questions",:title=>"Questions",:alt=>"Questions"} Questions 
+						/ %li
+						/   %a{:href => "/answers",:title=>"Answers",:alt=>"Answers"} Answers
 				%br.clearer.hide-responsive-small
 				/ page wrapper ends here
 				/ dont miss bar starts from here
@@ -264,7 +271,7 @@
 				/ end of dont miss bar
 				/ main wrapper starts from here
 				#main-wrapper
-					#main-wrapper-dark		
+					#main-wrapper-dark    
 						- unless check_valid
 							= render "experimental/partials/social_side_bar"
 						- flash.each do |name, msg|
@@ -303,7 +310,7 @@
 			jQuery('#tabbed-Music-reviews > ul').tabs({ fx: { opacity: 'toggle', duration: 150 } });
 			jQuery('#tabbed-Movie-reviews > ul').tabs({ fx: { opacity: 'toggle', duration: 150 } });
 			jQuery('#tabbed-Fashion-reviews > ul').tabs({ fx: { opacity: 'toggle', duration: 150 } });
-			jQuery('#tabbed-Product-reviews > ul').tabs({ fx: { opacity: 'toggle', duration: 150 } });	
+			jQuery('#tabbed-Product-reviews > ul').tabs({ fx: { opacity: 'toggle', duration: 150 } });  
 			//colorbox
 			jQuery('.review .article-image a').colorbox({transition:'fade', speed:250});
 			jQuery('.single-post .content .article-image a').colorbox({transition:'fade', speed:250});
@@ -332,7 +339,7 @@
 				easingType: 'linear'
 			};
 			*/
-			jQuery().UItoTop({ easingType: 'easeOutExpo' });	
+			jQuery().UItoTop({ easingType: 'easeOutExpo' });  
 		});
 		//the reason they are here instead of in custom.js is because they contain php variables which can't
 		//be applied in a .js file. Also, make sure these come before the darken function.

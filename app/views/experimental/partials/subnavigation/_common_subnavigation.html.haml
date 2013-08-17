@@ -1,0 +1,22 @@
+- if change_lower_tab
+	%li.dashboard
+		%a{:href => dashboard_experimental_index_path,:title=>"Dashboard",:alt=>"Dashboard"} Dashboard
+	%li.profile
+		%a{:href => profile_experimental_index_path,:title=>"Dashboard",:alt=>"Dashboard"} Profile
+- else
+	%li.public_about
+		%a{:href => public_about_experimental_index_path,:title=>"About us",:alt=>"About us"} About us
+	%li.terms
+		%a{:href => "/terms",:title=>"Terms of Use",:alt=>"Terms of Use"} Terms of Use
+%li.public_privacy
+	%a{:href => "/privacy-policy",:title=>"privacy-policy",:alt=>"privacy-policy"} Privacy-policy
+%li.badges
+	%a{:href => "/badges",:title=>"Badges",:alt=>"Badges"} Badges
+%li.polls
+	%a{:href => "/polls",:title=>"Polls",:alt=>"Polls"} Polls
+%li.survey
+	%a{:href => "/survey",:title=>"Survey",:alt=>"Survey"} Surveys
+%li
+	%a{:href => "/questions",:title=>"Questions",:alt=>"Questions"} Questions 
+%li
+	%a{:href => "/answers",:title=>"Answers",:alt=>"Answers"} Answers
