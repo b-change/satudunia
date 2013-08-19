@@ -22,6 +22,7 @@
         .item-meta
           %span{:class=>"activity"}
             Joined 
+            = t("time.ago", :time => time_ago_in_words(current_user.created_at))
             =# t("time.ago", :time => time_ago_in_words(config.joined_at))
         .user-nicename
           Website:

@@ -19,8 +19,14 @@ class TagsController < ApplicationController
   end
 
   def show
+    @tagId = params[:id]
     @current_tags = @tag_names = params[:id].split("+")
     @tags =  current_scope.where(:name.in => @tag_names)
+    # condition for tags to capitalize then checking in database for experimental template tags
+    if @tags.nil? || @tags.count==0
+      @tag_names_equivalent = params[:id].capitalize.split("+")
+      @tags =  current_scope.where(:name.in => @tag_names_equivalent)
+    end
     @questions = current_group.questions.where(:tags => {:$all => @tag_names}, :banned => false).page(params["page"]).per(15)
     @title = "Questions tagged: #{@tag_names.join(', ')}"#I18n.t('tags.show.title', :tags => @tag_names.join(', '))
     #add_feeds_url(url_for(:format => "atom"), t("feeds.question"))

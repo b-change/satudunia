@@ -25,13 +25,15 @@ var Experimental = {
 	//method = method of sending data
 	//idToLoader = where you want to loade loader and data
 	//nameOfPartial = partial name to show
-	getAjaxData:function(event,actionId,url,method,idToLoader,nameOfPartial,loaderIdOrClass,subTabId,subTabPartial,pagination){
+	getAjaxData:function(event,actionId,url,method,idToLoader,nameOfPartial,loaderIdOrClass,subTabId,subTabPartial,pagination,data=null){
 		jQuery(document).on(event,actionId,function(){
 		var subTab = (subTabId.length==0)? "":"&subTabId="+subTabId+"&subTabPartial="+subTabPartial
 		//variable value taker
 		jQuery(loaderIdOrClass).addClass("ajax-loader");
 		var valueTaker = (typeof(jQuery(this).attr("value"))=="undefined")? "" : jQuery(this).attr("value");
 		var paginationVar = (pagination.length==0)? "&page=" : "&page="+valueTaker;
+		valueTaker = (data===null ? valueTaker : jQuery(data).val())
+		
 		jQuery.ajax({
 			type:method,
 			url:url,

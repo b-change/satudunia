@@ -2,42 +2,31 @@
 
 -if activity[:target_type] || activity[:trackable_type]
 
-  / vote and answer box starts
-  %ul#activity-stream.activity-list.item-list
-    %li#activity-1637.activity.activity_update.activity-item
-      .activity-avatar
-        %a
-          .q_ff-container
-            .q_ff
-              %span{:class => "q_f"}
-                0
-                / = activity
-              %span{:class => "q_f_1"}
-                votes
-              %span{:class => "q_fs1 vote-up-adjust"}
-                0
-                / = activity
-              %span{:class => "q_fs_1"}
-                answers
-            .q_ff-bottom
-              %span
-                / = activity.sum(:qus_count).to_i
-              0 views
-          / vote and answer box ends here
-      .activity-content
-        .activity-header
-          %p
-            %a.view.activity-time-since
-              = pjax_link_to activity.user.display_name, "user", user_path(activity.user), :style=>"padding-left:15px"
-              = activity.humanize_action.capitalize
-              %span.time-since
-                = time_ago_in_words(activity.updated_at)
-                Ago        
-        .activity-inner
-          %p 
-            %a
-              - if activity.action == "destroy"
-                = activity.target_name
-              - else
-                = pjax_link_to activity.target_name, activity.url_for_trackable(request.host), activity.params_for_trackable
-    .clear
+	/ vote and answer box starts
+	%ul#activity-stream.activity-list.item-list
+		%li#activity-1637.activity.activity_update.activity-item
+			.activity-avatar
+				%a
+					
+					-if current_user.use_gravatar?
+						= link_to image_tag avatar_user_path(current_user),:size=>'65x65'
+					-else
+						%img.avatar.user-1227-avatar.avatar-50.photo{:alt => "Profile picture of zicrainnyRV", :height => "50", :src => "http://gravatar.com/avatar/5a0a1a5e96f190c339221f66d7b09b00?d=http://www.industrialthemes.com/made/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg&s=50&r=G", :width => "50"}/
+						
+			.activity-content
+				.activity-header
+					%p
+						%a.view.activity-time-since
+							= pjax_link_to activity.user.display_name, "user", user_path(activity.user), :style=>"padding-left:15px"
+							= activity.humanize_action.capitalize
+							%span.time-since
+								= time_ago_in_words(activity.updated_at)
+								Ago        
+				.activity-inner
+					%p 
+						%a
+							- if activity.action == "destroy"
+								= activity.target_name
+							- else
+								= pjax_link_to activity.target_name, activity.url_for_trackable(request.host), activity.params_for_trackable
+		.clear

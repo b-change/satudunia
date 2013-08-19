@@ -8,11 +8,15 @@
       .section-wrapper
         .section
           .comment-bubble
-            %a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 0
+            %a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"}= @questions.count
           / making title stronger
           .section-for-header
             /%i.icon-vcard
-            Tags
+            - if @tags.present?
+              -@tags.each do |tag|  
+                Tags : : #{tag.name} 
+            - else
+              Tags : : #{@tagId}
       .section-arrow 
   #content.page-content
     %form#members-directory-form.dir-form{:action => "", :method => "post"}
@@ -21,16 +25,19 @@
           %input#members_search{:name => "s", :placeholder => "Search Questions...", :type => "text"}/
         %input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
         %input#members_search_submit{:name => "members_search_submit", :type => "reset", :value => "x", :style=>"opacity:1;"}/
-      .add-a-new-tag
-        -@tags.each do |tag|
-          .each
-            %h2
-              = tag.name.capitalize rescue ""
+      / .add-a-new-tag
+      /   -@tags.each do |tag|
+      /     .each
+      /       %h2
+      /         = tag.name.capitalize rescue ""
     .item-list-tabs.activity-type-tabs{:role => "navigation"}
       %ul
         %li#members-order-select.selected
           %a{:href => "http://www.industrialthemes.com/made/activity/", :title => "The public activity for everyone on this site."}
-            All Questions
+            - if @tags.present?
+              = @tags.first.name.capitalize
+            - else 
+              #{@tagId.capitalize}
             %span= @questions.count
     #subnav.item-list-tabs{:role => "navigation"}
       %ul
@@ -47,7 +54,7 @@
       //top pagination
       #pag-top.pagination
         #member-dir-count-top.pag-count
-          Viewing questions #{@questions.options[:skip]} to #{@questions.options[:skip]+@questions.options[:limit]} (of #{@questions.count} related tag)
+          Viewing questions #{@questions.options[:skip]} to #{@questions.options[:skip]+@questions.options[:limit]} (of #{@tagId.capitalize} Tag)
         #members-dir-list.members.dir-list1
           = paginate @questions
     .activity{:role=>"admin"}
@@ -58,9 +65,240 @@
     #forums-dir-list-newest.dir-list
       #pag-top.pagination
         #member-dir-count-top.pag-count
-          Viewing questions #{@questions.options[:skip]} to #{@questions.options[:skip]+@questions.options[:limit]} (of #{@questions.count} related tag)
+          Viewing questions #{@questions.options[:skip]} to #{@questions.options[:skip]+@questions.options[:limit]} (of #{@tagId.capitalize} tag)
         #members-dir-list.members.dir-list1
           = paginate @questions
+
+  .page-content.review.single-post
+    .overview-wrapper
+      .section-bottom
+        .category.qa-q-item-tags
+          .catname
+            Related Tags
+          .category-arrow
+        .tags-list-about
+          %span.tags1_2
+            %a{:href => "/tags/casual-partners"} Casual Partners
+            %span
+              x
+            %span.avoid_link_color{:style => "font-weight:600"}
+              0
+          &nbsp;
+          %span.tags1_2
+            %a{:href => "/tags/family"} Family
+            %span
+              x
+            %span.avoid_link_color{:style => "font-weight:600"}
+              1
+          &nbsp;
+          %span.tags1_2
+            %a{:href => "/tags/friends"} Friends
+            %span
+              x
+            %span.avoid_link_color{:style => "font-weight:600"}
+              2
+          &nbsp;
+          %span.tags1_2
+            %a{:href => "/tags/regular-partners"} Regular Partners
+            %span
+              x
+            %span.avoid_link_color{:style => "font-weight:600"}
+              0
+          &nbsp;
+          %span.tags1_2
+            %a{:href => "/tags/partying"} Partying
+            %span
+              x
+            %span.avoid_link_color{:style => "font-weight:600"}
+              1
+          %br          
+          %span.tags1_2
+            %a{:href => "/tags/sex"} Sex
+            %span
+              x
+            %span.avoid_link_color{:style => "font-weight:600"}
+              2
+          &nbsp;
+          %span.tags1_2
+            %a{:href => "/tags/situation"} Situation
+            %span
+              x
+            %span.avoid_link_color{:style => "font-weight:600"}
+              0
+          &nbsp;
+          %span.tags1_2
+            %a{:href => "/tags/compliance"} Compliance
+            %span
+              x
+            %span.avoid_link_color{:style => "font-weight:600"}
+              1
+          &nbsp;
+          %span.tags1_2
+            %a{:href => "/tags/regular-access-to-medication"} Regular Access to Medication
+            %span
+              x
+            %span.avoid_link_color{:style => "font-weight:600"}
+              2
+          &nbsp;
+          %br
+          %span.tags1_2
+            %a{:href => "/tags/dating"} Dating
+            %span
+              x
+            %span.avoid_link_color{:style => "font-weight:600"}
+              0
+          &nbsp;
+          %span.tags1_2
+            %a{:href => "/tags/minimizing-risk"} Minimizing-risk
+            %span
+              x
+            %span.avoid_link_color{:style => "font-weight:600"}
+              1
+          &nbsp;
+          %span.tags1_2
+            %a{:href => "/tags/safer-sex"} Safer Sex
+            %span
+              x
+            %span.avoid_link_color{:style => "font-weight:600"}
+              2
+          &nbsp;
+          %span.tags1_2
+            %a{:href => "/tags/accessing-medication"} Accessing Medication
+            %span
+              x
+            %span.avoid_link_color{:style => "font-weight:600"}
+              0
+          &nbsp;
+          %br
+          %span.tags1_2
+            %a{:href => "/tags/cost"} Cost
+            %span
+              x
+            %span.avoid_link_color{:style => "font-weight:600"}
+              1
+          &nbsp;
+          %span.tags1_2
+            %a{:href => "/tags/selecting-medication"} Selecting Medication
+            %span
+              x
+            %span.avoid_link_color{:style => "font-weight:600"}
+              2
+          &nbsp;
+          %span.tags1_2
+            %a{:href => "/tags/side-effects"} Side Effects
+            %span
+              x
+            %span.avoid_link_color{:style => "font-weight:600"}
+              0
+          &nbsp;
+          %span.tags1_2
+            %a{:href => "/tags/clinics"} Clinics
+            %span
+              x
+            %span.avoid_link_color{:style => "font-weight:600"}
+              1
+          &nbsp;
+          %span.tags1_2
+            %a{:href => "/tags/doctors"} Doctors
+            %span
+              x
+            %span.avoid_link_color{:style => "font-weight:600"}
+              2
+          &nbsp;
+          %br
+          %span.tags1_2
+            %a{:href => "/tags/migration"} Migration
+            %span
+              x
+            %span.avoid_link_color{:style => "font-weight:600"}
+              1
+          &nbsp;        
+          %span.tags1_2
+            %a{:href => "/tags/tourism"} Tourism
+            %span
+              x
+            %span.avoid_link_color{:style => "font-weight:600"}
+              2
+          &nbsp;
+          %span.tags1_2
+            %a{:href => "/tags/fitness"} Fitness
+            %span
+              x
+            %span.avoid_link_color{:style => "font-weight:600"}
+              0
+          &nbsp;
+          %span.tags1_2
+            %a{:href => "/tags/nutrition"} Nutrition
+            %span
+              x
+            %span.avoid_link_color{:style => "font-weight:600"}
+              1
+          &nbsp;
+          %span.tags1_2
+            %a{:href => "/tags/health-checks"} Health Checks
+            %span
+              x
+            %span.avoid_link_color{:style => "font-weight:600"}
+              2
+          &nbsp;
+          %br
+          %span.tags1_2
+            %a{:href => "/tags/health-insurance"} Health Insurance
+            %span
+              x
+            %span.avoid_link_color{:style => "font-weight:600"}
+              1
+          &nbsp;
+          %span.tags1_2
+            %a{:href => "/tags/incusion-&-descrimination"} Inclusion & Descrimination
+            %span
+              x
+            %span.avoid_link_color{:style => "font-weight:600"}
+              2
+          &nbsp;
+          %br
+    %br.clearer
+    %br.clearer
+    %br.clearer 
+    .review-content
+      .ribbon-shadow-left
+      .section-wrapper
+        .section
+          .comment-bubble
+            %a{:href => tag_path(@tagId, :anchor => "disqus_thread")} Link
+          / making title stronger
+          .section-for-header
+            Disqus
+      .section-arrow 
+      .overview-wrapper
+        .overview-new
+          .left-panel
+            #disqus_thread
+            :javascript
+              /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+              var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
+
+              /* * * DON'T EDIT BELOW THIS LINE * * */
+              (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js'; 
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); 
+              })();
+            %noscript 
+              Please enable JavaScript to view the 
+              %a{:href => "http://disqus.com/?ref_noscript"} comments powered by Disqus
+            %a.dsq-brlink{:href => "http://disqus.com"}
+              comments powered by
+              %span.logo-disqus Disqus
+            :javascript
+              var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
+              // required: replace example with your forum shortname
+              (function () {
+                var s = document.createElement('script'); s.async = true;
+                s.type = 'text/javascript';
+                s.src = '//'+disqus_shortname+'.disqus.com/count.js';
+                (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+              }());
 
 
 / content variable

@@ -5,6 +5,7 @@
 			= yield :title
 		%meta{:charset => "utf-8"}
 		/ SEO
+		%meta{:content => "c8c2b08298d35939-3cae02e526e3ee84-g7e43fb21f43e2136-12", :name => "google-translate-customization"}/
 		%meta{:content => "#{current_group.legend rescue ''}", :name => "description"}
 		%meta{:content => "#{current_group.default_tags.join(',') rescue ''}", :name => "keywords"}
 		%meta{:content => "BChange",:name => "author"}
@@ -109,26 +110,26 @@
 										%li
 											%a{:href => "#"} Regular Partners
 								%li
-									%a{:href => "#"} Drugs
+									%a{:href => "/tags/drugs"} Drugs
 									%ul
 										%li
 											%a{:href => "#"} Partying
 										%li
 											%a{:href => "#"} Sex
 								%li
-									%a{:href => "#"} First Diagnosis
+									%a{:href => "/tags/first-diagnosis"} First Diagnosis
 									%ul
 										%li
 											%a{:href => "#"} Situation
 								%li
-									%a{:href => "#"} Maintaining Treatment
+									%a{:href => "/tags/maintaining-treatment"} Maintaining Treatment
 									%ul
 										%li
 											%a{:href => "#"} Compliance
 										%li
 											%a{:href => "#"} Regular Access to Medication
 								%li
-									%a{:href => "#"} Relationships
+									%a{:href => "/tags/relationships"} Relationships
 									%ul
 										%li
 											%a{:href => "#"} Dating
@@ -137,14 +138,14 @@
 										%li
 											%a{:href => "#"} Friends
 								%li
-									%a{:href => "#"} Sex
+									%a{:href => "/tags/sex"} Sex
 									%ul
 										%li
 											%a{:href => "#"} Minimising-risk
 										%li
 											%a{:href => "#"} Safer Sex
 								%li
-									%a{:href => "#"} Starting Medication
+									%a{:href => "/tags/starting-medication"} Starting Medication
 									%ul
 										%li
 											%a{:href => "#"} Accessing Medication
@@ -155,7 +156,7 @@
 										%li
 											%a{:href => "#"} Side Effects
 								%li
-									%a{:href => "#"} Starting Treatment
+									%a{:href => "/tags/starting-treatment"} Starting Treatment
 									%ul
 										%li
 											%a{:href => "#"} Clinics
@@ -164,21 +165,21 @@
 										%li
 											%a{:href => "#"} Doctors
 								%li
-									%a{:href => "#"} Travel
+									%a{:href => "/tags/travel"} Travel
 									%ul
 										%li
 											%a{:href => "#"} Migration
 										%li
 											%a{:href => "#"} Tourism
 								%li
-									%a{:href => "#"} Well-being
+									%a{:href => "/tags/well-being"} Well-being
 									%ul
 										%li
 											%a{:href => "#"} Fitness
 										%li
 											%a{:href => "#"} Nutrition
 								%li
-									%a{:href => "#"} Work
+									%a{:href => "/tags/work"} Work
 									%ul
 										%li
 											%a{:href => "#"} Health Checks
@@ -242,28 +243,6 @@
 							= render "experimental/partials/subnavigation/service_providers_subnavigation"
 						-else
 							= render "experimental/partials/subnavigation/common_subnavigation"
-						/ - if change_lower_tab
-						/   %li.dashboard
-						/     %a{:href => dashboard_experimental_index_path,:title=>"Dashboard",:alt=>"Dashboard"} Dashboard
-						/   %li.profile
-						/     %a{:href => profile_experimental_index_path,:title=>"Dashboard",:alt=>"Dashboard"} Profile
-						/ - else
-						/   %li.public_about
-						/     %a{:href => public_about_experimental_index_path,:title=>"About us",:alt=>"About us"} About us
-						/   %li.terms
-						/     %a{:href => "/terms",:title=>"Terms of Use",:alt=>"Terms of Use"} Terms of Use
-						/ %li.public_privacy
-						/   %a{:href => "/privacy-policy",:title=>"privacy-policy",:alt=>"privacy-policy"} Privacy-policy
-						/ %li.badges
-						/   %a{:href => "/badges",:title=>"Badges",:alt=>"Badges"} Badges
-						/ %li.polls
-						/   %a{:href => "/polls",:title=>"Polls",:alt=>"Polls"} Polls
-						/ %li.survey
-						/   %a{:href => "/survey",:title=>"Survey",:alt=>"Survey"} Surveys
-						/ %li
-						/   %a{:href => "/questions",:title=>"Questions",:alt=>"Questions"} Questions 
-						/ %li
-						/   %a{:href => "/answers",:title=>"Answers",:alt=>"Answers"} Answers
 				%br.clearer.hide-responsive-small
 				/ page wrapper ends here
 				/ dont miss bar starts from here
@@ -278,8 +257,22 @@
 							- if msg.is_a?(String)
 								%div{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
 									/ %a.close{"data-dismiss" => "alert"} ×
+									= link_to "×",'',:id=>"close", :class=>"msg-alert"
 									= content_tag :div, msg, :id => "flash_#{name}"
 						= yield
+				// Begin TranslateThis Button
+				/ #translate-this
+				/   %a.translate-this-button{:href => "http://www.translatecompany.com/", :style => "width:180px;height:18px;display:block;"} translate
+				/ %script{:src => "http://x.translateth.is/translate-this.js", :type => "text/javascript"}
+				/ :javascript
+				/ /  TranslateThis();
+				/ / End TranslateThis Button
+				//#google_translate_element{:style=>"border: 0 none; bottom: 3px; opacity: 0.82; overflow: hidden; position: fixed; right: 146px; z-index: 2147483646;"}
+				:javascript
+					function googleTranslateElementInit() {
+						new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true}, 'google_translate_element');
+					}
+				
 				/footer
 				= render "experimental/partials/footer"
 
@@ -300,11 +293,13 @@
 		= javascript_include_tag "experimental/widgets.js"
 		= javascript_include_tag "experimental/buttons.js"
 
+		%script{:src => "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit", :type => "text/javascript"}
 
 :javascript
 	jQuery.noConflict();
 		//DOCUMENT.READY
-		jQuery(document).ready(function() { 
+		jQuery(document).ready(function($) { 
+
 			//loop through each post type and setup a jquery tabs object
 			jQuery('#tabbed-Restaurant-reviews > ul').tabs({ fx: { opacity: 'toggle', duration: 150 } });
 			jQuery('#tabbed-Music-reviews > ul').tabs({ fx: { opacity: 'toggle', duration: 150 } });
@@ -339,7 +334,10 @@
 				easingType: 'linear'
 			};
 			*/
-			jQuery().UItoTop({ easingType: 'easeOutExpo' });  
+			jQuery().UItoTop({ easingType: 'easeOutExpo' }); 
+			jQuery("#ts_hide_link").click(function(){
+				jQuery('#google_translate_element').toggle(700);
+			}) 
 		});
 		//the reason they are here instead of in custom.js is because they contain php variables which can't
 		//be applied in a .js file. Also, make sure these come before the darken function.
@@ -413,7 +411,7 @@
 			delayOut: 50,
 			fade: true, 
 			gravity: 'n', 
-			opacity: 100,
+			opacity: 100
 			});
 	});
 
@@ -428,17 +426,9 @@
 		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(t, s); 
 	}
 	)();
-
-
-
-	
-
-	
-	
-
-
-	
-
-
-	
-
+	//use for close button of success message flash
+	jQuery('#close').click(function(e){
+		e.preventDefault();
+		jQuery('#flash_notice').fadeOut();
+		jQuery(this).hide();
+	})
