@@ -20,6 +20,12 @@ class Experimental::ExperimentalController < ApplicationController
   def index
     @active_member = Membership.where(state: "active").limit(3)
   end
+
+  # copy of index action
+  def index_experimental
+    @active_member = Membership.where(state: "active").limit(3)
+  end
+
   # action public about
   def public_about
     @title = "about plus+"
@@ -153,6 +159,13 @@ class Experimental::ExperimentalController < ApplicationController
     end
   end
   # action dashboard ends here
+  #action_social starts from here
+  def social
+    @title="social login"
+    
+  end
+
+  #action_social ends here
 
   #action for dashboard
   def resources_conditional_fetch(queryData,exclude)

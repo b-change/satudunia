@@ -77,7 +77,7 @@
               .loader
       #subnav.item-list-tabs.no-ajax{:role => "navigation"}
         %ul
-          = render "users/show/user_dashboard_filters"
+          = render "users/show/user_dashboard_subtab"
     / main div for setting ajax data
     #members-dir-list.members.dir-list.content_div
       = render "users/show/user_#{params[:action]}_content"

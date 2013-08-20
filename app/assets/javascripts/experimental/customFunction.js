@@ -33,6 +33,9 @@ var Experimental = {
 		var valueTaker = (typeof(jQuery(this).attr("value"))=="undefined")? "" : jQuery(this).attr("value");
 		var paginationVar = (pagination.length==0)? "&page=" : "&page="+valueTaker;
 		valueTaker = (data===null ? valueTaker : jQuery(data).val())
+		if(pagination.length > 0){
+			valueTaker = jQuery("#activity-filter-by").val();	
+		}
 		
 		jQuery.ajax({
 			type:method,

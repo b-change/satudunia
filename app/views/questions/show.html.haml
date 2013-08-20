@@ -3,206 +3,260 @@
 .clearer.hide-responsive  
 %br.hide-responsive/
 #main-wrapper-dark
-  .main-content-left
-    .page-content.review.single-post
-      %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
-      .overview-wrapper
-        / %h1.title Login
-        .overview-new.nopadding-top
-          .overview1.nopadding-top
-            .excerpt-new.justify-content
-              %p.filter-content-new
-                %table{:style=>"width:45%;"}
-                  %tbody
-                    %tr
-                      %td
-                        = link_to image_tag("to_vote_up.png")
-                        %p.reiting_num3{:style => "padding-left:10px;"}
-                          = @question.votes_count
-                        = link_to image_tag("to_vote_down.png"), "#", :class => "reiting_num4"
-                        =# link_to image_tag("unfavorites.png")
-                      %td
-                        %h6.title 
-                          =@title.upcase
-                        %p
-                          / Posted By: #{@question.user.name}
-                          Posted By: #{@question.user.login}
-                        %p
-                          PostedOn: #{@question.created_at.to_datetime.strftime("%d %b %Y - %I:%M %p")}
-                    %tr
-                      %td
-                        = link_to image_tag("unfavorites.png")
-                      %td
-                        %p
-                          = @question.body.html_safe
-              %ul.Fright3.line-break
-                -@question.comments.each do |comments|
-                  %li.comments-body{:style => "margin-bottom: 10px; border-bottom: dotted 1px #A8A8A8;"}
-                    %span
-                      = comments.body
-                    %span.by-user
-                      ="-"
-                      =comments.user.name.capitalize
+	.main-content-left
+		.page-content.review.single-post
+			%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+			.overview-wrapper
+				/ %h1.title Login
+				.overview-new.nopadding-top
+					.overview1.nopadding-top
+						.section-bottom1
+							.category.qa-q-item-tags
+								.catname
+									Question
+								.category-arrow 
+					.content-panel
+						.the-content
+							#bbpress-forums
+								%ul#topic-1343-replies.forums.bbp-replies
+									%li.bbp-body
+										#post-1343.bbp-reply-header
+											.bbp-meta
+												%span.bbp-reply-post-date PostedOn: #{@question.created_at.to_datetime.strftime("%d %b %Y - %I:%M %p")}
+												/ %a.bbp-reply-permalink{:href => "http://www.industrialthemes.com/made/bbpress/topic/super-sticky-topic-inside-bbpress-forum/#post-1343", :title => "Super Sticky Topic Inside bbPress Forum"} #1343
+											/ .bbp-meta
+										/ #post-1343
+										.post-1343.topic.type-topic.status-publish.odd.bbp-parent-forum-1322.bbp-parent-topic-1343.bbp-reply-position-1.user-id-494.topic-author
+											.bbp-reply-author
+												%a.bbp-author-avatar
+													- if @question.user.use_gravatar?
+														=link_to image_tag avatar_user_path(@question.user),:size=>'65x65'
+													- else
+														%img.avatar.user-1227-avatar.avatar-50.photo{:alt => "Profile picture of zicrainnyRV", :height => "50", :src => "http://gravatar.com/avatar/5a0a1a5e96f190c339221f66d7b09b00?d=http://www.industrialthemes.com/made/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg&s=50&r=G", :width => "50"}/
+												%br/
+												%a.bbp-author-name
+													Posted By: #{@question.user.login}
+												%br/
+												/ .bbp-author-role Keymaster
+											/ .bbp-reply-author
+											.bbp-reply-content
+												%p
+													%h6.title  
+														=@title.upcase
+													= @question.body.html_safe
+											/ .bbp-reply-content
+										/ .reply
+							
+						.excerpt-new.justify-content
+							/ %p.filter-content-new
+							/ 	%table{:style=>"width:45%;"}
+							/ 		%tbody
+							/ 			%tr
+							/ 				%td
+							/ 					- if @question.user.use_gravatar?
+							/ 						=link_to image_tag avatar_user_path(@question.user),:size=>'65x65'
+							/ 					- else
+							/ 						%img.avatar.user-1227-avatar.avatar-50.photo{:alt => "Profile picture of zicrainnyRV", :height => "50", :src => "http://gravatar.com/avatar/5a0a1a5e96f190c339221f66d7b09b00?d=http://www.industrialthemes.com/made/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg&s=50&r=G", :width => "50"}/
+							/ 					/ = link_to image_tag("to_vote_up.png")
+							/ 					/ %p.reiting_num3{:style => "padding-left:10px;"}
+							/ 					/ 	= @question.votes_count
+							/ 					/ = link_to image_tag("to_vote_down.png"), "#", :class => "reiting_num4"
+							/ 					=# link_to image_tag("unfavorites.png")
+							/ 				%td
+							/ 					%h6.title 
+							/ 						=@title.upcase
+							/ 					%p
+							/ 						/ Posted By: #{@question.user.name}
+							/ 						Posted By: #{@question.user.login}
+							/ 					%p
+							/ 						PostedOn: #{@question.created_at.to_datetime.strftime("%d %b %Y - %I:%M %p")}
+							/ 			%tr
+							/ 				%td
+							/ 					= link_to image_tag("unfavorites.png")
+							/ 				%td
+							/ 					%p
+							/ 						= @question.body.html_safe
+							%ul.Fright3.line-break
+								-@question.comments.each do |comments|
+									%li.comments-body{:style => "margin-bottom: 10px; border-bottom: dotted 1px #A8A8A8;"}
+										%span
+											= comments.body
+										%span.by-user
+											="-"
+											=comments.user.name.capitalize
 
-              .panel-link-comment{:id => "question-comment-panel-link"}
-                = link_to "<i class='icon-comment'></i>Comments".html_safe,"javascript:void(0)", :class => "extra-buttons", :id => "question-comment-link",:title => "Post your Answer"
-              .panel-comments{:id => "question-comment-panel", :style => "display: none;"}
-                = form_for [@question, @comment ||= Comment.new], remote: true, html: {:class=>"question_comment_form exp-contact-form", data: {commentable: @question.id, editor: current_group.wysiwyg_editor ? 'wysiwyg_editor' : 'markdown_editor', "login-required" => true}} do |f|
-                  %p
-                    = f.text_area :body, :size=>"20x3", :style => "margin: 10px; width: 560px;"
-                  %p
-                    = f.button "<i class='icon-comment'></i>Comment".html_safe, data: {"disable-with" => "Saving..."}, :class=>"submit-button",:type=>"Submit"
-                    = link_to "<i class='icon-cross'></i>Cancel".html_safe,"javascript:void(0)", :class => "submit-button comment-button-style", :id => "cancel-question-comment-link",:title => "Post your Answer"
-              .clear
-              / question comments ends
-      - @question.answers.order(:created_at => :desc).each do |answer|
-        = render :partial => "answers/plus_answer", :locals => {:answer => answer, :comment => @comment}
-    .main-content-left
-      .page-content.review.single-post
-        %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
-        .review-content
-          .ribbon-shadow-left
-          .section-wrapper
-            .section
-              .comment-bubble
-                %a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 0
-              / making title stronger
-              .section-for-header
-                /%i.icon-vcard
-                Your Answer
-          .section-arrow 
-          .overview-wrapper
-            / %h1.title Login
-            .overview-new.nopadding-top
-              .overview1.nopadding-top
-                .excerpt-new.justify-content
-                  %p.filter-content-new
-                    / %h1.title 
-                    /   =@title.upcase
-                  %p
-                    = form_for([@question,@answer],:method=>:post,:html => {:multipart => true,:name=>'answer_form',:id=>'answer_form',:class=>'exp-contact-form'}) do |f|
-                      =# f.text_area :body, :class => "wysiwyg_editor",:size=>"40x20"
-                      = f.label :body, "Your Answer", :class=>"label"
-                      = f.text_area :body, :class => "text-default wysiwyg_editor textarea-class"
-                      / = render :partial => 'shared/rich_text_partial'
-                      %br.clearer/
-                      %p
-                        = link_to "<i class='icon-paper-plane'></i>Post your Answer".html_safe,"javascript:void(0)", :class => "submit-button", :id => "edit-user-link",:title => "Post your Answer",:onclick=>"document.answer_form.submit();"
-                  .signoff-wrapper
-                    .signoff Not the answer you're looking for? Browse other questions tag related to the question or #{link_to "create page for question", "/question/ask_a_question"}.
-    .main-content-left
-      .page-content.review.single-post
-        %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
-        .review-content
-          .ribbon-shadow-left
-          .section-wrapper
-            .section
-              .comment-bubble
-                %a{:href => question_path(@question, :anchor => "disqus_thread")} Link
-              / making title stronger
-              .section-for-header
-                Disqus
-          .section-arrow 
-          #disqus_thread
-          :javascript
-            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-            var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
+							/ .panel-link-comment1{:id => "question-comment-panel-link"}
+							/ 	= link_to "<i class='icon-comment'></i>Comments".html_safe,"javascript:void(0)", :class => "extra-buttons", :id => "question-comment-link",:title => "Post your Answer"
+							.panel-comments{:id => "question-comment-panel"}
+								
 
-            /* * * DON'T EDIT BELOW THIS LINE * * */
-            (function() {
-              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js'; 
-              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); 
-            })();
-          %noscript 
-            Please enable JavaScript to view the 
-            %a{:href => "http://disqus.com/?ref_noscript"} comments powered by Disqus
-          %a.dsq-brlink{:href => "http://disqus.com"}
-            comments powered by
-            %span.logo-disqus Disqus
-          :javascript
-            var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
-            // required: replace example with your forum shortname
-            (function () {
-              var s = document.createElement('script'); s.async = true;
-              s.type = 'text/javascript';
-              s.src = '//'+disqus_shortname+'.disqus.com/count.js';
-              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-            }());
+								= form_for [@question, @comment ||= Comment.new], remote: true, html: {:class=>"question_comment_form exp-contact-form",:id=>'comment-form', data: {commentable: @question.id, editor: current_group.wysiwyg_editor ? 'wysiwyg_editor' : 'markdown_editor', "login-required" => true}} do |f|
+									%p
+										- if current_user.use_gravatar?
+											=link_to image_tag avatar_user_path(current_user),:size=>'50x50'
+										- else
+											%img.avatar.user-1227-avatar.avatar-50.photo{:alt => "Profile picture of zicrainnyRV", :height => "50", :src => "http://gravatar.com/avatar/5a0a1a5e96f190c339221f66d7b09b00?d=http://www.industrialthemes.com/made/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg&s=50&r=G", :width => "50"}/
+										=# f.text_area :body, :size=>"20x3", :style => "margin: 10px; width: 560px;"
+										= f.text_area :body, :size=>"0", :style => "margin: 0px; width: 540px;height:30px", :placeholder => "write a comment...", :id=> "enter-comment"
+									%p
+										=# f.button "<i class='icon-comment'></i>Comment".html_safe, data: {"disable-with" => "Saving..."}, :class=>"submit-button",:type=>"Submit"
+										=# link_to "<i class='icon-cross'></i>Cancel".html_safe,"javascript:void(0)", :class => "submit-button comment-button-style", :id => "cancel-question-comment-link",:title => "Post your Answer"
+							.clear
+							/ question comments ends
+
+			- @question.answers.order(:created_at => :desc).each do |answer|
+				= render :partial => "answers/plus_answer", :locals => {:answer => answer, :comment => @comment}
+		.main-content-left
+			.page-content.review.single-post
+				%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+				.review-content
+					.ribbon-shadow-left
+					.section-wrapper
+						.section
+							/ .comment-bubble
+							/ 	%a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 0
+							/ making title stronger
+							.section-for-header
+								/%i.icon-vcard
+								Your Answer
+					.section-arrow 
+					.overview-wrapper
+						/ %h1.title Login
+						.overview-new.nopadding-top
+							.overview1.nopadding-top
+								.excerpt-new.justify-content
+									%p.filter-content-new
+										/ %h1.title 
+										/   =@title.upcase
+									%p
+										= form_for([@question,@answer],:method=>:post,:html => {:multipart => true,:name=>'answer_form',:id=>'answer_form',:class=>'exp-contact-form'}) do |f|
+											=# f.text_area :body, :class => "wysiwyg_editor",:size=>"40x20"
+											= f.label :body, "Your Answer", :class=>"label"
+											= f.text_area :body, :class => "text-default wysiwyg_editor textarea-class"
+											/ = render :partial => 'shared/rich_text_partial'
+											%br.clearer/
+											%p
+												= link_to "<i class='icon-paper-plane'></i>Post your Answer".html_safe,"javascript:void(0)", :class => "submit-button", :id => "edit-user-link",:title => "Post your Answer",:onclick=>"document.answer_form.submit();"
+									.signoff-wrapper
+										.signoff Not the answer you're looking for? Browse other questions tag related to the question or #{link_to "create page for question", "/question/ask_a_question"}.
+		.main-content-left
+			.page-content.review.single-post
+				%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+				.review-content
+					.ribbon-shadow-left
+					.section-wrapper
+						.section
+							.comment-bubble
+								%a{:href => question_path(@question, :anchor => "disqus_thread")} Link
+							/ making title stronger
+							.section-for-header
+								Disqus
+					.section-arrow 
+					#disqus_thread
+					:javascript
+						/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+						var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
+
+						/* * * DON'T EDIT BELOW THIS LINE * * */
+						(function() {
+							var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+							dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js'; 
+							(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); 
+						})();
+					%noscript 
+						Please enable JavaScript to view the 
+						%a{:href => "http://disqus.com/?ref_noscript"} comments powered by Disqus
+					%a.dsq-brlink{:href => "http://disqus.com"}
+						comments powered by
+						%span.logo-disqus Disqus
+					:javascript
+						var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
+						// required: replace example with your forum shortname
+						(function () {
+							var s = document.createElement('script'); s.async = true;
+							s.type = 'text/javascript';
+							s.src = '//'+disqus_shortname+'.disqus.com/count.js';
+							(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+						}());
 
 
 .sidebar
-  = render "experimental/partials/left_bar"
-  /widget top
-  = render "experimental/partials/widget_top"
-  / .clearer.hide-responsive
-  / %br.clearer/
-  / newly reviewd
-  = render "experimental/partials/newly_reviewed"
-  /popular box
-  = render "experimental/partials/popular_box"
-  /rating box
-  = render "experimental/partials/rating_box"
-  /banner box
-  = render "experimental/partials/banner_box"
+	= render "experimental/partials/left_bar"
+	/widget top
+	= render "experimental/partials/widget_top"
+	/ .clearer.hide-responsive
+	/ %br.clearer/
+	/ newly reviewd
+	= render "experimental/partials/newly_reviewed"
+	/popular box
+	= render "experimental/partials/popular_box"
+	/rating box
+	= render "experimental/partials/rating_box"
+	/banner box
+	= render "experimental/partials/banner_box"
 
 :javascript
-  jQuery.noConflict();
-  function showAnswerComment(answerId){
-    jQuery("#answer-comment-panel-"+answerId).show();
-    jQuery("#answer-comment-panel-link-"+answerId).hide();
-  }
+	jQuery.noConflict();
+	function showAnswerComment(answerId){
+		jQuery("#answer-comment-panel-"+answerId).show();
+		jQuery("#answer-comment-panel-link-"+answerId).hide();
+	}
 
-  function hideAnswerComment(answerId){
-    jQuery("#answer-comment-panel-"+answerId).hide();
-    jQuery("#answer-comment-panel-link-"+answerId).show();
-  }
+	function hideAnswerComment(answerId){
+		jQuery("#answer-comment-panel-"+answerId).hide();
+		jQuery("#answer-comment-panel-link-"+answerId).show();
+	}
 
-  jQuery(window).load(function(){
-    jQuery('#question-comment-panel-link').click(function (){
-      jQuery('#question-comment-panel-link').hide();
-      jQuery('#question-comment-panel').show();
-    });
+	jQuery(window).load(function(){
+		// jQuery('#question-comment-panel-link').click(function (){
+		// 	jQuery('#question-comment-panel-link').hide();
+		// 	jQuery('#question-comment-panel').show();
+		// });
 
-    jQuery('#cancel-question-comment-link').click(function (){
-      jQuery('#question-comment-panel-link').show();
-      jQuery('#question-comment-panel').hide();
-    });
-
-    Editor.setup(jQuery(".markdown_editor, .wysiwyg_editor"));
-    var tabContainers = jQuery('div.tabs4 > div');
-      tabContainers.hide().filter(':first').show();
-      
-      jQuery('div.tabs4 ul.tabNavigation a').click(function () {
-        tabContainers.hide();
-        tabContainers.filter(this.hash).show();
-        jQuery('div.tabs4 ul.tabNavigation a').removeClass('selected');
-        jQuery(this).addClass('selected');
-        return false;
-      }).filter(':first').click();
-  });
-  jQuery(".comment-check").click(function(){
-    var commentBoxId = jQuery("#comment_body");
-    var takeValueofComment = commentBoxId.val();
-    var thisVar = jQuery(this);
-    var dataTypeTake = thisVar.attr("data-type");
-    // if comment box is empty
-    if(takeValueofComment==''){
-      // for answer comment
-      // if(dataTypeTake=="answer"){
-      //   var idTakerComment = thisVar.attr("data-tag");
-      //   hideAnswerComment(idTakerComment);
-      //   return false;
-      // } 
-      // else{
-        jQuery('#cancel-question-comment-link').trigger("click");
-        return false;
-      // }
-      
-    }
-    
-  });
-  
+		// jQuery('#cancel-question-comment-link').click(function (){
+		// 	jQuery('#question-comment-panel-link').show();
+		// 	jQuery('#question-comment-panel').hide();
+		// });
+		jQuery('#enter-comment').keypress(function(e) {
+			if (e.which == '13') {
+				jQuery('form#comment-form').submit();
+				return false;
+			}
+		});
+		Editor.setup(jQuery(".markdown_editor, .wysiwyg_editor"));
+		var tabContainers = jQuery('div.tabs4 > div');
+			tabContainers.hide().filter(':first').show();
+			
+			jQuery('div.tabs4 ul.tabNavigation a').click(function () {
+				tabContainers.hide();
+				tabContainers.filter(this.hash).show();
+				jQuery('div.tabs4 ul.tabNavigation a').removeClass('selected');
+				jQuery(this).addClass('selected');
+				return false;
+			}).filter(':first').click();
+	});
+	jQuery(".comment-check").click(function(){
+		var commentBoxId = jQuery("#comment_body");
+		var takeValueofComment = commentBoxId.val();
+		var thisVar = jQuery(this);
+		var dataTypeTake = thisVar.attr("data-type");
+		// if comment box is empty
+		if(takeValueofComment==''){
+			// for answer comment
+			// if(dataTypeTake=="answer"){
+			//   var idTakerComment = thisVar.attr("data-tag");
+			//   hideAnswerComment(idTakerComment);
+			//   return false;
+			// } 
+			// else{
+				jQuery('#cancel-question-comment-link').trigger("click");
+				return false;
+			// }
+			
+		}
+		
+	});
+	
 
 
 
@@ -252,7 +306,7 @@
 /               %a{:style=>"color:#00ADEF; font-size:12px; position:relative; top:3px;"}
 /                 = @question.user.name.capitalize
 /               / user image box
-            
+						
 /           %ul{:class => "tags2 tags9_1"}
 /             - @question.tags.each do |tag|
 /               %li
@@ -283,8 +337,8 @@
 /               %p
 /                 = f.button "<i class='icon-comment'></i>Comment".html_safe, data: {"disable-with" => "Saving..."}, :class=>"submit-button",:type=>"Submit"
 /                 = link_to "<i class='icon-cross'></i>Cancel".html_safe,"javascript:void(0)", :class => "submit-button comment-button-style", :id => "cancel-question-comment-link",:title => "Post your Answer"
-               
-                
+							 
+								
 
 /           .clear
 /           / question comments ends
@@ -304,7 +358,7 @@
 /                         %p.i4_1.serv_loc6 
 /                           - @question.answers.order(:created_at => :desc).each do |answer|
 /                             = render :partial => "answers/plus_answer", :locals => {:answer => answer, :comment => @comment}
-                            
+														
 /                       %div.tabbertab
 /                         %h2
 /                           Votes 
@@ -317,7 +371,7 @@
 /                         %p.i4_1.serv_loc6
 /                           - @question.answers.order(:created_at => :ASC).each do |answer|
 /                             = render :partial => "answers/plus_answer", :locals => {:answer => answer, :comment => @comment}
-                          
+													
 /                         .clear          
 /           = form_for([@question,@answer],:method=>:post,:html => {:multipart => true,:name=>'answer_form',:id=>'answer_form',:class=>'exp-contact-form'}) do |f|
 /             = f.text_area :body, :class => "wysiwyg_editor",:size=>"40x20"
@@ -328,4 +382,4 @@
 
 /side bar
 
-  
+	

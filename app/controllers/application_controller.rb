@@ -255,11 +255,7 @@ class ApplicationController < ActionController::Base
     self.current_user.logged!(self.current_group)
    
     if resource_or_scope.is_a? User
-      if params[:user][:admin]=="admin"
-        admin_path 
-      elsif params[:user][:admin]=="user-experiment"
-        questions_path   
-      end
+      questions_path   
     else
       super(resource_or_scope)
     end

@@ -2,31 +2,35 @@
 %br.hide-responsive/
 .main-content
   / full slider from here
-  = render "experimental/partials/fullslider"
+  / = render "experimental/partials/fullslider"
   / %br.clearer/
-  / spotlight starts from here
-  = render "experimental/partials/spotlight"
   .clearer
   %br.clearer/
 .main-content-left
+  / slider starts from here
+  = render "experimental/partials/slider_short"
+  %br.clearer
+  %br.clearer
+  / spotlight starts from here
+  = render "experimental/partials/spotlight_short"
   / tabs starts from here
   = render "experimental/partials/tabs_short"
   / trending starts from here
   = render "experimental/partials/trending_short"
-  / review directory
-  = render "experimental/partials/review_directory"
+  %br.clearer/
+  %br.clearer/
+  / latest review
+  =  render "experimental/partials/latest_review"
   / review directory b
-  = render "experimental/partials/review_directory_b"
+  / = render "experimental/partials/review_directory_b"
   .clearer.hide-responsive
   %br.clearer/
 /side bar
 .sidebar
   /login box
   = render "experimental/partials/login_box"
-  / social login box
-  = render "experimental/partials/social_login_box"
   / member box
-  = render "experimental/partials/member_box"
+  / = render "experimental/partials/member_box"
   / left bar
   = render "experimental/partials/left_bar"
   /widget top
@@ -41,6 +45,3 @@
   = render "experimental/partials/rating_box"
   /banner box
   = render "experimental/partials/banner_box"
-
-
-  
