@@ -34,7 +34,7 @@
 			%ul
 				%li#members-order-select.last.filter
 					%label{:for => "members-order-by"} Order By:
-					%select#activity-filter-by
+					%select#activity-filter-by.activity-filter
 						%option{:value => "newest-question-show"} Newest
 						%option{:value => "hot-question-show"} Hot 
 						%option{:value => "featured-question-show"} Featured
@@ -65,17 +65,19 @@
 		.post-panel.wide{:style=>"margin-top:-25px"}
 			.header
 				.more
-					%a{:href => "single-review-numbers.html"} More
+					%a{:href => "#"} More
 				%h2{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-product-dark.png) no-repeat 0px 0px;"} Non-Review
 				.arrow-catpanel-bottom  
-			%a.title.first{:href => "single-review-numbers.html", :style => "color:#262626"} Klipsch Gallery G-17 iPad speaker
-			%a.title.alt{:href => "single-review-numbers.html", :style => "color:#262626"} Kiss removable phone batteries goodbye
-			%a.title{:href => "single-review-numbers.html", :style => "color:#262626"} Graffiti artist unlikely winner in Facebook IPO
-			%a.title.alt{:href => "single-review-numbers.html", :style => "color:#262626"} BitTorrent revolutionizes live streaming
-			%a.title{:href => "single-review-numbers.html", :style => "color:#262626"} LG Spectrum for Verizonx
-			%a.title.alt{:href => "single-review-numbers.html", :style => "color:#262626"} Toshiba Satellite Intel Dual Core 2GHz 16″ LED Laptop for $380 + free shipping
-			%a.title{:href => "single-review-numbers.html", :style => "color:#262626"} Samsung Series 3 AMD Quad Core 1.6GHz 16″ Laptop for $450 + free shipping
-			%a.title.alt.last{:href => "single-review-numbers.html", :style => "color:#262626"} HP Envy 15 (winter 2012)
+			%a.title.first{:href => "/tags/Disclosure", :style => "color:#262626"} Disclosure
+			%a.title.alt{:href => "/tags/drugs", :style => "color:#262626"} Drugs 
+			%a.title{:href => "/tags/first-diagnosis", :style => "color:#262626"} First Diagnosis
+			%a.title.alt{:href => "/tags/maintaining-treatment", :style => "color:#262626"} Maintaining Treatment
+			%a.title{:href => "/tags/relationships", :style => "color:#262626"} Relationships
+			%a.title.alt{:href => "/tags/sex", :style => "color:#262626"} Sex 
+			%a.title{:href => "/tags/starting-medication", :style => "color:#262626"} Starting Medication
+			%a.title.alt{:href => "/tags/starting-treatment", :style => "color:#262626"} Starting Treatment
+			%a.title{:href => "/tags/travel", :style => "color:#262626"} Travel
+			%a.title.alt.last{:href => "/tags/well-being", :style => "color:#262626"} Well-being
 		%br.clearer/
 	.page-content.review.single-post
 		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
@@ -122,6 +124,13 @@
 
 
 .sidebar
+	- if current_user.nil?
+		/login box
+		= render "experimental/partials/login_box"
+	-else
+		/profile box
+		= render "experimental/partials/profile_box"
+
 	= render "experimental/partials/recent_tags"
 	= render "experimental/partials/left_bar"
 	/widget top

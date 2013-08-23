@@ -2654,3 +2654,32 @@ div.bbp-forum-header, div.bbp-topic-header, div.bbp-reply-header, li.bbp-body di
     padding: 12px 12px 12px 0;
     text-align: left;
 }
+/*index1 images short styles*/
+
+#featured-wrapper-short {margin-top:20px;margin-bottom:20px;float:left;}
+#featured-wrapper-short.full {}
+#featured-short {position:relative;width:650px;height:360px;margin-left:-1px;top:0px;background:url(images/progress.gif) no-repeat 50% 50%;}
+#featured-wrapper-short.full #featured {width:650px;height:425px;}
+#featured-short img {position:absolute;top:0px;left:0px;display:none;}
+#featured-short a {border:0;display:block;}
+#featured-wrapper-short.full a.nivo-nextNav {top:235px !important;}
+#featured-wrapper-short.full a.nivo-prevNav {left:575px;top:235px !important;}
+#featured-wrapper-short.full .nivo-caption {width:650px;}
+#featured-wrapper-short.full .nivo-caption h1 a {font-size:.8em;}
+#featured-wrapper-short.full .nivo-html-caption {width:650px;}
+#featured-wrapper-short .category {position:absolute;display:inline-block;bottom:315px;left:-7px;background:#FFF;color:#111;border:1px solid #CCC;border-right:0px;z-index:9;font-family:BebasNeueRegular, Arial, Sans-Serif;font-size:1.3em;}
+#featured-wrapper-short.full .category {bottom:315px;}
+#featured-wrapper-short .icon {float:left;width:16px;height:16px;margin:7px 0px 0px 10px;}
+#featured-wrapper-short .catname {float:left;margin:6px 10px 0px 10px;}
+#featured-wrapper-short .category-arrow {float:left;background:url(images/featured-arrow.png) no-repeat 0px 0px;width:11px;height:32px;margin-right:-10px;margin-top:-1px;}
+#featured-wrapper-short .video {opacity:0.65;position:absolute;display:inline-block;width:70px;height:70px;bottom:160px;left:290px;background:url(images/darken-bg-video.png) no-repeat 0px 0px;z-index:9;}
+#featured-wrapper-short.full .video {bottom:250px;left:465px;}
+#featured-short .title {float:left;width:560px;padding:15px 15px 10px 20px;border-right:2px solid #000;}
+#featured-wrapper-short.full .title {width:600px;}
+/*ratings*/
+#featured-wrapper-short .stars, #featured-wrapper .number, #featured-wrapper .letter {position:absolute;bottom:320px;right:0px;float:left;}
+#featured-wrapper-short.full .stars, #featured-wrapper.full .number, #featured-wrapper.full .letter {bottom:7px;right:90px;}
+#featured-wrapper-short .stars {background:#000;padding:10px 10px 10px 10px;}
+#featured-wrapper-short.full .stars {padding:15px 10px 10px 10px;}
+#featured-wrapper-short .number {font-size:1.9em;padding:5px 9px 3px 9px;bottom:323px;}
+#featured-wrapper-short .letter {font-size:1.7em;padding:5px 11px 3px 11px;bottom:323px;}

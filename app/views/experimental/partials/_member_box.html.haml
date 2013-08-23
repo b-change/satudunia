@@ -25,7 +25,8 @@
             .item-meta
               %span.activity
                 %a
-                  = active_member.joined_at
+                  = time_ago_in_words(active_member.joined_at)
+                  ago
      
         
     %input#_wpnonce-members{:name => "_wpnonce-members", :type => "hidden", :value => "c12155629d"}/

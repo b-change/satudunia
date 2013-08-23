@@ -1,3 +1,22 @@
+:css
+	.class-agree{
+		color:#3A423E;
+		font-weight:600;
+		font-size:15px;
+	}
+	.class-agree input{
+		position:relative;
+		top:2px;
+	}
+	.break-line{
+		border-top: 1px solid #E0E0E0;
+	}
+	.fade-class{
+		opacity:0.4;
+		cursor:default;
+		filter:alpha(opacity=40);
+	}
+
 .clearer.hide-responsive  
 %br.hide-responsive/
 .main-content-left
@@ -16,45 +35,63 @@
 			.section-arrow 
 		/ content area 
 		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
+		%br.hide-responsive/
 		.overview-wrapper
-			/ %h1.title Login
-			.overview-new.nopadding-top.padding-about
-				.excerpt-new1.justify-content.nopadding-top
-					%p.filter-content-new
-						%h2
-							Social plugins
-						.pullquote-wrapper.left
-							.pullquote.prociono  Living positively,together
-						%p 
-							/ = @about.static_content.html_safe
-			/ Please remove padding bottom class when you furthe use to show content			
-			.section-bottom
+			.section-bottom{:style=>"height:300px; overflow-y:scroll;"}
 				.category.qa-q-item-tags
 					.catname
-						Tags
+						Terms of use
 					.category-arrow  
 				.tags-list-about
-					%span.tags1_2
-						%a{:href => "/tags/technology"} Sample1
-						%span
-							x
-						%span.avoid_link_color{:style => "font-weight:600"}
-							0
-					&nbsp;&nbsp;
-					%span.tags1_2
-						%a{:href => "/tags/business"} sample2
-						%span
-							x
-						%span.avoid_link_color{:style => "font-weight:600"}
-							1
-					&nbsp;&nbsp;
-					%span.tags1_2
-						%a{:href => "/tags/science"} sample3
-						%span
-							x
-						%span.avoid_link_color{:style => "font-weight:600"}
-							2
-					%br
+					%p
+						1. Purpose The aim of PLUS is to enhance connections between gay, bisexual men and transgender people living with HIV
+						so that we can help each other and understand that we are not alone. PLUS operates under a Policy of Inclusion where people affected by HIV,
+						or interested to learn more about HIV, are welcome to join the discussion once they become registered members. Upon registration,
+						it is assumed that all users acknowledge that PLUS is primarily a space for the empowerment of people livin with HIV, led by people living with HIV. 
+						%br
+						%span.class-agree
+							=check_box_tag("check1", value = "1", checked = false, options = {:autocomplete=>"off"})
+							Yes, I Agree
+					.break-line
+					%p
+						2. Values
+						PLUS is being managed under guidance of some core values, which we ask all registered users to acknowledge.
+						The core values the PLUS team seeks to upload with the Website and Services are:
+						%br
+						Cooperation: work to help each other
+						Dignity: treat each other with mutual respect
+						Diversity: seek to create a vibrant space where multiple, sometimes differing perspectives can thrive.
+						Privacy: respect people’s right to private information and freedom from interference.
+						Health & Well-being: seek to deliver up-to-date information that supports physical and mental health.
+						Fair and Equitable Access: seek to ensure that all people living with HIV or affected by HIV have access to services that support health and well-being, without prejudice.
+						Informed Choice: respect people'≈s ability to make their own decisions when they are supplied with relevant information and advice, without duress.
+						%br
+						%span.class-agree
+							=check_box_tag("check2", value = "1", checked = false, options = {:autocomplete=>"off"})
+							Yes, I Acknowledge
+					.break-line
+					%p
+						3. Code of Conduct
+						All registered users to PLUS are given access to the basic Website and Services upon acceptance of the Terms of Use that includes a Code of Conduct.
+						PLUS registered users agree to act under a Code of Conduct, summarised as follows:
+						%br
+						Act with responsibility - You take responsibility for your contributions to the Website.
+						Act with civility - You support an environment of mutual respect and do not harass other users.
+						Do no harm - You do not damage or cause injury to other registered users of the Website or our technology infrastructure.
+						Observe the Terms of Use and Policies - You adhere to the below Terms of Use and to the applicable community policies when you visit
+						our sites or participate in our communities.
+						%br
+						Read the full test of the Terms of Use (including Code of Conduct and Privacy Policy).
+						%br 
+						%span.class-agree
+							=check_box_tag("check3", value = "1", checked = false, options = {:autocomplete=>"off"})
+							Yes, I Accept
+			.contact-section-bottom{:style=>"z-index:500; margin-top:0px !important;"} 
+				.janrain-sign-up{:style=>"display:none;"}
+					= link_to_rpx "Next", user_session_url,:html=>{:title=>"Sign up with Janrain",:class=>"contact-button",:style=>"float:right; margin-right:10px;"}
+	
+			
+
 			.content-panel.post-loop
 				/ authorbox
 				= render "experimental/partials/author_box"
@@ -83,4 +120,22 @@
 		
 			jQuery('#related > ul').tabs({ fx: { opacity: 'toggle', duration: 150 } });
 			
+		});
+		var calculateClick = 0;
+		jQuery(".class-agree input").click(function(){
+			if(jQuery(this).is(":checked")){
+				calculateClick+=1;
+			}
+			else{
+				calculateClick-=1;;
+			}
+			if(calculateClick==3){
+				
+				jQuery(".janrain-sign-up").fadeIn("slow");
+				
+			}
+			else{
+				jQuery(".janrain-sign-up").fadeOut("slow");
+				
+			}
 		});

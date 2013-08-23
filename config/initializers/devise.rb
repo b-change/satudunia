@@ -30,7 +30,7 @@ Devise.setup do |config|
 
   # The realm used in Http Basic Authentication
   config.rpx_application_name = "b-change"
-  RPXNow.api_key = "a330999e75f91b0cc77d5c6879590c70b2c0e264"
+  RPXNow.api_key = "3915ce0aef75e5ff9a2630d4c06759f80838a277"
   config.http_authentication_realm = AppConfig.application_name
   # janrain.settings.noReturnExperience = true;
   config.rpx_extended_user_data = true

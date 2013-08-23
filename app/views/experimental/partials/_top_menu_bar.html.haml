@@ -44,7 +44,7 @@
 
 					-if current_user.nil?
 						%li
-							= link_to_rpx "<i class='icon-plus'></i>sign up".html_safe, user_session_url,:html=>{:title=>"Sign up with Janrain",:class=>"tool-tip"}
+							= link_to "<i class='icon-plus'></i>sign up".html_safe,"/signup",:html=>{:title=>"Sign up",:class=>"tool-tip"}
 
 								
 			%select#select-menu-top-menu

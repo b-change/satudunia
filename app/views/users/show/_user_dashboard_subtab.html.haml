@@ -1,8 +1,34 @@
-%ul
-  %li#activity-filter-select.last.filter
-    %label{:for => "activity-filter-by"} Sort by:
-    %select#activity-filter-by
-      %option{:value => "newest"} Newest
-      %option{:value => "Oldest"} Oldest
-      %option{:value => "Views"} Views
-      %option{:value => "Votes"} Votes
+/ partial for returning subtab sort of profile dashboard 
+-case params[:nameOfPartial]
+	-when "answer"
+		%ul
+			%li#activity-filter-select.last.filter
+				%label{:for => "activity-filter-by"} Sort by:
+				%select#activity-filter-by-answer.activity-filter
+					%option{:value => "newest"} Newest
+					%option{:value => "oldest"} Oldest
+					%option{:value => "views"} Views
+					%option{:value => "votes"} Votes
+	-when "questions"
+		%ul
+			%li#activity-filter-select.last.filter
+				%label{:for => "activity-filter-by"} Sort by:
+				%select#activity-filter-by-question.activity-filter
+					%option{:value => "newest"} Newest
+					%option{:value => "oldest"} Oldest
+					%option{:value => "views"} Views
+					%option{:value => "votes"} Votes
+	-else
+		%ul
+			%li#activity-filter-select.last.filter
+				%label{:for => "activity-filter-by"} Sort by:
+				%select#activity-filter-by-question.activity-filter
+					%option{:value => "newest"} Newest
+					%option{:value => "oldest"} Oldest
+					%option{:value => "views"} Views
+					%option{:value => "votes"} Votes
+
+
+
+
+

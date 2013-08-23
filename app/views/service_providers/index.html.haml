@@ -1,247 +1,252 @@
 #map
-  %figure{:class => "p5"}
-    #services_map{:style => "width:999px; height:450px"}
+	%figure{:class => "p5"}
+		#services_map{:style => "width:999px; height:450px"}
 .clearer.hide-responsive  
 %br.hide-responsive/
 .main-content-left
-  .page-content.review.single-post
-    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
-    .review-content
-      .ribbon-shadow-left
-      .section-wrapper
-        .section
-          .comment-bubble
-            %a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 
-              = @service_providers.count
-          / making title stronger
-          .section-for-header
-            /%i.icon-vcard
-            Services Map
-      .section-arrow 
-  #content.page-content
-    %form#members-directory-form.dir-form{:action => "", :method => "post"}
-      %h3 Mapping
-      #members-dir-search.dir-search{:role => "search"}
-        %label
-          %input#members_search{:name => "service", :placeholder => "Search Services...", :type => "text"}/
-        %input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
-        %input#members_search_submit{:name => "members_search_submit", :type => "reset", :value => "x", :style=>"opacity:1;"}/
-    .item-list-tabs.activity-type-tabs{:role => "navigation"}
-      %ul
-        %li#members-order-select.selected
-          %a{:href => "http://www.industrialthemes.com/made/activity/", :title => "The public activity for everyone on this site."}
-            All Services
-            %span= @serviceProviders.count
-    #subnav.item-list-tabs{:role => "navigation"}
-      %ul
-        %li#members-order-select.last.filter
-          %label{:for => "members-order-by"} Order By:
-          %select#activity-filter-by
-            %option{:value => ""} Singapore
-            %option{:value => ""} Thailand
-            %option{:value => ""} Indonesia
-            %option{:value => ""} Philippines
-    #forums-dir-list-newest.dir-list
-      #pag-top.pagination
-        #member-dir-count-top.pag-count
-          Viewing serviceProviders #{@serviceProviders.options[:skip]} to #{@serviceProviders.options[:skip]+@serviceProviders.options[:limit]} (of #{@serviceProviders.count} active service)
-        #members-dir-list.members.dir-list1
-          = paginate @serviceProviders
-  .post-loop.search-loop{:style=>"margin-top:-60px !important"}
-    - unless @serviceProviders.nil?
-      - @serviceProviders.all.each do |provider|
-        - next if provider.blank?
-        = render "experimental/partials/provider", :provider => provider
-  #content.page-content
-    #forums-dir-list-newest.dir-list
-      #pag-top.pagination
-        #member-dir-count-top.pag-count
-          Viewing serviceProviders #{@serviceProviders.options[:skip]} to #{@serviceProviders.options[:skip]+@serviceProviders.options[:limit]} (of #{@serviceProviders.count} active service)
-        #members-dir-list.members.dir-list1
-          = paginate @serviceProviders
-  .post-loop.directory
-    .ribbon-shadow-left  
-    .section-wrapper
-      .section
-        XXXXXXXX
-    .ribbon-shadow-right  
-    .section-arrow 
-    / county box partial
-    = render "experimental/partials/country_box"       
-  %br.clearer/
-  .page-content.review.single-post
-    .review-content
-      .ribbon-shadow-left
-      .section-wrapper
-        .section
-          .comment-bubble
-            %a{:href => service_providers_path(:anchor => "disqus_thread")} Link
-          / making title stronger
-          .section-for-header
-            Disqus
-      .section-arrow 
-      .overview-wrapper
-        .overview-new
-          .left-panel
-            #disqus_thread
-            :javascript
-              /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-              var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
+	.page-content.review.single-post
+		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+		.review-content
+			.ribbon-shadow-left
+			.section-wrapper
+				.section
+					.comment-bubble
+						%a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 
+							= @service_providers.count
+					/ making title stronger
+					.section-for-header
+						/%i.icon-vcard
+						Services Map
+			.section-arrow 
+	#content.page-content
+		%form#members-directory-form.dir-form{:action => "", :method => "post"}
+			%h3 Mapping
+			#members-dir-search.dir-search{:role => "search"}
+				%label
+					%input#members_search{:name => "service_search", :placeholder => "Search Services...", :type => "text"}/
+				%input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
+				%input#members_search_submit{:name => "members_search_submit", :type => "reset", :value => "x", :style=>"opacity:1;"}/
+		.item-list-tabs.activity-type-tabs{:role => "navigation"}
+			%ul
+				%li#members-order-select.selected
+					%a{:href=>"javascript:void(0)",:id=>"service-providers-list"}
+						All Services
+						%span= @serviceProviders.count
+		#subnav.item-list-tabs{:role => "navigation"}
+			%ul
+				%li#members-order-select.last.filter
+					%label{:for => "members-order-by"} Order By:
+					%select#activity-filter-by
+						%option{:value => ""} Singapore
+						%option{:value => ""} Thailand
+						%option{:value => ""} Indonesia
+						%option{:value => ""} Philippines
+		/ #forums-dir-list-newest.dir-list
+		/   #pag-top.pagination
+		/     #member-dir-count-top.pag-count
+		/       Viewing serviceProviders #{@serviceProviders.options[:skip]} to #{@serviceProviders.options[:skip]+@serviceProviders.options[:limit]} (of #{@serviceProviders.count} active service)
+		/     #members-dir-list.members.dir-list1
+		/       = paginate @serviceProviders
+	/ .post-loop.search-loop{:style=>"margin-top:-60px !important"}
+	/ 	- unless @serviceProviders.nil?
+	/ 	  - @serviceProviders.all.each do |provider|
+	/ 	    - next if provider.blank?
+	#return-data-ajax
+		= render "experimental/partials/provider"
+	/ #content.page-content
+	/ 	#forums-dir-list-newest.dir-list
+	/ 		#pag-top.pagination
+	/ 			#member-dir-count-top.pag-count
+	/ 				Viewing serviceProviders #{@serviceProviders.options[:skip]} to #{@serviceProviders.options[:skip]+@serviceProviders.options[:limit]} (of #{@serviceProviders.count} active service)
+	/ 			#members-dir-list.members.dir-list1
+	/ 				=# paginate @serviceProviders
+	.post-loop.directory
+		.ribbon-shadow-left  
+		.section-wrapper
+			.section
+				XXXXXXXX
+		.ribbon-shadow-right  
+		.section-arrow 
+		/ county box partial
+		= render "experimental/partials/country_box"       
+	%br.clearer/
+	.page-content.review.single-post
+		.review-content
+			.ribbon-shadow-left
+			.section-wrapper
+				.section
+					.comment-bubble
+						%a{:href => service_providers_path(:anchor => "disqus_thread")} Link
+					/ making title stronger
+					.section-for-header
+						Disqus
+			.section-arrow 
+			.overview-wrapper
+				.overview-new
+					.left-panel
+						#disqus_thread
+						:javascript
+							/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+							var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
 
-              /* * * DON'T EDIT BELOW THIS LINE * * */
-              (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js'; 
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); 
-              })();
-            %noscript 
-              Please enable JavaScript to view the 
-              %a{:href => "http://disqus.com/?ref_noscript"} comments powered by Disqus
-            %a.dsq-brlink{:href => "http://disqus.com"}
-              comments powered by
-              %span.logo-disqus Disqus
-            :javascript
-              var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
-              // required: replace example with your forum shortname
-              (function () {
-                var s = document.createElement('script'); s.async = true;
-                s.type = 'text/javascript';
-                s.src = '//'+disqus_shortname+'.disqus.com/count.js';
-                (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-              }());
+							/* * * DON'T EDIT BELOW THIS LINE * * */
+							(function() {
+								var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+								dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js'; 
+								(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); 
+							})();
+						%noscript 
+							Please enable JavaScript to view the 
+							%a{:href => "http://disqus.com/?ref_noscript"} comments powered by Disqus
+						%a.dsq-brlink{:href => "http://disqus.com"}
+							comments powered by
+							%span.logo-disqus Disqus
+						:javascript
+							var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
+							// required: replace example with your forum shortname
+							(function () {
+								var s = document.createElement('script'); s.async = true;
+								s.type = 'text/javascript';
+								s.src = '//'+disqus_shortname+'.disqus.com/count.js';
+								(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+							}());
 
 /side bar
 .sidebar
-  = render "experimental/partials/left_bar"
-  /widget top
-  = render "experimental/partials/widget_top"
-  / .clearer.hide-responsive
-  / %br.clearer/
-  / newly reviewd
-  = render "experimental/partials/newly_reviewed"
-  /popular box
-  = render "experimental/partials/popular_box"
-  /rating box
-  = render "experimental/partials/rating_box"
-  /banner box
-  = render "experimental/partials/banner_box"
+	= render "experimental/partials/left_bar"
+	/widget top
+	= render "experimental/partials/widget_top"
+	/ .clearer.hide-responsive
+	/ %br.clearer/
+	/ newly reviewd
+	= render "experimental/partials/newly_reviewed"
+	/popular box
+	= render "experimental/partials/popular_box"
+	/rating box
+	= render "experimental/partials/rating_box"
+	/banner box
+	= render "experimental/partials/banner_box"
 
 
 %script{:src => "http://maps.googleapis.com/maps/api/js?key=AIzaSyBmJE9KrYdmPiW16lAHDJOiCvS1Fwen7BU&sensor=true"}
 
 :javascript
-  jQuery('#members_search_submit').click(function(e){
-  
-    var service = jQuery("#members_search").val();
-    e.preventDefault();
-    jQuery(".loader").addClass("ajax-loader");
-    jQuery.ajax({     
-      url:'/badges?nameOfPartial=badges_list&idLoad=badges_ajax',
-      data:{ badge_search: badge_search},
-      dataType:"script",
-      error:function(errorObject){        
+	jQuery('#members_search_submit').click(function(e){
+		
+		var service_search = jQuery("#members_search").val();
+		e.preventDefault();
+		jQuery(".loader").addClass("ajax-loader");
+		jQuery.ajax({     
+			url:'/services-map?nameOfPartial=service_search&idLoad=return-data-ajax',
+			data:{ service_search: service_search},
+			dataType:"script",
+			error:function(errorObject){        
 
-      },
-      success:function(successObject){
-        jQuery(".loader").removeClass("ajax-loader");
-        
-      }
-    });
-  })
-  var map;
-  var gl;
-  var currentLatitude = '1.305300';
-  var currentLongitude = '103.835303';
-  
-  try {
-    if (typeof navigator.geolocation === 'undefined'){
-      gl = google.gears.factory.create('beta.geolocation');
-    } else {
-      gl = navigator.geolocation;
-    }
-  } catch(e) {}
-  
-  function initMap() {
-    if (gl) {
-      gl.getCurrentPosition(function displayMap(position){
-        generateMap(position.coords.latitude,position.coords.longitude);
-      }, displayErrorWithMap);
-    } else {
-      displayError();
-    }
-  }
+			},
+			success:function(successObject){
+				jQuery(".loader").removeClass("ajax-loader");
+				
+			}
+		});
+	})
+	var map;
+	var gl;
+	var currentLatitude = '1.305300';
+	var currentLongitude = '103.835303';
+	
+	try {
+		if (typeof navigator.geolocation === 'undefined'){
+			gl = google.gears.factory.create('beta.geolocation');
+		} else {
+			gl = navigator.geolocation;
+		}
+	} catch(e) {}
+	
+	function initMap() {
+		if (gl) {
+			gl.getCurrentPosition(function displayMap(position){
+				generateMap(position.coords.latitude,position.coords.longitude);
+			}, displayErrorWithMap);
+		} else {
+			displayError();
+		}
+	}
 
-  function generateMap(lat,lng){
-    map = showMap(lat,lng,12, "services_map");
+	function generateMap(lat,lng){
+		map = showMap(lat,lng,12, "services_map");
 
-    setMarker();
-  }
-  
-  google.maps.event.addDomListener(window, 'load', initMap);
+		setMarker();
+	}
+	
+	google.maps.event.addDomListener(window, 'load', initMap);
 
-  // Show a map centered at (position.coords.latitude, position.coords.longitude).
-  function showMap(posLat,posLng,zoomValue, mapElement){
-    var map;
-    var mapOptions = {
-      center: new google.maps.LatLng(posLat, posLng),
-      zoom: zoomValue,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
+	// Show a map centered at (position.coords.latitude, position.coords.longitude).
+	function showMap(posLat,posLng,zoomValue, mapElement){
+		var map;
+		var mapOptions = {
+			center: new google.maps.LatLng(posLat, posLng),
+			zoom: zoomValue,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
 
-    map = new google.maps.Map(document.getElementById(mapElement), mapOptions);
-    
-    return map;
-  }
+		map = new google.maps.Map(document.getElementById(mapElement), mapOptions);
+		
+		return map;
+	}
 
-  // Marked on locations along with the info window
-  function showMarker(map, latLng, titleName, infoContent){
-    var marker = new google.maps.Marker({
-      position: latLng,
-      map: map,
-      title: titleName
-    });
-    
-    var infoWindow = new google.maps.InfoWindow();
-    
-    google.maps.event.addListener(marker, 'click', (function setInfoWindow(marker){
-      return function(){
-        infoWindow.setPosition(latLng);
-        infoWindow.setContent(infoContent);
-        infoWindow.open(map, marker); 
-      }    
-    })(marker));
-    
-    return marker;
-  }
+	// Marked on locations along with the info window
+	function showMarker(map, latLng, titleName, infoContent){
+		var marker = new google.maps.Marker({
+			position: latLng,
+			map: map,
+			title: titleName
+		});
+		
+		var infoWindow = new google.maps.InfoWindow();
+		
+		google.maps.event.addListener(marker, 'click', (function setInfoWindow(marker){
+			return function(){
+				infoWindow.setPosition(latLng);
+				infoWindow.setContent(infoContent);
+				infoWindow.open(map, marker); 
+			}    
+		})(marker));
+		
+		return marker;
+	}
 
-  // Show location error
-  function displayErrorWithMap(positionError) {
-    console.log("Could not determine location: Geolocation is not supported");
-    generateMap(currentLatitude,currentLongitude);
-  }
+	// Show location error
+	function displayErrorWithMap(positionError) {
+		console.log("Could not determine location: Geolocation is not supported");
+		generateMap(currentLatitude,currentLongitude);
+	}
 
-  // Show location error
-  function displayError(positionError) {
-    console.log("Could not determine location: Geolocation is not supported");
-  }
+	// Show location error
+	function displayError(positionError) {
+		console.log("Could not determine location: Geolocation is not supported");
+	}
 
-  // Return facility description for infoWindow
-  function getFacilityInformation(serviceDesc, completeAddress, locationName, phone, email){
-    var completeDescription = '<b>'+locationName+'</b><br>'+ serviceDesc;
-    
-    completeDescription += '<br><small>'+ completeAddress +'</small><br><small>Phone: '+ phone +'</small><br><small>Email: '+ email +'</small>';
-    
-    return completeDescription;
-  }
+	// Return facility description for infoWindow
+	function getFacilityInformation(serviceDesc, completeAddress, locationName, phone, email){
+		var completeDescription = '<b>'+locationName+'</b><br>'+ serviceDesc;
+		
+		completeDescription += '<br><small>'+ completeAddress +'</small><br><small>Phone: '+ phone +'</small><br><small>Email: '+ email +'</small>';
+		
+		return completeDescription;
+	}
+
+	Experimental.getAjaxData("click","#service-providers-list,#serviceProviders_pagination .pagination-ajax","/services-map","GET","return-data-ajax","provider","#service-providers-list .loader","","","yes");
 
 %script
-  function setMarker() {
-  var geocoder = new google.maps.Geocoder();
+	function setMarker() {
+	var geocoder = new google.maps.Geocoder();
 
-  - @service_providers.each do |provider|
-    - next if provider.address.nil? || provider.address.blank?
-    geocoder.geocode( { 'address': '#{escape_javascript provider.address}'}, function(results, status) {
-    centered = results[0].geometry.location;
-    showMarker(map, centered, '#{provider.name}', getFacilityInformation('#{escape_javascript provider.description}','#{escape_javascript provider.address}', '#{escape_javascript provider.name}', '#{escape_javascript provider.telephone}', '#{escape_javascript provider.email}'));
-    });
-  }
+	- @service_providers.each do |provider|
+		- next if provider.address.nil? || provider.address.blank?
+		geocoder.geocode( { 'address': '#{escape_javascript provider.address}'}, function(results, status) {
+		centered = results[0].geometry.location;
+		showMarker(map, centered, '#{provider.name}', getFacilityInformation('#{escape_javascript provider.description}','#{escape_javascript provider.address}', '#{escape_javascript provider.name}', '#{escape_javascript provider.telephone}', '#{escape_javascript provider.email}'));
+		});
+	}
+
+  

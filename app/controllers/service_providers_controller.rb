@@ -24,6 +24,13 @@ class ServiceProvidersController < ApplicationController
     @categories = ServiceCategory.all
     # all service alphabetical_providers
     @serviceProviders = ServiceProvider.all.page(params["page"]).per(15)
+    if params[:service_search]
+      @serviceProviders=ServiceProvider.where({:name=>/^#{params[:service_search]}/i}).page(params["page"]).per(15)  
+    end
+    respond_to do |format|
+      format.html
+      format.js{render "/experimental/experimental/ajax_entry"}
+    end
   end
 
   def show

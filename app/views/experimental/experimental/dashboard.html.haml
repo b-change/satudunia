@@ -94,9 +94,13 @@
     jQuery(this).addClass('selected');
   });
   // ajax function for answer and answer pagination
-  Experimental.getAjaxData("click","#answer-ajax,#answers_pagination .pagination-ajax","/profile/dashboard","GET","return-data-ajax","answer","#answer-ajax .loader","","","yes");
+  Experimental.getAjaxData("click","#answer-ajax,#answers_pagination .pagination-ajax","/profile/dashboard","GET","return-data-ajax","answer","#answer-ajax .loader","subnav ul","users/show/user_dashboard_subtab","yes");
   // ajax function for question and question pagination
-  Experimental.getAjaxData("click","#questions-ajax,#questions_pagination .pagination-ajax","/profile/dashboard","GET","return-data-ajax","questions","#questions-ajax .loader","","","yes");
+  Experimental.getAjaxData("click","#questions-ajax,#questions_pagination .pagination-ajax","/profile/dashboard","GET","return-data-ajax","questions","#questions-ajax .loader","subnav ul","users/show/user_dashboard_subtab","yes");
   // ajax function for follwing and following pagination
-  Experimental.getAjaxData("click","#following-ajax","/users/#{current_user.id}/follows","GET","return-data-ajax","user_follows_content","#following-ajax .loader","","","");
+  Experimental.getAjaxData("click","#following-ajax","/users/#{current_user.id}/follows","GET","return-data-ajax","user_follows_content","#following-ajax .loader","subnav ul","users/show/user_dashboard_subtab","");
+  // ajax function for answer sort
+  Experimental.getAjaxData("change","#activity-filter-by-answer","/profile/dashboard","GET","return-data-ajax","answer","#answer-ajax .loader","subnav ul","users/show/user_dashboard_subtab","");
+  /// ajax function for question sort
+  Experimental.getAjaxData("change","#activity-filter-by-question","/profile/dashboard","GET","return-data-ajax","questions","#questions-ajax .loader","subnav ul","users/show/user_dashboard_subtab","");
   

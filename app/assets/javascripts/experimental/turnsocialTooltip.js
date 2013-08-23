@@ -10,137 +10,136 @@
                 e.apply(this, arguments)
             }
         }
-    }, e = t.wrap(function (e, n) {
-            function i(e) {
-                var n = {};
-                n.name = e.name, n.icon = e.icon, n.description = e.description || i.convert_name_to_description(e.name), n.protected = !! e.protected, n.draw_button = e.draw_button || function () {
+    }, e = t.wrap(function (e, i) {
+            function n(e) {
+                var i = {};
+                i.name = e.name, i.icon = e.icon || e.name, i.description = e.description || n.convert_name_to_description(e.name), i.protected = !! e.protected, i.draw_button = e.draw_button || function () {
                     return s("<img />", {
-                        src: "//turnsocial.com/assets/blank-3eaf0f4686754462cbd6a495f152c130.png",
-                        "class": "ts_sprite_icons_" + (n.icon || n.name),
-                        alt: n.description
+                        src: b[i.name],
+                        alt: i.description
                     })
                 };
                 var o = e.click || function () {
-                        n.activate()
-                    }, a = function () {
-                        d.track("app opened", {
-                            name: n.name
+                        i.activate()
+                    }, r = function () {
+                        p.track("app opened", {
+                            name: i.name
                         }), o()
                     };
-                return n.link = s("<div />", {
+                return i.link = s("<div />", {
                     "class": "ts_app_link",
-                    id: "ts_" + n.name + "_link",
-                    click: t.wrap(a)
-                }), n.protected ? l.find("#ts_protected_links").append(n.link) : l.find("#ts_app_links").append(n.link), n.link.append(n.draw_button()), n
+                    id: "ts_" + i.name + "_link",
+                    click: t.wrap(r)
+                }), i.protected ? c.find("#ts_protected_links").append(i.link) : c.find("#ts_app_links").append(i.link), i.link.append(i.draw_button()), i
             }
 
             function o(e) {
-                var n = i(e);
-                n.onload = e.onload || function () {}, n.type = e.type, n.loaded = e.loaded || !1, n.shadow = "undefined" == typeof e.shadow ? !0 : e.shadow, n.load_content = n.load_content || e.load_content, n.on_close = e.on_close, n.app_window = s("<div />", {
-                    id: "ts_" + n.name,
-                    "class": "ts_widget ts_" + n.type
-                }), n.display_div = s("<div />", {
+                var i = n(e);
+                i.onload = e.onload || function () {}, i.type = e.type, i.loaded = e.loaded || !1, i.shadow = "undefined" == typeof e.shadow ? !0 : e.shadow, i.load_content = i.load_content || e.load_content, i.on_close = e.on_close, i.app_window = s("<div />", {
+                    id: "ts_" + i.name,
+                    "class": "ts_widget ts_" + i.type
+                }), i.display_div = s("<div />", {
                     "class": "ts_display_div"
                 });
                 var o = s("<div />", {
                     "class": "ts_title_bar"
                 }),
-                    a = s("<div />", {
+                    r = s("<div />", {
                         "class": "ts_close_button",
                         click: t.wrap(function () {
-                            n.deactivate()
+                            i.deactivate()
                         })
                     });
-                return o.append(a), n.app_window.append(o), n.app_window.append(n.display_div), l.append(n.app_window), n.display_div.prevent_scroll(), n.activate = function () {
-                    if (n == i.active_app) return n.deactivate(), void 0;
-                    i.active_app && i.active_app.deactivate(!0), i.active_app = n;
-                    var t = n.show_app_window();
+                return o.append(r), i.app_window.append(o), i.app_window.append(i.display_div), c.append(i.app_window), i.display_div.prevent_scroll(), i.activate = function () {
+                    if (i == n.active_app) return i.deactivate(), void 0;
+                    n.active_app && n.active_app.deactivate(!0), n.active_app = i;
+                    var t = i.show_app_window();
                     if (s(document).bind("keydown.ts_abort", function (t) {
-                        27 == t.keyCode && n.deactivate()
-                    }), !n.loaded) {
-                        var e = n.app_window.height_defined();
-                        e || n.app_window.height(n.app_window.width());
+                        27 == t.keyCode && (s(document).unbind("keydown.ts_abort"), i.deactivate())
+                    }), !i.loaded) {
+                        var e = i.app_window.height_defined();
+                        e || i.app_window.height(i.app_window.width());
                         var o = !1;
-                        n.display_div.html("");
-                        var a = b(n.display_div);
-                        n.error = function (t) {
-                            if (!o && !n.loaded) {
-                                o = !0, a.stop();
+                        i.display_div.html("");
+                        var r = v(i.display_div);
+                        i.error = function (t) {
+                            if (!o && !i.loaded) {
+                                o = !0, r.stop();
                                 var e = s("<div />", {
                                     "class": "ts_error",
                                     text: t
                                 });
-                                n.display_div.html(e), e.css("margin-top", -e.outerHeight() / 2)
+                                i.display_div.html(e), e.css("margin-top", -e.outerHeight() / 2)
                             }
                         }, setTimeout(function () {
-                            n.error("The application timed out. Please refresh the page and try again.")
-                        }, 15e3), n.load_content(function () {
-                            if (n.loaded = !0, a.stop(), n.onload(), !e) {
-                                n.app_window.css({
+                            i.error("The application timed out. Please refresh the page and try again.")
+                        }, 15e3), i.load_content(function () {
+                            if (i.loaded = !0, r.stop(), i.onload(), !e) {
+                                i.app_window.css({
                                     height: "auto"
                                 });
-                                var i = Math.min(n.app_window.height(), 1500),
+                                var n = Math.min(i.app_window.height(), 1500),
                                     o = function () {
-                                        var t = n.app_window.offset().top - s(document).scrollTop(),
-                                            e = 40;
-                                        e > t && n.app_window.css({
+                                        var t = i.app_window.offset().top - s(document).scrollTop(),
+                                            e = 60;
+                                        e > t && i.app_window.css({
                                             top: e,
                                             height: "auto"
                                         });
-                                        var o = n.app_window.height();
-                                        o > i && n.app_window.css({
+                                        var o = i.app_window.height();
+                                        o > n && i.app_window.css({
                                             top: "auto",
-                                            height: i
+                                            height: n
                                         })
                                     };
                                 s(window).bind("resize.ts_resize_app", o), s.when(t).then(o)
                             }
                         })
                     }
-                }, n.deactivate = function (t) {
-                    n == i.active_app && (i.active_app = null, s(document).unbind("keydown.ts_abort"), s(window).unbind("resize.ts_resize_app"), t || s("#ts_shadow").hide(), n.app_window.fadeOut(200), "function" == typeof n.on_close && n.on_close())
-                }, n.show_app_window = function () {
+                }, i.deactivate = function (t) {
+                    i == n.active_app && (n.active_app = null, s(window).unbind("resize.ts_resize_app"), t || s("#ts_shadow").hide(), i.app_window.fadeOut(200), "function" == typeof i.on_close && i.on_close())
+                }, i.show_app_window = function () {
                     var t = s("#ts_shadow"),
                         e = s.Deferred();
-                    return n.shadow ? t.fadeTo(200, .3, function () {
-                        n.app_window.fadeIn(200), setTimeout(e.resolve, 1)
-                    }) : (n.app_window.fadeIn(200), setTimeout(e.resolve, 1)), e
-                }, n.reload = function () {
-                    n.deactivate(!0), n.loaded = !1, n.activate()
-                }, n
-            }
-
-            function a(e) {
-                var n = o(s.extend(e, {
-                    type: "iframe_app"
-                }));
-                return n.src = e.src, n.scrollable = e.scrollable || !1, n.load_content = function (e) {
-                    n.iframe = s('<iframe src="' + n.src + '" ' + 'marginwidth="0" marginheight="0" vspace="0" hspace="0" ' + 'allowtransparency="true" frameborder="0" scrolling="no"></iframe>'), n.display_div.append(n.iframe), n.iframe.width(0).height(0), n.iframe.load(t.wrap(function () {
-                        n.iframe.siblings().remove(), n.iframe.width("100%"), n.iframe.height("100%"), e()
-                    }))
-                }, n
+                    return i.shadow ? t.fadeTo(200, .3, function () {
+                        i.app_window.fadeIn(200), setTimeout(e.resolve, 1)
+                    }) : (i.app_window.fadeIn(200), setTimeout(e.resolve, 1)), e
+                }, i.reload = function () {
+                    i.deactivate(!0), i.loaded = !1, i.activate()
+                }, i
             }
 
             function r(e) {
-                var n = o(s.extend(e, {
+                var i = o(s.extend(e, {
+                    type: "iframe_app"
+                }));
+                return i.src = e.src, i.scrollable = e.scrollable || !1, i.load_content = function (e) {
+                    i.iframe = s('<iframe src="' + i.src + '" ' + 'marginwidth="0" marginheight="0" vspace="0" hspace="0" ' + 'allowtransparency="true" frameborder="0" scrolling="no"></iframe>'), i.display_div.append(i.iframe), i.iframe.width(0).height(0), i.iframe.load(t.wrap(function () {
+                        i.iframe.siblings().remove(), i.iframe.width("100%"), i.iframe.height("100%"), e()
+                    }))
+                }, i
+            }
+
+            function a(e) {
+                var i = o(s.extend(e, {
                     type: "json_app"
                 }));
-                return n.url = e.url, n.display = e.display, n.styles = e.styles, n.load_content = function (e) {
+                return i.url = e.url, i.display = e.display, i.styles = e.styles, i.load_content = function (e) {
                     s.jsonp({
-                        url: n.url,
-                        success: function (i) {
+                        url: i.url,
+                        success: function (n) {
                             try {
-                                var o = n.display(i);
-                                n.display_div.html(o), e()
-                            } catch (a) {
-                                n.error("Whoops... There was an error. We're working on fixing it now!"), t.captureException(a)
+                                var o = i.display(n);
+                                i.display_div.html(o), e()
+                            } catch (r) {
+                                i.error("Whoops... There was an error. We're working on fixing it now!"), t.captureException(r)
                             }
                         },
                         error: function (e) {
-                            n.error("Error loading data. Refresh the page and try again."), t.captureException(e)
+                            i.error("Error loading data. Refresh the page and try again."), t.captureException(e)
                         }
                     })
-                }, n
+                }, i
             }
             if (!turnsocial_has_run) {
                 turnsocial_has_run = !0, "undefined" == typeof console && (this.console = {
@@ -150,96 +149,96 @@
                 ! function (t) {
                     function e() {}
 
-                    function n(t) {
-                        r = [t]
+                    function i(t) {
+                        a = [t]
                     }
 
-                    function i(t, e, n) {
-                        return t && t.apply(e.context || e, n)
+                    function n(t, e, i) {
+                        return t && t.apply(e.context || e, i)
                     }
 
                     function o(t) {
                         return /\?/.test(t) ? "&" : "?"
                     }
 
-                    function a(a) {
+                    function r(r) {
                         function h(t) {
-                            X++ || (Q(), R && (z[B] = {
+                            V++ || (q(), L && (C[K] = {
                                 s: [t]
-                            }), Y && (t = Y.apply(a, [t])), i(F, a, [t, x, a]), i(q, a, [a, x]))
+                            }), W && (t = W.apply(r, [t])), n(R, r, [t, _, r]), n(M, r, [r, _]))
                         }
 
-                        function W(t) {
-                            X++ || (Q(), R && t != y && (z[B] = t), i(E, a, [a, t]), i(q, a, [a, t]))
+                        function j(t) {
+                            V++ || (q(), L && t != y && (C[K] = t), n(F, r, [r, t]), n(M, r, [r, t]))
                         }
-                        a = t.extend({}, j, a);
-                        var H, O, C, A, L, F = a.success,
-                            E = a.error,
-                            q = a.complete,
-                            Y = a.dataFilter,
-                            P = a.callbackParameter,
-                            $ = a.callback,
-                            U = a.cache,
-                            R = a.pageCache,
-                            N = a.charset,
-                            B = a.url,
-                            Z = a.data,
-                            J = a.timeout,
-                            X = 0,
-                            Q = e;
-                        return T && T(function (t) {
-                            t.done(F).fail(E), F = t.resolve, E = t.reject
-                        }).promise(a), a.abort = function () {
-                            !X++ && Q()
-                        }, i(a.beforeSend, a, [a]) === !1 || X ? a : (B = B || l, Z = Z ? "string" == typeof Z ? Z : t.param(Z, a.traditional) : l, B += Z ? o(B) + Z : l, P && (B += o(B) + encodeURIComponent(P) + "=?"), !U && !R && (B += o(B) + "_" + (new Date).getTime() + "="), B = B.replace(/=\?(&|$)/, "=" + $ + "$1"), R && (H = z[B]) ? H.s ? h(H.s[0]) : W(H) : (k[$] = n, C = t(v)[0], C.id = u + D++, N && (C[c] = N), S && S.version() < 11.6 ? (A = t(v)[0]).text = "document.getElementById('" + C.id + "')." + g + "()" : C[s] = s, M && (C.htmlFor = C.id, C.event = f), C[m] = C[g] = C[_] = function (t) {
-                            if (!C[w] || !/i/.test(C[w])) {
+                        r = t.extend({}, E, r);
+                        var Q, z, O, U, B, R = r.success,
+                            F = r.error,
+                            M = r.complete,
+                            W = r.dataFilter,
+                            H = r.callbackParameter,
+                            P = r.callback,
+                            J = r.cache,
+                            L = r.pageCache,
+                            Y = r.charset,
+                            K = r.url,
+                            N = r.data,
+                            X = r.timeout,
+                            V = 0,
+                            q = e;
+                        return k && k(function (t) {
+                            t.done(R).fail(F), R = t.resolve, F = t.reject
+                        }).promise(r), r.abort = function () {
+                            !V++ && q()
+                        }, n(r.beforeSend, r, [r]) === !1 || V ? r : (K = K || c, N = N ? "string" == typeof N ? N : t.param(N, r.traditional) : c, K += N ? o(K) + N : c, H && (K += o(K) + encodeURIComponent(H) + "=?"), !J && !L && (K += o(K) + "_" + (new Date).getTime() + "="), K = K.replace(/=\?(&|$)/, "=" + P + "$1"), L && (Q = C[K]) ? Q.s ? h(Q.s[0]) : j(Q) : (x[P] = i, O = t(b)[0], O.id = u + S++, Y && (O[l] = Y), T && T.version() < 11.6 ? (U = t(b)[0]).text = "document.getElementById('" + O.id + "')." + A + "()" : O[s] = s, D && (O.htmlFor = O.id, O.event = f), O[g] = O[A] = O[m] = function (t) {
+                            if (!O[w] || !/i/.test(O[w])) {
                                 try {
-                                    C[f] && C[f]()
+                                    O[f] && O[f]()
                                 } catch (e) {}
-                                t = r, r = 0, t ? h(t[0]) : W(p)
+                                t = a, a = 0, t ? h(t[0]) : j(d)
                             }
-                        }, C.src = B, Q = function () {
-                            L && clearTimeout(L), C[_] = C[m] = C[g] = null, I[b](C), A && I[b](A)
-                        }, I[d](C, O = I.firstChild), A && I[d](A, O), L = J > 0 && setTimeout(function () {
-                            W(y)
-                        }, J)), a)
+                        }, O.src = K, q = function () {
+                            B && clearTimeout(B), O[m] = O[g] = O[A] = null, I[v](O), U && I[v](U)
+                        }, I[p](O, z = I.firstChild), U && I[p](U, z), B = X > 0 && setTimeout(function () {
+                            j(y)
+                        }, X)), r)
                     }
-                    var r, s = "async",
-                        c = "charset",
-                        l = "",
-                        p = "error",
-                        d = "insertBefore",
+                    var a, s = "async",
+                        l = "charset",
+                        c = "",
+                        d = "error",
+                        p = "insertBefore",
                         u = "_jqjsp",
                         h = "on",
                         f = h + "click",
-                        g = h + p,
-                        m = h + "load",
-                        _ = h + "readystatechange",
+                        A = h + d,
+                        g = h + "load",
+                        m = h + "readystatechange",
                         w = "readyState",
-                        b = "removeChild",
-                        v = "<script>",
-                        x = "success",
+                        v = "removeChild",
+                        b = "<script>",
+                        _ = "success",
                         y = "timeout",
-                        k = window,
-                        T = t.Deferred,
+                        x = window,
+                        k = t.Deferred,
                         I = t("head")[0] || document.documentElement,
-                        z = {}, D = 0,
-                        j = {
+                        C = {}, S = 0,
+                        E = {
                             callback: u,
                             url: location.href
-                        }, S = k.opera,
-                        M = !! t("<div>").html("<!--[if IE]><i><![endif]-->").find("i").length;
-                    a.setup = function (e) {
-                        t.extend(j, e)
-                    }, t.jsonp = a
+                        }, T = x.opera,
+                        D = !! t("<div>").html("<!--[if IE]><i><![endif]-->").find("i").length;
+                    r.setup = function (e) {
+                        t.extend(E, e)
+                    }, t.jsonp = r
                 }(e);
-                var c = {};
+                var l = {};
                 ! function (t) {
                     var e = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-                        n = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                        i = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                        i = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                        n = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
                         o = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-                        a = {
+                        r = {
                             1: "st",
                             2: "nd",
                             3: "rd",
@@ -250,26 +249,26 @@
                             return t.strftime(this, e)
                         }
                     };
-                    var r = {
+                    var a = {
                         daysInMonth: function (t) {
-                            var e = r.isLeapYear(t) ? 29 : 28;
+                            var e = a.isLeapYear(t) ? 29 : 28;
                             return [31, e, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
                         },
                         getTimezone: function (t) {
                             return t.toString().replace(/^.*? ([A-Z]{3}) [0-9]{4}.*$/, "$1").replace(/^.*?\(([A-Z])[a-z]+ ([A-Z])[a-z]+ ([A-Z])[a-z]+\)$/, "$1$2$3")
                         },
                         getGMTOffset: function (t) {
-                            return (t.getTimezoneOffset() > 0 ? "-" : "+") + l.pad(Math.floor(t.getTimezoneOffset() / 60), 2) + l.pad(t.getTimezoneOffset() % 60, 2)
+                            return (t.getTimezoneOffset() > 0 ? "-" : "+") + c.pad(Math.floor(t.getTimezoneOffset() / 60), 2) + c.pad(t.getTimezoneOffset() % 60, 2)
                         },
                         getDayOfYear: function (t) {
-                            for (var e = 0, n = 0; n < t.getMonth(); ++n) e += r.daysInMonth(t)[n];
+                            for (var e = 0, i = 0; i < t.getMonth(); ++i) e += a.daysInMonth(t)[i];
                             return e + t.getDate()
                         },
                         getWeekOfYear: function (t, e) {
-                            var n = this.getDayOfYear(t) + (e - t.getDay()),
-                                i = new Date(t.getFullYear(), 0, 1),
-                                o = 7 - i.getDay() + e;
-                            return l.pad(Math.floor((n - o) / 7) + 1, 2)
+                            var i = this.getDayOfYear(t) + (e - t.getDay()),
+                                n = new Date(t.getFullYear(), 0, 1),
+                                o = 7 - n.getDay() + e;
+                            return c.pad(Math.floor((i - o) / 7) + 1, 2)
                         },
                         isLeapYear: function (t) {
                             var e = t.getFullYear();
@@ -280,13 +279,13 @@
                             return 0 > e ? e + 7 : e
                         },
                         getLastDayOfMonth: function (t) {
-                            var e = (t.getDay() + (r.daysInMonth(t)[t.getMonth()] - t.getDate())) % 7;
+                            var e = (t.getDay() + (a.daysInMonth(t)[t.getMonth()] - t.getDate())) % 7;
                             return 0 > e ? e + 7 : e
                         },
                         getSuffix: function (t) {
                             var e = t.getDate().toString(),
-                                n = parseInt(e.slice(-1));
-                            return a[n] || a["default"]
+                                i = parseInt(e.slice(-1));
+                            return r[i] || r["default"]
                         },
                         applyOffset: function (t, e) {
                             return t.setTime(t.valueOf() - 1e3 * e), t
@@ -294,28 +293,28 @@
                         century: function (t) {
                             return parseInt(t.getFullYear().toString().substring(0, 2), 10)
                         }
-                    }, c = {
+                    }, l = {
                             values_of: function (t) {
                                 var e = [];
-                                return s.each(t, function (t, n) {
-                                    e.push(n)
+                                return s.each(t, function (t, i) {
+                                    e.push(i)
                                 }), e
                             }
-                        }, l = {
-                            pad: function (t, e, n) {
-                                n || (n = "0");
-                                for (var i = t.toString(), o = e - i.length; o-- > 0;) i = n + i;
-                                return i
+                        }, c = {
+                            pad: function (t, e, i) {
+                                i || (i = "0");
+                                for (var n = t.toString(), o = e - n.length; o-- > 0;) n = i + n;
+                                return n
                             }
-                        }, p = {
+                        }, d = {
                             a: function (t) {
                                 return o[t.getDay()]
                             },
                             A: function (t) {
-                                return i[t.getDay()]
+                                return n[t.getDay()]
                             },
                             b: function (t) {
-                                return n[t.getMonth()]
+                                return i[t.getMonth()]
                             },
                             B: function (t) {
                                 return e[t.getMonth()]
@@ -324,37 +323,37 @@
                                 return t.toLocaleString()
                             },
                             C: function (t) {
-                                return r.century(t)
+                                return a.century(t)
                             },
                             d: function (t) {
-                                return l.pad(t.getDate(), 2)
+                                return c.pad(t.getDate(), 2)
                             },
                             e: function (t) {
-                                return l.pad(t.getDate(), 2, " ")
+                                return c.pad(t.getDate(), 2, " ")
                             },
                             H: function (t) {
-                                return l.pad(t.getHours(), 2)
+                                return c.pad(t.getHours(), 2)
                             },
                             I: function (t) {
-                                return l.pad(t.getHours() % 12 || 12, 2)
+                                return c.pad(t.getHours() % 12 || 12, 2)
                             },
                             j: function (t) {
-                                return l.pad(r.getDayOfYear(t), 3)
+                                return c.pad(a.getDayOfYear(t), 3)
                             },
                             k: function (t) {
-                                return l.pad(t.getHours(), 2, " ")
+                                return c.pad(t.getHours(), 2, " ")
                             },
                             l: function (t) {
-                                return l.pad(t.getHours() % 12 || 12, 2, " ")
+                                return c.pad(t.getHours() % 12 || 12, 2, " ")
                             },
                             L: function (t) {
-                                return l.pad(t.getMilliseconds(), 3)
+                                return c.pad(t.getMilliseconds(), 3)
                             },
                             m: function (t) {
-                                return l.pad(t.getMonth() + 1, 2)
+                                return c.pad(t.getMonth() + 1, 2)
                             },
                             M: function (t) {
-                                return l.pad(t.getMinutes(), 2)
+                                return c.pad(t.getMinutes(), 2)
                             },
                             p: function (t) {
                                 return t.getHours() < 12 ? "AM" : "PM"
@@ -363,25 +362,25 @@
                                 return t.getHours() < 12 ? "am" : "pm"
                             },
                             q: function (t) {
-                                return r.getSuffix(t)
+                                return a.getSuffix(t)
                             },
                             s: function (t) {
                                 return Math.round(t.valueOf() / 1e3)
                             },
                             S: function (t) {
-                                return l.pad(t.getSeconds(), 2)
+                                return c.pad(t.getSeconds(), 2)
                             },
                             u: function (t) {
                                 return t.getDay() || 7
                             },
                             U: function (t) {
-                                return r.getWeekOfYear(t, 0)
+                                return a.getWeekOfYear(t, 0)
                             },
                             w: function (t) {
                                 return t.getDay()
                             },
                             W: function (t) {
-                                return r.getWeekOfYear(t, 1)
+                                return a.getWeekOfYear(t, 1)
                             },
                             x: function (t) {
                                 return t.toLocaleDateString()
@@ -397,24 +396,24 @@
                             },
                             z: function (t) {
                                 var e = 100 * (t.getTimezoneOffset() / 60);
-                                return (e > 0 ? "-" : "+") + l.pad(e, 4)
+                                return (e > 0 ? "-" : "+") + c.pad(e, 4)
                             },
                             "%": function () {
                                 return "%"
                             }
                         };
-                    p.h = p.b, p.N = p.L;
-                    var d = {
+                    d.h = d.b, d.N = d.L;
+                    var p = {
                         a: {
                             r: "(?:" + o.join("|") + ")"
                         },
                         A: {
-                            r: "(?:" + i.join("|") + ")"
+                            r: "(?:" + n.join("|") + ")"
                         },
                         b: {
-                            r: "(" + n.join("|") + ")",
+                            r: "(" + i.join("|") + ")",
                             p: function (t) {
-                                this.month = s.inArray(t, n)
+                                this.month = s.inArray(t, i)
                             }
                         },
                         B: {
@@ -484,7 +483,7 @@
                             }
                         },
                         q: {
-                            r: "(?:" + c.values_of(a).join("|") + ")"
+                            r: "(?:" + l.values_of(r).join("|") + ")"
                         },
                         S: {
                             r: "(\\d{2})",
@@ -513,136 +512,136 @@
                             }
                         }
                     };
-                    d.e = d.d, d.h = d.b, d.I = d.H, d.k = d.H, d.l = d.H, t.strftime = function (t, e) {
-                        for (var n = "", i = e;;) {
+                    p.e = p.d, p.h = p.b, p.I = p.H, p.k = p.H, p.l = p.H, t.strftime = function (t, e) {
+                        for (var i = "", n = e;;) {
                             var o = /%./g,
-                                a = o.exec(i);
-                            if (!a) return n + i;
-                            n += i.slice(0, o.lastIndex - 2), i = i.slice(o.lastIndex);
-                            var r = a[0].charAt(1),
-                                s = p[r];
-                            n += s ? s.call(this, t) : "%" + r
+                                r = o.exec(n);
+                            if (!r) return i + n;
+                            i += n.slice(0, o.lastIndex - 2), n = n.slice(o.lastIndex);
+                            var a = r[0].charAt(1),
+                                s = d[a];
+                            i += s ? s.call(this, t) : "%" + a
                         }
                     }, t.strptime = function (t, e) {
-                        for (var n = [], i = "", o = e;;) {
-                            var a = /%./g,
-                                c = a.exec(o);
-                            if (!c) {
-                                i += o;
+                        for (var i = [], n = "", o = e;;) {
+                            var r = /%./g,
+                                l = r.exec(o);
+                            if (!l) {
+                                n += o;
                                 break
                             }
-                            i += o.slice(0, a.lastIndex - 2), o = o.slice(a.lastIndex);
-                            var l = c[0].charAt(1),
-                                p = d[l];
-                            p.p && (n = n.concat(p.p)), i += p.r
+                            n += o.slice(0, r.lastIndex - 2), o = o.slice(r.lastIndex);
+                            var c = l[0].charAt(1),
+                                d = p[c];
+                            d.p && (i = i.concat(d.p)), n += d.r
                         }
-                        var i = new RegExp("^" + i + "$"),
-                            u = t.match(i) || [];
-                        if (u.length != n.length + 1) return null;
+                        var n = new RegExp("^" + n + "$"),
+                            u = t.match(n) || [];
+                        if (u.length != i.length + 1) return null;
                         var h = {};
-                        s.each(n, function (t, e) {
+                        s.each(i, function (t, e) {
                             e.call(h, u[t + 1])
                         });
                         var f = new Date;
                         if ("year" in h)
                             if ("century" in h) h.year += 100 * h.century;
                             else {
-                                h.year += 100 * r.century(f);
-                                var g = new Date(f.getFullYear() + 50, f.getMonth(), f.getDate());
-                                h.year > g.getFullYear() && (h.year -= 100)
+                                h.year += 100 * a.century(f);
+                                var A = new Date(f.getFullYear() + 50, f.getMonth(), f.getDate());
+                                h.year > A.getFullYear() && (h.year -= 100)
                             }
                         if ("year" in h && "day" in h && !("month" in h))
-                            for (var m = new Date(h.year, 0, 1), _ = r.daysInMonth(m), w = 0; w < _.length; w++) {
-                                if (h.day <= _[w]) {
+                            for (var g = new Date(h.year, 0, 1), m = a.daysInMonth(g), w = 0; w < m.length; w++) {
+                                if (h.day <= m[w]) {
                                     h.month = w;
                                     break
                                 }
-                                h.day -= _[w]
+                                h.day -= m[w]
                             }
-                        var b = new Date("year" in h ? h.year : f.getFullYear(), "month" in h ? h.month : f.getMonth(), "day" in h ? h.day : f.getDate(), h.hour || 0, h.minute || 0, h.second || 0, h.milliseconds || 0);
-                        return "zone" in h ? (b = new Date(b.valueOf() - 60 * 1e3 * b.getTimezoneOffset()), r.applyOffset(b, h.zone || 0)) : b
+                        var v = new Date("year" in h ? h.year : f.getFullYear(), "month" in h ? h.month : f.getMonth(), "day" in h ? h.day : f.getDate(), h.hour || 0, h.minute || 0, h.second || 0, h.milliseconds || 0);
+                        return "zone" in h ? (v = new Date(v.valueOf() - 60 * 1e3 * v.getTimezoneOffset()), a.applyOffset(v, h.zone || 0)) : v
                     }
-                }(c);
-                var l = s('<div id="ts" class="ts"> <div class="ts_bar"> <div class="ts_bar_left">&nbsp;</div> <div id="ts_bar_content"> <div id="ts_app_links"><div id="google_translate_element"></div></div> <div id="ts_protected_links"></div> </div> <div class="ts_bar_right">&nbsp;</div> </div> <div id="ts_shadow"></div> </div>'),
-                    p = '#ts h1,#ts h2,#ts h3,#ts h4,#ts h5,#ts h6,#ts p,#ts td,#ts dl,#ts tr,#ts dt,#ts ol,#ts form,#ts select,#ts option,#ts pre,#ts div,#ts table,#ts th,#ts tbody,#ts tfoot,#ts caption,#ts thead,#ts ul,#ts li,#ts address,#ts blockquote,#ts dd,#ts fieldset,#ts li,#ts iframe,#ts strong,#ts legend,#ts em,#ts s,#ts cite,#ts span,#ts input,#ts sup,#ts label,#ts dfn,#ts object,#ts big,#ts q,#ts font,#ts samp,#ts acronym,#ts small,#ts img,#ts strike,#ts code,#ts sub,#ts ins,#ts textarea,#ts var,#ts a,#ts abbr,#ts applet,#ts del,#ts kbd,#ts tt,#ts b,#ts i,#ts hr,#ts article,#ts aside,#ts dialog,#ts figure,#ts footer,#ts header,#ts hgroup,#ts menu,#ts nav,#ts section,#ts time,#ts mark,#ts audio,#ts video{background-attachment:scroll;background-color:transparent;background-image:none;background-position:0 0;background-repeat:repeat;border-color:black;border-radius:0;border-style:none;border-width:medium;bottom:auto;clear:none;clip:auto;color:inherit;counter-increment:none;counter-reset:none;cursor:auto;direction:inherit;display:inline;float:none;font-family:inherit;font-size:inherit;font-style:inherit;font-variant:normal;font-weight:inherit;height:auto;left:auto;letter-spacing:normal;line-height:inherit;list-style-type:none;list-style-position:outside;list-style-image:none;margin:0;max-height:none;max-width:none;min-height:0;min-width:0;opacity:1;outline:invert none medium;overflow:visible;padding:0;position:static;quotes:"" "";right:auto;table-layout:auto;text-align:inherit;text-decoration:inherit;text-indent:0;text-transform:none;top:auto;unicode-bidi:normal;vertical-align:baseline;visibility:inherit;white-space:normal;width:auto;word-spacing:normal;z-index:auto;-moz-border-radius:0;-webkit-border-radius:0}#ts h3,#ts h5,#ts p,#ts h1,#ts dl,#ts dt,#ts h6,#ts ol,#ts form,#ts select,#ts option,#ts pre,#ts div,#ts h2,#ts caption,#ts h4,#ts ul,#ts address,#ts blockquote,#ts dd,#ts fieldset,#ts textarea,#ts hr,#ts article,#ts aside,#ts dialog,#ts figure,#ts footer,#ts header,#ts hgroup,#ts menu,#ts nav,#ts section{display:block}#ts table{display:table}#ts thead{display:table-header-group}#ts tbody{display:table-row-group}#ts tfoot{display:table-footer-group}#ts tr{display:table-row}#ts th,#ts td{display:table-cell}#ts li{display:list-item;min-height:auto;min-width:auto}#ts strong{font-weight:bold}#ts em{font-style:italic}#ts kbd,#ts samp,#ts code{font-family:monospace}#ts a,#ts a,#ts *,#ts input[type=submit],#ts input[type=radio],#ts input[type=checkbox],#ts select{cursor:pointer}#ts a:hover{text-decoration:none}#ts button,#ts input[type=submit]{text-align:center}#ts input[type=hidden]{display:none}#ts abbr[title],#ts acronym[title],#ts dfn[title]{cursor:help;border-bottom-width:1px;border-bottom-style:dotted}#ts ins{background-color:#ff9;color:black}#ts del{text-decoration:line-through}#ts blockquote,#ts q{quotes:none}#ts blockquote:before,#ts blockquote:after,#ts q:before,#ts q:after,#ts li:before,#ts li:after{content:""}#ts input,#ts select{vertical-align:middle}#ts select,#ts textarea,#ts input{border:1px solid #ccc}#ts table{border-collapse:collapse;border-spacing:0}#ts hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0}#ts *[dir=rtl]{direction:rtl}#ts mark{background-color:#ff9;color:black;font-style:italic;font-weight:bold}#ts{font-size:medium;line-height:1;direction:ltr;text-align:left;font-family:"Times New Roman", Times, serif;color:black;font-style:normal;font-weight:normal;text-decoration:none;list-style-type:disc;display:block}\n';
-                p += "#ts .ts_sprite_icons_ads{width:23px;height:23px;background:transparent url(//turnsocial.com/assets/icons-8aaaac0689f4a402152661e457e1e272.png) 0 0px no-repeat}#ts .ts_sprite_icons_apartment_ratings{width:23px;height:23px;background:transparent url(//turnsocial.com/assets/icons-8aaaac0689f4a402152661e457e1e272.png) 0 -23px no-repeat}#ts .ts_sprite_icons_facebook{width:23px;height:23px;background:transparent url(//turnsocial.com/assets/icons-8aaaac0689f4a402152661e457e1e272.png) 0 -46px no-repeat}#ts .ts_sprite_icons_facebook_fan{width:23px;height:23px;background:transparent url(//turnsocial.com/assets/icons-8aaaac0689f4a402152661e457e1e272.png) 0 -69px no-repeat}#ts .ts_sprite_icons_flickr{width:24px;height:24px;background:transparent url(//turnsocial.com/assets/icons-8aaaac0689f4a402152661e457e1e272.png) 0 -92px no-repeat}#ts .ts_sprite_icons_foursquare{width:23px;height:23px;background:transparent url(//turnsocial.com/assets/icons-8aaaac0689f4a402152661e457e1e272.png) 0 -116px no-repeat}#ts .ts_sprite_icons_hide{width:23px;height:22px;background:transparent url(//turnsocial.com/assets/icons-8aaaac0689f4a402152661e457e1e272.png) 0 -139px no-repeat}#ts .ts_sprite_icons_myspace{width:23px;height:23px;background:transparent url(//turnsocial.com/assets/icons-8aaaac0689f4a402152661e457e1e272.png) 0 -161px no-repeat}#ts .ts_sprite_icons_outside{width:23px;height:23px;background:transparent url(//turnsocial.com/assets/icons-8aaaac0689f4a402152661e457e1e272.png) 0 -184px no-repeat}#ts .ts_sprite_icons_rentwiki{width:23px;height:23px;background:transparent url(//turnsocial.com/assets/icons-8aaaac0689f4a402152661e457e1e272.png) 0 -207px no-repeat}#ts .ts_sprite_icons_resident_places{width:23px;height:23px;background:transparent url(//turnsocial.com/assets/icons-8aaaac0689f4a402152661e457e1e272.png) 0 -230px no-repeat}#ts .ts_sprite_icons_rss{width:23px;height:23px;background:transparent url(//turnsocial.com/assets/icons-8aaaac0689f4a402152661e457e1e272.png) 0 -253px no-repeat}#ts .ts_sprite_icons_satisfacts{width:23px;height:23px;background:transparent url(//turnsocial.com/assets/icons-8aaaac0689f4a402152661e457e1e272.png) 0 -276px no-repeat}#ts .ts_sprite_icons_share{width:23px;height:18px;background:transparent url(//turnsocial.com/assets/icons-8aaaac0689f4a402152661e457e1e272.png) 0 -299px no-repeat}#ts .ts_sprite_icons_show{width:23px;height:22px;background:transparent url(//turnsocial.com/assets/icons-8aaaac0689f4a402152661e457e1e272.png) 0 -317px no-repeat}#ts .ts_sprite_icons_turnsocial{width:23px;height:23px;background:transparent url(//turnsocial.com/assets/icons-8aaaac0689f4a402152661e457e1e272.png) 0 -339px no-repeat}#ts .ts_sprite_icons_twitter_search{width:23px;height:23px;background:transparent url(//turnsocial.com/assets/icons-8aaaac0689f4a402152661e457e1e272.png) 0 -362px no-repeat}#ts .ts_sprite_icons_twitter_user{width:23px;height:23px;background:transparent url(//turnsocial.com/assets/icons-8aaaac0689f4a402152661e457e1e272.png) 0 -385px no-repeat}#ts .ts_sprite_icons_walkscore{width:23px;height:23px;background:transparent url(//turnsocial.com/assets/icons-8aaaac0689f4a402152661e457e1e272.png) 0 -408px no-repeat}#ts .ts_sprite_icons_yelp_search{width:23px;height:23px;background:transparent url(//turnsocial.com/assets/icons-8aaaac0689f4a402152661e457e1e272.png) 0 -431px no-repeat}#ts .ts_sprite_icons_yelp_venue{width:23px;height:23px;background:transparent url(//turnsocial.com/assets/icons-8aaaac0689f4a402152661e457e1e272.png) 0 -454px no-repeat}#ts .ts_sprite_icons_youtube{width:23px;height:23px;background:transparent url(//turnsocial.com/assets/icons-8aaaac0689f4a402152661e457e1e272.png) 0 -477px no-repeat}#ts *{-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box}#ts .ts_bar{position:fixed;bottom:0;right:13px;height:37px;z-index:2147483645;display:none;overflow:none;white-space:nowrap}#ts .ts_bar .ts_bar a:hover{text-decoration:none}#ts .ts_bar .ts_bar a{text-decoration:none;outline:none}#ts .ts_bar_left{position:absolute;left:0;top:0;bottom:0;width:13px;background:url(//turnsocial.com/assets/background-8165eb0c9e2c5e0347a0a21e2a92efed.png) no-repeat 0 0}#ts #ts_bar_content{background:url(//turnsocial.com/assets/background-8165eb0c9e2c5e0347a0a21e2a92efed.png) repeat-x 0 -37px;height:37px;margin:0 13px;padding-top:10px}#ts .ts_bar_right{position:absolute;right:0;top:0;bottom:0;width:13px;background:url(//turnsocial.com/assets/background-8165eb0c9e2c5e0347a0a21e2a92efed.png) no-repeat 0 -74px}#ts #ts_app_links,#ts #ts_protected_links{float:left}#ts .ts_app_link{display:inline-block;padding:0 5px;cursor:pointer;vertical-align:middle;height:146px;marginBottom:91px;}#ts .ts_app_link *{cursor:pointer}#ts .ts_error{position:absolute;top:50%;left:50%;margin-left:-120px;width:220px;border-radius:14px;line-height:18px;text-align:center;background-color:#fdd;color:#b00;font-weight:bold;padding:10px}#ts .ts_spinner{position:absolute;left:50%;top:50%;height:18px}#ts .ts_spinner_segment{position:absolute;width:14px;height:14px;background-color:white;border:solid 2px #7493d0;border-radius:14px}#ts #ts_shadow{background-color:black;position:fixed;left:0;top:0;right:0;bottom:0;z-index:2147483644;display:none}#ts .ts_display_div{height:100%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}#ts .ts_json_app .ts_display_div{padding:10px;overflow-y:auto}#ts .ts_iframe_app .ts_display_div{overflow:hidden}#ts .ts_widget{font-family:Arial, sans-serif;display:none;background-color:white;position:fixed;border:2px solid #88a3d7;z-index:2147483645;bottom:43px;right:13px;font-size:13px;overflow:hidden;padding:22px 0 0 0}#ts .ts_widget a{color:#7D99CC;text-decoration:none}#ts .ts_widget a:hover{text-decoration:underline}#ts .ts_widget h1{font-size:28px;font-weight:bold}#ts .ts_widget h2{font-size:18px;font-weight:bold}#ts .ts_widget .ts_title_bar{position:absolute;height:22px;left:0;right:0;top:0;background-color:#88a3d7}#ts .ts_widget .ts_title_bar .ts_close_button{position:absolute;display:block;cursor:pointer;right:4px;top:3px;width:15px;height:15px;background:url(//turnsocial.com/assets/close_window-29998499c5e7db1ecf3c2bf9f3fdc27a.png) no-repeat 0 0}#ts .ts_widget .ts_title_bar .ts_close_button:hover{background-position:0 -16px}#ts .ts_widget .ts_title_bar .ts_close_button:active{background-position:0 -32px}#ts .ts_iframe_app iframe{width:100%;height:100%;overflow-x:hidden;overflow-y:auto}#ts #ts_facebook_fan{width:500px;height:560px}#ts #ts_walkscore{width:600px;height:442px}#ts #ts_walkscore iframe{overflow:hidden}#ts #ts_linkedin{display:inline-block;min-width:93px}#ts #ts_youtube{width:580px;height:560px}#ts #ts_satisfacts{width:460px;height:340px;left:50%;margin-left:-230px;top:50%;margin-top:-170px;border-radius:12px}#ts #ts_satisfacts iframe{overflow:hidden}#ts #google_translate_element{width:auto;height:20px;overflow:hidden;left:285px;position:absolute;top:12px;margin-left:10px;border:2px solid #7D9FD7; border-radius: 4px 4px 4px 4px;ts_app_linksts_app_links} #ts_google_plusone{width:80px;height:20px;overflow:hidden}#ts #ts_facebook_like{width:90px;height:20px;overflow:hidden}#ts #ts_ads{width:300px;height:250px;overflow:hidden}#ts .ts_tooltip{display:none;border:3px solid #333;border-radius:8px;background-color:#505050;padding:5px 9px;position:fixed;left:0;top:0;overflow:hidden;text-align:center;z-index:2147483647;font-family:sans-serif;color:#f3f3f3;letter-spacing:0.05em;white-space:nowrap;font-size:12px}#ts .default_height_check{height:1337px}\n";
-                var d;
-                d = {
+                }(l);
+                var c = s('<div id="ts" class="ts"> <div class="ts_bar"> <div id="ts_app_links"><div id="google_translate_element"></div></div> <div id="ts_protected_links"></div> </div> <div id="ts_shadow"></div> </div>'),
+                    d = '#ts h1,#ts h2,#ts h3,#ts h4,#ts h5,#ts h6,#ts p,#ts td,#ts dl,#ts tr,#ts dt,#ts ol,#ts form,#ts select,#ts option,#ts pre,#ts div,#ts table,#ts th,#ts tbody,#ts tfoot,#ts caption,#ts thead,#ts ul,#ts li,#ts address,#ts blockquote,#ts dd,#ts fieldset,#ts li,#ts iframe,#ts strong,#ts legend,#ts em,#ts s,#ts cite,#ts span,#ts input,#ts sup,#ts label,#ts dfn,#ts object,#ts big,#ts q,#ts font,#ts samp,#ts acronym,#ts small,#ts img,#ts strike,#ts code,#ts sub,#ts ins,#ts textarea,#ts var,#ts a,#ts abbr,#ts applet,#ts del,#ts kbd,#ts tt,#ts b,#ts i,#ts hr,#ts article,#ts aside,#ts dialog,#ts figure,#ts footer,#ts header,#ts hgroup,#ts menu,#ts nav,#ts section,#ts time,#ts mark,#ts audio,#ts video{background-attachment:scroll;background-color:transparent;background-image:none;background-position:0 0;background-repeat:repeat;border-color:black;border-radius:0;border-style:none;border-width:medium;bottom:auto;clear:none;clip:auto;color:inherit;counter-increment:none;counter-reset:none;cursor:auto;direction:inherit;display:inline;float:none;font-family:inherit;font-size:inherit;font-style:inherit;font-variant:normal;font-weight:inherit;height:auto;left:auto;letter-spacing:normal;line-height:inherit;list-style-type:none;list-style-position:outside;list-style-image:none;margin:0;max-height:none;max-width:none;min-height:0;min-width:0;opacity:1;outline:invert none medium;overflow:visible;padding:0;position:static;quotes:"" "";right:auto;table-layout:auto;text-align:inherit;text-decoration:inherit;text-indent:0;text-transform:none;top:auto;unicode-bidi:normal;vertical-align:baseline;visibility:inherit;white-space:normal;width:auto;word-spacing:normal;z-index:auto;-moz-border-radius:0;-webkit-border-radius:0}#ts h3,#ts h5,#ts p,#ts h1,#ts dl,#ts dt,#ts h6,#ts ol,#ts form,#ts select,#ts option,#ts pre,#ts div,#ts h2,#ts caption,#ts h4,#ts ul,#ts address,#ts blockquote,#ts dd,#ts fieldset,#ts textarea,#ts hr,#ts article,#ts aside,#ts dialog,#ts figure,#ts footer,#ts header,#ts hgroup,#ts menu,#ts nav,#ts section{display:block}#ts table{display:table}#ts thead{display:table-header-group}#ts tbody{display:table-row-group}#ts tfoot{display:table-footer-group}#ts tr{display:table-row}#ts th,#ts td{display:table-cell}#ts li{display:list-item;min-height:auto;min-width:auto}#ts strong{font-weight:bold}#ts em{font-style:italic}#ts kbd,#ts samp,#ts code{font-family:monospace}#ts a,#ts a,#ts *,#ts input[type=submit],#ts input[type=radio],#ts input[type=checkbox],#ts select{cursor:pointer}#ts a:hover{text-decoration:none}#ts button,#ts input[type=submit]{text-align:center}#ts input[type=hidden]{display:none}#ts abbr[title],#ts acronym[title],#ts dfn[title]{cursor:help;border-bottom-width:1px;border-bottom-style:dotted}#ts ins{background-color:#ff9;color:black}#ts del{text-decoration:line-through}#ts blockquote,#ts q{quotes:none}#ts blockquote:before,#ts blockquote:after,#ts q:before,#ts q:after,#ts li:before,#ts li:after{content:""}#ts input,#ts select{vertical-align:middle}#ts select,#ts textarea,#ts input{border:1px solid #ccc}#ts table{border-collapse:collapse;border-spacing:0}#ts hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0}#ts *[dir=rtl]{direction:rtl}#ts mark{background-color:#ff9;color:black;font-style:italic;font-weight:bold}#ts{font-size:medium;line-height:1;direction:ltr;text-align:left;font-family:"Times New Roman", Times, serif;color:black;font-style:normal;font-weight:normal;text-decoration:none;list-style-type:disc;display:block}\n';
+                d += "#ts *{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}#ts .ts_bar{position:fixed;bottom:0;right:13px;height:37px;z-index:2147483645;display:none;overflow:hidden;white-space:nowrap;padding:4px 8px 0 8px;box-shadow:0 0 4px 0 rgba(0,0,0,0.2);background:rgba(255,255,255,0.9);border:2px solid rgba(116,147,208,0.8);border-bottom:none;border-radius:8px 8px 0 0}#ts .ts_bar .ts_bar a:hover{text-decoration:none}#ts .ts_bar .ts_bar a{text-decoration:none;outline:none}#ts #ts_app_links,#ts #ts_protected_links{float:left}#ts .ts_app_link{display:inline-block;padding:0 3px;cursor:pointer;vertical-align:middle}#ts .ts_app_link *{cursor:pointer}#ts .ts_error{position:absolute;top:50%;left:50%;margin-left:-120px;width:220px;border-radius:14px;line-height:18px;text-align:center;background-color:#fdd;color:#b00;font-weight:bold;padding:10px}#ts .ts_spinner{position:absolute;left:50%;top:50%;height:18px}#ts .ts_spinner_segment{position:absolute;width:14px;height:14px;background-color:white;border:solid 2px #7493d0;border-radius:14px}#ts #ts_shadow{background-color:black;position:fixed;left:0;top:0;right:0;bottom:0;z-index:2147483644;display:none}#ts .ts_display_div{height:100%}#ts .ts_json_app .ts_display_div{padding:10px;overflow-y:auto}#ts .ts_iframe_app .ts_display_div{overflow:hidden}#ts .ts_widget{font-family:Arial, sans-serif;display:none;background-color:white;position:fixed;border:2px solid #88a3d7;z-index:2147483645;bottom:43px;right:13px;font-size:13px;overflow:hidden;padding:22px 0 0 0}#ts .ts_widget a{color:#7D99CC;text-decoration:none}#ts .ts_widget a:hover{text-decoration:underline}#ts .ts_widget h1{font-size:28px;font-weight:bold}#ts .ts_widget h2{font-size:18px;font-weight:bold}#ts .ts_widget .ts_title_bar{position:absolute;height:22px;left:0;right:0;top:0;background-color:#88a3d7}#ts .ts_widget .ts_title_bar .ts_close_button{position:absolute;display:block;cursor:pointer;right:4px;top:3px;width:15px;height:15px;background:url(//turnsocial.com/assets/close_window-bd510b5dc145fdef77ccd93c825ffb69.png) no-repeat 0 0}#ts .ts_widget .ts_title_bar .ts_close_button:hover{background-position:0 -16px}#ts .ts_widget .ts_title_bar .ts_close_button:active{background-position:0 -32px}#ts .ts_iframe_app iframe{width:100%;height:100%;overflow-x:hidden;overflow-y:auto}#ts #ts_facebook_fan{width:500px;height:560px}#ts #ts_walkscore{width:600px;height:442px}#ts #ts_walkscore iframe{overflow:hidden}#ts #ts_linkedin{display:inline-block;min-width:93px}#ts #ts_youtube{width:580px;height:560px}#ts #ts_satisfacts{width:460px;height:340px;left:50%;margin-left:-230px;top:50%;margin-top:-170px;border-radius:12px}#ts #ts_satisfacts iframe{overflow:hidden}#ts #google_translate_element{width:auto;height:23px;overflow:hidden;left:270px;position:absolute;top:5px;margin-left:10px;border:2px solid #7D9FD7; border-radius: 4px 4px 4px 4px;ts_app_linksts_app_links} #ts_tweet_button{width:100px;height:20px;overflow:hidden}#ts #ts_google_plusone{width:80px;height:20px;overflow:hidden}#ts #ts_facebook_like{width:90px;height:20px;overflow:hidden}#ts #ts_ads{width:300px;height:250px;overflow:hidden}#ts .ts_tooltip{display:none;border:3px solid #333;border-radius:8px;background-color:#505050;padding:5px 9px;position:fixed;left:0;top:0;overflow:hidden;text-align:center;z-index:2147483647;font-family:sans-serif;color:#f3f3f3;letter-spacing:0.05em;white-space:nowrap;font-size:12px}#ts .default_height_check{height:1337px}\n";
+                var p;
+                p = {
                     track: function (t, e) {
-                        var n, i, o, a;
+                        var i, n, o, r;
                         return null == e && (e = {}), s.extend(e, {
                             event: t
-                        }), i = "xxxxxxxx".replace(/x/g, function () {
+                        }), n = "xxxxxxxx".replace(/x/g, function () {
                             return (0 | 16 * Math.random()).toString(16)
-                        }), o = (new Date).getTime(), a = "//turnsocial.com/track/" + i + "-" + o + ".gif?" + s.param(e), n = s("<img />", {
+                        }), o = (new Date).getTime(), r = "//turnsocial.com/track/" + n + "-" + o + ".gif?" + s.param(e), i = s("<img />", {
                             "class": "ts_analytics",
                             style: "display: none !important;",
                             width: 0,
                             height: 0
-                        }), n.load(function () {
-                            return n.remove()
-                        }), n.attr("src", a), s("body").append(n)
+                        }), i.load(function () {
+                            return i.remove()
+                        }), i.attr("src", r), s("body").append(i)
                     }
                 };
                 var u = {
-                    bind: function (t, e, n) {
-                        var i = this._callbacks || (this._callbacks = {}),
-                            o = i[t] || (i[t] = []);
-                        return o.push([e, n]), this
+                    bind: function (t, e, i) {
+                        var n = this._callbacks || (this._callbacks = {}),
+                            o = n[t] || (n[t] = []);
+                        return o.push([e, i]), this
                     },
                     unbind: function (t, e) {
-                        var n;
+                        var i;
                         if (t) {
-                            if (n = this._callbacks)
+                            if (i = this._callbacks)
                                 if (e) {
-                                    var i = n[t];
-                                    if (!i) return this;
-                                    for (var o = 0, a = i.length; a > o; o++)
-                                        if (i[o] && e === i[o][0]) {
-                                            i[o] = null;
+                                    var n = i[t];
+                                    if (!n) return this;
+                                    for (var o = 0, r = n.length; r > o; o++)
+                                        if (n[o] && e === n[o][0]) {
+                                            n[o] = null;
                                             break
                                         }
-                                } else n[t] = []
+                                } else i[t] = []
                         } else this._callbacks = {};
                         return this
                     },
                     trigger: function (t) {
-                        var e, n, i, o, a, r = 2;
-                        if (!(n = this._callbacks)) return this;
-                        for (; r--;)
-                            if (i = r ? t : "all", e = n[i])
-                                for (var s = 0, c = e.length; c > s; s++)(o = e[s]) ? (a = r ? Array.prototype.slice.call(arguments, 1) : arguments, o[0].apply(o[1] || this, a)) : (e.splice(s, 1), s--, c--);
+                        var e, i, n, o, r, a = 2;
+                        if (!(i = this._callbacks)) return this;
+                        for (; a--;)
+                            if (n = a ? t : "all", e = i[n])
+                                for (var s = 0, l = e.length; l > s; s++)(o = e[s]) ? (r = a ? Array.prototype.slice.call(arguments, 1) : arguments, o[0].apply(o[1] || this, r)) : (e.splice(s, 1), s--, l--);
                         return this
                     }
                 };
                 u.bind("insert", function () {
-                    l.find("#ts_shadow").bind("click", function () {
-                        return i.active_app.deactivate(), !1
+                    c.find("#ts_shadow").bind("click", function () {
+                        return n.active_app.deactivate(), !1
                     }), s(".ts_widget").on("click", "a", function (t) {
                         return t.stopPropagation(), window.open(this.href), !1
                     })
                 }),
                 function (t) {
                     function e(e) {
-                        var i = e || window.event,
+                        var n = e || window.event,
                             o = [].slice.call(arguments, 1),
-                            a = 0,
                             r = 0,
+                            a = 0,
                             s = 0;
-                        return e = t.event.fix(i), e.type = "mousewheel", i.wheelDelta && (a = i.wheelDelta / 120), i.detail && (a = -i.detail / 3), s = a, i.axis !== n && i.axis === i.HORIZONTAL_AXIS && (s = 0, r = -1 * a), i.wheelDeltaY !== n && (s = i.wheelDeltaY / 120), i.wheelDeltaX !== n && (r = -1 * i.wheelDeltaX / 120), o.unshift(e, a, r, s), (t.event.dispatch || t.event.handle).apply(this, o)
+                        return e = t.event.fix(n), e.type = "mousewheel", n.wheelDelta && (r = n.wheelDelta / 120), n.detail && (r = -n.detail / 3), s = r, n.axis !== i && n.axis === n.HORIZONTAL_AXIS && (s = 0, a = -1 * r), n.wheelDeltaY !== i && (s = n.wheelDeltaY / 120), n.wheelDeltaX !== i && (a = -1 * n.wheelDeltaX / 120), o.unshift(e, r, a, s), (t.event.dispatch || t.event.handle).apply(this, o)
                     }
-                    var i = ["DOMMouseScroll", "mousewheel"];
+                    var n = ["DOMMouseScroll", "mousewheel"];
                     if (t.event.fixHooks)
-                        for (var o = i.length; o;) t.event.fixHooks[i[--o]] = t.event.mouseHooks;
+                        for (var o = n.length; o;) t.event.fixHooks[n[--o]] = t.event.mouseHooks;
                     t.event.special.mousewheel = {
                         setup: function () {
                             if (this.addEventListener)
-                                for (var t = i.length; t;) this.addEventListener(i[--t], e, !1);
+                                for (var t = n.length; t;) this.addEventListener(n[--t], e, !1);
                             else this.onmousewheel = e
                         },
                         teardown: function () {
                             if (this.removeEventListener)
-                                for (var t = i.length; t;) this.removeEventListener(i[--t], e, !1);
+                                for (var t = n.length; t;) this.removeEventListener(n[--t], e, !1);
                             else this.onmousewheel = null
                         }
                     }, t.fn.extend({
@@ -660,26 +659,26 @@
                 }, s.last = function (t) {
                     return t[t.length - 1]
                 }, s.select = function (t, e) {
-                    var n = [];
+                    var i = [];
                     return s.each(t, function (t) {
-                        e.call(this, t) && n.push(this)
-                    }), n
+                        e.call(this, t) && i.push(this)
+                    }), i
                 }, s.arraysEqual = function (t, e) {
                     return !(e > t || t > e)
                 }, s.fn.height_defined = function () {
                     this.addClass("default_height_check");
-                    var t = 1337 != Math.round(this.height());
+                    var t = 1337 != Math.round(this.outerHeight(!0));
                     return this.removeClass("default_height_check"), t
                 }, s.getParameterByName = function (t) {
                     var e = RegExp("[?&]" + t + "=([^&]*)").exec(window.location.search);
                     return e && decodeURIComponent(e[1].replace(/\+/g, " "))
                 }, s.parse_hash = function (t) {
                     var e = t.substr(1).split("&"),
-                        n = {};
+                        i = {};
                     return s.each(e, function () {
                         var t = this.split("=");
-                        n[t[0]] = t[1]
-                    }), n
+                        i[t[0]] = t[1]
+                    }), i
                 }, s.fn.placeholder = function () {
                     return s(this).each(function () {
                         s(this).addClass("ts_placeholder").data("original-value", s(this).val()).focus(function () {
@@ -692,23 +691,23 @@
                     })
                 };
                 var h = {
-                    new_window: function (t, e, i) {
-                        s.isFunction(e) && (i = e, e = n);
+                    new_window: function (t, e, n) {
+                        s.isFunction(e) && (n = e, e = i);
                         var o = {
                             height: 500,
                             width: 950
                         };
                         s.extend(o, e);
-                        var a = window.screenLeft || window.screenX || 0;
-                        a += (s(window).width() - o.width) / 2;
-                        var r = window.screenTop || window.screenY || 0;
-                        r += (s(window).height() - o.height) / 2;
-                        var c = "width=" + o.width + "," + "height=" + o.height + "," + "left=" + a + ",top=" + r + "," + "scrollbars=no,toolbar=no,location=no,menubar=no",
-                            l = window.open(t, "turnsocial", c);
-                        if (s.isFunction(i)) var p = setInterval(function () {
-                            l.closed && (clearInterval(p), i())
+                        var r = window.screenLeft || window.screenX || 0;
+                        r += (s(window).width() - o.width) / 2;
+                        var a = window.screenTop || window.screenY || 0;
+                        a += (s(window).height() - o.height) / 2;
+                        var l = "width=" + o.width + "," + "height=" + o.height + "," + "left=" + r + ",top=" + a + "," + "scrollbars=no,toolbar=no,location=no,menubar=no",
+                            c = window.open(t, "turnsocial", l);
+                        if (s.isFunction(n)) var d = setInterval(function () {
+                            c.closed && (clearInterval(d), n())
                         }, 100);
-                        return l
+                        return c
                     },
                     new_frame: function () {
                         var t = s("<iframe />", {
@@ -721,101 +720,101 @@
                     },
                     xd_frame: function (t) {
                         var e = h.new_frame(),
-                            n = e[0].contentWindow || e[0].documentWindow;
-                        return h.xd_listener(n, function (n) {
-                            e.remove(), t(n)
+                            i = e[0].contentWindow || e[0].documentWindow;
+                        return h.xd_listener(i, function (i) {
+                            e.remove(), t(i)
                         }), e
                     },
                     xd_popup: function (t, e) {
                         s.isFunction(t) && (e = t, t = "");
-                        var n = !1,
-                            i = h.new_window(t, function () {
-                                n || e()
+                        var i = !1,
+                            n = h.new_window(t, function () {
+                                i || e()
                             });
-                        return h.xd_listener(i, function (t) {
-                            e(t), n = !0, i.close()
-                        }), i
+                        return h.xd_listener(n, function (t) {
+                            e(t), i = !0, n.close()
+                        }), n
                     },
                     xd_listener: function (t, e) {
                         try {
                             return t.postMessage("", "*"), s(window).bind("message", function (t) {
-                                var n = t.originalEvent.data;
-                                n = s.parse_hash(n), e(n)
+                                var i = t.originalEvent.data;
+                                i = s.parse_hash(i), e(i)
                             }), void 0
-                        } catch (n) {}
-                        var i = setInterval(function () {
+                        } catch (i) {}
+                        var n = setInterval(function () {
                             try {
                                 if ("about:blank" !== t.location.toString()) {
-                                    var n = t.location.hash;
-                                    if ("#loading" == n) return;
-                                    clearInterval(i);
-                                    var o = s.parse_hash(n);
+                                    var i = t.location.hash;
+                                    if ("#loading" == i) return;
+                                    clearInterval(n);
+                                    var o = s.parse_hash(i);
                                     e(o)
                                 }
-                            } catch (a) {}
+                            } catch (r) {}
                         }, 100)
                     },
-                    post_into: function (t, e, i) {
+                    post_into: function (t, e, n) {
                         var o = s("<form />", {
                             method: "post",
-                            target: i.name || i.attr("name") || i.attr("id"),
+                            target: n.name || n.attr("name") || n.attr("id"),
                             action: t
                         });
                         s.each(e, function (t, e) {
-                            if (e != n) {
-                                var i = s("<input />", {
+                            if (e != i) {
+                                var n = s("<input />", {
                                     type: "hidden",
                                     name: t,
                                     value: e
                                 });
-                                o.append(i)
+                                o.append(n)
                             }
                         }), s("#ts").append(o), o.submit()
                     }
                 }, f = {
-                        set: function (t, e, n, i) {
+                        set: function (t, e, i, n) {
                             var o = "";
-                            if (n) {
-                                var a = new Date;
-                                a.setDate(a.getDate() + n), o = "; expires=" + a.toGMTString()
+                            if (i) {
+                                var r = new Date;
+                                r.setDate(r.getDate() + i), o = "; expires=" + r.toGMTString()
                             }
-                            domain_str = "", i && ("." != i[0] && (i = "." + i), domain_str = "; domain=" + i), document.cookie = t + "=" + encodeURIComponent(e) + domain_str + "; path=/" + o
+                            domain_str = "", n && ("." != n[0] && (n = "." + n), domain_str = "; domain=" + n), document.cookie = t + "=" + encodeURIComponent(e) + domain_str + "; path=/" + o
                         },
                         get: function (t) {
                             var e = document.cookie.split(";"),
-                                n = s.map(e, function (e) {
-                                    var n = e.split("=");
-                                    return s.trim(n[0]) == t ? decodeURIComponent(s.trim(n[1])) : void 0
+                                i = s.map(e, function (e) {
+                                    var i = e.split("=");
+                                    return s.trim(i[0]) == t ? decodeURIComponent(s.trim(i[1])) : void 0
                                 });
-                            return n[0]
+                            return i[0]
                         },
                         erase: function (t) {
                             this.set(t, "", -1)
                         }
-                    }, g = {
+                    }, A = {
                         parse: s.parseJSON
                     };
                 ! function () {
-                    var t, e, n, i = function (t) {
+                    var t, e, i, n = function (t) {
                             return 10 > t ? "0" + t : t
                         }, o = /[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
-                        a = {
+                        r = {
                             "\b": "\\b",
-                            "	": "\\t",
+                            "    ": "\\t",
                             "\n": "\\n",
                             "\f": "\\f",
                             "\r": "\\r",
                             '"': '\\"',
                             "\\": "\\\\"
-                        }, r = function (t) {
+                        }, a = function (t) {
                             return o.lastIndex = 0, o.test(t) ? '"' + t.replace(o, function (t) {
-                                var e = a[t];
+                                var e = r[t];
                                 return "string" == typeof e ? e : "\\u" + ("0000" + t.charCodeAt(0).toString(16)).slice(-4)
                             }) + '"' : '"' + t + '"'
-                        }, s = function (o, a) {
-                            var c, l, p, d, u, h = t,
-                                f = a[o];
-                            switch ("function" == typeof n && (f = n.call(a, o, f)), "object" == typeof f && Object.prototype.toString.apply(f)) {
+                        }, s = function (o, r) {
+                            var l, c, d, p, u, h = t,
+                                f = r[o];
+                            switch ("function" == typeof i && (f = i.call(r, o, f)), "object" == typeof f && Object.prototype.toString.apply(f)) {
                             case "[object Boolean]":
                             case "[object Number]":
                             case "[object String]":
@@ -823,7 +822,7 @@
                             }
                             switch (typeof f) {
                             case "string":
-                                return r(f);
+                                return a(f);
                             case "number":
                                 return isFinite(f) ? String(f) : "null";
                             case "boolean":
@@ -831,33 +830,33 @@
                                 return String(f);
                             case "object":
                                 if (!f) return "null";
-                                if (t += e, u = [], "[object Date]" === Object.prototype.toString.apply(f)) return isFinite(f.valueOf()) ? f.getUTCFullYear() + "-" + i(f.getUTCMonth() + 1) + "-" + i(f.getUTCDate()) + "T" + i(f.getUTCHours()) + ":" + i(f.getUTCMinutes()) + ":" + i(f.getUTCSeconds()) + "Z" : null;
+                                if (t += e, u = [], "[object Date]" === Object.prototype.toString.apply(f)) return isFinite(f.valueOf()) ? f.getUTCFullYear() + "-" + n(f.getUTCMonth() + 1) + "-" + n(f.getUTCDate()) + "T" + n(f.getUTCHours()) + ":" + n(f.getUTCMinutes()) + ":" + n(f.getUTCSeconds()) + "Z" : null;
                                 if ("[object Array]" === Object.prototype.toString.apply(f)) {
-                                    for (d = f.length, c = 0; d > c; c += 1) u[c] = s(c, f) || "null";
-                                    return p = 0 === u.length ? "[]" : t ? "[\n" + t + u.join(",\n" + t) + "\n" + h + "]" : "[" + u.join(",") + "]", t = h, p
+                                    for (p = f.length, l = 0; p > l; l += 1) u[l] = s(l, f) || "null";
+                                    return d = 0 === u.length ? "[]" : t ? "[\n" + t + u.join(",\n" + t) + "\n" + h + "]" : "[" + u.join(",") + "]", t = h, d
                                 }
-                                if (n && "object" == typeof n)
-                                    for (d = n.length, c = 0; d > c; c += 1) "string" == typeof n[c] && (l = n[c], p = s(l, f), p && u.push(r(l) + (t ? ": " : ":") + p));
+                                if (i && "object" == typeof i)
+                                    for (p = i.length, l = 0; p > l; l += 1) "string" == typeof i[l] && (c = i[l], d = s(c, f), d && u.push(a(c) + (t ? ": " : ":") + d));
                                 else
-                                    for (l in f) Object.prototype.hasOwnProperty.call(f, l) && (p = s(l, f), p && u.push(r(l) + (t ? ": " : ":") + p));
-                                return p = 0 === u.length ? "{}" : t ? "{\n" + t + u.join(",\n" + t) + "\n" + h + "}" : "{" + u.join(",") + "}", t = h, p
+                                    for (c in f) Object.prototype.hasOwnProperty.call(f, c) && (d = s(c, f), d && u.push(a(c) + (t ? ": " : ":") + d));
+                                return d = 0 === u.length ? "{}" : t ? "{\n" + t + u.join(",\n" + t) + "\n" + h + "}" : "{" + u.join(",") + "}", t = h, d
                             }
                         };
-                    g.stringify = function (i, o, a) {
-                        var r;
-                        if (t = "", e = "", "number" == typeof a)
-                            for (r = 0; a > r; r += 1) e += " ";
-                        else "string" == typeof a && (e = a); if (n = o, o && "function" != typeof o && ("object" != typeof o || "number" != typeof o.length)) throw new Error("JSON.stringify");
+                    A.stringify = function (n, o, r) {
+                        var a;
+                        if (t = "", e = "", "number" == typeof r)
+                            for (a = 0; r > a; a += 1) e += " ";
+                        else "string" == typeof r && (e = r); if (i = o, o && "function" != typeof o && ("object" != typeof o || "number" != typeof o.length)) throw new Error("JSON.stringify");
                         return s("", {
-                            "": i
+                            "": n
                         })
                     }
                 }();
-                var m = g.parse(f.get("turnsocial") || "{}");
-                m.save = function () {
-                    f.set("turnsocial", g.stringify(m), 3660)
-                }, "false" === f.get("turnsocial_visible") && (m.visible = !1, m.save()), f.erase("turnsocial_visible"), f.erase("turnsocial_unique");
-                var _ = {
+                var g = A.parse(f.get("turnsocial") || "{}");
+                g.save = function () {
+                    f.set("turnsocial", A.stringify(g), 3660)
+                }, "false" === f.get("turnsocial_visible") && (g.visible = !1, g.save()), f.erase("turnsocial_visible"), f.erase("turnsocial_unique");
+                var m = {
                     linkify: function (t) {
                         var e = t.replace(/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&\?\/.=]+/g, function (t) {
                             var e = s("<a />", {
@@ -866,7 +865,7 @@
                             });
                             return s("<div />").append(e).html()
                         });
-                        return e = e.replace(/(^|\s)@(\w+)/g, '$1<a href="http://www.twitter.com/$2">@$2</a>'), e.replace(/(^|\s)#(\w+)/g, '$1<a href="http://search.twitter.com/search?q=%23$2">#$2</a>')
+                        return e = e.replace(/(^|\s)@(\w+)/g, '$1<a href="http://twitter.com/$2">@$2</a>'), e.replace(/(^|\s)#(\w+)/g, '$1<a href="http://twitter.com/search?q=%23$2">#$2</a>')
                     },
                     truncate: function (t, e) {
                         return t.length < e ? t : t.substring(0, e - 3) + "..."
@@ -882,14 +881,14 @@
                     format_phone: function (t) {
                         return 10 != t.length ? t : "(" + t.substring(0, 3) + ") " + t.substring(3, 6) + "-" + t.substring(6, 10)
                     },
-                    pluralize: function (t, e, n) {
-                        return 1 == t ? e : n
+                    pluralize: function (t, e, i) {
+                        return 1 == t ? e : i
                     }
                 }, w = {
                         relative_time: function (t, e) {
-                            var n = new Date - t;
-                            if (e = parseInt(e, 10) || 0, e >= n) return "Just now";
-                            var i = null,
+                            var i = new Date - t;
+                            if (e = parseInt(e, 10) || 0, e >= i) return "Just now";
+                            var n = null,
                                 o = {
                                     millisecond: 1,
                                     second: 1e3,
@@ -899,83 +898,83 @@
                                     month: 30,
                                     year: 12
                                 };
-                            for (var a in o) {
-                                if (n < o[a]) break;
-                                i = a, n /= o[a]
+                            for (var r in o) {
+                                if (i < o[r]) break;
+                                n = r, i /= o[r]
                             }
-                            return n = Math.floor(n), 1 !== n && (i += "s"), [n, i, "ago"].join(" ")
+                            return i = Math.floor(i), 1 !== i && (n += "s"), [i, n, "ago"].join(" ")
                         }
-                    }, b = function (t) {
+                    }, v = function (t) {
                         var e = [],
-                            n = 5,
-                            i = 200,
+                            i = 5,
+                            n = 200,
                             o = !0,
-                            a = s("<div />", {
+                            r = s("<div />", {
                                 "class": "ts_spinner"
                             });
-                        t.append(a);
-                        for (var r = 0; n > r; r++) {
-                            var c = s("<div />", {
+                        t.append(r);
+                        for (var a = 0; i > a; a++) {
+                            var l = s("<div />", {
                                 "class": "ts_spinner_segment"
                             });
-                            a.append(c), c.css({
-                                left: 2 * c.width() * r,
+                            r.append(l), l.css({
+                                left: 2 * l.width() * a,
                                 opacity: 0
-                            }), e.push(c)
+                            }), e.push(l)
                         }
-                        var l = 2 * n * c.width();
-                        a.css({
-                            width: l,
-                            "margin-left": -l / 2,
-                            "margin-top": -a.height() / 2
+                        var c = 2 * i * l.width();
+                        r.css({
+                            width: c,
+                            "margin-left": -c / 2,
+                            "margin-top": -r.height() / 2
                         });
-                        var p = 1,
-                            d = function (t) {
+                        var d = 1,
+                            p = function (t) {
                                 o && (e[t].queue("fx").length > 0 && e[t].stop(!0, !0), e[t].css({
                                     opacity: 1
                                 }), e[t].animate({
                                     opacity: 0
-                                }, 200 * n), t += p, (0 == t || t == n - 1) && (p *= -1), setTimeout(function () {
-                                    d(t)
-                                }, i))
+                                }, 200 * i), t += d, (0 == t || t == i - 1) && (d *= -1), setTimeout(function () {
+                                    p(t)
+                                }, n))
                             };
-                        return d(0), {
+                        return p(0), {
                             stop: function () {
-                                o = !1, a.remove()
+                                o = !1, r.remove()
                             }
                         }
                     };
                 ! function (t, e) {
-                    function n(t, e, n) {
-                        return [parseInt(t[0], 10) * (h.test(t[0]) ? e / 100 : 1), parseInt(t[1], 10) * (h.test(t[1]) ? n / 100 : 1)]
+                    function i(t, e, i) {
+                        return [parseFloat(t[0]) * (h.test(t[0]) ? e / 100 : 1), parseFloat(t[1]) * (h.test(t[1]) ? i / 100 : 1)]
                     }
 
-                    function i(e, n) {
-                        return parseInt(t.css(e, n), 10) || 0
+                    function n(e, i) {
+                        return parseInt(t.css(e, i), 10) || 0
                     }
 
                     function o(e) {
-                        var n = e[0];
-                        return 9 === n.nodeType ? {
+                        var i = e[0];
+                        return 9 === i.nodeType ? {
                             width: e.width(),
                             height: e.height(),
                             offset: {
                                 top: 0,
                                 left: 0
                             }
-                        } : t.isWindow(n) ? {
+                        } : t.isWindow(i) ? {
                             width: e.width(),
                             height: e.height(),
                             offset: {
                                 top: e.scrollTop(),
                                 left: e.scrollLeft()
                             }
-                        } : n.preventDefault ? {
+                        } : i.preventDefault ? {
                             width: 0,
                             height: 0,
                             offset: {
-                                top: n.pageY,
-                                left: n.pageX
+                                top: i.pageY,
+                                left: i.pageX
                             }
                         } : {
                             width: e.outerWidth(),
@@ -984,163 +983,163 @@
                         }
                     }
                     t.ui = t.ui || {};
-                    var a, r = Math.max,
+                    var r, a = Math.max,
                         s = Math.abs,
-                        c = Math.round,
-                        l = /left|center|right/,
-                        p = /top|center|bottom/,
-                        d = /[\+\-]\d+%?/,
+                        l = Math.round,
+                        c = /left|center|right/,
+                        d = /top|center|bottom/,
+                        p = /[\+\-]\d+(\.[\d]+)?%?/,
                         u = /^\w+/,
                         h = /%$/,
                         f = t.fn.position;
                     t.position = {
                         scrollbarWidth: function () {
-                            if (a !== e) return a;
-                            var n, i, o = t("<div style='display:block;width:50px;height:50px;overflow:hidden;'><div style='height:100px;width:auto;'></div></div>"),
-                                r = o.children()[0];
-                            return t("body").append(o), n = r.offsetWidth, o.css("overflow", "scroll"), i = r.offsetWidth, n === i && (i = o[0].clientWidth), o.remove(), a = n - i
+                            if (r !== e) return r;
+                            var i, n, o = t("<div style='display:block;width:50px;height:50px;overflow:hidden;'><div style='height:100px;width:auto;'></div></div>"),
+                                a = o.children()[0];
+                            return t("body").append(o), i = a.offsetWidth, o.css("overflow", "scroll"), n = a.offsetWidth, i === n && (n = o[0].clientWidth), o.remove(), r = i - n
                         },
                         getScrollInfo: function (e) {
-                            var n = e.isWindow ? "" : e.element.css("overflow-x"),
-                                i = e.isWindow ? "" : e.element.css("overflow-y"),
-                                o = "scroll" === n || "auto" === n && e.width < e.element[0].scrollWidth,
-                                a = "scroll" === i || "auto" === i && e.height < e.element[0].scrollHeight;
+                            var i = e.isWindow ? "" : e.element.css("overflow-x"),
+                                n = e.isWindow ? "" : e.element.css("overflow-y"),
+                                o = "scroll" === i || "auto" === i && e.width < e.element[0].scrollWidth,
+                                r = "scroll" === n || "auto" === n && e.height < e.element[0].scrollHeight;
                             return {
-                                width: o ? t.position.scrollbarWidth() : 0,
-                                height: a ? t.position.scrollbarWidth() : 0
+                                width: r ? t.position.scrollbarWidth() : 0,
+                                height: o ? t.position.scrollbarWidth() : 0
                             }
                         },
                         getWithinInfo: function (e) {
-                            var n = t(e || window),
-                                i = t.isWindow(n[0]);
+                            var i = t(e || window),
+                                n = t.isWindow(i[0]);
                             return {
-                                element: n,
-                                isWindow: i,
-                                offset: n.offset() || {
+                                element: i,
+                                isWindow: n,
+                                offset: i.offset() || {
                                     left: 0,
                                     top: 0
                                 },
-                                scrollLeft: n.scrollLeft(),
-                                scrollTop: n.scrollTop(),
-                                width: i ? n.width() : n.outerWidth(),
-                                height: i ? n.height() : n.outerHeight()
+                                scrollLeft: i.scrollLeft(),
+                                scrollTop: i.scrollTop(),
+                                width: n ? i.width() : i.outerWidth(),
+                                height: n ? i.height() : i.outerHeight()
                             }
                         }
                     }, t.fn.position = function (e) {
                         if (!e || !e.of) return f.apply(this, arguments);
                         e = t.extend({}, e);
-                        var a, h, g, m, _, w, b = t(e.of),
-                            v = t.position.getWithinInfo(e.within),
-                            x = t.position.getScrollInfo(v),
+                        var r, h, A, g, m, w, v = t(e.of),
+                            b = t.position.getWithinInfo(e.within),
+                            _ = t.position.getScrollInfo(b),
                             y = (e.collision || "flip").split(" "),
-                            k = {};
-                        return w = o(b), b[0].preventDefault && (e.at = "left top"), h = w.width, g = w.height, m = w.offset, _ = t.extend({}, m), t.each(["my", "at"], function () {
-                            var t, n, i = (e[this] || "").split(" ");
-                            1 === i.length && (i = l.test(i[0]) ? i.concat(["center"]) : p.test(i[0]) ? ["center"].concat(i) : ["center", "center"]), i[0] = l.test(i[0]) ? i[0] : "center", i[1] = p.test(i[1]) ? i[1] : "center", t = d.exec(i[0]), n = d.exec(i[1]), k[this] = [t ? t[0] : 0, n ? n[0] : 0], e[this] = [u.exec(i[0])[0], u.exec(i[1])[0]]
-                        }), 1 === y.length && (y[1] = y[0]), "right" === e.at[0] ? _.left += h : "center" === e.at[0] && (_.left += h / 2), "bottom" === e.at[1] ? _.top += g : "center" === e.at[1] && (_.top += g / 2), a = n(k.at, h, g), _.left += a[0], _.top += a[1], this.each(function () {
-                            var o, l, p = t(this),
-                                d = p.outerWidth(),
-                                u = p.outerHeight(),
-                                f = i(this, "marginLeft"),
-                                w = i(this, "marginTop"),
-                                T = d + f + i(this, "marginRight") + x.width,
-                                I = u + w + i(this, "marginBottom") + x.height,
-                                z = t.extend({}, _),
-                                D = n(k.my, p.outerWidth(), p.outerHeight());
-                            "right" === e.my[0] ? z.left -= d : "center" === e.my[0] && (z.left -= d / 2), "bottom" === e.my[1] ? z.top -= u : "center" === e.my[1] && (z.top -= u / 2), z.left += D[0], z.top += D[1], t.support.offsetFractions || (z.left = c(z.left), z.top = c(z.top)), o = {
+                            x = {};
+                        return w = o(v), v[0].preventDefault && (e.at = "left top"), h = w.width, A = w.height, g = w.offset, m = t.extend({}, g), t.each(["my", "at"], function () {
+                            var t, i, n = (e[this] || "").split(" ");
+                            1 === n.length && (n = c.test(n[0]) ? n.concat(["center"]) : d.test(n[0]) ? ["center"].concat(n) : ["center", "center"]), n[0] = c.test(n[0]) ? n[0] : "center", n[1] = d.test(n[1]) ? n[1] : "center", t = p.exec(n[0]), i = p.exec(n[1]), x[this] = [t ? t[0] : 0, i ? i[0] : 0], e[this] = [u.exec(n[0])[0], u.exec(n[1])[0]]
+                        }), 1 === y.length && (y[1] = y[0]), "right" === e.at[0] ? m.left += h : "center" === e.at[0] && (m.left += h / 2), "bottom" === e.at[1] ? m.top += A : "center" === e.at[1] && (m.top += A / 2), r = i(x.at, h, A), m.left += r[0], m.top += r[1], this.each(function () {
+                            var o, c, d = t(this),
+                                p = d.outerWidth(),
+                                u = d.outerHeight(),
+                                f = n(this, "marginLeft"),
+                                w = n(this, "marginTop"),
+                                k = p + f + n(this, "marginRight") + _.width,
+                                I = u + w + n(this, "marginBottom") + _.height,
+                                C = t.extend({}, m),
+                                S = i(x.my, d.outerWidth(), d.outerHeight());
+                            "right" === e.my[0] ? C.left -= p : "center" === e.my[0] && (C.left -= p / 2), "bottom" === e.my[1] ? C.top -= u : "center" === e.my[1] && (C.top -= u / 2), C.left += S[0], C.top += S[1], t.support.offsetFractions || (C.left = l(C.left), C.top = l(C.top)), o = {
                                 marginLeft: f,
                                 marginTop: w
-                            }, t.each(["left", "top"], function (n, i) {
-                                t.ui.position[y[n]] && t.ui.position[y[n]][i](z, {
+                            }, t.each(["left", "top"], function (i, n) {
+                                t.ui.position[y[i]] && t.ui.position[y[i]][n](C, {
                                     targetWidth: h,
-                                    targetHeight: g,
-                                    elemWidth: d,
+                                    targetHeight: A,
+                                    elemWidth: p,
                                     elemHeight: u,
                                     collisionPosition: o,
-                                    collisionWidth: T,
+                                    collisionWidth: k,
                                     collisionHeight: I,
-                                    offset: [a[0] + D[0], a[1] + D[1]],
+                                    offset: [r[0] + S[0], r[1] + S[1]],
                                     my: e.my,
                                     at: e.at,
-                                    within: v,
-                                    elem: p
+                                    within: b,
+                                    elem: d
                                 })
-                            }), e.using && (l = function (t) {
-                                var n = m.left - z.left,
-                                    i = n + h - d,
-                                    o = m.top - z.top,
-                                    a = o + g - u,
-                                    c = {
+                            }), e.using && (c = function (t) {
+                                var i = g.left - C.left,
+                                    n = i + h - p,
+                                    o = g.top - C.top,
+                                    r = o + A - u,
+                                    l = {
                                         target: {
-                                            element: b,
-                                            left: m.left,
-                                            top: m.top,
+                                            element: v,
+                                            left: g.left,
+                                            top: g.top,
                                             width: h,
-                                            height: g
+                                            height: A
                                         },
                                         element: {
-                                            element: p,
-                                            left: z.left,
-                                            top: z.top,
-                                            width: d,
+                                            element: d,
+                                            left: C.left,
+                                            top: C.top,
+                                            width: p,
                                             height: u
                                         },
-                                        horizontal: 0 > i ? "left" : n > 0 ? "right" : "center",
-                                        vertical: 0 > a ? "top" : o > 0 ? "bottom" : "middle"
+                                        horizontal: 0 > n ? "left" : i > 0 ? "right" : "center",
+                                        vertical: 0 > r ? "top" : o > 0 ? "bottom" : "middle"
                                     };
-                                d > h && s(n + i) < h && (c.horizontal = "center"), u > g && s(o + a) < g && (c.vertical = "middle"), c.important = r(s(n), s(i)) > r(s(o), s(a)) ? "horizontal" : "vertical", e.using.call(this, t, c)
-                            }), p.offset(t.extend(z, {
-                                using: l
+                                p > h && s(i + n) < h && (l.horizontal = "center"), u > A && s(o + r) < A && (l.vertical = "middle"), l.important = a(s(i), s(n)) > a(s(o), s(r)) ? "horizontal" : "vertical", e.using.call(this, t, l)
+                            }), d.offset(t.extend(C, {
+                                using: c
                             }))
                         })
                     }, t.ui.position = {
                         fit: {
                             left: function (t, e) {
-                                var n, i = e.within,
-                                    o = i.isWindow ? i.scrollLeft : i.offset.left,
-                                    a = i.width,
+                                var i, n = e.within,
+                                    o = n.isWindow ? n.scrollLeft : n.offset.left,
+                                    r = n.width,
                                     s = t.left - e.collisionPosition.marginLeft,
-                                    c = o - s,
-                                    l = s + e.collisionWidth - a - o;
-                                e.collisionWidth > a ? c > 0 && 0 >= l ? (n = t.left + c + e.collisionWidth - a - o, t.left += c - n) : t.left = l > 0 && 0 >= c ? o : c > l ? o + a - e.collisionWidth : o : c > 0 ? t.left += c : l > 0 ? t.left -= l : t.left = r(t.left - s, t.left)
+                                    l = o - s,
+                                    c = s + e.collisionWidth - r - o;
+                                e.collisionWidth > r ? l > 0 && 0 >= c ? (i = t.left + l + e.collisionWidth - r - o, t.left += l - i) : t.left = c > 0 && 0 >= l ? o : l > c ? o + r - e.collisionWidth : o : l > 0 ? t.left += l : c > 0 ? t.left -= c : t.left = a(t.left - s, t.left)
                             },
                             top: function (t, e) {
-                                var n, i = e.within,
-                                    o = i.isWindow ? i.scrollTop : i.offset.top,
-                                    a = e.within.height,
+                                var i, n = e.within,
+                                    o = n.isWindow ? n.scrollTop : n.offset.top,
+                                    r = e.within.height,
                                     s = t.top - e.collisionPosition.marginTop,
-                                    c = o - s,
-                                    l = s + e.collisionHeight - a - o;
-                                e.collisionHeight > a ? c > 0 && 0 >= l ? (n = t.top + c + e.collisionHeight - a - o, t.top += c - n) : t.top = l > 0 && 0 >= c ? o : c > l ? o + a - e.collisionHeight : o : c > 0 ? t.top += c : l > 0 ? t.top -= l : t.top = r(t.top - s, t.top)
+                                    l = o - s,
+                                    c = s + e.collisionHeight - r - o;
+                                e.collisionHeight > r ? l > 0 && 0 >= c ? (i = t.top + l + e.collisionHeight - r - o, t.top += l - i) : t.top = c > 0 && 0 >= l ? o : l > c ? o + r - e.collisionHeight : o : l > 0 ? t.top += l : c > 0 ? t.top -= c : t.top = a(t.top - s, t.top)
                             }
                         },
                         flip: {
                             left: function (t, e) {
-                                var n, i, o = e.within,
-                                    a = o.offset.left + o.scrollLeft,
-                                    r = o.width,
-                                    c = o.isWindow ? o.scrollLeft : o.offset.left,
-                                    l = t.left - e.collisionPosition.marginLeft,
-                                    p = l - c,
-                                    d = l + e.collisionWidth - r - c,
+                                var i, n, o = e.within,
+                                    r = o.offset.left + o.scrollLeft,
+                                    a = o.width,
+                                    l = o.isWindow ? o.scrollLeft : o.offset.left,
+                                    c = t.left - e.collisionPosition.marginLeft,
+                                    d = c - l,
+                                    p = c + e.collisionWidth - a - l,
                                     u = "left" === e.my[0] ? -e.elemWidth : "right" === e.my[0] ? e.elemWidth : 0,
                                     h = "left" === e.at[0] ? e.targetWidth : "right" === e.at[0] ? -e.targetWidth : 0,
                                     f = -2 * e.offset[0];
-                                0 > p ? (n = t.left + u + h + f + e.collisionWidth - r - a, (0 > n || n < s(p)) && (t.left += u + h + f)) : d > 0 && (i = t.left - e.collisionPosition.marginLeft + u + h + f - c, (i > 0 || s(i) < d) && (t.left += u + h + f))
+                                0 > d ? (i = t.left + u + h + f + e.collisionWidth - a - r, (0 > i || i < s(d)) && (t.left += u + h + f)) : p > 0 && (n = t.left - e.collisionPosition.marginLeft + u + h + f - l, (n > 0 || s(n) < p) && (t.left += u + h + f))
                             },
                             top: function (t, e) {
-                                var n, i, o = e.within,
-                                    a = o.offset.top + o.scrollTop,
-                                    r = o.height,
-                                    c = o.isWindow ? o.scrollTop : o.offset.top,
-                                    l = t.top - e.collisionPosition.marginTop,
-                                    p = l - c,
-                                    d = l + e.collisionHeight - r - c,
+                                var i, n, o = e.within,
+                                    r = o.offset.top + o.scrollTop,
+                                    a = o.height,
+                                    l = o.isWindow ? o.scrollTop : o.offset.top,
+                                    c = t.top - e.collisionPosition.marginTop,
+                                    d = c - l,
+                                    p = c + e.collisionHeight - a - l,
                                     u = "top" === e.my[1],
                                     h = u ? -e.elemHeight : "bottom" === e.my[1] ? e.elemHeight : 0,
                                     f = "top" === e.at[1] ? e.targetHeight : "bottom" === e.at[1] ? -e.targetHeight : 0,
-                                    g = -2 * e.offset[1];
-                                0 > p ? (i = t.top + h + f + g + e.collisionHeight - r - a, t.top + h + f + g > p && (0 > i || i < s(p)) && (t.top += h + f + g)) : d > 0 && (n = t.top - e.collisionPosition.marginTop + h + f + g - c, t.top + h + f + g > d && (n > 0 || s(n) < d) && (t.top += h + f + g))
+                                    A = -2 * e.offset[1];
+                                0 > d ? (n = t.top + h + f + A + e.collisionHeight - a - r, t.top + h + f + A > d && (0 > n || n < s(d)) && (t.top += h + f + A)) : p > 0 && (i = t.top - e.collisionPosition.marginTop + h + f + A - l, t.top + h + f + A > p && (i > 0 || s(i) < p) && (t.top += h + f + A))
                             }
                         },
                         flipfit: {
@@ -1153,72 +1152,82 @@
                         }
                     },
                     function () {
-                        var e, n, i, o, a, r = document.getElementsByTagName("body")[0],
+                        var e, i, n, o, r, a = document.getElementsByTagName("body")[0],
                             s = document.createElement("div");
-                        e = document.createElement(r ? "div" : "body"), i = {
+                        e = document.createElement(a ? "div" : "body"), n = {
                             visibility: "hidden",
                             width: 0,
                             height: 0,
                             border: 0,
                             margin: 0,
                             background: "none"
-                        }, r && t.extend(i, {
+                        }, a && t.extend(n, {
                             position: "absolute",
                             left: "-1000px",
                             top: "-1000px"
                         });
-                        for (a in i) e.style[a] = i[a];
-                        e.appendChild(s), n = r || document.documentElement, n.insertBefore(e, n.firstChild), s.style.cssText = "position: absolute; left: 10.7432222px;", o = t(s).offset().left, t.support.offsetFractions = o > 10 && 11 > o, e.innerHTML = "", n.removeChild(e)
+                        for (r in n) e.style[r] = n[r];
+                        e.appendChild(s), i = a || document.documentElement, i.insertBefore(e, i.firstChild), s.style.cssText = "position: absolute; left: 10.7432222px;", o = t(s).offset().left, t.support.offsetFractions = o > 10 && 11 > o, e.innerHTML = "", i.removeChild(e)
                     }()
-                }(e), i.active_app = null, i.convert_name_to_description = function (t) {
-                    return t === n || "string" != typeof t ? "" : s.map(t.split("_"), function (t) {
+                }(e);
+                var b = {
+                    share: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAASCAYAAACw50UTAAAAAXNSR0IB2cksfwAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsTAAALEwEAmpwYAAABcklEQVQ4y63UzStEURgG8EtjJCULRGooO4awsmGhlIWyI/8EmykJxUIhX0PyFdnJmkSysbBRsrAiZCdm7HwsmPG8ek6djnNw71j8unfOx9Pc977nerGFcy+gMtiCOtcaL4PwYriHR2j/7/BCuIU0vECvLbwaGqDe0AqlltBslqQRrhmuLEGBHr5pLFDOoJILc6AJpuGEpUg7HEFEha9z8Anu4AEOoYrBUdiB9x8CTVKuTtm8xoEpCLGW+QzugKSPUN2BBKzyx6RRW3kPiYDB21AhISscmNCC5Qn2LJs+WDZ5kRfwbMy/wSj3f9V8mRPjWngLpDj+CsfQB21Qzo6Q8l1qwVK+LrMVFzk5pk30c2wXmiHL0pJ5cMV1p2zfb30+xwUj2sQGzKrHc8iFG3ZSkeuE2sJLfglW/7wHwryfgZq/hPsR4gdMMmpd4QMBw8PaNybqCt+HGAz5MAjDPN3W8HjAg2JK2cK7eUrjGZjnNaKHfwJNLaXRCnZQdwAAAABJRU5ErkJggg==",
+                    facebook_fan: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAAAXNSR0IB2cksfwAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAE4klEQVRIDQXBTailZR0A8N//eZ7znnPunfs9H+qkkx+FSpIguBBaBG7atIig2kQtFCOirW2CiDJsUQQtM4latAqCUMigViWSg1DTRKWmpjPOnTt3Zu695+M97/P0+8XTTz0tJqcv7Dzw5PO75+75bKarrTUAAAAIIaJpDWiNUkqeL1YH+/999Xv9zXd/2h+9tyjRbd07OfPI1/bOfPRz651ysljRAAAACAy1WvaDAWpTGxtr1dap8e7yzke/eTC7dZn3Xird3oNfOvORh788mZby/rVDs3kVAQAACFZDteyr9UmxtTEynWRwcGth0S9t7+7dc3zzvmeWNy6/Wsr41CdLyRvXD4/dOllIEgEAaESwGqrV0Dxy/7YnHjljb7Mz7pIc4fevXfGni1dcGE3l0fR+KZ8ubVjl2WxuWTt1NWhRAQAA4WSx8tCFLV988oKdjQ4AnN7qLJe9k9nKatlHay2X1lptTRuGql+thAARIdAiRND3TeCxB3ftbHQArlyfuXa48K93b2mtCpWm1lpb6fveatVrkUVKtEajNVprJIYhfHgwszYpdk51AD7Yn/nJry/5+1uHdjY6G+sjVMvFktaU/f0DR/0HWlnX99V42imjkZIzkbTGqMseOL9pe6OzPi0AjucrJYULd6xbLHrX92+an8wdfnjFzjAos5O5ebvlaHHk5GRpPJnoJp1R6ZRuZLlq7j2/7Suff9hdZ9asTQuAu8+u+8YXHpJz8uJv3vCr3/7Tned21PncdhdKLlmUEcuwqkt13psvBmIhJMeLam+9uPuONVunxgBg3CVnd6dgZ3OsXzU5F6kUUESWUlZKNhp1IjIRIrIWoWvV8bz642vvO3/ulPvPb9rZGoPD2wuX37qhtuo//zs2nkzkUWfoMygEEUhEJhW/eO4z7jyz7ls//rOLl/cdHvW+/8Ibtjcmvvv1xzy+dQa8/f5tz/3sdVf3Z0oOk8lYjmxoCSGFEJKILGQRWWvUikgiZU3R98liSa0AtMaiT+ZLKiJlKSWRApSIJCKLlEROIoWhMtRGJJGyFFnuwqgrQgAISSlFHhU5hxxVS5mUaBQRRPLsU4/7xMf2AKxq8+1nHgPw1e/8xWw2kAJAE1LKUhSCFoQkWqaFIkIItbEaAAAASLJIgQAQKUQqImURTUQTKYkUolK0FC2F539+0fHxUkrFj579lLO7Uz944W8uvXlLytnRbLB1qhMCAJBFZCk1oWmyJkcjUpPSqJRUcjHUUIWhNkNtCGQUYiSlka4rALqSpJSQ1JY0STcqUi4lRURpq9m1YWj96e216XzRm/cMldXQtBZEEEmK0GSHRys3bvfgxtFKE5owaM5uTYy74mhY3ogYTsredP/lq4fvfLyWzU+fv+O027PeD1+8ROqkKE7vbkqpGCQlF6/8de7iv3tadXC4MJ2uu+vcyHTSrE86V/cP6sbq7ZcillfL3vrsldpf7q8fRInt+x4d5dF6KCI1kQYhSTHociYNLr81t1yutDooabA2Zn0ySFoc7F+7Nj35x++20zu/xEkZhna0OV68PKmXPjy59c4TNUancy4CIhACIhFhS1CrpqGJBXU1pKG1YTdmb651N/9Qh/7dJhRoyjCKxWvb5eR16ujw5u0YahUAGtAAAbSgDs3mqXXduKujbrycL1trAvwfbmUtSDZqju0AAAAASUVORK5CYII=",
+                    twitter_user: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAAAXNSR0IB2cksfwAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAE/klEQVRIDQXBz6tcdxnH8ffneb7nzMydTG5ufic1pteo1AQlgUIXBUGK4KK40C7ElTtBcCEq/gtuRRB37gqC+AvqxqW0Ck3RWmIbDakmJt70Tqb3TmbOnDnnfL+Pr5e++/0f0l658dqJl77849l051qUXIQiJEoEhjAFAAAAAAEAAASyQLGcf/Tn9t0//WAyf/CX0ajGYvfcDf/cSz86e3rv2kQByIYo3uTibQ7f5OJtDg/hEo5wCTdwhAMOoR3H9i5eflnP3/he1OOLBlWKqy986/z+tRe7dsX/mo4uQxDszyquTis2Q+GDZz0Hq2DiQoIAiCAAgBwwsuDCLHH20y98dXH44K/twf03Uh5NbknBk3XLKoMBX7ww4dXnTnBu7JQCd463/PLBio+2mVpCAAAEAQhohsK82XJqnMa5Ht9ah+5Z5LDNkOkDulzYn9V87cqMS5PE0yIaE7dOj/nS+R3aHBx1hWdDYTUUtiUIIAABXQRNnyMiJCklEUUEQwQZ2J86Z0bOQYb5ECAY1+L6bsW1aWLZF0YmBuDpNvNsKExdZEACM1BEiYhIfQQFcBPJIZkYApqAdQEBywyXdxLf+cwufQEXZODusuO3j1ccbYOJC5OIgKEEKkE63LSsV2uadksfRp+DAIaArkASzIdASezuVAjYAhbwyrRiksTP/7Vkse2oh4Ki0LRbTuRManNms+mYrxqaARbnaiKCNsQ6gjHwZIDDDFVAAIOgLfCpWtzcG3PSF7xzuObsTs3UDUpmEoXk5siNQHRk+hKExDrDUQ9jgwHoSyECApCgKbCDcWUCyaErgUvUSRR3zIxkEu5O7U4dIrlTAtocrHMwBEwFUxMABcgB5yr4/I543PTcX2dOjCpSctwMEAKSAAkk4TJMIoB2gHUPvcH1qbg+MSQoQAEc+M+642f3nnLYZqaVI4QkZACQTMJMuAk34QZE0JZglYNRgSQxchAAADAUeHO+4e3FlsqNZIG5MIkcAkQyCcNwM8ygMiMk2lLY5EIYPNiKkRUiIIAhYNfFNz45wwW/+PCYEgU3w00UCQFJAnPDTchgOQQKqBHNEJiL28vC20sIACAHBIVXz1a89omTvLVoeffjDS4hGRggMBCGqExI8I9nPUddz80TwhUcdIVFn3naZxZ9ZtFnlkPmYVv42yrjgkvjRAFMhkkYQgiTSRKYnJkn7jeZXz9quFrDNy/UfHZi7CZxJokzSZxJYpbE/sR4eeash8LDTWbiDgYSAAKUZO6VG5KoEzjG7w4aRsn4+uUdvn2pYpkhAACAAowFIwWv/7fh301h5IZj1G7appTkZknt+klKFecnicebgWkl2iJef9RwZz3w4qma87XjgggIgQVsSvDOcceb8y2VYCRxelJRSmS1zUfebRdp99E//zA/+MJXzj935eTzk5Y2Q+3GIPG4iDeOjLELNyFBCRFRGErQ5cTFk4mKQmWiVBWLu3fu7j18//eT1dF7/srNG4/axSGbyan9uk5Tz4O89DEuOWYxxJgcVR5iHDmqkiMNfXjpoxr6mJY+qtwHQ8/QNtvVvfc/mN7+409OPX34G4fjVIj57ofv/bQsD//eTU9dN/dxQBlQZIFJSDBIgCACAEWQIygEQy5Syc/2jg9v16uP38JTFxIpEBkOp8dPfjWZP6rbrvPVukECEAABQAAAACBEACbYm81CybM89YNXmADg/2LQmg1NgPSuAAAAAElFTkSuQmCC",
+                    twitter_search: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAAAXNSR0IB2cksfwAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAFWElEQVRIx12WTWxcVxXHf+fe++bNhyczTuwkdhTFrl2IE6m1pUotihIRBaQiyndX7YJ2hYSEKALEspXYwIpW7FiFTSUkvlJRVKiQKyIIEkFNWiVOG1NiGzeOZzzxjOfjzbx372Exjt1wpSNd3cU95/zO/5x75Tvf/yHJ8dPPjjz5+Z+US8UZDT4IoipCUMUgGFH+f+lDezGKaKu+eSW5fvkHhfrqP+I4h9PK+Gk79+SPxg6OzphBQhcxmQb6QUBBUKxA7AQDxFZYGI35dDkCGXpZaqXcaqVij06e2Wie/p62Nr9rCFtOT5x84fD0zBO3aw0UZboc8UgpRy8L3NpJaQ6UghUkgzPjeZ4/5mHlF+jypb3Ipya+whdmXuDNrYgrsye/3KitvptsfPSm83FhQUTJNHDuSIFnjo0wnreEADeafX612maz76k6w/PHPPrX89C89jCi2juw8ku+eG6RGy2Tr+XyCx2VZaNeTS/zTJdzfP14mYmCYysIXSMsHMxz/nCRxCvzo3lYubh3sTz2M+TsIjL3ytBD8xosv8ZCJVJVFRFxTtAgKNMly6HYsuGhnikI5HPCqUrETMkxHhtoNvfDTZtQmqJ+4CxjUQWiKlTnubk5QFSDqqpJVQmAM0Km0FXoBOh6aHmYLDq+/WiFx6sxnPjmPoqlV9C3pjm0OIs2r0NxisvpSZqpkgUlBMXUeglr7Q6pVxTIFAYBvA4zaAShUowYLTr6xSnkwrsw+dX9DLp3YOUievk8Z2s/5fEDVupJn573mMR7tnoDGkmCqpIodFTpq3IvU272lWsd5cOecj8Doioy9zLypfv7zKPqMJvlV7lwtEQ/eLwGnDUWsYY0KCpCx8N2CnkDGZCGgCo8VTIcuf4iunJx6ODcIrfznyGdfIq5dBuWX4V0mxFncNZijMEZEay1OAtBIfFKxyuZQkmgZASAu6nyyNzL6Me/h3Qb/csCs+OfhcH2vjRnX+Ktu20MggBOABEwIiiQZNBJITVwqiScKhhEIACpTBGdW0SvfG3IuvbOPvvZl/jD2I/50922ihkeOSOCMYI1gCpJUNpeiQM4EWI77PIHKxyYp/u5fzMyWIXOneFhdZ5Lm4Y3Pt6hOQigAsju5RgiAypCEgI9H1ADq30hNkPmD5RUscJYBL9pHOJyrYgSuL3Uop0FRuKIshWCPMAiYKyhlXlEIYfQzRRjhautwD9b+xPQKyiBZ8Yinj46wp83u1y/n+xlZUUQMWAAAQOCQbi5k7I9SJkfEawoG4NAI/VspZ7GrrUyz1oSuNb2WIGJvCPAnhkxDEkIgmDEiIjAR13Pb9e7nMjBc0dyfKpgqDjh0Ces7ITpguFM2dLJAms9T8HaPcMMxTGMG3FirI2sIbaGSxtdYmf4xmSRb01EtPzDj0IA8gKxKK//t8udbiC2Zh8Lhpw10nfOiTXGSdK551xEKRKSILy+3uVGJ+OJao7DOYsVhgUVMAq9oPyrOeBv9T6RQCz7WjpYiAhBvSTdTTvoN1xl/cM/1jcee3ri2PEDOkhIPOyo4e1tpRc81hjy1mCNDPWugqrh6GiOgQ/kgIhAZIQQRTQ+uPHB6NrSG4X29vv2wvzp9aRRo1eoTudyrmR9Jjakmg9ey5ppHq+RzzSvXqPg1WWp2pBqlKVaCqlGPlWylCzp9tvLS7dKV99+rbq19jsLTRfQeuU/7/88tGrvDUrVU8bavELIEPW7nSsCmQwbAx1WQVTxqgSUzAeR4HdGm7Wrufb9v2PdQEVwiuChVmre+3Whvp5LBgPb7nR3qy6feOkf/gEIw3FhBEbLZRVnvViXZjZidxzxPyefrTNTLnCFAAAAAElFTkSuQmCC",
+                    turnsocial: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAAAXNSR0IB2cksfwAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsTAAALEwEAmpwYAAADGklEQVRIDQXBS4iVZRgA4Of9/u+cMxcHx9JGqBaDCqJtBCWJWiSBywKNola1M8FNuGmT1DYkMBOC2gQmIe1Cy5Iy6AoV3RYhmRoq6mg2js65/W/PE5lp41u/AMDKCK9OdmPfVK98PdErBye7Pp7olGGnhlv1Xgcu7rHthQ8BAAAAFAAADHALDR7DMRzAFBStxWYWAAAAAFQAANyN4nyQCPSwH9dweOXoxvCRxVOrlg/Pz6Og4C9ch4m95wAUaBqaQlNoGkr6AxdBEqkT4aXCNgKewKf4Ft9gFwAAFOhE6DWhV0MVasSfmT5KQCLYUIrHa8kOGkyiwQgNAAAUaFFq6HZDp4baiX8z4/229TtAIiIfjabejzFaQGIAAAAVIJMIZlaEiLC8nD92a+xpMw+m2AqRuXlQJ1YDACp2YhotDgFUAIC2pVvF6tlGU3w1HuVTpcSLmblLmIzIKQBAg93YDTgEUAEwgc3Ykjw4GmW39uL6isnyRYrXm8hjpeQ6nG2jWVtyDAAACQAVsAO7sR3zmIXx2GgY+Xe3xpluJ44UeTISAADcwB30AaACjmIOAAAV65P12FrC89JvJccJgCHexSdIACiAM7gNABAoiPDTuPXOmAstAABj/IzPcRoAKmAPduJJbMK0sFzCBZzqD/L4IPL8VM9cNIYAgIIZAACogAV8gM+wKljZlLjTH+XCwu28PN2LDVO9cpBch9cAAFAAAKACIHE1wtVSGAzTzcVWr+u5KPFKhA0RloQZAECiDwAAFSCCbFlcat0OMmlKPFNrvCmtgeQylnAfAALTAABQATIZDFNCEmFT09gXrAGQ5VJnePcW+hgBKp7FCNdwHKBCm6k/TACIpsSONm0HgAzfkVcwiyuYRcF2bMESjgMUAADAXKaHI5QERPhnPHZiOPIffsWXGAEKJjEDAAXapE3apE3atDZ5CALCcraOSKfh6Y0/3MUbOIZF9DHAMgBUkAAA7sE8xriEt3EIIwCcxcs4igcwhSEAVAAAANxMvk/ei3QSSwAwsfccXMUJAACAyEwAAAAAAAAAAAAAAP8D6aMcbvS1Ow4AAAAASUVORK5CYII=",
+                    show: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAWCAYAAAArdgcFAAAAAXNSR0IB2cksfwAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsTAAALEwEAmpwYAAACW0lEQVRIx6WVz2sTQRTHpwipKBZBKKgHQfSknr0ZxINOViWJNRVvghe3iVntJqY9exAFxa0gVTx5SpPa1Nqku1sFf+AfoPg3eFJPHjzV73s7m8zGbJLGw4edfW/m82ZnlhkhzWpCmkunpFnLy5nlx2ABOCOwwOPJw75qQqCRlDP16wgKJGOod7EcD3vIt5Skl1keECtHPN8QsvBasRrE+svZK9TnxEhXROrmukgVN0TK8hQux7hgvyLwxspTxZYmdYkx9QxilEMfmkA/udNT3Ba1eQgWwc5oXBX5V+50yWvo2NRnS+wA98GW4lmvAjL/aoCc1jg663HwSBOHPAe7o8vU6v6TdHk92LzorOdDoSy6DrinFXjQ2QePv3iA/I0unwArLLbcJ+mSdzRb9g6hfVfJ34HJ/5E3MNsXads7nKv4H8HXTNk/LoOler8tuSysCeOWK84H7DUsNwnxidyc/+lyxd8iUOBLtuSdpBz67A/6esKw+srxC2LHp8quyFU2gU8cAZ+V+Af4pdrfED+m+ojpuU1xqbQhzpkxckpk7KbIoSMGEwnwVMl+gqvgIviuYjWwi/rSmOwgeXp2XZfvAWvgD7iiYoQBfoMPYHJU+T6wCK5p4pBp8BIcHF5+m+RvMZgLjIMDYIzep+54TJDjPIknwveM3eopbx9cvO6YPW8qZsNfASFtllEIDihq63lqZ+3WcKciFQiKNHnQheKqOHujc7RS2yg0OEfQH9Y1Y03eviyiHcIiMQPjc6a6rcy6PeQ1tw0619xpEVzQ1TMIWtpFO+oF7bCHfdXEXxOVLT1VmiQNAAAAAElFTkSuQmCC",
+                    hide: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAWCAYAAAArdgcFAAAAAXNSR0IB2cksfwAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsTAAALEwEAmpwYAAACbElEQVRIx6WVy2sTURSHbxFSUSyCUFAXguhKXbsziAu90yhJH6m4E9yY59gmse3ahVho6USQKq5c5VGTKmknM1HwgX+A4t/gSl25cBV/58wdO5NJpmm7+JiZ8/jOvLhXyFQlAq7JVE2X6Q0DlNVxrzh95GFfJSJkqnpVpuv3EBRIBriRqveND8yxh3zVKC7qBVzQMdCoZRsilmuK6/eDgykWy28KmXntH8Ln5KvNC/U4PimRmN8SU0VTTD+0+FxTEpJOZJscm0FuEjXxuVa/pyj75I60JaZLbZFc7DAzCzYfKUbDeKDKuzkiERzAcsMrpztJLr7jRjAGTjvnnR7sEXAKjJKc+nrkxgB5x5WT+BWYVdde7oJ1cGK/8nHwEfwBEx7xbfAXvAXHhpZPlUwxu0Tvkd6nfQTUIOiCH+AWuAN+UQy5ZyBC9dQXKqffKKZvi5tzNrBE7AH+lKJ1AYLvasBv8FOJv8QL1rkY6qie+mSonP7P/JaQugXaxElNb0cnS9bl5IL9VQ0g8edEwbqEfBQc53rqS+8i11CkoRhSYhx8gGA1UbIvYsA38Al3fFbm2y+Ra4Ixrt+n/D3oYsAjPMGZeNE6j/OnFAONg8hHwLISdXG3j4HhXoMlp25o+bZXThwFLzxCl1Uwugf5Bi9Emm565cRh8NwjfgIO7eSHlTPuALN3wDpY8Q82+Wn7LMlGYFX0/ZaZJhrNnbv7/x0sJ07STGPQel8OkbvUsK6/EVrO86FzLR5MuZDeMi/qanEPKVQbAIbI7Ga41NmJ1GaB7Shsm+s7JKzGv83RBl29gmAGybUDbtBr7GFfJfIPsVIsl2DrA+cAAAAASUVORK5CYII="
+                };
+                n.active_app = null, n.convert_name_to_description = function (t) {
+                    return t === i || "string" != typeof t ? "" : s.map(t.split("_"), function (t) {
                         return t.substring(0, 1).toUpperCase() + t.substring(1)
                     }).join(" ")
                 };
-                var v = new Array;
-                v.push(o({
+                var _ = new Array;
+                _.push(o({
                     name: "share",
                     description: "Share This Page",
                     draw_button: function () {
-                        return '<img alt="Share This Page" class="ts_sprite_icons_share" src="//turnsocial.com/assets/blank-3eaf0f4686754462cbd6a495f152c130.png" /><div class="ts_share_text">Share</div>'
+                        return '<img src="' + b.share + '" alt="Share This Page" />' + '<div class="ts_share_text">Share</div>'
                     },
                     load_content: function (t) {
                         this.loaded = !0, this.display_div.html(function () {
                             var t = [];
-                            return t.push(' <div class="ts_share_title"> Share via... </div> <div class="ts_share_links"> <a href="javascript:;" class="ts_share_link" data-url="//turnsocial.com/mail_share/new?mail_share[url]={url}&mail_share[title]={title}" data-name="email" > <img src="//turnsocial.com/assets/share/email-48f9f10a49dbdbc26e80a44434838b8d.png" /> email </a> <a href="javascript:;" class="ts_share_link" data-url="https://www.facebook.com/sharer.php?u={url}&t={title}" data-name="facebook" > <img src="//turnsocial.com/assets/share/facebook-d092a7a1586a9287a3413011d5c15913.png" /> facebook </a> <a href="javascript:;" class="ts_share_link" data-url="https://twitter.com/share?text={title}%20-%20{url}" data-name="twitter" > <img src="//turnsocial.com/assets/share/twitter-fbb6225de2ea4e68cc5d454fee4a5809.png" /> twitter </a> <a href="javascript:;" class="ts_share_link" data-url="http://reddit.com/submit?url={url}&title={title}" data-name="reddit" data-width="840" > <img src="//turnsocial.com/assets/share/reddit-e659e14a1b9dc101cc32fb5dc783bce7.png" /> reddit </a> <a href="javascript:;" class="ts_share_link" data-url="http://www.stumbleupon.com/submit?url={url}&title={title}" data-name="stumbleupon" data-width="800" > <img src="//turnsocial.com/assets/share/stumbleupon-5d6003f989ae7d4d2127072c47d1ea12.png" /> stumbleupon </a> </div>'), t.join("")
+                            return t.push(' <div class="ts_share_title"> Share via... </div> <div class="ts_share_links"> <a href="javascript:;" class="ts_share_link" data-url="//turnsocial.com/mail_share/new?mail_share[url]={url}&mail_share[title]={title}" data-name="email" > <img src="//turnsocial.com/assets/share/email-a4c177c54fd17a403ae2359ba43a836e.png" /> email </a> <a href="javascript:;" class="ts_share_link" data-url="https://www.facebook.com/sharer.php?u={url}&t={title}" data-name="facebook" > <img src="//turnsocial.com/assets/share/facebook-b071084cade307f6638811884cb9dfc6.png" /> facebook </a> <a href="javascript:;" class="ts_share_link" data-url="https://twitter.com/share?text={title}%20-%20{url}" data-name="twitter" > <img src="//turnsocial.com/assets/share/twitter-695b62185fc5e699e3f1bc6ff80e2924.png" /> twitter </a> <a href="javascript:;" class="ts_share_link" data-url="http://reddit.com/submit?url={url}&title={title}" data-name="reddit" data-width="840" > <img src="//turnsocial.com/assets/share/reddit-9076a65a2ee278bb954c12b4f2c74d91.png" /> reddit </a> <a href="javascript:;" class="ts_share_link" data-url="http://www.stumbleupon.com/submit?url={url}&title={title}" data-name="stumbleupon" data-width="800" > <img src="//turnsocial.com/assets/share/stumbleupon-14d16bd928c23b1ba50b4d132aab886a.png" /> stumbleupon </a> </div>'), t.join("")
                         }()), t()
                     },
                     onload: function () {
                         s(".ts_share_link").click(function () {
                             var t = s('meta[itemprop^="name"]').attr("content") || s('meta[property^="og:title"]').attr("content") || document.title,
                                 e = location.href,
-                                n = s(this);
-                            d.track("share", {
-                                name: n.data("name")
+                                i = s(this);
+                            p.track("share", {
+                                name: i.data("name")
                             });
-                            var o = n.data("url").replace("{url}", encodeURIComponent(e)).replace("{title}", encodeURIComponent(t)),
-                                a = n.data("width") || 635;
+                            var o = i.data("url").replace("{url}", encodeURIComponent(e)).replace("{title}", encodeURIComponent(t)),
+                                r = i.data("width") || 635;
                             return h.new_window(o, {
-                                width: a,
+                                width: r,
                                 height: 700
                             }, function () {
-                                i.active_app.deactivate()
+                                n.active_app.deactivate()
                             }), !1
                         })
                     }
-                })), p += "#ts #ts_share_link{font-size:10px;font-family:Verdana, Arial, Helvetica, sans-serif;margin-right:8px;border:1px solid #ddd;padding:0 2px;border-radius:4px;box-shadow:0, 1, 1, #aaaaaa;background-color:#dddddd;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%, #eee), color-stop(100%, #ddd));background-image:-webkit-linear-gradient(#eee, #ddd);background-image:linear-gradient(#eee, #ddd)}#ts #ts_share_link>*{margin:0 2px;display:inline-block;vertical-align:middle;line-height:18px}#ts #ts_share{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;width:770px;height:260px;left:50%;margin-left:-385px;top:50%;margin-top:-130px;border-width:5px;opacity:0.95;text-align:center}#ts #ts_share .ts_share_title{font-size:24px;font-weight:bold;padding:20px 0}#ts #ts_share .ts_share_links{display:inline-block;text-align:center}#ts #ts_share .ts_share_links .ts_share_link{cursor:pointer;display:inline-block;text-align:center;font-size:18px;margin:20px}#ts #ts_share .ts_share_links .ts_share_link img{cursor:pointer;width:100px;height:100px;display:block;padding-bottom:10px}\n", v.push(a({
+                })), d += "#ts #ts_share_link{font-size:10px;font-family:Verdana, Arial, Helvetica, sans-serif;margin-right:8px;height:23px;border:1px solid #ddd;padding:0 2px;border-radius:4px;box-shadow:0, 1, 1, #aaaaaa;background-color:#dddddd;background-image:-webkit-linear-gradient(#eee, #ddd);background-image:linear-gradient(#eee, #ddd)}#ts #ts_share_link>*{margin:0 2px;display:inline-block;vertical-align:middle;line-height:18px}#ts #ts_share{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;width:770px;height:260px;left:50%;margin-left:-385px;top:50%;margin-top:-130px;border-width:5px;opacity:0.95;text-align:center}#ts #ts_share .ts_share_title{font-size:24px;font-weight:bold;padding:20px 0}#ts #ts_share .ts_share_links{display:inline-block;text-align:center}#ts #ts_share .ts_share_links .ts_share_link{cursor:pointer;display:inline-block;text-align:center;font-size:18px;margin:20px}#ts #ts_share .ts_share_links .ts_share_link img{cursor:pointer;width:100px;height:100px;display:block;padding-bottom:10px}\n", _.push(r({
                     name: "facebook_fan",
                     description: "Facebook Fan Page",
                     icon: "facebook",
                     src: "//www.facebook.com/plugins/likebox.php?id=123954514355408&width=500&height=560&colorscheme=light&show_faces=true&border_color&stream=true&header=false&connections=22&force_wall=true&appId=101244151430"
-                })), v.push(i({
+                })), _.push(n({
                     name: "facebook_like",
                     description: "Like this page",
                     draw_button: function () {
                         var t = "https://www.facebook.com/plugins/like.php?href=" + encodeURIComponent(location.href) + "&layout=button_count&show_faces=true&width=100&action=like&colorscheme=light&height=21";
                         return '<iframe src="' + t + '"' + 'scrolling="no" frameborder="0" ' + 'id="ts_facebook_like" ' + 'allowTransparency="true"></iframe>'
                     }
-                })), v.push(i({
+                })), _.push(n({
                     name: "google_plusone",
                     description: "Google +1",
                     draw_button: function () {
@@ -1226,47 +1235,36 @@
                         return '<iframe allowtransparency="true" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" src="' + t + '" ' + 'id="ts_google_plusone" ' + 'vspace="0" width="100%"></iframe>'
                     }
                 })), u.bind("insert", function () {
-                    y(m.visible !== !1);
-                    var t = s("<img />", {
-                        src: "//turnsocial.com/assets/background-8165eb0c9e2c5e0347a0a21e2a92efed.png"
-                    }),
-                        e = s("<img />", {
-                            src: "//turnsocial.com/assets/icons-8aaaac0689f4a402152661e457e1e272.png"
-                        }),
-                        n = setInterval(function () {
-                            t.get(0).complete && e.get(0).complete && (clearInterval(n), s("#ts .ts_bar").slideDown(), u.trigger("show"), d.track("social_bar"))
-                        }, 20)
+                    x(g.visible !== !1), s("#ts .ts_bar").slideDown(), u.trigger("show"), p.track("social_bar")
                 });
-                var x, y = function (t) {
-                        var e = -139,
-                            n = -317;
-                        t ? (s("#ts_app_links").css({'display':'inline-block','margin-right':'-70px'}), s("#ts_hide_link img").css("background-position", "0 " + e + "px"), x.description = "Hide the toolbar") : (s("#ts_app_links").css("display", "none"), s("#ts_hide_link img").css("background-position", "0 " + n + "px"), x.description = "Show the toolbar"), s("#ts_toolbar_arrow").animate({
+                var y, x = function (t) {
+                        t ? (s("#ts_app_links").css({"display":"inline-block",'margin-right':'150px'}), s("#ts_hide_link img").attr("src", b.hide), y.description = "Hide the toolbar") : (s("#ts_app_links").css("display", "none"), s("#ts_hide_link img").attr("src", b.show), y.description = "Show the toolbar"), s("#ts_toolbar_arrow").animate({
                             opacity: t
                         })
                     };
-                x = i({
+                y = n({
                     name: "hide",
                     "protected": !0,
                     click: function () {
-                        i.current_app && current_app.deactivate(), s(".ts_tooltip").stop(!0, !1).fadeOut(100);
+                        n.current_app && current_app.deactivate(), s(".ts_tooltip").stop(!0, !1).fadeOut(100);
                         var t = s("#ts_app_links").is(":visible");
                         s(".ts_bar").slideUp(function () {
-                            y(!t), u.trigger(t ? "hide" : "show"), s(".ts_bar").slideDown()
-                        }), m.visible = !t, m.save()
+                            x(!t), u.trigger(t ? "hide" : "show"), s(".ts_bar").slideDown()
+                        }), g.visible = !t, g.save()
                     }
-                }), v.push(x), v.push(i({
+                }), _.push(y), _.push(n({
                     name: "turnsocial",
                     description: "TurnSocial Toolbar",
                     "protected": !0,
                     click: function () {
                         window.open("http://turnsocial.com")
                     }
-                })), s.each(v, function () {
+                })), s.each(_, function () {
                     var t = this,
                         e = s("<div />", {
                             "class": "ts_tooltip"
                         });
-                    l.append(e), t.link.mouseenter(function () {
+                    c.append(e), t.link.mouseenter(function () {
                         e.text(t.description), e.stop(!0, !0).fadeTo(100, 1), e.position({
                             of: s(this),
                             my: "center bottom-10",
@@ -1276,7 +1274,7 @@
                     }), t.link.mouseleave(function () {
                         e.stop(!0, !1).fadeOut(100)
                     })
-                }), d.track("load", {
+                }), p.track("load", {
                     site: window.location.href,
                     agent: navigator.userAgent,
                     referrer: document.referrer
@@ -1285,31 +1283,24 @@
                         var t = navigator.userAgent,
                             e = new RegExp("MSIE ([0-9]{1,}[.0-9]{0,})");
                         if (null != e.exec(t)) {
-                            var n = parseFloat(RegExp.$1);
-                            if (8 > n) return
+                            var i = parseFloat(RegExp.$1);
+                            if (8 > i) return
                         }
                     }
-                    var i = /(Android)|(webOS)|(iPad)|(iPhone)|(iPod)/i;
-                    navigator.userAgent.match(i) || (s.support.boxModel || console.log("Warning - page is in quirks mode. TurnSocial may render incorrectly."), s("#ts").length > 0 || (s("body").append(l), s("head").append("<style>" + p + "</style>"), u.trigger("insert")))
+                    var n = /(Android)|(webOS)|(iPad)|(iPhone)|(iPod)/i;
+                    navigator.userAgent.match(n) || ("CSS1Compat" !== document.compatMode && console.log("Warning - page is in quirks mode. TurnSocial may render incorrectly."), s("#ts").length > 0 || (s("body").append(c), s("head").append("<style>" + d + "</style>"), u.trigger("insert")))
                 }))
             }
-        }),
-        n = "1.9",
-        i = function (t, e) {
+        });
+    ! function () {
+        var t, i, n, o, r, a;
+        return o = "1.10", a = function (t, e) {
             return 0 === t.indexOf(e)
-        }, o = function (t) {
-            return "string" == typeof t && i(t, n)
-        };
-    if (window.jQuery && jQuery.fn && o(jQuery.fn.jquery)) e(jQuery);
-    else if (window.$ && $.fn && o($.fn.jquery)) e($);
-    else {
-        var a = document.createElement("script");
-        n += ".0", a.src = "//ajax.googleapis.com/ajax/libs/jquery/" + n + "/jquery.min.js";
-        var r = document.getElementsByTagName("head")[0],
-            s = !1;
-        a.onload = a.onreadystatechange = function () {
-            var t = !this.readyState || "loaded" == this.readyState || "complete" == this.readyState;
-            !s && t && (s = !0, e(jQuery.noConflict(!0)), a.onload = a.onreadystatechange = null, r.removeChild(a))
-        }, r.appendChild(a)
-    }
+        }, i = function (t) {
+            return "string" == typeof t && a(t, o)
+        }, window.jQuery && jQuery.fn && i(jQuery.fn.jquery) ? e(jQuery) : (r = document.createElement("script"), o += ".2", r.src = "//ajax.googleapis.com/ajax/libs/jquery/" + o + "/jquery.min.js", n = document.getElementsByTagName("head")[0], t = !1, r.onload = r.onreadystatechange = function () {
+            var i;
+            return i = !this.readyState || "loaded" === this.readyState || "complete" === this.readyState, !t && i ? (t = !0, e(jQuery.noConflict(!0)), r.onload = r.onreadystatechange = null, n.removeChild(r)) : void 0
+        }, n.appendChild(r))
+    }()
 }();

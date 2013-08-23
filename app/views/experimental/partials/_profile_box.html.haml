@@ -1,0 +1,35 @@
+.widget-wrapper
+  .widget
+    .section-wrapper
+      .section 
+        %i.icon-user
+        My Profile
+    %ul#members-list.item-list
+      %li.vcard{:style=>"height:140px;"}
+        .item-avatar
+          -if current_user.use_gravatar?
+            = image_tag avatar_user_path(current_user),:width => "100",:class=>"avatar"
+          -else
+            = image_tag("#{local_path_experimental}member.jpeg",:width => "100",:class=>"avatar") 
+        .item{:style=>"line-height:22px;"}
+          .item-title.fn
+            %a
+              = current_user.login.capitalize
+          .item-meta
+            %span.activity
+              Joined
+              %a
+                = time_ago_in_words(current_user.created_at)
+                ago
+          .item-meta
+            =link_to "<i class='icon-cog'></i>Profile Settings".html_safe,"/profile/settings"
+          .item-meta
+            =link_to "<i class='icon-switch'></i>Connect".html_safe,social_connect_path
+          .item-meta
+            =link_to "<i class='icon-tools'></i>Others".html_safe,user_path(current_user)
+            
+
+        
+
+
+  

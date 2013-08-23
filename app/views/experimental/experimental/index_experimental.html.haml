@@ -10,27 +10,26 @@
   / slider starts from here
   = render "experimental/partials/slider_short"
   %br.clearer
-  %br.clearer
-  / spotlight starts from here
+  %br.clearer/
   = render "experimental/partials/spotlight_short"
   / tabs starts from here
   = render "experimental/partials/tabs_short"
   / trending starts from here
   = render "experimental/partials/trending_short"
-  %br.clearer/
-  %br.clearer/
-  / latest review
-  =  render "experimental/partials/latest_review"
+  / review directory
+  = render "experimental/partials/review_directory"
   / review directory b
-  / = render "experimental/partials/review_directory_b"
+  = render "experimental/partials/review_directory_b"
   .clearer.hide-responsive
   %br.clearer/
 /side bar
 .sidebar
   /login box
   = render "experimental/partials/login_box"
+  / social login box
+  / = render "experimental/partials/social_login_box"
   / member box
-  / = render "experimental/partials/member_box"
+  = render "experimental/partials/member_box"
   / left bar
   = render "experimental/partials/left_bar"
   /widget top

@@ -1,17 +1,33 @@
-.post-panel
-	.post-thumbnail
-		%a.darken.small{:href => "single-review-numbers.html"}
-			%img{:alt => "misc3", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc3-70x70.jpg", :style => "opacity: 1;", :width => "70"}/
-	.inner
-		%h2
-			=link_to "#{provider.name}",service_map_provider_path(provider.country.downcase, provider.slug)
-		.category
-			.catname Blog
-		.comments
-			%a{:href => "#", :title => "Comments"} 2 comments
-		.date July 19, 2013
-		.more
-			%a{:href => "#"} More
+- unless @serviceProviders.nil?
+	#content.page-content
+		#forums-dir-list-newest.dir-list
+			#pag-top.pagination
+				-@paginator = @serviceProviders
+				/ pagination_top
+				= render :partial =>"pagination/pagination",:locals => {:paginationType=>"serviceProviders"}
+	.post-loop.search-loop{:style=>"margin-top:-60px !important"}
+		- @serviceProviders.all.each do |provider|
+			
+			- next if provider.blank?
+			.post-panel
+				.post-thumbnail
+					%a.darken.small{:href => "single-review-numbers.html"}
+						%img{:alt => "misc3", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc3-70x70.jpg", :style => "opacity: 1;", :width => "70"}/
+				.inner
+					%h2
+						=link_to "#{provider.name}",service_map_provider_path(provider.country.downcase, provider.slug)
+					.category
+						.catname Blog
+					.comments
+						%a{:href => "#", :title => "Comments"} 2 comments
+					.date July 19, 2013
+					.more
+						%a{:href => "#"} More
 
-	%br.clearer/
-%br.clearer/
+				%br.clearer/
+			%br.clearer/
+	#content.page-content
+		#forums-dir-list-newest.dir-list
+			#pag-top.pagination
+				
+				= render :partial =>"pagination/pagination",:locals => {:paginationType=>"serviceProviders"}
