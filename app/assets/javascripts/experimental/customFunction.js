@@ -36,11 +36,16 @@ var Experimental = {
 		if(valueTaker.length > 0){
 			valueTaker = jQuery(".activity-filter").val();	
 		}
-		
+		if(typeof(data)!=="undefined")
+		{
+			data ='&'+data
+		}else{
+			data ='&'
+		}
 		jQuery.ajax({
 			type:method,
 			url:url,
-			data:"queryData="+valueTaker+"&idLoad="+idToLoader+"&nameOfPartial="+nameOfPartial+paginationVar+subTab,
+			data:"queryData="+valueTaker+"&idLoad="+idToLoader+"&nameOfPartial="+nameOfPartial+paginationVar+subTab + data,
 			dataType:"script",
 			error:function(errorObject){
 				alert(errorObject.toSource());

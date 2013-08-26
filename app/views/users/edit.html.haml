@@ -81,3 +81,8 @@
 
 	Experimental.getAjaxData("click","#user-xprofile","/profile/settings","GET","activity_tab1","users/edit","#user-xprofile .loader","subtabs","users/profile_subtabs","");
 	
+	jQuery(document).ready(function(jQ){
+		jQ('#pagination-digg li a').live('click',function(e){
+			e.preventDefault();
+		})
+	})

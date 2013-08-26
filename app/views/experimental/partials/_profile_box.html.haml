@@ -5,7 +5,7 @@
         %i.icon-user
         My Profile
     %ul#members-list.item-list
-      %li.vcard{:style=>"height:140px;"}
+      %li.vcard{:style=>"height:160px;"}
         .item-avatar
           -if current_user.use_gravatar?
             = image_tag avatar_user_path(current_user),:width => "100",:class=>"avatar"
@@ -27,9 +27,8 @@
             =link_to "<i class='icon-switch'></i>Connect".html_safe,social_connect_path
           .item-meta
             =link_to "<i class='icon-tools'></i>Others".html_safe,user_path(current_user)
-            
-
-        
-
-
-  
+          - if current_user.role == "admin"
+            .item-meta
+              =link_to "<i class='icon-star'></i>Admin".html_safe,admin_path
+          .item-meta{:style => "padding-left: 125px;"}
+            =link_to "<i class='icon-logout'></i>Logout".html_safe,destroy_user_session_path

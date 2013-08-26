@@ -8,18 +8,19 @@
 			.section-wrapper
 				.section
 					.comment-bubble
-						%a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 0
+						%a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 
+							= @answers.count
 					/ making title stronger
 					.section-for-header
 						/%i.icon-vcard
-						Questions and Answers  
+						Answers  
 			.section-arrow 
 	#content.page-content
 		%form#members-directory-form.dir-form{:action => "", :method => "post"}
 			%h3 Questions
 			#members-dir-search.dir-search{:role => "search"}
 				%label
-					%input#members_search{:name => "s", :placeholder => "Search Questions...", :type => "text"}/
+					%input#members_search{:name => "s", :placeholder => "Search Answers...", :type => "text"}/
 				%input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
 				%input#members_search_submit{:name => "members_search_submit", :type => "reset", :value => "x", :style=>"opacity:1;"}/
 		.item-list-tabs.activity-type-tabs{:role => "navigation"}
@@ -41,16 +42,22 @@
 						%option{:value => "unanswerd"} Unanswered
 						%option{:value => "xxx"} XXX
 		/ #forums-dir-list-newest.dir-list
-		/ 	#pag-top.pagination
-		/ 		#member-dir-count-top.pag-count
-		/ 			Viewing questions #{@answers.options[:skip]} to #{@answers.options[:skip]+@answers.options[:limit]} (of #{@answers.count} active members)
-		/ 		#members-dir-list.members.dir-list1
-		/ 			= paginate @answers
+		/   #pag-top.pagination
+		/     #member-dir-count-top.pag-count
+		/       Viewing questions #{@answers.options[:skip]} to #{@answers.options[:skip]+@answers.options[:limit]} (of #{@answers.count} active members)
+		/     #members-dir-list.members.dir-list1
+		/       = paginate @answers
 		#return-data-ajax
 			/ partial for answer
 			=render 'experimental/partials/answer',:question => @question
-		
+
 .sidebar
+	- if current_user.nil?
+		/login box
+		= render "experimental/partials/login_box"
+	-else
+		/profile box
+		= render "experimental/partials/profile_box"
 	/= render "experimental/partials/recent_tags"
 	= render "experimental/partials/left_bar"
 	/widget top
@@ -65,8 +72,15 @@
 	=# render "experimental/partials/banner_box"
 
 :javascript
+
 	// ajax function
 	Experimental.getAjaxData("change","#activity-filter-by","/answers","GET","return-data-ajax","answer",".loader","","","");
 	//pagination_ajax
 	Experimental.getAjaxData("click","#answers_pagination .pagination-ajax","/answers","GET","return-data-ajax","answer",".loader","","","yes","#activity-filter-by");
 	
+	jQuery(document).ready(function(jQ){
+		jQ('#pagination-digg li a').live('click',function(e){
+			e.preventDefault();
+		})
+	})
+

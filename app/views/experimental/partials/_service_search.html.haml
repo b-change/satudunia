@@ -1,9 +1,5 @@
-- if params[:service_search].present?
-	-if @serviceProviders.present?
-		= render "experimental/partials/provider"
-	-else
-		#message.info
-			%p Sorry, there was no service-provider found. Please try a different filter.
-- else
+-if @serviceProviders.present?
+	= render "experimental/partials/provider"
+-else
 	#message.info
-		%p Please Enter the Field and try Again.
+		%p Sorry, there was no service-provider found. Please try a different filter.

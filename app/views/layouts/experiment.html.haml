@@ -237,7 +237,7 @@
 				%br.clearer.hide-responsive-small/
 				.cat-menu.tax
 					%ul#menu-sub-menu.menu
-						-if params[:controller] == "questions"
+						-if params[:controller] == "questions" || params[:controller] == "tags"
 							= render "experimental/partials/subnavigation/questions_subnavigation"
 						-elsif params[:controller] == "service_providers" 
 							= render "experimental/partials/subnavigation/service_providers_subnavigation"

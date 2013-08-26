@@ -27,21 +27,24 @@
 			.section-wrapper
 				.section
 					.comment-bubble
-						%a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 0
+						/ %a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 0
 					/ making title stronger
 					.section-for-header
 						%i.icon-vcard
 						= @title.upcase
 			.section-arrow 
+			.disclaimer{:style=> "border: 1px solid #E0E0E0; height: 50px;"}
+				Disclaimer: This summary is not a part of the Terms of Use and is not a legal document.It is simply a reference for understanding the full terms.
+				%small .
+			%br 
 		/ content area 
 		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
 		%br.hide-responsive/
 		.overview-wrapper
-			.section-bottom{:style=>"height:300px; overflow-y:scroll;"}
-				.category.qa-q-item-tags
-					.catname
-						Terms of use
-					.category-arrow  
+			.section-bottom
+				%br
+				%h2
+					Purpose
 				.tags-list-about
 					%p
 						1. Purpose The aim of PLUS is to enhance connections between gay, bisexual men and transgender people living with HIV
@@ -52,7 +55,14 @@
 						%span.class-agree
 							=check_box_tag("check1", value = "1", checked = false, options = {:autocomplete=>"off"})
 							Yes, I Agree
-					.break-line
+			%br.hide-responsive/
+			%br.hide-responsive/
+			%br.hide-responsive/
+			.section-bottom
+				%br
+				%h2
+					Values
+				.tags-list-about
 					%p
 						2. Values
 						PLUS is being managed under guidance of some core values, which we ask all registered users to acknowledge.
@@ -69,7 +79,14 @@
 						%span.class-agree
 							=check_box_tag("check2", value = "1", checked = false, options = {:autocomplete=>"off"})
 							Yes, I Acknowledge
-					.break-line
+			%br.hide-responsive/
+			%br.hide-responsive/
+			%br.hide-responsive/
+			.section-bottom
+				%br
+				%h2
+					Code of Conduct
+				.tags-list-about
 					%p
 						3. Code of Conduct
 						All registered users to PLUS are given access to the basic Website and Services upon acceptance of the Terms of Use that includes a Code of Conduct.
