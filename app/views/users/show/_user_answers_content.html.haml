@@ -1,5 +1,52 @@
 
--@resources.each do |resource|
-  = render :partial => "answers/answer", :object => resource
--@paginator = @resources
+/ -@resources.each do |resource|
+/   = render :partial => "answers/answer", :object => resource
+/ -@paginator = @resources
+/ = render :partial =>"pagination/pagination",:locals => {:paginationType=>"answers"}
+
+
+.answer-page#return-data-ajax
+	%ul#activity-stream.activity-list.item-list
+		-if @answers.blank?
+			= render "experimental/partials/empty_record_message"
+		-else
+			-@answers.each do |answer|
+				-@question = answer.question
+				-next if @question.nil?
+				-last_target_id, last_target_date, owner = @question.find_last_target rescue ""
+				-title = answer.question.title rescue ""
+				- unless answer.question.nil? || answer.body.nil?
+					%li#activity-1672.xprofile.new_member.activity-item.mini
+						.activity-avatar
+							%a
+								.q_ff-container
+									.q_ff
+										%span{:class => "q_f"}
+											0
+											/ = activity
+										%span{:class => "q_f_1"}
+											votes
+										%span{:class => "q_fs1 vote-up-adjust"}
+											0
+											/ = activity
+										%span{:class => "q_fs_1"}
+											answers
+									.q_ff-bottom
+										%span
+											/ = activity.sum(:qus_count).to_i
+										0 views
+						.activity-content.width
+							.activity-header
+								%p
+									.answer-name
+										= link_to "#{owner.login.capitalize}"
+									Posted the answer
+									.answer-activity
+										%a.view.activity-time-since{:href => "#", :title => "View Discussion"}
+											%span.time-since
+												= time_ago_in_words(last_target_date)
+												ago
+							.activity-inner
+								= link_to truncate(strip_tags(answer.body), :length => 150), question_path(answer.question, :anchor => "answer#{answer.id}"), :title => "",:class=>""
+-@paginator = @answers
 = render :partial =>"pagination/pagination",:locals => {:paginationType=>"answers"}

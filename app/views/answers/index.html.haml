@@ -8,7 +8,7 @@
 			.section-wrapper
 				.section
 					.comment-bubble
-						%a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 
+						%a{:title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 
 							= @answers.count
 					/ making title stronger
 					.section-for-header
@@ -26,7 +26,7 @@
 		.item-list-tabs.activity-type-tabs{:role => "navigation"}
 			%ul
 				%li#members-order-select.selected
-					%a{:href => "http://www.industrialthemes.com/made/activity/", :title => "The public activity for everyone on this site."}
+					%a{:href => "", :title => "The public activity for everyone on this site."}
 						All Answers
 						%span= @answers.count rescue ""
 						.loader
@@ -34,7 +34,7 @@
 			%ul
 				%li#members-order-select.last.filter
 					%label{:for => "members-order-by"} Order By:
-					%select#activity-filter-by
+					%select#activity-filter-by.activity-filter
 						%option{:value => "newest"} Newest
 						%option{:value => "hot"} Hot 
 						%option{:value => "featured"} Featured
@@ -74,13 +74,27 @@
 :javascript
 
 	// ajax function
-	Experimental.getAjaxData("change","#activity-filter-by","/answers","GET","return-data-ajax","answer",".loader","","","");
+	// Experimental.getAjaxData("change","#activity-filter-by","/answers","GET","return-data-ajax","answer",".loader","","","");
 	//pagination_ajax
-	Experimental.getAjaxData("click","#answers_pagination .pagination-ajax","/answers","GET","return-data-ajax","answer",".loader","","","yes","#activity-filter-by");
+	// Experimental.getAjaxData("click","#answers_pagination .pagination-ajax","/answers","GET","return-data-ajax","answer",".loader","","","yes","#activity-filter-by");
 	
 	jQuery(document).ready(function(jQ){
-		jQ('#pagination-digg li a').live('click',function(e){
+
+		jQ("#activity-filter-by").change(function(){
+			valueTaker= jQuery("#activity-filter-by").val();
+			jQuery.ajax({     
+				url:'/answers_tab',
+				data: { value: valueTaker},
+				dataType:"script",				
+				success:function(successObject){
+					jQuery(".loader").removeClass("ajax-loader");
+				}
+			});
+		})
+
+		jQ('#pagination-digg  a').live('click',function(e){
 			e.preventDefault();
+			jQuery.ajax({url:jQ(this).attr('href'),dataType:"script"})
 		})
 	})
 

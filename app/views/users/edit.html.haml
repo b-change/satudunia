@@ -18,10 +18,35 @@
 			#item-header-content
 				%h2
 					= link_to "#{user_realname(@user)}", user_path(@user)
-				.item-meta
-					%span{:class=>"activity"}
-						Joined 
-						= t("time.ago", :time => time_ago_in_words(@user.created_at))
+
+				/ .item-meta
+				/ 	%span{:class=>"activity"}
+				/ 		Joined 
+				/ 	= t("time.ago", :time => time_ago_in_words(@user.created_at))
+				.user-nicename
+					Website:
+					= link_to @user.website, @user.website
+				.user-nicename
+					= link_to "<span>HIV Condition: #{user_hiv_condition(@user)}</span>".html_safe, "#", :class => "qwest_tag1"
+					=# link_to "<span>Edit Profile</span>".html_safe, settings_path, :class => "qwest_tag15"
+				/ .extra-tags
+				/ 	- unless @user.profile_tiers.blank?
+				/ 		= link_to "<span>Sample</span>".html_safe, "#", :class => "qwest_tag12"
+				/ 	-unless @user.profile_support.nil?
+				/ 		= link_to "<span>Tier 1</span>".html_safe, "#", :class => "qwest_tag12"
+				/ 	- for i in 2..7 do
+				/ 		-unless eval "@user.profile_tier#{i}.nil?"
+				/ 			= link_to "<span>Tier #{i}</span>".html_safe, "#", :class => "qwest_tag12"
+				.a6
+					= image_tag "plus/a1.png"
+					%span
+						Country: 
+						= user_country(@user)
+					%br
+					= image_tag "plus/a2.png"
+					%span
+						Age: 
+						= user_age(@user)
 		#item-nav
 			#object-nav.item-list-tabs{:id=>"firstElement"}
 				%ul
@@ -35,6 +60,10 @@
 						%a#user-xprofile{:href=>"javascript:void(0)",:data_send=>"profile",:user_id=>"#{@user.id}"}
 							Profile
 							.loader
+					%li
+						%a#user-profile{:href=>"javascript:void(0)",:user_id=>"#{@user.id}"}
+							Privacy
+							.loader
 						
 					
 			#subtabs
@@ -47,15 +76,19 @@
 					%ul#members-list.items-list
 						= render "users/show/user_activity_content"
 				.review-content#user_profile_tab
-					.overview-wrapper
-						.overview-new
-							.left-panel
-								/ %h1{:style=>"background:none; border:none"}
-								/ 	= link_to @user.display_name, user_path(@user)
-								= render "users/edit"
+					= render "users/edit"
+					/ %h1{:style=>"background:none; border:none"}
+					/ 	= link_to @user.display_name, user_path(@user)
+								
 
 /side bar
 .sidebar
+	- if current_user.nil?
+		/login box
+		= render "experimental/partials/login_box"
+	-else
+		/profile box
+		= render "experimental/partials/profile_box"
 	=# render "experimental/partials/left_bar"
 	/widget top
 	= render "experimental/partials/widget_top"
@@ -80,9 +113,15 @@
 	Experimental.getAjaxData("click","#user-activity,#activities_pagination .pagination-ajax","/profile/settings","GET","activity_tab1","users/user_activity_content","#user-activity .loader","subtabs","users/activity_subtabs","yes");
 
 	Experimental.getAjaxData("click","#user-xprofile","/profile/settings","GET","activity_tab1","users/edit","#user-xprofile .loader","subtabs","users/profile_subtabs","");
+
+	Experimental.getAjaxData("click","#user-profile","/profile/settings","GET","activity_tab1","users/user_privacy","#user-profile .loader","","","");
 	
 	jQuery(document).ready(function(jQ){
-		jQ('#pagination-digg li a').live('click',function(e){
+		jQ('#pagination-digg a').live('click',function(e){
 			e.preventDefault();
 		})
 	})
+
+	jQuery('#item-header-avatar').click(function(){
+		jQuery('#user_avatar').click();
+	});

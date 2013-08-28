@@ -11,8 +11,8 @@
 			.section-wrapper
 				.section
 					.comment-bubble
-						%a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 
-							= @service_providers.count
+						%a{:title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 
+						= @service_providers.count
 					/ making title stronger
 					.section-for-header
 						%i.icon-location
@@ -114,6 +114,12 @@
 
 /side bar
 .sidebar
+	- if current_user.nil?
+		/login box
+		= render "experimental/partials/login_box"
+	-else
+		/profile box
+		= render "experimental/partials/profile_box"
 	= render "experimental/partials/left_bar"
 	/widget top
 	= render "experimental/partials/widget_top"
@@ -148,7 +154,7 @@
 			jQ('#content').submit();
 		})
 
-		jQ('#pagination-digg li a').live('click',function(e){
+		jQ('#pagination-digg a').live('click',function(e){
 			e.preventDefault();
 			jQuery.ajax({url:jQ(this).attr('href'),dataType:"script"})
 		})
@@ -254,4 +260,4 @@
 		});
 	}
 
-  
+	

@@ -1,0 +1,27 @@
+= form_for (@user),:url=>{:action => "update"}, :html => {:class => "standard-form", :multipart => true, :id => "edit-user-form-privacy"} do |f|
+	.overview-wrapper
+		.overview-new
+			.left-panel
+				.category
+					.catname
+						Privacy
+					.category-arrow
+				.checkbox1
+					= f.check_box :hide_hiv_condition
+					Hide my HIV Condition to other users
+				%br
+				.checkbox1
+					= f.check_box :hide_country
+					Hide my Country to other users
+				%br
+				.checkbox1
+					= f.check_box :hide_age
+					Hide my Age to other users
+				%br
+				.checkbox1
+					= f.check_box :hide_realname
+					Hide my Real Name to other users
+				%br
+		.contact-section-bottom
+			= f.submit "Save", :class=>"contact-button", :style=>"float:right; margin-right:10px;"
+		%br

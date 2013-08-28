@@ -1,400 +1,93 @@
-%br.clearer
 #spotlight-wrapper
   .ribbon-shadow-left  
   .section-wrapper
     / spotlight section header
     .section
+      %i.icon-flashlight
       In The Spotlight
   .ribbon-shadow-right  
   .section-arrow  
   .spotlight
-    #spotlight-slider{:style => "visibility: visible; overflow: hidden; position: relative; z-index: 2; left: 0px; width: 648px;"}
+    #spotlight-slider
       / begin spotlight slider
-      %ul{:style => "margin: 0px; padding: 0px; position: relative; list-style-type: none; z-index: 1; width: 2592px; left: -1944px;"}
-        %li{:style => "overflow: hidden; float: left; width: 320px; height: 470px;"}
+      %ul{:style=>"height:555px;"}
+        %li
           .post-panel
             .category
               .ribbon-shadow-left  
-              .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-restaurant-light.png) no-repeat 0px 0px;"}  
+              / .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-movie-light.png) no-repeat 0px 0px;"}  
               .catname
-                Restaurant Review
+                ="<i class='icon-help'></i>Question & Answer".html_safe
               .category-arrow  
-            %a.darken.video{:href => "single-review-numbers.html"}
-              %img{:alt => "restaurants6", :height => "170", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/restaurants6-300x170.jpg", :width => "300"}/
+            %a.darken{:href => "/questions"}
+              %img{:alt => "Question & Answer",:title=>"Question & Answer", :height => "170", :src => "/assets/experimental/images/questions.jpg", :width => "300"}/
             .inner
               %h2
-                %a{:href => "single-review-numbers.html"} Sugar Rush: Banana Stracciatella Gelato from Eataly
-              .excerpt Donec sollicitudin venenatis mattis. Vestibulum fermentum, risus a luctus fermentum, enim purus aliquet tellus, id interdum nisl velit nec diam. Etiam mauris odio, aliquam a elementum eu, vulputate eu nunc.
+                %a{:href => "/questions"}
+                -unless current_group.block_one_header.blank?
+                  = current_group.block_one_header.html_safe rescue ""
+              .excerpt.full-align-style
+                = current_group.block_one_info.html_safe rescue "" 
             .more-bar
               .arrow-catpanel-top  
-              .rating-wrapper.small
-                .stars.yellow
-                  .star.full  
-                  .star.full  
-                  .star.half  
-                  .star  
-                  .star  
+              / .rating-wrapper.small
+              /   .number.color3 42%
               .comments
-                %a{:href => "single-review-numbers.html", :title => "Comment on Sugar Rush: Banana Stracciatella Gelato from Eataly"} 0 comments
+                %a{:href => "single-review-numbers.html", :title => "Comment on The Bourne Legacy"} 0 Views
               .more
-                %a{:href => "single-review-numbers.html"} More
-        %li{:style => "overflow: hidden; float: left; width: 320px; height: 470px;"}
+                %a{:href => "/questions"} More
+        %li
           .post-panel.right
             .category
               .ribbon-shadow-left  
-              .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-music-light.png) no-repeat 0px 0px;"}  
+              / .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-fashion-light.png) no-repeat 0px 0px;"}  
               .catname
-                Music Review
+                ="<i class='icon-location'></i>Services Map".html_safe
               .category-arrow  
-            %a.darken.video{:href => "single-review-numbers.html"}
-              %img{:alt => "music2", :height => "170", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/music2-300x170.jpg", :width => "300"}/
+            %a.darken{:href => service_providers_path}
+              %img{:alt => "Services Map",:title=>"Services Map", :height => "170", :src => "/assets/experimental/images/services_maps.jpg", :width => "300"}/
             .inner
               %h2
-                %a{:href => "single-review-numbers.html"} The Lumineers – The Lumineers
-              .excerpt Donec a tellus a eros laoreet ultrices non non nisi. Nulla et sem nisi. Praesent egestas ultricies feugiat. In hac habitasse platea dictumst. Cras a lacus erat. Aenean tempor nibh non lorem vulputate sodales. Suspendisse erat d...
+                %a{:href => service_providers_path}
+                  =current_group.block_two_header.html_safe rescue ""
+              .excerpt.full-align-style
+                = current_group.block_two_info.html_safe rescue ""
             .more-bar
               .arrow-catpanel-top  
-              .rating-wrapper.small
-                .number.color5 8.6
+              / .rating-wrapper.small
+              /   .letter.color3 C
               .comments
-                %a{:href => "single-review-numbers.html", :title => "Comment on The Lumineers – The Lumineers"} 0 comments
+                %a{:href => "single-review-numbers.html", :title => "Comment on 5 Colorful Watches From Zappos for under $50"} 0 Views
               .more
-                %a{:href => "single-review-numbers.html"} More
+                %a{:href => service_providers_path} More
           .clearer
-        %li{:style => "overflow: hidden; float: left; width: 320px; height: 470px;"}
+        %li
           .post-panel
             .category
               .ribbon-shadow-left  
-              .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-movie-light.png) no-repeat 0px 0px;"}  
+              / .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-restaurant-light.png) no-repeat 0px 0px;"}  
               .catname
-                Movie Review
+                ="<i class='icon-circled-help'></i>Knowledge Base".html_safe
               .category-arrow  
-            %a.darken{:href => "single-review-numbers.html"}
-              %img{:alt => "movies2", :height => "170", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies2-300x170.jpg", :width => "300"}/
+            %a.darken{:href => "http://plus-us.net/wiki/Main_Page"}
+              %img{:alt => "Knowledge Base",:title=>"Knowledge Base", :height => "170", :src => "/assets/experimental/images/knowledge_based.jpg", :width => "300"}/
             .inner
               %h2
-                %a{:href => "single-review-numbers.html"} The Bourne Legacy
-              .excerpt Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet egestas. Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet eges...
+                %a{:href => "http://plus-us.net/wiki/Main_Page"} 
+                  =current_group.block_three_header.html_safe rescue ""
+              .excerpt.full-align-style
+                =current_group.block_three_info.html_safe rescue ""
             .more-bar
               .arrow-catpanel-top  
-              .rating-wrapper.small
-                .number.color3 42%
+              / .rating-wrapper.small
+              /   .stars.yellow
+              /     .star.full  
+              /     .star.full  
+              /     .star.half  
+              /     .star  
+              /     .star  
               .comments
-                %a{:href => "single-review-numbers.html", :title => "Comment on The Bourne Legacy"} 0 comments
+                %a{:href => "http://plus-us.net/wiki/Main_Page", :title => "Comment on Sugar Rush: Banana Stracciatella Gelato from Eataly"} 0 Views
               .more
-                %a{:href => "single-review-numbers.html"} More
-        %li{:style => "overflow: hidden; float: left; width: 320px; height: 470px;"}
-          .post-panel.right
-            .category
-              .ribbon-shadow-left  
-              .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-fashion-light.png) no-repeat 0px 0px;"}  
-              .catname
-                Fashion Review
-              .category-arrow  
-            %a.darken{:href => "single-review-numbers.html"}
-              %img{:alt => "fashion3", :height => "170", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/fashion3-300x170.jpg", :width => "300"}/
-            .inner
-              %h2
-                %a{:href => "single-review-numbers.html"} 5 Colorful Watches From Zappos for under $50
-              .excerpt Donec a tellus a eros laoreet ultrices non non nisi. Nulla et sem nisi. Praesent egestas ultricies feugiat. In hac habitasse platea dictumst. Cras a lacus erat. Aenean tempor nibh non lorem vulputate sodales. Suspendisse erat d...
-            .more-bar
-              .arrow-catpanel-top  
-              .rating-wrapper.small
-                .letter.color3 C
-              .comments
-                %a{:href => "single-review-numbers.html", :title => "Comment on 5 Colorful Watches From Zappos for under $50"} 0 comments
-              .more
-                %a{:href => "single-review-numbers.html"} More
+                %a{:href => "http://plus-us.net/wiki/Main_Page"} More
           .clearer
-        %li{:style => "overflow: hidden; float: left; width: 320px; height: 470px;"}
-          .post-panel
-            .category
-              .ribbon-shadow-left  
-              .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-restaurant-light.png) no-repeat 0px 0px;"}  
-              .catname
-                Restaurant Review
-              .category-arrow  
-            %a.darken.video{:href => "single-review-numbers.html"}
-              %img{:alt => "restaurants6", :height => "170", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/restaurants6-300x170.jpg", :style => "opacity: 1;", :width => "300"}/
-            .inner
-              %h2
-                %a{:href => "single-review-numbers.html"} Sugar Rush: Banana Stracciatella Gelato from Eataly
-              .excerpt Donec sollicitudin venenatis mattis. Vestibulum fermentum, risus a luctus fermentum, enim purus aliquet tellus, id interdum nisl velit nec diam. Etiam mauris odio, aliquam a elementum eu, vulputate eu nunc.
-            .more-bar
-              .arrow-catpanel-top  
-              .rating-wrapper.small
-                .stars.yellow
-                  .star.full  
-                  .star.full  
-                  .star.half  
-                  .star  
-                  .star  
-              .comments
-                %a{:href => "single-review-numbers.html", :title => "Comment on Sugar Rush: Banana Stracciatella Gelato from Eataly"} 0 comments
-              .more
-                %a{:href => "single-review-numbers.html"} More
-        %li{:style => "overflow: hidden; float: left; width: 320px; height: 470px;"}
-          .post-panel.right
-            .category
-              .ribbon-shadow-left  
-              .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-music-light.png) no-repeat 0px 0px;"}  
-              .catname
-                Music Review
-              .category-arrow  
-            %a.darken.video{:href => "single-review-numbers.html"}
-              %img{:alt => "music2", :height => "170", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/music2-300x170.jpg", :style => "opacity: 1;", :width => "300"}/
-            .inner
-              %h2
-                %a{:href => "single-review-numbers.html"} The Lumineers – The Lumineers
-              .excerpt Donec a tellus a eros laoreet ultrices non non nisi. Nulla et sem nisi. Praesent egestas ultricies feugiat. In hac habitasse platea dictumst. Cras a lacus erat. Aenean tempor nibh non lorem vulputate sodales. Suspendisse erat d...
-            .more-bar
-              .arrow-catpanel-top  
-              .rating-wrapper.small
-                .number.color5 8.6
-              .comments
-                %a{:href => "single-review-numbers.html", :title => "Comment on The Lumineers – The Lumineers"} 0 comments
-              .more
-                %a{:href => "single-review-numbers.html"} More
-          .clearer
-        %li{:style => "overflow: hidden; float: left; width: 320px; height: 470px;"}
-          .post-panel
-            .category
-              .ribbon-shadow-left  
-              .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-movie-light.png) no-repeat 0px 0px;"}  
-              .catname
-                Movie Review
-              .category-arrow  
-            %a.darken{:href => "single-review-numbers.html"}
-              %img{:alt => "movies2", :height => "170", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies2-300x170.jpg", :style => "opacity: 1;", :width => "300"}/
-            .inner
-              %h2
-                %a{:href => "single-review-numbers.html"} The Bourne Legacy
-              .excerpt Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet egestas. Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet eges...
-            .more-bar
-              .arrow-catpanel-top  
-              .rating-wrapper.small
-                .number.color3 42%
-              .comments
-                %a{:href => "single-review-numbers.html", :title => "Comment on The Bourne Legacy"} 0 comments
-              .more
-                %a{:href => "single-review-numbers.html"} More
-        %li{:style => "overflow: hidden; float: left; width: 320px; height: 470px;"}
-          .post-panel.right
-            .category
-              .ribbon-shadow-left  
-              .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-fashion-light.png) no-repeat 0px 0px;"}  
-              .catname
-                Fashion Review
-              .category-arrow  
-            %a.darken{:href => "single-review-numbers.html"}
-              %img{:alt => "fashion3", :height => "170", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/fashion3-300x170.jpg", :style => "opacity: 1;", :width => "300"}/
-            .inner
-              %h2
-                %a{:href => "single-review-numbers.html"} 5 Colorful Watches From Zappos for under $50
-              .excerpt Donec a tellus a eros laoreet ultrices non non nisi. Nulla et sem nisi. Praesent egestas ultricies feugiat. In hac habitasse platea dictumst. Cras a lacus erat. Aenean tempor nibh non lorem vulputate sodales. Suspendisse erat d...
-            .more-bar
-              .arrow-catpanel-top  
-              .rating-wrapper.small
-                .letter.color3 C
-              .comments
-                %a{:href => "single-review-numbers.html", :title => "Comment on 5 Colorful Watches From Zappos for under $50"} 0 comments
-              .more
-                %a{:href => "single-review-numbers.html"} More
-          .clearer
-    / end spotlight slider
-    / responsive version
-    #spotlight-slider-responsive{:style => "visibility: visible; overflow: hidden; position: relative; z-index: 2; left: 0px; width: 8px;"}
-      / begin spotlight slider
-      %ul{:style => "margin: 0px; padding: 0px; position: relative; list-style-type: none; z-index: 1; width: 32px; left: -20px;"}
-        %li{:style => "overflow: hidden; float: left; width: 0px; height: 0px;"}
-          .post-panel
-            .category
-              .ribbon-shadow-left  
-              .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-restaurant-light.png) no-repeat 0px 0px;"}  
-              .catname
-                Restaurant Review
-              .category-arrow  
-            %a.darken.small.video{:href => "single-review-numbers.html"}
-              %img{:alt => "restaurants6", :height => "135", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/restaurants6-230x135.jpg", :width => "230"}/
-            .inner
-              %h2
-                %a{:href => "single-review-numbers.html"} Sugar Rush: Banana Stracciatella Gelato from Eataly
-              .excerpt Donec sollicitudin venenatis mattis. Vestibulum fermentum, risus a luctus fermentum, enim purus aliquet tellus, id interdum nisl velit nec diam. Etiam mauris odio, aliquam a elementum eu, vulputate eu nunc.
-            .more-bar
-              .arrow-catpanel-top  
-              .rating-wrapper.small
-                .stars.yellow
-                  .star.full  
-                  .star.full  
-                  .star.half  
-                  .star  
-                  .star  
-              .comments
-                %a{:href => "single-review-numbers.html", :title => "Comment on Sugar Rush: Banana Stracciatella Gelato from Eataly"} 0 comments
-              .more
-                %a{:href => "single-review-numbers.html"} More
-        %li{:style => "overflow: hidden; float: left; width: 0px; height: 0px;"}
-          .post-panel.right
-            .category
-              .ribbon-shadow-left  
-              .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-music-light.png) no-repeat 0px 0px;"}  
-              .catname
-                Music Review
-              .category-arrow  
-            %a.darken.small.video{:href => "single-review-numbers.html"}
-              %img{:alt => "music2", :height => "135", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/music2-230x135.jpg", :width => "230"}/
-            .inner
-              %h2
-                %a{:href => "single-review-numbers.html"} The Lumineers – The Lumineers
-              .excerpt Donec a tellus a eros laoreet ultrices non non nisi. Nulla et sem nisi. Praesent egestas ultricies feugiat. In hac habitasse platea dictumst. Cras a lacus erat. Aenean tempor nibh non lorem vulputate sodales. Suspendisse erat d...
-            .more-bar
-              .arrow-catpanel-top  
-              .rating-wrapper.small
-                .number.color5 8.6
-              .comments
-                %a{:href => "single-review-numbers.html", :title => "Comment on The Lumineers – The Lumineers"} 0 comments
-              .more
-                %a{:href => "single-review-numbers.html"} More
-          .clearer
-        %li{:style => "overflow: hidden; float: left; width: 0px; height: 0px;"}
-          .post-panel
-            .category
-              .ribbon-shadow-left  
-              .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-movie-light.png) no-repeat 0px 0px;"}  
-              .catname
-                Movie Review
-              .category-arrow  
-            %a.darken.small{:href => "single-review-numbers.html"}
-              %img{:alt => "movies2", :height => "135", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies2-230x135.jpg", :width => "230"}/
-            .inner
-              %h2
-                %a{:href => "single-review-numbers.html"} The Bourne Legacy
-              .excerpt Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet egestas. Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet eges...
-            .more-bar
-              .arrow-catpanel-top  
-              .rating-wrapper.small
-                .number.color3 42%
-              .comments
-                %a{:href => "single-review-numbers.html", :title => "Comment on The Bourne Legacy"} 0 comments
-              .more
-                %a{:href => "single-review-numbers.html"} More
-        %li{:style => "overflow: hidden; float: left; width: 0px; height: 0px;"}
-          .post-panel.right
-            .category
-              .ribbon-shadow-left  
-              .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-fashion-light.png) no-repeat 0px 0px;"}  
-              .catname
-                Fashion Review
-              .category-arrow  
-            %a.darken.small{:href => "single-review-numbers.html"}
-              %img{:alt => "fashion3", :height => "135", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/fashion3-230x135.jpg", :width => "230"}/
-            .inner
-              %h2
-                %a{:href => "single-review-numbers.html"} 5 Colorful Watches From Zappos for under $50
-              .excerpt Donec a tellus a eros laoreet ultrices non non nisi. Nulla et sem nisi. Praesent egestas ultricies feugiat. In hac habitasse platea dictumst. Cras a lacus erat. Aenean tempor nibh non lorem vulputate sodales. Suspendisse erat d...
-            .more-bar
-              .arrow-catpanel-top  
-              .rating-wrapper.small
-                .letter.color3 C
-              .comments
-                %a{:href => "single-review-numbers.html", :title => "Comment on 5 Colorful Watches From Zappos for under $50"} 0 comments
-              .more
-                %a{:href => "single-review-numbers.html"} More
-          .clearer
-        %li{:style => "overflow: hidden; float: left; width: 0px; height: 0px;"}
-          .post-panel
-            .category
-              .ribbon-shadow-left  
-              .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-restaurant-light.png) no-repeat 0px 0px;"}  
-              .catname
-                Restaurant Review
-              .category-arrow  
-            %a.darken.small.video{:href => "single-review-numbers.html"}
-              %img{:alt => "restaurants6", :height => "135", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/restaurants6-230x135.jpg", :width => "230"}/
-            .inner
-              %h2
-                %a{:href => "single-review-numbers.html"} Sugar Rush: Banana Stracciatella Gelato from Eataly
-              .excerpt Donec sollicitudin venenatis mattis. Vestibulum fermentum, risus a luctus fermentum, enim purus aliquet tellus, id interdum nisl velit nec diam. Etiam mauris odio, aliquam a elementum eu, vulputate eu nunc.
-            .more-bar
-              .arrow-catpanel-top  
-              .rating-wrapper.small
-                .stars.yellow
-                  .star.full  
-                  .star.full  
-                  .star.half  
-                  .star  
-                  .star  
-              .comments
-                %a{:href => "single-review-numbers.html", :title => "Comment on Sugar Rush: Banana Stracciatella Gelato from Eataly"} 0 comments
-              .more
-                %a{:href => "single-review-numbers.html"} More
-        %li{:style => "overflow: hidden; float: left; width: 0px; height: 0px;"}
-          .post-panel.right
-            .category
-              .ribbon-shadow-left  
-              .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-music-light.png) no-repeat 0px 0px;"}  
-              .catname
-                Music Review
-              .category-arrow  
-            %a.darken.small.video{:href => "single-review-numbers.html"}
-              %img{:alt => "music2", :height => "135", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/music2-230x135.jpg", :width => "230"}/
-            .inner
-              %h2
-                %a{:href => "single-review-numbers.html"} The Lumineers – The Lumineers
-              .excerpt Donec a tellus a eros laoreet ultrices non non nisi. Nulla et sem nisi. Praesent egestas ultricies feugiat. In hac habitasse platea dictumst. Cras a lacus erat. Aenean tempor nibh non lorem vulputate sodales. Suspendisse erat d...
-            .more-bar
-              .arrow-catpanel-top  
-              .rating-wrapper.small
-                .number.color5 8.6
-              .comments
-                %a{:href => "single-review-numbers.html", :title => "Comment on The Lumineers – The Lumineers"} 0 comments
-              .more
-                %a{:href => "single-review-numbers.html"} More
-          .clearer
-        %li{:style => "overflow: hidden; float: left; width: 0px; height: 0px;"}
-          .post-panel
-            .category
-              .ribbon-shadow-left  
-              .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-movie-light.png) no-repeat 0px 0px;"}  
-              .catname
-                Movie Review
-              .category-arrow  
-            %a.darken.small{:href => "single-review-numbers.html"}
-              %img{:alt => "movies2", :height => "135", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies2-230x135.jpg", :width => "230"}/
-            .inner
-              %h2
-                %a{:href => "single-review-numbers.html"} The Bourne Legacy
-              .excerpt Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet egestas. Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet eges...
-            .more-bar
-              .arrow-catpanel-top  
-              .rating-wrapper.small
-                .number.color3 42%
-              .comments
-                %a{:href => "single-review-numbers.html", :title => "Comment on The Bourne Legacy"} 0 comments
-              .more
-                %a{:href => "single-review-numbers.html"} More
-        %li{:style => "overflow: hidden; float: left; width: 0px; height: 0px;"}
-          .post-panel.right
-            .category
-              .ribbon-shadow-left  
-              .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-fashion-light.png) no-repeat 0px 0px;"}  
-              .catname
-                Fashion Review
-              .category-arrow  
-            %a.darken.small{:href => "single-review-numbers.html"}
-              %img{:alt => "fashion3", :height => "135", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/fashion3-230x135.jpg", :width => "230"}/
-            .inner
-              %h2
-                %a{:href => "single-review-numbers.html"} 5 Colorful Watches From Zappos for under $50
-              .excerpt Donec a tellus a eros laoreet ultrices non non nisi. Nulla et sem nisi. Praesent egestas ultricies feugiat. In hac habitasse platea dictumst. Cras a lacus erat. Aenean tempor nibh non lorem vulputate sodales. Suspendisse erat d...
-            .more-bar
-              .arrow-catpanel-top  
-              .rating-wrapper.small
-                .letter.color3 C
-              .comments
-                %a{:href => "single-review-numbers.html", :title => "Comment on 5 Colorful Watches From Zappos for under $50"} 0 comments
-              .more
-                %a{:href => "single-review-numbers.html"} More
-          .clearer
-    / end spotlight slider
-    / end responsive version

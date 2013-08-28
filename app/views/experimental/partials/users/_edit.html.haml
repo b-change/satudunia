@@ -1,67 +1,64 @@
-.review-content#user_profile_tab
-	.overview-wrapper
-		.overview-new
-			.left-panel
-				= form_for (@user),:url=>{:action => "update"}, :html => {:class => "exp-contact-form", :multipart => true, :id => "edit-user-form"} do |f|
-					#details_page
+#details_page_new
+	= render "users/edit_user"
+%br.clearer
+%br.clearer
+.overview-wrapper
+	.overview-new
+		.left-panel			
+			= form_for (@user),:url=>{:action => "update"}, :html => {:class => "exp-contact-form", :multipart => true, :id => "edit-user-form"} do |f|
+				#details_page
+					%br
+						= big_avatar_img @user, :size => 140
+						= f.file_field :avatar
+					%br
+						= f.label :name, "Name*", :class => "label"
+						= f.text_field :name, :class => "input-class1"
+					%br
+						= f.label :login, "Login*", :class => "label"
+						= f.text_field :login, :class => "input-class1"
+					%br
+						= f.label :website, "Website", :class => "label"
+						= f.text_field :website, :class => "input-class1"
+					%br
+						= f.label "Date", :class => "label"
 						%br
-							= big_avatar_img @user, :size => 140
-							= f.file_field :avatar
-						%br
-							= f.label :name, "Name*", :class => "label"
-							= f.text_field :name, :class => "input-class1"
-						%br
-							= f.label :login, "Login*", :class => "label"
-							= f.text_field :login, :class => "input-class1"
-						%br
-							= f.label :website, "Website", :class => "label"
-							= f.text_field :website, :class => "input-class1"
-						%br
-							= f.label :user_age, "Age", :class => "label"
-							= f.text_field :user_age, :class => "input-class1"
-						%br
-							= f.label :country_name, "Country", :class => "label"
-							= f.text_field :country_name, :class => "input-class1"
-						%br
-							= f.label :hiv_condition, "HIV", :class => "label"
-							= f.select :hiv_condition, ["Negative","Positive"],{:selected => @user.hiv_condition}, :class => "select-class1"
-						%br
-							= f.label :bio, "Bio", :class=>"label"
-						.search4
-							= f.text_area :bio, :style => "font-size: 13px; width:600px;"
-					#all_checks{:style =>"display:none"}
-						.checkbox1
-							= f.check_box :hide_hiv_condition
-							Hide my HIV Condition to other users
-						.checkbox1
-							= f.check_box :hide_country
-							Hide my Country to other users
-						.checkbox1
-							= f.check_box :hide_age
-							Hide my Age to other users
-						.checkbox1
-							= f.check_box :hide_realname
-							Hide my Real Name to other users
-					#password_settings{:style =>"display:none"}
-						%br
-							= f.label :email, "Email", :class => "label"
-							= f.text_field :email, :class => "input-class1"
-						%br
-							= f.label :password, "Password", :class => "label"
-							= f.password_field :password, :class => "input-class1"
-						%br
-							= f.label :password_confirmation, "confirm-password", :class => "label"
-							= f.password_field :password_confirmation, :class => "input-class1"
-						%br
-							= f.label :current_password, "current-password", :class => "label"
-							= f.password_field :current_password, :class => "input-class1"
+						= f.date_select :user_age, :start_year => 1950, :end_year => (Time.now.year)
+					%br
+						= f.label :country_name, "Country", :class => "label"
+						= f.text_field :country_name, :class => "input-class1"
+					%br
+						= f.label :hiv_condition, "HIV", :class => "label"
+						= f.select :hiv_condition, ["Negative","Positive"],{:selected => @user.hiv_condition}, :class => "select-class1"
+					%br
+						= f.label :bio, "Bio", :class=>"label"
+					.search4
+						= f.text_area :bio, :style => "font-size: 13px; width:600px;"
+				#all_checks{:style =>"display:none"}
+					.checkbox1
+						= f.check_box :hide_hiv_condition
+						Hide my HIV Condition to other users
+					.checkbox1
+						= f.check_box :hide_country
+						Hide my Country to other users
+					.checkbox1
+						= f.check_box :hide_age
+						Hide my Age to other users
+					.checkbox1
+						= f.check_box :hide_realname
+						Hide my Real Name to other users
+				#password_settings{:style =>"display:none"}
+					%br
+						= f.label :email, "Email", :class => "label"
+						= f.text_field :email, :class => "input-class1"
+					%br
+						= f.label :password, "Password", :class => "label"
+						= f.password_field :password, :class => "input-class1"
+					%br
+						= f.label :password_confirmation, "confirm-password", :class => "label"
+						= f.password_field :password_confirmation, :class => "input-class1"
+					%br
+						= f.label :current_password, "current-password", :class => "label"
+						= f.password_field :current_password, :class => "input-class1"
 
-					.save_footer{:style => "margin-top: 30px;"}
-						= link_to "<span>Save</span>".html_safe, "javascript:void(0)", :class => "submit-button", :id => "edit-user-link"
-		
-:javascript
-	jQuery(window).load(function(){
-		jQuery('#edit-user-link').click(function(){
-			jQuery('#edit-user-form').submit();
-		});
-	});
+				.save_footer{:style => "margin-top: 30px;"}
+					= f.submit "Save", :class => "submit-button"

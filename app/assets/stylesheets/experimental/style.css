@@ -698,7 +698,7 @@ post listings, archives, taxonomies, search, front page latest, etc.
 /*search results*/
 .search-loop .post-panel {width:630px;}
 .search-loop .post-thumbnail {float:left;margin-right:0px;}
-.search-loop .inner {float:left;width:514px;border-top:1px solid #E0E0E0;position:relative;padding-top:7px;padding-left:30px;}
+.search-loop .inner {float:left;width:496px;border-top:1px solid #E0E0E0;position:relative;padding-top:7px;padding-left:30px;}
 .search-loop .date {font-size:10px;color:#666;padding:10px 0px 0px 25px;float:left;}
 .search-loop h2 {font-size:1.1em;margin-bottom:0px;}
 .search-loop .stars {padding:8px 16px 0px 0px;}
@@ -2437,7 +2437,7 @@ fonts
 .page-content div#item-header img.avatar {
     margin: 0 !important;
 }
-.page-content .item-list .avatar, .page-content form#whats-new-form #whats-new-avatar, .page-content div#item-header img.avatar {
+.page-content .item-list .avatar, .page-content form#whats-new-form #whats-new-avatar, .page-content div#item-header img.avatar, .services-top-adj div.post-panel .post-thumbnail img.avatar {
     background: none repeat scroll 0 0 #F0F0F0;
     border: 1px solid #DDDDDD;
     border-radius: 5px 5px 5px 5px;

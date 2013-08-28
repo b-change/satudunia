@@ -15,15 +15,34 @@ class AnswersController < ApplicationController
       @answers = current_group.answers.without(exclude).order(:created_at=>:desc).page(params["page"]).per(15)
     end
     # condition is for ajax data
-    answer_conditional_fetch(params[:queryData],exclude)
+    # answer_conditional_fetch(params[:queryData],exclude)
     respond_to do |format|
       format.html
       format.json { render :json => @answers }
+      format.js { render 'answers_tab' }
       # fetching data through ajax
-      format.js{render "/experimental/experimental/ajax_entry"}
+      # format.js{render "/experimental/experimental/ajax_entry"}
     end
   end
 
+  def answers_tab
+    case params[:value]
+      when "newest"
+        @answers = current_group.answers.order(:created_at=>:desc).page(params["page"]).per(5)
+      when "hot"
+        @answers = current_group.answers.not_in(:favoriters_count=>[0]).order(:created_at=>:desc).page(params["page"]).per(15)
+      when "votes"
+        @answers = current_group.answers.not_in(:votes_count => [0]).order(:created_at=>:desc).page(params["page"]).per(15)
+      when "featured"
+        @answers = current_group.answers.not_in(:favoriters_count=>[0]).order(:created_at=>:desc).page(params["page"]).per(15)
+      else
+        @answers = current_group.answers.order(:created_at=>:desc).page(params["page"]).per(15)
+      end
+    respond_to do |format|
+      format.js
+    end
+    
+  end
   def history
     @answer = current_group.answers.find(params[:id])
     @question = @answer.question
@@ -255,18 +274,19 @@ class AnswersController < ApplicationController
   end
   protected
   # anwer ajax conditional fetch
-  def answer_conditional_fetch(queryData,exclude)
-    # unless condition for ajax condition
-    unless queryData.blank?
-      case queryData
-        when "newest"
-          @answers = current_group.answers.without(exclude).order(:created_at=>:desc).page(params["page"]).per(15)
-        else
-          @answers = nil
-      end
-    end  
+  # def answer_conditional_fetch(queryData,exclude)
+  #   debugger
+  #   # unless condition for ajax condition
+  #   unless queryData.blank?
+  #     case queryData
+  #       when "newest"
+  #         @answers = current_group.answers.without(exclude).order(:created_at=>:desc).page(params["page"]).per(15)
+  #       else
+  #         @answers = nil
+  #     end
+  #   end  
     
-  end
+  # end
   # anwer ajax conditional fetch
   def check_permissions
     if params[:id]

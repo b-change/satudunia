@@ -8,7 +8,7 @@
 			.section-wrapper
 				.section
 					.comment-bubble
-						%a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"}
+						%a{:title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"}
 							= @questions.count
 					/ making title stronger
 					.section-for-header
@@ -150,7 +150,7 @@
 	//get ajax data by sort  using pagination
 	Experimental.getAjaxData("click","#questions_pagination .pagination-ajax","/question_ajax","GET","question_ajax","question_ajax",".loader","","","yes","#activity-filter-by");
 	jQuery(document).ready(function(jQ){
-		jQ('#pagination-digg li a').live('click',function(e){
+		jQ('#pagination-digg  a').live('click',function(e){
 			e.preventDefault();
 		})
 	})

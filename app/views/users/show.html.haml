@@ -3,193 +3,198 @@
 .clearer.hide-responsive  
 %br.hide-responsive/
 .main-content-left
-  #content.page-content
-    .review-content
-      .ribbon-shadow-left
-      .section-wrapper
-        .section-header
-          My Profile
-      .section-arrow
-      / post by removed from here
-    #item-header.qa-q-item-tags{:role=>"complementary"}
-      #item-header-avatar
-        %a{:style=>"float:left;"}
-          -if @user.use_gravatar?
-            = image_tag avatar_user_path(@user),:size=>'140x140',:class => "avatar" 
-          -else                       
-            = image_tag(default_avatar_url('big'), :class=>"avatar")
-      #item-header-content
-        %h2
-          = link_to "#{user_realname(@user)}", user_path(@user)
-        .item-meta
-          %span{:class=>"activity"}
-            Joined 
-            = t("time.ago", :time => time_ago_in_words(config.joined_at))
-        .user-nicename
-          Website:
-          = link_to @user.website, @user.website
-        .user-nicename
-          = link_to "<span>HIV Condition: #{user_hiv_condition(@user)}</span>".html_safe, "#", :class => "qwest_tag1"
-          =# link_to "<span>Edit Profile</span>".html_safe, settings_path, :class => "qwest_tag15"
-        .extra-tags
-          - unless @user.profile_tiers.blank?
-            = link_to "<span>Sample</span>".html_safe, "#", :class => "qwest_tag12"
-          -unless @user.profile_support.nil?
-            = link_to "<span>Tier 1</span>".html_safe, "#", :class => "qwest_tag12"
-          - for i in 2..7 do
-            -unless eval "@user.profile_tier#{i}.nil?"
-              = link_to "<span>Tier #{i}</span>".html_safe, "#", :class => "qwest_tag12"
-        .a6
-          = image_tag "plus/a1.png"
-          %span
-            Country: 
-            = user_country(@user)
-          %br
-          = image_tag "plus/a2.png"
-          %span
-            Age: 
-            = user_age(@user)
-    #item-nav
-      #object-nav.item-list-tabs{:id=>"firstElement"}
-        %ul
-          = tab_entry "li", t(:questions, :scope => "activerecord.models"), user_path(@user), {:selected => "selected"}, {:class => "questions"}
-          = tab_entry "li", t(:answers, :scope => "activerecord.models"), answers_user_path(@user), {:selected => "selected"}, {:class => "answers"}
-          = tab_entry "li", t('global.following'), follows_user_path(@user), {:selected => "selected"}
-          = tab_entry "li", t(:activity, :scope => "activerecord.models"), activity_user_path(@user), {:selected => "selected"}, {:class => "activity"}
-          = tab_entry "li", "Survey", survey_user_path(@user), {:selected => "selected"}, {:class => "activity"}
-      / #subnav.item-list-tabs.no-ajax{:role => "navigation"}
-      /   %ul
-      /     %li#just-me-personal-li.current.selected
-      /       %a{:href=>"#"} Newest
-      /     %li#activity-mentions-personal-li
-      /       %a{:href=>"#"} Oldest
-      /     %li#activity-favs-personal-li
-      /       %a{:href=>"#"} Views
-      /     %li#activity-friends-personal-li
-      /       %a{:href=>"#"} Votes
-      /     %li#activity-groups-personal-li
-      /       %a{:href=>"#"} All
-      /     %li#activity-filter-select.last
-      /       %label{:for => "activity-filter-by"} Show:
-      /       %select#activity-filter-by
-      /         %option{:value => "-1"} Newest
-      /         %option{:value => "activity_update"} Oldest
-      /         %option{:value => "new_blog_post"} Views
-      /         %option{:value => "new_blog_comment"} Votes
-      
-      #subnav.item-list-tabs.no-ajax{:role => "navigation"}
-        %ul
-          = render "users/show/user_#{params[:action]}_filters"
-    #members-dir-list.members.dir-list
-      %ul#members-list.items-list
-        = render "users/show/user_#{params[:action]}_content"
+	#content.page-content
+		.review-content
+			.ribbon-shadow-left
+			.section-wrapper
+				.section-header
 
-      / .tabdiv-wrapper
-      /   #first1{:style => "display: block"}
-      /     .tabs3
-      /       %ul{:class => "tabbernav1"}
-      /         = render "users/show/user_#{params[:action]}_filters"
-      /       .i4_1{:id => "first"}
-      /         .bx-wrapper
-      /           %div.bx-window
-      /             %ul{:id => "slider21", :class => "i3_2", :style => "position: relative;"}
-      /               %li{:class => "pager ps1"}
-      /                 %ul
-      /                   = render "users/show/user_#{params[:action]}_content"
-      / .activity
-        
-      / .tabs5
-      /   %ul{:class => "tabNavigation1"}
-      /     = tab_entry "li", t(:questions, :scope => "activerecord.models"), user_path(@user), {:selected => "selected"}, {:class => "questions"}
-      /     = tab_entry "li", t(:answers, :scope => "activerecord.models"), answers_user_path(@user), {:selected => "selected"}, {:class => "answers"}
-      /     = tab_entry "li", t('global.following'), follows_user_path(@user), {:selected => "selected"}
-      /     = tab_entry "li", t(:activity, :scope => "activerecord.models"), activity_user_path(@user), {:selected => "selected"}, {:class => "activity"}
-      /     = tab_entry "li", "Survey", survey_user_path(@user), {:selected => "selected"}, {:class => "activity"}
-      /   #first1{:style => "display: block"}
-      /     .tabs3
-      /       %ul{:class => "tabbernav"}
-      /         = render "users/show/user_#{params[:action]}_filters"
-      /       .i4_1{:id => "first"}
-      /         .bx-wrapper
-      /           %div.bx-window
-      /             %ul{:id => "slider21", :class => "i3_2", :style => "position: relative;"}
-      /               %li{:class => "pager ps1"}
-      /                 %ul
-      /                   = render "users/show/user_#{params[:action]}_content"
-    .grid_6.omega.body1_about.my_prof12.bdd1{:id => "secondElement1", :style => "margin-top: 19px"}
-      .tagsl1_p1
-        %span{:class => "t_l1"}
-          = @user.reputation_on(current_group).to_i
-        %br
-        %span{:class => "t_l2"}
-          Reputation
-        %span{:class => "t_l1_1"}
-          = @user.following_count
-        %br
-        %span{:class => "t_l2_1"}
-          Following
-        %br
-        %span{:class => "t_l1_2"}
-          0
-        %br
-        %span{:class => "t_l2_2"}
-          View
-        %span{:class => "t_l1_3"}
-          = @user.followers_count
-        %br
-        %span{:class => "t_l2_3"}
-          Followers
-      %p{:class => "about1"}
-        %strong
-          Following Users
-      %ul{:class => "users tags"}
-        - @user.followers.each do |user|
-          %li
-            = avatar_img user, :size => "small"
-            %span{:class => "i3_5"}
-              = user.display_name
+					Members Profile :: #{@user.login}
+			.section-arrow
+			/ post by removed from here
+		#item-header.qa-q-item-tags{:role=>"complementary"}
+			#item-header-avatar
+				%a{:style=>"float:left;"}
+					-if @user.use_gravatar?
+						= image_tag avatar_user_path(@user),:size=>'140x140',:class => "avatar" 
+					-else                       
+						= image_tag(default_avatar_url('big'), :class=>"avatar")
+			#item-header-content
+				%h2
+
+					= link_to "#{@user.login}", user_path(@user)
+				/ .item-meta
+				/ 	%span{:class=>"activity"}
+				/ 		Joined 
+				/ 		= t("time.ago", :time => time_ago_in_words(config.joined_at))
+				.user-nicename
+					Website:
+					= link_to @user.website, @user.website
+				.user-nicename
+					= link_to "<span>HIV Condition: #{user_hiv_condition(@user)}</span>".html_safe, "#", :class => "qwest_tag1"
+					=# link_to "<span>Edit Profile</span>".html_safe, settings_path, :class => "qwest_tag15"
+				/ .extra-tags
+				/   - unless @user.profile_tiers.blank?
+				/     = link_to "<span>Sample</span>".html_safe, "#", :class => "qwest_tag12"
+				/   -unless @user.profile_support.nil?
+				/     = link_to "<span>Tier 1</span>".html_safe, "#", :class => "qwest_tag12"
+				/   - for i in 2..7 do
+				/     -unless eval "@user.profile_tier#{i}.nil?"
+				/       = link_to "<span>Tier #{i}</span>".html_safe, "#", :class => "qwest_tag12"
+				.a6
+					= image_tag "plus/a1.png"
+					%span
+						Country: 
+						= user_country(@user)
+					%br
+					= image_tag "plus/a2.png"
+					%span
+						Age: 
+						= user_age(@user)
+		#item-nav
+			#object-nav.item-list-tabs{:id=>"firstElement"}
+				%ul
+					= tab_entry "li", t(:questions, :scope => "activerecord.models"), user_path(@user), {:selected => "selected"}, {:class => "questions"}
+					= tab_entry "li", t(:answers, :scope => "activerecord.models"), answers_user_path(@user), {:selected => "selected"}, {:class => "answers"}
+					= tab_entry "li", t('global.following'), follows_user_path(@user), {:selected => "selected"}
+					= tab_entry "li", t(:activity, :scope => "activerecord.models"), activity_user_path(@user), {:selected => "selected"}, {:class => "activity"}
+					= tab_entry "li", "Survey", survey_user_path(@user), {:selected => "selected"}, {:class => "activity"}
+			/ #subnav.item-list-tabs.no-ajax{:role => "navigation"}
+			/   %ul
+			/     %li#just-me-personal-li.current.selected
+			/       %a{:href=>"#"} Newest
+			/     %li#activity-mentions-personal-li
+			/       %a{:href=>"#"} Oldest
+			/     %li#activity-favs-personal-li
+			/       %a{:href=>"#"} Views
+			/     %li#activity-friends-personal-li
+			/       %a{:href=>"#"} Votes
+			/     %li#activity-groups-personal-li
+			/       %a{:href=>"#"} All
+			/     %li#activity-filter-select.last
+			/       %label{:for => "activity-filter-by"} Show:
+			/       %select#activity-filter-by
+			/         %option{:value => "-1"} Newest
+			/         %option{:value => "activity_update"} Oldest
+			/         %option{:value => "new_blog_post"} Views
+			/         %option{:value => "new_blog_comment"} Votes
+			
+			#subnav.item-list-tabs.no-ajax{:role => "navigation"}
+				%ul
+					= render "users/show/user_#{params[:action]}_filters"
+		#members-dir-list.members.dir-list
+			%ul#members-list.items-list
+				= render "users/show/user_#{params[:action]}_content"
+
+			/ .tabdiv-wrapper
+			/   #first1{:style => "display: block"}
+			/     .tabs3
+			/       %ul{:class => "tabbernav1"}
+			/         = render "users/show/user_#{params[:action]}_filters"
+			/       .i4_1{:id => "first"}
+			/         .bx-wrapper
+			/           %div.bx-window
+			/             %ul{:id => "slider21", :class => "i3_2", :style => "position: relative;"}
+			/               %li{:class => "pager ps1"}
+			/                 %ul
+			/                   = render "users/show/user_#{params[:action]}_content"
+			/ .activity
+				
+			/ .tabs5
+			/   %ul{:class => "tabNavigation1"}
+			/     = tab_entry "li", t(:questions, :scope => "activerecord.models"), user_path(@user), {:selected => "selected"}, {:class => "questions"}
+			/     = tab_entry "li", t(:answers, :scope => "activerecord.models"), answers_user_path(@user), {:selected => "selected"}, {:class => "answers"}
+			/     = tab_entry "li", t('global.following'), follows_user_path(@user), {:selected => "selected"}
+			/     = tab_entry "li", t(:activity, :scope => "activerecord.models"), activity_user_path(@user), {:selected => "selected"}, {:class => "activity"}
+			/     = tab_entry "li", "Survey", survey_user_path(@user), {:selected => "selected"}, {:class => "activity"}
+			/   #first1{:style => "display: block"}
+			/     .tabs3
+			/       %ul{:class => "tabbernav"}
+			/         = render "users/show/user_#{params[:action]}_filters"
+			/       .i4_1{:id => "first"}
+			/         .bx-wrapper
+			/           %div.bx-window
+			/             %ul{:id => "slider21", :class => "i3_2", :style => "position: relative;"}
+			/               %li{:class => "pager ps1"}
+			/                 %ul
+			/                   = render "users/show/user_#{params[:action]}_content"
+		/ .grid_6.omega.body1_about.my_prof12.bdd1{:id => "secondElement1", :style => "margin-top: 19px"}
+		/   .tagsl1_p1
+		/     %span{:class => "t_l1"}
+		/       = @user.reputation_on(current_group).to_i
+		/     %br
+		/     %span{:class => "t_l2"}
+		/       Reputation
+		/     %span{:class => "t_l1_1"}
+		/       = @user.following_count
+		/     %br
+		/     %span{:class => "t_l2_1"}
+		/       Following
+		/     %br
+		/     %span{:class => "t_l1_2"}
+		/       0
+		/     %br
+		/     %span{:class => "t_l2_2"}
+		/       View
+		/     %span{:class => "t_l1_3"}
+		/       = @user.followers_count
+		/     %br
+		/     %span{:class => "t_l2_3"}
+		/       Followers
+		/   / %p{:class => "about1"}
+		/   /   %strong
+		/   /     Following Users
+		/   / %ul{:class => "users tags"}
+		/   /   - @user.followers.each do |user|
+		/   /     %li
+		/   /       = avatar_img user, :size => "small"
+		/   /       %span{:class => "i3_5"}
+		/   /         = user.display_name
+		/ %br
+		=# render "followers"
 .sidebar
-  = render "experimental/partials/left_bar"
+	= render "experimental/partials/left_bar"
+	= render "followers"
 :javascript
-  $(window).load(function (){
+	$(window).load(function (){
 
-    switch('#{params[:sort]}'){
-      case "oldest":
-        $('#sort_oldest').addClass('active-tab');
-        break;
-      case "views":
-        $('#sort_views').addClass('active-tab');
-        break;
-      case "votes":
-        $('#sort_votes').addClass('active-tab');
-        break;
-      case "questions":
-        $('#question-tab').addClass('active-tab');
-        $('#question1-tab').addClass('active-tab');
-        break;
-      case "answers":
-        $('#answer-tab').addClass('active-tab');
-        break;
-      case "following":
-        $('#following-tab').addClass('active-tab');
-        break;
-      case "followers":
-        $('#followers-tab').addClass('active-tab');
-        break;
-      case "all":
-        $('#all-tab').addClass('active-tab');
-        break;
-      case "users":
-        $('#user-tab').addClass('active-tab');
-        break;
-      case "pages":
-        $('#page-tab').addClass('active-tab');
-        break;
-      default:
-        $('#sort_newest,#question-tab,#all-tab').addClass('active-tab');
-        break;
-    }
-  });
+		switch('#{params[:sort]}'){
+			case "oldest":
+				$('#sort_oldest').addClass('active-tab');
+				break;
+			case "views":
+				$('#sort_views').addClass('active-tab');
+				break;
+			case "votes":
+				$('#sort_votes').addClass('active-tab');
+				break;
+			case "questions":
+				$('#question-tab').addClass('active-tab');
+				$('#question1-tab').addClass('active-tab');
+				break;
+			case "answers":
+				$('#answer-tab').addClass('active-tab');
+				break;
+			case "following":
+				$('#following-tab').addClass('active-tab');
+				break;
+			case "followers":
+				$('#followers-tab').addClass('active-tab');
+				break;
+			case "all":
+				$('#all-tab').addClass('active-tab');
+				break;
+			case "users":
+				$('#user-tab').addClass('active-tab');
+				break;
+			case "pages":
+				$('#page-tab').addClass('active-tab');
+				break;
+			default:
+				$('#sort_newest,#question-tab,#all-tab').addClass('active-tab');
+				break;
+		}
+	});
 
 
 
@@ -282,7 +287,7 @@
 /                           %li{:class => "pager ps1"}
 /                             %ul
 /                               = render "users/show/user_#{params[:action]}_content"
-              
+							
 /             / .tabs5
 /             /   %ul{:class => "tabNavigation1"}
 /             /     = tab_entry "li", t(:questions, :scope => "activerecord.models"), user_path(@user), {:selected => "selected"}, {:class => "questions"}

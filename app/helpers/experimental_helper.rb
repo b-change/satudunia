@@ -16,4 +16,8 @@ module ExperimentalHelper
 	def filter_updated_at
 		return [@privacy, @eula, @tos, @about].sort_by{|e| e[:updated_at]}.reverse
 	end
+
+	def get_country_name(service_providers)
+		return service_providers.map(&:country).uniq
+	end
 end

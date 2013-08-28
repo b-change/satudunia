@@ -8,15 +8,15 @@
       .section-wrapper
         .section
           .comment-bubble
-            %a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"}= @questions.count
+            %a{:title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"}= @questions.count
           / making title stronger
           .section-for-header
             /%i.icon-vcard
             - if @tags.present?
-              -@tags.each do |tag|  
-                Tags : : #{tag.name} 
+              -@tags.each do |tag| 
+                Tags : : #{tag.name}
             - else
-              Tags : : #{@tagId}
+              Tags : : #{@tagId.gsub(/[-]/, ' ')}
       .section-arrow 
   #content.page-content
     %form#members-directory-form.dir-form{:action => "", :method => "post"}
@@ -37,7 +37,7 @@
             - if @tags.present?
               = @tags.first.name.capitalize
             - else 
-              #{@tagId.capitalize}
+              #{@tagId.capitalize.gsub(/[-]/, ' ')}
             %span= @questions.count
             .loader
     #subnav.item-list-tabs{:role => "navigation"}

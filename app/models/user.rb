@@ -2,6 +2,7 @@ require 'digest/sha1'
 
 class User
   include Mongoid::Document
+  include Mongoid::MultiParameterAttributes
   include Mongoid::Timestamps
   include MultiauthSupport
   include MongoidExt::Storage
@@ -25,7 +26,7 @@ class User
   field :website,                   :type => String, :limit => 200
   field :location,                  :type => String, :limit => 200
   field :birthday,                  :type => Time
-  field :user_age,                  :type => String
+  field :user_age,                  :type => Date
 
   field :identity_url,              :type => String
   index :identity_url

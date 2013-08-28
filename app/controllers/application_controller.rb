@@ -29,6 +29,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_custom_headers
   before_filter :check_sidebar
   before_filter :check_mobile_logout
+  before_filter :get_service_providers
 
   has_mobile_fu :mobile_enabled
 
@@ -300,5 +301,9 @@ class ApplicationController < ActionController::Base
     @active_member = Membership.where(state: "active").limit(5)
     @footer = Group.first
 
+  end
+  # header content for experimental
+  def get_service_providers
+    @service_providers = ServiceProvider.all
   end
 end

@@ -9,11 +9,10 @@
 		- @serviceProviders.all.each do |provider|
 			
 			- next if provider.blank?
-			.post-panel
+			.post-panel{:style=>"border-top:1px solid #E0E0E0;"}
 				.post-thumbnail
-					%a.darken.small{:href => "single-review-numbers.html"}
-						%img{:alt => "misc3", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc3-70x70.jpg", :style => "opacity: 1;", :width => "70"}/
-				.inner
+					%img.avatar.user-1227-avatar.avatar-50.photo{:alt => "Profile picture of zicrainnyRV", :height => "60", :src => "http://gravatar.com/avatar/5a0a1a5e96f190c339221f66d7b09b00?d=http://www.industrialthemes.com/made/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg&s=50&r=G", :width => "60"}/
+				.inner{:style=>"border-top:0px solid #E0E0E0;"}
 					%h2
 						=link_to "#{provider.name}",service_map_provider_path(provider.country.downcase, provider.slug)
 					.category

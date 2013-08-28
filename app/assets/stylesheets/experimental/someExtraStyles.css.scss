@@ -337,13 +337,15 @@ form.exp-contact-form{
 
 #flash_error,
 #flash_alert {
-	background-color: #FCC;
-	border: solid 1px #C66;
-	color:#C32C0D;
-	background-image:url("images/negative-x.png");
-	background-repeat: no-repeat;
-	background-position: top 2px left 5px; 
-	
+  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)) repeat scroll 0 0 #FFEAA6;
+    border: 1px solid #D55353;
+    border-radius: 3px 3px 3px 3px;
+    font-weight: normal;
+    margin-top: 3px;
+    text-decoration: none;
+    background-color:#C00000;
+    padding :10px 15px;
+    font-size:12px !important;
 }
 
 /*
@@ -780,4 +782,92 @@ body { top: 0px !important; }
 }
 .services-top-adj{
     margin-top: -55px;
+}
+
+.bg2_1, #page4 .bg2_1 {
+    background: url("../plus/bg2_1.png") no-repeat scroll 0 0 transparent;
+    min-height: 80px;
+    position: relative;
+    top: 0px;
+}
+
+form#search button {
+    background: url("../plus/searchButton.jpg") no-repeat scroll 0 0 transparent;
+    border: 2px none;
+    padding-bottom: 15px;
+    position: absolute;
+    right: 30px;
+    text-indent: -99999px;
+    top: 18px;
+    width: 53px;
+}
+form#search {
+    color: #A5C8EA;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 16px;
+    padding-left: 25px;
+    padding-top: 10px;
+    position: relative;
+}
+form#search input[value="What is your question?"] {
+    color: #000000;
+    font-family: Calibri;
+    font-size: 18px;
+    min-height: 19px;
+}
+form#search input {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 5px 5px 5px 5px;
+    display: inline-block;
+    float: left;
+    font-size: 12px;
+    line-height: 12px;
+    margin-bottom: 1px;
+    min-height: 12px;
+    overflow: hidden;
+    padding: 10px 0 10px 7px;
+    width: 600px;
+}
+.search-btn {
+    cursor: pointer;
+}
+
+.search-tag{
+	margin-right: 20px;
+}
+
+
+#search-container {
+    background-color: #FFFFFF;
+    border: 1px solid #000000;
+    color: #71706D;
+    display: none;
+    font-size: 18px;
+    left: 270px;
+    position: absolute;
+    top: 287px;
+    width: 608px;
+    z-index: 100000;
+}
+.survey.current_page_parent {
+    margin-left: -50px;
+    margin-top: -30px;
+    
+}
+
+.a6{
+	margin-left:-15px;
+	float:left;
+}
+
+.answer-page {
+    margin-left: -15px;
+}
+
+.activity-content.width{
+	float:left;
+	margin-bottom:15px;
+	margin-left:90px;
+
 }

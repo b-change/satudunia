@@ -4,7 +4,6 @@ class ServiceProvidersController < ApplicationController
   layout "experiment"
 
   def index
-  
     set_page_title("Services Map")
     conditions = {}
     conditions = {:service_category_id => params[:category_id]} if params[:category_id]
@@ -30,7 +29,7 @@ class ServiceProvidersController < ApplicationController
       @serviceProviders = ServiceProvider.where({:name=>Regexp.new(params[:service_search],true),:country=>Regexp.new(params[:country],true)}).page(params["page"]).per(15) if (params[:country] && !params[:country].blank?)
 
     elsif(params[:country] && !params[:country].blank?)        
-        @serviceProviders = ServiceProvider.where({:country=>Regexp.new(params[:country],true)}).page(params["page"]).per(15)      
+        @serviceProviders = ServiceProvider.where({:country=>Regexp.new(params[:country],true)}).page(params["page"]).per(15)
     else
       @serviceProviders = ServiceProvider.all.page(params["page"]).per(15)      
     end
@@ -41,6 +40,7 @@ class ServiceProvidersController < ApplicationController
   end
 
   def show
+    
       @service_provider = ServiceProvider.by_slug(params[:slug])
 
       if @service_provider.nil?

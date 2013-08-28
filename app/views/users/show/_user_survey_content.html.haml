@@ -1,17 +1,42 @@
+.survey
+	.post-loop.search-loop
+		- if @surveys.blank?
+			%h3
+				No Recent  Yet
+		- else
+			-@surveys.each do |survey|
+				= render :partial => "survey/survey", :object => survey
+		=# paginate @surveys
+		- if @survey1.present?
+			= render "survey/survey1"
+		- if @survey2.present?
+			= render "survey/survey2"
+		- if @survey3.present?
+			= render "survey/survey3"
+		- if @survey4.present?
+			= render "survey/survey4"
+		- if @survey5.present?
+			= render "survey/survey5"
+		- if @survey6.present?
+			= render "survey/survey6"
+		- if @survey7.present?
+			= render "survey/survey7"
+		%br.clearer/
+
 / -@resources.each do |resource|
 /   %li
 /     .grid_14.Fright
 /       %span{:class => "s1"}
 /         = link_to resource, "/survey/sample/#{resource}" 
 /     .clear
-%li{:class=>"items-linked-new"}
-  .grid_14.Fright
-    %span{:class => "s1"}
-      = link_to "Tier-Sample", "/survey/sample/tier-sample" 
-  .clear
+/ %li{:class=>"items-linked-new"}
+/   .grid_14.Fright
+/     %span{:class => "s1"}
+/       = link_to "Tier-Sample", "/survey/sample/tier-sample" 
+/   .clear
 
-%li{:class=>"items-linked-new"}
-  .grid_14.Fright
-    %span{:class => "s1"}
-      = link_to "Sample", "/survey/sample/tier1" 
-  .clear
+/ %li{:class=>"items-linked-new"}
+/   .grid_14.Fright
+/     %span{:class => "s1"}
+/       = link_to "Sample", "/survey/sample/tier1" 
+/   .clear
