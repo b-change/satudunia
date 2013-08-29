@@ -79,7 +79,6 @@ Rails.application.routes.draw do
       get :join
       post :connect
       get :new_password
-      get :change_answer
       get :change_question
     end
 
@@ -145,7 +144,7 @@ Rails.application.routes.draw do
 
   match '/answers(.format)' => 'answers#index', :as => :answers
   match '/answers_tab(.format)' => 'answers#answers_tab', :as => :answers
-  match '/change_answer(.format)' => 'users#change_answer', :as => :users
+  
   match '/change_question(.format)' => 'users#change_question', :as => :users
 
   # can be used in future 

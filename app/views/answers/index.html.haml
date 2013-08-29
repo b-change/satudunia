@@ -16,31 +16,32 @@
 						Answers  
 			.section-arrow 
 	#content.page-content
-		%form#members-directory-form.dir-form{:action => "", :method => "post"}
-			%h3 Questions
-			#members-dir-search.dir-search{:role => "search"}
-				%label
-					%input#members_search{:name => "s", :placeholder => "Search Answers...", :type => "text"}/
-				%input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
-				%input#members_search_submit{:name => "members_search_submit", :type => "reset", :value => "x", :style=>"opacity:1;"}/
-		.item-list-tabs.activity-type-tabs{:role => "navigation"}
-			%ul
-				%li#members-order-select.selected
-					%a{:href => "", :title => "The public activity for everyone on this site."}
-						All Answers
-						%span= @answers.count rescue ""
-						.loader
-		#subnav.item-list-tabs{:role => "navigation"}
-			%ul
-				%li#members-order-select.last.filter
-					%label{:for => "members-order-by"} Order By:
-					%select#activity-filter-by.activity-filter
-						%option{:value => "newest"} Newest
-						%option{:value => "hot"} Hot 
-						%option{:value => "featured"} Featured
-						%option{:value => "votes"} Votes
-						%option{:value => "unanswerd"} Unanswered
-						%option{:value => "xxx"} XXX
+		%form#content-form
+			#members-directory-form.dir-form{:action => "", :method => "post"}
+				%h3 Questions
+				#members-dir-search.dir-search{:role => "search"}
+					%label
+						%input#members_search{:name => "answer_search", :placeholder => "Search Answers...", :type => "text",:value=>params[:answer_search]}/
+					%input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
+					%input#members_search_submit{:name => "members_search_submit", :type => "reset", :value => "x", :style=>"opacity:1;"}/
+			.item-list-tabs.activity-type-tabs{:role => "navigation"}
+				%ul
+					%li#members-order-select.selected
+						%a{:href => "", :title => "The public activity for everyone on this site."}
+							All Answers
+							%span= @answers.count rescue ""
+							.loader
+			#subnav.item-list-tabs{:role => "navigation"}
+				%ul
+					%li#members-order-select.last.filter
+						%label{:for => "members-order-by"} Order By:
+						%select#activity-filter-by.activity-filter
+							%option{:value => "newest"} Newest
+							%option{:value => "hot"} Hot 
+							%option{:value => "featured"} Featured
+							%option{:value => "votes"} Votes
+							%option{:value => "unanswerd"} Unanswered
+							%option{:value => "xxx"} XXX
 		/ #forums-dir-list-newest.dir-list
 		/   #pag-top.pagination
 		/     #member-dir-count-top.pag-count
@@ -79,6 +80,18 @@
 	// Experimental.getAjaxData("click","#answers_pagination .pagination-ajax","/answers","GET","return-data-ajax","answer",".loader","","","yes","#activity-filter-by");
 	
 	jQuery(document).ready(function(jQ){
+
+		jQ("#content-form").submit(function(e){			
+			e.preventDefault()
+			jQuery.ajax({     
+				url:'/answers_tab',
+				data: jQ('form#content-form').serialize(),
+				dataType:"script",				
+				success:function(successObject){
+					jQuery(".loader").removeClass("ajax-loader");
+				}
+			});
+		})
 
 		jQ("#activity-filter-by").change(function(){
 			valueTaker= jQuery("#activity-filter-by").val();

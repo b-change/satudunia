@@ -162,3 +162,7 @@
   // Experimental.getAjaxData("click","#questions-ajax-tags","/tags/#{@tagId}","GET","return-data-ajax","questions","#questions-ajax-tags .loader","","","");
 
   Experimental.getAjaxData("click","#questions-ajax-tags,#questions_pagination .pagination-ajax","/tags/#{@tagId}","GET","return-data-ajax","questions","#questions-ajax-tags .loader","","","yes");
+
+  jQuery(".activity-avatar img").on('error', function () {
+    jQuery(this).unbind("error").attr("src", "#{local_path_experimental}member.jpeg");
+  });

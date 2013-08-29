@@ -676,16 +676,20 @@ div.item-list-tabs ul li.feed a {
 		padding: 4px 10px;
 		text-align: center;
 		text-decoration: none;
-
+		margin-left :5px;
 }
 .contact-section-bottom {
 		background-color: #FFFFFF;
-		border: 1px solid #E0E0E0;
-		height: 33px;
-		margin: -16px 0 -1px;
-		padding-left: 475px;
-		padding-top: 20px;
-}  
+	    border: 1px solid #E0E0E0;
+	    height: 38px;
+	    margin: -16px 0 -1px;
+	    padding-left: 475px;
+	    padding-top: 15px;
+}
+.contact-button-single{
+		float: right;
+	    margin-right: 20px;
+}
 .recent_tag{
 		color: #E47911;
 		display: inline;

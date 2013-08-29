@@ -5,7 +5,7 @@
 				-@paginator = @serviceProviders
 				/ pagination_top
 				= render :partial =>"pagination/pagination",:locals => {:paginationType=>"serviceProviders"}
-	.post-loop.search-loop{:style=>"margin-top:-60px !important"}
+	.post-loop.search-loop.services-top-adj
 		- @serviceProviders.all.each do |provider|
 			
 			- next if provider.blank?
@@ -22,9 +22,6 @@
 					.date July 19, 2013
 					.more
 						%a{:href => "#"} More
-
-				%br.clearer/
-			%br.clearer/
 	#content.page-content
 		#forums-dir-list-newest.dir-list
 			#pag-top.pagination

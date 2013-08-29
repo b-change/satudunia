@@ -10,6 +10,8 @@
 		-if @answers.blank?
 			= render "experimental/partials/empty_record_message"
 		-else
+			-@paginator = @answers
+			= render :partial =>"pagination/pagination",:locals => {:paginationType=>"answers"}
 			-@answers.each do |answer|
 				-@question = answer.question
 				-next if @question.nil?
@@ -48,5 +50,4 @@
 												ago
 							.activity-inner
 								= link_to truncate(strip_tags(answer.body), :length => 150), question_path(answer.question, :anchor => "answer#{answer.id}"), :title => "",:class=>""
--@paginator = @answers
-= render :partial =>"pagination/pagination",:locals => {:paginationType=>"answers"}
+			= render :partial =>"pagination/pagination",:locals => {:paginationType=>"answers"}

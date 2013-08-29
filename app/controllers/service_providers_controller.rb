@@ -24,7 +24,7 @@ class ServiceProvidersController < ApplicationController
     @categories = ServiceCategory.all
     # all service alphabetical_providers    
     if params[:service_search] && !params[:service_search].blank?
-      @serviceProviders = ServiceProvider.where({:name=>/#{params[:service_search]}/}).page(params["page"]).per(15)
+      @serviceProviders = ServiceProvider.where({:name=>/#{params[:service_search]}/i}).page(params["page"]).per(15)
 
       @serviceProviders = ServiceProvider.where({:name=>Regexp.new(params[:service_search],true),:country=>Regexp.new(params[:country],true)}).page(params["page"]).per(15) if (params[:country] && !params[:country].blank?)
 

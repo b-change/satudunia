@@ -12,7 +12,7 @@
 				.section
 					.comment-bubble
 						%a{:title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 
-						= @service_providers.count
+							= @service_providers.count
 					/ making title stronger
 					.section-for-header
 						%i.icon-location
@@ -42,25 +42,8 @@
 						%option{:value => ""} Thailand
 						%option{:value => ""} Indonesia
 						%option{:value => ""} Philippines
-		/ #forums-dir-list-newest.dir-list
-		/   #pag-top.pagination
-		/     #member-dir-count-top.pag-count
-		/       Viewing serviceProviders #{@serviceProviders.options[:skip]} to #{@serviceProviders.options[:skip]+@serviceProviders.options[:limit]} (of #{@serviceProviders.count} active service)
-		/     #members-dir-list.members.dir-list1
-		/       = paginate @serviceProviders
-	/ .post-loop.search-loop{:style=>"margin-top:-60px !important"}
-	/ 	- unless @serviceProviders.nil?
-	/ 	  - @serviceProviders.all.each do |provider|
-	/ 	    - next if provider.blank?
 	#return-data-ajax.services-top-adj
 		= render "experimental/partials/provider"
-	/ #content.page-content
-	/ 	#forums-dir-list-newest.dir-list
-	/ 		#pag-top.pagination
-	/ 			#member-dir-count-top.pag-count
-	/ 				Viewing serviceProviders #{@serviceProviders.options[:skip]} to #{@serviceProviders.options[:skip]+@serviceProviders.options[:limit]} (of #{@serviceProviders.count} active service)
-	/ 			#members-dir-list.members.dir-list1
-	/ 				=# paginate @serviceProviders
 	.post-loop.directory
 		.ribbon-shadow-left  
 		.section-wrapper

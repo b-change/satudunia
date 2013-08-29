@@ -86,14 +86,9 @@
 							/%a{:href => "single-review-numbers.html"} Service Areas
 							=link_to 'Service Areas', service_providers_path
 							%ul
-								%li
-									%a{:href => "single-review-numbers.html"} Singapore 
-								%li
-									%a{:href => "single-review-percentages.html"} Thailand 
-								%li
-									%a{:href => "single-review-stars.html"} Indonesia 
-								%li
-									%a{:href => "single-review-letters.html"} philippines 
+								-	get_country_name(@service_providers).each do |provider|
+									%li
+										= link_to "#{provider}",service_providers_path(country: provider.downcase)
 						/ question drop starts
 						%li
 							%a{:href => "/questions"} Questions
@@ -104,89 +99,89 @@
 										%li
 											%a{:href => "/tags/casual-partners"} Casual Partners
 										%li
-											%a{:href => "#"} Family
+											%a{:href => "/tags/family"} Family
 										%li
-											%a{:href => "#"} Friends
+											%a{:href => "/tags/friends"} Friends
 										%li
-											%a{:href => "#"} Regular Partners
+											%a{:href => "/tags/regular-partners"} Regular Partners
 								%li
 									%a{:href => "/tags/drugs"} Drugs
 									%ul
 										%li
-											%a{:href => "#"} Partying
+											%a{:href => "/tags/partying"} Partying
 										%li
-											%a{:href => "#"} Sex
+											%a{:href => "/tags/sex"} Sex
 								%li
 									%a{:href => "/tags/first-diagnosis"} First Diagnosis
 									%ul
 										%li
-											%a{:href => "#"} Situation
+											%a{:href => "/tags/situation"} Situation
 								%li
 									%a{:href => "/tags/maintaining-treatment"} Maintaining Treatment
 									%ul
 										%li
-											%a{:href => "#"} Compliance
+											%a{:href => "/tags/compliance"} Compliance
 										%li
-											%a{:href => "#"} Regular Access to Medication
+											%a{:href => "/tags/regular-access-to-medication"} Regular Access to Medication
 								%li
 									%a{:href => "/tags/relationships"} Relationships
 									%ul
 										%li
-											%a{:href => "#"} Dating
+											%a{:href => "/tags/dating"} Dating
 										%li
-											%a{:href => "#"} Family
+											%a{:href => "/tags/family"} Family
 										%li
-											%a{:href => "#"} Friends
+											%a{:href => "/tags/friends"} Friends
 								%li
 									%a{:href => "/tags/sex"} Sex
 									%ul
 										%li
-											%a{:href => "#"} Minimising-risk
+											%a{:href => "/tags/minimising-risk"} Minimising-risk
 										%li
-											%a{:href => "#"} Safer Sex
+											%a{:href => "/tags/safer-sex"} Safer Sex
 								%li
 									%a{:href => "/tags/starting-medication"} Starting Medication
 									%ul
 										%li
-											%a{:href => "#"} Accessing Medication
+											%a{:href => "/tags/accessing-medication"} Accessing Medication
 										%li
-											%a{:href => "#"} Cost
+											%a{:href => "/tags/cost"} Cost
 										%li
-											%a{:href => "#"} Selecting Medication
+											%a{:href => "/tags/selecting-medication"} Selecting Medication
 										%li
-											%a{:href => "#"} Side Effects
+											%a{:href => "/tags/side-effects"} Side Effects
 								%li
 									%a{:href => "/tags/starting-treatment"} Starting Treatment
 									%ul
 										%li
-											%a{:href => "#"} Clinics
+											%a{:href => "/tags/clinics"} Clinics
 										%li
-											%a{:href => "#"} Cost
+											%a{:href => "/tags/cost"} Cost
 										%li
-											%a{:href => "#"} Doctors
+											%a{:href => "/tags/doctors"} Doctors
 								%li
 									%a{:href => "/tags/travel"} Travel
 									%ul
 										%li
-											%a{:href => "#"} Migration
+											%a{:href => "/tags/migration"} Migration
 										%li
-											%a{:href => "#"} Tourism
+											%a{:href => "/tags/tourism"} Tourism
 								%li
 									%a{:href => "/tags/well-being"} Well-being
 									%ul
 										%li
-											%a{:href => "#"} Fitness
+											%a{:href => "/tags/fitness"} Fitness
 										%li
-											%a{:href => "#"} Nutrition
+											%a{:href => "/tags/nutrition"} Nutrition
 								%li
 									%a{:href => "/tags/work"} Work
 									%ul
 										%li
-											%a{:href => "#"} Health Checks
+											%a{:href => "/tags/health-checks"} Health Checks
 										%li
-											%a{:href => "#"} Health Insurance
+											%a{:href => "/tags/health-insurance"} Health Insurance
 										%li
-											%a{:href => "#"} Inclusion & Discrimination
+											%a{:href => "/tags/inclusion-&-discrimination"} Inclusion & Discrimination
 						/ question drop ends
 						/ Login drop starts
 						%li
@@ -429,6 +424,6 @@
 	//use for close button of success message flash
 	jQuery('#close').click(function(e){
 		e.preventDefault();
-		jQuery('#flash_notice').fadeOut();
+		jQuery("#flash_alert,#flash_notice").fadeOut(500);
 		jQuery(this).hide();
 	})

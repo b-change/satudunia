@@ -1,5 +1,10 @@
 #return-data-ajax
-	-@resources.each do |resource|
-		= render :partial => "questions/question", :object => resource
-	-@paginator = @resources
-	= render :partial =>"pagination/pagination",:locals => {:paginationType=>"questions"}
+	- if @resources.present?
+		-@paginator = @resources
+		= render :partial =>"pagination/pagination",:locals => {:paginationType=>"questions"}
+		-@resources.each do |resource|
+			= render :partial => "questions/question", :object => resource
+		= render :partial =>"pagination/pagination",:locals => {:paginationType=>"questions"}
+	- else
+		#message.info
+			%p Sorry, there was no questions found. Please try a different filter.

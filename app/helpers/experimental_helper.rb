@@ -18,6 +18,6 @@ module ExperimentalHelper
 	end
 
 	def get_country_name(service_providers)
-		return service_providers.map(&:country).uniq
+		return service_providers.map(&:country).uniq.reject { |c| c.empty? }
 	end
 end

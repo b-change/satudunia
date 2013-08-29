@@ -138,27 +138,23 @@ class UsersController < ApplicationController
 																		 :banned => false,
 																		 :anonymous => false).
 															order_by(current_order).
-															page(params["page"])
+															page(params["page"]).per(15)
+		if params[:value].present?
+			case params[:value]
+      when "newest"
+        @answers = @user.answers.where(:group_id=>current_group.id,:banned=>false).order_by(current_order).page(params[:page]).per(15)
+      when "oldest"
+        @answers = @user.answers.where(:group_id=>current_group.id,:banned=>false).order_by(:created_at=>:asc).page(params[:page]).per(15)
+      when "votes"
+        @answers = @user.answers.not_in(:votes_count => [0]).order_by(:created_at=>:desc).page(params["page"]).per(15)
+      else
+        @answers = @user.answers.where(:group_id=>current_group.id,:banned=>false).order_by(current_order).page(params[:page]).per(15)
+      end
+		end
 		respond_to do |format|
 			format.html{render :show}
-			format.js{render "/experimental/experimental/ajax_entry"}
+			format.js
 		end
-	end
-
-	def change_answer
-		case params[:value]
-      when "newest"
-        @answers = current_group.answers.order(:created_at=>:desc).page(params["page"]).per(15)
-      when "oldest"
-        @answers = current_group.answers.order(:created_at=>:asc).page(params["page"]).per(15)
-      when "votes"
-        @answers = current_group.answers.not_in(:votes_count => [0]).order(:created_at=>:desc).page(params["page"]).per(15)
-      else
-        @answers = current_group.answers.order(:created_at=>:desc).page(params["page"]).per(15)
-      end
-    respond_to do |format|
-      format.js
-    end
 	end
 
 	def change_question
@@ -166,13 +162,13 @@ class UsersController < ApplicationController
     @query=params[:value]
     case @query
       when "newest"
-        @resources = current_group.questions.order(:created_at=>:desc).page(params["page"]).per(15)
+        @resources = current_user.questions.where(:group_id => current_group.id,:banned => false,:anonymous => false).order(:created_at=>:desc).page(params["page"]).per(15)
       when "hot"
-        @resources=current_group.questions.not_in(:hotness => [0]).order(:created_at=>:desc).page(params["page"]).per(15)
+        @resources = current_user.questions.not_in(:hotness => [0]).order(:created_at=>:desc).page(params["page"]).per(15)
       when "votes"
-        @resources=current_group.questions.not_in(:votes_count => [0]).order(:created_at=>:desc).page(params["page"]).per(15)
+        @resources=current_user.questions.not_in(:votes_count => [0]).order(:created_at=>:desc).page(params["page"]).per(15)
       when "views"
-        @resources=current_group.questions.where(:answers_count=>"0").order(:created_at=>:desc).page(params["page"]).per(15)
+        @resources=current_user.questions.where(:answers_count=>"0").order(:created_at=>:desc).page(params["page"]).per(15)
       else
         @resources = nil
       end

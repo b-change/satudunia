@@ -54,9 +54,9 @@
 					}());
 	
 .sidebar
-  - if current_user.nil?
-    /login box
-    = render "experimental/partials/login_box"
-  -else
-    /profile box
-    = render "experimental/partials/profile_box"
+	- if current_user.nil?
+		/login box
+		= render "experimental/partials/login_box"
+	-else
+		/profile box
+		= render "experimental/partials/profile_box"

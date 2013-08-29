@@ -1,0 +1,23 @@
+.page-content
+  .ribbon-shadow-left  
+  .section-wrapper
+    .section
+      404 - Page Not Found
+  .section-arrow  
+  .content-panel
+    %h1.error That just happened.
+    %p
+      We could not find the page that you requested. It is possible that it was deleted since the last time you viewed it, or that you typed in the wrong URL. In any case, we want you to find what you are looking for, so we offer you the following options:
+    %p
+    .home
+      1. Go back to the
+      %a{:href => "index.html"} home page
+      and start your journey over.
+    .menu 2. Use the menu above to locate the section you wish to view.
+    .search 3. Search our site:
+    .searchform
+      / SEARCH
+      %form#search404{:action => "#", :method => "get"}
+        %input#s{:name => "s", :onblur => "if (this.value == '') {this.value = 'search';}", :onfocus => "if (this.value == 'search') {this.value = '';}", :type => "text", :value => "search"}/
+    .note
+      Enter keyword(s) and press enter

@@ -141,15 +141,15 @@
 		/     %br
 		/     %span{:class => "t_l2_3"}
 		/       Followers
-		/   / %p{:class => "about1"}
-		/   /   %strong
-		/   /     Following Users
-		/   / %ul{:class => "users tags"}
-		/   /   - @user.followers.each do |user|
-		/   /     %li
-		/   /       = avatar_img user, :size => "small"
-		/   /       %span{:class => "i3_5"}
-		/   /         = user.display_name
+		/   %p{:class => "about1"}
+		/     %strong
+		/       Following Users
+		/   %ul{:class => "users tags"}
+		/     - @user.followers.each do |user|
+		/       %li
+		/         = avatar_img user, :size => "small"
+		/         %span{:class => "i3_5"}
+		/           = user.display_name
 		/ %br
 		=# render "followers"
 .sidebar
