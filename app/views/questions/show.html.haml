@@ -97,7 +97,7 @@
 										- else
 											%img.avatar.user-1227-avatar.avatar-50.photo{:alt => "Profile picture of zicrainnyRV", :height => "50", :src => "http://gravatar.com/avatar/5a0a1a5e96f190c339221f66d7b09b00?d=http://www.industrialthemes.com/made/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg&s=50&r=G", :width => "50"}/
 										=# f.text_area :body, :size=>"20x3", :style => "margin: 10px; width: 560px;"
-										= f.text_area :body, :size=>"0", :style => "margin: 0px; width: 540px;height:30px", :placeholder => "write a comment...", :id=> "enter-comment"
+										= f.text_area :body, :size=>"0", :placeholder => "write a comment...", :id=> "enter-comment"
 									%p
 										=# f.button "<i class='icon-comment'></i>Comment".html_safe, data: {"disable-with" => "Saving..."}, :class=>"submit-button",:type=>"Submit"
 										=# link_to "<i class='icon-cross'></i>Cancel".html_safe,"javascript:void(0)", :class => "submit-button comment-button-style", :id => "cancel-question-comment-link",:title => "Post your Answer"
@@ -106,6 +106,7 @@
 
 			- @question.answers.order(:created_at => :desc).each do |answer|
 				= render :partial => "answers/plus_answer", :locals => {:answer => answer, :comment => @comment}
+		%br.clearer/
 		.main-content-left
 			.page-content.review.single-post
 				%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
@@ -139,6 +140,7 @@
 												= link_to "<i class='icon-paper-plane'></i>Post your Answer".html_safe,"javascript:void(0)", :class => "submit-button", :id => "edit-user-link",:title => "Post your Answer",:onclick=>"document.answer_form.submit();"
 									.signoff-wrapper
 										.signoff Not the answer you're looking for? Browse other questions tag related to the question or #{link_to "create page for question", "/question/ask_a_question"}.
+		%br.clearer/
 		.main-content-left
 			.page-content.review.single-post
 				%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
@@ -178,7 +180,7 @@
 							s.src = '//'+disqus_shortname+'.disqus.com/count.js';
 							(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
 						}());
-
+	%br.clearer/
 
 .sidebar
 	= render "experimental/partials/left_bar"

@@ -42,6 +42,7 @@
 						%option{:value => ""} Thailand
 						%option{:value => ""} Indonesia
 						%option{:value => ""} Philippines
+	%br.clearer
 	#return-data-ajax.services-top-adj
 		= render "experimental/partials/provider"
 	.post-loop.directory
@@ -94,7 +95,7 @@
 								s.src = '//'+disqus_shortname+'.disqus.com/count.js';
 								(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
 							}());
-
+	%br.clearer/
 /side bar
 .sidebar
 	- if current_user.nil?

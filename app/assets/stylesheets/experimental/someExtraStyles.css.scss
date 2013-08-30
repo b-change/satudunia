@@ -324,28 +324,35 @@ form.exp-contact-form{
 /*	background-image:url("images/positive-check.png");
 	background-repeat: no-repeat;
 	background-position: top 2px left 5px;*/
-	background: linear-gradient(#D7E866, #B4EA46) repeat scroll 0 0 #FFEAA6;
-  border: 1px solid #C0D554;
-  border-radius: 3px 3px 3px 3px;
-  display: block;
-  font-size: 12px;
-  font-weight: normal;
-  margin-top: 3px;
-  padding: 10px 15px;
-  text-decoration: none;
+	background: #d7e866; /* Old browsers */
+	background: -moz-linear-gradient(top, #d7e866 0%, #b4ea46 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d7e866), color-stop(100%,#b4ea46)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #d7e866 0%,#b4ea46 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #d7e866 0%,#b4ea46 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #d7e866 0%,#b4ea46 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #d7e866 0%,#b4ea46 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d7e866', endColorstr='#b4ea46',GradientType=0 ); /* IE6-9 */
+	border: 1px solid #C0D554;
+	border-radius: 3px 3px 3px 3px;
+	display: block;
+	font-size: 12px;
+	font-weight: normal;
+	margin-top: 3px;
+	padding: 10px 15px;
+	text-decoration: none;
 }
 
 #flash_error,
 #flash_alert {
-  background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)) repeat scroll 0 0 #FFEAA6;
-    border: 1px solid #D55353;
-    border-radius: 3px 3px 3px 3px;
-    font-weight: normal;
-    margin-top: 3px;
-    text-decoration: none;
-    background-color:#C00000;
-    padding :10px 15px;
-    font-size:12px !important;
+	background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)) repeat scroll 0 0 #FFEAA6;
+		border: 1px solid #D55353;
+		border-radius: 3px 3px 3px 3px;
+		font-weight: normal;
+		margin-top: 3px;
+		text-decoration: none;
+		background-color:#C00000;
+		padding :10px 15px;
+		font-size:12px !important;
 }
 
 /*
@@ -680,15 +687,15 @@ div.item-list-tabs ul li.feed a {
 }
 .contact-section-bottom {
 		background-color: #FFFFFF;
-	    border: 1px solid #E0E0E0;
-	    height: 38px;
-	    margin: -16px 0 -1px;
-	    padding-left: 475px;
-	    padding-top: 15px;
+			border: 1px solid #E0E0E0;
+			height: 38px;
+			margin: -16px 0 -1px;
+			padding-left: 475px;
+			padding-top: 15px;
 }
 .contact-button-single{
 		float: right;
-	    margin-right: 20px;
+			margin-right: 20px;
 }
 .recent_tag{
 		color: #E47911;
@@ -766,10 +773,10 @@ form.exp-contact-form input.input-class1 {
 		width: 600px;
 }
 .msg-alert {
-  margin-left: 978px;
-  margin-top: 7px;
-  position: absolute;
-  color: #000000 !important;
+	margin-left: 978px;
+	margin-top: 7px;
+	position: absolute;
+	color: #000000 !important;
 }
 /*css for hiding top bar of google translator*/
 .goog-te-banner-frame.skiptranslate {display: none !important;} 
@@ -780,61 +787,61 @@ body { top: 0px !important; }
 }
 
 .panel-link-comment1 {
-    margin-bottom: 10px;
-    margin-top: -60px;
-    padding-left: 10px !important;
+		margin-bottom: 10px;
+		margin-top: -60px;
+		padding-left: 10px !important;
 }
 .services-top-adj{
-    margin-top: -55px;
+		margin-top: -55px;
 }
 
 .bg2_1, #page4 .bg2_1 {
-    background: url("../plus/bg2_1.png") no-repeat scroll 0 0 transparent;
-    min-height: 80px;
-    position: relative;
-    top: 0px;
+		background: url("../plus/bg2_1.png") no-repeat scroll 0 0 transparent;
+		min-height: 80px;
+		position: relative;
+		top: 0px;
 }
 
 form#search button {
-    background: url("../plus/searchButton.jpg") no-repeat scroll 0 0 transparent;
-    border: 2px none;
-    padding-bottom: 15px;
-    position: absolute;
-    right: 30px;
-    text-indent: -99999px;
-    top: 18px;
-    width: 53px;
+		background: url("../plus/searchButton.jpg") no-repeat scroll 0 0 transparent;
+		border: 2px none;
+		padding-bottom: 15px;
+		position: absolute;
+		right: 30px;
+		text-indent: -99999px;
+		top: 18px;
+		width: 53px;
 }
 form#search {
-    color: #A5C8EA;
-    display: inline-block;
-    font-size: 12px;
-    line-height: 16px;
-    padding-left: 25px;
-    padding-top: 10px;
-    position: relative;
+		color: #A5C8EA;
+		display: inline-block;
+		font-size: 12px;
+		line-height: 16px;
+		padding-left: 25px;
+		padding-top: 10px;
+		position: relative;
 }
 form#search input[value="What is your question?"] {
-    color: #000000;
-    font-family: Calibri;
-    font-size: 18px;
-    min-height: 19px;
+		color: #000000;
+		font-family: Calibri;
+		font-size: 18px;
+		min-height: 19px;
 }
 form#search input {
-    background: none repeat scroll 0 0 #FFFFFF;
-    border-radius: 5px 5px 5px 5px;
-    display: inline-block;
-    float: left;
-    font-size: 12px;
-    line-height: 12px;
-    margin-bottom: 1px;
-    min-height: 12px;
-    overflow: hidden;
-    padding: 10px 0 10px 7px;
-    width: 600px;
+		background: none repeat scroll 0 0 #FFFFFF;
+		border-radius: 5px 5px 5px 5px;
+		display: inline-block;
+		float: left;
+		font-size: 12px;
+		line-height: 12px;
+		margin-bottom: 1px;
+		min-height: 12px;
+		overflow: hidden;
+		padding: 10px 0 10px 7px;
+		width: 600px;
 }
 .search-btn {
-    cursor: pointer;
+		cursor: pointer;
 }
 
 .search-tag{
@@ -843,21 +850,21 @@ form#search input {
 
 
 #search-container {
-    background-color: #FFFFFF;
-    border: 1px solid #000000;
-    color: #71706D;
-    display: none;
-    font-size: 18px;
-    left: 270px;
-    position: absolute;
-    top: 287px;
-    width: 608px;
-    z-index: 100000;
+		background-color: #FFFFFF;
+		border: 1px solid #000000;
+		color: #71706D;
+		display: none;
+		font-size: 18px;
+		left: 270px;
+		position: absolute;
+		top: 287px;
+		width: 608px;
+		z-index: 100000;
 }
 .survey.current_page_parent {
-    margin-left: -50px;
-    margin-top: -30px;
-    
+		margin-left: -50px;
+		margin-top: -30px;
+		
 }
 
 .a6{
@@ -866,7 +873,7 @@ form#search input {
 }
 
 .answer-page {
-    margin-left: -15px;
+		margin-left: -15px;
 }
 
 .activity-content.width{
@@ -875,3 +882,37 @@ form#search input {
 	margin-left:90px;
 
 }
+.set-height{
+	line-height:22px;
+}
+
+#set-width{
+	width:90% !important;
+}
+
+#toTop{
+	z-index:100;
+}
+
+.item-list-tabs.activity-type-tabs {
+  margin-top: 70px !important;
+}
+
+#enter-comment{
+	margin: 0px; 
+	height:30px;
+	width: 82%;
+}
+
+.contact-section-bottom-button {
+    background-color: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    height: 38px;
+    margin: -16px 0 -1px;
+    padding-top: 15px;
+}
+
+#align{
+	float:right;
+}
+

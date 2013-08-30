@@ -25,7 +25,7 @@
 		jQ("#activity-filter-by").change(function(){
 			valueTaker= jQuery("#activity-filter-by").val();
 			jQuery.ajax({     
-				url:'/change_question',
+				url:'#{change_question_users_path}',
 				data: { value: valueTaker},
 				dataType:"script",				
 				success:function(successObject){
