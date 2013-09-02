@@ -1,123 +1,123 @@
 .clearer.hide-responsive  
 %br.hide-responsive/
 .main-content-left
-  .page-content.review.single-post
-    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
-    .review-content
-      .ribbon-shadow-left
-      .section-wrapper
-        .section
-          .comment-bubble
-            %a{:title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"}= @questions.count
-          / making title stronger
-          .section-for-header
-            /%i.icon-vcard
-            - if @tags.present?
-              -@tags.each do |tag| 
-                Tags : : #{tag.name}
-            - else
-              Tags : : #{@tagId.gsub(/[-]/, ' ')}
-      .section-arrow 
-  #content.page-content
-    %form#members-directory-form.dir-form{:action => "", :method => "post"}
-      #members-dir-search.dir-search{:role => "search"}
-        %label
-          %input#members_search{:name => "s", :placeholder => "Search Tags...", :type => "text"}/
-        %input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
-        %input#members_search_submit{:name => "members_search_submit", :type => "reset", :value => "x", :style=>"opacity:1;"}/
-      / .add-a-new-tag
-      /   -@tags.each do |tag|
-      /     .each
-      /       %h2
-      /         = tag.name.capitalize rescue ""
-    .item-list-tabs.activity-type-tabs{:role => "navigation"}
-      %ul
-        %li#members-order-select.selected
-          %a{:href=>"javascript:void(0)",:id=>"questions-ajax-tags"}
-            - if @tags.present?
-              = @tags.first.name.capitalize
-            - else 
-              #{@tagId.capitalize.gsub(/[-]/, ' ')}
-            %span= @questions.count
-            .loader
-    #subnav.item-list-tabs{:role => "navigation"}
-      %ul
-        %li#members-order-select.last.filter
-          %label{:for => "members-order-by"} Order By:
-          %select#activity-filter-by
-            %option{:value => ""} Newest
-            %option{:value => ""} Hot 
-            %option{:value => ""} Featured
-            %option{:value => ""} Votes
-            %option{:value => ""} Unanswered
-            %option{:value => ""} XXX
-    / #forums-dir-list-newest.dir-list
-    /   //top pagination
-    /   #pag-top.pagination
-    /     #member-dir-count-top.pag-count
-    /       Viewing questions #{@questions.options[:skip]} to #{@questions.options[:skip]+@questions.options[:limit]} (of #{@tagId.capitalize} Tag)
-    /     #questions_pagination
-    /       #members-dir-list.members.dir-list1
-    /         = paginate @questions
-    .activity{:role=>"admin"}
-      #return-data-ajax
-        = render "experimental/partials/questions"
-    //bottom pagination
-    / #forums-dir-list-newest.dir-list
-    /   #pag-top.pagination
-    /     #member-dir-count-top.pag-count
-    /       Viewing questions #{@questions.options[:skip]} to #{@questions.options[:skip]+@questions.options[:limit]} (of #{@tagId.capitalize} tag)
-    /     #questions_pagination
-    /       #members-dir-list.members.dir-list1
-    /         = paginate @questions
+	.page-content.review.single-post
+		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+		.review-content
+			.ribbon-shadow-left
+			.section-wrapper
+				.section
+					.comment-bubble
+						%a{:title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"}= @questions.count
+					/ making title stronger
+					.section-for-header
+						/%i.icon-vcard
+						- if @tags.present?
+							-@tags.each do |tag| 
+								Tags : : #{tag.name}
+						- else
+							Tags : : #{@tagId.gsub(/[-]/, ' ')}
+			.section-arrow 
+	#content.page-content
+		%form#members-directory-form.dir-form{:action => "", :method => "post"}
+			#members-dir-search.dir-search{:role => "search"}
+				%label
+					%input#members_search{:name => "s", :placeholder => "Search Tags...", :type => "text"}/
+				%input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
+				%input#members_search_submit{:name => "members_search_submit", :type => "reset", :value => "x", :style=>"opacity:1;"}/
+			/ .add-a-new-tag
+			/   -@tags.each do |tag|
+			/     .each
+			/       %h2
+			/         = tag.name.capitalize rescue ""
+		.item-list-tabs.activity-type-tabs{:role => "navigation"}
+			%ul
+				%li#members-order-select.selected
+					%a{:href=>"javascript:void(0)",:id=>"questions-ajax-tags"}
+						- if @tags.present?
+							= @tags.first.name.capitalize
+						- else 
+							#{@tagId.capitalize.gsub(/[-]/, ' ')}
+						%span= @questions.count
+						.loader
+		#subnav.item-list-tabs{:role => "navigation"}
+			%ul
+				%li#members-order-select.last.filter
+					%label{:for => "members-order-by"} Order By:
+					%select#activity-filter-by
+						%option{:value => ""} Newest
+						%option{:value => ""} Hot 
+						%option{:value => ""} Featured
+						%option{:value => ""} Votes
+						%option{:value => ""} Unanswered
+						%option{:value => ""} XXX
+		/ #forums-dir-list-newest.dir-list
+		/   //top pagination
+		/   #pag-top.pagination
+		/     #member-dir-count-top.pag-count
+		/       Viewing questions #{@questions.options[:skip]} to #{@questions.options[:skip]+@questions.options[:limit]} (of #{@tagId.capitalize} Tag)
+		/     #questions_pagination
+		/       #members-dir-list.members.dir-list1
+		/         = paginate @questions
+		.activity{:role=>"admin"}
+			#return-data-ajax
+				= render "experimental/partials/questions"
+		//bottom pagination
+		/ #forums-dir-list-newest.dir-list
+		/   #pag-top.pagination
+		/     #member-dir-count-top.pag-count
+		/       Viewing questions #{@questions.options[:skip]} to #{@questions.options[:skip]+@questions.options[:limit]} (of #{@tagId.capitalize} tag)
+		/     #questions_pagination
+		/       #members-dir-list.members.dir-list1
+		/         = paginate @questions
 
-  .page-content.review.single-post
-    .overview-wrapper
-      .section-bottom
-        = render "experimental/partials/tags_individual"
-    %br.clearer
-    %br.clearer
-    %br.clearer 
-    .review-content
-      .ribbon-shadow-left
-      .section-wrapper
-        .section
-          .comment-bubble
-            %a{:href => tag_path(@tagId, :anchor => "disqus_thread")} Link
-          / making title stronger
-          .section-for-header
-            Disqus
-      .section-arrow 
-      .overview-wrapper
-        .overview-new
-          .left-panel
-            #disqus_thread
-            :javascript
-              /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-              var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
+	.page-content.review.single-post
+		.overview-wrapper
+			.section-bottom
+				= render "experimental/partials/tags_individual"
+		%br.clearer
+		%br.clearer
+		%br.clearer 
+		.review-content
+			.ribbon-shadow-left
+			.section-wrapper
+				.section
+					.comment-bubble
+						%a{:href => tag_path(@tagId, :anchor => "disqus_thread")} Link
+					/ making title stronger
+					.section-for-header
+						Disqus
+			.section-arrow 
+			.overview-wrapper
+				.overview-new
+					.left-panel
+						#disqus_thread
+						:javascript
+							/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+							var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
 
-              /* * * DON'T EDIT BELOW THIS LINE * * */
-              (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js'; 
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); 
-              })();
-            %noscript 
-              Please enable JavaScript to view the 
-              %a{:href => "http://disqus.com/?ref_noscript"} comments powered by Disqus
-            %a.dsq-brlink{:href => "http://disqus.com"}
-              comments powered by
-              %span.logo-disqus Disqus
-            :javascript
-              var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
-              // required: replace example with your forum shortname
-              (function () {
-                var s = document.createElement('script'); s.async = true;
-                s.type = 'text/javascript';
-                s.src = '//'+disqus_shortname+'.disqus.com/count.js';
-                (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-              }());
-
+							/* * * DON'T EDIT BELOW THIS LINE * * */
+							(function() {
+								var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+								dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js'; 
+								(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); 
+							})();
+						%noscript 
+							Please enable JavaScript to view the 
+							%a{:href => "http://disqus.com/?ref_noscript"} comments powered by Disqus
+						%a.dsq-brlink{:href => "http://disqus.com"}
+							comments powered by
+							%span.logo-disqus Disqus
+						:javascript
+							var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
+							// required: replace example with your forum shortname
+							(function () {
+								var s = document.createElement('script'); s.async = true;
+								s.type = 'text/javascript';
+								s.src = '//'+disqus_shortname+'.disqus.com/count.js';
+								(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+							}());
+		
 
 / content variable
 / .clearer.hide-responsive  
@@ -153,16 +153,16 @@
 /                     = render "experimental/partials/questions/plus_question", :question => question
 
 /                 = paginate @questions
-
+	
 .sidebar
-  /= render "experimental/partials/recent_tags"
-  = render "experimental/partials/left_bar"
+	/= render "experimental/partials/recent_tags"
+	= render "experimental/partials/left_bar"
 
 :javascript
-  // Experimental.getAjaxData("click","#questions-ajax-tags","/tags/#{@tagId}","GET","return-data-ajax","questions","#questions-ajax-tags .loader","","","");
+	// Experimental.getAjaxData("click","#questions-ajax-tags","/tags/#{@tagId}","GET","return-data-ajax","questions","#questions-ajax-tags .loader","","","");
 
-  Experimental.getAjaxData("click","#questions-ajax-tags,#questions_pagination .pagination-ajax","/tags/#{@tagId}","GET","return-data-ajax","questions","#questions-ajax-tags .loader","","","yes");
+	Experimental.getAjaxData("click","#questions-ajax-tags,#questions_pagination .pagination-ajax","/tags/#{@tagId}","GET","return-data-ajax","questions","#questions-ajax-tags .loader","","","yes");
 
-  jQuery(".activity-avatar img").on('error', function () {
-    jQuery(this).unbind("error").attr("src", "#{local_path_experimental}member.jpeg");
-  });
+	jQuery(".activity-avatar img").on('error', function () {
+		jQuery(this).unbind("error").attr("src", "#{local_path_experimental}member.jpeg");
+	});

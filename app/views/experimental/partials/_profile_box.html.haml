@@ -12,9 +12,8 @@
           -else
             = image_tag("#{local_path_experimental}member.jpeg",:width => "100",:class=>"avatar") 
         .item.set-height
-          .item-title.fn#set-width
-            %a
-              = current_user.login.capitalize
+          .item-meta.fn.login-profile-box#set-width
+            =link_to current_user.username, settings_path
           / .item-meta
           /   %span.activity
           /     Joined
@@ -22,7 +21,7 @@
           /       = time_ago_in_words(current_user.created_at)
           /       ago
           .item-meta
-            =link_to "<i class='icon-cog'></i>Profile Settings".html_safe,"/profile/settings"
+            =link_to "<i class='icon-cog'></i>Profile Settings".html_safe,settings_path
           .item-meta
             =link_to "<i class='icon-switch'></i>Connect".html_safe,social_connect_path
           .item-meta

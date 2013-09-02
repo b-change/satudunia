@@ -254,12 +254,20 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource_or_scope)
     self.current_user.logged!(self.current_group)
-    
-    if resource_or_scope.is_a? User
-      questions_path   
+
+    # to redirect if login from admin template
+    if session["from_admin_login"]
+      admin_path
     else
-      super(resource_or_scope)
+      questions_path
     end
+    
+    # self.current_user.logged!(self.current_group)
+    # if resource_or_scope.is_a? User
+    #   questions_path
+    # else
+    #   super(resource_or_scope)
+    # end
   end
 
   def share_variables

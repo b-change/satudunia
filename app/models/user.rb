@@ -909,6 +909,10 @@ Time.zone.now ? 1 : 0)
   def self.recent_users(limit = 5)
     User.order_by(%W[created_at desc]).limit(limit)
   end
+  
+  def username
+    login ? login : 'Not Available'
+  end 
 
   protected
   def update_languages
@@ -954,8 +958,11 @@ Time.zone.now ? 1 : 0)
     read_list = ReadList.create
     self.read_list = read_list
   end
+
   # rpx success
   def before_rpx_auto_create(rpx_user)
-
+    self[:login]=rpx_user[:username] if rpx_user[:username]
   end
+  
+
 end

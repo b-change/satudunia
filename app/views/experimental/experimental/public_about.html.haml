@@ -7,8 +7,8 @@
 			.ribbon-shadow-left
 			.section-wrapper
 				.section
-					.comment-bubble
-						%a{:title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 0
+					/ .comment-bubble
+					/ 	%a{:title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 0
 					/ making title stronger
 					.section-for-header
 						%i.icon-vcard
@@ -29,11 +29,11 @@
 							= @about.static_content.html_safe
 			/ Please remove padding bottom class when you furthe use to show content			
 			.section-bottom
-				.category.qa-q-item-tags
+				.category.qa-q-item-tags#logo-wrapper
 					.catname
 						Tags
 					.category-arrow  
-				.tags-list-about
+				.tags-list-about#set-margin
 					%span.tags1_2
 						%a{:href => "/tags/technology"} Sample1
 						%span

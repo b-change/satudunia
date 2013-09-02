@@ -1,7 +1,7 @@
 #details_page_new
 	= render "users/edit_user"
 %br.clearer
-%br.clearer
+%br.clearer/
 .overview-wrapper
 	.overview-new
 		.left-panel			
@@ -60,8 +60,9 @@
 						= f.label :current_password, "current-password", :class => "label"
 						= f.password_field :current_password, :class => "input-class1"
 
-				.save_footer{:style => "margin-top: 30px;"}
+				.save_footer#footer-button
 					= link_to "<span>Save</span>".html_safe, "javascript:void(0)", :class => "submit-button", :id => "edit-user-link"
+
 		
 :javascript
 	jQuery(window).load(function(){

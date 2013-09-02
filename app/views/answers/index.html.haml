@@ -109,5 +109,12 @@
 			e.preventDefault();
 			jQuery.ajax({url:jQ(this).attr('href'),dataType:"script"})
 		})
+
+		jQuery('#members_search').keypress(function(e) {
+						
+			if (e.which == '13') {
+				jQuery('#members_search_submit').click();
+			}
+		});
 	})
 

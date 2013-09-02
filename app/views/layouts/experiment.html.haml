@@ -338,15 +338,6 @@
 		//be applied in a .js file. Also, make sure these come before the darken function.
 		//WINDOW.LOAD
 		jQuery(window).load(function() {
-			//spotlight slider
-			jQuery(function() {
-				jQuery(".main-content #spotlight-slider, .main-content #spotlight-slider-responsive,#spotlight-slider").jCarouselLite({
-					auto: 3000,
-					easing: "easeInOutExpo",
-					speed: 1100,
-					visible: 3
-				});
-			});
 			//featured slider
 			jQuery('#featured,#featured-short').nivoSlider({
 				effect: 'random', // Specify sets like: 'fold,fade,sliceDown'
@@ -370,8 +361,22 @@
 				lastSlide: function(){}, // Triggers when last slide is shown
 				afterLoad: function(){} // Triggers when slider has loaded
 			});
+			//spotlight slider
+			jQuery(function() {
+				jQuery(".main-content #spotlight-slider, .main-content #spotlight-slider-responsive").jCarouselLite({
+					// auto: 3000,
+					// easing: "easeInOutExpo",
+					// speed: 1100,
+					visible: 3
+				});
+				jQuery(".spotlight-short").jCarouselLite({
+					auto: 3000,
+					easing: "easeInOutExpo",
+					speed: 1100,
+					visible: 3
+				});
+			});
 		});
-
 	// facebook share button
 	function fb_share(){
 		var w = 500;

@@ -45,7 +45,8 @@
       -else
         -@activities.each do |activity|
           -next if activity.trackable_type.nil?
-          = render "activities/activity", :activity => activity     
+          = render "activities/activity", :activity => activity 
+  %br.clearer/    
 /side bar
 .sidebar
   = render "experimental/partials/left_bar"

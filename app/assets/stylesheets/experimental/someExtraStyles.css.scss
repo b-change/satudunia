@@ -640,9 +640,9 @@ div.item-list-tabs ul li.feed a {
 		padding-left: 15px
 }
 /*important style to hide social icon*/
-#ts_turnsocial_link{
+/*#ts_turnsocial_link{
 	display:none !important;
-}
+}*/
 .items-tags-adj{
 	margin-left: -35px !important;
 }
@@ -895,7 +895,7 @@ form#search input {
 }
 
 .item-list-tabs.activity-type-tabs {
-  margin-top: 70px !important;
+	margin-top: 70px !important;
 }
 
 #enter-comment{
@@ -905,14 +905,36 @@ form#search input {
 }
 
 .contact-section-bottom-button {
-    background-color: #FFFFFF;
-    border: 1px solid #E0E0E0;
-    height: 38px;
-    margin: -16px 0 -1px;
-    padding-top: 15px;
+		background-color: #FFFFFF;
+		border: 1px solid #E0E0E0;
+		margin: -16px 0 -1px;
+		overflow:auto;
+		padding-top: 15px;
+		height:35px !important;
 }
 
 #align{
 	float:right;
 }
 
+#footer-button{
+	margin-top: 30px;
+}
+
+#shift-left{
+	margin-left:15px;
+}
+
+#weight-font{
+	font-weight:600;
+}
+
+
+.item-meta.fn.login-profile-box{
+	word-wrap: break-word;
+	font-size: 14px;
+}
+
+#set-margin{
+	margin-top: 20px !important;
+}

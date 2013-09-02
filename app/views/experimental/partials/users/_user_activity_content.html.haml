@@ -1,13 +1,13 @@
 / pagination    
 -@paginator = @resources
 = render :partial =>"pagination/pagination",:locals => {:paginationType=>"activities"}
-%ul{:id => "slider21", :style => "position: relative;"}
-	%li{:class => "pager ps1"}
-		%ul{:style=>"padding-left:35px !important"}
-			-if @resources.empty?
-				= render "shared/empty", :type => "activities", :url => ""
-			-else
-				- @resources.each do |activity|
-					= render "activities/activity", :activity => activity
+/ %ul{:id => "slider21", :style => "position: relative;"}
+/ 	%li{:class => "pager ps1"}
+/ 		%ul{:style=>"padding-left:35px !important"}
+-if @resources.empty?
+	= render "shared/empty", :type => "activities", :url => ""
+-else
+	- @resources.each do |activity|
+		= render "activities/activity", :activity => activity
 
 = render :partial =>"pagination/pagination",:locals => {:paginationType=>"activities"}
