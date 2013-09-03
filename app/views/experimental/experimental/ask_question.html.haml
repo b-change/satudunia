@@ -37,10 +37,11 @@
                     .checkbox
                       = f.check_box :anonymous, {:class => "checkbox"}, true, false
                       = t("scaffold.post_as_anonymous")
-                    -if current_group.has_adult_content
+                  -if current_group.has_adult_content
+                    %td  
                       .checkbox
                         = f.check_box :adult_content, :class => "checkbox"
-                        = f.label :adult_content, t(".adult_content"), :class => "radio"
+                        = t(".adult_content")
 
               #attachments{:style => "margin:20px 0px 20px 0px"}
                 #fields

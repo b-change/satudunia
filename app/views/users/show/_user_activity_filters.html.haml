@@ -17,8 +17,30 @@
 %li#activity-filter-select.last
 	%label{:for => "activity-filter-by"} Show:
 	%select#activity-filter-by
-		%option{:value => "-1"} All
-		%option{:value => "activity_update"} Questions
-		%option{:value => "new_blog_post"} Answers
-		%option{:value => "new_blog_comment"} Users
-		%option{:value => "new_blog_comment"} Pages
+		%option{:value => "all"} All
+		%option{:value => "questions"} Questions
+		%option{:value => "answers"} Answers
+		%option{:value => "users"} Users
+		%option{:value => "pages"} Pages
+
+:javascript
+	
+	jQuery(document).ready(function(jQ){
+
+		jQ("#activity-filter-by").change(function(){
+			valueTaker= jQuery("#activity-filter-by").val();
+			jQuery.ajax({     
+				url:"#{activity_user_path(@user.id)}",
+				data: { tab: valueTaker},
+				dataType:"script",				
+				success:function(successObject){
+					jQuery(".loader").removeClass("ajax-loader");
+				}
+			});
+		})
+
+		jQ('#pagination-digg  a').live('click',function(e){
+			e.preventDefault();
+			jQuery.ajax({url:jQ(this).attr('href'),dataType:"script"})
+		})
+	})

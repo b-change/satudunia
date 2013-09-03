@@ -25,25 +25,25 @@
               -unless @tos.nil? 
                 = @tos.static_content.html_safe
       .section-bottom{:style=>"margin-bottom:20px;"}
-        .category.qa-q-item-tags
+        .category.qa-q-item-tags#logo-wrapper
           .catname
             Tags
           .category-arrow  
-        .tags-list-about
+        .tags-list-about#set-margin
           %span.tags1_2
             %a{:href => "/tags/technology"} Sample1
             %span
               x
             %span.avoid_link_color{:style => "font-weight:600"}
               0
-          %br
+          &nbsp;&nbsp;
           %span.tags1_2
             %a{:href => "/tags/business"} sample2
             %span
               x
             %span.avoid_link_color{:style => "font-weight:600"}
-              4
-          %br
+              1
+          &nbsp;&nbsp;
           %span.tags1_2
             %a{:href => "/tags/science"} sample3
             %span

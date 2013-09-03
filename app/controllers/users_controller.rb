@@ -206,24 +206,37 @@ class UsersController < ApplicationController
 	end
 
 	def activity
+		
 		@body_id = "page3"
 		conds = {}
-		case params[:tab]
-		when "questions"
-			conds[:trackable_type] = "Question"
-		when "answers"
-			conds[:trackable_type] = "Answer"
-		when "users"
-			conds[:trackable_type] = "User"
-		when "pages"
-			conds[:trackable_type] = "Page"
-		end
 		if current_group
 			conds[:group_id] = current_group.id
 		end
-		@resources = @user.activities.where(conds).page(params["page"])
+		if params[:tab].present?
+			case params[:tab]
+			when "all"
+				@resources = @user.activities.where(conds).page(params["page"])
+			when "questions"
+				# conds[:trackable_type] = "Question"
+				@resources = @user.activities.where(trackable_type:"Question").page(params["page"])
+			when "answers"
+				# conds[:trackable_type] = "Answer"
+				@resources = @user.activities.where(trackable_type:"Answer").page(params["page"])
+			when "users"
+				# conds[:trackable_type] = "User"
+				@resources = @user.activities.where(trackable_type:"User").page(params["page"])
+			when "pages"
+				# conds[:trackable_type] = "Page"
+				@resources = @user.activities.where(trackable_type:"Page").page(params["page"])
+			end
+		else 
+			@resources = @user.activities.where(conds).page(params["page"])
+		end
+		
+		# @resources = @user.activities.where(conds).page(params["page"])
 		respond_to do |format|
 			format.html{render :show}
+			format.js
 		end
 	end
 

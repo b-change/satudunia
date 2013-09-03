@@ -20,7 +20,7 @@
           .activity-content
             .activity-header
               %p
-                = link_to "#{owner.login.capitalize}"
+                = link_to "#{owner.login.capitalize}", user_path(owner.login)
                 Posted the question
                 %a.view.activity-time-since{:href => "#", :title => "View Discussion"}
                   %span.time-since

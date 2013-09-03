@@ -29,7 +29,8 @@
 /side bar
 .sidebar
   /login box
-  = render "experimental/partials/login_box"
+  - if current_user.nil?
+    = render "experimental/partials/login_box"
   / member box
   = render "experimental/partials/member_box"
   / left bar

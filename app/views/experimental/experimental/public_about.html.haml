@@ -63,7 +63,8 @@
 				= render "experimental/partials/related_box"
 	%br.clearer/
 .sidebar
-	= render "experimental/partials/login_box"
+	- if current_user.nil?
+		= render "experimental/partials/login_box"
 	/ social login box
 	= render "experimental/partials/social_login_box"
 	= render "experimental/partials/left_bar"

@@ -24,7 +24,8 @@
             %p.topic-meta
               %span.topic-by
                 Started by
-              %span.topic-in= link_to "#{owner.login.capitalize}"
+              %span.topic-in
+                = link_to "#{owner.login.capitalize}", user_path(owner.login)
               %span.topic-by
                 = time_ago_in_words(last_target_date)
                 ago

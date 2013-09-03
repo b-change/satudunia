@@ -1,10 +1,11 @@
 / %ul{:id => "slider21", :style => "position: relative;"}
 / 	%li{:class => "pager ps1"}
 / 		%ul
-.answer-page#return-data-ajax
+#return-data-ajax
 	%ul#activity-stream.activity-list.item-list
 		-if @resources.empty?
-			= render "shared/empty", :type => "activities", :url => ""
+			=# render "shared/empty", :type => "activities", :url => ""
+			= render "experimental/partials/empty_record_message.html"
 		-else
 			-@paginator = @resources
 			= render :partial =>"pagination/pagination",:locals => {:paginationType=>"activities"}

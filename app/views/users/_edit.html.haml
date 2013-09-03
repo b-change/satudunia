@@ -61,12 +61,13 @@
 						= f.password_field :current_password, :class => "input-class1"
 
 				.save_footer#footer-button
-					= link_to "<span>Save</span>".html_safe, "javascript:void(0)", :class => "submit-button", :id => "edit-user-link"
+					= f.submit "Save".html_safe, :class => "submit-button", :id => "edit-user-link"
+				%br
 
 		
-:javascript
-	jQuery(window).load(function(){
-		jQuery('#edit-user-link').click(function(){
-			jQuery('#edit-user-form').submit();
-		});
-	});
+/ :javascript
+/ 	jQuery(window).load(function(){
+/ 		jQuery('#edit-user-link').click(function(){
+/ 			jQuery('#edit-user-form').submit();
+/ 		});
+/ 	});
