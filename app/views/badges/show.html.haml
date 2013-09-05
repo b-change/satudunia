@@ -9,24 +9,24 @@
         .section-header
           Badges
       .section-arrow
-      .content-panel
-        .the-content
-          / old plus content
-          %h1
-            = render :partial => "badges/badge", :object => @badge, :locals => {:hide_user => true}
-          %p
-            = @badge.description
-          .counter
-            %p
-              %b
-                =@badges.total_count
-              =t(".description")
-          .users
-            %ul
-              -@users.each do |user|
-                = render :partial => "user", :object => user, :locals => {:badge => @badge}
+      .overview-wrapper
+        .overview-new.nopadding-top.padding-about
+          .content-panel
+            .the-content
+              / old plus content
+              %h2
+                = render :partial => "badges/badge", :object => @badge, :locals => {:hide_user => true}
+              %p
+                = @badge.description
+              .counter
+                %p
+                  %b
+                    =@badges.total_count
+                  =t(".description")
+                -@users.each do |user|
+                  = render :partial => "user", :object => user, :locals => {:badge => @badge}
 
-          =paginate @badges
+              =paginate @badges
 
 
 /side bar

@@ -21,15 +21,15 @@
 			#members-dir-search.dir-search{:role => "search"}
 				%label
 					%input#members_search{:name => "badge_search", :placeholder => "Search Badges...", :type => "text"}/
-				%input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
+				/ %input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
 				%input#members_clear_field{:name => "members_clear_field", :type => "reset", :value => "X"}
 			.item-list-tabs.activity-type-tabs{:role => "navigation"}
 				%ul
 					%li#members-order-select.selected
-						%a{:href => "http://www.industrialthemes.com/made/activity/", :title => "The public activity for everyone on this site."}
+						%a{:href => "http://www.industrialthemes.com/made/activity/", :title => "The public activity for everyone on this site.", :class=>"loader-adjust"}
 							All Badges
 							%span= @badges.count
-							.loader
+							.loader.show-inline
 			#subnav.item-list-tabs{:role => "navigation"}
 				%ul
 					%li#members-order-select.last.filter
@@ -47,6 +47,7 @@
 						= t("badges.index.description")
 					.left-panel
 						.badges#badges_ajax
+							
 							%table
 								- @badges.sort_by{|b| b.name}.each do |badge|
 									%tr
@@ -127,38 +128,51 @@
 	= render "experimental/partials/rating_box"
 	/banner box
 	= render "experimental/partials/banner_box"
+
 :javascript
-	Experimental.getAjaxData("change","#activity-filter-by","/badges","GET","badges_ajax","badges_list",".loader","","","");
+	// Experimental.getAjaxData("change","#activity-filter-by","/badges","GET","badges_ajax","badges_list",".loader","","","");
 
 	jQuery(document).ready(function(){
 		jQuery('#members_clear_field').click( function () {
 			jQuery('#members_search').val(""); 
 		});
-		jQuery('#members_search_submit').click(function(e){	
+		jQuery('#members_search').keyup(function(e) {
 			var badge_search = jQuery("#members_search").val();
 			e.preventDefault();
-			jQuery(".loader").addClass("ajax-loader");
-			jQuery.ajax({			
-				url:'/badges?nameOfPartial=badges_list&idLoad=badges_ajax',
-				data:{ badge_search: badge_search},
-				dataType:"script",
-				error:function(errorObject){				
+			
+			if((badge_search!= "")&&(e.which!= '32')){
+				jQuery(".loader").addClass("ajax-loader");
+				jQuery.ajax({           
+					url:'/badges?nameOfPartial=badges_list&idLoad=badges_ajax',
+					data:{ badge_search: badge_search},
+					dataType:"script",
+					error:function(errorObject){                
 
-				},
-				success:function(successObject){
+					},
+					success:function(successObject){
 					jQuery(".loader").removeClass("ajax-loader");
-					
-				}
-			});
-		})
-		jQuery('#members_search').keypress(function(e) {
-            
-			if (e.which == '13') {
-			  jQuery('#members_search_submit').click();
-			}
-		});
-	})
-	
-	
-	
 
+					}
+				});
+			}
+			
+		})
+
+	
+		jQuery("#activity-filter-by, #members_search,#members_clear_field").on('change keyup click',function(e){
+			var v= jQuery('#members_search').val();
+
+			if(jQuery.trim(v).length<1){
+				jQuery(".loader").addClass("ajax-loader");
+				valueTaker= jQuery("#activity-filter-by").val();
+				jQuery.ajax({     
+					url:'/badges?nameOfPartial=badges_list&idLoad=badges_ajax',
+					data: { tab: valueTaker},
+					dataType:"script",				
+					success:function(successObject){
+						jQuery(".loader").removeClass("ajax-loader");
+					}
+				});
+			}
+		})
+	})

@@ -26,7 +26,13 @@
 /side bar
 .sidebar
   /login box
-  = render "experimental/partials/login_box"
+  - if current_user.nil?
+    /login box
+    = render "experimental/partials/login_box"
+  -else
+    /profile box
+    = render "experimental/partials/profile_box"
+
   / social login box
   / = render "experimental/partials/social_login_box"
   / member box

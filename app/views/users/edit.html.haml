@@ -51,19 +51,19 @@
 			#object-nav.item-list-tabs{:id=>"firstElement"}
 				%ul
 					%li
-						%a#user-activity{:href=>"javascript:void(0)"}
+						%a#user-activity{:href=>"javascript:void(0)", :class=>"loader-adjust-set"}
 							Activity
 							%span
 								= (@resources.blank?)? 0 : @resources.count
-							.loader
+							.loader.show-inline
 					%li.selected
-						%a#user-xprofile{:href=>"javascript:void(0)",:data_send=>"profile",:user_id=>"#{@user.id}"}
+						%a#user-xprofile{:href=>"javascript:void(0)",:data_send=>"profile",:user_id=>"#{@user.id}", :class=>"loader-adjust-profile"}
 							Profile
-							.loader
+							.loader.show-inline
 					%li
-						%a#user-profile{:href=>"javascript:void(0)",:user_id=>"#{@user.id}"}
+						%a#user-profile{:href=>"javascript:void(0)",:user_id=>"#{@user.id}", :class=>"loader-adjust-profile"}
 							Privacy
-							.loader
+							.loader.show-inline
 						
 					
 			#subtabs

@@ -671,6 +671,7 @@ div.item-list-tabs ul li.feed a {
 		height: 23px !important;
 		margin-left: 5px;
 		width: 15px !important;
+
 }
 .contact-button{
 		background: -moz-linear-gradient(center top , #FFFFFF 0%, #EDEDED 100%) repeat scroll 0 0 transparent;
@@ -937,4 +938,112 @@ form#search input {
 
 #set-margin{
 	margin-top: 20px !important;
+}
+#hr-shades-end{
+	background-image: -moz-linear-gradient(left center , transparent, rgba(0, 0, 0, 0.75), transparent);
+	border: 0 none;
+	height: 1px;
+}
+.bbp-reply-author img {
+		margin-top: 10px;
+	}
+#set-page{
+	margin-top:-50px !important;
+}
+/*breadcrumb css starts here*/
+.bread-crumb {
+	border:1px solid #E0E0E0;
+	background:url(images/cat-menu-bg.png) repeat-x scroll 0 0 #3E3E40;
+}
+.bread-crumb-section {
+	padding:10px 10px 8px 15px;
+	color:#333;
+	text-transform:uppercase;
+	font-size:18px;
+}
+.bread-crumb-header {
+		color: #A8A2BD;
+		font-family: BebasNeueRegular,Arial,Sans-Serif !important;
+		font-size: 18px !important;
+		text-transform: uppercase !important;
+}
+.bread-crumb-header > a:hover {
+		background-color: none;
+}
+.bread-crumb-header > a {
+		color:#DF1515;
+}
+.bread-crumb-header > a:last-of-type {
+		color: #FFFFFF;
+}
+/*breadcrumb css ends here*/
+
+.loader-adjust{
+	min-width: 125px;
+	display: inline-block;
+}
+.badge_item > h2 {
+		color: #3587BA;
+}
+.tags1_2_3 {
+	background: url("images/tags1_1.jpg") repeat-x scroll 0 0 transparent;
+    border: 1px solid #AAB9BF;
+    border-radius: 2px 2px 2px 2px;
+    margin-left: 5px;
+    padding: 1px 6px;
+	float:left;
+	line-height: 18px;
+}
+.show-inline{
+	display:inline !important;	
+}
+.loader-adjust-ques{
+	min-width: 140px;
+	display: inline-block;
+}
+.loader-adjust-set{
+	min-width: 102px;
+	display: inline-block;
+}
+.loader-adjust-profile{
+	min-width: 70px;
+	display: inline-block;
+}
+
+/*badges show awarded css*/
+.box-question {
+    padding-right: 500px;
+    text-align: center;
+}
+.box-badge {
+    margin-top: -48px;
+    padding-right: 320px;
+    text-align: center;
+}
+.box-reputation {
+    margin-top: -54px;
+    padding-right: 135px;
+    text-align: center;
+}
+.box-margin {
+    margin-left: -10px !important;
+}
+.user-info-awarded {
+    background: none repeat scroll 0 0 #AEC0DB;
+    border: 1px solid #9EADD6;
+    border-radius: 4px 4px 4px 4px;
+    margin-left: 350px;
+    margin-top: -62px;
+    padding: 5px;
+}
+.counter-data {
+    margin-left: 39px;
+    margin-top: -42px;
+}
+.counter-info {
+    font-size: 14px;
+}
+.box-question .counter, .box-badge .counter, .box-reputation .counter, .box-question .text, .box-badge .text, .box-reputation .text{
+	font-family: BebasNeueRegular,Arial,Sans-Serif;
+	font-size: 14px;
 }

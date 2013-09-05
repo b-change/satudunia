@@ -33,6 +33,8 @@ class ApplicationController < ActionController::Base
 
   has_mobile_fu :mobile_enabled
 
+  add_breadcrumb "Home", :root_path
+
   layout :set_layout
 
   helper_method :recaptcha_tag

@@ -26,6 +26,7 @@ gem 'fancy-buttons', '1.1.1'
 gem 'kaminari'
 gem 'mustache'
 gem 'poirot', :git => 'git://github.com/dcu/poirot.git'
+gem "breadcrumbs_on_rails"
 
 gem 'htmlentities'
 
@@ -135,4 +136,8 @@ group :development do
   gem 'niftier-generators', '0.1.2'
   gem 'ruby-prof'
   gem 'tunnlr_connector', :git => 'git://github.com/dcu/tunnlr_connector.git', :branch => 'patch-1', :require => 'tunnlr'
+  gem 'rack-mini-profiler'
 end
+
+#mongoid ancestry
+gem 'mongoid-ancestry'

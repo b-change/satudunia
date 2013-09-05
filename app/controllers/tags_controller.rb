@@ -39,7 +39,7 @@ class TagsController < ApplicationController
                                   :locals => {:tag => @tags.first})
         render :json => { :html => html }
       end
-      format.js{render "/experimental/experimental/ajax_entry"}
+      format.js
     end
   end
 

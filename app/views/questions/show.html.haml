@@ -33,16 +33,15 @@
 														=link_to image_tag avatar_user_path(@question.user),:size=>'65x65'
 													- else
 														%img.avatar.user-1227-avatar.avatar-50.photo{:alt => "Profile picture of zicrainnyRV", :height => "50", :src => "http://gravatar.com/avatar/5a0a1a5e96f190c339221f66d7b09b00?d=http://www.industrialthemes.com/made/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg&s=50&r=G", :width => "50"}/
-												%br/
-												%a.bbp-author-name
-													Posted By: #{@question.user.login}
-												%br/
+												/ %br/
+												/ %a.bbp-author-name
+												/ 	Posted By: #{@question.user.login}
+												/ %br/
 												/ .bbp-author-role Keymaster
 											/ .bbp-reply-author
 											.bbp-reply-content
-												%p
-													%h6.title  
-														=@title.upcase
+												%h6.title  
+													=@title.upcase
 													= @question.body.html_safe
 											/ .bbp-reply-content
 										/ .reply
@@ -76,9 +75,15 @@
 							/ 				%td
 							/ 					%p
 							/ 						= @question.body.html_safe
-							%ul.Fright3.line-break
+							%hr#hr-shades-end/
+							%ul
 								-@question.comments.each do |comments|
-									%li.comments-body{:style => "margin-bottom: 10px; border-bottom: dotted 1px #A8A8A8;"}
+									%li.comments-body#set-margin
+										%span
+											- if current_user.use_gravatar?
+												=link_to image_tag avatar_user_path(current_user),:size=>'30x30'
+											- else
+												%img.avatar.user-1227-avatar.avatar-50.photo{:alt => "Profile picture of zicrainnyRV", :height => "50", :src => "http://gravatar.com/avatar/5a0a1a5e96f190c339221f66d7b09b00?d=http://www.industrialthemes.com/made/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg&s=50&r=G", :width => "50"}/
 										%span
 											= comments.body
 										%span.by-user
@@ -93,7 +98,7 @@
 								= form_for [@question, @comment ||= Comment.new], remote: true, html: {:class=>"question_comment_form exp-contact-form",:id=>'comment-form', data: {commentable: @question.id, editor: current_group.wysiwyg_editor ? 'wysiwyg_editor' : 'markdown_editor', "login-required" => true}} do |f|
 									%p
 										- if current_user.use_gravatar?
-											=link_to image_tag avatar_user_path(current_user),:size=>'50x50'
+											=link_to image_tag avatar_user_path(current_user),:size=>'30x30'
 										- else
 											%img.avatar.user-1227-avatar.avatar-50.photo{:alt => "Profile picture of zicrainnyRV", :height => "50", :src => "http://gravatar.com/avatar/5a0a1a5e96f190c339221f66d7b09b00?d=http://www.industrialthemes.com/made/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg&s=50&r=G", :width => "50"}/
 										=# f.text_area :body, :size=>"20x3", :style => "margin: 10px; width: 560px;"

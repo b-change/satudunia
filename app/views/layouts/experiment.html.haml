@@ -245,7 +245,9 @@
 				/ end of dont miss bar
 				/ main wrapper starts from here
 				#main-wrapper
-					#main-wrapper-dark    
+					#main-wrapper-dark
+						- if (params[:controller] == "experimental/experimental" && params[:action] == "index_experimental") || (params[:controller] == "questions" && params[:action] == "show")
+							= render "experimental/partials/bread_crumb_experimental"
 						- unless check_valid
 							= render "experimental/partials/social_side_bar"
 						- flash.each do |name, msg|

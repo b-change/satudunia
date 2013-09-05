@@ -161,8 +161,16 @@
 :javascript
 	// Experimental.getAjaxData("click","#questions-ajax-tags","/tags/#{@tagId}","GET","return-data-ajax","questions","#questions-ajax-tags .loader","","","");
 
-	Experimental.getAjaxData("click","#questions-ajax-tags,#questions_pagination .pagination-ajax","/tags/#{@tagId}","GET","return-data-ajax","questions","#questions-ajax-tags .loader","","","yes");
+	// Experimental.getAjaxData("click","#questions-ajax-tags,#questions_pagination .pagination-ajax","/tags/#{@tagId}","GET","return-data-ajax","questions","#questions-ajax-tags .loader","","","yes");
 
 	jQuery(".activity-avatar img").on('error', function () {
 		jQuery(this).unbind("error").attr("src", "#{local_path_experimental}member.jpeg");
 	});
+
+	jQuery(document).ready(function(jQ){
+
+		jQ('#pagination-digg  a').live('click',function(e){
+			e.preventDefault();
+			jQuery.ajax({url:jQ(this).attr('href'),dataType:"script"})
+		})
+	})

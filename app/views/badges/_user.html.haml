@@ -1,28 +1,62 @@
-%li.item
-  / User Stats
-  .stats
-    .box.votes
-      .counter{:class => class_for_number(user.questions.count) }
-        =format_number(user.questions.count)
-      .text
-        = t(:questions, :scope => "activerecord.models")
-    .box.answers
-      .counter
-        =format_number(user.badges_on(current_group).count)
-      .text
-        = t(:badges, :scope => "activerecord.models")
-    .box.views
-      .counter{:class => class_for_number(user.reputation_on(current_group)) }
-        =format_number(user.reputation_on(current_group))
-      .text
-        = t(:reputation, :scope => "activerecord.attributes.user")
-  / User Summary
-  .summary
-    = avatar_img(user, :size => "small")
-    %h3
-      = pjax_link_to user.display_name, "user", user_path(user)
-    = find_and_preserve(auto_link(user.bio))
-    .owner-data
-      %strong
-        = t(:created_at, :scope => "activerecord.attributes.user")
-        = t("time.ago", :time => time_ago_in_words(user.created_at))
+%hr#hr-shades-end
+  %ul.box-margin
+    %li
+      .box-question
+        .counter{:class => class_for_number(user.questions.count) }
+          =format_number(user.questions.count)
+        .text
+          = t(:questions, :scope => "activerecord.models")
+    %li
+      .box-badge
+        .counter
+          =format_number(user.badges_on(current_group).count)
+        .text
+          = t(:badges, :scope => "activerecord.models")
+    %li
+      .box-reputation
+        .counter{:class => class_for_number(user.reputation_on(current_group)) }
+          =format_number(user.reputation_on(current_group))
+        .text
+          = t(:reputation, :scope => "activerecord.attributes.user")
+    %li
+      .user-info-awarded
+        -if current_user.use_gravatar?
+          = image_tag avatar_user_path(current_user), :width => "30", :height=>"30", :class=>"avatar"
+        -else
+          = image_tag("#{local_path_experimental}member.jpeg",:width => "20",:class=>"avatar") 
+        .counter-data
+          .counter-info
+            = pjax_link_to user.display_name, "user", user_path(user)
+          = find_and_preserve(auto_link(user.bio))
+          .owner-data
+            = t(:created_at, :scope => "activerecord.attributes.user")
+            = t("time.ago", :time => time_ago_in_words(user.created_at))
+
+/ %li.item
+/   / User Stats
+/   .stats
+/     .box.votes
+/       .counter{:class => class_for_number(user.questions.count) }
+/         =format_number(user.questions.count)
+/       .text
+/         = t(:questions, :scope => "activerecord.models")
+/     .box.answers
+/       .counter
+/         =format_number(user.badges_on(current_group).count)
+/       .text
+/         = t(:badges, :scope => "activerecord.models")
+/     .box.views
+/       .counter{:class => class_for_number(user.reputation_on(current_group)) }
+/         =format_number(user.reputation_on(current_group))
+/       .text
+/         = t(:reputation, :scope => "activerecord.attributes.user")
+/   / User Summary
+/   .summary
+/     = avatar_img(user, :size => "small")
+/     %h3
+/       = pjax_link_to user.display_name, "user", user_path(user)
+/     = find_and_preserve(auto_link(user.bio))
+/     .owner-data
+/       %strong
+/         = t(:created_at, :scope => "activerecord.attributes.user")
+/         = t("time.ago", :time => time_ago_in_words(user.created_at))

@@ -1,0 +1,4 @@
+.bread-crumb
+	.bread-crumb-section
+		.bread-crumb-header
+			= (render_breadcrumbs :separator => ' / ' ) unless (request.fullpath == root_path)

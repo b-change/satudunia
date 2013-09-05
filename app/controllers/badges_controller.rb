@@ -7,7 +7,7 @@ class BadgesController < ApplicationController
   # GET /badges
   # GET /badges.xml
   def index
-
+    
     conditions = {group_id: current_group.id, for_tag: params[:tab] == "tags"}
     if params[:filter].present? && params[:filter] != "all"
       conditions[:type] = params[:filter]
@@ -25,11 +25,20 @@ class BadgesController < ApplicationController
         end
       end
     end
+
+    if params[:tab].present?
+      Badge.TOKENS.each do |token|
+        if @badges.detect{|b| b.token == token}.nil?
+          badge = Badge.new(:token => token)
+          @badges << badge
+        end
+      end
+    end
     
-    if params[:badge_search]
+    if params[:badge_search] 
       @badges = []
       Badge.TOKENS.each do |token|
-        if params[:badge_search].strip.downcase.tr(" ", "_") == token
+        if token.include?(params[:badge_search])
           badge = Badge.new(:token => token)
           @badges << badge
         end
@@ -40,7 +49,7 @@ class BadgesController < ApplicationController
       format.html # index.html.erb
       format.json  { render :json => @badges }
       # view for ajax data
-      format.js{render "/experimental/experimental/ajax_entry"}
+      format.js
     end
   end
 

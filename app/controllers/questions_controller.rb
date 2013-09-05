@@ -10,6 +10,8 @@ class QuestionsController < ApplicationController
   before_filter :check_retag_permissions, :only => [:retag, :retag_to]
   before_filter :track_pageview
 
+  add_breadcrumb "Questions", :questions_path
+
   tabs :default => :questions, :tags => :tags,
        :new => :ask_question
 
@@ -177,6 +179,7 @@ class QuestionsController < ApplicationController
   # GET /questions/1.xml
   def show
     @title = @question.try(:title)
+    add_breadcrumb "#{@title}", @question.slug
     @body_id = "page3"
     # related tags count
     @tags = @question.tags

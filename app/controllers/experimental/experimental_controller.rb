@@ -19,15 +19,23 @@ class Experimental::ExperimentalController < ApplicationController
 
   def index
     @active_member = Membership.where(state: "active").limit(3)
+    @announcements = Announcement.all
+    @news = News.all
   end
 
   # copy of index action
   def index_experimental
+    add_breadcrumb "Index1", "index1"
     @active_member = Membership.where(state: "active").limit(3)
+    @announcements = Announcement.all
+    @news = News.all
   end
 
   # action public about
   def public_about
+    
+    # add_breadcrumb "About", :public_about_experimental_index_path
+    
     @title = "about plus+"
   	@about = StaticPage.where(:static_key => 'about').first
     @about_user = User.find(@about.user_id) if @about.user_id?
