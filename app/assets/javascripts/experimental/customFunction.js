@@ -60,6 +60,15 @@ var Experimental = {
 		});
 	});
 
+	},
+	getParentComment:function(eventIdOrClass){
+		// function starts from here
+		jQuery(eventIdOrClass).click(function(){
+			var valueTaker = jQuery(this).attr("id");
+			jQuery(this).parent(".reply-comment").find("span").slideDown("slow");
+			jQuery(this).parent(".reply-comment").find("span > form > input:eq(0)").val(valueTaker);
+		});
+		// funtion ends to here
 	}
 	
 }

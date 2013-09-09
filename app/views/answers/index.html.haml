@@ -1,3 +1,14 @@
+:css
+	.profile_tabs{
+		(-bracket-:hack;
+		  width:auto;
+		);
+		}
+	.chrome_loader{
+		(-bracket-:hack;
+		  margin:-20px 0px 0px 108px;
+		);
+	}
 .clearer.hide-responsive  
 %br.hide-responsive/
 .main-content-left
@@ -30,7 +41,7 @@
 						%a{:href => "", :title => "The public activity for everyone on this site."}
 							All Answers
 							%span= @answers.count rescue ""
-							.loader
+							.loader.chrome_loader
 			#subnav.item-list-tabs{:role => "navigation"}
 				%ul
 					%li#members-order-select.last.filter
@@ -81,7 +92,8 @@
 	
 	jQuery(document).ready(function(jQ){
 
-		jQ("#content-form").submit(function(e){			
+		jQ("#content-form").submit(function(e){	
+			jQuery(".loader").addClass("ajax-loader");		
 			e.preventDefault()
 			jQuery.ajax({     
 				url:'/answers_tab',
@@ -95,6 +107,7 @@
 
 		jQ("#activity-filter-by").change(function(){
 			valueTaker= jQuery("#activity-filter-by").val();
+			jQuery(".loader").addClass("ajax-loader");
 			jQuery.ajax({     
 				url:'/answers_tab',
 				data: { value: valueTaker},

@@ -20,7 +20,11 @@
             .number.color4 7.4
           %a.thumbnail.darken.small{:href => "/announcements", :title => "Gotye – Mirrors"}
             / %img{:alt => "rock concert", :height => "109", :src => "#{local_path_experimental}photodune-277307-rock-concert-s-163x109.jpg", :width => "163"}/
-            = image_tag ("banner-250x250.jpg") , :height => 109,:width=>163
+            =# image_tag ("banner-250x250.jpg") , :height => 109,:width=>163
+            - if announcement.has_announcement_image?
+              = image_tag (announcement_image_path(announcement,"small")) , :height => 109,:width=>163
+            - else
+              = image_tag ("banner-250x250.jpg") , :height => 109,:width=>163
           %a.post-title{:href => announcement_path(announcement), :title => "Gotye – Mirrors"} #{announcement.message}
       / .panel
       /   .rating-wrapper.small

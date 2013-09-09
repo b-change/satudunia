@@ -13,8 +13,9 @@
 	
 	jQuery(document).ready(function(jQ){
 
-		jQ("#activity-filter-by").change(function(){
+		jQ("#activity-filter-by").on('change',function(){
 			valueTaker= jQuery("#activity-filter-by").val();
+			jQuery("ul li.selected div.loader").addClass("ajax-loader");
 			jQuery.ajax({     
 				url:'/users/#{@user.id}/activity',
 				data: { tab: valueTaker},

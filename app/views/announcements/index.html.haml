@@ -38,6 +38,13 @@
                 .row-fluid
                   = label_tag :ends_at, "Ends", :class => "form-label span1"
                   = select_datetime(Time.current.tomorrow, :prefix => 'announcement[ends_at]')
+
+            .form-row.row-fluid
+              .span12
+                .row-fluid
+                  = label_tag :announcement_image,"Image", :class => "form-label span1"
+                  = f.file_field :announcement_image, :class => "span11"
+
             .form-row.row-fluid
               .span12
                 .row-fluid

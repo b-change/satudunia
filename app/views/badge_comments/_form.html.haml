@@ -1,0 +1,11 @@
+	
+= form_for @badge_comment , html: {class: "standard-form"} do |f|
+	= f.error_messages
+	= f.hidden_field :parent_id
+	= f.hidden_field :user_id , :value => current_user.id if user_signed_in?
+	%p
+		%a
+			= image_tag avatar_user_path(current_user), :width => "50", :height=>"50", :class=>"avatar"
+		= f.text_field :message, :placeholder => "Leave a message...",:rows => 4, :class=>"badge-input-comment"
+		.clearer
+		= f.submit "Post a comment", :class=>"submit-button-reply"

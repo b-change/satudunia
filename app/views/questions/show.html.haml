@@ -1,3 +1,7 @@
+:css
+	.s1_q_i{
+		width: 440px;
+	}
 - question_body = find_and_preserve(shapado_auto_link(markdown(@question.body.present? ? @question.body : @question.title)))
 
 .clearer.hide-responsive  
@@ -17,7 +21,7 @@
 								.category-arrow 
 					.content-panel
 						.the-content
-							#bbpress-forums
+							#bbpress-forums.set-question
 								%ul#topic-1343-replies.forums.bbp-replies
 									%li.bbp-body
 										#post-1343.bbp-reply-header

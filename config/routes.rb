@@ -6,6 +6,8 @@ require 'magent_web'
 
 Rails.application.routes.draw do
   
+  resources :badge_comments
+
   get "survey/index"
 
   devise_for(:users, :path => '/',

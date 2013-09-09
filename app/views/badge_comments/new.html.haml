@@ -1,0 +1,4 @@
+- title "Reply"
+= render @badge_comment.parent if @badge_comment.parent
+= render "form"
+%p= link_to "Back to Messages", badge_comments_path

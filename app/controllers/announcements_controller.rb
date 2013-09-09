@@ -24,7 +24,7 @@ class AnnouncementsController < ApplicationController
   # POST /announcements.json
   def create
     @announcement = Announcement.new
-    @announcement.safe_update(%w[message only_anonymous], params[:announcement])
+    @announcement.safe_update(%w[message only_anonymous announcement_image], params[:announcement])
 
     @announcement.starts_at = build_datetime(params[:announcement], "starts_at")
     @announcement.ends_at = build_datetime(params[:announcement], "ends_at")
@@ -33,6 +33,9 @@ class AnnouncementsController < ApplicationController
 
     respond_to do |format|
       if @announcement.valid? && @announcement.save
+        if params[:announcement][:announcement_image]
+          Jobs::Images.async.generate_announcement_thumbnails(@announcement.id).commit!
+        end
         flash[:notice] = I18n.t("announcements.create.success")
         format.html { redirect_to admin_announcements_path }
         format.json  { render :json => @announcement, :status => :created, :location => @announcement }
@@ -72,7 +75,8 @@ class AnnouncementsController < ApplicationController
   end
 
   def show
-    @announcement = Announcement.find(params[:id])
+    #@announcement = Announcement.find(params[:id])
+    @announcement = Announcement.by_slug(params[:id])
     render :layout => "experiment"
     
   end

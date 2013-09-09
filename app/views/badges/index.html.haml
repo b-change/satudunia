@@ -64,6 +64,39 @@
 										%td
 											.badge_description
 												=badge.description
+				%br.clearer/
+		.main-content-left
+			.page-content.review.single-post
+				%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+				.review-content
+					.ribbon-shadow-left
+					.section-wrapper
+						.section
+							.comment-bubble
+								%a{:title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} #{@badge_comments.count}
+							/ making title stronger
+							.section-for-header
+								PLUS+ Comments
+					.section-arrow 
+					.overview-wrapper
+						.overview-new
+							.left-panel
+								%h2.comment-count-font #{@badge_comments_count.count} comments
+								%br/
+								= render "badge_comments/form"
+								%hr#hr-shades-end.set-hr-margin
+								= nested_messages(@badge_comments)
+								%hr#hr-shades-end.set-hr-margin
+								#set-bottom-badge
+									%i.icon-rss.fontSize
+									Comment feed
+									&nbsp;&nbsp;
+									%i.icon-mail.fontSize
+									Subscribe via email
+									.floatright PLUS+ Comments
+							
+							
+
 		%br.clearer/
 		.main-content-left
 			.page-content.review.single-post
@@ -159,9 +192,25 @@
 		})
 
 	
-		jQuery("#activity-filter-by, #members_search,#members_clear_field").on('change keyup click',function(e){
+		jQuery("#activity-filter-by,#members_clear_field").on('change  click',function(e){
+			if(jQuery(this).hasClass('cancel_search')){}
+			else{
+				jQuery(".loader").addClass("ajax-loader");
+				valueTaker= jQuery("#activity-filter-by").val();
+				jQuery.ajax({     
+					url:'/badges?nameOfPartial=badges_list&idLoad=badges_ajax',
+					data: { tab: valueTaker},
+					dataType:"script",				
+					success:function(successObject){
+						jQuery(".loader").removeClass("ajax-loader");
+						jQuery('#members_clear_field').addClass("cancel_search");
+					}
+				});
+			}
+		});
+		jQuery("#members_search").on('keyup',function(e){
 			var v= jQuery('#members_search').val();
-
+			jQuery('#members_clear_field').removeClass("cancel_search");
 			if(jQuery.trim(v).length<1){
 				jQuery(".loader").addClass("ajax-loader");
 				valueTaker= jQuery("#activity-filter-by").val();
@@ -174,5 +223,5 @@
 					}
 				});
 			}
-		})
+		});
 	})

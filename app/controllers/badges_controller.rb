@@ -7,6 +7,9 @@ class BadgesController < ApplicationController
   # GET /badges
   # GET /badges.xml
   def index
+    @badge_comments = BadgeComment.arrange(:order => :created_at)
+    @badge_comment = BadgeComment.new
+    @badge_comments_count = BadgeComment.all
     
     conditions = {group_id: current_group.id, for_tag: params[:tab] == "tags"}
     if params[:filter].present? && params[:filter] != "all"

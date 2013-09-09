@@ -1,3 +1,15 @@
+:css
+  .profile_tabs{
+    (-bracket-:hack;
+      width:auto;
+    );
+  }
+  .chrome_loader{
+    (-bracket-:hack;
+      margin:-20px 0px 0px 95px;
+    );
+  }
+
 .clearer.hide-responsive  
 %br.hide-responsive/
 .main-content-left
@@ -52,29 +64,29 @@
       #object-nav.item-list-tabs{:id=>"firstElement"}
         %ul
           %li.selected.user-xprofile
-            %a{:href=>"javascript:void(0)",:id=>"questions-ajax"}
+            %a{:href=>"javascript:void(0)",:id=>"questions-ajax",:class=>"profile_tabs"}
               Questions
               %span
                 = (@questions.blank?)? 0 : @questions.count
-              .loader
+              .loader.chrome_loader
           %li.user-xprofile
-            %a{:href=>"javascript:void(0)",:id=>"answer-ajax"}
+            %a{:href=>"javascript:void(0)",:id=>"answer-ajax",:class=>"profile_tabs"}
               answers
               %span
                 = (@answers.blank?)? 0 : @answers.count
-              .loader
+              .loader.chrome_loader
           %li.user-following
-            %a{:href=>"javascript:void(0)",:id=>"following-ajax"}
+            %a{:href=>"javascript:void(0)",:id=>"following-ajax",:class=>"profile_tabs"}
               following
               %span
                 0
-              .loader
+              .loader.chrome_loader
           %li.user-xprofile
-            %a{:href=>"javascript:void(0)",:id=>"starred-ajax"}
+            %a{:href=>"javascript:void(0)",:id=>"starred-ajax",:class=>"profile_tabs"}
               starred
               %span
                 0
-              .loader
+              .loader.chrome_loader
       #subnav.item-list-tabs.no-ajax{:role => "navigation"}
         %ul
           = render "users/show/user_dashboard_subtab"
@@ -86,7 +98,6 @@
       /   = render "users/show/user_follows_content"
 .sidebar
   = render "experimental/partials/user_info"
-
 
 :javascript
   jQuery("#object-nav_firstElement > ul > li").click(function(){

@@ -19,7 +19,11 @@
 							%small
 								on #{@announcement.starts_at.strftime("%x") rescue ""} 
 
-					= image_tag ("banner-250x250.jpg"), :class => 'gravatar', :style => "margin: 10px", :size=>'500x400'
+					=# image_tag ("banner-250x250.jpg"), :class => 'gravatar', :style => "margin: 10px", :size=>'500x400'
+					- if @announcement.has_announcement_image?
+						= image_tag (announcement_image_path(@announcement,"small")), :class => 'gravatar', :size=>'500x400'
+					- else
+						= image_tag ("banner-250x250.jpg"), :class => 'gravatar' , :size=>'500x400'
 						
 					#service_information{:style => "margin: 10px"}
 						= @announcement.message rescue ""

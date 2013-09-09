@@ -14,7 +14,8 @@ module Shapado
 			                  :shortcut_group_path,
                         :apple_group_path,
                         :applest_group_path,
-                        :metro_group_path
+                        :metro_group_path,
+                        :announcement_image_path
         end
       end
 
@@ -75,6 +76,15 @@ module Shapado
         end
 
         "/_files/news/#{prefix}/#{CGI.escape(news.id.to_s)}.png"
+      end
+
+      def announcement_image_path(announcement, size = nil)
+        prefix = "announcement_image"
+        if !size.nil? && ["big", "medium", "small"].include?(size)
+          prefix = size
+        end
+
+        "/_files/announcement/#{prefix}/#{CGI.escape(announcement.id.to_s)}.png"
       end
 
       def question_attachment_path(group,question, file, attach_id)

@@ -83,6 +83,16 @@ module LayoutHelper
     ie_tag(:body, attrs, &block)
   end
 
+
+  def title(page_title, show_title = true)
+    content_for(:title) { h(page_title.to_s) }
+    @show_title = show_title
+  end
+
+  def show_title?
+    @show_title
+  end
+
 private
 
   def add_class(name, attrs)
