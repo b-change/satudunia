@@ -6,49 +6,49 @@
 	#dontmiss-header Ask Now!
 	#dontmiss-arrow  
 	#dontmiss.dontmiss
-		/ condition is temporary for ticket #1048
-		- unless (params[:action]== "index_experimental" && params[:controller]== "experimental/experimental")
-			.panel
-				.image
-					%a{:href => "single-review-numbers.html"}
-						%img{:alt => "restaurants7", :height => "40", :src => "#{local_path_experimental}restaurants7-40x40.jpg", :width => "40"}/
-				.title
-					%a{:href => "single-review-numbers.html"}
-						A Sandwich a Day: Fried Scallops from Brucie
-			.panel
-				.image
-					%a{:href => "single-review-numbers.html"}
-						%img{:alt => "fashion4", :height => "40", :src => "#{local_path_experimental}fashion4-40x40.jpg", :width => "40"}/
-				.title
-					%a{:href => "single-review-numbers.html"}
-						Yohji Yamamoto Autumn (Fall) / Winter 2012 men's
-			.panel
-				.image
-					%a{:href => "single-review-numbers.html"}
-						%img{:alt => "music1", :height => "40", :src => "#{local_path_experimental}music1-40x40.jpg", :width => "40"}/
-				.title
-					%a{:href => "single-review-numbers.html"}
-						Gotye – Mirrors
-			.panel
-				.image
-					%a{:href => "single-review-numbers.html"}
-						%img{:alt => "movies3", :height => "40", :src => "#{local_path_experimental}movies3-40x40.jpg", :width => "40"}/
-				.title
-					%a{:href => "single-review-numbers.html"}
-						The Hobbit: An Unexpected Journey
-			.panel
-				.image
-					%a{:href => "single-review-numbers.html"}
-						%img{:alt => "products4", :height => "40", :src => "#{local_path_experimental}products4-40x40.jpg", :width => "40"}/
-				.title
-					%a{:href => "single-review-numbers.html"}
-						Klipsch Gallery G-17 iPad speaker
-		- else
-			.bg2_1
-				= form_tag "#{question_search_path}",:id => "search" do
-					= text_field_tag "search_ajax", "What is your question?", :class => "search-tag",:alt => "What is your question?",:autocomplete=>"off","data-show"=>"What is your question?"
-					= hidden_field_tag "hidden_keys"
-					= button_tag "search",:class=>"search-btn"
+		/ / condition is temporary for ticket #1048
+		/ - unless (params[:action]== "index_experimental" && params[:controller]== "experimental/experimental")
+		/ 	.panel
+		/ 		.image
+		/ 			%a{:href => "single-review-numbers.html"}
+		/ 				%img{:alt => "restaurants7", :height => "40", :src => "#{local_path_experimental}restaurants7-40x40.jpg", :width => "40"}/
+		/ 		.title
+		/ 			%a{:href => "single-review-numbers.html"}
+		/ 				A Sandwich a Day: Fried Scallops from Brucie
+		/ 	.panel
+		/ 		.image
+		/ 			%a{:href => "single-review-numbers.html"}
+		/ 				%img{:alt => "fashion4", :height => "40", :src => "#{local_path_experimental}fashion4-40x40.jpg", :width => "40"}/
+		/ 		.title
+		/ 			%a{:href => "single-review-numbers.html"}
+		/ 				Yohji Yamamoto Autumn (Fall) / Winter 2012 men's
+		/ 	.panel
+		/ 		.image
+		/ 			%a{:href => "single-review-numbers.html"}
+		/ 				%img{:alt => "music1", :height => "40", :src => "#{local_path_experimental}music1-40x40.jpg", :width => "40"}/
+		/ 		.title
+		/ 			%a{:href => "single-review-numbers.html"}
+		/ 				Gotye – Mirrors
+		/ 	.panel
+		/ 		.image
+		/ 			%a{:href => "single-review-numbers.html"}
+		/ 				%img{:alt => "movies3", :height => "40", :src => "#{local_path_experimental}movies3-40x40.jpg", :width => "40"}/
+		/ 		.title
+		/ 			%a{:href => "single-review-numbers.html"}
+		/ 				The Hobbit: An Unexpected Journey
+		/ 	.panel
+		/ 		.image
+		/ 			%a{:href => "single-review-numbers.html"}
+		/ 				%img{:alt => "products4", :height => "40", :src => "#{local_path_experimental}products4-40x40.jpg", :width => "40"}/
+		/ 		.title
+		/ 			%a{:href => "single-review-numbers.html"}
+		/ 				Klipsch Gallery G-17 iPad speaker
+		/ - else
+		.bg2_1
+			= form_tag "#{question_search_path}",:id => "search" do
+				= text_field_tag "search_ajax", "What is your question?", :class => "search-tag",:alt => "What is your question?",:autocomplete=>"off","data-show"=>"What is your question?"
+				= hidden_field_tag "hidden_keys"
+				= button_tag "search",:class=>"search-btn"
 	#dontmiss-email.signup
 		%h3 Get Our Newsletter
 		%form#feedburner_subscribe.subscribe{:action => "http://feedburner.google.com/fb/a/mailverify", :method => "post", :onsubmit => "window.open('http://feedburner.google.com/fb/a/mailverify?uri=brianmcculloh/dtMq', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true", :target => "popupwindow"}

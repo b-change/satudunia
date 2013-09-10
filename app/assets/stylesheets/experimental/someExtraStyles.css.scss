@@ -856,16 +856,16 @@ form#search input {
 
 
 #search-container {
-		background-color: #FFFFFF;
-		border: 1px solid #000000;
-		color: #71706D;
-		display: none;
-		font-size: 18px;
-		left: 270px;
-		position: absolute;
-		top: 287px;
-		width: 608px;
-		z-index: 100000;
+	background-color: #FFFFFF;
+  border: 1px solid #000000;
+  color: #71706D;
+  display: none;
+  font-size: 18px;
+  left: 275px;
+  position: absolute;
+  top: 287px;
+  width: 606px;
+  z-index: 100000;
 }
 .survey.current_page_parent {
 		margin-left: -50px;
@@ -1110,4 +1110,9 @@ form#search input {
 
 .fontSize{
 	font-size: 20px !important;
+}
+
+.td-question > div, .ul{
+	width:460px;
+	word-wrap: break-word;
 }

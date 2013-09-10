@@ -88,7 +88,7 @@
 							%ul
 								-	get_country_name(@service_providers).each do |provider|
 									%li
-										= link_to "#{provider}",service_providers_path(country: provider.downcase)
+										= link_to "#{provider}",country_services_map_path(provider.downcase)
 						/ question drop starts
 						%li
 							%a{:href => "/questions"} Questions

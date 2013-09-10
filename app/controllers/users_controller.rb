@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	before_filter :login_required, :only => [:index, :show, :edit, :update,
-																					 :follow, :follow_tags, :leave,
+																					 :follows, :follow_tags, :leave,
 																					 :unfollow_tags, :connect, :social_connect]
 	skip_before_filter :check_group_access, :only => :auth
 	before_filter :find_user, :only => [:show, :answers, :follows, :activity, :survey]
