@@ -9,7 +9,8 @@
 		.ribbon-shadow-right 
 		.section-arrow
 		- if @announcements.blank?
-			No Recent Announcements Yet
+			%br
+			= render "experimental/partials/empty_record_message.html"
 		
 		-@announcements.each do |announcement|
 			- @class = cycle('','right')

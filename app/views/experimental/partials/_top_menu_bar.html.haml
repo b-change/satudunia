@@ -45,8 +45,9 @@
 					-if current_user.nil?
 						%li
 							=# link_to_rpx "<i class='icon-plus'></i>sign up".html_safe, user_session_url,:html=>{:title=>"Sign up ",:class=>"tool-tip"}
-							
-							= link_to "<i class='icon-plus'></i>sign up".html_safe,"/signup",:html=>{:title=>"Sign up",:class=>"tool-tip"}
+							= link_to "<i class='icon-plus'></i>sign up".html_safe,"#",:html=>{:title=>"Sign up"}, :class=>"fancybox","data-reveal-id"=>"myModal"
+
+							=# link_to "<i class='icon-plus'></i>sign up".html_safe,"/signup",:html=>{:title=>"Sign up",:class=>"tool-tip"}
 
 								
 			%select#select-menu-top-menu
@@ -79,4 +80,24 @@
 						%input#s{:name => "s", :onblur => "if (this.value == '') {this.value = 'search';}", :onfocus => "if (this.value == 'search') {this.value = '';}", :type => "text", :value => "search"}/
 		%br.clearer/
 	.ribbon-shadow-right 
+#myModal.reveal-modal.show-box
+	/ %h1 Modal Title
+	%p
+		= link_to "<i class='icon-key'></i>Sign Up with Email".html_safe,signup_path,:html=>{:title=>"Sign up",:class=>"tool-tip"}
+		%br
+		%br
+		= link_to_rpx "<i class='icon-key'></i>Sign Up with Social+ Networks.".html_safe, user_session_url 
+	%a.close-reveal-modal#close-box
+		%img{:alt => "close", :src => "http://cdn.rpxnow.com/rel/img/43f137c98b7a6562f6ad5f076fce376b.png", :style => "width: 34px; top: -4px; right: -4px; position: absolute; height: 34px; cursor: pointer;"}/
 =javascript_include_rpx(user_session_url)
+:javascript
+	jQuery(".rpxnow").click(function(){
+		jQuery("#myModal").hide();
+	})
+	jQuery(".rpxnow_lightbox_container > img").live('click',function(){
+		jQuery(".reveal-modal-bg").hide();
+	});
+	jQuery(".fancybox").click(function(){
+		jQuery("#myModal").show();
+	});
+

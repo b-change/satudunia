@@ -857,15 +857,15 @@ form#search input {
 
 #search-container {
 	background-color: #FFFFFF;
-  border: 1px solid #000000;
-  color: #71706D;
-  display: none;
-  font-size: 18px;
-  left: 275px;
-  position: absolute;
-  top: 287px;
-  width: 606px;
-  z-index: 100000;
+	border: 1px solid #000000;
+	color: #71706D;
+	display: none;
+	font-size: 18px;
+	left: 275px;
+	position: absolute;
+	top: 287px;
+	width: 606px;
+	z-index: 100000;
 }
 .survey.current_page_parent {
 		margin-left: -50px;
@@ -942,7 +942,7 @@ form#search input {
 }
 
 #set-margin{
-  margin-top: 20px !important;
+	margin-top: 20px !important;
 }
 #hr-shades-end{
 	background-color:#F4F4F4;
@@ -992,10 +992,10 @@ form#search input {
 }
 .tags1_2_3 {
 	background: url("images/tags1_1.jpg") repeat-x scroll 0 0 transparent;
-    border: 1px solid #AAB9BF;
-    border-radius: 2px 2px 2px 2px;
-    margin-left: 5px;
-    padding: 1px 6px;
+		border: 1px solid #AAB9BF;
+		border-radius: 2px 2px 2px 2px;
+		margin-left: 5px;
+		padding: 1px 6px;
 	float:left;
 	line-height: 18px;
 }
@@ -1017,41 +1017,41 @@ form#search input {
 
 /*badges show awarded css*/
 .box-question {
-    padding-right: 500px;
-    text-align: center;
+		padding-right: 500px;
+		text-align: center;
 }
 .box-badge {
-    margin-top: -48px;
-    padding-right: 320px;
-    text-align: center;
+		margin-top: -48px;
+		padding-right: 320px;
+		text-align: center;
 }
 .box-reputation {
-    margin-top: -54px;
-    padding-right: 135px;
-    text-align: center;
+		margin-top: -54px;
+		padding-right: 135px;
+		text-align: center;
 }
 .box-margin {
-    margin-left: -10px !important;
+		margin-left: -10px !important;
 }
 .user-info-awarded {
-    background: none repeat scroll 0 0 #AEC0DB;
-    border: 1px solid #9EADD6;
-    border-radius: 4px 4px 4px 4px;
-    margin-left: 350px;
-    margin-top: -62px;
-    padding: 5px;
+		background: none repeat scroll 0 0 #AEC0DB;
+		border: 1px solid #9EADD6;
+		border-radius: 4px 4px 4px 4px;
+		margin-left: 350px;
+		margin-top: -62px;
+		padding: 5px;
 }
 .counter-data {
-    margin-left: 39px;
-    margin-top: -42px;
+		margin-left: 39px;
+		margin-top: -42px;
 }
 .counter-info {
-    font-size: 14px;
+		font-size: 14px;
 }
 .box-question .counter, .box-badge .counter, .box-reputation .counter, .box-question .text, .box-badge .text, .box-reputation .text{
 	font-family: BebasNeueRegular,Arial,Sans-Serif;
 	font-size: 14px;
-  color: #3587BA;
+	color: #3587BA;
 }
 
 
@@ -1104,7 +1104,7 @@ form#search input {
 
 #set-bottom-badge{
 	color: #96939B;
-  font-weight: bold;
+	font-weight: bold;
 	margin:10px 0px 10px 10px;
 }
 
@@ -1115,4 +1115,23 @@ form#search input {
 .td-question > div, .ul{
 	width:460px;
 	word-wrap: break-word;
+}
+
+/*question show page*/
+#set-margin > span{
+	word-wrap: break-word ;
+}
+/*sign-up link*/
+#close-box{
+	cursor: pointer;
+    height: 34px;
+    position: absolute;
+    right: -4px;
+    top: -4px;
+    width: 34px;
+}
+.reveal-modal.show-box{
+	height:100px;
+	width:279px;
+	left:60% ;
 }

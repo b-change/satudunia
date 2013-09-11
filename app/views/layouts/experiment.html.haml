@@ -28,9 +28,12 @@
 		%meta{:content => "#{current_group.metro_color}", :name=>"msapplication-TileColo"}/
 		/ CSS
 		= stylesheet_link_tag "experimental/experimental"
+		= stylesheet_link_tag "reveal.css"
 		/ JS
 		= javascript_include_tag "experimental/jquery.min.js?ver=3.3.1"
 		= javascript_include_tag "experimental/experimental"
+		= javascript_include_tag "jquery.reveal.js"
+
 
 		%body
 			/ page loader starts

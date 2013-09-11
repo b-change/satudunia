@@ -1,3 +1,4 @@
+
 #map
 	%figure{:class => "p5"}
 		#services_map{:style => "width:auto; height:450px"}
@@ -143,9 +144,9 @@
 		})
 
 		jQuery('#members_search').keypress(function(e) {
-            
+						
 			if (e.which == '13') {
-			  jQuery('#members_search_submit').click();
+				jQuery('#members_search_submit').click();
 			}
 		});
 		
@@ -242,12 +243,24 @@
 	function setMarker() {
 	var geocoder = new google.maps.Geocoder();
 
-	- @service_providers.each do |provider|
-		- next if provider.address.nil? || provider.address.blank?
-		geocoder.geocode( { 'address': '#{escape_javascript provider.address}'}, function(results, status) {
-		centered = results[0].geometry.location;
-		showMarker(map, centered, '#{provider.name}', getFacilityInformation('#{escape_javascript provider.description}','#{escape_javascript provider.address}', '#{escape_javascript provider.name}', '#{escape_javascript provider.telephone}', '#{escape_javascript provider.email}'));
-		});
+	- if params[:country].blank?
+		- @service_providers.each do |provider|
+			- next if provider.address.nil? || provider.address.blank?
+			geocoder.geocode( { 'address': '#{escape_javascript provider.address}'}, function(results, status) {
+			centered = results[0].geometry.location;
+			map.setCenter(results[0].geometry.location);
+			map.fitBounds(results[0].geometry.bounds);
+			showMarker(map, centered, '#{provider.name}', getFacilityInformation('#{escape_javascript provider.description}','#{escape_javascript provider.address}', '#{escape_javascript provider.name}', '#{escape_javascript provider.telephone}', '#{escape_javascript provider.email}'));
+			});
+	- else
+		- @service_providers.where(:country => "#{params[:country]}".humanize).each do |provider|
+			- next if provider.address.nil? || provider.address.blank?
+			geocoder.geocode( { 'address': '#{escape_javascript provider.address}'}, function(results, status) {
+			centered = results[0].geometry.location;
+			map.setCenter(results[0].geometry.location);
+			map.fitBounds(results[0].geometry.bounds);
+			showMarker(map, centered, '#{provider.name}', getFacilityInformation('#{escape_javascript provider.description}','#{escape_javascript provider.address}', '#{escape_javascript provider.name}', '#{escape_javascript provider.telephone}', '#{escape_javascript provider.email}'));
+			});
 	}
 
 	
