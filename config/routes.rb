@@ -10,11 +10,13 @@ Rails.application.routes.draw do
 
   get "survey/index"
 
-  devise_for(:users, :path => '/',
-             :path_names => {:sign_in => 'login', :sign_out => 'logout'},
-             :controllers => {:registrations => 'users', :omniauth_callbacks => "multiauth/sessions"}) do
+  devise_for(:users, :path_names => { :sign_in => "login", :sign_out => "logout"}, :controllers => {:registrations => 'users', :omniauth_callbacks => "multiauth/sessions"}) do
+    
+    match "login" => "devise/sessions#new", :as => :new_user_session 
+    match "logout" => "devise/sessions#destroy", :as => :destroy_user_session
     match "/reset-password", :to => "devise/unlocks#new", :as => :new_user_unlock
   end
+  
   match '/groups/:group_id/check_custom_domain' => 'groups#check_custom_domain',
   :as => 'check_custom_domain'
   match '/groups/:group_id/reset_custom_domain' => 'groups#reset_custom_domain',

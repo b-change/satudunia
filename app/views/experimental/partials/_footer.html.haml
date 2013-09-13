@@ -2,7 +2,7 @@
   / begin footer wrapper
   #footer
     .footer-menu
-      %a.home-link{:href => experimental_index_path}  
+      %a.home-link{:href => root_path}  
       %ul#menu-footer-menu.menu
         %li
           %a{:href => public_about_experimental_index_path, :title=>"About", :alt=>"About"} About Plus
@@ -199,6 +199,12 @@
               %a{:href => "#", :title => "The latest comments to all posts in RSS"}
                 Comments
                 %abbr{:title => "Really Simple Syndication"} RSS
+            %li
+              = link_to "Rss Feed(Service Providers)",service_providers_path(:atom)                
+              = image_tag 'rss.png',alt: "Rss"  
+            %li
+              = link_to "Rss_Feed_questions",questions_path(:atom)
+              = image_tag 'rss.png',alt: "Rss"
       .panel
         .widget
           %h2 Latest Tweets

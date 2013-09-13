@@ -22,7 +22,7 @@
   index :domain, :unique => true
   field :legend, :type => String
   field :description, :type => String
-  field :default_tags, :type => Array, :default => []
+  field :default_tags, :type => Hash, :default => {}
   field :has_custom_ads, :type => Boolean, :default => false
   field :state, :type => String, :default => "pending" #pending, active, closed
   field :isolate, :type => Boolean, :default => false

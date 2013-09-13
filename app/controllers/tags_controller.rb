@@ -4,6 +4,7 @@ class TagsController < ApplicationController
   before_filter :track_pageview
 
   def index
+    add_breadcrumb "Tags", tags_path.gsub("/","")
     @tags = current_scope.page(params["page"])
 
     respond_to do |format|

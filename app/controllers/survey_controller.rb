@@ -1,6 +1,7 @@
 class SurveyController < ApplicationController
   before_filter :login_required
   def index
+    add_breadcrumb "Survey", "/survey".gsub("/","")
     set_page_title("Surveys")
     @surveys= current_user.profile_tiers
     @survey1= current_user.profile_support

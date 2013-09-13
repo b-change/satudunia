@@ -1,0 +1,10 @@
+%li
+	%a{:href => "/questions"} Questions
+	%ul
+		-Group.last.default_tags.each do |p|
+			%li
+				%a{:href => "/tags/#{p[0]}"} #{p[0]}
+				%ul
+					-p[1].each do |p1|
+						%li
+							%a{:href => "/tags/#{p1}"}#{p1}

@@ -66,7 +66,7 @@
 					#logo-bar-shadow  
 				/ end the logo area
 				#cat-menu.cat-menu
-					%a.home-link{:href => experimental_index_path,:title=>"Plus Home",:title=>"Plus Home"}  
+					%a.home-link{:href => root_path,:title=>"Plus Home",:title=>"Plus Home"}  
 					%ul#menu-main-menu
 						%li
 							%a{:href => "archive-a.html"} Layouts
@@ -93,98 +93,8 @@
 									%li
 										= link_to "#{provider}",country_services_map_path(provider.downcase)
 						/ question drop starts
-						%li
-							%a{:href => "/questions"} Questions
-							%ul
-								%li
-									%a{:href => "/tags/disclosure"} Disclosure
-									%ul
-										%li
-											%a{:href => "/tags/casual-partners"} Casual Partners
-										%li
-											%a{:href => "/tags/family"} Family
-										%li
-											%a{:href => "/tags/friends"} Friends
-										%li
-											%a{:href => "/tags/regular-partners"} Regular Partners
-								%li
-									%a{:href => "/tags/drugs"} Drugs
-									%ul
-										%li
-											%a{:href => "/tags/partying"} Partying
-										%li
-											%a{:href => "/tags/sex"} Sex
-								%li
-									%a{:href => "/tags/first-diagnosis"} First Diagnosis
-									%ul
-										%li
-											%a{:href => "/tags/situation"} Situation
-								%li
-									%a{:href => "/tags/maintaining-treatment"} Maintaining Treatment
-									%ul
-										%li
-											%a{:href => "/tags/compliance"} Compliance
-										%li
-											%a{:href => "/tags/regular-access-to-medication"} Regular Access to Medication
-								%li
-									%a{:href => "/tags/relationships"} Relationships
-									%ul
-										%li
-											%a{:href => "/tags/dating"} Dating
-										%li
-											%a{:href => "/tags/family"} Family
-										%li
-											%a{:href => "/tags/friends"} Friends
-								%li
-									%a{:href => "/tags/sex"} Sex
-									%ul
-										%li
-											%a{:href => "/tags/minimising-risk"} Minimising-risk
-										%li
-											%a{:href => "/tags/safer-sex"} Safer Sex
-								%li
-									%a{:href => "/tags/starting-medication"} Starting Medication
-									%ul
-										%li
-											%a{:href => "/tags/accessing-medication"} Accessing Medication
-										%li
-											%a{:href => "/tags/cost"} Cost
-										%li
-											%a{:href => "/tags/selecting-medication"} Selecting Medication
-										%li
-											%a{:href => "/tags/side-effects"} Side Effects
-								%li
-									%a{:href => "/tags/starting-treatment"} Starting Treatment
-									%ul
-										%li
-											%a{:href => "/tags/clinics"} Clinics
-										%li
-											%a{:href => "/tags/cost"} Cost
-										%li
-											%a{:href => "/tags/doctors"} Doctors
-								%li
-									%a{:href => "/tags/travel"} Travel
-									%ul
-										%li
-											%a{:href => "/tags/migration"} Migration
-										%li
-											%a{:href => "/tags/tourism"} Tourism
-								%li
-									%a{:href => "/tags/well-being"} Well-being
-									%ul
-										%li
-											%a{:href => "/tags/fitness"} Fitness
-										%li
-											%a{:href => "/tags/nutrition"} Nutrition
-								%li
-									%a{:href => "/tags/work"} Work
-									%ul
-										%li
-											%a{:href => "/tags/health-checks"} Health Checks
-										%li
-											%a{:href => "/tags/health-insurance"} Health Insurance
-										%li
-											%a{:href => "/tags/inclusion-&-discrimination"} Inclusion & Discrimination
+						=render 'experimental/partials/default_tags'
+										
 						/ question drop ends
 						/ Login drop starts
 						%li
@@ -249,8 +159,7 @@
 				/ main wrapper starts from here
 				#main-wrapper
 					#main-wrapper-dark
-						- if (params[:controller] == "experimental/experimental" && params[:action] == "index_experimental") || (params[:controller] == "questions" && params[:action] == "show")
-							= render "experimental/partials/bread_crumb_experimental"
+						= render "experimental/partials/bread_crumb_experimental"
 						- unless check_valid
 							= render "experimental/partials/social_side_bar"
 						- flash.each do |name, msg|

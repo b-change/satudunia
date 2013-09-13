@@ -4,10 +4,13 @@
       %a{:href => "single-review-numbers.html"} More
     %h2{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-product-dark.png) no-repeat 0px 0px;"} Country
     .arrow-catpanel-bottom  
-  %a.title.first{:href => "single-review-numbers.html", :style => "color:#262626"} Singapore
-  %a.title.alt{:href => "single-review-numbers.html", :style => "color:#262626"} Philippines
-  %a.title{:href => "single-review-numbers.html", :style => "color:#262626"} Malaysia
-  %a.title.alt{:href => "single-review-numbers.html", :style => "color:#262626"} Indonesia
+  - get_country_name(@service_providers).each do |provider|
+    = link_to "#{provider}",country_services_map_path(provider.downcase),:style=>"color:#262626",:class=>"title"
+
+
+  / %a.title.alt{:href => "single-review-numbers.html", :style => "color:#262626"} Philippines
+  / %a.title{:href => "single-review-numbers.html", :style => "color:#262626"} Malaysia
+  / %a.title.alt{:href => "single-review-numbers.html", :style => "color:#262626"} Indonesia
   / %a.title{:href => "single-review-numbers.html", :style => "color:#262626"} Andorra
   / %a.title.alt{:href => "single-review-numbers.html", :style => "color:#262626"} Angola
   / %a.title{:href => "single-review-numbers.html", :style => "color:#262626"} Anguilla

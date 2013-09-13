@@ -46,7 +46,7 @@
 											.bbp-reply-content
 												%h6.title  
 													=@title.upcase
-													= @question.body.html_safe
+													= @question.body.html_safe rescue ""
 											/ .bbp-reply-content
 										/ .reply
 							

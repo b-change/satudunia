@@ -8,6 +8,7 @@ class ServiceProvidersController < ApplicationController
     respond_to do |format|
       format.html
       format.js
+      format.atom
     end
   end
 

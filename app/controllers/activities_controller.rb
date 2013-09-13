@@ -1,6 +1,7 @@
 class ActivitiesController < ApplicationController
   tabs :default => :activities
   before_filter :track_pageview
+  before_filter :login_required
   subtabs :index => [[:all, [:created_at, :desc]],
                     [:questions, [:created_at, :desc]],
                     [:answers, [:created_at, :desc]],

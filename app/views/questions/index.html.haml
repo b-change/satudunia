@@ -21,7 +21,7 @@
 			#members-dir-search.dir-search{:role => "search"}
 				%label
 					%input#members_search{:name => "s", :placeholder => "Search Questions...", :type => "text"}/
-				%input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
+				/ %input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
 				%input#members_search_submit{:name => "members_search_submit", :type => "reset", :value => "x", :style=>"opacity:1;"}/
 		.item-list-tabs.activity-type-tabs{:role => "navigation"}
 			%ul
@@ -40,7 +40,7 @@
 						%option{:value => "featured-question-show"} Featured
 						%option{:value => "votes-question-show"} Votes
 						%option{:value => "unanswered-question-show"} Unanswered
-						%option{:value => "xxx-question-show"} XXX
+						/ %option{:value => "xxx-question-show"} XXX
 		#question_ajax
 			= render "questions/plus_question"
 
@@ -146,11 +146,33 @@
 
 :javascript
 	// get ajax data by sort 
-	Experimental.getAjaxData("change","#activity-filter-by","/question_ajax","GET","question_ajax","question_ajax",".loader","","","");
+	Experimental.getAjaxData(" change","#members_search","/question_ajax","GET","question_ajax","question_ajax",".loader","","","","search_questions");
 	//get ajax data by sort  using pagination
 	Experimental.getAjaxData("click","#questions_pagination .pagination-ajax","/question_ajax","GET","question_ajax","question_ajax",".loader","","","yes","#activity-filter-by");
 	jQuery(document).ready(function(jQ){
 		jQ('#pagination-digg  a').live('click',function(e){
 			e.preventDefault();
 		})
+		
 	})
+	jQuery(document).ready(function(){
+		jQuery('#members_search').keyup(function(e) {
+			var ques_search = jQuery("#members_search").val();
+			e.preventDefault();
+				jQuery(".loader").addClass("ajax-loader");
+				jQuery.ajax({           
+					url:'/question_ajax',
+				    data:{ type: ques_search,queryData:"queryData",ques:"search_questions",idLoad: "question_ajax",nameOfPartial:"question_ajax",page:""},
+					dataType:"script",
+					error:function(errorObject){    
+					alert('eee');            
+
+					},
+					success:function(successObject){
+					jQuery(".loader").removeClass("ajax-loader");
+					 	
+					}
+				});
+		})
+	});
+	 

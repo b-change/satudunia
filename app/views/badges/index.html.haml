@@ -20,7 +20,7 @@
 			/ %form#members-directory-form.dir-form{:action => "/badges"}
 			#members-dir-search.dir-search{:role => "search"}
 				%label
-					%input#members_search{:name => "badge_search", :placeholder => "Search Badges...", :type => "text"}/
+					%input#members_search{:name => "badge_search", :placeholder => "Search Badges...", :type => "text",:style=>"height: 20px;"}/
 				/ %input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
 				%input#members_clear_field{:name => "members_clear_field", :type => "reset", :value => "X"}
 			.item-list-tabs.activity-type-tabs{:role => "navigation"}
@@ -64,6 +64,12 @@
 										%td
 											.badge_description
 												=badge.description
+				%br
+				%br
+				#members-dir-search.dir-search{:role => "search"}
+					%label
+						%input#members_search1{:name => "badge_search", :placeholder => "Search Badges...", :type => "text",:style=>"height: 20px;"}/
+					%input#members_clear_field{:name => "members_clear_field", :type => "reset", :value => "X"}
 				%br.clearer/
 		.main-content-left
 			.page-content.review.single-post
@@ -74,6 +80,8 @@
 						.section
 							.comment-bubble
 								%a{:title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} #{@badge_comments.count}
+
+
 							/ making title stronger
 							.section-for-header
 								PLUS+ Comments
@@ -169,8 +177,8 @@
 		jQuery('#members_clear_field').click( function () {
 			jQuery('#members_search').val(""); 
 		});
-		jQuery('#members_search').keyup(function(e) {
-			var badge_search = jQuery("#members_search").val();
+		jQuery('#members_search,#members_search1').keyup(function(e) {
+			var badge_search = jQuery(this).val();
 			e.preventDefault();
 			
 			if((badge_search!= "")&&(e.which!= '32')){
@@ -183,6 +191,7 @@
 
 					},
 					success:function(successObject){
+					jQuery('html, body').animate({ scrollTop: jQuery(".overview-new").offset().top });
 					jQuery(".loader").removeClass("ajax-loader");
 
 					}
@@ -202,14 +211,17 @@
 					data: { tab: valueTaker},
 					dataType:"script",				
 					success:function(successObject){
+						jQuery('html, body').animate({ scrollTop: 50 });
 						jQuery(".loader").removeClass("ajax-loader");
 						jQuery('#members_clear_field').addClass("cancel_search");
+						
 					}
 				});
 			}
 		});
-		jQuery("#members_search").on('keyup',function(e){
-			var v= jQuery('#members_search').val();
+		jQuery("#members_search,#members_search1").on('keyup',function(e){
+			var v= jQuery(this).val();
+
 			jQuery('#members_clear_field').removeClass("cancel_search");
 			if(jQuery.trim(v).length<1){
 				jQuery(".loader").addClass("ajax-loader");
@@ -219,7 +231,9 @@
 					data: { tab: valueTaker},
 					dataType:"script",				
 					success:function(successObject){
+						jQuery('html, body').animate({ scrollTop: 50 });
 						jQuery(".loader").removeClass("ajax-loader");
+						
 					}
 				});
 			}

@@ -38,7 +38,6 @@ class UsersController < ApplicationController
 	layout "experiment", :only => [:index,:new,:create, :show, :answers, :follows, :activity, :edit, :survey, :social_connect]
 	def index
 		set_page_title(t("users.index.title"))
-
 		order = current_order
 		conditions = {}
 		conditions = {:display_name => /^#{Regexp.escape(params[:q])}/} if params[:q]
@@ -466,6 +465,7 @@ class UsersController < ApplicationController
 	end
 
 	def social_connect
+		add_breadcrumb "Connect", social_connect_path.gsub("/","")
 	end
 
 	def new_password

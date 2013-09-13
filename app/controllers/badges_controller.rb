@@ -7,6 +7,7 @@ class BadgesController < ApplicationController
   # GET /badges
   # GET /badges.xml
   def index
+    add_breadcrumb "Badges", (badges_path).gsub("/","") 
     @badge_comments = BadgeComment.arrange(:order => :created_at)
     @badge_comment = BadgeComment.new
     @badge_comments_count = BadgeComment.all

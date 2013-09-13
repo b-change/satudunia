@@ -976,10 +976,10 @@ form#search input {
 		background-color: none;
 }
 .bread-crumb-header > a {
-		color:#DF1515;
+		color:#DF1515 !important;
 }
 .bread-crumb-header > a:last-of-type {
-		color: #FFFFFF;
+		color: #FFFFFF !important;
 }
 /*breadcrumb css ends here*/
 
@@ -1124,14 +1124,19 @@ form#search input {
 /*sign-up link*/
 #close-box{
 	cursor: pointer;
-    height: 34px;
-    position: absolute;
-    right: -4px;
-    top: -4px;
-    width: 34px;
+		height: 34px;
+		position: absolute;
+		right: -4px;
+		top: -4px;
+		width: 34px;
 }
 .reveal-modal.show-box{
 	height:100px;
 	width:279px;
 	left:60% ;
+}
+
+.tabdiv.ui-tabs-panel.tab-plus {
+    margin-left: -32px;
+    margin-top: -20px;
 }

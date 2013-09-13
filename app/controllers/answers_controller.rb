@@ -7,6 +7,7 @@ class AnswersController < ApplicationController
   helper :votes
 
   def index
+    add_breadcrumb "Answers", "/answers".gsub("/","")  
     exclude = [:votes, :_keywords]
     if params[:question_id]
       @question = current_group.questions.by_slug(params[:question_id])
