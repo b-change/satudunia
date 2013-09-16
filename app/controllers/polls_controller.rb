@@ -1,6 +1,7 @@
 class PollsController < ApplicationController
    layout "experiment"
   def index
+    add_breadcrumb "Polls", polls_path.gsub("/","")
     set_page_title("Polls")
     @polls = Poll.where(:is_active => true).page(params[:page])
   end

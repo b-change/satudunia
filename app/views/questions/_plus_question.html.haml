@@ -32,18 +32,18 @@
                 = time_ago_in_words(last_target_date)
                 ago
               %br
-              %span.tags1_2.floatleft{:title => " travel"}
-                %font
-                  %font 
-                    = question.tags[0]
+              - question.tags.each do |tag|
+                %span.tags1_2{:title => tag}
+                  %font
+                    = tag
                    
   / pagination_bottom
   = render :partial =>"pagination/pagination",:locals => {:paginationType=>"questions"}
-:css
-  .tags1_2{
-  color: #003B54;
-    font-family: Arial;
-    font-size: 12px;
-    font-weight: bold;
-    line-height: 0.5em;
-}
+/ :css
+/   .tags1_2{
+/   color: #003B54;
+/     font-family: Arial;
+/     font-size: 10px;
+/     font-weight: bold;
+/     line-height: 1.5em;
+/ }

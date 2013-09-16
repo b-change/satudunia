@@ -995,6 +995,7 @@ form#search input {
 		border: 1px solid #AAB9BF;
 		border-radius: 2px 2px 2px 2px;
 		margin-left: 5px;
+		margin-top: 7px;
 		padding: 1px 6px;
 	float:left;
 	line-height: 18px;
@@ -1139,4 +1140,10 @@ form#search input {
 .tabdiv.ui-tabs-panel.tab-plus {
     margin-left: -32px;
     margin-top: -20px;
+}
+.search_textbox_height{
+	height: 20px;
+}
+.tag_bottom_search{
+	width:624px !important;
 }

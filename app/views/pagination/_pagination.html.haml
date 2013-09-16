@@ -1,7 +1,7 @@
 #forums-dir-list-newest.dir-list
 	#pag-top.pagination
 		#member-dir-count-top.pag-count
-			Viewing #{paginationType.capitalize} #{@paginator.options[:skip]} to #{@paginator.options[:skip]+@paginator.options[:limit]} (of #{@paginator.count} #{paginationType.capitalize})
+			Viewing #{paginationType.capitalize} #{@paginator.count} to #{@paginator.options[:skip]+@paginator.count} (of #{@paginator.count} #{paginationType.capitalize})
 		%div{:id=>"#{paginationType}_pagination"}
 			#members-dir-list.members.dir-list1
 				= paginate @paginator 

@@ -142,93 +142,71 @@
 		});
 		// click function ends here
 
-		// map functions starts from here
-		// function init
-		$(".tab_overview").click(function(){
-			initMap();
-		}).trigger('click');
-		$(".tab_map").click(function(){
-			initMap();
+
+		var geocoder;
+		var map;
+		var markersArray = [];
+		var bounds;
+		var infowindow =  new google.maps.InfoWindow({
+				content: ''
 		});
+
+		//plot initial point using geocode instead of coordinates (works just fine)
+		function initialize() {
+				geocoder = new google.maps.Geocoder();
+				bounds = new google.maps.LatLngBounds ();
+
+				var myOptions = {
+						zoom: 2, 
+						mapTypeId: google.maps.MapTypeId.ROADMAP,
+					
+				};
+			
+				map = new google.maps.Map(document.getElementById("services_map_2"), myOptions);
+
+				plotMarkers();
+		}
 		
-		function initMap() {
-			setMarker();
-		}
-		// function generate map
-		function generateMap(lat,lng){
-			map = showMap(lat,lng,12,"services_map");
-			map2 = showMap2(lat,lng,12,"services_map_2");
-		}
-		// Marked on locations along with the info window
-		function showMarker(map, latLng, titleName, infoContent){
-			var marker = new google.maps.Marker({
-			position: latLng,
-			map: map,
-			title: titleName
-		});
-			
-		var infoWindow = new google.maps.InfoWindow();
-			
-		google.maps.event.addListener(marker, 'click', (function setInfoWindow(marker){
-		return function(){
-			infoWindow.setPosition(latLng);
-			infoWindow.setContent(infoContent);
-			infoWindow.open(map, marker);
-			infoWindow.open(map2, marker); 
-		}    
-		})(marker));
-			
-		return marker;
-		}
-		// function show marker ends here
-		function showMap(posLat,posLng,zoomValue, mapElement){
-			var map;
-			var mapOptions = {
-			center: new google.maps.LatLng(posLat, posLng),
-			zoom: zoomValue,
-			mapTypeId: google.maps.MapTypeId.ROADMAP
-		};
+		var locationsArray = [['#{escape_javascript @service_provider.name.gsub(",","")}','#{escape_javascript @service_provider.telephone}' + " " + '#{escape_javascript @service_provider.email}','#{escape_javascript @service_provider.address.gsub(",","")}']]
 
-		map = new google.maps.Map(document.getElementById(mapElement), mapOptions);
-		return map;
+
+		function plotMarkers(){
+				var i;
+				for(i = 0; i < locationsArray.length; i++){
+						codeAddresses(locationsArray[i]);
+				}
 		}
 
-		// function show map2
-		function showMap2(posLat,posLng,zoomValue, mapElement){
-			var map2;
-			var mapOptions = {
-			center: new google.maps.LatLng(posLat, posLng),
-			zoom: zoomValue,
-			mapTypeId: google.maps.MapTypeId.ROADMAP
-		};
+		function codeAddresses(address){
+				geocoder.geocode( { 'address': address[2]}, function(results, status) { 
+						if (status == google.maps.GeocoderStatus.OK) {
+								marker = new google.maps.Marker({
+										map: map,
+										position: results[0].geometry.location
+								});
 
-		map2 = new google.maps.Map(document.getElementById("services_map_2"), mapOptions);
-		return map;
-		}
-		// show map 2 ends here
-		
-		// function show map ends here
-		
-		function getFacilityInformation(serviceDesc, completeAddress, locationName, phone, email){
-			var completeDescription = '<b>'+locationName+'</b><br>'+ serviceDesc;
-			
-			completeDescription += '<br><small>'+ completeAddress +'</small><br><small>Phone: '+ phone +'</small><br><small>Email: '+ email +'</small>';
-			
-			return completeDescription;
-		}
-		// facility information ends here
-		function setMarker() {
-			var geocoder = new google.maps.Geocoder();
+								google.maps.event.addListener(marker, 'click', function() {
 
-			geocoder.geocode( { 'address': '#{escape_javascript @service_provider.address}'}, function(results, status) {
-			centered = results[0].geometry.location;
-			generateMap(centered.jb,centered.kb);
-			showMarker(map, centered, '#{@service_provider.name}', getFacilityInformation('#{escape_javascript @service_provider.description}','#{escape_javascript @service_provider.address}', '#{escape_javascript @service_provider.name}', '#{escape_javascript @service_provider.telephone}', '#{escape_javascript @service_provider.email}'));
+										var formattedAddress =  "<b>" + address[0] + "</b> <br/>" + address[1] ;
+										infowindow.setContent(formattedAddress);
+										infowindow.open(map, this);
+								});
 
-			showMarker(map2, centered, '#{@service_provider.name}', getFacilityInformation('#{escape_javascript @service_provider.description}','#{escape_javascript @service_provider.address}', '#{escape_javascript @service_provider.name}', '#{escape_javascript @service_provider.telephone}', '#{escape_javascript @service_provider.email}'));
-		});
+								bounds.extend(results[0].geometry.location);
+
+								markersArray.push(marker); 
+						}
+						else{
+								alert("Geocode was not successful for the following reason: " + status);
+						}
+
+						map.fitBounds(bounds);
+				});
 		}
+
+		google.maps.event.addDomListener(window, 'load', initialize);
+
+
 	});
-
 	
 	

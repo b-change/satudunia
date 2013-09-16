@@ -20,7 +20,7 @@
 			/ %h3 Questions
 			#members-dir-search.dir-search{:role => "search"}
 				%label
-					%input#members_search{:name => "s", :placeholder => "Search Questions...", :type => "text"}/
+					%input#members_search.search_textbox_height{:name => "s", :placeholder => "Search Questions...", :type => "text"}/
 				/ %input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
 				%input#members_search_submit{:name => "members_search_submit", :type => "reset", :value => "x", :style=>"opacity:1;"}/
 		.item-list-tabs.activity-type-tabs{:role => "navigation"}
@@ -43,7 +43,11 @@
 						/ %option{:value => "xxx-question-show"} XXX
 		#question_ajax
 			= render "questions/plus_question"
-
+		#question_bottom_search.dir-search{:role => "search"}
+			%label
+				%input#question_under_search.search_textbox_height{:name => "s", :placeholder => "Search Questions...", :type => "text"}/
+			/ %input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
+			%input#members_search_submit_below{:name => "members_search_submit", :type => "reset", :value => "x", :style=>"opacity:1;"}/	
 	.page-content.review.single-post
 		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
 		.review-content
@@ -143,10 +147,15 @@
 	=# render "experimental/partials/rating_box"
 	/banner box
 	=# render "experimental/partials/banner_box"
+:css
+	#question_bottom_search {
+		margin-top: -5px ;
+
+}
 
 :javascript
 	// get ajax data by sort 
-	Experimental.getAjaxData(" change","#members_search","/question_ajax","GET","question_ajax","question_ajax",".loader","","","","search_questions");
+	Experimental.getAjaxData(" change","#activity-filter-by","/question_ajax","GET","question_ajax","question_ajax",".loader","","","","search_questions");
 	//get ajax data by sort  using pagination
 	Experimental.getAjaxData("click","#questions_pagination .pagination-ajax","/question_ajax","GET","question_ajax","question_ajax",".loader","","","yes","#activity-filter-by");
 	jQuery(document).ready(function(jQ){
@@ -155,17 +164,18 @@
 		})
 		
 	})
+
 	jQuery(document).ready(function(){
-		jQuery('#members_search').keyup(function(e) {
-			var ques_search = jQuery("#members_search").val();
+		jQuery('#members_search, #question_under_search').keyup(function(e) {
+			var v = jQuery(this).val();
+			var ques_search =jQuery.trim(v);
 			e.preventDefault();
 				jQuery(".loader").addClass("ajax-loader");
 				jQuery.ajax({           
 					url:'/question_ajax',
 				    data:{ type: ques_search,queryData:"queryData",ques:"search_questions",idLoad: "question_ajax",nameOfPartial:"question_ajax",page:""},
-					dataType:"script",
-					error:function(errorObject){    
-					alert('eee');            
+						dataType:"script",
+						error:function(errorObject){    
 
 					},
 					success:function(successObject){
@@ -174,5 +184,19 @@
 					}
 				});
 		})
+		// get ajax data by sort 
+			Experimental.getAjaxData("click ","#members_search_submit, #members_search_submit_below","/question_ajax","GET","question_ajax","question_ajax",".loader","","","","search_questions");
+			//get ajax data by sort  using pagination
+			Experimental.getAjaxData("click","#questions_pagination .pagination-ajax","/question_ajax","GET","question_ajax","question_ajax",".loader","","","yes","#activity-filter-by");
+			jQuery(document).ready(function(jQ){
+				jQ('#pagination-digg  a').live('click',function(e){
+					e.preventDefault();
+				})
+			})
+		jQuery('#members_search_submit_below').click(function(){
+		  jQuery('#question_under_search').val("");
+		})	
 	});
-	 
+
+
+

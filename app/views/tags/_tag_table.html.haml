@@ -1,11 +1,24 @@
-%table.tag-list{:style => "width: 100%; margin-top:20px;"}
-  = tag_table.each_slice(4) do |tags|
-    %tr
-      - tags.each do |tag|
-        %td{:style => "line-height: 14px"}
-          %span.tag{:class => "tag_#{tag}"}
-            = tag_link(tag)
-            %span.count
-              = tag.count.to_i
-#additional_info
-  = paginate @tags
+-if params[:search_tags]=="search"
+  %table.tag-list{:style => "width: 100%; margin-top:20px;"}
+    = tag_table.each_slice(4) do |tags|
+      %tr
+        - tags.each do |tag|
+          %td{:style => "line-height: 14px"}
+            %span.tag{:class => "tag_#{tag}"}
+              = tag_link(tag)
+              %span.count
+                = tag.count.to_i
+  #additional_info
+    = paginate @tags
+-else   
+  %table.tag-list{:style => "width: 100%; margin-top:20px;"}
+    = tag_table.each_slice(4) do |tags|
+      %tr
+        - tags.each do |tag|
+          %td{:style => "line-height: 14px"}
+            %span.tag{:class => "tag_#{tag}"}
+              = tag_link(tag)
+              %span.count
+                = tag.count.to_i
+  #additional_info
+    = paginate @tags

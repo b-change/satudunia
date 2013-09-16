@@ -10,7 +10,7 @@ class QuestionsController < ApplicationController
   before_filter :check_retag_permissions, :only => [:retag, :retag_to]
   before_filter :track_pageview
 
-  add_breadcrumb "Questions", :questions_path
+  add_breadcrumb "Questions", 'questions'
 
   tabs :default => :questions, :tags => :tags,
        :new => :ask_question
@@ -78,6 +78,16 @@ class QuestionsController < ApplicationController
     else
       find_questions
     end
+    if params[:ques]=="search_questions" 
+      @ques = []
+        Question.all.each do |question|
+          if question.title.include?(params[:type]) || question.body.include?(params[:type])
+            result = Question.new(:title => question.title, body:question.body )
+            @ques << result
+          end
+        end
+    end
+
   end
 
 
@@ -117,6 +127,7 @@ class QuestionsController < ApplicationController
   end
 
   def related_questions
+    
     @question = nil
     if params[:id]
       @question = current_group.questions.by_slug(params[:id])
@@ -446,6 +457,7 @@ class QuestionsController < ApplicationController
   # DELETE /questions/1.xml
   # action added for new ajax search show
   def question_search
+    
     @body_id = "page3"
     # sorting question with the tabs
     @questionsHot = Question.where(:activity_at => {"$gt" => 5.days.ago}).order_by(current_order)
@@ -490,22 +502,39 @@ class QuestionsController < ApplicationController
   end
   # action question_ajax
   def question_ajax
-    @query=params[:queryData]
-    case @query
-      when "newest-question-show"
-        @questions = current_group.questions.order(:created_at=>:desc).page(params["page"]).per(15)
-      when "hot-question-show"
-        @questions=current_group.questions.not_in(:hotness => [0]).order(:created_at=>:desc).page(params["page"]).per(15)
-      when "votes-question-show"
-        @questions=current_group.questions.not_in(:votes_count => [0]).order(:created_at=>:desc).page(params["page"]).per(15)
-      when "unanswered-question-show"
-        @questions=current_group.questions.where(:answers_count=>"0").order(:created_at=>:desc).page(params["page"]).per(15)
-      else
-        @questions = nil
+    
+    if params[:ques]=="search_questions"
+      # @questionArray = []
+      # Question.all.each do |question|
+        # if question.title.downcase.include?(params[:type].downcase)
+          # @questions = Question.where(:title => question.title).first
+          # @questionArray << question
+        # end
+      # end
+      @questions = Question.where(title: /#{params[:type]}/i).order(:created_at=>:desc).page(params["page"]).per(10)
+      respond_to do |format|
+        format.js{render "/experimental/experimental/ajax_entry"}
       end
-    respond_to do |format|
-      format.js{render "/experimental/experimental/ajax_entry"}
-    end
+    
+   
+    else
+      @query=params[:queryData]
+      case @query
+        when "newest-question-show"
+          @questions = current_group.questions.order(:created_at=>:desc).page(params["page"]).per(1)
+        when "hot-question-show"
+          @questions=current_group.questions.not_in(:hotness => [0]).order(:created_at=>:desc).page(params["page"]).per(10)
+        when "votes-question-show"
+          @questions=current_group.questions.not_in(:votes_count => [0]).order(:created_at=>:desc).page(params["page"]).per(15)
+        when "unanswered-question-show"
+          @questions=current_group.questions.where(:answers_count=>"0").order(:created_at=>:desc).page(params["page"]).per(15)
+        else
+          @questions = nil
+        end
+      respond_to do |format|
+        format.js{render "/experimental/experimental/ajax_entry"}
+      end
+     end
   end
   # action question_ajax
   
