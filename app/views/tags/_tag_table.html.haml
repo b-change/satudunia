@@ -1,15 +1,20 @@
--if params[:search_tags]=="search"
+- if "#{params[:ques]}"=="tag_questions"  
   %table.tag-list{:style => "width: 100%; margin-top:20px;"}
-    = tag_table.each_slice(4) do |tags|
-      %tr
-        - tags.each do |tag|
-          %td{:style => "line-height: 14px"}
-            %span.tag{:class => "tag_#{tag}"}
-              = tag_link(tag)
-              %span.count
-                = tag.count.to_i
-  #additional_info
-    = paginate @tags
+    %tr
+    -i = 0
+    - tag_table.each do |tag|
+      -i+=1
+      %td{:style => "line-height: 14px; width:10px;"}
+        %span.tag{:class => "tag_#{tag}"}
+          = tag_link(tag)
+          %span.count
+            = tag.count.to_i
+        -if i>3
+          %tr
+            -i =0
+    /#additional_info       
+    / -@paginator = @tags 
+    / = render :partial =>"pagination/pagination",:locals => {:paginationType=>"tags"}         
 -else   
   %table.tag-list{:style => "width: 100%; margin-top:20px;"}
     = tag_table.each_slice(4) do |tags|
@@ -20,5 +25,13 @@
               = tag_link(tag)
               %span.count
                 = tag.count.to_i
-  #additional_info
-    = paginate @tags
+    /#additional_info
+    / -@paginator = @tags 
+    / = render :partial =>"pagination/pagination",:locals => {:paginationType=>"tags"}
+:css
+  .pagination{
+    margin-bottom: -46px;
+  }
+  #additional_info{
+    margin-bottom: -46px;
+  }

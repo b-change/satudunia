@@ -5,18 +5,33 @@ class TagsController < ApplicationController
 
   def index
     add_breadcrumb "Tags", tags_path.gsub("/","")
-    @tags = current_scope.page(params["page"])
-
-    respond_to do |format|
-      format.html do
-        set_page_title(t("layouts.application.tags"))
+    if params[:ques]=="tag_questions"
+      if params[:type]== "x" || params[:type]==""
+        @tags = Tag.where(name: //i).order(:created_at=>:desc).page(params["page"]) 
+        respond_to do |format|
+        format.js{render "/tags/tag_table.js"}
       end
-      format.js do
-        html = render_to_string(:partial => "tag_table", :locals => {:tag_table => @tags})
-        render :json => {:html => html}
+      else
+      @tags = Tag.where(name: /#{params[:type]}/i).order(:created_at=>:desc).page(params["page"]) 
+      respond_to do |format|
+        format.js{render "/tags/tag_table.js"}
       end
-      format.json  { render :json => @tags.to_json }
     end
+    else  
+      @tags = current_scope.page(params["page"]) 
+      respond_to do |format|
+        format.html do
+          set_page_title(t("layouts.application.tags"))
+        end
+        format.js do
+          html = render_to_string(:partial => "tag_table", :locals => {:tag_table => @tags})
+          render :json => {:html => html}
+        end
+        format.json  { render :json => @tags.to_json }
+      end
+      # respond ends here
+    end
+    # condition statements ends here
   end
 
   def show
@@ -24,7 +39,7 @@ class TagsController < ApplicationController
     @current_tags = @tag_names = params[:id].split("+")
     @tags =  current_scope.where(:name.in => @tag_names)
     
-    @questions = current_group.questions.where(:tags => {:$all => @tag_names}, :banned => false).page(params["page"]).per(15)
+    @questions = current_group.questions.where(:tags => {:$all => @tag_names}, :banned => false).page(params["page"]).per(2)
     @title = "Questions tagged: #{@tag_names.join(', ')}"#I18n.t('tags.show.title', :tags => @tag_names.join(', '))
     #add_feeds_url(url_for(:format => "atom"), t("feeds.question"))
 

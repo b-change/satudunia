@@ -22,7 +22,7 @@
 					%br
 						= f.label "Date", :class => "label"
 						%br
-						= f.date_select :user_age, :start_year => 1950, :end_year => (Time.now.year)
+						= f.text_field :user_age
 					%br
 						= f.label :country_name, "Country", :class => "label"
 						= f.text_field :country_name, :class => "input-class1"

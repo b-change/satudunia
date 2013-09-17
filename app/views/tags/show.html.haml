@@ -60,10 +60,10 @@
     .activity{:role=>"admin"}
       #return-data-ajax
         = render "experimental/partials/questions"
-      #members-dir-search.dir-search.bottom_tag_search{:role => "search"}
-        %label
-          %input#members_search.search_textbox_height{:name => "s", :placeholder => "Search Tags...", :type => "text"}/
-        %input#members_search_submit{:name => "members_search_submit", :type => "reset", :value => "x", :style=>"opacity:1;"}/
+      / #members-dir-search.dir-search.bottom_tag_search{:role => "search"}
+      /   %label
+      /     %input#members_search.search_textbox_height{:name => "s", :placeholder => "Search Tags...", :type => "text"}/
+      /   %input#members_search_submit{:name => "members_search_submit", :type => "reset", :value => "x", :style=>"opacity:1;"}/
     / = render :partial =>"pagination/pagination",:locals => {:paginationType=>"questions"}
     //bottom pagination
     / #forums-dir-list-newest.dir-list

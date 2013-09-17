@@ -13,22 +13,38 @@
 							Tags
 				.section-arrow 
 			.overview-wrapper
+
 				/ %h1.title Login
+				%br
+				%br
+				#members-dir-search.dir-search{:role => "search"}
+					%label
+						%input#tag_search.search_textbox_height{:name => "s", :placeholder => "Search Tags...", :type => "text"}/
+					/ %input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
+					%input#tag_search_submit.clear_up_text{:name => "members_search_submit", :type => "reset", :value => "x", :style=>"opacity:1;"}/
+					%br
 				.overview-new.nopadding-top.padding-about
 					.excerpt-new1.justify-content.nopadding-top
 						%p.filter-content-new
 							%h2.title
-								= t('activerecord.models.tags')
-							= form_tag "/questions/tags", :class => "exp-contact-form-new", :id => "filter_tags", :method => "get" do
-								%p
-									= text_field_tag "q", params[:q], placeholder: t(".filter"), :class=>"input-class-new"
-								= button_tag("<i class='icon-cycle'></i>filter".html_safe, :class => "floatright")
+							/ 	= t('activerecord.models.tags')
+							/ = form_tag "/questions/tags", :class => "exp-contact-form-new", :id => "filter_tags", :method => "get" do
+							/ 	%p
+							/ 		= text_field_tag "q", params[:q], placeholder: t(".filter"), :class=>"input-class-new"
+							/ 	= button_tag("<i class='icon-cycle'></i>filter".html_safe, :class => "floatright")
 							-if logged_in? && current_user.mod_of?(current_group)
 								.add-a-new-tag
 									= link_to "<i class='icon-tag'></i>Add Tag".html_safe, new_tag_url,:class=>"extra-buttons"
 							%br
 							#tag_table
-								= render(:partial => "tag_table", :locals => {:tag_table => @tags})	
+								= render(:partial => "tag_table", :locals => {:tag_table => @tags})
+				%br
+				%br
+				#members-dir-search.dir-search{:role => "search"}
+					%label
+						%input#tag_bottom_search.search_textbox_height{:name => "s", :placeholder => "Search Tags...", :type => "text"}/
+					/ %input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
+					%input#tag_search_submit_bottom.clear_bottom_text{:name => "members_search_submit", :type => "reset", :value => "x", :style=>"opacity:1;"}/	
 		%br.clearer/
 		.main-content-left
 			.page-content.review.single-post
@@ -128,3 +144,50 @@
 	= render "experimental/partials/rating_box"
 	/banner box
 	= render "experimental/partials/banner_box"
+
+:javascript
+	jQuery(document).ready(function(jQ){
+		jQuery('#tag_search,#tag_bottom_search').on('keyup',function(e) {
+			if ((e.which)!=32){				
+				var v = jQuery(this).val();
+				var ques_search =jQuery.trim(v);
+				e.preventDefault();
+				jQuery(".loader").addClass("ajax-loader");
+				jQuery.ajax({           
+					url:'/tags',
+				    data:{ type: ques_search,ques:"tag_questions",idLoad: "tag_table",page:""},
+					error:function(errorObject){    
+				
+					},
+					success:function(successObject){
+					jQuery(".loader").removeClass("ajax-loader");
+					 
+					}
+				});
+			}
+		})
+		jQuery('.clear_up_text').click(function(){
+			jQuery('#tag_search').val('');
+		})
+		jQuery('.clear_bottom_text').on('click',function(){
+			jQuery('#tag_bottom_search').val('');
+			
+		})
+		jQuery('#tag_search_submit_bottom,#tag_search_submit').on('click',function(e) {
+			e.preventDefault();
+			jQuery(".loader").addClass("ajax-loader");
+			jQuery.ajax({           
+				url:'/tags',
+			    data:{ type: "",ques:"tag_questions",idLoad: "tag_table",page:""},
+				error:function(errorObject){    
+			
+				},
+				success:function(successObject){
+				jQuery(".loader").removeClass("ajax-loader");
+				 
+				}
+			});
+		})
+		jQuery('#tag_search').val('');
+		jQuery('#tag_bottom_search').val('');
+	});

@@ -19,7 +19,7 @@
 	#tabs-frontpage
 		%ul.tabnav.ui-tabs-nav
 			%li.ui-tabs-selected
-				%a{:href => "#Profile"} Profile
+				%a{:href => "#Profile",:id=>"profile-tab"} Profile
 			%li
 				%a{:href => "#TreatmentPrices"} Treatment & Prices
 			%li
@@ -27,7 +27,7 @@
 			%li
 				%a{:href => "#Review"} Review
 			%li
-				%a{:href => "#Map"} Map
+				%a{:href => "#Map" ,:id => "map-tab"} Map
 		/ top contact bar
 		= render "service_providers/partials/contact_bar"
 		.tabdiv-wrapper
@@ -129,7 +129,7 @@
 
 :javascript
 	jQuery(document).ready(function($){
-		$("#tab_overview").show();
+		$("#tab_overview").show();		
 		$(".ui-tabs-nav li").click(function(){
 			var thisVar = $(this);
 			var idTaker = thisVar.attr("data-find");
@@ -139,7 +139,7 @@
 			$("."+idTaker).addClass("ui-tabs-active");
 			$(".class-hide").hide();
 			$("#"+idTaker).show();
-		});
+		});		
 		// click function ends here
 
 
@@ -155,10 +155,14 @@
 		function initialize() {
 				geocoder = new google.maps.Geocoder();
 				bounds = new google.maps.LatLngBounds ();
-
 				var myOptions = {
 						zoom: 2, 
+						mapTypeControl:false,
 						mapTypeId: google.maps.MapTypeId.ROADMAP,
+						zoomControlOptions: {
+				    style: google.maps.ZoomControlStyle.LARGE
+				  }
+
 					
 				};
 			
@@ -168,15 +172,12 @@
 		}
 		
 		var locationsArray = [['#{escape_javascript @service_provider.name.gsub(",","")}','#{escape_javascript @service_provider.telephone}' + " " + '#{escape_javascript @service_provider.email}','#{escape_javascript @service_provider.address.gsub(",","")}']]
-
-
 		function plotMarkers(){
 				var i;
 				for(i = 0; i < locationsArray.length; i++){
 						codeAddresses(locationsArray[i]);
 				}
 		}
-
 		function codeAddresses(address){
 				geocoder.geocode( { 'address': address[2]}, function(results, status) { 
 						if (status == google.maps.GeocoderStatus.OK) {
@@ -197,16 +198,17 @@
 								markersArray.push(marker); 
 						}
 						else{
-								alert("Geocode was not successful for the following reason: " + status);
+								//alert("Geocode was not successful for the following reason: " + status);
 						}
-
 						map.fitBounds(bounds);
+						map.setZoom(12)
 				});
 		}
 
 		google.maps.event.addDomListener(window, 'load', initialize);
-
-
 	});
+	
+	
+	
 	
 	
