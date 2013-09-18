@@ -32,10 +32,10 @@ namespace :update_tags do
       #   @tag_data << tag[0]
       # end
       if Question.any_in(:tags=>[tag[0].to_s]).count.equal? 0
-        question = "Lorem Ipsum simply dummy text for printing and typesetting questions".split("").shuffle.join
-        question1 = "All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary".split("").shuffle.join
-        body = "Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text.".split("").shuffle.join
-        body1 = "Lorem Ipsum  simply dummy text for body of the second question".split("").shuffle.join
+        question = "#{tag[0].to_s} First question Lorem Ipsum "
+        question1 = "#{tag[0].to_s} Second questions All the Lorem Ipsum" 
+        body = "#{tag[0].to_s} First body the Lorem Ipsum" 
+        body1 = "#{tag[0].to_s} second body Lorem Ipsum " 
         questionHash = {title: question, tags: tag[0].to_s, group_id: @group.id, body: body}
         questionHash1 = {title: question1, tags: tag[0].to_s, group_id: @group.id, body: body1}
         @user.questions.create!(questionHash)
@@ -45,10 +45,10 @@ namespace :update_tags do
       unless tag[1].nil?
         tag[1].each do |subtag|
           if Question.any_in(:tags=>[subtag.to_s]).count.equal? 0
-            question = "Lorem Ipsum simply dummy text for printing and typesetting questions".split("").shuffle.join
-            question1 = "All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary".split("").shuffle.join
-            body = "Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text.".split("").shuffle.join
-            body1 = "Lorem Ipsum  simply dummy text for body of the second question".split("").shuffle.join
+            question = "#{subtag.to_s} First question Lorem Ipsum" 
+            question1 = "#{subtag.to_s} Second questions All the Lorem Ipsum" 
+            body = "#{subtag.to_s} First body the Lorem Ipsum"
+            body1 = "#{subtag.to_s} second body Lorem Ipsum " 
             questionHash = {title: question, tags: [subtag.to_s], group_id: @group.id,body: body}
             questionHash1 = {title: question1, tags: tag[0].to_s, group_id: @group.id, body: body1}
             @user.questions.create!(questionHash)
@@ -76,25 +76,31 @@ namespace :update_tags do
       # dummy answers
       if Question.find(question).answers.count.equal? 0
         questags = Question.find(question).tags
-        body = "Lorem Ipsum  simply dummy text for body of the questionAnswers".split("").shuffle.join
+        body = "#{Question.where(:_id=>question).first.tags} Answer Lorem Ipsum  simply dummy text "
         answerHash = {tags: questags, group_id: @group.id, body: body, question_id: question}
         @user.answers.create!(answerHash)
         puts "Answers created"
       end
-      # conditional statement ends here
-          # unless tag[1].nil?
-          #   tag[1].each do |subtag|
-          #     if Question.find(@question[i+=1]).answers.count.equal? 0
-          #       questags = Question.find(@question[i+=1]).tags
-          #       body = "Lorem Ipsum  simply dummy text for body of the questionAnswers".split("").shuffle.join
-          #       answerHash = {tags: questags, group_id: @group.id, body: body,question_id: @question[i+1]}
-          #       @user.answers.create!(answerHash)
-          #       puts "Answers created for subtag"
-          #     end
-          #   end
-          # end
-          # conditional statement ends here
     end
     # loop end here
+  end
+  desc "To update UserTagQuestions"
+  task :updateUserTagQuestions => :environment do
+    @usertags = Tag.all
+    @user = User.first
+    @group = Group.first
+    @usertags.each do |tag|
+     if Question.any_in(:tags=>[tag.name.to_s]).count.equal? 0
+        question = "#{tag.name } First question Lorem Ipsum" 
+        question1 = "#{tag.name } Second questions All the Lorem Ipsum" 
+        body = "#{tag.name } First body the Lorem Ipsum" 
+        body1 = "#{tag.name } second body Lorem Ipsum " 
+        questionHash = {title: question, tags: tag.name.to_s, group_id: @group.id, body: body}
+        questionHash1 = {title: question1, tags: tag.name.to_s, group_id: @group.id, body: body1}
+        @user.questions.create!(questionHash)
+        @user.questions.create!(questionHash1)
+        puts "User tags question created "
+      end
+    end
   end
 end

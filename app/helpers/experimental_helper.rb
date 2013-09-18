@@ -20,4 +20,8 @@ module ExperimentalHelper
 	def get_country_name(service_providers)
 		return service_providers.map(&:country).map(&:capitalize).uniq.reject { |c| c.empty? }
 	end
+
+	def get_questions_from_tag(tag)
+		Question.where(:tags => tag).blank? ? ["No question found for this tag"] :  Question.where(:tags => tag).map(&:title)
+	end
 end

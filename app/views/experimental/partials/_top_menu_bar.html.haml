@@ -27,7 +27,7 @@
 							%a{:href => '/login',:title=>"Sign in",:alt=>"sign in",:class=>"tool-tip",:title=>"Sign in"}  
 								="<i class='icon-login'></i>Login".html_safe
 						-else
-							= link_to "<i class='icon-user'></i>Login as #{h(current_user.role)}".html_safe,"#",:style=>"color:#027DB2;"
+							= link_to "<i class='icon-user'></i>Login as #{h(current_user.name)}".html_safe,"#",:style=>"color:#027DB2;"
 							%ul
 								/ %li
 								/ 	= link_to "<i class='icon-user'></i>#{current_user.login}".html_safe , user_path(current_user)

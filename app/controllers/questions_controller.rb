@@ -521,7 +521,7 @@ class QuestionsController < ApplicationController
       @query=params[:queryData]
       case @query
         when "newest-question-show"
-          @questions = current_group.questions.order(:created_at=>:desc).page(params["page"]).per(1)
+          @questions = current_group.questions.order(:created_at=>:desc).page(params["page"]).per(15)
         when "hot-question-show"
           @questions=current_group.questions.not_in(:hotness => [0]).order(:created_at=>:desc).page(params["page"]).per(10)
         when "votes-question-show"

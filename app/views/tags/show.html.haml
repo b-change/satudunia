@@ -14,9 +14,9 @@
             /%i.icon-vcard
             - if @tags.present?
               -@tags.each do |tag| 
-                Tags : : #{tag.name}
+                Tags::#{tag.name}
             - else
-              Tags : : #{@tagId.gsub(/[_]/, ' ')}
+              Tags::#{@tagId.gsub(/[_]/, ' ')}
       .section-arrow 
   #content.page-content
     %form#members-directory-form.dir-form{:action => "", :method => "post"}

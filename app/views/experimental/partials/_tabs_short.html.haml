@@ -73,6 +73,13 @@
 					%a.thumbnail.darken.video.small{:href => "single-review-numbers.html", :title => "Coffee Common: Bringing Coffee Power to the People"}
 						/ %img{:alt => "restaurants9", :height => "109", :src => "#{local_path_experimental}restaurants9-163x109.jpg", :width => "163"}/
 						- if news.has_news_image?
+							.rating-wrapper.small
+								.stars.yellow
+									.star.full
+									.star.full
+									.star.full
+									.star.full
+									.star.half
 							= image_tag news_image_path(news,"small"), :height => 109,:width=>163, :alt => news.slug
 						-else
 							%img{:alt => "misc3", :height => "109", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc3-70x70.jpg", :style => "opacity: 1;", :width => "163"}/

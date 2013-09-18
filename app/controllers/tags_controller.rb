@@ -39,10 +39,10 @@ class TagsController < ApplicationController
     @current_tags = @tag_names = params[:id].split("+")
     @tags =  current_scope.where(:name.in => @tag_names)
     
-    @questions = current_group.questions.where(:tags => {:$all => @tag_names}, :banned => false).page(params["page"]).per(2)
+    @questions = current_group.questions.where(:tags => {:$all => @tag_names}, :banned => false).page(params["page"]).per(15)
     @title = "Questions tagged: #{@tag_names.join(', ')}"#I18n.t('tags.show.title', :tags => @tag_names.join(', '))
     #add_feeds_url(url_for(:format => "atom"), t("feeds.question"))
-
+    # .gsub(/[ ]/,'_')
     set_page_title(@title)
 
     respond_to do |format|

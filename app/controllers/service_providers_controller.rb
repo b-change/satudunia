@@ -2,9 +2,11 @@ class ServiceProvidersController < ApplicationController
   before_filter :login_required, :except => [:index, :show]
   before_filter :check_permissions, :except => [:index, :show]
   before_filter :fetch_information, :only => [:index,:country]
+  before_filter :set_breadcrumb ,:except => [:index]
   layout "experiment"
 
   def index
+    add_breadcrumb "Services Map", service_providers_path.gsub("/","")
     respond_to do |format|
       format.html
       format.js
@@ -14,7 +16,8 @@ class ServiceProvidersController < ApplicationController
 
   def show
     @service_provider = ServiceProvider.by_slug(params[:slug])
-
+    @title=  @service_provider.try(:name)
+    add_breadcrumb "#{@title}",  @service_provider.slug
     if @service_provider.nil?
       flash[:error] = "Service Provider not found"
       redirect_to service_providers_path
@@ -101,14 +104,18 @@ class ServiceProvidersController < ApplicationController
     @categories = ServiceCategory.all
     # all service alphabetical_providers    
     if params[:service_search] && !params[:service_search].blank?
-      @serviceProviders = ServiceProvider.where({:name=>/#{params[:service_search]}/i}).page(params["page"]).per(15)
+      @serviceProviders = ServiceProvider.where({:name=>/#{params[:service_search]}/i}).page(params["page"]).per(10)
 
       @serviceProviders = ServiceProvider.where({:name=>Regexp.new(params[:service_search],true),:country=>Regexp.new(params[:country],true)}).page(params["page"]).per(15) if (params[:country] && !params[:country].blank?)
 
     elsif(params[:country] && !params[:country].blank?)        
-        @serviceProviders = ServiceProvider.where({:country=>Regexp.new(params[:country],true)}).page(params["page"]).per(15)
+      @serviceProviders = ServiceProvider.where({:country=>Regexp.new(params[:country],true)}).page(params["page"]).per(10)
     else
-      @serviceProviders = ServiceProvider.all.page(params["page"]).per(15)      
+      @serviceProviders = ServiceProvider.all.page(params["page"]).per(10)      
     end  
+  end
+  
+  def set_breadcrumb
+    add_breadcrumb "Services Map", :service_providers_path
   end
 end

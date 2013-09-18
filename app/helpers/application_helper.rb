@@ -547,7 +547,7 @@ module ApplicationHelper
   def user_realname(user)
     realname = "Anonymous"
     if !user.nil? && !user.hide_realname
-      realname = user.display_name
+      realname = user.name
     end
 
     realname

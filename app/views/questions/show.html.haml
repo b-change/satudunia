@@ -26,6 +26,7 @@
 									%li.bbp-body
 										#post-1343.bbp-reply-header
 											.bbp-meta
+												
 												%span.bbp-reply-post-date PostedOn: #{@question.created_at.to_datetime.strftime("%d %b %Y - %I:%M %p")}
 												/ %a.bbp-reply-permalink{:href => "http://www.industrialthemes.com/made/bbpress/topic/super-sticky-topic-inside-bbpress-forum/#post-1343", :title => "Super Sticky Topic Inside bbPress Forum"} #1343
 											/ .bbp-meta
@@ -116,7 +117,7 @@
 			- @question.answers.order(:created_at => :desc).each do |answer|
 				= render :partial => "answers/plus_answer", :locals => {:answer => answer, :comment => @comment}
 		%br.clearer/
-		.main-content-left
+		.main-content-left#your-answer
 			.page-content.review.single-post
 				%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
 				.review-content
@@ -141,16 +142,39 @@
 									%p
 										= form_for([@question,@answer],:method=>:post,:html => {:multipart => true,:name=>'answer_form',:id=>'answer_form',:class=>'exp-contact-form'}) do |f|
 											=# f.text_area :body, :class => "wysiwyg_editor",:size=>"40x20"
-											= f.label :body, "Your Answer", :class=>"label"
-											= f.text_area :body, :class => "text-default wysiwyg_editor textarea-class"
+											=# f.label :body, "Your Answer", :class=>"label"
+											=# f.text_area :body, :class => "text-default wysiwyg_editor textarea-class"
+											- if current_user.use_gravatar?
+												=link_to image_tag avatar_user_path(current_user),:size=>'30x30'
+											- else
+												%img.avatar.user-1227-avatar.avatar-50.photo{:alt => "Profile picture of zicrainnyRV", :height => "50", :src => "http://gravatar.com/avatar/5a0a1a5e96f190c339221f66d7b09b00?d=http://www.industrialthemes.com/made/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg&s=50&r=G", :width => "50"}/
+											=# f.text_area :body, :size=>"20x3", :style => "margin: 10px; width: 560px;"
+											.textarea-wrapper
+												= f.text_area :body, :size=>"0", :placeholder => "write your answer...", :class=> "textarea"
+												.post-actions
+													- if current_user.present?
+														.logged-in.auth-section
+															%section
+																.temp-post{style: "text-align: right"}
+																	%button.btn{disabled: "disabled"}
+																		Post as
+																		
+																		%span{"data-role" => "username"} 
+																			= current_user.login
 											/ = render :partial => 'shared/rich_text_partial'
 											%br.clearer/
-											%p
-												= link_to "<i class='icon-paper-plane'></i>Post your Answer".html_safe,"javascript:void(0)", :class => "submit-button", :id => "edit-user-link",:title => "Post your Answer",:onclick=>"document.answer_form.submit();"
-									.signoff-wrapper
-										.signoff Not the answer you're looking for? Browse other questions tag related to the question or #{link_to "create page for question", "/question/ask_a_question"}.
+											/ %p
+											/ 	= link_to "<i class='icon-paper-plane'></i>Post your Answer".html_safe,"javascript:void(0)", :class => "submit-button", :id => "edit-user-link",:title => "Post your Answer",:onclick=>"document.answer_form.submit();"
+						.contact-section-bottom-button
+
+							= link_to "Cancel".html_safe, question_path(@question), :class=>"contact-button", :id=> "align"
+							= link_to "Submit".html_safe, "javascript:void(0);", :id => "edit-user-link", :class=>"contact-button", :id=> "align",:title => "Post your Answer",:onclick=>"document.answer_form.submit();"
+					%br.clearer/
+					%br.clearer/
+					.signoff-wrapper
+						.signoff Not the answer you're looking for? Browse other questions tag related to the question or #{link_to "create page for question", "/question/ask_a_question"}.
 		%br.clearer/
-		.main-content-left
+		.main-content-left#set-page
 			.page-content.review.single-post
 				%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
 				.review-content
@@ -270,6 +294,9 @@
 		}
 		
 	});
+	jQuery("#answer_body").click(function(){
+		jQuery(".post-actions").show()
+	})
 	
 
 

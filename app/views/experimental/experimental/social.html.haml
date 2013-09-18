@@ -39,7 +39,7 @@
 			%br 
 		/ content area 
 		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
-		%br.hide-responsive/
+		/ %br.hide-responsive/
 		.overview-wrapper
 			.overview-new
 				.left-panel
@@ -55,9 +55,9 @@
 							%span.class-agree
 								=check_box_tag("check1", value = "1", checked = false, options = {:autocomplete=>"off"})
 								Yes, I Agree
-			%br.hide-responsive/
-			%br.hide-responsive/
-			%br.hide-responsive/
+			/ %br.hide-responsive/
+			/ %br.hide-responsive/
+			/ %br.hide-responsive/
 			.overview-new
 				.left-panel
 					%h2
@@ -79,9 +79,9 @@
 							%span.class-agree
 								=check_box_tag("check2", value = "1", checked = false, options = {:autocomplete=>"off"})
 								Yes, I Acknowledge
-			%br.hide-responsive/
-			%br.hide-responsive/
-			%br.hide-responsive/
+			/ %br.hide-responsive/
+			/ %br.hide-responsive/
+			/ %br.hide-responsive/
 			.overview-new
 				.left-panel
 					%h2
@@ -103,7 +103,7 @@
 							%span.class-agree
 								=check_box_tag("check3", value = "1", checked = false, options = {:autocomplete=>"off"})
 								Yes, I Accept
-			.contact-section-bottom-button{:style=>"z-index:500; margin-top:0px !important;"} 
+			.contact-section-bottom-button{:style=>"z-index:500; margin-top:0px !important; display:none"} 
 				.janrain-sign-up{:style=>"display:none;"}
 					= link_to_rpx "Next", user_session_url,:html=>{:title=>"Sign up with Janrain",:class=>"contact-button contact-button-single"}
 	
@@ -147,7 +147,7 @@
 				calculateClick-=1;;
 			}
 			if(calculateClick==3){
-				
+				jQuery(".contact-section-bottom-button").show()
 				jQuery(".janrain-sign-up").fadeIn("slow");
 				
 			}

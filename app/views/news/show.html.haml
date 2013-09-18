@@ -28,7 +28,6 @@
 									= @news.news_title
 								%small
 									by #{@news.user.name} on #{@news.created_at.strftime("%d %b %Y - %I:%M %p")}
-
 						- if @news.has_news_image?
 							= image_tag news_image_path(@news,"small"), :alt => @news.slug, :class => 'gravatar', :style => "margin: 10px", :size=>'500x400'
 						#service_information{:style => "margin: 10px"}
@@ -38,7 +37,7 @@
 			/ authorbox box partial 
 			= render "experimental/partials/author_box"
 			/ related box partial 
-			= render "experimental/partials/related_box"
+			=# render "experimental/partials/related_box"
 			.clearer.hide-responsive  
 			%br.hide-responsive/
 .sidebar

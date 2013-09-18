@@ -32,15 +32,16 @@
 			/ %h3 Mapping
 			#members-dir-search.dir-search{:role => "search"}
 				%label
-					%input#members_search{:name => "service_search", :placeholder => "Search Services...", :type => "text" ,:value=>params[:service_search]}/
-				%input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
-				%input#members_search_submit{:name => "members_search_submit", :type => "reset", :value => "x", :style=>"opacity:1;"}/
+					%input#members_search.search_textbox_height{:name => "service_search", :placeholder => "Search Services...", :type => "text" ,:value=>params[:service_search]}/
+				/ %input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
+				%input#members_search_submit.members_search_clear{:name => "members_search_submit", :type => "reset", :value => "x", :style=>"opacity:1;"}/
 		.item-list-tabs.activity-type-tabs{:role => "navigation"}
 			%ul
 				%li#members-order-select.selected
 					%a{:href=>"javascript:void(0)",:id=>"service-providers-list"}
 						All Services
 						%span= @serviceProviders.count
+						.loader
 		#subnav.item-list-tabs{:role => "navigation"}
 			%ul
 				%li#members-order-select.last.filter
@@ -48,12 +49,9 @@
 					%select#activity-filter-by
 						%option{:value => ""} All
 						-get_country_name(@service_providers).each do |provider|
-							%option{:value => ""} 
-								/= link_to "#{provider}",country_services_map_path(provider.downcase)
-						/%option{:value => ""} Singapore
-						/%option{:value => ""} Thailand
-						/%option{:value => ""} Indonesia
-						/%option{:value => ""} Philippines
+							%option{:value => "#{provider}"} 
+								= link_to "#{provider}",country_services_map_path(provider.downcase)
+						 
 								
 
 		
@@ -148,9 +146,9 @@
 				}
 			});
 		})
-		jQ('#activity-filter-by').change(function(){			
-			jQ('#content').submit();
-		})
+		//jQ('#activity-filter-by').change(function(){			
+			//jQ('#content').submit();
+		//})
 
 		jQ('#pagination-digg a').live('click',function(e){
 			e.preventDefault();
@@ -223,5 +221,47 @@
 	}
 
 	google.maps.event.addDomListener(window, 'load', initialize);
-	
+	//searching by dropdown
+	jQuery(document).ready(function(jQ){
+		jQ("#activity-filter-by").on('change',function(){
+			var valueTaker = jQ('#activity-filter-by').val();
+			jQuery(".loader").addClass("ajax-loader");
+			jQuery.ajax({     
+				url:'/services-map',
+				data: { country: valueTaker,type: "textbox_search",pate: ""},
+				dataType:"script",				
+				success:function(successObject){
+					jQuery(".loader").removeClass("ajax-loader");
+				}
+			});
+		})
+		//searching by textbox
+		jQ("#members_search").on('keyup',function(){
+			var valueTaker = jQ('#members_search').val();
+			var coun = jQ('#activity-filter-by').val();
+	 		jQuery(".loader").addClass("ajax-loader");
+			jQuery.ajax({     
+				url:'/services-map',
+				data: { service_search: valueTaker,country: coun},
+				dataType:"script",				
+				success:function(successObject){
+					jQuery(".loader").removeClass("ajax-loader");
+				}
+			});
+		})
 
+		//to clear textbox and show all services
+		jQ(".members_search_clear").on('click',function(){
+			jQ('#members_search').val('');
+			var valueTaker = jQ('#members_search').val();
+	 		jQuery(".loader").addClass("ajax-loader");
+			jQuery.ajax({     
+				url:'/services-map',
+				data: { country: valueTaker,type: "textbox_search",pate: ""},
+				dataType:"script",				
+				success:function(successObject){
+					jQuery(".loader").removeClass("ajax-loader");
+				}
+			});
+		})
+	});

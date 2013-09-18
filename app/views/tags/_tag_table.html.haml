@@ -1,30 +1,27 @@
 - if "#{params[:ques]}"=="tag_questions"  
-  %table.tag-list{:style => "width: 100%; margin-top:20px;"}
-    %tr
-    -i = 0
-    - tag_table.each do |tag|
-      -i+=1
-      %td{:style => "line-height: 14px; width:10px;"}
-        %span.tag{:class => "tag_#{tag}"}
-          = tag_link(tag)
-          %span.count
-            = tag.count.to_i
-        -if i>3
-          %tr
-            -i =0
+  - tag_table.each do |tag|
+    %span.tags1_2_3
+      %a{:href => "/tags/#{tag.name}"} 
+        =tag.name.gsub(/[_]/, ' ')
+        %span
+          x
+        %span.avoid_link_color#weight-font
+          = Question.where(:tags=>"#{tag.name.downcase}").count.to_i
+        &nbsp;&nbsp;
     /#additional_info       
     / -@paginator = @tags 
     / = render :partial =>"pagination/pagination",:locals => {:paginationType=>"tags"}         
--else   
-  %table.tag-list{:style => "width: 100%; margin-top:20px;"}
-    = tag_table.each_slice(4) do |tags|
-      %tr
-        - tags.each do |tag|
-          %td{:style => "line-height: 14px"}
-            %span.tag{:class => "tag_#{tag}"}
-              = tag_link(tag)
-              %span.count
-                = tag.count.to_i
+-else
+  = tag_table.each_slice(4) do |tags|
+    - tags.each do |tag|   
+      %span.tags1_2_3
+        %a{:href => "/tags/#{tag.name}"} 
+          =tag.name.gsub(/[_]/, ' ')
+        %span
+          x
+        %span.avoid_link_color#weight-font
+          = Question.where(:tags=>"#{tag.name.downcase}").count.to_i
+        &nbsp;&nbsp;
     /#additional_info
     / -@paginator = @tags 
     / = render :partial =>"pagination/pagination",:locals => {:paginationType=>"tags"}

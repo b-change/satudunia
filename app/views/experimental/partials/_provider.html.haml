@@ -26,5 +26,5 @@
 	#content.page-content
 		#forums-dir-list-newest.dir-list
 			#pag-top.pagination
-				
+				-@paginator = @serviceProviders
 				= render :partial =>"pagination/pagination",:locals => {:paginationType=>"serviceProviders"}

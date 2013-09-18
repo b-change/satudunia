@@ -5,13 +5,14 @@
 / 		%div{:id=>"#{paginationType}_pagination"}
 / 			#members-dir-list.members.dir-list1
 / 				= paginate @paginator 
-
-
-
+- val = "#{@paginator.options[:skip]+@paginator.options[:limit]}".to_i
+- count = "#{@paginator.count}".to_i
+-if val > count 
+	- val = count
 #forums-dir-list-newest.dir-list
 	#pag-top.pagination
 		#member-dir-count-top.pag-count
-			Viewing #{paginationType.capitalize} #{@paginator.options[:skip]} to #{@paginator.options[:skip]+@paginator.options[:limit]} (of #{@paginator.count} #{paginationType.capitalize})
+			Viewing #{paginationType.capitalize} #{@paginator.options[:skip]} to #{val} (of #{count} #{paginationType.capitalize})
 		%div{:id=>"#{paginationType}_pagination"}
 			#members-dir-list.members.dir-list1
 				= paginate @paginator 

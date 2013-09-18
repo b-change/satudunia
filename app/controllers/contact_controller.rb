@@ -2,6 +2,7 @@ class ContactController < ApplicationController
   layout "experiment"
 
   def index
+    add_breadcrumb "Contact Us", contact_index_path.gsub("/","")
     @contact = Contact.new()
   end
   # send contact us action

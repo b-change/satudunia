@@ -27,7 +27,10 @@ class AnswersController < ApplicationController
   end
 
   def answers_tab
-    if params[:answer_search].present?
+    if params[:type]== "textbox_search"
+      @answers = Answer.where(body: /#{params[:value]}/i).order(:created_at=>:desc).page(params["page"]).per(15)
+    
+    elsif params[:answer_search].present?
       @answers = current_group.answers.where({:body=>/#{params[:answer_search]}/}).order(:created_at=>:desc).page(params["page"]).per(15)
     else
       case params[:value]

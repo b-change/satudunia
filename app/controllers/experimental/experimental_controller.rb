@@ -23,6 +23,8 @@ class Experimental::ExperimentalController < ApplicationController
     @active_member = Membership.where(state: "active").limit(3)
     @announcements = Announcement.all
     @news = News.all
+    @random_tags = Tag.all.sample(4).map(&:name)
+    @questions = Question.all
     # fetching data data to show in related box
     @about = StaticPage.where(:static_key => 'about').first
     @tos = StaticPage.where(:static_key => 'tos').first
