@@ -1,1 +1,8 @@
-jQuery("#show245").html("<%= escape_javascript(render 'experimental/partials/comments_ajax_partial') %>");
+<% if params[:answer_id].present?%>
+	jQuery('#answer-comment420_<%=@answer.id%>').html("<%= escape_javascript(render 'experimental/partials/answer_comments',:locals=>{:answer=>@answer}) %>");
+	
+<%else%>
+	jQuery("#show245").html("<%= escape_javascript(render 'experimental/partials/comments_ajax_partial') %>");
+	
+<%end%>
+

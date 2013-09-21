@@ -9,13 +9,7 @@
     .arrow-catpanel-top    
     %h2
       = link_to truncate(strip_tags(news.news_title.capitalize),:length=>64), news_path(news.slug),:class=>"avoid_link_color"
-    .rating-wrapper.small
-      .stars.yellow
-        .star.full  
-        .star.full  
-        .star  
-        .star  
-        .star  
+    #news-rating{:id =>"#{news.id}"}
     .clear-responsive  
     .date
       #{news.created_at.strftime("%b %d, %Y")}
@@ -50,3 +44,6 @@
       = truncate(strip_tags(news.news_body), :length => 300)
     .more
       = link_to "More",news_path(news.slug),:class=>"avoid_link_color"
+
+%script
+  jQuery("#news-rating_#{news.id}").raty({ readOnly: true,score: "#{news.rating}",path: '../assets'});      

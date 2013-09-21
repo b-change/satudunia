@@ -47,6 +47,7 @@
 :javascript
 	jQuery("#user-news-rating_#{@news.id}").raty({
 	  path: '../assets',
+	  score: "#{@news.rating}",
 	  precision: true,
 	  click: function(score, evt) {
 	    jQuery.ajax({

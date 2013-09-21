@@ -90,7 +90,8 @@
 										/ %h1.title 
 										/   =@title.upcase
 									%p
-										= form_for [@question, @comment ||= Comment.new], remote: true, html: {:class=>"question_comment_form exp-contact-form",:id=>'comment-form', data: {commentable: @question.id, editor: current_group.wysiwyg_editor ? 'wysiwyg_editor' : 'markdown_editor', "login-required" => true}} do |f|
+										
+										= form_for([@question,@answer],:method=>:post,:url=>question_answers_path(@question.slug),:html => {:multipart => true,:name=>'answer_form',:id=>'answer_form',:class=>'exp-contact-form'}) do |f|
 											=# f.text_area :body, :class => "wysiwyg_editor",:size=>"40x20"
 											=# f.label :body, "Your Answer", :class=>"label"
 											=# f.text_area :body, :class => "text-default wysiwyg_editor textarea-class"
@@ -167,6 +168,7 @@
 										(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
 									}());
 		%br.clearer/	
+	
 
 .sidebar
 	= render "experimental/partials/left_bar"
@@ -196,6 +198,7 @@
 	}
 
 	jQuery(window).load(function(){
+		jQuery(".textarea").attr("value", "");
 		// jQuery('#question-comment-panel-link').click(function (){
 		// 	jQuery('#question-comment-panel-link').hide();
 		// 	jQuery('#question-comment-panel').show();
@@ -208,8 +211,8 @@
 		jQuery('#enter-comment').keypress(function(e) {
 			if (e.which == '13') {
 				jQuery('form#comment-form').submit();
+				jQuery(this).attr("value", "");
 				return false;
-
 			}
 		});
 		Editor.setup(jQuery(".markdown_editor, .wysiwyg_editor"));
@@ -251,7 +254,6 @@
 
 
 	
-
 
 
 

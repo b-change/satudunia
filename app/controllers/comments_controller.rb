@@ -12,6 +12,7 @@ class CommentsController < ApplicationController
   end
 
   def create
+
     @comment = Comment.new
     @comment.body = params[:comment][:body]
     @comment.user = current_user
@@ -122,6 +123,8 @@ class CommentsController < ApplicationController
       format.html { redirect_to(params[:source]||question_path(:id => @question.slug)) }
       format.json { head :ok }
     end
+
+    
   end
 
   protected

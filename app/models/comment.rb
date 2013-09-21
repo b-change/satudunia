@@ -59,6 +59,7 @@ class Comment
   end
 
   def question_id
+    
     question_id = nil
 
     if self._parent.is_a?(Question)
