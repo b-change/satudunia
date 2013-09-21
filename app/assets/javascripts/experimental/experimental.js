@@ -4,6 +4,8 @@
 	@desc			=	this file includes all the js used in experimental module
 */
 
+//= require jquery-ui
+//= require jquery_ujs
 //= require 'experimental/plugins'
 //= require 'experimental/custom'
 //= require 'experimental/customFunction'
@@ -17,8 +19,3 @@
 //= require 'experimental/jquery.tipsy'  
 //= require 'experimental/addthis_widget.js'
 //= require 'experimental/turnsocialTooltip.js'
-
-
-
-
-

@@ -3,7 +3,10 @@ class News
   include Mongoid::Timestamps
   include MongoidExt::Storage
   include MongoidExt::Slugizer
+  include Mongoid::Rateable
 
+  RATING_RANGE = (1..5)
+  
   slug_key :news_title, :unique => true
   
   paginates_per 25

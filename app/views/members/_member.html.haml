@@ -3,25 +3,26 @@
 
 -can_modify_member = logged_in? && (current_user.admin? || current_user != member ) && current_user.owner_of?(@group)
 
-%tr
-  %td
-    = format_number(member.questions.count)
-  %td
-    = format_number(member.answers.count)
-  %td
-    = format_number(member.reputation_on(current_group))
-  %td
-    = link_to member.display_name, user_path(member)
-  %td
-    = form_tag(member_path(membership), :class => "form-horizontal", :id => "form_user_#{member.id}", :method => :put) do         
-      = select_tag :role, options_for_select(locales_roles, membership.role)
-  %td
-    = link_to "<span class='icon12 icomoon-icon-pencil'></span>".html_safe, "#", :class => "tip", :title => "Update User", :id => "update_user_#{member.id}"
-    = link_to "<span class='icon12 icomoon-icon-remove'></span>".html_safe, member_path(membership), :method => :delete, :confirm => "Are you sure? This User will no longer exist"
+-if member!=nil
+  %tr
+    %td
+      = format_number(member.questions.count) if member!=nil
+    %td
+      = format_number(member.answers.count)
+    %td
+      = format_number(member.reputation_on(current_group))
+    %td
+      = link_to member.display_name, user_path(member)
+    %td
+      = form_tag(member_path(membership), :class => "form-horizontal", :id => "form_user_#{member.id}", :method => :put) do         
+        = select_tag :role, options_for_select(locales_roles, membership.role)
+    %td
+      = link_to "<span class='icon12 icomoon-icon-pencil'></span>".html_safe, "#", :class => "tip", :title => "Update User", :id => "update_user_#{member.id}"
+      = link_to "<span class='icon12 icomoon-icon-remove'></span>".html_safe, member_path(membership), :method => :delete, :confirm => "Are you sure? This User will no longer exist"
 
-    :javascript
-      $(document).ready(function(){
-        $('#update_user_#{member.id}').click(function (){
-          $('#form_user_#{member.id}').submit();
+      :javascript
+        $(document).ready(function(){
+          $('#update_user_#{member.id}').click(function (){
+            $('#form_user_#{member.id}').submit();
+          });
         });
-      });

@@ -24,6 +24,7 @@
 					.the-content.justify-content			
 						.userDescription
 							.basicInfo{:style => "margin-left: 10px !important"}
+								#user-news-rating{:id => @news.id}
 								%h2
 									= @news.news_title
 								%small
@@ -42,3 +43,17 @@
 			%br.hide-responsive/
 .sidebar
 	= render "experimental/partials/left_bar"
+
+:javascript
+	jQuery("#user-news-rating_#{@news.id}").raty({
+	  path: '../assets',
+	  precision: true,
+	  click: function(score, evt) {
+	    jQuery.ajax({
+				url: "/news/#{@news._id.to_s}/rating",
+				data: {score: score},
+				success:function(){
+				}
+			});
+	  }
+	});

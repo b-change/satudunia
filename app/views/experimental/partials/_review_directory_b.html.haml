@@ -29,6 +29,6 @@
 							.star.full  
 							.star.full  
 							.star.half  
-					%a.title.alt{:href => "single-review-numbers.html", :style => "color:#6ab8cc"}= title
+					= link_to "#{title}",question_path(title.downcase.gsub(" ","-")),:class => "title"
 	%br.clearer/
 %br.clearer/

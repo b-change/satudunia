@@ -1152,13 +1152,14 @@ form#search input {
 	font-family: arial !important;
 	color: blue !important;
 }
-#your-answer{
+#your-answers{
 	margin-top: -95px !important;
 }
+/*For Your Answer */
 .textarea-wrapper{
 	border-radius: 4px 4px 4px 4px;
   box-shadow: 0 0 0 2px rgba(16, 48, 68, 0.2) inset;
-  margin: -53px 0 0 63px;
+  margin: -40px 0 0 63px;
   padding: 2px;
   position: relative;
   width: 88% !important;
@@ -1177,10 +1178,45 @@ form#search input {
   padding: 6px 10px 8px;
   resize: none;
   transition: all 0.15s ease-in-out 0s;
-  width: 95%;
+  width: 96%;
+}
+
+.textarea-wrapper .textarea:focus {
+	outline: 0;
 }
 
 .post-actions{
 	background: none repeat scroll 0 0 #F6F8F9;
 	display: none;
+}
+
+/*For country-Select */
+.select-text-adj > select{
+	width:100%;
+}
+
+.set-box{
+	width:15% !important;
+	font-size: 12px !important;
+}
+
+.set-box-phone{
+	width:30% !important;
+	font-size: 12px !important;
+}
+.set-comments{
+	background-color: #EDEFF4
+}
+
+.set-left {
+    margin-left: 34px;
+}
+
+.set-comments-show{
+	margin-top:-29px;
+	margin-left:40px;
+}
+
+.set-topper{
+	margin-top:-2px !important;
 }

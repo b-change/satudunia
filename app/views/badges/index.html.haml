@@ -68,7 +68,7 @@
 				%br
 				#members-dir-search.dir-search{:role => "search"}
 					%label
-						%input#members_search1{:name => "badge_search", :placeholder => "Search Badges...", :type => "text",:style=>"height: 20px;"}/
+						%input#members_search1.bottom_searchbox{:name => "badge_search", :placeholder => "Search Badges...", :type => "text",:style=>"height: 20px;"}/
 					%input#members_clear_field{:name => "members_clear_field", :type => "reset", :value => "X"}
 				%br.clearer/
 		.main-content-left
@@ -166,7 +166,7 @@
 	/popular box
 	= render "experimental/partials/popular_box"
 	/rating box
-	= render "experimental/partials/rating_box"
+	/ = render "experimental/partials/rating_box"
 	/banner box
 	= render "experimental/partials/banner_box"
 
@@ -191,7 +191,8 @@
 
 					},
 					success:function(successObject){
-					jQuery('html, body').animate({ scrollTop: jQuery(".overview-new").offset().top });
+					jQuery('html, body').animate({ scrollTop: 400 });
+					//jQuery('html, body').animate({ scrollTop: jQuery(".overview-new").offset().top });
 					jQuery(".loader").removeClass("ajax-loader");
 
 					}
@@ -211,7 +212,6 @@
 					data: { tab: valueTaker},
 					dataType:"script",				
 					success:function(successObject){
-						jQuery('html, body').animate({ scrollTop: 50 });
 						jQuery(".loader").removeClass("ajax-loader");
 						jQuery('#members_clear_field').addClass("cancel_search");
 						
@@ -231,7 +231,9 @@
 					data: { tab: valueTaker},
 					dataType:"script",				
 					success:function(successObject){
-						jQuery('html, body').animate({ scrollTop: 50 });
+						if(jQuery(this).hasClass('bottom_searchbox')){
+							
+						}
 						jQuery(".loader").removeClass("ajax-loader");
 						
 					}

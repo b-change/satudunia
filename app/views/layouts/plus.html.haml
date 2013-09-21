@@ -19,12 +19,7 @@
     %meta{'http-equiv' => "Content-Language", :content => "en-US"}
     %meta{'http-equiv' => "imagetoolbar", :content => "no"}
     / favicon
-    %link{:href => favicon_group_path(current_group), :rel => "icon"}/
-    %link{:href => shortcut_group_path(current_group), :rel => "shortcut icon"}/
-    %link{:href => apple_group_path(current_group), :rel => "apple-touch-icon"}/
-    %link{:href => applest_group_path(current_group), :rel => "apple-touch-startup-image"}/
-    %meta{:content => metro_group_path(current_group), :name=>"msapplication-TileImage"}/
-    %meta{:content => "#{current_group.metro_color}", :name=>"msapplication-TileColo"}/
+    = favicon_link_tag 'favicon.ico'
     
     / CSS
     = stylesheet_link_tag "plus/plus.css"

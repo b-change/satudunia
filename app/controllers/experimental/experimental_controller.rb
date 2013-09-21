@@ -23,6 +23,7 @@ class Experimental::ExperimentalController < ApplicationController
     @active_member = Membership.where(state: "active").limit(3)
     @announcements = Announcement.all
     @news = News.all
+    @tags = Tag.all
     @random_tags = Tag.all.sample(4).map(&:name)
     @questions = Question.all
     # fetching data data to show in related box
@@ -146,6 +147,9 @@ class Experimental::ExperimentalController < ApplicationController
   end
   #ERROR PAGE FOR EXPERIMENTAL
   def routing_error
+    if params[:query]!="" && params[:query].present?
+      @routes = Route.where(url: /#{params[:query]}/i) 
+    end
     render :file => "#{Rails.root}/public/404.html", :status => 404
   end
 
@@ -200,6 +204,15 @@ class Experimental::ExperimentalController < ApplicationController
           @resources = nil
       end
     end  
+  end
+
+  def comments_rss
+
+    @question_comments_feed = (Question.order_by(:'comments.updated_at'.desc).limit(1).only(:comments).first.comments) + (Answer.order_by(:'comments.updated_at'.desc).limit(1).only(:comments).first.comments)
+
+    respond_to do |format|
+      format.atom
+    end
   end
   
 

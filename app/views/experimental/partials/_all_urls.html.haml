@@ -1,0 +1,11 @@
+#bbpress-forums.set-question
+	.post-1343.topic.type-topic.status-publish.odd.bbp-parent-forum-1322.bbp-parent-topic-1343.bbp-reply-position-1.user-id-494.topic-author
+		-@routes.each do |route|
+			%h6
+				=link_to "#{route.url}","#{route.url}"
+
+						
+:javascript
+	jQuery(document).ready(function(){
+		jQuery('html, body').animate({ scrollTop: 500 });
+	})

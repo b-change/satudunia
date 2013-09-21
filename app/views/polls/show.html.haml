@@ -24,7 +24,8 @@
 						= succeed ":" do
 							%span.taxName Poll 
 						%span.taxContent
-							= @poll.poll_title
+							- if @poll
+								= @poll.poll_title
 						
 .sidebar
 	= render "experimental/partials/login_box"

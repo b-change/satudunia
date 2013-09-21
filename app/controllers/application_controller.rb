@@ -30,6 +30,7 @@ class ApplicationController < ActionController::Base
   before_filter :check_sidebar
   before_filter :check_mobile_logout
   before_filter :get_service_providers
+  before_filter :get_tags_and_questions
 
   has_mobile_fu :mobile_enabled
 
@@ -315,5 +316,11 @@ class ApplicationController < ActionController::Base
   # header content for experimental
   def get_service_providers
     @service_providers = ServiceProvider.all
+  end
+
+  def get_tags_and_questions
+    @news_experimental = News.all
+    @tags_experimental = Tag.all
+    @random_tags_experimental = Tag.all.sample(4).map(&:name)
   end
 end

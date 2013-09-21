@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_filter :login_required#, :except => [:new, :create, :index, :show, :related_questions, :tags_for_autocomplete, :retag, :retag_to, :random, :history, :diff]
+  before_filter :login_required,:except => [:index]#, :except => [:new, :create, :index, :show, :related_questions, :tags_for_autocomplete, :retag, :retag_to, :random, :history, :diff]
   before_filter :admin_required, :only => [:move, :move_to]
   before_filter :moderator_required, :only => [:close]
   before_filter :check_permissions, :only => [:solve, :unsolve, :destroy]
@@ -10,8 +10,8 @@ class QuestionsController < ApplicationController
   before_filter :check_retag_permissions, :only => [:retag, :retag_to]
   before_filter :track_pageview
 
-  add_breadcrumb "Questions", 'questions'
-
+  # add_breadcrumb "Questions", 'questions'
+  before_filter :set_breadcrumb ,:except => [:index]
   tabs :default => :questions, :tags => :tags,
        :new => :ask_question
 
@@ -38,6 +38,7 @@ class QuestionsController < ApplicationController
   # - all the questions tagged with one of the tag I follow_up
 
   def index
+    add_breadcrumb "Questions", questions_path.gsub("/","")
     @body_id = "page3"
     @tags = current_group.tags
 
@@ -889,5 +890,9 @@ class QuestionsController < ApplicationController
     draft = Draft.create!(:question => @question)
     session[:draft] = draft.id
     login_required
+  end
+
+  def set_breadcrumb
+    add_breadcrumb "Questions", :questions_path
   end
 end

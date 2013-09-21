@@ -1,4 +1,3 @@
-
 class MembersController < ApplicationController
   layout "supr"
   before_filter :login_required

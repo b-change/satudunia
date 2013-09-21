@@ -103,4 +103,45 @@ namespace :update_tags do
       end
     end
   end
+  desc "To update Comments"
+    task :addCommentsToQuestions => :environment do
+      @users = User.all.map(& :id)
+      @questions = Question.all
+      - i=0
+      @questions.each do |question|
+        question.comments.create!(:body=>"Hello first new comment  by #{User.where(:_id=>@users[i]).first.name}. ",:user_id=>"#{@users[i]}")
+        question.comments.create!(:body=>"Hello second new comment  by #{User.where(:_id=>@users[i]).first.name}.",:user_id=>"#{@users[i]}")
+        puts "comments created "
+        -i = i+=1
+          if (i == ((@users.count)-1))
+            i=0
+          end
+      end
+    end
+  desc "New Comments to Badges "
+  task :addCommentsToBadges => :environment do
+    @users = User.all
+    @users.each do |user|
+      BadgeComment.create!(:message=>"Commented by #{user.name}",:user_id=>user.id)
+      puts "New commet crated to badges"
+    end
+    # BadgeComment.last(4).each do |badge|
+    #   badge.ancestry = BadgeComment.first.id.to_s
+    # end
+  end
+  desc "To update Routes"
+    task :addRoutes => :environment do
+      Route.delete_all
+      path =['questions','answers','tags','badges','services-map','services-map/singapore','services-map/india','services-map/malaysia',
+        'about','contact','terms','privacy-policy','polls','survey','tags/disclosure','tags/casual_partners',
+        'tags/family','tags/friends','tags/regular_partners','tags/drugs','tags/partying','tas/sex','tags/first_diagnosis','tags/situation',
+        'tags/maintaining_treatment','tags/comments','tags/regular_access_to_medication','tags/relationships','tags/dating','tags/sex','tags/minimising-risk',
+        'tags/safer_sex','tags/starting_medication','tags/accessing_medication','tags/selecting_medication','tags/cost','tags/side_effects',
+        'tags/starting_treatment','tags/clinics','tags/doctors','tags/travel','tags/migration','tags/tourism','tags/well_being',
+        'tags/fitness','tags/nutrition','tags/work','tags/health_insurance','tags/health_checks']
+        path.each do |i|
+          Route.create!(url: "#{i}")
+          puts "Routes created"
+        end
+    end
 end

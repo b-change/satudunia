@@ -16,4 +16,11 @@ class NewsController < ApplicationController
       set_page_title(@news.news_title)
     end
   end
+
+  def rating
+    @news = News.find(params[:id])
+    @news.rate params[:score] ,current_user
+    @news.save
+    render :nothing => true
+  end
 end

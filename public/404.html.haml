@@ -27,10 +27,15 @@
 					%br/
 					.searchform
 						/ SEARCH
-						%form#search404{:action => "#", :method => "get"}
-							%input#s{:name => "s", :onblur => "if (this.value == '') {this.value = 'search';}", :onfocus => "if (this.value == 'search') {this.value = '';}", :type => "text", :value => "search"}/
+						%form#search404{:action => "/routing_error", :method => "get"}
+							%input#s{:name => "query", :onblur => "if (this.value == '') {this.value = 'search';}", :onfocus => "if (this.value == 'search') {this.value = '';}", :type => "text", :value => "search"}/
 					.note
 						Enter keyword(s) and press enter
+		- if @routes!=nil && @routes!="empty"
+			= render 'experimental/partials/all_urls'
+		- if @routes!=nil && @routes.count==0
+			= render "experimental/partials/empty_record_message.html"
+		
 	%br/
 .sidebar
 	/profile box
@@ -45,7 +50,6 @@
 	= render "experimental/partials/newly_reviewed"
 	/popular box
 	= render "experimental/partials/popular_box"
-	= render "experimental/partials/profile_box"
 
 / .clearer.hide-responsive  
 / %br.hide-responsive/

@@ -8,234 +8,62 @@
       Review Services Maps
   .ribbon-shadow-right  
   .section-arrow  
-  .categorypanels
-    .categorypanel
-      .vertical
-        .category
-          .ribbon-shadow-left  
-          .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-fashion-light.png) no-repeat 0px 0px;"}  
-          .catname
-            Fashion
-          .category-arrow  
-        %a.darken.video{:href => "single-review-numbers.html"}
-          %img{:alt => "fashion4", :height => "170", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/fashion4-300x170.jpg", :style => "opacity: 1;", :width => "300"}/
-        .inner
-          %h2
-            %a{:href => "single-review-numbers.html"} Yohji Yamamoto Autumn (Fall) / Winter 2012 men's
-          .excerpt Donec a tellus a eros laoreet ultrices non non nisi. Nulla et sem nisi. Praesent egestas ultricies feugiat. In hac habitasse platea dictumst. Cras a lacus erat. Aenean tempor nibh non lorem vulputate sodales. Suspendisse erat d...
-          .more-bar
-            .rating-wrapper.small
-              .letter.color4 B+
-            .comments
-              %a{:href => "single-review-numbers.html", :title => "Comment on Yohji Yamamoto Autumn (Fall) / Winter 2012 men's"} 0 comments
-            .more
-              %a{:href => "single-review-numbers.html"} More
-          %br.clearer/
-      .post-panel-wrapper
-        .post-panel
-          .post-thumbnail
-            %a.darken.small{:href => "single-review-numbers.html"} <img width="70" height="70" =alt="fashion2" src="http://www.industrialthemes.com/made/wp-content/uploads/2012/06/fashion2-70x70.jpg">
-          .post-info
-            %h3
-              %a{:href => "single-review-numbers.html"} Art Deco fashion: the new take
-            .post-meta
+  - get_country_name(@service_providers).first(4).each do |provider|
+    - @class = cycle('','right')
+    .categorypanels
+      .categorypanel{:class => "#{@class}"}
+        .vertical
+          .category
+            .ribbon-shadow-left  
+            .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-fashion-light.png) no-repeat 0px 0px;"}  
+            .catname
+              = provider
+            .category-arrow  
+          %a.darken.video{:href => "single-review-numbers.html"}
+            %img{:alt => "fashion4", :height => "170", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/fashion4-300x170.jpg", :style => "opacity: 1;", :width => "300"}/
+          .inner
+            %h2
+              %a{:href => "single-review-numbers.html"}
+              = provider
+            .excerpt Donec a tellus a eros laoreet ultrices non non nisi. Nulla et sem nisi. Praesent egestas ultricies feugiat. In hac habitasse platea dictumst. Cras a lacus erat. Aenean tempor nibh non lorem vulputate sodales. Suspendisse erat d...
+            .more-bar
               .rating-wrapper.small
-                .letter.color2 D-
+                .letter.color4 B+
               .comments
-                %a{:href => "single-review-numbers.html", :title => "Comment on Art Deco fashion: the new take"} 0 comments
-              .clearer
-          .clearer
-      .post-panel-wrapper
-        .post-panel
-          .post-thumbnail
-            %a.darken.small{:href => "single-review-numbers.html"}
-              %img{:alt => "fashion3", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/fashion3-70x70.jpg", :width => "70"}/
-          .post-info
-            %h3
-              %a{:href => "single-review-numbers.html"} 5 Colorful Watches From Zappos for under $50
-            .post-meta
-              .rating-wrapper.small
-                .letter.color3 C
-              .comments
-                %a{:href => "single-review-numbers.html", :title => "Comment on 5 Colorful Watches From Zappos for under $50"} 0 comments
-              .clearer
-          .clearer
-    / end categorypanels section
-    .categorypanel.right
-      .vertical
-        .category
-          .ribbon-shadow-left  
-          .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-restaurant-light.png) no-repeat 0px 0px;"}  
-          .catname
-            Restaurant
-          .category-arrow  
-        %a.darken{:href => "single-review-numbers.html"}
-          %img{:alt => "restaurants7", :height => "170", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/restaurants7-300x170.jpg", :width => "300"}/
-        .inner
-          %h2
-            %a{:href => "single-review-numbers.html"} A Sandwich a Day: Fried Scallops from Brucie
-          .excerpt Donec sollicitudin venenatis mattis. Vestibulum fermentum, risus a luctus fermentum, enim purus aliquet tellus, id interdum nisl velit nec diam. Etiam mauris odio, aliquam a elementum eu, vulputate eu nunc.
-          .more-bar
-            .rating-wrapper.small
-              .stars.yellow
-                .star.full  
-                .star.full  
-                .star  
-                .star  
-                .star  
-            .comments
-              %a{:href => "single-review-numbers.html", :title => "Comment on A Sandwich a Day: Fried Scallops from Brucie"} 0 comments
-            .more
-              %a{:href => "single-review-numbers.html"} More
-          %br.clearer/
-      .post-panel-wrapper
-        .post-panel
-          .post-thumbnail
-            %a.darken.small.video{:href => "single-review-numbers.html"}
-              %img{:alt => "restaurants9", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/restaurants9-70x70.jpg", :width => "70"}/
-          .post-info
-            %h3
-              %a{:href => "single-review-numbers.html"} Coffee Common: Bringing Coffee Power to the People
-            .post-meta
-              .rating-wrapper.small
-                .stars.yellow
-                  .star.full  
-                  .star.full  
-                  .star.full  
-                  .star.full  
-                  .star.half  
-              .comments
-                %a{:href => "single-review-numbers.html", :title => "Comment on Coffee Common: Bringing Coffee Power to the People"} 0 comments
-              .clearer
-          .clearer
-      .post-panel-wrapper
-        .post-panel
-          .post-thumbnail
-            %a.darken.small{:href => "single-review-numbers.html"}
-              %img{:alt => "restaurants4", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/restaurants4-70x70.jpg", :width => "70"}/
-          .post-info
-            %h3
-              %a{:href => "single-review-numbers.html"} NYC Food Events for the Weekend and Beyond
-            .post-meta
-              .rating-wrapper.small
-                .stars.yellow
-                  .star.full  
-                  .star.full  
-                  .star.full  
-                  .star.full  
-                  .star  
-              .comments
-                %a{:href => "single-review-numbers.html", :title => "Comment on NYC Food Events for the Weekend and Beyond"} 0 comments
-              .clearer
-          .clearer
-    / end categorypanels section
-    .clearer.non-responsive
-    .clear-responsive  
-    .categorypanel
-      .vertical
-        .category
-          .ribbon-shadow-left  
-          .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-movie-light.png) no-repeat 0px 0px;"}  
-          .catname
-            Movie
-          .category-arrow  
-        %a.darken.video{:href => "single-review-numbers.html"}
-          %img{:alt => "movies3", :height => "170", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-300x170.jpg", :width => "300"}/
-        .inner
-          %h2
-            %a{:href => "single-review-numbers.html"} The Hobbit: An Unexpected Journey
-          .excerpt Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet egestas. Ut suscipit dapibus tellus, vitae gravida lectus faucibus sed. Sed dapibus mauris vulputate quam imperdiet eges...
-          .more-bar
-            .rating-wrapper.small
-              .number.color5 88%
-            .comments
-              %a{:href => "single-review-numbers.html", :title => "Comment on The Hobbit: An Unexpected Journey"} 0 comments
-            .more
-              %a{:href => "single-review-numbers.html"} More
-          %br.clearer/
-      .post-panel-wrapper
-        .post-panel
-          .post-thumbnail
-            %a.darken.small{:href => "single-review-numbers.html"}
-              %img{:alt => "movies2", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies2-70x70.jpg", :width => "70"}/
-          .post-info
-            %h3
-              %a{:href => "single-review-numbers.html"} The Bourne Legacy
-            .post-meta
-              .rating-wrapper.small
-                .number.color3 42%
-              .comments
-                %a{:href => "single-review-numbers.html", :title => "Comment on The Bourne Legacy"} 0 comments
-              .clearer
-          .clearer
-      .post-panel-wrapper
-        .post-panel
-          .post-thumbnail
-            %a.darken.small.video{:href => "single-review-numbers.html"}
-              %img{:alt => "Planet earth", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/07/photodune-2102679-planet-earth-s-70x70.jpg", :width => "70"}/
-          .post-info
-            %h3
-              %a{:href => "single-review-numbers.html"} Total Recall
-            .post-meta
-              .rating-wrapper.small
-                .number.color4 79%
-              .comments
-                %a{:href => "single-review-numbers.html", :title => "Comment on Total Recall"} 0 comments
-              .clearer
-          .clearer
-    / end categorypanels section
-    .categorypanel.right
-      .vertical
-        .category
-          .ribbon-shadow-left  
-          .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-music-light.png) no-repeat 0px 0px;"}  
-          .catname
-            Music
-          .category-arrow  
-        %a.darken{:href => "single-review-numbers.html"}
-          %img{:alt => "rock concert", :height => "170", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/07/photodune-277307-rock-concert-s-300x170.jpg", :width => "300"}/
-        .inner
-          %h2
-            %a{:href => "single-review-numbers.html"} Gotye – Mirrors
-          .excerpt Donec a tellus a eros laoreet ultrices non non nisi. Nulla et sem nisi. Praesent egestas ultricies feugiat. In hac habitasse platea dictumst. Cras a lacus erat. Aenean tempor nibh non lorem vulputate sodales. Suspendisse erat d...
-          .more-bar
-            .rating-wrapper.small
-              .number.color4 7.4
-            .comments
-              %a{:href => "single-review-numbers.html", :title => "Comment on Gotye – Mirrors"} 0 comments
-            .more
-              %a{:href => "single-review-numbers.html"} More
-          %br.clearer/
-      .post-panel-wrapper
-        .post-panel
-          .post-thumbnail
-            %a.darken.small.video{:href => "single-review-numbers.html"}
-              %img{:alt => "music3", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/music3-70x70.jpg", :width => "70"}/
-          .post-info
-            %h3
-              %a{:href => "single-review-numbers.html"} Skrillex – Bangarang
-            .post-meta
-              .rating-wrapper.small
-                .number.color5 8.2
-              .comments
-                %a{:href => "single-review-numbers.html", :title => "Comment on Skrillex – Bangarang"} 0 comments
-              .clearer
-          .clearer
-      .post-panel-wrapper
-        .post-panel
-          .post-thumbnail
-            %a.darken.small{:href => "single-review-numbers.html"}
-              %img{:alt => "photodune-216844-young-female-jazz-singer-holding-an-retro-microphone--s", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/07/photodune-216844-young-female-jazz-singer-holding-an-retro-microphone-s-70x70.jpg", :width => "70"}/
-          .post-info
-            %h3
-              %a{:href => "single-review-numbers.html"} Cold War Kids – Mine Is Yours
-            .post-meta
-              .rating-wrapper.small
-                .number.color1 1.9
-              .comments
-                %a{:href => "single-review-numbers.html", :title => "Comment on Cold War Kids – Mine Is Yours"} 6 comments
-              .clearer
-          .clearer
-    / end categorypanels section
-    .clearer.non-responsive
-    .clear-responsive  
+                %a{:href => "single-review-numbers.html", :title => "Comment on Yohji Yamamoto Autumn (Fall) / Winter 2012 men's"} 0 comments
+              .more
+                %a{:href => "single-review-numbers.html"} More
+            %br.clearer/
+        .post-panel-wrapper
+          .post-panel
+            .post-thumbnail
+              %a.darken.small{:href => "single-review-numbers.html"} <img width="70" height="70" =alt="fashion2" src="http://www.industrialthemes.com/made/wp-content/uploads/2012/06/fashion2-70x70.jpg">
+            .post-info
+              %h3
+                %a{:href => "single-review-numbers.html"} Art Deco fashion: the new take
+              .post-meta
+                .rating-wrapper.small
+                  .letter.color2 D-
+                .comments
+                  %a{:href => "single-review-numbers.html", :title => "Comment on Art Deco fashion: the new take"} 0 comments
+                .clearer
+            .clearer
+        .post-panel-wrapper
+          .post-panel
+            .post-thumbnail
+              %a.darken.small{:href => "single-review-numbers.html"}
+                %img{:alt => "fashion3", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/fashion3-70x70.jpg", :width => "70"}/
+            .post-info
+              %h3
+                %a{:href => "single-review-numbers.html"} 5 Colorful Watches From Zappos for under $50
+              .post-meta
+                .rating-wrapper.small
+                  .letter.color3 C
+                .comments
+                  %a{:href => "single-review-numbers.html", :title => "Comment on 5 Colorful Watches From Zappos for under $50"} 0 comments
+                .clearer
+            .clearer
+  / end categorypanels section
+/ - if @class == 'right'
+/   .clearer.non-responsive
+/   .clear-responsive

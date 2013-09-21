@@ -22,6 +22,10 @@ module ExperimentalHelper
 	end
 
 	def get_questions_from_tag(tag)
-		Question.where(:tags => tag).blank? ? ["No question found for this tag"] :  Question.where(:tags => tag).map(&:title)
+		Question.where(:tags => tag).blank? ? ["No question found for this tag"] :  Question.where(:tags => tag).map(&:title).map(&:lstrip).map(&:rstrip)
+	end
+
+	def fetch_latest_comments
+		(Question.order_by(:'comments.updated_at'.desc).limit(1).only(:comments).first.comments.map(&:body).first(5)) + (Answer.order_by(:'comments.updated_at'.desc).limit(1).only(:comments).first.comments.map(&:body).first(5))
 	end
 end

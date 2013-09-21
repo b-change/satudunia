@@ -15,7 +15,7 @@
         %li
           %a{:href => "/users", :title=>"Community", :alt=>"Community"} Community
         %li
-          %a{:href => contact_path, :title=>"Contact", :alt=>"Contact"} Contact
+          = link_to "Contact",contact_index_path
         %li
           %a{:href => ask_question_experimental_index_path, :title=>"Ask a Question", :alt=>"Ask a Question"} Ask a Question
     %br.clearer/
@@ -103,107 +103,63 @@
             .review-header Questions By Category
             %ul.tabnav
               %li
-                %a.first{:href => "#tabs-movie_genre"} Genre
+                %a.first{:href => "#tabs-genre_1"} Genre 1
               %li
-                %a{:href => "#tabs-movie_director"} Director
+                %a{:href => "#tabs-genre_2"} Genre 2
               %li
-                %a{:href => "#tabs-movie_actor"} Actor
+                %a{:href => "#tabs-genre_3"} Genre 3
               %li
-                %a{:href => "#tabs-movie_mpaa_rating"} MPAA Rating
+                %a{:href => "#tabs-genre_4"} Genre 4
             %br.clearer/
             .tabdiv-wrapper
-              #tabs-movie_genre.tabdiv
+              #tabs-genre_1.tabdiv
                 %ul
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Travel"} Travel 
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Well being"} Well being
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Drugs "} Drugs 
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Relationship"} Relationship
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Sex"} Sex
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Disclosure"} Disclosure
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Daignosis"} Daignosis
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Treatment"} Treatment
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Medication"} Medication
+                  - @tags_experimental.each do |tag|
+                    %li
+                      = link_to "#{tag.name}", tag_path(tag.name)
                   %li.last  
-              #tabs-movie_director.tabdiv
+              #tabs-genre_2.tabdiv
                 %ul
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Woody Allen"} Woody Allen
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Ron Howard"} Ron Howard
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Michael Mann"} Michael Mann
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Quentin Terantino"} Quentin Terantino
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Robert Zemeckis"} Robert Zemeckis
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Tim Burton"} Tim Burton
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Steven Spielberg"} Steven Spielberg
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Ridley Scott"} Ridley Scott
+                  - @tags_experimental.each do |tag|
+                    %li
+                      = link_to "#{tag.name}", tag_path(tag.name)
                   %li.last  
-              #tabs-movie_actor.tabdiv
+              #tabs-genre_3.tabdiv
                 %ul
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Anne Hathaway"} Anne Hathaway
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Kristen Stewart"} Kristen Stewart
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Leonardo DiCaprio"} Leonardo DiCaprio
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Penelope Cruz"} Penelope Cruz
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Robert Pattinson"} Robert Pattinson
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Ryan Gosling"} Ryan Gosling
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Scarlett Johansson"} Scarlett Johansson
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under Tom Cruise"} Tom Cruise
+                  - @tags_experimental.each do |tag|
+                    %li
+                      = link_to "#{tag.name}", tag_path(tag.name)
                   %li.last  
-              #tabs-movie_mpaa_rating.tabdiv
+              #tabs-genre_4.tabdiv
                 %ul
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under G"} G
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under PG"} PG
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under PG-13"} PG-13
-                  %li
-                    %a{:href => "archive-a.html", :title => "View all posts filed under R"} R
+                  - @tags_experimental.each do |tag|
+                    %li
+                      = link_to "#{tag.name}", tag_path(tag.name)
                   %li.last  
         .widget
           %h2 Meta
           %ul.list-show-widget
-            - if !current_user.nil? && current_user.owner_of?(current_group)
+            - if current_user && current_user.owner_of?(current_group)
               %li
-                = link_to "Admin", "/admin",:target=>"_blank"
+                = link_to "Site Admin", "/admin",:target=>"_blank"
+            - else
+              %li
+                = link_to "Site Admin", "/admin",:target=>"_blank"
             - if user_signed_in?
               %li
                 = link_to t("layouts.application.logout"), destroy_user_session_path
+            - else
+              %li
+                = link_to "Log in", destroy_user_session_path
+
             %li
-              %a{:href => "#", :title => "Syndicate this site using RSS 2.0"}
-                Entries
-                %abbr{:title => "Really Simple Syndication"} RSS
+              = link_to "Comments RSS",comments_rss_experimental_index_path(:atom)
+              = image_tag 'rss.png',alt: "Rss"
             %li
-              %a{:href => "#", :title => "The latest comments to all posts in RSS"}
-                Comments
-                %abbr{:title => "Really Simple Syndication"} RSS
-            %li
-              = link_to "Rss Feed(Service Providers)",service_providers_path(:atom)                
+              = link_to "Service Providers RSS",service_providers_path(:atom)
               = image_tag 'rss.png',alt: "Rss"  
             %li
-              = link_to "Rss_Feed_questions",questions_path(:atom)
+              = link_to "Questions and Answers RSS",questions_path(:atom)
               = image_tag 'rss.png',alt: "Rss"
       .panel
         .widget

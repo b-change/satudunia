@@ -35,7 +35,7 @@ class TagsController < ApplicationController
   end
 
   def show
-    @tagId = params[:id]
+    @tagId = params[:id].gsub(/[ ]/,'_')
     @current_tags = @tag_names = params[:id].split("+")
     @tags =  current_scope.where(:name.in => @tag_names)
     
