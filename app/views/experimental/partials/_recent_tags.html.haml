@@ -6,7 +6,7 @@
           Question Tags
       .tags-list
         - @tags.each do |tag|
-          %span{:class => "tags1_2 floatleft", :title => "#{tag.name}"}
+          %span{:class => "tags1_2_3 floatleft", :title => "#{tag.name}"}
             = link_to h(tag.name).html_safe, tag_path(:id => CGI.escape(tag.name))
             %span
               x

@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 	before_filter :check_signup_type, :only => [:new]
 	before_filter :track_pageview
 
+	# add_breadcrumb "Home", :root_path
 	tab_config = [[:newest, [:created_at, Mongo::DESCENDING]],
 								[:hot, [:hotness, Mongo::DESCENDING]],
 								[:votes, [:votes_average, Mongo::DESCENDING], [:created_at, Mongo::DESCENDING]],
@@ -36,6 +37,7 @@ class UsersController < ApplicationController
 				:feed => tab_config,
 				:contributed => tab_config
 	layout "experiment", :only => [:index,:new,:create, :show, :answers, :follows, :activity, :edit, :survey, :social_connect]
+	
 	def index
 		set_page_title(t("users.index.title"))
 		order = current_order
@@ -102,6 +104,8 @@ class UsersController < ApplicationController
 
 	def show
 		
+		add_breadcrumb "#{params[:controller]}","/#{params[:controller]}"
+		add_breadcrumb "#{params[:id]}","#{params[:id]}"
 		@body_id = "page3"
 		@resources = @user.questions.where(:group_id => current_group.id,
 																			 :banned => false,
@@ -132,6 +136,9 @@ class UsersController < ApplicationController
 	end
 
 	def answers
+		add_breadcrumb "#{params[:controller]}","/#{params[:controller]}"
+		add_breadcrumb "#{params[:id]}",user_path
+		add_breadcrumb "#{params[:action]}","/user/admin/#{params[:action]}"
 		@body_id = "page3"
 		@answers = @user.answers.where(:group_id => current_group.id,
 																		 :banned => false,
@@ -176,7 +183,7 @@ class UsersController < ApplicationController
     end
   end
 	def follows
-	
+		show_breadcrumb
 		@body_id = "page3"
 		case @active_subtab.to_s
 		when "following"
@@ -205,6 +212,7 @@ class UsersController < ApplicationController
 	end
 
 	def activity
+		show_breadcrumb
 		
 		@body_id = "page3"
 		conds = {}
@@ -240,6 +248,7 @@ class UsersController < ApplicationController
 	end
 
 	def survey
+		show_breadcrumb
 		@body_id = "page3"
 
 		# @resources = %w{tier-sample tier1 tier2 tier3 tier4 tier5 tier6 tier7}
@@ -510,6 +519,11 @@ class UsersController < ApplicationController
 		@user.viewed_on!(current_group, request.remote_ip) if @user != current_user && !is_bot?
 	end
 
+	def show_breadcrumb
+		add_breadcrumb "#{params[:controller]}","/#{params[:controller]}"
+		add_breadcrumb "#{params[:id]}",user_path
+		add_breadcrumb "#{params[:action]}","/user/admin/#{params[:action]}"
+	end
 
 end
 

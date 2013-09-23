@@ -142,9 +142,6 @@
             - if current_user && current_user.owner_of?(current_group)
               %li
                 = link_to "Site Admin", "/admin",:target=>"_blank"
-            - else
-              %li
-                = link_to "Site Admin", "/admin",:target=>"_blank"
             - if user_signed_in?
               %li
                 = link_to t("layouts.application.logout"), destroy_user_session_path

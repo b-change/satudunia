@@ -16,26 +16,29 @@
           %ul
             - get_questions_from_tag(tags[0]).first(8).each do |title|
               %li
-                .rating-wrapper.small
-                  .number.color4 7.4
-                = link_to "#{title}",question_path(title.downcase.gsub(" ","-"))
+                - unless Question.where(:tags =>tags[0]).blank?
+                  .rating-wrapper.small 
+                    .number.color4 7.4
+                = link_to title,question_path(title.downcase.gsub(" ","-"))
                 %br.clearer/
               %li.last
         #tabs-compact-tag4.tabdiv
           %ul
             - get_questions_from_tag(tags[1]).first(8).each do |title|
               %li
-                .rating-wrapper.small
-                  .number.color4 7.4
-                = link_to "#{title}",question_path(title.downcase.gsub(" ","-")) 
+                - unless Question.where(:tags =>tags[1]).blank?
+                  .rating-wrapper.small 
+                    .number.color4 7.4
+                = link_to title,question_path(title.downcase.gsub(" ","-"))
                 %br.clearer/
               %li.last
         #tabs-compact-tag5.tabdiv
           %ul
             - get_questions_from_tag(tags[2]).first(8).each do |title|
               %li
-                .rating-wrapper.small
-                  .number.color4 7.4
-                = link_to "#{title}",question_path(title.downcase.gsub(" ","-")) 
+                - unless Question.where(:tags =>tags[2]).blank?
+                  .rating-wrapper.small 
+                    .number.color4 7.4
+                = link_to title,question_path(title.downcase.gsub(" ","-"))
                 %br.clearer/
               %li.last

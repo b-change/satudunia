@@ -22,7 +22,7 @@ module ExperimentalHelper
 	end
 
 	def get_questions_from_tag(tag)
-		Question.where(:tags => tag).blank? ? ["No question found for this tag"] :  Question.where(:tags => tag).map(&:title).map(&:lstrip).map(&:rstrip)
+		Question.where(:tags => tag).blank? ? ["<div id= 'message' class='info'><p>Sorry, there was no activity found. Please try a different filter.</p></div>".html_safe] :  Question.where(:tags => tag).map(&:title).map(&:lstrip).map(&:rstrip)
 	end
 
 	def fetch_latest_comments

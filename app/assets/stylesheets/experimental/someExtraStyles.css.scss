@@ -997,6 +997,7 @@ form#search input {
 		margin-left: 5px;
 		margin-top: 7px;
 		padding: 1px 6px;
+		font-style: normal;
 	float:left;
 	line-height: 18px;
 }
@@ -1215,6 +1216,7 @@ form#search input {
 .set-comments-show{
 	margin-top:-29px;
 	margin-left:40px;
+	word-wrap: break-word;
 }
 
 .set-topper{
@@ -1223,4 +1225,17 @@ form#search input {
 
 .set-comment-area{
 	width:526px !important;
+}
+
+.rating-news{
+	margin-left:500px;
+}
+
+.set-fonts a{
+	font-size: 13px !important;
+	font-weight: 600 !important;
+}
+
+#set-top {
+	margin-top: -25px;
 }

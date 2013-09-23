@@ -25,7 +25,7 @@
 							= image_tag (announcement_image_path(announcement,"small")) , :height => 109,:width=>163
 						- else
 							= image_tag ("banner-250x250.jpg") , :height => 109,:width=>163
-					%a.post-title{:href => announcement_path(announcement), :title => "Gotye – Mirrors"} #{announcement.message}
+					%a.post-title{:href => announcement_path(announcement), :title => "Gotye – Mirrors"}= truncate("#{announcement.message}",:length=>25)
 			/ .panel
 			/   .rating-wrapper.small
 			/     .letter.color2 D-

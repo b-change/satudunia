@@ -27,7 +27,7 @@
 							%a{:href => '/login',:title=>"Sign in",:alt=>"sign in",:class=>"tool-tip",:title=>"Sign in"}  
 								="<i class='icon-login'></i>Login".html_safe
 						-else
-							= link_to "<i class='icon-user'></i>Login as #{h(current_user.name)}".html_safe,"#",:style=>"color:#027DB2;"
+							= link_to "<i class='icon-user'></i>Login as #{h(current_user.login)}".html_safe,"#",:style=>"color:#027DB2;"
 							%ul
 								/ %li
 								/ 	= link_to "<i class='icon-user'></i>#{current_user.login}".html_safe , user_path(current_user)
@@ -86,7 +86,7 @@
 		= link_to "<i class='icon-key'></i>Sign Up with Email".html_safe,signup_path,:html=>{:title=>"Sign up",:class=>"tool-tip"}
 		%br
 		%br
-		= link_to_rpx "<i class='icon-key'></i>Sign Up with Social+ Networks.".html_safe, user_session_url 
+		= link_to "<i class='icon-key'></i>Sign Up with Social+ Networks.".html_safe,social_experimental_index_path
 	%a.close-reveal-modal#close-box
 		%img{:alt => "close", :src => "http://cdn.rpxnow.com/rel/img/43f137c98b7a6562f6ad5f076fce376b.png", :style => "width: 34px; top: -4px; right: -4px; position: absolute; height: 34px; cursor: pointer;"}/
 =javascript_include_rpx(user_session_url)

@@ -75,7 +75,7 @@ Rails.application.routes.draw do
   # match '/members' => 'users#index', :as =>:users
   # match '/members/:id' => 'users#show', :as =>:user
 
-  resources :users, :path=>"/members", :except=>[:new] do
+  resources :users, :except=>[:new] do
     collection do
       get :autocomplete_for_user_login
       post :connect

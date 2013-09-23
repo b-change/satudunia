@@ -15,19 +15,22 @@
 		
 
 :javascript
-	jQuery("#acc-details").click(function(){
-		jQuery("#all_checks").hide();
-		jQuery("#password_settings").hide();
-		jQuery("#details_page").show();
-
-	});
-	jQuery("#acc_settings").click(function(){
-		jQuery("#all_checks").show();
-		jQuery("#details_page").hide();
-		jQuery("#password_settings").hide();	  
-	});
-	jQuery("#email").click(function(){
-		jQuery("#all_checks").hide();
-		jQuery("#details_page").hide();
-		jQuery("#password_settings").show();	 
-	});
+	jQuery('#activity-filter-by').live('change',function(){
+		var v = jQuery(this).val();
+	
+		if (v == -1){
+			jQuery("#all_checks").hide();
+			jQuery("#password_settings").hide();
+			jQuery("#details_page").show();
+		}
+		if (v == 'activity_update'){
+			jQuery("#all_checks").show();
+			jQuery("#details_page").hide();
+			jQuery("#password_settings").hide();
+		}
+		if (v == 'new_blog_post'){
+			jQuery("#all_checks").hide();
+			jQuery("#details_page").hide();
+			jQuery("#password_settings").show();
+		}
+	})

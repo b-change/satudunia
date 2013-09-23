@@ -116,7 +116,15 @@
 	-else
 		/profile box
 		= render "experimental/partials/profile_box"
-	= render "experimental/partials/left_bar"
+	= render "experimental/partials/social_login_box"
+	/ member box
+	= render "experimental/partials/member_box"
+	/rating box
+	= render "experimental/partials/rating_box"
+	/rating box
+	= render "experimental/partials/rating_box2"
+	/ left bar
+	/ = render "experimental/partials/left_bar"
 	/widget top
 	= render "experimental/partials/widget_top"
 	/ .clearer.hide-responsive
@@ -125,8 +133,6 @@
 	= render "experimental/partials/newly_reviewed"
 	/popular box
 	= render "experimental/partials/popular_box"
-	/rating box
-	= render "experimental/partials/rating_box"
 	/banner box
 	= render "experimental/partials/banner_box"
 

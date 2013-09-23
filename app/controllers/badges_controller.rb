@@ -1,6 +1,6 @@
 class BadgesController < ApplicationController
   before_filter :track_pageview
-  before_filter :login_required ,:only=>[:index]
+  # before_filter :login_required ,:only=>[:index]
   layout "experiment"
 
   tabs :default => :badges

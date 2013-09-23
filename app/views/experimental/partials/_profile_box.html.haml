@@ -14,7 +14,7 @@
               = image_tag("#{local_path_experimental}member.jpeg",:width => "100",:class=>"avatar") 
           .item.set-height
             .item-meta.fn.login-profile-box#set-width
-              =link_to current_user.username, settings_path
+              =link_to current_user.login, settings_path
             / .item-meta
             /   %span.activity
             /     Joined

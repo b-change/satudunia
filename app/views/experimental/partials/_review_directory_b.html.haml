@@ -22,13 +22,14 @@
 					.arrow-catpanel-bottom  
 				- get_questions_from_tag(tag).first(5).each_with_index do |title,index|
 					-	css_pro = index==0 ? 'first' : 'last'
-					.rating-wrapper.small{:class=>css_pro}
-						.stars.yellow
-							.star.full  
-							.star.full  
-							.star.full  
-							.star.full  
-							.star.half  
-					= link_to "#{title}",question_path(title.downcase.gsub(" ","-")),:class => "title"
+					- unless Question.where(:tags =>tag).blank?
+						.rating-wrapper.small{:class=>css_pro}
+							.stars.yellow
+								.star.full  
+								.star.full  
+								.star.full  
+								.star.full  
+								.star.half  
+					= link_to title,question_path(title.downcase.gsub(" ","-")),:class => "title"
 	%br.clearer/
 %br.clearer/

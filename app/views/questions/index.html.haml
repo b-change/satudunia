@@ -135,18 +135,26 @@
 		/profile box
 		= render "experimental/partials/profile_box"
 
-	= render "experimental/partials/recent_tags"
-	= render "experimental/partials/left_bar"
-	/widget top
-	=# render "experimental/partials/widget_top"
-	/recent tags
-
-	/popular box
-	=# render "experimental/partials/popular_box"
+	/ social login box
+	= render "experimental/partials/social_login_box"
+	/ member box
+	= render "experimental/partials/member_box"
 	/rating box
-	=# render "experimental/partials/rating_box"
+	= render "experimental/partials/rating_box"
+	/rating box
+	= render "experimental/partials/rating_box2"
+	/ left bar
+	/ = render "experimental/partials/left_bar"
+	/widget top
+	= render "experimental/partials/widget_top"
+	/ .clearer.hide-responsive
+	/ %br.clearer/
+	/ newly reviewd
+	= render "experimental/partials/newly_reviewed"
+	/popular box
+	= render "experimental/partials/popular_box"
 	/banner box
-	=# render "experimental/partials/banner_box"
+	= render "experimental/partials/banner_box"
 :css
 	#question_bottom_search {
 		margin-top: -5px ;
@@ -172,14 +180,14 @@
 				jQuery(".loader").addClass("ajax-loader");
 				jQuery.ajax({           
 					url:'/question_ajax',
-				    data:{ type: ques_search,queryData:"queryData",ques:"search_questions",idLoad: "question_ajax",nameOfPartial:"question_ajax",page:""},
+						data:{ type: ques_search,queryData:"queryData",ques:"search_questions",idLoad: "question_ajax",nameOfPartial:"question_ajax",page:""},
 						dataType:"script",
 						error:function(errorObject){    
 
 					},
 					success:function(successObject){
 					jQuery(".loader").removeClass("ajax-loader");
-					 	
+						
 					}
 				});
 		})
@@ -193,7 +201,7 @@
 				})
 			})
 		jQuery('#members_search_submit_below').click(function(){
-		  jQuery('#question_under_search').val("");
+			jQuery('#question_under_search').val("");
 		})	
 	});
 
