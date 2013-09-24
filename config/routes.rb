@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   get "survey/index"
 
-  devise_for(:users,:path=>"/users", :path_names => { :sign_in => "login", :sign_out => "logout"}, :controllers => {:registrations => 'users', :omniauth_callbacks => "multiauth/sessions"}) do
+  devise_for(:users,:path=>"/members", :path_names => { :sign_in => "login", :sign_out => "logout"}, :controllers => {:registrations => 'users', :omniauth_callbacks => "multiauth/sessions"}) do
     
     match "login" => "devise/sessions#new", :as => :new_user_session 
     match "logout" => "devise/sessions#destroy", :as => :destroy_user_session
@@ -75,7 +75,7 @@ Rails.application.routes.draw do
   # match '/members' => 'users#index', :as =>:users
   # match '/members/:id' => 'users#show', :as =>:user
 
-  resources :users, :except=>[:new] do
+  resources :users, :path=>"/members", :except=>[:new] do
     collection do
       get :autocomplete_for_user_login
       post :connect
@@ -169,6 +169,8 @@ Rails.application.routes.draw do
   match 'question/:id' => 'questions#show', :as => :question
   #match 'questions/ask-a-question' => "questions#new", :as => :new_question
 
+  match '/questions/:question_id/comments/:id' => 'comments#show', :as=>:question_comment, :path=>'/question/:question_id/comments/:id'
+
   resources :questions, :except => [:show, :new] do
     # some routes written by vivek
     resources :votes
@@ -197,7 +199,7 @@ Rails.application.routes.draw do
       get :twitter_share
     end
 
-    resources :comments do
+    resources :comments, :except=> [:show] do
       resources :votes
     end
     
@@ -420,7 +422,7 @@ Rails.application.routes.draw do
         get :events
         get :crowdfunding 
         get :dashboard, :path=> "/profile/dashboard"
-        get :social
+        get 'social/:via' => :social ,:as=> :social
         get :comments_rss
         # get :announce, :path=> "/announcements"
         # experimental routes

@@ -1,11 +1,13 @@
 class ServiceProvidersController < ApplicationController
-  before_filter :login_required, :except => [:index, :show]
-  before_filter :check_permissions, :except => [:index, :show]
+  $service_provider_index_action_counter = 250
+  before_filter :login_required, :except => [:index, :show,:country]
+  before_filter :check_permissions, :except => [:index, :show,:country]
   before_filter :fetch_information, :only => [:index,:country]
   before_filter :set_breadcrumb ,:except => [:index]
   layout "experiment"
 
   def index
+    $service_provider_index_action_counter += 1
     add_breadcrumb "Services Map", service_providers_path.gsub("/","")
     respond_to do |format|
       format.html

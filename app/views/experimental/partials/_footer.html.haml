@@ -114,25 +114,25 @@
             .tabdiv-wrapper
               #tabs-genre_1.tabdiv
                 %ul
-                  - @tags_experimental.each do |tag|
+                  - tags_collection_footer[0].each do |tag|
                     %li
                       = link_to "#{tag.name}", tag_path(tag.name) rescue ""
                   %li.last  
               #tabs-genre_2.tabdiv
                 %ul
-                  - @tags_experimental.each do |tag|
+                  - tags_collection_footer[1].each do |tag|
                     %li
                       = link_to "#{tag.name}", tag_path(tag.name) rescue ""
                   %li.last  
               #tabs-genre_3.tabdiv
                 %ul
-                  - @tags_experimental.each do |tag|
+                  - tags_collection_footer[2].each do |tag|
                     %li
                       = link_to "#{tag.name}", tag_path(tag.name) rescue ""
                   %li.last  
               #tabs-genre_4.tabdiv
                 %ul
-                  - @tags_experimental.each do |tag|
+                  - tags_collection_footer[3].each do |tag|
                     %li
                       = link_to "#{tag.name}", tag_path(tag.name) rescue ""
                   %li.last  

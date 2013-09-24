@@ -64,8 +64,9 @@
 						.clear
 
 
-			- @question.answers.order(:created_at => :desc).each do |answer|
-				= render :partial => "answers/plus_answer", :locals => {:answer => answer, :comment => @comment}
+			
+				.show-questions-answer
+					= render :partial => "answers/plus_answer"
 		%br.clearer/
 		.main-content-left#your-answer
 			.page-content.review.single-post
@@ -91,7 +92,7 @@
 										/   =@title.upcase
 									%p
 										
-										= form_for([@question,@answer],:method=>:post,:url=>question_answers_path(@question.slug),:html => {:multipart => true,:name=>'answer_form',:id=>'answer_form',:class=>'exp-contact-form'}) do |f|
+										= form_for([@question,@answer],:method=>:post,:url=>question_answers_path(@question.slug),remote: true,:html => {:multipart => true,:name=>'answer_form',:id=>'answer_form',:class=>'exp-contact-form'}) do |f|
 											=# f.text_area :body, :class => "wysiwyg_editor",:size=>"40x20"
 											=# f.label :body, "Your Answer", :class=>"label"
 											=# f.text_area :body, :class => "text-default wysiwyg_editor textarea-class"
@@ -107,24 +108,26 @@
 														.logged-in.auth-section
 															%section
 																.temp-post{style: "text-align: right"}
-																	%button.btn{disabled: "disabled"}
+																	%button.btn{:id=>"question-ans"}
 																		Post as
-																		
 																		%span{"data-role" => "username"} 
 																			= current_user.login
 											/ = render :partial => 'shared/rich_text_partial'
 											%br.clearer/
 											/ %p
 											/ 	= link_to "<i class='icon-paper-plane'></i>Post your Answer".html_safe,"javascript:void(0)", :class => "submit-button", :id => "edit-user-link",:title => "Post your Answer",:onclick=>"document.answer_form.submit();"
-						.contact-section-bottom-button
+					/ 	.contact-section-bottom-button
 
-							= link_to "Cancel".html_safe, question_path(@question), :class=>"contact-button", :id=> "align"
-							= link_to "Submit".html_safe, "javascript:void(0);", :id => "edit-user-link", :class=>"contact-button", :id=> "align",:title => "Post your Answer",:onclick=>"document.answer_form.submit();"
-					%br.clearer/
-					%br.clearer/
-					.signoff-wrapper
-						.signoff Not the answer you're looking for? Browse other questions tag related to the question or #{link_to "create page for question", "/question/ask_a_question"}.
+					/ 		/ = link_to "Cancel".html_safe, question_path(@question), :class=>"contact-button", :id=> "align"
+					/ 		/ = link_to "Submit".html_safe, "javascript:void(0);", :id => "edit-user-link", :class=>"contact-button", :id=> "align",:title => "Post your Answer",:onclick=>"document.answer_form.submit();"
+					/ %br.clearer/
+					/ %br.clearer/
+					/ .signoff-wrapper
+					/ 	.signoff Not the answer you're looking for? Browse other questions tag related to the question or #{link_to "create page for question", "/question/ask_a_question"}.
+		
 		%br.clearer/
+		%br
+		%br
 		.main-content-left#set-page
 			.page-content.review.single-post
 				%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
@@ -252,9 +255,28 @@
 		jQuery(".post-actions").show()
 	})
 
-
-	
-
-
-
-
+	jQuery(document).ready(function(){
+		jQuery('#answer_body').val('');
+		jQuery('#answer_body').keypress(function(e) {
+			textVal = jQuery.trim(jQuery("#answer_body").val());
+			if(e.which == '13'){
+				if(textVal.length <= 0){}
+				else{
+					jQuery('form#answer_form').submit();
+					jQuery(this).attr("value", "");
+					jQuery('html, body').animate({scrollTop: 600},'slow').delay(700);
+					return false;
+				}
+			}
+		});
+		
+		jQuery('#question-ans').click(function(e) {
+			e.preventDefault();
+			textVal=jQuery.trim(jQuery("#answer_body").val());
+			if (textVal.length<=0){}
+			else{
+				jQuery('form#answer_form').submit();
+				jQuery(this).attr("value", "");
+			}
+		})
+	});

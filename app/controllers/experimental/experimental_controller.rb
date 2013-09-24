@@ -68,6 +68,7 @@ class Experimental::ExperimentalController < ApplicationController
     @about_content =@about.static_content.split('P',2)
     @news = News.where(:is_archive => false, :is_active => true).page(params[:page]).order(:created_at=>:desc)
     @articles = Article.where(:is_archive => false, :is_active => true).page(params[:page]).order(:created_at=>:desc)
+    @questions = Question.all
   end
   #rss feed
   def rss_feed

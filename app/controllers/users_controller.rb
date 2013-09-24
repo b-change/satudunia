@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
 	before_filter :check_signup_type, :only => [:new]
 	before_filter :track_pageview
-
+	
 	# add_breadcrumb "Home", :root_path
 	tab_config = [[:newest, [:created_at, Mongo::DESCENDING]],
 								[:hot, [:hotness, Mongo::DESCENDING]],
@@ -103,7 +103,6 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		
 		add_breadcrumb "#{params[:controller]}","/#{params[:controller]}"
 		add_breadcrumb "#{params[:id]}","#{params[:id]}"
 		@body_id = "page3"
@@ -267,7 +266,7 @@ class UsersController < ApplicationController
 	end
 
 	def edit
-		
+		add_breadcrumb "Profile Settings", 'settings'
 		@body_id = "page3"
 		@user = current_user
 		@user.timezone = AppConfig.default_timezone if @user.timezone.blank?

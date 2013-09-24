@@ -1,57 +1,58 @@
-.overview-wrapper
-	.overview-new.nopadding-top
-		.content-panel
-			.the-content
-				#bbpress-forums
-					%ul#topic-1343-replies.forums.bbp-replies
-						%li.bbp-body
-							#post-1343.bbp-reply-header
-								.bbp-meta
-									%span.bbp-reply-post-date Posted On: #{answer.created_at.to_datetime.strftime("%d %b %Y - %I:%M %p")}
-									/ %a.bbp-reply-permalink{:href => "http://www.industrialthemes.com/made/bbpress/topic/super-sticky-topic-inside-bbpress-forum/#post-1343", :title => "Super Sticky Topic Inside bbPress Forum"} #1343
-								/ .bbp-meta
-							/ #post-1343
-							.post-1343.topic.type-topic.status-publish.odd.bbp-parent-forum-1322.bbp-parent-topic-1343.bbp-reply-position-1.user-id-494.topic-author
-								.bbp-reply-author
-									%a.bbp-author-avatar
-										- if answer.user.use_gravatar?
-											=link_to image_tag avatar_user_path(answer.user),:size=>'65x65'
-										- else
-											%img.avatar.user-1227-avatar.avatar-50.photo{:alt => "Profile picture of zicrainnyRV", :height => "50", :src => "http://gravatar.com/avatar/5a0a1a5e96f190c339221f66d7b09b00?d=http://www.industrialthemes.com/made/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg&s=50&r=G", :width => "50"}/
-									%br/
-									%a.bbp-author-name
-										Posted By: #{answer.user.login}
-									%br/
-									/ .bbp-author-role Keymaster
-								/ .bbp-reply-author
-								.bbp-reply-content
-									%p
-										%h6.title  
-											Re: #{@title.upcase} 
-										= answer.body.html_safe
-								/ .bbp-reply-content
-							/ .reply
-		
-			.excerpt-new.justify-content#answer-comment420{:id => answer.id}
-				
-				= render :partial => "experimental/partials/answer_comments",:locals=>{:@answer=>answer}
-		
-		.panel-comments.set-left
-			
-			= form_for [answer, @comment ||= Comment.new], remote: true,:method=>"post", :url=>question_answer_comments_path(answer.question.slug,answer.id), html: {:class=>".answer_comment_form exp-contact-form",:id=>'comment-form-answer', data: {commentable: answer.id, "login-required" => true}}  do |f|
-				%p
-					- if current_user.use_gravatar?
-						=link_to image_tag avatar_user_path(current_user),:size=>'30x30'
-					- else
-						%img.avatar.user-1227-avatar.avatar-50.photo{:alt => "Profile picture of zicrainnyRV", :height => "30", :src => "http://gravatar.com/avatar/5a0a1a5e96f190c339221f66d7b09b00?d=http://www.industrialthemes.com/made/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg&s=50&r=G", :width => "30"}/
-					= f.text_area :body, :size=>"0", :placeholder => "write a comment...", :id=> "enter-comment-answer#{answer.id}",:class=> "set-comment-area"
-					=# f.submit "submit"
-		.clear
-:javascript
-	jQuery('#enter-comment-answer#{answer.id}').keypress(function(e) {
-		if (e.which == '13') {
-			jQuery('form#comment-form-answer').submit();
-			jQuery(this).attr("value", ""); 
-			return false;
-		}
-	});
+- @question.answers.order(:created_at => :desc).each do |answer|
+  .overview-wrapper
+    .overview-new.nopadding-top
+      .content-panel
+        .the-content
+          #bbpress-forums
+            %ul#topic-1343-replies.forums.bbp-replies
+              %li.bbp-body
+                #post-1343.bbp-reply-header
+                  .bbp-meta
+                    %span.bbp-reply-post-date Posted On: #{answer.created_at.to_datetime.strftime("%d %b %Y - %I:%M %p")}
+                    / %a.bbp-reply-permalink{:href => "http://www.industrialthemes.com/made/bbpress/topic/super-sticky-topic-inside-bbpress-forum/#post-1343", :title => "Super Sticky Topic Inside bbPress Forum"} #1343
+                  / .bbp-meta
+                / #post-1343
+                .post-1343.topic.type-topic.status-publish.odd.bbp-parent-forum-1322.bbp-parent-topic-1343.bbp-reply-position-1.user-id-494.topic-author
+                  .bbp-reply-author
+                    %a.bbp-author-avatar
+                      - if answer.user.use_gravatar?
+                        =link_to image_tag avatar_user_path(answer.user),:size=>'65x65'
+                      - else
+                        %img.avatar.user-1227-avatar.avatar-50.photo{:alt => "Profile picture of zicrainnyRV", :height => "50", :src => "http://gravatar.com/avatar/5a0a1a5e96f190c339221f66d7b09b00?d=http://www.industrialthemes.com/made/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg&s=50&r=G", :width => "50"}/
+                    %br/
+                    %a.bbp-author-name
+                      Posted By: #{answer.user.login}
+                    %br/
+                    / .bbp-author-role Keymaster
+                  / .bbp-reply-author
+                  .bbp-reply-content
+                    %p
+                      %h6.title  
+                        Re: #{@question.title.upcase} 
+                      = answer.body.html_safe
+                  / .bbp-reply-content
+                / .reply
+      
+        .excerpt-new.justify-content#answer-comment420{:id => answer.id}
+          
+          = render :partial => "experimental/partials/answer_comments",:locals=>{:@answer=>answer}
+      
+      .panel-comments.set-left
+        
+        = form_for [answer, @comment ||= Comment.new], remote: true,:method=>"post", :url=>question_answer_comments_path(answer.question.slug,answer.id), html: {:class=>".answer_comment_form exp-contact-form",:id=>'comment-form-answer', data: {commentable: answer.id, "login-required" => true}}  do |f|
+          %p
+            - if current_user.use_gravatar?
+              =link_to image_tag avatar_user_path(current_user),:size=>'30x30'
+            - else
+              %img.avatar.user-1227-avatar.avatar-50.photo{:alt => "Profile picture of zicrainnyRV", :height => "30", :src => "http://gravatar.com/avatar/5a0a1a5e96f190c339221f66d7b09b00?d=http://www.industrialthemes.com/made/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg&s=50&r=G", :width => "30"}/
+            = f.text_area :body, :size=>"0", :placeholder => "write a comment...", :id=> "enter-comment-answer#{answer.id}",:class=> "set-comment-area"
+            =# f.submit "submit"
+      .clear
+  :javascript
+    jQuery('#enter-comment-answer#{answer.id}').keypress(function(e) {
+      if (e.which == '13') {
+        jQuery('form#comment-form-answer').submit();
+        jQuery(this).attr("value", ""); 
+        return false;
+      }
+    });

@@ -2,7 +2,7 @@ class TagsController < ApplicationController
   before_filter :login_required, :except => [:index]
   before_filter :moderator_required, :except => [:index, :show]
   before_filter :track_pageview
-
+  before_filter :set_breadcrumb ,:except => [:index]
   def index
     add_breadcrumb "Tags", tags_path.gsub("/","")
     if params[:ques]=="tag_questions"
@@ -35,10 +35,11 @@ class TagsController < ApplicationController
   end
 
   def show
+    
     @tagId = params[:id].gsub(/[ ]/,'_')
     @current_tags = @tag_names = params[:id].split("+")
     @tags =  current_scope.where(:name.in => @tag_names)
-    
+    add_breadcrumb "#{params[:id]}", params[:id]
     @questions = current_group.questions.where(:tags => {:$all => @tag_names}, :banned => false).page(params["page"]).per(15)
     @title = "Questions tagged: #{@tag_names.join(', ')}"#I18n.t('tags.show.title', :tags => @tag_names.join(', '))
     #add_feeds_url(url_for(:format => "atom"), t("feeds.question"))
@@ -125,6 +126,10 @@ class TagsController < ApplicationController
     else
       current_group.tags
     end
+  end
+
+  def set_breadcrumb
+    add_breadcrumb "Tags", :tags_path
   end
 
 end

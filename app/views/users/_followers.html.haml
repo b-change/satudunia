@@ -1,34 +1,27 @@
-.widget-wrapper
-  .widget
-    / .section-wrapper
-    /   .section 
-    /     %i.icon-user
-    /     My Profile
-    %ul#members-list.item-list
-      %li.vcard
-        %h1 
+- if current_user
+  .widget-wrapper
+    .widget
+      .section-wrapper
+        .section 
+          %i.icon-circled-right
           Following Users
-        .item-avatar-follow
-          -if current_user.use_gravatar?
-            = image_tag avatar_user_path(current_user),:width => "100",:class=>"avatar"
-          -else
-            = image_tag("#{local_path_experimental}member.jpeg",:width => "100",:class=>"avatar") 
-        .item{:style=>"line-height:22px;"}
-          .item-title.fn
-            %a
+      %ul#members-list.item-list
+        %li.vcard{:style=>"height:160px;"}
+          .item-avatar
+            -if current_user.use_gravatar?
+              = image_tag avatar_user_path(current_user), :width => "100", :height=>"100", :class=>"avatar"
+            -else
+              = image_tag("#{local_path_experimental}member.jpeg",:width => "100",:class=>"avatar") 
+          .item.set-height
+            .item-meta.fn.login-profile-box#set-width
               = current_user.login.capitalize
-              =# @user.reputation_on(current_group).to_i
-          .item-meta
-            = @user.reputation_on(current_group).to_i
-            Reputation
-          .item-meta
-            = @user.following_count
-            Following
-          .item-meta
-            = @user.followers_count
-            Followers
-          / - if current_user.role == "admin"
-          /   .item-meta
-          /     =link_to "<i class='icon-star'></i>Admin".html_safe,admin_path
-          / .item-meta{:style => "padding-left: 125px;"}
-          /   =link_to "<i class='icon-logout'></i>Logout".html_safe,destroy_user_session_path
+            .item-meta
+              = @user.reputation_on(current_group).to_i
+              Reputation
+            .item-meta
+              = @user.following_count
+              Following
+            .item-meta
+              = @user.followers_count
+              Followers
+           

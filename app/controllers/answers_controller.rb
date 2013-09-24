@@ -112,7 +112,7 @@ class AnswersController < ApplicationController
     @answer.votes_count = 0
     @answer.votes_average = 0
     @answer.flags_count = 0
-
+    
     @answer.user = current_user
     if !logged_in?
       if recaptcha_valid? && params[:user]
@@ -164,10 +164,8 @@ class AnswersController < ApplicationController
           redirect_to question_path(@question, :format => :mobile)
         }
         format.json { render :json => @answer.to_json(:except => %w[_keywords]) }
-        format.js do
-          render(:json => {:success => true, :message => flash[:notice],
-                           :html => html, :question_id => @question.id}.to_json)
-        end
+        format.js 
+          
       else
         @answer.errors.add(:captcha, "is invalid") if !logged_in? && !recaptcha_valid?
 

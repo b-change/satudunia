@@ -322,5 +322,6 @@ class ApplicationController < ActionController::Base
     @news_experimental = News.all
     @tags_experimental = Tag.all
     @random_tags_experimental = Tag.all.sample(4).map(&:name)
+    @questions = Question.all
   end
 end

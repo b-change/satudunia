@@ -34,6 +34,7 @@
 								%li
 									= link_to "<i class='icon-lock'></i>Settings".html_safe, "/profile/settings"								
 								%li
+									
 									= link_to "<i class='icon-retweet'></i>#{t('.connect')}".html_safe, social_connect_path
 								%li
 									= link_to "<i class='icon-circled-right'></i>#{t('.following')}".html_safe, follows_user_path(current_user)
@@ -83,10 +84,12 @@
 #myModal.reveal-modal.show-box
 	/ %h1 Modal Title
 	%p
-		= link_to "<i class='icon-key'></i>Sign Up with Email".html_safe,signup_path,:html=>{:title=>"Sign up",:class=>"tool-tip"}
+		=# link_to "<i class='icon-key'></i>Sign Up with Email".html_safe,signup_path,:html=>{:title=>"Sign up",:class=>"tool-tip"}
+		= link_to "<i class='icon-key'></i>Sign Up with Email".html_safe,social_experimental_index_path(:via=>"email"),:html=>{:title=>"Sign up",:class=>"tool-tip"}
 		%br
 		%br
-		= link_to "<i class='icon-key'></i>Sign Up with Social+ Networks.".html_safe,social_experimental_index_path
+		
+		= link_to "<i class='icon-key'></i>Sign Up with Social+ Networks".html_safe,social_experimental_index_path(:via=>"jainrain")
 	%a.close-reveal-modal#close-box
 		%img{:alt => "close", :src => "http://cdn.rpxnow.com/rel/img/43f137c98b7a6562f6ad5f076fce376b.png", :style => "width: 34px; top: -4px; right: -4px; position: absolute; height: 34px; cursor: pointer;"}/
 =javascript_include_rpx(user_session_url)

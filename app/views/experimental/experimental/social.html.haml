@@ -105,7 +105,11 @@
 								Yes, I Accept
 			.contact-section-bottom-button{:style=>"z-index:500; margin-top:0px !important; display:none"} 
 				.janrain-sign-up{:style=>"display:none;"}
-					= link_to_rpx "Next", user_session_url,:html=>{:title=>"Sign up with Janrain",:class=>"contact-button contact-button-single"}
+					
+					- if params[:via]=="email"
+						%a.contact-button.contact-button-single{href: signup_path, title: "Sign up with email"} Next
+					- else
+						= link_to_rpx "Next", user_session_url,:html=>{:title=>"Sign up with Janrain",:class=>"contact-button contact-button-single"}
 	
 			
 

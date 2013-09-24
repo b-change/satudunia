@@ -997,7 +997,8 @@ form#search input {
 		margin-left: 5px;
 		margin-top: 7px;
 		padding: 1px 6px;
-		font-style: normal;
+		font-weight: normal;
+
 	float:left;
 	line-height: 18px;
 }
@@ -1238,4 +1239,8 @@ form#search input {
 
 #set-top {
 	margin-top: -25px;
+}
+
+.set-padding{
+	padding-bottom:20px !important;
 }
