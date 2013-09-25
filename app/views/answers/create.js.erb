@@ -1,1 +1,3 @@
 jQuery('.show-questions-answer').html("<%= escape_javascript(render 'answers/plus_answer.html')%>");
+//jQuery('.show-questions-answer')
+jQuery('html, body').animate({scrollTop:jQuery('.show-questions-answer').position().top+250}, 'slow');

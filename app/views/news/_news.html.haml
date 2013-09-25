@@ -1,49 +1,29 @@
-.post-panel.right.layout-c
+.post-panel{:class => "#{@class}"}
   .article-image
-    %a.thumbnail.darken{:href => news_path(news.slug)}
-      - if news.has_news_image?
-        = image_tag news_image_path(news,"small"), :height => 170,:width=>300, :alt => news.slug
-      -else
-        %img{:alt => "misc3", :height => "170", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc3-70x70.jpg", :style => "opacity: 1;", :width => "300"}/
-  .more-bar
-    .arrow-catpanel-top    
-    %h2
-      = link_to truncate(strip_tags(news.news_title.capitalize),:length=>64), news_path(news.slug),:class=>"avoid_link_color"
-    #news-rating{:id =>"#{news.id}"}
-    .clear-responsive  
-    .date
-      #{news.created_at.strftime("%b %d, %Y")}
-    .clear-responsive  
-    .comments
-      %a{:href => "single-review-numbers.html", :title => "Comment on A Sandwich a Day: Fried Scallops from Brucie"} 0 comments
-    %br.clearer/
-    .tags
-      %a{:href => "archive-a.html", :title => "french Tag"}> french
-      ,
-      = succeed "," do
-        %a{:href => "archive-a.html", :title => "fine dining Tag"} fine dining
-      = succeed "," do
-        %a{:href => "archive-a.html", :title => "dairy Tag"} dairy
-      = succeed "," do
-        %a{:href => "archive-a.html", :title => "organic Tag"} organic
-      = succeed "," do
-        %a{:href => "archive-a.html", :title => "plating Tag"} plating
-      = succeed "," do
-        %a{:href => "archive-a.html", :title => "presentation Tag"} presentation
-      = succeed "," do
-        %a{:href => "archive-a.html", :title => "southern Tag"} southern
-      = succeed "," do
-        %a{:href => "archive-a.html", :title => "vegan Tag"} vegan
-      %a{:href => "archive-a.html", :title => "vegetables Tag"} vegetables
-    %br.clearer/
-  %br.clearer/
-  .inner
-    .excerpt
-      By #{news.user.name} on #{news.created_at.strftime("%d %b %Y - %I:%M %p")}
-      %br
-      = truncate(strip_tags(news.news_body), :length => 300)
-    .more
-      = link_to "More",news_path(news.slug),:class=>"avoid_link_color"
+    %a
+      .thumbnail.darken.video{:href => "single-review-numbers.html"}
+        - if news.has_news_image?
+          = image_tag (news_image_path(news,"small")) , :height => 170,:width=>300
+        - else
+          = image_tag ("banner-250x250.jpg") , :height => 170,:width=>300
+      .inner
+        #news-rating{:id =>"#{news.id}"}
+        %h2
+          = link_to truncate(strip_tags(news.news_title.capitalize),:length=>64), news_path(news.slug)
+        .excerpt
+          on #{news.created_at.strftime("%b %d, %Y")}}
+          %br
+          = sanitize(news.news_body).truncate(100, :separator => " ").html_safe
+          
+      .more-bar
+        .arrow-catpanel-top
+        .rating-wrapper.small
+          .number.color5 0%
+        .comments
+        .more1
+          %a{:href => "single-review-numbers.html"} 
+            
+            = link_to "More",news_path(news),:class=>"avoid_link_color"
 
 %script
   jQuery("#news-rating_#{news.id}").raty({ readOnly: true,score: "#{news.rating}",path: '../assets'});      

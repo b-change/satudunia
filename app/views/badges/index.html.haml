@@ -71,37 +71,38 @@
 						%input#members_search1.bottom_searchbox{:name => "badge_search", :placeholder => "Search Badges...", :type => "text",:style=>"height: 20px;"}/
 					%input#members_clear_field{:name => "members_clear_field", :type => "reset", :value => "X"}
 				%br.clearer/
-		.main-content-left
-			.page-content.review.single-post
-				%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
-				.review-content
-					.ribbon-shadow-left
-					.section-wrapper
-						.section
-							.comment-bubble
-								%a{:title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} #{@badge_comments.count}
+		- if current_user
+			.main-content-left
+				.page-content.review.single-post
+					%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+					.review-content
+						.ribbon-shadow-left
+						.section-wrapper
+							.section
+								.comment-bubble
+									%a{:title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} #{@badge_comments.count}
 
 
-							/ making title stronger
-							.section-for-header
-								PLUS+ Comments
-					.section-arrow 
-					.overview-wrapper
-						.overview-new
-							.left-panel
-								%h2.comment-count-font #{@badge_comments_count.count} comments
-								%br/
-								= render "badge_comments/form"
-								%hr#hr-shades-end.set-hr-margin
-								= nested_messages(@badge_comments)
-								%hr#hr-shades-end.set-hr-margin
-								#set-bottom-badge
-									%i.icon-rss.fontSize
-									Comment feed
-									&nbsp;&nbsp;
-									%i.icon-mail.fontSize
-									Subscribe via email
-									.floatright PLUS+ Comments
+								/ making title stronger
+								.section-for-header
+									PLUS+ Comments
+						.section-arrow 
+						.overview-wrapper
+							.overview-new
+								.left-panel
+									%h2.comment-count-font #{@badge_comments_count.count} comments
+									%br/
+									= render "badge_comments/form"
+									%hr#hr-shades-end.set-hr-margin
+									= nested_messages(@badge_comments)
+									%hr#hr-shades-end.set-hr-margin
+									#set-bottom-badge
+										%i.icon-rss.fontSize
+										Comment feed
+										&nbsp;&nbsp;
+										%i.icon-mail.fontSize
+										Subscribe via email
+										.floatright PLUS+ Comments
 							
 							
 

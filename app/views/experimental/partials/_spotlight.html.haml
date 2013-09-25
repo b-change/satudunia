@@ -35,9 +35,9 @@
                 / .rating-wrapper.small
                 /   .number.color3 42%
                 .comments
-                  %a{:href => "single-review-numbers.html", :title => "Comment on The Bourne Legacy"} #{$questions_index_action_counter} Views
+                  %a #{questions_count} Views
                 .more
-                  %a{:href => "/questions"} More
+                  %a{:href => questions_path} More
           %li
             .post-panel.right
               .category
@@ -59,7 +59,7 @@
                 / .rating-wrapper.small
                 /   .letter.color3 C
                 .comments
-                  %a{:href => "single-review-numbers.html", :title => "Comment on 5 Colorful Watches From Zappos for under $50"} #{$service_provider_index_action_counter} Views
+                  %a #{services_map_count} Views
                 .more
                   %a{:href => service_providers_path} More
             .clearer

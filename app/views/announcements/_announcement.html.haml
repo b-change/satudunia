@@ -7,6 +7,7 @@
 				- else
 					= image_tag ("banner-250x250.jpg") , :height => 170,:width=>300
 			.inner
+				#announcement-rating{:id =>"#{announcement.id}"}
 				%h2
 					= link_to announcement.message, announcement_path(announcement)
 				.excerpt
@@ -24,3 +25,5 @@
 						
 						= link_to "More",announcement_path(announcement),:class=>"avoid_link_color"
 
+%script
+	jQuery("#announcement-rating_#{announcement.id}").raty({ readOnly: true,score: "#{announcement.rating}",path: '../assets'});      

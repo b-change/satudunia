@@ -31,15 +31,33 @@ module ExperimentalHelper
 		@question_with_comments_id =  Question.where(:comments.ne => nil).map(&:id)
 		@answer_with_comments_id =  Answer.where(:comments.ne => nil).map(&:id)
 		@question_with_comments_id.each do |question|
-			@question_comments << Question.find(question).comments.order_by(:'updated_at'.desc)
+
+			@question_comments << Question.find(question).comments.order_by(:'updated_at'.desc).entries.flatten
 		end
 		@answer_with_comments_id.each do |answer|
-			@answer_comments << Answer.find(answer).comments.order_by(:'updated_at'.desc)
+			@answer_comments << Answer.find(answer).comments.order_by(:'updated_at'.desc).entries.flatten
 		end
-		return (@question_comments + @answer_comments)
+		return (@question_comments.flatten.sample(3) + @answer_comments.flatten.sample(2))
 	end
 
 	def tags_collection_footer
 		Tag.all.in_groups(4,nil)
+	end
+
+	def questions_count
+		@question_count = ViewsCount.where(:type => "questions_index").first
+		if (@question_count == nil)
+			return 200
+		else
+			number_to_human(@question_count.count, :precision => 4,:significant => false)  
+		end
+	end
+	def services_map_count
+		@services_map_count = ViewsCount.where(:type => "service_providers_index").first
+		if (@services_map_count == nil)
+			return 200
+		else
+			number_to_human(@services_map_count.count, :precision => 4,:significant => false)  
+		end
 	end
 end

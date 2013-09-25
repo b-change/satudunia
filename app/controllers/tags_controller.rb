@@ -37,9 +37,10 @@ class TagsController < ApplicationController
   def show
     
     @tagId = params[:id].gsub(/[ ]/,'_')
+    @tag = params[:id].gsub('_',' ')
     @current_tags = @tag_names = params[:id].split("+")
     @tags =  current_scope.where(:name.in => @tag_names)
-    add_breadcrumb "#{params[:id]}", params[:id]
+    add_breadcrumb "#{@tag}", params[:id]
     @questions = current_group.questions.where(:tags => {:$all => @tag_names}, :banned => false).page(params["page"]).per(15)
     @title = "Questions tagged: #{@tag_names.join(', ')}"#I18n.t('tags.show.title', :tags => @tag_names.join(', '))
     #add_feeds_url(url_for(:format => "atom"), t("feeds.question"))

@@ -10,23 +10,70 @@
 					Announcements
 			.section-arrow
 			/ post by removed from here
-			.content-panel
-				.the-content.justify-content			
-					.userDescription
-						.basicInfo{:style => "margin-left: 10px !important"}
-							%h2
-								= @announcement.message rescue ""
-							%small
-								on #{@announcement.starts_at.strftime("%x") rescue ""} 
+			.overview-wrapper
+				.overview-new
+					.left-panel
+						.content-panel
+							.the-content.justify-content			
+								.userDescription
+									.basicInfo{:style => "margin-left: 10px !important"}
+										.rating-news#user-announcement-rating{:id => @announcement.id}
+										%h2
+											= @announcement.message rescue ""
+										%small
+											on #{@announcement.starts_at.strftime("%x") rescue ""} 
 
-					=# image_tag ("banner-250x250.jpg"), :class => 'gravatar', :style => "margin: 10px", :size=>'500x400'
-					- if @announcement.has_announcement_image?
-						= image_tag (announcement_image_path(@announcement,"small")), :class => 'gravatar', :size=>'500x400'
-					- else
-						= image_tag ("banner-250x250.jpg"), :class => 'gravatar' , :size=>'500x400'
-						
-					#service_information{:style => "margin: 10px"}
-						= @announcement.message rescue ""
-						= link_to "Back", announce_announcements_path
+								=# image_tag ("banner-250x250.jpg"), :class => 'gravatar', :style => "margin: 10px", :size=>'500x400'
+								- if @announcement.has_announcement_image?
+									= image_tag (announcement_image_path(@announcement,"small")), :class => 'gravatar', :size=>'500x400'
+								- else
+									= image_tag ("banner-250x250.jpg"), :class => 'gravatar' , :size=>'500x400'
+									
+								#service_information{:style => "margin: 10px"}
+									= @announcement.message rescue ""
+									= link_to "Back", announce_announcements_path
+/side bar
 .sidebar
-	= render "experimental/partials/left_bar"
+	- if current_user.nil?
+		/login box
+		= render "experimental/partials/login_box"
+	-else
+		/profile box
+		= render "experimental/partials/profile_box"
+
+	/ social login box
+	= render "experimental/partials/social_login_box"
+	/ member box
+	= render "experimental/partials/member_box"
+	/rating box
+	= render "experimental/partials/rating_box"
+	/rating box
+	= render "experimental/partials/rating_box2"
+	/ left bar
+	/ = render "experimental/partials/left_bar"
+	/widget top
+	= render "experimental/partials/widget_top"
+	/ .clearer.hide-responsive
+	/ %br.clearer/
+	/ newly reviewd
+	= render "experimental/partials/newly_reviewed"
+	/popular box
+	= render "experimental/partials/popular_box"
+	/banner box
+	= render "experimental/partials/banner_box"
+
+
+:javascript
+	jQuery("#user-announcement-rating_#{@announcement.id}").raty({
+	  path: '../assets',
+	  score: "#{@announcement.rating}",
+	  precision: true,
+	  click: function(score, evt) {
+	    jQuery.ajax({
+				url: "/announcements/#{@announcement._id.to_s}/rating",
+				data: {score: score},
+				success:function(){
+				}
+			});
+	  }
+	});

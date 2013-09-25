@@ -125,6 +125,7 @@ Rails.application.routes.draw do
   get '/services-map/:id/:slug' => "service_providers#show", :as=>:service_map_provider
   resources :news 
   match "/news/:id/rating" => "news#rating"
+  match "/announcements/:id/rating" => "announcements#rating"
   resources :polls
 
   resources :pages do

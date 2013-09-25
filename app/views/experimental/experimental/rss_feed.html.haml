@@ -1,0 +1,75 @@
+.clearer.hide-responsive  
+%br.hide-responsive/
+.main-content-left
+  .post-loop.directory
+    .ribbon-shadow-left  
+    .section-wrapper
+      .section
+        = image_tag 'rss.png',alt: "Rss"
+        RSS
+    .ribbon-shadow-right  
+    .section-arrow
+    .post-panel.wide
+      .header
+        = image_tag 'rss.png',alt: "Rss"
+        %h2.comments-rss-header
+          = link_to "Comments RSS",comments_rss_experimental_index_path(:atom)
+        .comments-rss-show
+          %br
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum scelerisque arcu ut turpis tincidunt gravida. Proin luctus, justo in egestas pellentesque, leo leo laoreet nibh, in fringilla diam dolor a sapien.
+    %br
+    .ribbon-shadow-right
+    .section-arrow  
+    .post-panel.wide
+      .header
+        = image_tag 'rss.png',alt: "Rss"
+        %h2.comments-rss-header
+          = link_to "Service Providers RSS",service_providers_path(:atom)
+        .comments-rss-show
+          %br
+          Phasellus nulla turpis, tristique eget convallis vel, volutpat et tortor. Nam porttitor, velit sed dapibus congue, nibh dolor ullamcorper sapien, non feugiat orci tortor non massa.
+    .ribbon-shadow-right  
+    .section-arrow
+    .post-panel.wide
+      .header
+        = image_tag 'rss.png',alt: "Rss"
+        %h2.comments-rss-header
+          = link_to "Questions and Answers RSS",questions_path(:atom)
+        .comments-rss-show
+          %br
+          Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam volutpat purus ac nisi accumsan viverra. Proin lobortis iaculis lacus, eu varius est volutpat quis. Nullam ac augue non dolor accumsan ornare.
+        
+        
+    
+    %br.clearer/
+  %br.clearer/
+         
+
+/side bar
+.sidebar
+  /login box
+  - if current_user.nil?
+    /login box
+    = render "experimental/partials/login_box"
+  -else
+    /profile box
+    = render "experimental/partials/profile_box"
+
+  / social login box
+  = render "experimental/partials/social_login_box"
+  / member box
+  = render "experimental/partials/member_box"
+  /rating box
+  = render "experimental/partials/rating_box"
+  /rating box
+  = render "experimental/partials/rating_box2"
+  / left bar
+  / = render "experimental/partials/left_bar"
+  /widget top
+  = render "experimental/partials/widget_top"
+ 
+  = render "experimental/partials/newly_reviewed"
+  /popular box
+  / = render "experimental/partials/popular_box"
+  /banner box
+  = render "experimental/partials/banner_box"

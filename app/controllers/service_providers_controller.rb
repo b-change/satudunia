@@ -1,5 +1,4 @@
 class ServiceProvidersController < ApplicationController
-  $service_provider_index_action_counter = 250
   before_filter :login_required, :except => [:index, :show,:country]
   before_filter :check_permissions, :except => [:index, :show,:country]
   before_filter :fetch_information, :only => [:index,:country]
@@ -7,7 +6,7 @@ class ServiceProvidersController < ApplicationController
   layout "experiment"
 
   def index
-    $service_provider_index_action_counter += 1
+    ServiceProvider.update_service_provider_views
     add_breadcrumb "Services Map", service_providers_path.gsub("/","")
     respond_to do |format|
       format.html

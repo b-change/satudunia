@@ -1,5 +1,4 @@
 class QuestionsController < ApplicationController
-  $questions_index_action_counter = 200
   before_filter :login_required#, :except => [:new, :create, :index, :show, :related_questions, :tags_for_autocomplete, :retag, :retag_to, :random, :history, :diff]
   before_filter :admin_required, :only => [:move, :move_to]
   before_filter :moderator_required, :only => [:close]
@@ -39,7 +38,7 @@ class QuestionsController < ApplicationController
   # - all the questions tagged with one of the tag I follow_up
 
   def index
-    $questions_index_action_counter += 1
+    Question.update_questions_views
     add_breadcrumb "Questions", questions_path.gsub("/","")
     @body_id = "page3"
     @tags = current_group.tags

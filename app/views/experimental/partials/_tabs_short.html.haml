@@ -16,8 +16,7 @@
 			-@announcements.each do |announcement|
 				- @class = cycle(' ',' ','right')
 				.panel{:class => "#{@class}"}
-					.rating-wrapper.small
-						.number.color4 7.4
+					#announcement-rating{:id =>"#{announcement.id}",:style => "float: right"}
 					%a.thumbnail.darken.small{:href => "/announcements", :title => "Gotye – Mirrors"}
 						/ %img{:alt => "rock concert", :height => "109", :src => "#{local_path_experimental}photodune-277307-rock-concert-s-163x109.jpg", :width => "163"}/
 						=# image_tag ("banner-250x250.jpg") , :height => 109,:width=>163
@@ -26,6 +25,8 @@
 						- else
 							= image_tag ("banner-250x250.jpg") , :height => 109,:width=>163
 					%a.post-title{:href => announcement_path(announcement), :title => "Gotye – Mirrors"}= announcement.message
+					%script
+						jQuery("#announcement-rating_#{announcement.id}").raty({ readOnly: true,score: "#{announcement.rating}",path: '../assets'});
 				- if @class == 'right'
 					%br.clearer.hide-responsive
 			/ .panel
@@ -76,7 +77,7 @@
 			-@news.each do |news|
 				- @class = cycle('i','i','right')
 				.panel{:class => "#{@class}"}
-					%a.thumbnail.darken.small{:href => news_path(news.slug), :title => "Coffee Common: Bringing Coffee Power to the People"}
+					%a.thumbnail.darken.small{:href => '/news', :title => "Coffee Common: Bringing Coffee Power to the People"}
 						- if news.has_news_image?
 							#news-rating{:id =>"#{news.id}",:style => "float: right"}
 							= image_tag news_image_path(news,"small"), :height => 109,:width=>163, :alt => news.slug

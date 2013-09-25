@@ -534,5 +534,15 @@ class Question
   def remove_empty_tags
     self.tags.delete_if {|tag| tag.blank? }
   end
+
+  def self.update_questions_views
+    @questions_index_views = ViewsCount.where(:type => "questions_index").first
+    if @questions_index_views == nil
+      ViewsCount.create(:type => "questions_index", :count => 150)
+    else
+      @questions_index_views.count += 1
+      @questions_index_views.save
+    end
+  end
 end
 

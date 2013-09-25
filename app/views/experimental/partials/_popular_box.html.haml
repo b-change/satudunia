@@ -8,15 +8,14 @@
         #tabs-comments.tabdiv
           %br.clearer
           - if @questions
-            - fetch_latest_comments.each do |comment_array|   
-              - comment_array.each do |comment|
-                %ul
-                  %li
-                    -if comment._parent.is_a? (Question)
-                      = link_to (question_path(comment._parent)) do
-                        = truncate(comment.body, :length=>30)
-                        %span -
-                        %span= comment.user.login
+            - fetch_latest_comments.each do |comment|   
+              %ul
+                %li
+                  = link_to (question_path(comment._parent)) do
+                    = truncate(comment.body, :length=>30)
+                    %span -
+                    %span= comment.user.login
+
 
 
         

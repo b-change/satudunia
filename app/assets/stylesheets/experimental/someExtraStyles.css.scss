@@ -1229,7 +1229,7 @@ form#search input {
 }
 
 .rating-news{
-	margin-left:500px;
+	float: right;
 }
 
 .set-fonts a{
@@ -1243,4 +1243,18 @@ form#search input {
 
 .set-padding{
 	padding-bottom:20px !important;
+}
+	
+.comments-rss-show {
+    color: #333333;
+    font-family: Arial;
+    font-size: 14px;
+    line-height: 20px;
+    margin-top: -8px;
+    padding-right: 10px;
+    text-align: justify;
+}
+
+.comments-rss-header {
+    margin-top: -20px !important;
 }

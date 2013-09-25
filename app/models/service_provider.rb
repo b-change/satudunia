@@ -40,4 +40,14 @@ class ServiceProvider
   validates_uniqueness_of :name, :message => "Service name is already taken"
   
   attr_accessible :name, :description, :url, :address, :email, :telephone, :country, :recommend
+
+  def self.update_service_provider_views
+    @service_providers_index_views = ViewsCount.where(:type => "service_providers_index").first
+    if @service_providers_index_views == nil
+      ViewsCount.create(:type => "service_providers_index", :count => 150)
+    else
+      @service_providers_index_views.count += 1
+      @service_providers_index_views.save
+    end
+  end
 end

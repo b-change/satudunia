@@ -11,7 +11,7 @@ class AnswersController < ApplicationController
     exclude = [:votes, :_keywords]
     if params[:question_id]
       @question = current_group.questions.by_slug(params[:question_id])
-      @answers = @question.answers.without(exclude).page(params["page"])
+      @answers = @question.answers.without(exclude).page(params["page"]).page(params["page"]).per(15)
     else
       @answers = current_group.answers.without(exclude).order(:created_at=>:desc).page(params["page"]).per(15)
     end

@@ -3,6 +3,9 @@ class Announcement
   include Mongoid::Timestamps
   include MongoidExt::Storage
   include MongoidExt::Slugizer
+  include Mongoid::Rateable
+
+  RATING_RANGE = (1..5)
 
   slug_key :message, :unique => true
   identity :type => String
@@ -21,7 +24,7 @@ class Announcement
   validates_presence_of :ends_at
   validates_length_of   :message,     :minimum => 5
 
-  validate :check_dates
+  validate :check_dates, :on => :create
 
   def self.find_file_from_params(params, request)
     

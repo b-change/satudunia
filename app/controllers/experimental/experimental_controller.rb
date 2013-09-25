@@ -72,6 +72,7 @@ class Experimental::ExperimentalController < ApplicationController
   end
   #rss feed
   def rss_feed
+    add_breadcrumb "RSS", 'rss'
   end
   # terms of use
   def terms

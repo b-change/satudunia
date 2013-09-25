@@ -2,9 +2,8 @@ class AnnouncementsController < ApplicationController
   before_filter :login_required, :except => [:hide]
   before_filter :check_permissions, :except => [:hide]
   layout "supr"
-
   tabs :default => :announcements
-
+  before_filter :set_breadcrumb ,:except => [:index,:announce]
   # GET /announcements
   # GET /announcements.json
   def index
@@ -69,16 +68,26 @@ class AnnouncementsController < ApplicationController
   end
 
   def announce
+    add_breadcrumb "Announcements", "announcements"
     @announcements = Announcement.all
     render :layout => "experiment"
     # @announcement = Announcement.where(:only_anonymous=> false ).page(params[:page])
   end
 
   def show
+    
     #@announcement = Announcement.find(params[:id])
     @announcement = Announcement.by_slug(params[:id])
+    add_breadcrumb @announcement.message, @announcement.slug
     render :layout => "experiment"
     
+  end
+
+  def rating
+    @announcement = Announcement.find(params[:id])
+    @announcement.rate params[:score] ,current_user
+    @announcement.save
+    render :nothing => true
   end
 
   protected
@@ -89,5 +98,9 @@ class AnnouncementsController < ApplicationController
       flash[:error] = t("global.permission_denied")
       redirect_to domain_url(:custom => current_group.domain)
     end
+  end
+
+  def set_breadcrumb
+    add_breadcrumb "Announcements", :announcements_path
   end
 end
