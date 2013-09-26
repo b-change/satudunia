@@ -47,7 +47,8 @@
 											.bbp-reply-content
 												%h6.title  
 													=@title.upcase
-													/ = @question.body.html_safe rescue ""
+											.bbp-reply-content.services-top-adj
+												%p= @question.body.html_safe rescue ""
 											/ .bbp-reply-content
 										/ .reply
 							

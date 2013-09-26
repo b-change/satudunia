@@ -5,16 +5,16 @@
     #tabbed-reviews-compact.complex-list.compact
       %ul.tabnav
         %li
-          %a{:href => "#tabs-compact-tag0"} #{tags[0]}
+          %a{:href => "#tabs-compact-tag0"} #{tags[0].gsub("_"," ")}
         %li
-          %a{:href => "#tabs-compact-tag1"} #{tags[1]}
+          %a{:href => "#tabs-compact-tag1"} #{tags[1].gsub("_"," ")}
         %li
-          %a{:href => "#tabs-compact-tag2"} #{tags[2]}
+          %a{:href => "#tabs-compact-tag2"} #{tags[2].gsub("_"," ")}
       %br.clearer/
       .tabdiv-wrapper
         #tabs-compact-tag0.tabdiv
           %ul
-            - get_questions_from_tag(tags[0]).first(3).each do |title|
+            - get_questions_from_tag(tags[0]).first(5).each do |title|
               %li
                 - unless Question.where(:tags =>tags[0]).blank?
                   .rating-wrapper.small 
@@ -24,7 +24,7 @@
               %li.last
         #tabs-compact-tag1.tabdiv
           %ul
-            - get_questions_from_tag(tags[1]).first(3).each do |title|
+            - get_questions_from_tag(tags[1]).first(5).each do |title|
               %li
                 - unless Question.where(:tags =>tags[1]).blank?
                   .rating-wrapper.small 
@@ -34,7 +34,7 @@
               %li.last
         #tabs-compact-tag2.tabdiv
           %ul
-            - get_questions_from_tag(tags[2]).first(3).each do |title|
+            - get_questions_from_tag(tags[2]).first(5).each do |title|
               %li
                 - unless Question.where(:tags =>tags[2]).blank?
                   .rating-wrapper.small 
