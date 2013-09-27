@@ -31,10 +31,9 @@
 							%input#s{:name => "query", :onblur => "if (this.value == '') {this.value = 'search';}", :onfocus => "if (this.value == 'search') {this.value = '';}", :type => "text", :value => "search"}/
 					.note
 						Enter keyword(s) and press enter
-		- if @routes!=nil && @routes!="empty"
-			= render 'experimental/partials/all_urls'
-		- if @routes!=nil && @routes.count==0
-			= render "experimental/partials/empty_record_message.html"
+		= render 'experimental/partials/all_urls'
+		/ - if @routes!=nil && @routes.count==0
+		/ 	= render "experimental/partials/empty_record_message.html"
 		
 	%br/
 .sidebar

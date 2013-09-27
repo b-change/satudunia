@@ -1,0 +1,7 @@
+jQuery("#flash").html('<div class="alert alert-success"><!-- %a.close{"data-dismiss" => "alert"} × --><a id="close" class="msg-alert" href="javascript:void(0)">×</a><div id="flash_notice">Rating was successful</div></div>').show();
+
+jQuery('#close').click(function(e){
+    	e.preventDefault();
+    	jQuery("#flash_alert,#flash_notice").fadeOut(500);
+    	jQuery(this).hide();
+    })

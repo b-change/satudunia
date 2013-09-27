@@ -477,7 +477,7 @@ module ApplicationHelper
 
   def follow_user_link(user)
     if current_user && current_user.following?(user)
-      follow_class = 'unfollow_link toggle-action'
+      follow_class = 'unfollow_link toggle-action tags1_2'
       follow_data = 'follow_link'
       data_title = t('widgets.suggestions.follow_user')
       title = t('widgets.suggestions.unfollow_user')
@@ -485,7 +485,7 @@ module ApplicationHelper
       data_undo = follow_user_path(user)
     else
       follow_data = 'unfollow_link'
-      follow_class = 'follow_link toggle-action'
+      follow_class = 'follow_link toggle-action tags1_2'
       title = t('widgets.suggestions.follow_user')
       data_title = t('widgets.suggestions.unfollow_user')
       data_undo = unfollow_user_path(user)

@@ -1,34 +1,38 @@
 - user = membership.user
-%li
-  .stats
-    .box.votes
-      -count = user.questions.where(:group_id => current_group.id).count
-      .counter{:class => class_for_number(count) }
-        =format_number(count)
-      .text
-        = t(:questions, :scope => "activerecord.models")
-    .box.answers
-      -count = user.answers.where(:group_id => current_group.id).count
-      .counter{:class => class_for_number(count) }
-        =format_number(count)
-      .text
-        = t(:answers, :scope => "activerecord.models")
-    .box.views
-      .counter{:class => class_for_number(membership.reputation) }
-        =format_number(user.reputation_on(current_group))
-      .text
-        = t(:reputation, :scope => "activerecord.attributes.user")
-
-  / User Summary
-  .summary
-    = avatar_img(user, :size => "small")
-    %h3
-      = link_to h(user.display_name), user_path(user), :class => "pjax", :"data-layout" => "user"
-    =find_and_preserve(auto_link(user.bio))
+%ul#members-list.item-list
+  %li.vcard
+    .item-avatar
+      -if user.use_gravatar?
+        = image_tag avatar_user_path(user), :width => "50", :height=>"50", :class=>"avatar"
+      -else
+        = image_tag("#{local_path_experimental}member.jpeg",:width => "50", :height=>"50", :class=>"avatar")
+    .item.set-height
+      #set-width.item-meta.fn.login-profile-box
+        = link_to h(user.login), user_path(user), :class => "pjax", :"data-layout" => "user"
+      .owner-data
+        %strong
+          = t(:created_at, :scope => "activerecord.attributes.user")
+          = t("time.ago", :time => time_ago_in_words(membership.joined_at || membership.created_at))
+      .user-data-following
+        .item-meta-questions
+          -count = user.questions.where(:group_id => current_group.id).count
+          .counter{:class => class_for_number(count) }
+            =format_number(count)
+            = t(:questions, :scope => "activerecord.models")
+        .item-meta-answers
+          -count = user.answers.where(:group_id => current_group.id).count
+          .counter{:class => class_for_number(count) }
+            =format_number(count)
+            = t(:answers, :scope => "activerecord.models")
+        .item-meta-reputation
+          .counter{:class => class_for_number(membership.reputation) }
+            =format_number(user.reputation_on(current_group))
+            = t(:reputation, :scope => "activerecord.attributes.user")
+      %h3 
+        =# link_to h(user.display_name), user_path(user), :class => "pjax", :"data-layout" => "user"
+      =#find_and_preserve(auto_link(user.bio))
     .badges
       -user.badges_on(current_group, :limit => 3).each do |badge|
         =render :partial => "badges/badge", :object => badge, :locals => {:mini => true}
-    .owner-data
-      %strong
-        = t(:created_at, :scope => "activerecord.attributes.user")
-        = t("time.ago", :time => time_ago_in_words(membership.joined_at || membership.created_at))
+    
+  %br.clearer/

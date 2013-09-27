@@ -160,8 +160,11 @@ class Experimental::ExperimentalController < ApplicationController
   #ERROR PAGE FOR EXPERIMENTAL
   def routing_error
     if params[:query]!="" && params[:query].present?
-      @routes = Route.where(url: /#{params[:query]}/i) 
-    end
+      @questions_search = Question.where(:title=> /#{params[:query]}/i)
+      @answers_search = Answer.where(:body=> /#{params[:query]}/i)
+      @tags_search = Tag.where(:name=> /#{params[:query]}/i)
+      @service_providers_search = ServiceProvider.where(:name=> /#{params[:query]}/i)
+    end  
     render :file => "#{Rails.root}/public/404.html", :status => 404
   end
 

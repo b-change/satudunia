@@ -83,7 +83,9 @@
                 %td
                   = announcement.only_anonymous ? "Yes" : "No"
                 %td
-                  = link_to "<span class='icon12 icomoon-icon-remove'></span>".html_safe, announcement_path(announcement), :method => :delete, :confirm => "Are you sure? This announcement will no longer exist"
+                  
+                  = button_to "<span class='icon12 icomoon-icon-remove'></span>".html_safe, announcement_path(:id=>announcement), :confirm => "Are you sure? This announcement will no longer exist", :method => :delete
+                  
 
 
 :javascript

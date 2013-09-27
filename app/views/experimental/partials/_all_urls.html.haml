@@ -1,10 +1,36 @@
 #bbpress-forums.set-question
 	.post-1343.topic.type-topic.status-publish.odd.bbp-parent-forum-1322.bbp-parent-topic-1343.bbp-reply-position-1.user-id-494.topic-author
-		-@routes.each do |route|
-			%h6
-				=link_to "#{route.url}","#{route.url}"
-
-						
+		- if @questions_search.nil? && @answers_search.nil? && @tags_search.nil? && @service_providers_search.nil?
+			= render "experimental/partials/empty_record_message.html"
+		- else
+			- unless @questions_search.nil?
+				-@questions_search.each do |route1|
+					%h6
+						Questions
+						="&nbsp;&nbsp;".html_safe
+						="&nbsp;&nbsp;".html_safe
+						=link_to route1.title
+			- unless @answers_search.nil?
+				-@answers_search.each do |route2|
+					%h6
+						Answers
+						="&nbsp;&nbsp;".html_safe
+						="&nbsp;&nbsp;".html_safe
+						=link_to route2.body
+			- unless @tags_search.nil?
+				-@tags_search.each do |route3|
+					%h6
+						Tags
+						="&nbsp;&nbsp;".html_safe
+						="&nbsp;&nbsp;".html_safe
+						=link_to route3.name
+			- unless @service_providers_search.nil?
+				-@service_providers_search.each do |route4|
+					%h6
+						Service Providers
+						="&nbsp;&nbsp;".html_safe
+						="&nbsp;&nbsp;".html_safe
+						=link_to route4.name
 :javascript
 	jQuery(document).ready(function(){
 		jQuery('html, body').animate({ scrollTop: 500 });

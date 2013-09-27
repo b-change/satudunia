@@ -1,0 +1,27 @@
+#related
+	%ul.tabnav.ui-tabs-nav
+		%li.title Related:
+		%li.arrow
+		%li.ui-tabs-selected
+			%a{href: "#tab3", title: "Category 3"} Announcements
+	%br.clearer/
+	.tabdiv-wrapper
+		#tab3.tabdiv.ui-tabs-panel{style: "display:block"}
+			- related_count = @related_announcement.count
+			- @related_announcement.each_with_index do |announcement,index|
+				- cycle_class_news = cycle(' ',' ','right-news')
+				.panel{:class => cycle_class_news}
+					#related_announcement_rating
+					.rating-wrapper.small
+					%a.darken.small{:href => announcement_path(announcement.slug)}
+						- if announcement.has_announcement_image?
+							= image_tag (announcement_image_path(announcement,"small")) , :height => 70,:width=>100
+						- else
+							= image_tag ("banner-250x250.jpg") , :height => 70,:width=>100
+					%a.post-title{:href => announcement_path(announcement.slug)}
+						= announcement.message
+				
+				- if related_count%2 != 0
+					.clear-responsive
+				- if (cycle_class_news == "right-news") || (related_count - index == 1 && related_count%3 != 0)
+					%br.clearer.hide-responsive

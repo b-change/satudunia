@@ -1,0 +1,41 @@
+
+- unless @about_user.nil?
+  #authorbox
+    %h2= @about_user.login.capitalize
+    .arrow-catpanel-bottom  
+    .inner
+      .author-image
+        - if @about_user.use_gravatar?
+          = image_tag avatar_user_path(@about_user),:size=>'70x70',:class => "avatar"   
+        - else
+          %img{:alt => "gravatar", :height => "70", :src => "http://www.gravatar.com/avatar/8a567031a8d520b2f97089e715b64e00.png", :width => "70"}/
+      .description
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean semper metus sed est fermentum eget malesuada orci luctus. Integer fringilla venenatis eros, non egestas ligula malesuada sit amet.
+        %a{:href => "http://www.google.com"} test link
+        test test test.
+      %br.clearer/
+      %ul.social-links
+        %li.twitter
+          %a{:href => "http://twitter.com/IndustrialTheme", :title => "Twitter"}  
+        %li.facebook
+          %a{:href => "http://www.facebook.com/facebook", :title => "Facebook"}  
+        %li.linkedin
+          %a{:href => "http://www.linkedin.com/in/username", :title => "LinkedIn"}  
+        %li.googleplus
+          %a{:href => "http://plus.google.com/112286665725634842068", :title => "Google+"}  
+        %li.youtube
+          %a{:href => "http://www.youtube.com/user/brianmcculloh/", :title => "YouTube"}  
+        %li.flickr
+          %a{:href => "http://www.flickr.com/photos/brianmcculloh/", :title => "Flickr"}  
+        %li.digg
+          %a{:href => "http://digg.com/users/digg", :title => "Digg"}  
+        %li.email
+          %a{:href => "mailto:brianmcculloh@gmail.com", :title => "Email"}  
+        %li.url
+          %a{:href => "http://www.outerspiceweb.com", :title => "Website"}  
+      %br.clearer/
+      .more-articles
+        More articles by
+        %a{:href => "archive-a.html", :rel => "author", :title => "Posts by Brian McCulloh"}= @about_user.name
+        \»    
+    

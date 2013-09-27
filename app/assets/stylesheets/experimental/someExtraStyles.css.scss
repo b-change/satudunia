@@ -1,4 +1,4 @@
-.full-align-style{
+ .full-align-style{
 	text-align:justify;
 }
 .sidebar-new {
@@ -1229,7 +1229,7 @@ form#search input {
 }
 
 .rating-news{
-	float: right;
+	margin-left:500px !important;
 }
 
 .set-fonts a{
@@ -1256,5 +1256,32 @@ form#search input {
 }
 
 .comments-rss-header {
-    margin-top: -20px !important;
+  margin-top: -20px !important;
 }
+
+.set-padding-right{
+	padding-right: 20px !important;
+}
+
+.no-margin-left{
+	margin-left:-35px !important;
+}
+
+.item-meta-answers {
+    margin-top: -22px !important;
+    padding-left: 220px !important;
+}
+
+.item-meta-reputation {
+    margin-top: -22px !important;
+    padding-left: 345px !important;
+}
+
+.user-data-following {
+    color: #555555;
+    font-family: BebasNeueRegular,arial,sans-serif !important;
+    font-size: 16px;
+    margin-bottom: -15px;
+    margin-top: 3px;
+}
+

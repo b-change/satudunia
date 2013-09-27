@@ -1,6 +1,7 @@
 class AnnouncementsController < ApplicationController
-  before_filter :login_required, :except => [:hide]
-  before_filter :check_permissions, :except => [:hide]
+  before_filter :login_required, :except => [:hide,:announce,:show]
+  before_filter :check_permissions, :except => [:hide,:announce,:show]
+
   layout "supr"
   tabs :default => :announcements
   before_filter :set_breadcrumb ,:except => [:index,:announce]
@@ -49,11 +50,11 @@ class AnnouncementsController < ApplicationController
   # DELETE /announcements/1
   # DELETE /announcements/1.json
   def destroy
-    @announcement = current_group.announcements.find(params[:id])
+    @announcement = current_group.announcements.by_slug(params[:id])
     @announcement.destroy
-
+    flash[:notice] = "Announcement deleted"
     respond_to do |format|
-      format.html { redirect_to(announcements_url) }
+      format.html { redirect_to(admin_announcements_path) }
       format.json  { head :ok }
     end
   end
@@ -78,16 +79,16 @@ class AnnouncementsController < ApplicationController
     
     #@announcement = Announcement.find(params[:id])
     @announcement = Announcement.by_slug(params[:id])
+    @related_announcement = Announcement.all.order('articles.impressions_count DESC').limit(6)
     add_breadcrumb @announcement.message, @announcement.slug
     render :layout => "experiment"
-    
   end
 
   def rating
     @announcement = Announcement.find(params[:id])
     @announcement.rate params[:score] ,current_user
-    @announcement.save
-    render :nothing => true
+    @announcement.save    
+    render :layout =>false
   end
 
   protected

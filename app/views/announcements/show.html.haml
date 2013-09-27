@@ -1,3 +1,4 @@
+#flash
 .clearer.hide-responsive  
 %br.hide-responsive/
 .main-content-left
@@ -12,12 +13,21 @@
 			/ post by removed from here
 			.overview-wrapper
 				.overview-new
+					.section-bottom1
+						.category.qa-q-item-tags
+							.catname
+								#{@announcement.created_at.strftime("%d %b %Y - %I:%M %p")}
+							.category-arrow
 					.left-panel
 						.content-panel
 							.the-content.justify-content			
 								.userDescription
 									.basicInfo{:style => "margin-left: 10px !important"}
-										.rating-news#user-announcement-rating{:id => @announcement.id}
+										- if current_user
+											.rating-news#user-announcement-rating{:id => @announcement.id}
+										- else
+											.rating-news#no_login_announcement-rating{:id => @announcement.id}
+										%br.clearer
 										%h2
 											= @announcement.message rescue ""
 										%small
@@ -32,6 +42,11 @@
 								#service_information{:style => "margin: 10px"}
 									= @announcement.message rescue ""
 									= link_to "Back", announce_announcements_path
+				%br.clearer/
+				.content-panel.post-loop
+					/ authorbox
+					= render "announcements/author_box"
+					= render 'announcements/related_box'
 /side bar
 .sidebar
 	- if current_user.nil?
@@ -65,15 +80,17 @@
 
 :javascript
 	jQuery("#user-announcement-rating_#{@announcement.id}").raty({
-	  path: '../assets',
-	  score: "#{@announcement.rating}",
-	  precision: true,
-	  click: function(score, evt) {
-	    jQuery.ajax({
+		path: '../assets',
+		score: "#{@announcement.rating}",
+		precision: true,
+		click: function(score, evt) {
+			jQuery.ajax({
 				url: "/announcements/#{@announcement._id.to_s}/rating",
 				data: {score: score},
 				success:function(){
 				}
 			});
-	  }
+		}
 	});
+
+	jQuery("#no_login_announcement-rating_#{@announcement.id}").raty({ readOnly: true,score: "#{@announcement.rating}",path: '../assets'}); 

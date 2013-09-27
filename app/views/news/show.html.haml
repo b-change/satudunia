@@ -1,3 +1,4 @@
+#flash
 .clearer.hide-responsive  
 %br.hide-responsive/
 .main-content-left
@@ -10,8 +11,8 @@
 					.comment-bubble
 						%a{:title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 0
 					%span.posted-label Posted
-					June 19, 2012 by
-					%a{:href => "http://www.industrialthemes.com", :rel => "author external", :title => "Visit Brian McCulloh’s website"} Brian McCulloh
+					#{@news.created_at.strftime("%d %b %Y - %I:%M %p")} by 
+					%a{:href => "http://www.industrialthemes.com", :rel => "author external", :title => "Visit Brian McCulloh’s website"} #{@news.user.login}
 					%span.category-label
 						in
 						%a{:href => "#"} News
@@ -20,11 +21,20 @@
 				.section-arrow
 			/ post by removed from here
 			.overview-new
+				.section-bottom1
+					.category.qa-q-item-tags
+						.catname
+							#{@news.created_at.strftime("%d %b %Y - %I:%M %p")}
+						.category-arrow
 				.left-panel
 					.the-content.justify-content			
 						.userDescription
 							.basicInfo{:style => "margin-left: 10px !important"}
-								.rating-news#user-news-rating{:id => @news.id}
+								- if current_user
+									.rating-news#user-news-rating{:id => @news.id}
+								- else
+									.rating-news#no-login-user-news-rating{:id => @news.id}
+								%br.clearer
 								%h2
 									= @news.news_title
 								%small
@@ -38,7 +48,7 @@
 			/ authorbox box partial 
 			= render "experimental/partials/author_box"
 			/ related box partial 
-			=# render "experimental/partials/related_box"
+			= render "news/related_box"
 			.clearer.hide-responsive  
 			%br.hide-responsive/
 /side bar
@@ -74,15 +84,17 @@
 
 :javascript
 	jQuery("#user-news-rating_#{@news.id}").raty({
-	  path: '../assets',
-	  score: "#{@news.rating}",
-	  precision: true,
-	  click: function(score, evt) {
-	    jQuery.ajax({
+		path: '../assets',
+		score: "#{@news.rating}",
+		precision: true,
+		click: function(score, evt) {
+			jQuery.ajax({
 				url: "/news/#{@news._id.to_s}/rating",
 				data: {score: score},
 				success:function(){
+
 				}
 			});
-	  }
+		}
 	});
+	jQuery("#no-login-user-news-rating_#{@news.id}").raty({ readOnly: true,score: "#{@news.rating}",path: '../assets'}); 

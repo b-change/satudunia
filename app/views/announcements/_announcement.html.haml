@@ -1,11 +1,12 @@
 .post-panel{:class => "#{@class}"}
 	.article-image
+		%a.thumbnail.darken.video{:href => announcement_path(announcement)}
+			- if announcement.has_announcement_image?
+				%img{:src=>announcement_image_path(announcement,"small"), :height=>"170",:width=>"300"}
+				/ = image_tag (announcement_image_path(announcement,"small")) , :height => 170,:width=>300
+			- else
+				%img{:src=>"/assets/banner-250x250.jpg", :height=>"170",:width=>"300"}
 		%a
-			.thumbnail.darken.video{:href => "single-review-numbers.html"}
-				- if announcement.has_announcement_image?
-					= image_tag (announcement_image_path(announcement,"small")) , :height => 170,:width=>300
-				- else
-					= image_tag ("banner-250x250.jpg") , :height => 170,:width=>300
 			.inner
 				#announcement-rating{:id =>"#{announcement.id}"}
 				%h2

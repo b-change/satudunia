@@ -32,9 +32,11 @@ class ApplicationController < ActionController::Base
   before_filter :get_service_providers
   before_filter :get_tags_and_questions
 
+
   has_mobile_fu :mobile_enabled
 
   add_breadcrumb "Home", :root_path
+  before_filter :login_breadcrumb
   layout :set_layout
 
   helper_method :recaptcha_tag
@@ -323,5 +325,11 @@ class ApplicationController < ActionController::Base
     @tags_experimental = Tag.all
     @random_tags_experimental = Tag.all.sample(4).map(&:name)
     @questions = Question.all
+  end
+
+  def login_breadcrumb
+    if params[:controller]=="devise/sessions" && params[:action]=="new"
+      add_breadcrumb "login", "login"    
+    end
   end
 end
