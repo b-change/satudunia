@@ -1,16 +1,17 @@
-.badge-comment#set-margin
-  %a
-    = image_tag commentor_image(badge_comment), :width => "50", :height=>"50", :class=>"avatar"
-  .badge-comment-content
-    = time_ago_in_words(badge_comment.created_at) 
-    ago
-    %br
-    = link_to badge_comment.message, badge_comment
-  .actions#badge-action
-    .reply-comment 
-      = link_to "Reply", "javascript:void(0)",:class => "reply-class",:id=>badge_comment.id.to_s  
-      %span{:style=>"display:none;"}
-        = render "badge_comments/form"
-  %br.clearer/
+- unless User.find(badge_comment.user_id).blank?
+  .badge-comment#set-margin
+    %a
+      = image_tag commentor_image(badge_comment), :width => "50", :height=>"50", :class=>"avatar"
+    .badge-comment-content
+      = time_ago_in_words(badge_comment.created_at) 
+      ago
+      %br
+      = link_to badge_comment.message, badge_comment
+    .actions#badge-action
+      .reply-comment 
+        = link_to "Reply", "javascript:void(0)",:class => "reply-class",:id=>badge_comment.id.to_s  
+        %span{:style=>"display:none;"}
+          = render "badge_comments/form"
+    %br.clearer/
 :javascript
   Experimental.getParentComment(".reply-class");

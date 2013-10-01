@@ -17,6 +17,10 @@
 %li
 	%a{:href => "/survey",:title=>"Survey",:alt=>"Survey"} Surveys
 %li
-	%a{:href => "/questions",:title=>"Questions",:alt=>"Questions"} Questions 
+	= link_to "Questions" ,questions_path
 %li
 	%a{:href => "/answers",:title=>"Answers",:alt=>"Answers"} Answers
+%li
+	= link_to "Announcements",announcements_path
+%li
+	= link_to "News",news_index_path

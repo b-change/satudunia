@@ -35,7 +35,7 @@
                 / .rating-wrapper.small
                 /   .number.color3 42%
                 .comments
-                  %a #{questions_count} Views
+                  %a #{show_counts("questions_index")} Views
                 .more
                   %a{:href => questions_path} More
           %li
@@ -59,7 +59,7 @@
                 / .rating-wrapper.small
                 /   .letter.color3 C
                 .comments
-                  %a #{services_map_count} Views
+                  %a  #{show_counts("service_providers_index")} Views
                 .more
                   %a{:href => service_providers_path} More
             .clearer
@@ -89,7 +89,7 @@
                 /     .star  
                 /     .star  
                 .comments
-                  %a{:href => "http://plus-us.net/wiki/Main_Page", :title => "Comment on Sugar Rush: Banana Stracciatella Gelato from Eataly"} 0 Views
+                  %a #{show_counts("ask_question")} Views
                 .more
                   %a{:href => "http://plus-us.net/wiki/Main_Page"} More
             .clearer

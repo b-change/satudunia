@@ -44,20 +44,13 @@ module ExperimentalHelper
 		Tag.all.in_groups(4,nil)
 	end
 
-	def questions_count
-		@question_count = ViewsCount.where(:type => "questions_index").first
-		if (@question_count == nil)
+	def show_counts(variable = variable_from_index)
+		@count = ViewsCount.where(:type => variable).first
+		if (@count == nil)
 			return 200
 		else
-			number_to_human(@question_count.count, :precision => 4,:significant => false)  
+			number_to_human(@count.count, :precision => 4,:significant => false)  
 		end
 	end
-	def services_map_count
-		@services_map_count = ViewsCount.where(:type => "service_providers_index").first
-		if (@services_map_count == nil)
-			return 200
-		else
-			number_to_human(@services_map_count.count, :precision => 4,:significant => false)  
-		end
-	end
+
 end

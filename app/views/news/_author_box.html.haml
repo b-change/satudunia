@@ -1,15 +1,15 @@
-- unless @announcement.user.nil?
+- unless @news.user.nil?
   #authorbox
-    %h2= @announcement.user.login.capitalize
+    %h2= @news.user.login.capitalize
     .arrow-catpanel-bottom  
     .inner
       .author-image
-        - if @announcement.user.use_gravatar?
-          = image_tag avatar_user_path(@announcement.user),:size=>'70x70',:class => "avatar"   
+        - if @news.user.use_gravatar?
+          = image_tag avatar_user_path(@news.user),:size=>'70x70',:class => "avatar"   
         - else
           %img{:alt => "gravatar", :height => "70", :src => "http://www.gravatar.com/avatar/8a567031a8d520b2f97089e715b64e00.png", :width => "70"}/
       .description
-        = @announcement.user.bio
+        = @news.user.bio
         / %a{:href => "http://www.google.com"} test link
         / test test test.
       %br.clearer/
@@ -35,6 +35,6 @@
       %br.clearer/
       .more-articles
         More articles by
-        %a{:href => "archive-a.html", :rel => "author", :title => "Posts by Brian McCulloh"}= @announcement.user.name
+        %a{:href => "archive-a.html", :rel => "author", :title => "Posts by Brian McCulloh"}= @news.user.name
         \»    
     

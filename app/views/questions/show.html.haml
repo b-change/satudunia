@@ -19,6 +19,10 @@
 								.catname
 									Question
 								.category-arrow 
+						.create-question-button
+							%a.button_link{href: ask_question_experimental_index_path}
+								%span Create New Question
+								
 					.content-panel#set-top
 						.the-content
 							#bbpress-forums.set-question
@@ -38,10 +42,10 @@
 														=link_to image_tag avatar_user_path(@question.user),:size=>'65x65'
 													- else
 														%img.avatar.user-1227-avatar.avatar-50.photo{:alt => "Profile picture of zicrainnyRV", :height => "50", :src => "http://gravatar.com/avatar/5a0a1a5e96f190c339221f66d7b09b00?d=http://www.industrialthemes.com/made/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg&s=50&r=G", :width => "50"}/
-												/ %br/
-												/ %a.bbp-author-name
-												/ 	Posted By: #{@question.user.login}
-												/ %br/
+												%br/
+												%a.bbp-author-name
+													Posted By: #{@question.user.login}
+												%br/
 												/ .bbp-author-role Keymaster
 											/ .bbp-reply-author
 											.bbp-reply-content
@@ -63,9 +67,7 @@
 										%img.avatar.user-1227-avatar.avatar-50.photo{:alt => "Profile picture of zicrainnyRV", :height => "30", :src => "http://gravatar.com/avatar/5a0a1a5e96f190c339221f66d7b09b00?d=http://www.industrialthemes.com/made/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg&s=50&r=G", :width => "30"}/
 									= f.text_area :body, :size=>"0", :placeholder => "write a comment...", :id=> "enter-comment"
 						.clear
-
-
-			
+					
 				.show-questions-answer
 					= render :partial => "answers/plus_answer"
 		%br.clearer/
@@ -108,8 +110,8 @@
 													- if current_user.present?
 														.logged-in.auth-section
 															%section
-																.temp-post{style: "text-align: right"}
-																	%button.btn{:id=>"question-ans"}
+																.temp-post.btn
+																	%button.btn.disqus-btn{:id=>"question-ans"}
 																		Post as
 																		%span{"data-role" => "username"} 
 																			= current_user.login
@@ -175,7 +177,23 @@
 	
 
 .sidebar
-	= render "experimental/partials/left_bar"
+	- if current_user.nil?
+		/login box
+		= render "experimental/partials/login_box"
+	-else
+		/profile box
+		= render "experimental/partials/profile_box"
+
+	/ social login box
+	= render "experimental/partials/social_login_box"
+	/ member box
+	= render "experimental/partials/member_box"
+	/rating box
+	= render "experimental/partials/rating_box"
+	/rating box
+	= render "experimental/partials/rating_box2"
+	/ left bar
+	/ = render "experimental/partials/left_bar"
 	/widget top
 	= render "experimental/partials/widget_top"
 	/ .clearer.hide-responsive
@@ -184,8 +202,6 @@
 	= render "experimental/partials/newly_reviewed"
 	/popular box
 	= render "experimental/partials/popular_box"
-	/rating box
-	= render "experimental/partials/rating_box"
 	/banner box
 	= render "experimental/partials/banner_box"
 

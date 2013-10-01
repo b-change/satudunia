@@ -156,6 +156,7 @@ class Experimental::ExperimentalController < ApplicationController
   end
   def ask_question
     @question = Question.new(params[:question]) 
+    Question.update_ask_question_views
   end
   #ERROR PAGE FOR EXPERIMENTAL
   def routing_error

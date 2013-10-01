@@ -544,5 +544,15 @@ class Question
       @questions_index_views.save
     end
   end
+
+  def self.update_ask_question_views
+    @ask_question_views = ViewsCount.where(:type => "ask_question").first
+    if @ask_question_views == nil
+      ViewsCount.create(:type => "ask_question", :count => 200)
+    else
+      @ask_question_views.count += 1
+      @ask_question_views.save
+    end
+  end
 end
 

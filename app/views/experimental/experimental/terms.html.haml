@@ -1,117 +1,100 @@
 .clearer.hide-responsive  
 %br.hide-responsive/
 .main-content-left
-  .page-content.review.single-post
-    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
-    .review-content
-      .ribbon-shadow-left
-      .section-wrapper
-        .section
-          / .comment-bubble
-          /   %a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 0
-          / making title stronger
-          .section-for-header
-            %i.icon-text-doc
-            TERMS OF USE
-      .section-arrow 
-    / content area 
-    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
-    .overview-wrapper
-      / %h1.title Login
-      .overview-new.nopadding-top.padding-about
-        .excerpt-new1.justify-content.nopadding-top
-          %p.filter-content-new
-            %p 
-              -unless @tos.nil? 
-                = @tos.static_content.html_safe
-      .section-bottom{:style=>"margin-bottom:20px;"}
-        .category.qa-q-item-tags#logo-wrapper
-          .catname
-            Tags
-          .category-arrow  
-        .tags-list-about#set-margin
-          %span.tags1_2
-            %a{:href => "/tags/technology"} Sample1
-            %span
-              x
-            %span.avoid_link_color{:style => "font-weight:600"}
-              0
-          &nbsp;&nbsp;
-          %span.tags1_2
-            %a{:href => "/tags/business"} sample2
-            %span
-              x
-            %span.avoid_link_color{:style => "font-weight:600"}
-              1
-          &nbsp;&nbsp;
-          %span.tags1_2
-            %a{:href => "/tags/science"} sample3
-            %span
-              x
-            %span.avoid_link_color{:style => "font-weight:600"}
-              2
-          %br
-  %br.clearer/
+	.page-content.review.single-post
+		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+		.review-content
+			.ribbon-shadow-left
+			.section-wrapper
+				.section
+					/ .comment-bubble
+					/   %a{:href => "#respond", :title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 0
+					/ making title stronger
+					.section-for-header
+						%i.icon-text-doc
+						TERMS OF USE
+			.section-arrow 
+		/ content area 
+		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
+		.overview-wrapper
+			/ %h1.title Login
+			.overview-new.nopadding-top.padding-about
+				.excerpt-new1.justify-content.nopadding-top
+					%p.filter-content-new
+						%p 
+							-unless @tos.nil? 
+								= @tos.static_content.html_safe
+			.section-bottom{:style=>"margin-bottom:20px;"}
+				.category.qa-q-item-tags#logo-wrapper
+					.catname
+						Tags
+					.category-arrow  
+				.tags-list-about#set-margin
+					%span.tags1_2.set-fonts
+						%a{:href => "/tags/technology"} Sample1
+						%span
+							x
+						%span.avoid_link_color{:style => "font-weight:600"}
+							0
+					&nbsp;&nbsp;
+					%span.tags1_2.set-fonts
+						%a{:href => "/tags/business"} Sample2
+						%span
+							x
+						%span.avoid_link_color{:style => "font-weight:600"}
+							1
+					&nbsp;&nbsp;
+					%span.tags1_2.set-fonts
+						%a{:href => "/tags/science"} Sample3
+						%span
+							x
+						%span.avoid_link_color{:style => "font-weight:600"}
+							2
+					%br
+	%br.clearer/
 
-
-/ / content variable
-/ .clearer.hide-responsive  
-/ %br.hide-responsive/
-/ .main-content-left
-/   .page-content.review
-/     %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
-/     .overview-wrapper
-/       %h1.title TERMS OF USE
-/       .overview
-/         .arrow-catpanel-bottom  
-/         .excerpt-new
-/           %p 
-/             -unless @tos.nil? 
-/               = @tos.static_content.html_safe
-
-/side bar
 .sidebar
-  - if current_user.nil?
-    /login box
-    = render "experimental/partials/login_box"
-  -else
-    /profile box
-    = render "experimental/partials/profile_box"
+	- if current_user.nil?
+		/login box
+		= render "experimental/partials/login_box"
+	-else
+		/profile box
+		= render "experimental/partials/profile_box"
 
-  / social login box
-  = render "experimental/partials/social_login_box"
-  / member box
-  = render "experimental/partials/member_box"
-  /rating box
-  = render "experimental/partials/rating_box"
-  /rating box
-  = render "experimental/partials/rating_box2"
-  / left bar
-  / = render "experimental/partials/left_bar"
-  /widget top
-  = render "experimental/partials/widget_top"
-  / .clearer.hide-responsive
-  / %br.clearer/
-  / newly reviewd
-  = render "experimental/partials/newly_reviewed"
-  /popular box
-  = render "experimental/partials/popular_box"
-  /banner box
-  = render "experimental/partials/banner_box"
+	/ social login box
+	= render "experimental/partials/social_login_box"
+	/ member box
+	= render "experimental/partials/member_box"
+	/rating box
+	= render "experimental/partials/rating_box"
+	/rating box
+	= render "experimental/partials/rating_box2"
+	/ left bar
+	/ = render "experimental/partials/left_bar"
+	/widget top
+	= render "experimental/partials/widget_top"
+	/ .clearer.hide-responsive
+	/ %br.clearer/
+	/ newly reviewd
+	= render "experimental/partials/newly_reviewed"
+	/popular box
+	= render "experimental/partials/popular_box"
+	/banner box
+	= render "experimental/partials/banner_box"
 :css
-  .excerpt-new ul,.excerpt-new ol,.excerpt-new li{
-    list-style-image: url("/assets/experimental/images/li-dark.png") !important;
-  }
+	.excerpt-new ul,.excerpt-new ol,.excerpt-new li{
+		list-style-image: url("/assets/experimental/images/li-dark.png") !important;
+	}
 
 :javascript
-  jQuery.noConflict();
-  jQuery(document).ready(function() { 
-  
-    jQuery('#related > ul').tabs({ fx: { opacity: 'toggle', duration: 150 } });
-    // for making first character styled
-    
-  }); 
-  
+	jQuery.noConflict();
+	jQuery(document).ready(function() { 
+	
+		jQuery('#related > ul').tabs({ fx: { opacity: 'toggle', duration: 150 } });
+		// for making first character styled
+		
+	}); 
+	
 
 
 

@@ -5,6 +5,8 @@ class AnnouncementsController < ApplicationController
   layout "supr"
   tabs :default => :announcements
   before_filter :set_breadcrumb ,:except => [:index,:announce]
+
+  #layout "experiment", :only => [:announce]
   # GET /announcements
   # GET /announcements.json
   def index
@@ -16,6 +18,7 @@ class AnnouncementsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.haml
+      format.js
       format.json  { render :json => @announcements }
     end
   end
@@ -23,12 +26,12 @@ class AnnouncementsController < ApplicationController
   # POST /announcements
   # POST /announcements.json
   def create
+
     @announcement = Announcement.new
     @announcement.safe_update(%w[message only_anonymous announcement_image], params[:announcement])
-
+    @announcement.user_id = current_user.id
     @announcement.starts_at = build_datetime(params[:announcement], "starts_at")
     @announcement.ends_at = build_datetime(params[:announcement], "ends_at")
-
     @announcement.group = current_group
 
     respond_to do |format|
@@ -70,9 +73,13 @@ class AnnouncementsController < ApplicationController
 
   def announce
     add_breadcrumb "Announcements", "announcements"
-    @announcements = Announcement.all
+    @announcements = Announcement.all.page(params["page"]).per(4)
     render :layout => "experiment"
     # @announcement = Announcement.where(:only_anonymous=> false ).page(params[:page])
+    # respond_to do |format|
+    #   format.html
+    #   format.js
+    # end
   end
 
   def show

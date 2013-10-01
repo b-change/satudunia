@@ -22,19 +22,18 @@
 			/ post by removed from here
 			.overview-new
 				.section-bottom1
+					- if current_user && !(@news.rated_by? current_user)
+						.rating-news#user-news-rating{:id => @news.id}
+					- else
+						.rating-news#no-login-user-news-rating{:id => @news.id}
 					.category.qa-q-item-tags
 						.catname
-							#{@news.created_at.strftime("%d %b %Y - %I:%M %p")}
+							#{@news.created_at.strftime("%d %b %Y")}
 						.category-arrow
 				.left-panel
 					.the-content.justify-content			
 						.userDescription
 							.basicInfo{:style => "margin-left: 10px !important"}
-								- if current_user
-									.rating-news#user-news-rating{:id => @news.id}
-								- else
-									.rating-news#no-login-user-news-rating{:id => @news.id}
-								%br.clearer
 								%h2
 									= @news.news_title
 								%small
@@ -46,7 +45,7 @@
 		
 			
 			/ authorbox box partial 
-			= render "experimental/partials/author_box"
+			= render "news/author_box"
 			/ related box partial 
 			= render "news/related_box"
 			.clearer.hide-responsive  

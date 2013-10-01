@@ -14,7 +14,7 @@
       .tabdiv-wrapper
         #tabs-compact-tag3.tabdiv
           %ul
-            - get_questions_from_tag(tags[0]).first(5).each do |title|
+            - get_questions_from_tag(tags[0]).first(3).each do |title|
               %li
                 - unless Question.where(:tags =>tags[0]).blank?
                   .rating-wrapper.small 
@@ -24,7 +24,7 @@
               %li.last
         #tabs-compact-tag4.tabdiv
           %ul
-            - get_questions_from_tag(tags[1]).first(5).each do |title|
+            - get_questions_from_tag(tags[1]).first(3).each do |title|
               %li
                 - unless Question.where(:tags =>tags[1]).blank?
                   .rating-wrapper.small 
@@ -35,7 +35,7 @@
               %li.last
         #tabs-compact-tag5.tabdiv
           %ul
-            - get_questions_from_tag(tags[2]).first(5).each do |title|
+            - get_questions_from_tag(tags[2]).first(3).each do |title|
               %li
                 - unless Question.where(:tags =>tags[2]).blank?
                   .rating-wrapper.small 

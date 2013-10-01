@@ -18,7 +18,8 @@ class Announcement
   file_key :announcement_image, :max_length => 1.megabytes
   file_list :thumbnails
   referenced_in :group
-
+  referenced_in :user
+  
   validates_presence_of :message
   validates_presence_of :starts_at
   validates_presence_of :ends_at

@@ -3,23 +3,24 @@
     Related Tags
   .category-arrow
 .tags-list-about
--Group.last.default_tags.each do |p|
+.show_tags.comments-rss-header    
+  -Group.last.default_tags.each do |p|
   
-  %span.tags1_2_3
-    %a{:href => "/tags/#{p[0]}"} 
-      =p[0].gsub(/[_]/, ' ')
-    %span
-      x
-    %span.avoid_link_color#weight-font
-      =Question.where(:tags=>"#{p[0]}").count
-    &nbsp;&nbsp; 
-  -p[1].each do |p1|
     %span.tags1_2_3
-      %a{:href => "/tags/#{p1}"} 
-        =p1.gsub(/[_]/, ' ')
+      %a{:href => "/tags/#{p[0]}"} 
+        =p[0].gsub(/[_]/, ' ')
       %span
         x
       %span.avoid_link_color#weight-font
-        =Question.where(:tags=>"#{p1}").count
+        =Question.where(:tags=>"#{p[0]}").count
+      &nbsp;&nbsp; 
+    -p[1].each do |p1|
+      %span.tags1_2_3
+        %a{:href => "/tags/#{p1}"} 
+          =p1.gsub(/[_]/, ' ')
+        %span
+          x
+        %span.avoid_link_color#weight-font
+          =Question.where(:tags=>"#{p1}").count
     
   

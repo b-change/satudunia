@@ -7,7 +7,7 @@
     %h2
       About me: #{truncate(strip_tags(@survey1.about_me.capitalize),:length=>64)}
     .category-exp
-      By #{current_user.name} on #{@survey1.created_at.strftime("%d %b %Y - %I:%M %p")}
+      By #{current_user.login} on #{@survey1.created_at.strftime("%d %b %Y - %I:%M %p")}
       =# truncate(strip_tags(news.news_body), :length => 300)
   .more{:style=>"padding-left:70px;"}
     = link_to "More","/survey/sample/tier1",:class=>"avoid_link_color"

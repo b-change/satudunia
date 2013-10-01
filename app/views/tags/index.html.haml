@@ -126,22 +126,28 @@
 				
 /side bar
 .sidebar
-	/login box
-	= render "experimental/partials/login_box"
+	- if current_user.nil?
+		/login box
+		= render "experimental/partials/login_box"
+	-else
+		/profile box
+		= render "experimental/partials/profile_box"
+	/ social login box
+	= render "experimental/partials/social_login_box"
 	/ member box
 	= render "experimental/partials/member_box"
+	/rating box
+	= render "experimental/partials/rating_box"
+	/rating box
+	= render "experimental/partials/rating_box2"
 	/ left bar
-	= render "experimental/partials/left_bar"
+	/ = render "experimental/partials/left_bar"
 	/widget top
 	= render "experimental/partials/widget_top"
-	/ .clearer.hide-responsive
-	/ %br.clearer/
 	/ newly reviewd
 	= render "experimental/partials/newly_reviewed"
 	/popular box
 	= render "experimental/partials/popular_box"
-	/rating box
-	= render "experimental/partials/rating_box"
 	/banner box
 	= render "experimental/partials/banner_box"
 
@@ -155,7 +161,7 @@
 				jQuery(".loader").addClass("ajax-loader");
 				jQuery.ajax({           
 					url:'/tags',
-				    data:{ type: ques_search,ques:"tag_questions",idLoad: "tag_table",page:""},
+						data:{ type: ques_search,ques:"tag_questions",idLoad: "tag_table",page:""},
 					error:function(errorObject){    
 				
 					},
@@ -178,7 +184,7 @@
 			jQuery(".loader").addClass("ajax-loader");
 			jQuery.ajax({           
 				url:'/tags',
-			    data:{ type: "",ques:"tag_questions",idLoad: "tag_table",page:""},
+					data:{ type: "",ques:"tag_questions",idLoad: "tag_table",page:""},
 				error:function(errorObject){    
 			
 				},

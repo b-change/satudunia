@@ -9,9 +9,10 @@
         - else
           %img{:alt => "gravatar", :height => "70", :src => "http://www.gravatar.com/avatar/8a567031a8d520b2f97089e715b64e00.png", :width => "70"}/
       .description
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean semper metus sed est fermentum eget malesuada orci luctus. Integer fringilla venenatis eros, non egestas ligula malesuada sit amet.
-        %a{:href => "http://www.google.com"} test link
-        test test test.
+        = @about_user.bio
+        / Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean semper metus sed est fermentum eget malesuada orci luctus. Integer fringilla venenatis eros, non egestas ligula malesuada sit amet.
+        / %a{:href => "http://www.google.com"} test link
+        / test test test.
       %br.clearer/
       %ul.social-links
         %li.twitter

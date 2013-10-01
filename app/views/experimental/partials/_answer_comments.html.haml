@@ -4,7 +4,7 @@
 		%li.comments-body#set-margin.set-comments
 			%a
 				- if comments.user.use_gravatar?
-					=link_to image_tag avatar_user_path(current_user),:size=>'30x30'
+					=link_to image_tag avatar_user_path(comments.user),:size=>'30x30'
 				- else
 					%img.avatar.user-1227-avatar.avatar-50.photo{:alt => "Profile picture of zicrainnyRV", :height => "30", :src => "http://gravatar.com/avatar/5a0a1a5e96f190c339221f66d7b09b00?d=http://www.industrialthemes.com/made/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg&s=50&r=G", :width => "30"}/
 			.set-comments-show

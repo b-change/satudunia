@@ -7,7 +7,7 @@
 		%h2
 			/ Relationship status :#{truncate(strip_tags(@survey3.relationship_status.capitalize),:length=>64)}
 		.category-exp
-			By #{current_user.name} on #{@survey7.created_at.strftime("%d %b %Y - %I:%M %p")}
+			By #{current_user.login} on #{@survey7.created_at.strftime("%d %b %Y - %I:%M %p")}
 			=# truncate(strip_tags(news.news_body), :length => 300)
 	.more{:style=>"padding-left:70px;"}
 		= link_to "More","/survey/sample/tier3",:class=>"avoid_link_color"

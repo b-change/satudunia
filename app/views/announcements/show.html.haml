@@ -13,25 +13,22 @@
 			/ post by removed from here
 			.overview-wrapper
 				.overview-new
+					- if current_user && !(@announcement.rated_by? current_user)
+						.rating-news#user-announcement-rating{:id => @announcement.id}
+					- else
+						.rating-news#no_login_announcement-rating{:id => @announcement.id}
 					.section-bottom1
 						.category.qa-q-item-tags
 							.catname
-								#{@announcement.created_at.strftime("%d %b %Y - %I:%M %p")}
+								#{@announcement.created_at.strftime("%d %b %Y")}
 							.category-arrow
 					.left-panel
 						.content-panel
 							.the-content.justify-content			
 								.userDescription
 									.basicInfo{:style => "margin-left: 10px !important"}
-										- if current_user
-											.rating-news#user-announcement-rating{:id => @announcement.id}
-										- else
-											.rating-news#no_login_announcement-rating{:id => @announcement.id}
-										%br.clearer
 										%h2
 											= @announcement.message rescue ""
-										%small
-											on #{@announcement.starts_at.strftime("%x") rescue ""} 
 
 								=# image_tag ("banner-250x250.jpg"), :class => 'gravatar', :style => "margin: 10px", :size=>'500x400'
 								- if @announcement.has_announcement_image?
