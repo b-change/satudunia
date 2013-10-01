@@ -8,27 +8,8 @@
 				Announcements (#{@announcements.count})
 		.ribbon-shadow-right 
 		.section-arrow
-		#return-data-ajax
-			#content.page-content
-				#forums-dir-list-newest.dir-list
-					#pag-top.pagination
-						-@paginator = @announcements
-						= render :partial =>"pagination/pagination",:locals => {:paginationType=>"announcements"}
-		- if @announcements.blank?
-			%br
-			= render "experimental/partials/empty_record_message.html"
-		-@announcements.each do |announcement|
-			- @class = cycle('','right')
-			= render :partial => "announcement", :object => announcement
-			- if @class == 'right'
-				.clearer
-		%br.clearer
-		#content.page-content
-			#forums-dir-list-newest.dir-list
-				#pag-top.pagination
-					-@paginator = @announcements
-					= render :partial =>"pagination/pagination",:locals => {:paginationType=>"announcements"}		
-
+		#announcement-ajax-div
+			= render :partial => "announcement"
 				
 			
 
@@ -65,6 +46,9 @@
 	jQuery(document).ready(function(jQ){
 		jQ('#pagination-digg  a').live('click',function(e){
 			e.preventDefault();
-			jQuery.ajax({url:jQ(this).attr('href'),dataType:"script"})
+			jQuery.ajax({
+				url:jQ(this).attr('href'),
+				dataType:"script"
+			})
 		})
 	})

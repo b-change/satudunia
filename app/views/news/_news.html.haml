@@ -1,30 +1,47 @@
-.post-panel{:class => "#{@class}"}
-  .article-image
-    %a.thumbnail.darken.video{:href => news_path(news)}
-      - if news.has_news_image?
-        =# image_tag (news_image_path(news,"small")) , :height => 170,:width=>300
-        %img{:src=>news_image_path(news,"small"), :height=>"170",:width=>"300"}
-      - else
-        %img{:src=>"/assets/banner-250x250.jpg", :height=>"170",:width=>"300"}
-    %a
-      .inner
-        #news-rating{:id =>"#{news.id}"}
-        %h2
-          = link_to truncate(strip_tags(news.news_title.capitalize),:length=>64), news_path(news.slug)
-        .excerpt
-          on #{news.created_at.strftime("%b %d, %Y")}
-          %br
-          = sanitize(news.news_body).truncate(100, :separator => " ").html_safe
-          
-      .more-bar
-        .arrow-catpanel-top
-        / .rating-wrapper.small
-        /   .number.color5 0%
-        .comments
-        .more1
-          %a{:href => "single-review-numbers.html"} 
-            
-            = link_to "More",news_path(news),:class=>"avoid_link_color"
-
-%script
-  jQuery("#news-rating_#{news.id}").raty({ readOnly: true,score: "#{news.rating}",path: '../assets'});      
+#content.page-content
+	#forums-dir-list-newest.dir-list
+		#pag-top.pagination
+			-@paginator = @news
+			= render :partial =>"pagination/pagination",:locals => {:paginationType=>"news"}
+- if @news.blank?
+	No Recent News Yet
+-@news.each do |news|
+	- @class = cycle('','right')
+	.post-panel{:class => "#{@class}"}
+		.article-image
+			%a.thumbnail.darken.video{:href => news_path(news)}
+				- if news.has_news_image?
+					=# image_tag (news_image_path(news,"small")) , :height => 170,:width=>300
+					%img{:src=>news_image_path(news,"small"), :height=>"170",:width=>"300"}
+				- else
+					%img{:src=>"/assets/banner-250x250.jpg", :height=>"170",:width=>"300"}
+			%a
+				.inner
+					#news-rating{:id =>"#{news.id}"}
+					%h2
+						= link_to truncate(strip_tags(news.news_title.capitalize),:length=>64), news_path(news.slug)
+					.excerpt
+						on #{news.created_at.strftime("%b %d, %Y")}
+						%br
+						= sanitize(news.news_body).truncate(100, :separator => " ").html_safe
+						
+				.more-bar
+					.arrow-catpanel-top
+					/ .rating-wrapper.small
+					/   .number.color5 0%
+					.comments
+					.more1
+						%a{:href => "single-review-numbers.html"} 
+							
+							= link_to "More",news_path(news),:class=>"avoid_link_color"
+		%script
+			jQuery("#news-rating_#{news.id}").raty({ readOnly: true,score: "#{news.rating}",path: '../assets'});     
+		- if @class == 'right'
+			.clearer
+		%br.clearer
+%div.clearer	
+#content.page-content
+	#forums-dir-list-newest.dir-list
+		#pag-top.pagination
+			-@paginator = @news
+			= render :partial =>"pagination/pagination",:locals => {:paginationType=>"news"}

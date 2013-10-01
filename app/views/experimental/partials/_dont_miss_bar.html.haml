@@ -59,9 +59,13 @@
 			%input.btn{:onclick => "document.feedburner_subscribe.submit();", :src => "/assets/experimental/images/signup.png", :title => "You will receive a daily email with new content from our website.", :type => "image"}/
 		%br.clearer/
 	%br.clearer/
-
+:css
+	@media screen and (-webkit-min-device-pixel-ratio:0) { 
+	  #search-container { width:448px; left: 206px;} 
+	  form#search input{width: 441px; padding-left: 12px;}
+	} 
 :javascript 
-	jQuery(document).ready(function(){
+	jQuery(document).ready(function(){			
 		// on focus action
 		var varValueTaker;
 		jQuery(".search-tag").focus(function(){
@@ -74,6 +78,7 @@
 		});
 		// on blur action
 		jQuery(".search-tag").blur(function(){
+
 			var varValueTakerBlur = jQuery(this).val();
 			var varTakeAlt = jQuery(this).attr("data-show");
 			if(varValueTakerBlur==""){

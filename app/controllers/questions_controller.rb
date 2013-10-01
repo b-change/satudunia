@@ -469,11 +469,13 @@ class QuestionsController < ApplicationController
     # sorting question with the tabs
     @params = params[:hidden_keys].split(",")
     @tags = current_group.tags
-    @questions = Question.where(:group_id=>current_group.id).in(_id:@params).page(params["page"]).order_by(current_order)
-    if @questions.empty?
+    @questions = Question.where(:group_id=>current_group.id).in(_id:@params).page(params["page"]).order_by(current_order) 
+
+    if @questions.empty? || @questions.where(:title=>/params[:search_ajax]/i).blank?
+      
       # creation of session
       session[:newQuestionValue] = params[:search_ajax];
-      redirect_to "/questions/ask-a-question"
+      redirect_to ask_question_experimental_index_path
     else
       respond_to do |format|
         format.html {render(:action=>"index")}

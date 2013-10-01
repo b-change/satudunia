@@ -18,7 +18,7 @@ class TagsController < ApplicationController
       end
     end
     else  
-      @tags = current_scope.page(params["page"]) 
+      @tags = Tag.all
       respond_to do |format|
         format.html do
           set_page_title(t("layouts.application.tags"))

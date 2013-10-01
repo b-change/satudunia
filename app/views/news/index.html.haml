@@ -8,16 +8,8 @@
         News (#{@news.count})
     .ribbon-shadow-right 
     .section-arrow
-    - if @news.blank?
-      No Recent News Yet
-    -@news.each do |news|
-      - @class = cycle('','right')
-      = render :partial => "news", :object => news
-      - if @class == 'right'
-        .clearer
-        
-      = paginate @news
-
+    #return-data-ajax
+      = render :partial => "news"
 /side bar
 .sidebar
   - if current_user.nil?
@@ -47,3 +39,13 @@
   = render "experimental/partials/popular_box"
   /banner box
   = render "experimental/partials/banner_box"
+:javascript
+  jQuery(document).ready(function(jQ){
+    jQ('#pagination-digg  a').live('click',function(e){
+      e.preventDefault();
+      jQuery.ajax({
+        url:jQ(this).attr('href'),
+        dataType:"script"
+      })
+    })
+  })

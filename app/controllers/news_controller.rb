@@ -4,7 +4,7 @@ class NewsController < ApplicationController
     add_breadcrumb "News", "news"
     set_page_title("News")
 
-    @news = News.where(:is_archive => false, :is_active => true).page(params[:page])
+    @news = News.where(:is_archive => false, :is_active => true).page(params[:page]).per(6)
   end
 
   def show

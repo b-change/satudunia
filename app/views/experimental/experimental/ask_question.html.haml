@@ -19,7 +19,7 @@
             = form_for(@question, html: {class: "standard-form", id: "ask_question", multipart: true, data: {'login-required' => true}}) do |f|
               %br
                 = f.label :title, "Title*", :class=>"label"
-                = f.text_field :title,:value=>@newQuestionTitle, :placeholder=>"#{raw(current_group.question_prompt)}", :class=>"input-class",:style=>"width:98% !important"
+                = f.text_field :title, :placeholder=>"#{raw(current_group.question_prompt)}", :class=>"input-class",:style=>"width:98% !important"
               %br
                 = f.label :tags, "Tags", :class=>"label"
                 = f.select :tags, current_group.default_tags, {},{:multiple => true, :class => "chzn-select" , :selected => @question.tags,:style=>"width:590px;"}
