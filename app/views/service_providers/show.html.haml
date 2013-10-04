@@ -28,6 +28,9 @@
 				%a{:href => "#Review"} Review
 			%li
 				%a{:href => "#Map" ,:id => "map-tab"} Map
+			- unless current_user.nil?
+				%li
+					%a{:href => "#Validate" ,:id => "validate-tab", :class=>"fancybox", "data-reveal-id"=>"myModalShow"} Validate
 		/ top contact bar
 		= render "service_providers/partials/contact_bar"
 		.tabdiv-wrapper
@@ -42,8 +45,55 @@
 			#Map.tabdiv.ui-tabs-panel.nopadding.ui-tabs-hide{:style => ""}
 				= render :partial => "service_providers/partials/tab_map"
 		= render "service_providers/partials/contact_bar"
+		= render "service_providers/partials/validated_bar"
 		/ bottom contact bar
 		= render "service_providers/partials/footer_bar"
+
+- unless current_user.nil?
+	#myModalShow.reveal-modal.show-box1
+		/ %h1 Modal Title
+		#validate-box
+			.service-name-box
+				Please give your valuable feedback on #{@service_provider.name.titleize}
+			= form_for @service_provider_validate, :url => provider_validate_path do |f|
+				.service-form-validate
+					.valid-service
+						Is this a valid place?
+						%br.clearer
+						%span
+							= f.label "Yes"
+							= f.radio_button :valid_provider,1
+							= f.label "No"
+							= f.radio_button :valid_provider,0
+						%br
+						%br
+					.correct-service
+						Are the services correct? 
+						%br.clearer
+						%span
+							= f.label "Yes"
+							= f.radio_button :correct_provider,1
+							= f.label "No"
+							= f.radio_button :correct_provider,0
+						%br
+						%br
+					.prices-service
+						Are the prices correct? 
+						%br.clearer
+						%span
+							= f.label "Yes"
+							= f.radio_button :valid_prices_provider,1
+							= f.label "No"
+							= f.radio_button :valid_prices_provider,0
+						%br
+				= hidden_field_tag :service_provider_id,@service_provider.slug
+				%br
+				%br
+				.service-validate-submit
+					= f.submit "Submit", :html=>{:title=>"Submit",:class=>"tool-tip"}
+				
+		%a.close-reveal-modal#close-box1
+			%img{:alt => "close", :src => "http://cdn.rpxnow.com/rel/img/43f137c98b7a6562f6ad5f076fce376b.png", :style => "width: 34px; top: -22px; right: -25px; position: absolute; height: 34px; cursor: pointer;"}/
 				
 /side bar
 .sidebar
@@ -74,80 +124,6 @@
 	/banner box
 	= render "experimental/partials/banner_box"
 
-
-
-
-
-
-/ = image_tag "plus/body_about1.jpg", :class => "body_header"
-/ .alpha.grid_18.body_about{:id => "firstElement",:style=>"background-color:#F0EFEA; width:750px"}
-/ 	%span{:class => "p_a"}
-/ 		= truncate(strip_tags(@service_provider.name), :length => 45)
-/ 	%span{:class => "p_a1 i3_1", :style => "position: absolute !important; left: 20px !important;"}
-/ 		= link_to "Home", "/"
-/ 		>
-/ 		= link_to "Service Providers",'/services-map'
-/ 		>
-/ 		%span.underline-decoration-link
-/ 			= link_to "#{h truncate(@service_provider.name, :length => 95)}", "#",:style => "color: white;"
-/ 	.header-title-clinic
-/ 		%span
-/ 			= @service_provider.name
-/ 		%span.clinic-title-desc
-/ 			= truncate(@service_provider.description,:length=>50)
-/ 	#tabsmenu
-/ 		%ul.ui-tabs-nav
-/ 			%li.tab_overview.ui-tabs-active{"data-find"=>"tab_overview"}
-/ 				%a.ui-tabs-anchor{:href => "javascript:void(0)",  :title => "Overview"}
-/ 					%span.icon
-/ 					Profile
-/ 			%li.tab_prices{"data-find"=>"tab_prices"}
-/ 				%a.ui-tabs-anchor{:href => "javascript:void(0)",  :title => "Treatment & Prices"}
-/ 					%span.icon
-/ 					Treatment & Prices
-/ 			%li.tab_staff{"data-find"=>"tab_staff"}
-/ 				%a.ui-tabs-anchor{:href => "javascript:void(0)",  :title => "Staff"}
-/ 					%span.icon
-/ 					Staff
-/ 			%li.tab_reviews{"data-find"=>"tab_reviews"}
-/ 				%a.ui-tabs-anchor{:href => "javascript:void(0)",  :title => "Review"}
-/ 					%span.icon
-/ 					Review
-/ 			%li.tab_map{"data-find"=>"tab_map"}
-/ 				%a.ui-tabs-anchor{:href => "javascript:void(0)", :title => "Map"}
-/ 					%span.icon
-/ 					Map
-/ 	#main-holder
-/ 		/ top contact bar
-/ 		= render "service_providers/partials/contact_bar"
-/ 		#tab_overview.class-hide
-/ 			= render "service_providers/partials/tab_overview"
-/ 			/ bw ends here
-
-
-/ 		/ tab overview ends here
-/ 		#tab_prices.class-hide
-/ 			= render "service_providers/partials/tab_treatment_price"
-/ 		/ tab prices ends here
-/ 		#tab_staff.class-hide
-/ 			= render "service_providers/partials/tab_staff"
-/ 		/ tab staff ends here
-/ 		#tab_reviews.class-hide
-/ 			= render "service_providers/partials/tab_review"
-/ 		/ tab tab_reviews ends here
-/ 		#tab_map.class-hide
-/ 			= render :partial => "service_providers/partials/tab_map"
-/ 		/ tab tab_map ends here
-/ 		/footer partials
-/ 		= render "service_providers/partials/contact_bar"
-/ 		// bw contact ends here
-/ 		= render "service_providers/partials/footer_bar"
-/ #secondElement.grid_5.omega.body1_about{:style=>"background-color:#F3F7FA; min-height:800px; !important;"}
-/ 	%p{:class => "about"}
-/ 		%strong
-/ 			Services Map
-/ 	= render :partial => "shared/about_nav_bar"
-
 :javascript
 	jQuery(document).ready(function($){
 		$("#tab_overview").show();		
@@ -163,6 +139,9 @@
 		});		
 		// click function ends here
 
+		$("#validate-tab").click(function(){
+			$("#myModalShow").show();
+		})
 
 		var geocoder;
 		var map;

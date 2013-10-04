@@ -15,8 +15,13 @@
 				.inner{:style=>"border-top:0px solid #E0E0E0;"}
 					%h2
 						=link_to "#{provider.name}",service_map_provider_path(provider.country.downcase, provider.slug)
-					.category
-						.catname Blog
+					.comments
+						%a{:href => "#", :title => "Validates"}
+							- if provider.service_provider_validates.present?
+								=  provider.service_provider_validates.count
+								Validates
+							- else
+								0 Validates
 					.comments
 						%a{:href => "#", :title => "Comments"} 2 comments
 					.date July 19, 2013

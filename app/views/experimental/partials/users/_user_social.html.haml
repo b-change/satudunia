@@ -1,0 +1,30 @@
+= form_for (@user),:url=>{:action => "update"}, :html => {:class => "standard-form", :multipart => true, :id => "edit-user-form-privacy"} do |f|
+	.overview-wrapper
+		.overview-new
+			.left-panel
+				.category
+					.catname
+						Social
+					.category-arrow
+				= f.label :facebook_profile_url, "Facebook URL"
+				= f.text_field :facebook_profile_url,:placeholder=>"Please enter facebook profile url"
+				= f.label :linkedin_profile_url, "LinkedIn URL"
+				= f.text_field :linkedin_profile_url,:placeholder=>"Please enter linkedin profile url"
+				= f.label :twitter_profile_url, "Twitter URL"
+				= f.text_field :twitter_profile_url,:placeholder=>"Please enter twitter profile url"
+				= f.label :google_plus_profile_url, "Google+ URL"
+				= f.text_field :google_plus_profile_url,:placeholder=>"Please enter google+ profile url"
+				= f.label :youtube_profile_urll, "YouTube"
+				= f.text_field :youtube_profile_url,:placeholder=>"Please enter youtube profile url"
+				= f.label :flickr_profile_url, "Flickr"
+				= f.text_field :flickr_profile_url,:placeholder=>"Please enter flickr profile url"
+				= f.label :digg_profile_url, "Digg"
+				= f.text_field :digg_profile_url,:placeholder=>"Please enter digg profile url"
+				
+				= f.label :url_profile_url, "Url"
+				= f.text_field :url_profile_url,:placeholder=>"Please enter your company url"
+				%br
+				%br
+		.contact-section-bottom
+			= f.submit "Save", :class=>"contact-button contact-button-single"
+		%br

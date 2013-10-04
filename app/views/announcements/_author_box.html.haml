@@ -1,4 +1,4 @@
-- unless @announcement.user.nil?
+- unless @announcement.user.blank?
   #authorbox
     %h2= @announcement.user.login.capitalize
     .arrow-catpanel-bottom  

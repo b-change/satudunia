@@ -18,12 +18,15 @@
 	#content.page-content
 		%form#members-directory-form.dir-form{:action => "", :method => "post"}
 			/ %h3 Questions
-			#members-dir-search.dir-search{:role => "search"}
+			#members-dir-search.dir-search.search-margin{:role => "search"}
 				%label
 					%input#members_search.search_textbox_height{:name => "s", :placeholder => "Search Questions...", :type => "text"}/
 				/ %input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
 				%input#members_search_submit{:name => "members_search_submit", :type => "reset", :value => "x", :style=>"opacity:1;"}/
-		.item-list-tabs.activity-type-tabs{:role => "navigation"}
+		.create-question-button.create-button
+			%a.button_link{href: ask_question_experimental_index_path}
+				%span Create New Question
+		.item-list-tabs.activity-type-tabs.table-margin{:role => "navigation"}
 			%ul
 				%li#members-order-select.selected
 					%a{:href => "http://www.industrialthemes.com/made/activity/", :title => "The public activity for everyone on this site.", :class=>"loader-adjust-ques"}

@@ -6,7 +6,7 @@ class AnnouncementsController < ApplicationController
   tabs :default => :announcements
   before_filter :set_breadcrumb ,:except => [:index,:announce]
 
-  layout "experiment", :only => [:announce]
+  #layout "experiment", :only => [:announce]
   # GET /announcements
   # GET /announcements.json
   def index
@@ -75,12 +75,12 @@ class AnnouncementsController < ApplicationController
     add_breadcrumb "Announcements", "announcements"
     @announcements = Announcement.all.page(params["page"]).per(6)
 
-    # render :layout => "experiment"
+    render :layout => "experiment"
     # @announcement = Announcement.where(:only_anonymous=> false ).page(params[:page])
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    # respond_to do |format|
+    #   format.html
+    #   format.js
+    # end
   end
 
   def show

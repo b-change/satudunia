@@ -13,7 +13,7 @@
 		#Announcements.tabdiv
 			- if @announcements.blank?
 				= render "experimental/partials/empty_record_message.html"
-			-@announcements.each do |announcement|
+			-@announcements.reverse.first(6).each do |announcement|
 				- @class = cycle(' ',' ','right')
 				.panel{:class => "#{@class}"}
 					#announcement-rating{:id =>"#{announcement.id}",:style => "float: right"}
@@ -74,7 +74,7 @@
 		#News.tabdiv
 			- if @news.blank?
 				No Recent News Yet
-			-@news.each do |news|
+			-@news.reverse.first(6).each do |news|
 				- @class = cycle('i','i','right')
 				.panel{:class => "#{@class}"}
 					%a.thumbnail.darken.small{:href => '/news', :title => "Coffee Common: Bringing Coffee Power to the People"}

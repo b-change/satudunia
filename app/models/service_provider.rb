@@ -2,6 +2,7 @@ class ServiceProvider
   include Mongoid::Document
   include MongoidExt::Slugizer
 
+
   slug_key :name, :unique => true
   
   #paginates_per 25
@@ -10,6 +11,8 @@ class ServiceProvider
   
   referenced_in :service_category
   index :service_category_id
+
+  references_many :service_provider_validates
   
   field :name, :type => String
   field :description, :type => String

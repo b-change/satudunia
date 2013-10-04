@@ -1,6 +1,6 @@
 class ServiceProvidersController < ApplicationController
-  before_filter :login_required, :except => [:index, :show,:country]
-  before_filter :check_permissions, :except => [:index, :show,:country]
+  before_filter :login_required, :except => [:index, :show,:country, :provider_validate]
+  before_filter :check_permissions, :except => [:index, :show,:country, :provider_validate]
   before_filter :fetch_information, :only => [:index,:country]
   before_filter :set_breadcrumb ,:except => [:index]
   layout "experiment"
@@ -17,6 +17,7 @@ class ServiceProvidersController < ApplicationController
 
   def show
     @service_provider = ServiceProvider.by_slug(params[:slug])
+    @service_provider_validate = ServiceProviderValidate.new
     @title=  @service_provider.try(:name)
     add_breadcrumb "#{@title}",  @service_provider.slug
     if @service_provider.nil?
@@ -71,6 +72,22 @@ class ServiceProvidersController < ApplicationController
       format.html{render :action => "index"}
     end
 
+  end
+
+  def provider_validate
+
+    @service_provider_val = ServiceProvider.by_slug(params[:service_provider_id])
+    if ServiceProviderValidate.where(:service_provider_id => @service_provider_val.id ,:user_id => current_user.id).blank?
+      @service_provider_validation = @service_provider_val.service_provider_validates.new
+      @service_provider_validation.user_id = current_user.id
+      @service_provider_validation.update_attributes(params[:service_provider_validate])
+      flash[:notice] = "Thank You for Validating"
+    else
+      @service_provider_validation = @service_provider_val.service_provider_validates.first
+      @service_provider_validation.update_attributes(params[:service_provider_validate])
+      flash[:notice] = "Thank You for Validating Again"
+    end
+    redirect_to service_map_provider_path(@service_provider_val.country, @service_provider_val.slug)
   end
   
   protected

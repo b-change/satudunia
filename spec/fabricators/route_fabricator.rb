@@ -1,0 +1,2 @@
+Fabricator(:route) do
+end

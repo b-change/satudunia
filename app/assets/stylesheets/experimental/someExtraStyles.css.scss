@@ -865,7 +865,7 @@ form#search input {
 	position: absolute;
 	top: 287px;
 	width: 606px;
-	z-index: 100000;
+	z-index: 1;
 }
 .survey.current_page_parent {
 		margin-left: -50px;
@@ -1258,25 +1258,20 @@ form#search input {
 .comments-rss-header {
   margin-top: -20px !important;
 }
-
 .set-padding-right{
 	padding-right: 40px !important;
 }
-
 .no-margin-left{
 	margin-left:-35px !important;
 }
-
 .item-meta-answers {
     margin-top: -22px !important;
     padding-left: 220px !important;
 }
-
 .item-meta-reputation {
     margin-top: -22px !important;
     padding-left: 345px !important;
 }
-
 .user-data-following {
     color: #555555;
     font-family: BebasNeueRegular,arial,sans-serif !important;
@@ -1284,36 +1279,81 @@ form#search input {
     margin-bottom: -15px;
     margin-top: 3px;
 }
-
 .set-box-margin{
 	margin-top: 4px;
 	margin-left: 4px;
 }
-
 .margin-related{
 	margin-left:7px;
 }
-
 .btn.disqus-btn{
   background:none repeat scroll 0 0 #5D6B72 !important;
   font-family: inherit !important;
   font-weight: 700 !important;
 }
-
 .temp-post.btn{
   margin-bottom: -1px;
   text-align: right;
   width: 528px;
 }
-
 .create-question-button{
 	margin-top:-60px;
 	float:right;
 }
+.create-question-button.create-button{
+	float: right;
+    margin-right: -208px;
+    margin-top: -74px;
+}
+.item-list-tabs.activity-type-tabs.table-margin{
+	margin-top: 90px !important;
+}
 
-@media screen and (-webkit-min-device-pixel-ratio:0) { 
-  #search-container { width:448px; left: 206px;} 
-  form#search input{width: 441px; padding-left: 12px;}
-} 
+.dir-search.search-margin{
+	margin-top: -10px;
+}
+#close-box{
+	cursor: pointer;
+		height: 34px;
+		position: absolute;
+		right: -4px;
+		top: -4px;
+		width: 34px;
+}
+.reveal-modal.show-box1{
+	margin-top: 50px;
+}
 
-#authorbox ul li.github a {background:url(images/github_icon.png) no-repeat 0px 0px;}
+#validate-box{
+	text-align: center;
+}
+.service-name-box {
+    background: none repeat scroll 0 0 #3C3C3E;
+    border-bottom: 1px solid #E0E0E0;
+    margin: -30px 0 25px -40px;
+    padding: 20px 0 20px 0;
+    width: 600px;
+    border-radius: 4px 0 0 0;
+    color: white;
+    font-weight: 700;
+}
+.valid-service {
+    margin-left: -35px;
+}
+.prices-service {
+    margin-left: -18px;
+}
+.service-form-validate{
+	color: #64554F;
+	font-weight: 600;
+}
+.prices-service > span {
+    margin-left: -25px;
+}
+.correct-service > span {
+    margin-left: -40px;
+}
+.service-validate-submit > input {
+    margin-left: -53px;
+}
+

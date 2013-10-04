@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-  before_filter :login_required, :except => [:show,:answer_ajax, :create, :index, :history, :diff]
+  before_filter :login_required, :except => [:show,:answer_ajax, :create, :history, :diff]
   before_filter :check_permissions, :only => [:destroy, :create]
   before_filter :check_update_permissions, :only => [:edit, :update, :revert]
   before_filter :track_pageview

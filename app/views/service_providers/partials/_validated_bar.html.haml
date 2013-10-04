@@ -1,0 +1,12 @@
+.main-content-left
+	.page-content.review{:style => "margin-left: 0px; padding-bottom:25px"}
+		.overview-wrapper
+			.section-bottom
+				.category.qa-q-item-tags#logo-wrapper
+					.catname
+						Validated
+					.category-arrow  
+				.tags-list-about#set-margin
+					- @service_provider.service_provider_validates.limit(3).map(&:user).each do |user|
+						%span.tags1_2.set-fonts
+							%a{:href => ""}= user.login

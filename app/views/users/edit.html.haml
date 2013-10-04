@@ -64,6 +64,11 @@
 						%a#user-profile{:href=>"javascript:void(0)",:user_id=>"#{@user.id}", :class=>"loader-adjust-profile"}
 							Privacy
 							.loader.show-inline
+					%li
+						%a#user-social-profile{:href=>"javascript:void(0)",:user_id=>"#{@user.id}", :class=>"loader-adjust-profile"}
+							Social
+							.loader.show-inline
+
 						
 					
 			#subtabs
@@ -115,6 +120,8 @@
 	Experimental.getAjaxData("click","#user-xprofile","/profile/settings","GET","activity_tab1","users/edit","#user-xprofile .loader","subtabs","users/profile_subtabs","");
 
 	Experimental.getAjaxData("click","#user-profile","/profile/settings","GET","activity_tab1","users/user_privacy","#user-profile .loader","","","");
+
+	Experimental.getAjaxData("click","#user-social-profile","/profile/settings","GET","activity_tab1","users/user_social","#user-social-profile .loader","","","");
 	
 	jQuery(document).ready(function(jQ){
 		jQ('#pagination-digg a').live('click',function(e){

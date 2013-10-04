@@ -25,7 +25,7 @@ class QuestionsController < ApplicationController
           :show => [[:votes, [:votes_average, Mongo::DESCENDING]], [:oldest, [:created_at, Mongo::ASCENDING]], [:newest, [:created_at, Mongo::DESCENDING]]]
   helper :votes
 
-  layout "experiment", :only => ["index", "show","question_search", "new", "create"]
+  layout "experiment", :only => ["index", "show","question_search", "new", "create","retag"]
 
   # GET /questions
   # GET /questions.xml
@@ -722,8 +722,7 @@ class QuestionsController < ApplicationController
       respond_to do |format|
         format.html {render :retag}
         format.js {
-          render(:json => {:success => false,
-                   :message => flash[:error] }.to_json)
+          render(:json => {:success => false,:message => flash[:error] }.to_json)
         }
       end
     end
@@ -734,8 +733,7 @@ class QuestionsController < ApplicationController
     respond_to do |format|
       format.html {render}
       format.js {
-        render(:json => {:success => true, :html => render_to_string(:partial => "questions/retag_form",
-                                                   :member  => @question)}.to_json)
+        render(:json => {:success => true, :html => render_to_string(:partial => "questions/retag_form",:member  => @question)}.to_json)
       }
     end
   end

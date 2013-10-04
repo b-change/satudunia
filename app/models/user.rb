@@ -31,6 +31,15 @@ class User
   field :identity_url,              :type => String
   index :identity_url
 
+  field :facebook_profile_url,      :type => String
+  field :linkedin_profile_url,      :type => String
+  field :twitter_profile_url,       :type => String
+  field :google_plus_profile_url,   :type => String
+  field :youtube_profile_url,       :type => String
+  field :flickr_profile_url,       :type => String
+  field :digg_profile_url,          :type => String
+  field :url_profile_url,           :type => String
+
   field :role,                      :type => String, :default => "user"
   field :last_logged_at,            :type => Time
 
@@ -89,6 +98,7 @@ class User
   references_many :news, :dependent => :destroy, :validate => false
   references_many :announcements, :dependent => :destroy, :validate => false
   references_many :article, :dependent => :destroy, :validate => false
+  references_many :service_provider_validates, :dependent => :destroy, :validate => false
   references_many :static_page
   references_many :polls
   references_many :profile_tiers
@@ -962,8 +972,15 @@ Time.zone.now ? 1 : 0)
 
   # rpx success
   def before_rpx_auto_create(rpx_user)
-    self[:login]=rpx_user[:username] if rpx_user[:username]
-  end
-  
+    # self[:login]=rpx_user[:username] if rpx_user[:username]
+    if rpx_user[:email]
+      @registered_user = User.where(:email => rpx_user[:email])
+      if @registered_user.present?
+        redirect_to '/members/login'
+      else
+        self[:login]=rpx_user[:username] if rpx_user[:username]
+      end
+    end
+  end  
 
 end

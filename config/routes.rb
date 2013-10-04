@@ -10,12 +10,13 @@ Rails.application.routes.draw do
 
   get "survey/index"
 
-  devise_for(:users,:path=>"/members", :path_names => { :sign_in => "login", :sign_out => "logout"}, :controllers => {:registrations => 'users', :omniauth_callbacks => "multiauth/sessions"}) do
+  devise_for(:users,:path=>"/members", :path_names => { :sign_in => "login", :sign_out => "logout"}, :controllers => {:registrations => 'users'}) do
     
     match "login" => "devise/sessions#new", :as => :new_user_session 
     match "logout" => "devise/sessions#destroy", :as => :destroy_user_session
     match "/reset-password", :to => "devise/unlocks#new", :as => :new_user_unlock
   end
+  devise_for(:users, :controllers => { :omniauth_callbacks => "multiauth/sessions"})
   
   match '/groups/:group_id/check_custom_domain' => 'groups#check_custom_domain',
   :as => 'check_custom_domain'
@@ -120,6 +121,7 @@ Rails.application.routes.draw do
   end
   
   get '/services-map/:country' =>"service_providers#country" , :as => :country_services_map
+  match 'provider_validate' => "service_providers#provider_validate", :as => :provider_validate,:via =>[:post]
 
   resources :service_providers, :except => [:show], :path=>'services-map'
   get '/services-map/:id/:slug' => "service_providers#show", :as=>:service_map_provider

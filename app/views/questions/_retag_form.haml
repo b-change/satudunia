@@ -1,6 +1,6 @@
 = form_for @question, :url => retag_to_question_path(@question.id), :html => {:class => "form retag-form clearfix"} do |f|
   .field
-    = f.select :tags, current_group.default_tags && @question.tags, {},{:multiple => true, :selected => @question.tags, :class => 'chosen-retag'}
+    = f.select :tags, Tag.all.map(&:name), {},{:multiple => true, :selected => @question.tags, :class => 'chosen-retag'}
   .buttons
     = submit_tag t(".submit"), :class => 'save'
     = t("global.or")

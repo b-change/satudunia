@@ -1,26 +1,34 @@
-%section.main-question#question
-  %h1
-    &= @question.title
+.main-content-left
+  .page-content.review{:style => "margin-left: 0px; padding-bottom:25px"}
+    .overview-wrapper
+      .section-bottom
+        %section.main-question#question
+          %h2
+            &= @question.title.html_safe
 
-  .description.markdown
-    %p
-      = @question.body
+          .description.markdown
+            %p
+              = @question.body.html_safe
 
-  .stats
-    %p
-      %strong
-        = t('activerecord.attributes.question.created_at')
-      = t("time.ago", :time => time_ago_in_words(@question.created_at))
-      %strong
-        = t('questions.show.viewed')
-      = t('number.x_time', :count => number_with_delimiter(@question.views_count))
-      %strong
-        = t("questions.show.last_activity")
-      = t("time.ago", :time => time_ago_in_words(@question.activity_at))
+          .stats
+            %p
+              %strong
+                = t('activerecord.attributes.question.created_at')
+              = t("time.ago", :time => time_ago_in_words(@question.created_at))
+              %strong
+                = t('questions.show.viewed')
+              = t('number.x_time', :count => number_with_delimiter(@question.views_count))
+              %strong
+                = t("questions.show.last_activity")
+              = t("time.ago", :time => time_ago_in_words(@question.activity_at))
 
-  %ul.tag-list
-    -@question.tags.each do |tag|
-      %li
-        = link_to h(tag), url_for(:controller => "questions", :action => "index", :tags => tag), :rel => "tag"
-
-= render :partial => "questions/retag_form"
+          %ul.tag-list
+            -@question.tags.each do |tag|
+              %li.tags1_2{:style => "height:15px;line-height:0px;"}
+                = link_to h(tag), url_for(:controller => "questions", :action => "index", :tags => tag), :rel => "tag"
+          %br.clearer
+        %p
+          %strong
+            Select Tags
+        = render :partial => "questions/retag_form"
+      %br.clearer

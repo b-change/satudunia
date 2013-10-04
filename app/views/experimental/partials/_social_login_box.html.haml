@@ -23,8 +23,11 @@
 				/ =link_to image_tag("/assets/experimental/images/social_icons/linkedin.png"),"/social",:class=>"social-icons"
 				/ ="&nbsp;".html_safe
 				/ =link_to "Twitter","/social"
-				
-				= link_to_rpx  image_tag("/assets/experimental/images/social_icons/social_widget.png",:width=>"270", :id=>"set-width"),user_session_url
+
+				- if params[:controller] == "service_providers" && params[:action] == "show"
+					= link_to  image_tag("/assets/experimental/images/social_icons/social_widget.png",:width=>"270", :id=>"set-width"),social_experimental_index_path(:via=>"networks")
+				- else
+					= link_to_rpx  image_tag("/assets/experimental/images/social_icons/social_widget.png",:width=>"270", :id=>"set-width"),user_session_url
 :javascript
 
 	jQuery(".social-icons").mouseover(function(){
