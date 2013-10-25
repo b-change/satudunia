@@ -1,13 +1,13 @@
 #top-menu-wrapper
 	/ begin top menu
 	.ribbon-shadow-left  
-	#top-menu
+	#top-menu.darkskin
 		.container.mid
 			.menu
 				%ul#menu-top-menu
 					%li
 						%a{:href => public_about_experimental_index_path,:title=>"About Plus",:alt=>"About Plus",:class=>"tool-tip"} 
-							="<i class='icon-text-doc'></i>About Plus".html_safe
+							="<i class='icon-text-doc'></i>About Beingme".html_safe
 					%li
 						%a{:href => questions_path,:title=>"Questions",:alt=>"Questions",:class=>"tool-tip"} 
 							="<i class='icon-help'></i>Questions".html_safe
@@ -66,12 +66,13 @@
 				%option{:value => "404.html"} Custom 404 Page
 				%option{:value => "page-full-width.html"} Full-Width Page
 				%option{:value => "page-contributors.html"} Contributors Listing
-		#top-widget
-			.top-social
-				%a.rss{:href => rss_feed_experimental_index_path}
-				%a.facebook{:href =>"https://www.facebook.com/pages/B-Change/123954514355408",:title=>"Facebook b-change Home",:alt=>"Facebook b-change Home",:target=>"_blank",:class=>"tool-tip"}  
-				/ %a.facebook{:href =>"javascript:void(0)",:onclick=>"fb_share()"}  
-				%a.twitter{:href =>"javascript:void(0)",:onclick=>"twitter_twit()"}  
+		
+		/ #top-widget
+		/ 	.top-social
+		/ 		%a.rss{:href => rss_feed_experimental_index_path}
+		/ 		%a.facebook{:href =>"https://www.facebook.com/pages/B-Change/123954514355408",:title=>"Facebook b-change Home",:alt=>"Facebook b-change Home",:target=>"_blank",:class=>"tool-tip"}  
+		/ 		/ %a.facebook{:href =>"javascript:void(0)",:onclick=>"fb_share()"}  
+		/ 		%a.twitter{:href =>"javascript:void(0)",:onclick=>"twitter_twit()"}  
 				
 		#search
 			.wrapper

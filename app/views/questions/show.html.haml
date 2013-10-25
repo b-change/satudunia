@@ -12,9 +12,9 @@
 			%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
 			.overview-wrapper
 				/ %h1.title Login
-				.overview-new.nopadding-top
+				.overview-new.set-background.nopadding-top
 					.overview1.nopadding-top
-						.section-bottom1
+						.section-bottom1.set-color
 							.category.qa-q-item-tags
 								.catname
 									Question
@@ -24,9 +24,9 @@
 								%span Create New Question
 								
 					.content-panel#set-top
-						.the-content
+						.the-content.set-border-content
 							#bbpress-forums.set-question
-								%ul#topic-1343-replies.forums.bbp-replies
+								%ul#topic-1343-replies.forums.bbp-replies.set-border-content
 									%li.bbp-body
 										#post-1343.bbp-reply-header
 											.bbp-meta
@@ -67,7 +67,7 @@
 										%img.avatar.user-1227-avatar.avatar-50.photo{:alt => "Profile picture of zicrainnyRV", :height => "30", :src => "http://gravatar.com/avatar/5a0a1a5e96f190c339221f66d7b09b00?d=http://www.industrialthemes.com/made/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg&s=50&r=G", :width => "30"}/
 									= f.text_area :body, :size=>"0", :placeholder => "write a comment...", :id=> "enter-comment"
 						.clear
-					
+				%br.clearer/	
 				.show-questions-answer
 					= render :partial => "answers/plus_answer"
 		%br.clearer/
@@ -150,22 +150,21 @@
 								#disqus_thread
 								:javascript
 									/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-									var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
-
+									var disqus_shortname = 'beingmedev'; // required: replace example with your forum shortname
 									/* * * DON'T EDIT BELOW THIS LINE * * */
-									(function() {
+									(function() { 
 										var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 										dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js'; 
 										(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); 
 									})();
-								%noscript 
-									Please enable JavaScript to view the 
-									%a{:href => "http://disqus.com/?ref_noscript"} comments powered by Disqus
-								%a.dsq-brlink{:href => "http://disqus.com"}
+								%noscript
+									Please enable JavaScript to view the
+									%a{href: "http://disqus.com/?ref_noscript"} comments powered by Disqus.
+								%a.dsq-brlink{href: "http://disqus.com"}
 									comments powered by
 									%span.logo-disqus Disqus
 								:javascript
-									var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
+									var disqus_shortname = 'beingmedev'; // required: replace example with your forum shortname
 									// required: replace example with your forum shortname
 									(function () {
 										var s = document.createElement('script'); s.async = true;

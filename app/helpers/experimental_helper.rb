@@ -5,7 +5,7 @@ module ExperimentalHelper
 	end
 
 	def check_pre_loader
-		(params[:controller] == "experimental/experimental" && params[:action] == "index") 
+		(params[:controller] == "experimental/experimental" && params[:action] == "index_experimental") 
 	end
 
 	def change_lower_tab

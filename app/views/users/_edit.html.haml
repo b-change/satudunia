@@ -8,7 +8,7 @@
 			
 = form_for (@user),:url=>{:action => "update"}, :html => {:class => "exp-contact-form", :multipart => true, :id => "edit-user-form"} do |f|
 	.overview-wrapper#all_checks{:style =>"display:none"}
-		.overview-new
+		.overview-new.no-background
 			.left-panel	
 				.checkbox1
 					= f.check_box :hide_hiv_condition
@@ -26,7 +26,7 @@
 			= f.submit "Save", :class=>"contact-button contact-button-single", :id=> "align"
 	%br.clearer/
 	.overview-wrapper#password_settings{:style =>"display:none"}
-		.overview-new
+		.overview-new.no-background
 			.left-panel			
 				
 				%br

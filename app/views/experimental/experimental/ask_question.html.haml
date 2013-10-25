@@ -1,138 +1,164 @@
 .clearer.hide-responsive  
 %br.hide-responsive/
 .main-content-left
-  .page-content.review.single-post
-    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
-    .review-content
-      .ribbon-shadow-left
-      .section-wrapper
-        .section-header Ask Question
-      .section-arrow
-      / post by removed from here
-      .overview-wrapper
-        .overview-new
-          .left-panel
-            %h2 Ask Question
-            .content-panel
-              .the-content.justify-content
-                %p.filter-content= raw(current_group.question_help)
-            = form_for(@question, html: {class: "standard-form", id: "ask_question", multipart: true, data: {'login-required' => true}}) do |f|
-              %br
-                = f.label :title, "Title*", :class=>"label"
-                = f.text_field :title, :placeholder=>"#{raw(current_group.question_prompt)}", :class=>"input-class",:style=>"width:98% !important"
-              %br
-                = f.label :tags, "Tags", :class=>"label"
-                = f.select :tags, current_group.default_tags, {},{:multiple => true, :class => "chzn-select" , :selected => @question.tags,:style=>"width:590px;"}
-              %p Use tags to add more information about your question.
-              %br
-                = f.label :body, "Questions*", :class=>"label"
-                = f.text_area :body, :class => "text-default wysiwyg_editor textarea-class"
-              %table
-                %tr
-                  %td
-                    .checkbox
-                      = f.check_box :wiki
-                      Wiki
-                  %td    
-                    .checkbox
-                      = f.check_box :anonymous, {:class => "checkbox"}, true, false
-                      = t("scaffold.post_as_anonymous")
-                  -if current_group.has_adult_content
-                    %td  
-                      .checkbox
-                        = f.check_box :adult_content, :class => "checkbox"
-                        = t(".adult_content")
+	.page-content.review.single-post
+		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+		.review-content
+			.ribbon-shadow-left
+			.section-wrapper
+				.section-header Ask Question
+			.section-arrow
+			/ post by removed from here
+			.overview-wrapper
+				.overview-new.no-background
+					.left-panel
+						%h2 Ask Question
+						.content-panel
+							.the-content.justify-content
+								%p.filter-content= raw(current_group.question_help)
+						= form_for(@question, html: {class: "standard-form", id: "ask_question", multipart: true, data: {'login-required' => true}}) do |f|
+							%br
+								= f.label :title, "Title*", :class=>"label"
+								= f.text_field :title, :placeholder=>"#{raw(current_group.question_prompt)}", :class=>"input-class",:style=>"width:98% !important"
+							%br
+								= f.label :tags, "Tags", :class=>"label"
+								= f.select :tags, current_group.default_tags, {},{:multiple => true, :class => "chzn-select" , :selected => @question.tags,:style=>"width:590px;"}
+							%p Use tags to add more information about your question.
+							%br
+								= f.label :body, "Questions*", :class=>"label"
+								= f.text_area :body, :class => "text-default wysiwyg_editor textarea-class"
+							%table
+								%tr
+									%td
+										.checkbox
+											= f.check_box :wiki
+											Wiki
+									%td    
+										.checkbox
+											= f.check_box :anonymous, {:class => "checkbox"}, true, false
+											= t("scaffold.post_as_anonymous")
+									-if current_group.has_adult_content
+										%td  
+											.checkbox
+												= f.check_box :adult_content, :class => "checkbox"
+												= t(".adult_content")
 
-              #attachments{:style => "margin:20px 0px 20px 0px"}
-                #fields
-                  .attachment_field.template
-                    = f.file_field "attachments[0]"
-                    = link_to t('.remove_attachment'), "#", :class => "remove_attachment"
-                = link_to "<i class='icon-upload'></i>Upload Image".html_safe, "#", :class => "add_attachment extra-buttons"
-        .contact-section-bottom
-          = link_to "Submit".html_safe, "javascript:void(0)", :class => "contact-button", :id => "ask_question_link" 
-          = link_to "Cancel".html_safe, "javascript:void(0)", :class => "contact-button"
-        %br.clearer/
-        / .save_footer{:style=>"margin-left: -4px; padding-bottom: 5px; width: 710px;"}
-        /   = link_to "<i class='icon-thumbs-up'></i>Ask Now".html_safe, "javascript:void(0)", :class => "submit-button", :id => "ask_question_link"
+							#attachments{:style => "margin:20px 0px 20px 0px"}
+								#fields
+									.attachment_field.template
+										= f.file_field "attachments[0]"
+										= link_to t('.remove_attachment'), "#", :class => "remove_attachment"
+								= link_to "<i class='icon-upload'></i>Upload Image".html_safe, "#", :class => "add_attachment extra-buttons"
+				.contact-section-bottom
+					= link_to "Submit".html_safe, "javascript:void(0)", :class => "contact-button", :id => "ask_question_link" 
+					= link_to "Cancel".html_safe, "javascript:void(0)", :class => "contact-button"
+			
+				/ .save_footer{:style=>"margin-left: -4px; padding-bottom: 5px; width: 710px;"}
+				/   = link_to "<i class='icon-thumbs-up'></i>Ask Now".html_safe, "javascript:void(0)", :class => "submit-button", :id => "ask_question_link"
 = render :partial => 'shared/rich_text_partial'
 .sidebar
-  = render "experimental/partials/left_bar"
+	- if current_user.nil?
+		/login box
+		= render "experimental/partials/login_box"
+	-else
+		/profile box
+		= render "experimental/partials/profile_box"
+
+	/ social login box
+	= render "experimental/partials/social_login_box"
+	/ member box
+	= render "experimental/partials/member_box"
+	/rating box
+	= render "experimental/partials/rating_box"
+	/rating box
+	= render "experimental/partials/rating_box2"
+	/ left bar
+	/ = render "experimental/partials/left_bar"
+	/widget top
+	= render "experimental/partials/widget_top"
+	/ .clearer.hide-responsive
+	/ %br.clearer/
+	/ newly reviewd
+	= render "experimental/partials/newly_reviewed"
+	/popular box
+	= render "experimental/partials/popular_box"
+	/banner box
+	= render "experimental/partials/banner_box"
 :javascript
-  jQuery(document).ready(function($){
-    var fields = $("#attachments #fields");
-    var template = fields.find(".template");
-    template.find("input").attr("name", "question[attachments[id]]");
-    template.hide();
+	jQuery(document).ready(function($){
+		var fields = $("#attachments #fields");
+		var template = fields.find(".template");
+		template.find("input").attr("name", "question[attachments[id]]");
+		template.hide();
 
-    $("#attachments #fields .attachment_field .remove_attachment").live("click", function(e) {
-      $(this).parent().remove();
-      return false;
-    });
-    $(".remove_attachment_link").live("click", function(e) {
-      var url = $(this).attr("href");
-      var remove = confirm("are you sure?"); //TODO; i18n
-      if (remove) {
-        $.ajax({url: url, dataType: 'json', context: $(this), success: function(data, textStatus, XMLHttpRequest){
-          $(this).parent().remove();
-        }});
-      }
-      return false;
-    });
+		$("#attachments #fields .attachment_field .remove_attachment").live("click", function(e) {
+			$(this).parent().remove();
+			return false;
+		});
+		$(".remove_attachment_link").live("click", function(e) {
+			var url = $(this).attr("href");
+			var remove = confirm("are you sure?"); //TODO; i18n
+			if (remove) {
+				$.ajax({url: url, dataType: 'json', context: $(this), success: function(data, textStatus, XMLHttpRequest){
+					$(this).parent().remove();
+				}});
+			}
+			return false;
+		});
 
-    var count = -1;
-    $("#attachments .add_attachment").live("click", function(e) {
-      var template = fields.find(".template");
-      var new_field = template.clone();
-      new_field.removeClass("template");
-      count++;
-      var new_name = new_field.find("input").attr("name").replace(/(id)/, count);
-      new_field.find("input").attr("name",new_name)
+		var count = -1;
+		$("#attachments .add_attachment").live("click", function(e) {
+			var template = fields.find(".template");
+			var new_field = template.clone();
+			new_field.removeClass("template");
+			count++;
+			var new_name = new_field.find("input").attr("name").replace(/(id)/, count);
+			new_field.find("input").attr("name",new_name)
 
-      new_field.show();
+			new_field.show();
 
-      fields.append(new_field);
+			fields.append(new_field);
 
-      return false;
-    });
+			return false;
+		});
 
-    $("#ask_question_link").click(function (){
-      $("#ask_question").submit();
-    });
+		$("#ask_question_link").click(function (){
+			$("#ask_question").submit();
+		});
 
-    $("#question_tags").ajaxChosen({
-      
-      method: 'GET',
-      url: '/questions/tags_for_autocomplete.js',
-      dataType: 'json'
-    }, function (data) {
-      var terms = {};
-      $.each(data, function (i, val) {
-          console.log('i: '+i)
-          console.log('val: '+val)
-        terms[val["value"]] = val["caption"];
-      });
+		$("#question_tags").ajaxChosen({
+			
+			method: 'GET',
+			url: '/questions/tags_for_autocomplete.js',
+			dataType: 'json'
+		}, function (data) {
+			var terms = {};
+			$.each(data, function (i, val) {
+					console.log('i: '+i)
+					console.log('val: '+val)
+				terms[val["value"]] = val["caption"];
+			});
 
-      return terms;
-    });
+			return terms;
+		});
 
-    jQuery("#ask_question").validate({
-      rules:{
-        "question[title]":{
-          required:true
-        },
-        "question[body]":{
-          required:true
-        }
-      },
-      messages:{
-        "question[title]":{
-          required:"Title Can't be Blank"
-        },
-        "question[body]":{
-          required:"Question Can't be Blank"
-        }
-      }
-    });
-  });
-  
+		jQuery("#ask_question").validate({
+			rules:{
+				"question[title]":{
+					required:true
+				},
+				"question[body]":{
+					required:true
+				}
+			},
+			messages:{
+				"question[title]":{
+					required:"Title Can't be Blank"
+				},
+				"question[body]":{
+					required:"Question Can't be Blank"
+				}
+			}
+		});
+	});
+	
