@@ -1,102 +1,128 @@
 .clearer.hide-responsive  
 %br.hide-responsive/
 .main-content-left
-  .page-content.review.single-post
-    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
-    .review-content
-      .ribbon-shadow-left
-      .section-wrapper
-        .section-header
-          Tier 3
-      .section-arrow
-      / post by removed from here
-      .content-panel
-        .the-content.justify-content
-          = form_for @profile_tier3, :url => {:controller => :tier3, :action => :create},:html => {:class => "exp-contact-form"}, :method => :post do |f|
-            %p{:class => "ask2"}
-              = f.label "Relationship Status" , :class=> "label"
-            %table
-              %tr
-                %td
-                  .checkbox
-                    = radio_button("profile_tier3", "relationship_status", "Single", :disabled => @is_disable)
-                    Single
-            %table
-              %tr
-                %td
-                  .checkbox
-                    = radio_button("profile_tier3", "relationship_status", "Dating Someone", :disabled => @is_disable)
-                    Dating Someone
-            %table
-              %tr
-                %td
-                  .checkbox
-                    = radio_button("profile_tier3", "relationship_status", "Dating a few", :disabled => @is_disable)
-                    Dating a few
-            %table
-              %tr
-                %td
-                  .checkbox
-                    = radio_button("profile_tier3", "relationship_status", "Monogamous relationship", :disabled => @is_disable)
-                    Monogamous relationship
-            %table
-              %tr
-                %td
-                  .checkbox
-                    = radio_button("profile_tier3", "relationship_status", "Open relationship", :disabled => @is_disable)
-                    Open relationship
-            %table
-              %tr
-                %td
-                  .checkbox
-                    = radio_button("profile_tier3", "relationship_status", "It's complicated", :disabled => @is_disable)
-                    It's complicated
-            %table
-              %tr
-                %td
-                  .checkbox
-                    = radio_button("profile_tier3", "relationship_status", "Prefer not to say", :disabled => @is_disable)
-                    Prefer not to say
+	.page-content.review.single-post
+		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+		.review-content
+			.ribbon-shadow-left
+			.section-wrapper
+				.section-header
+					Tier 3
+			.section-arrow
+			/ post by removed from here
+			.content-panel
+				.the-content.justify-content
+					= form_for @profile_tier3, :url => {:controller => :tier3, :action => :create},:html => {:class => "exp-contact-form"}, :method => :post do |f|
+						%p{:class => "ask2"}
+							= f.label "Relationship Status" , :class=> "label"
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier3", "relationship_status", "Single", :disabled => @is_disable)
+										Single
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier3", "relationship_status", "Dating Someone", :disabled => @is_disable)
+										Dating Someone
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier3", "relationship_status", "Dating a few", :disabled => @is_disable)
+										Dating a few
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier3", "relationship_status", "Monogamous relationship", :disabled => @is_disable)
+										Monogamous relationship
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier3", "relationship_status", "Open relationship", :disabled => @is_disable)
+										Open relationship
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier3", "relationship_status", "It's complicated", :disabled => @is_disable)
+										It's complicated
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier3", "relationship_status", "Prefer not to say", :disabled => @is_disable)
+										Prefer not to say
 
-            %p{:class => "ask2"}
-              = f.label 'If "HIV Positive" = YES and "Relationship Status" ≠ SINGLE',:class=>"label"
+						%p{:class => "ask2"}
+							= f.label 'If "HIV Positive" = YES and "Relationship Status" ≠ SINGLE',:class=>"label"
 
-            %p{:class => "ask2"}
-              = f.label "Does your partner know your HIV status?",:class=>"label"
-            %table
-              %tr
-                %td
-                  .checkbox
-                    = radio_button("profile_tier3", "is_partner_known", true, :disabled => @is_disable)
-                    Yes
-            %table
-              %tr
-                %td
-                  .checkbox
-                    = radio_button("profile_tier3", "is_partner_known", false, :disabled => @is_disable)
-                    No
+						%p{:class => "ask2"}
+							= f.label "Does your partner know your HIV status?",:class=>"label"
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier3", "is_partner_known", true, :disabled => @is_disable)
+										Yes
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier3", "is_partner_known", false, :disabled => @is_disable)
+										No
 
-            %p{:class => "ask2"}
-              = f.label "Do you know your partner's HIV status?",:class=>"label"
-            %table
-              %tr
-                %td
-                  .checkbox
-                    = radio_button("profile_tier3", "is_known_partner_hiv", true, :disabled => @is_disable)
-                    Yes
-            %table
-              %tr
-                %td
-                  .checkbox
-                    = radio_button("profile_tier3", "is_known_partner_hiv", false, :disabled => @is_disable)
-                    No
+						%p{:class => "ask2"}
+							= f.label "Do you know your partner's HIV status?",:class=>"label"
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier3", "is_known_partner_hiv", true, :disabled => @is_disable)
+										Yes
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier3", "is_known_partner_hiv", false, :disabled => @is_disable)
+										No
 
-            %br
-            - unless @is_disable
-              = link_to "<i class='icon-check'></i>Submit".html_safe, "javascript:void(0)", :class => "submit-button", :id => "ask_question_link", :style => "margin-bottom: 10px;"
+						%br
+						- unless @is_disable
+							= link_to "<i class='icon-check'></i>Submit".html_safe, "javascript:void(0)", :class => "submit-button", :id => "ask_question_link", :style => "margin-bottom: 10px;"
 .sidebar
-  = render "experimental/partials/left_bar"
+	- if current_user.nil?
+		/login box
+		= render "experimental/partials/login_box"
+	-else
+		/profile box
+		= render "experimental/partials/profile_box"
+
+	/ social login box
+	= render "experimental/partials/social_login_box"
+	/ member box
+	= render "experimental/partials/member_box"
+	/rating box
+	= render "experimental/partials/rating_box"
+	/rating box
+	= render "experimental/partials/rating_box2"
+	/ left bar
+	/ = render "experimental/partials/left_bar"
+	/widget top
+	= render "experimental/partials/widget_top"
+	/ .clearer.hide-responsive
+	/ %br.clearer/
+	/ newly reviewd
+	= render "experimental/partials/newly_reviewed"
+	/popular box
+	= render "experimental/partials/popular_box"
+	/banner box
+	= render "experimental/partials/banner_box"
 :javascript
-  jQuery("#ask_question_link").click(function (){
-    jQuery("#new_profile_tier3,#edit_profile_tier3").submit();
-  });
+	jQuery("#ask_question_link").click(function (){
+		jQuery("#new_profile_tier3,#edit_profile_tier3").submit();
+	});

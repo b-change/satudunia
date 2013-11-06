@@ -11,7 +11,7 @@
 	- @class = cycle('','right')
 	.post-panel{:class => "#{@class}"}
 		.article-image
-			%a.thumbnail.darken.video{:href => announcement_path(news)}
+			%a.thumbnail.darken.video{:href => news_path(news)}
 				- if news.has_news_image?
 					%img{:src=>news_image_path(news,"small"), :height=>"170",:width=>"300"}
 					/ = image_tag (announcement_image_path(news,"small")) , :height => 170,:width=>300
@@ -35,7 +35,7 @@
 					.more1
 						%a{:href => "single-review-numbers.html"} 
 							
-							= link_to "More",announcement_path(news),:class=>"avoid_link_color"
+							= link_to "More",news_path(news),:class=>"avoid_link_color"
 
 	%script
 		jQuery("#news-rating_#{news.id}").raty({ readOnly: true,score: "#{news.rating}",path: '../assets'});      
