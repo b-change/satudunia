@@ -16,6 +16,12 @@
 						%i.icon-numbered-list
 						= @service_provider.name
 			.section-arrow 
+		.overview-wrapper
+			.overview-new
+				.left-panel
+					.section-width
+						%h2 
+		%br.clearer/
 	#tabs-frontpage
 		%ul.tabnav.ui-tabs-nav
 			%li.ui-tabs-selected
@@ -160,8 +166,8 @@
 						mapTypeControl:false,
 						mapTypeId: google.maps.MapTypeId.ROADMAP,
 						zoomControlOptions: {
-				    style: google.maps.ZoomControlStyle.LARGE
-				  }
+						style: google.maps.ZoomControlStyle.LARGE
+					}
 
 					
 				};

@@ -20,34 +20,36 @@
 					= @news.news_title
 				.section-arrow
 			/ post by removed from here
-			.overview-new
-				.section-bottom1
-					- if current_user && !(@news.rated_by? current_user)
-						.rating-news#user-news-rating{:id => @news.id}
-					- else
-						.rating-news#no-login-user-news-rating{:id => @news.id}
-					.category.qa-q-item-tags
-						.catname
-							#{@news.created_at.strftime("%d %b %Y")}
-						.category-arrow
-				.left-panel
-					.the-content.justify-content			
-						.userDescription
-							.basicInfo{:style => "margin-left: 10px !important"}
-								%h2
-									= @news.news_title
-								%small
-									by #{@news.user.name} on #{@news.created_at.strftime("%d %b %Y - %I:%M %p")}
-						- if @news.has_news_image?
-							= image_tag news_image_path(@news,"small"), :alt => @news.slug, :class => 'gravatar', :style => "margin: 10px", :size=>'500x400'
-						#service_information{:style => "margin: 10px"}
-							= @news.news_body.html_safe
-		
+			.overview-wrapper
+				.overview-new.no-background
+					.section-bottom1
+						- if current_user && !(@news.rated_by? current_user)
+							.rating-news#user-news-rating{:id => @news.id}
+						- else
+							.rating-news#no-login-user-news-rating{:id => @news.id}
+						.category.qa-q-item-tags
+							.catname
+								#{@news.created_at.strftime("%d %b %Y")}
+							.category-arrow
+					.left-panel
+						.the-content.justify-content			
+							.userDescription
+								.basicInfo{:style => "margin-left: 10px !important"}
+									%h2
+										= @news.news_title
+									%small
+										by #{@news.user.name} on #{@news.created_at.strftime("%d %b %Y - %I:%M %p")}
+							- if @news.has_news_image?
+								= image_tag news_image_path(@news,"small"), :alt => @news.slug, :class => 'gravatar', :style => "margin: 10px", :size=>'500x400'
+							#service_information{:style => "margin: 10px"}
+								= @news.news_body.html_safe
 			
-			/ authorbox box partial 
-			= render "news/author_box"
-			/ related box partial 
-			= render "news/related_box"
+			%br.clearer/
+			.content-panel.post-loop
+				/ authorbox box partial 
+				= render "news/author_box"
+				/ related box partial 
+				= render "news/related_box"
 			.clearer.hide-responsive  
 			%br.hide-responsive/
 /side bar

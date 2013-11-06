@@ -1,63 +1,90 @@
 .clearer.hide-responsive  
 %br.hide-responsive/
 .main-content-left
-  .page-content.review.single-post
-    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
-    .review-content
-      .ribbon-shadow-left
-      .section-wrapper
-        .section-header
-          Tier Sample
-      .section-arrow
-      / post by removed from here
-      .content-panel
-        .the-content.justify-content
-          = form_tag tier_sample_path(:id => current_user.id), :class => "exp-contact-form", :id => "tier-form", :method => :put do
-            = label_tag "What is the reason for visiting the site?", "What is the reason for visiting the site?", :class => "label"
-            %table
-              %tr
-                %td
-                  .checkbox
-                    = check_box_tag "tier1[]", "I am living with HIV", false, :class=> "text_field", :disabled => @is_disable
-                    I am living with HIV
-            %table
-              %tr
-                %td
-                  .checkbox
-                    = check_box_tag "tier1[]", "I am dating someone living with HIV", false, :class=> "text_field", :disabled => @is_disable
-                    I am dating someone living with HIV
-            %table
-              %tr
-                %td
-                  .checkbox
-                    = check_box_tag "tier1[]", "I am in a relationship with someone living with HIV", false, :class=> "text_field", :disabled => @is_disable
-                    I am in a relationship with someone living with HIV
-            %table
-              %tr
-                %td
-                  .checkbox
-                    = check_box_tag "tier1[]", "I am related to someone living with HIV", false, :class=> "text_field", :disabled => @is_disable
-                    I am related to someone living with HIV
-            %table
-              %tr
-                %td
-                  .checkbox
-                    = check_box_tag "tier1[]", "I am a friend of someone living with HIV", false, :class=> "text_field", :disabled => @is_disable
-                    I am a friend of someone living with HIV
-            %table
-              %tr
-                %td
-                  .checkbox
-                    = check_box_tag "tier1[]", "I want to know more about living with HIV", false, :class=> "text_field", :disabled => @is_disable
-                    I want to know more about living with HIV
-            %br
-            - unless @is_disable
-              = link_to "<i class='icon-check'></i>Submit".html_safe, "javascript:void(0)", :class => "submit-button", :id => "ask_question_link", :style => "margin-bottom: 10px;"
+	.page-content.review.single-post
+		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+		.review-content
+			.ribbon-shadow-left
+			.section-wrapper
+				.section-header
+					Tier Sample
+			.section-arrow
+			/ post by removed from here
+			.content-panel
+				.the-content.justify-content
+					= form_tag tier_sample_path(:id => current_user.id), :class => "exp-contact-form", :id => "tier-form", :method => :put do
+						= label_tag "What is the reason for visiting the site?", "What is the reason for visiting the site?", :class => "label"
+						%table
+							%tr
+								%td
+									.checkbox
+										= check_box_tag "tier1[]", "I am living with HIV", false, :class=> "text_field", :disabled => @is_disable
+										I am living with HIV
+						%table
+							%tr
+								%td
+									.checkbox
+										= check_box_tag "tier1[]", "I am dating someone living with HIV", false, :class=> "text_field", :disabled => @is_disable
+										I am dating someone living with HIV
+						%table
+							%tr
+								%td
+									.checkbox
+										= check_box_tag "tier1[]", "I am in a relationship with someone living with HIV", false, :class=> "text_field", :disabled => @is_disable
+										I am in a relationship with someone living with HIV
+						%table
+							%tr
+								%td
+									.checkbox
+										= check_box_tag "tier1[]", "I am related to someone living with HIV", false, :class=> "text_field", :disabled => @is_disable
+										I am related to someone living with HIV
+						%table
+							%tr
+								%td
+									.checkbox
+										= check_box_tag "tier1[]", "I am a friend of someone living with HIV", false, :class=> "text_field", :disabled => @is_disable
+										I am a friend of someone living with HIV
+						%table
+							%tr
+								%td
+									.checkbox
+										= check_box_tag "tier1[]", "I want to know more about living with HIV", false, :class=> "text_field", :disabled => @is_disable
+										I want to know more about living with HIV
+						%br
+						- unless @is_disable
+							= link_to "<i class='icon-check'></i>Submit".html_safe, "javascript:void(0)", :class => "submit-button", :id => "ask_question_link", :style => "margin-bottom: 10px;"
 .sidebar
-  = render "experimental/partials/left_bar"
+	/ = render "experimental/partials/left_bar"
+	- if current_user.nil?
+		/login box
+		= render "experimental/partials/login_box"
+	-else
+		/profile box
+		= render "experimental/partials/profile_box"
+
+	/ social login box
+	= render "experimental/partials/social_login_box"
+	/ member box
+	= render "experimental/partials/member_box"
+	/rating box
+	= render "experimental/partials/rating_box"
+	/rating box
+	= render "experimental/partials/rating_box2"
+	/ left bar
+	/ = render "experimental/partials/left_bar"
+	/widget top
+	= render "experimental/partials/widget_top"
+	/ .clearer.hide-responsive
+	/ %br.clearer/
+	/ newly reviewd
+	= render "experimental/partials/newly_reviewed"
+	/popular box
+	= render "experimental/partials/popular_box"
+	/banner box
+	= render "experimental/partials/banner_box"
 :javascript
-  jQuery(document).ready(function(){
-    jQuery("#ask_question_link").click(function (){
-      jQuery("#tier-form").submit();
-    });
-  });
+	jQuery(document).ready(function(){
+		jQuery("#ask_question_link").click(function (){
+			jQuery("#tier-form").submit();
+		});
+	});

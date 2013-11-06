@@ -12,7 +12,7 @@
 			.section-arrow
 			/ post by removed from here
 			.overview-wrapper
-				.overview-new
+				.overview-new.no-background
 					- if current_user && !(@announcement.rated_by? current_user)
 						.rating-news#user-announcement-rating{:id => @announcement.id}
 					- else
@@ -39,11 +39,11 @@
 								#service_information{:style => "margin: 10px"}
 									= @announcement.message rescue ""
 									= link_to "Back", announce_announcements_path
-				%br.clearer/
-				.content-panel.post-loop
-					/ authorbox
-					= render "announcements/author_box"
-					= render 'announcements/related_box'
+			%br.clearer/
+			.content-panel.post-loop
+				/ authorbox
+				= render "announcements/author_box"
+				= render 'announcements/related_box'
 /side bar
 .sidebar
 	- if current_user.nil?

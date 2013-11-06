@@ -124,7 +124,7 @@
 		word-wrap: break-word;
 		padding-bottom: 10px;
 }
-.back-class-exp {
+.backclass-exp {
 		background-color: #FFFFFF;
 		border: 1px solid #E0E0E0;
 		border-radius: 3px 3px 3px 3px;
@@ -874,7 +874,7 @@ form#search input {
 }
 
 .a6{
-	margin-left:-15px;
+	margin-left:0px;
 	float:left;
 }
 
@@ -957,7 +957,7 @@ form#search input {
 }
 /*breadcrumb css starts here*/
 .bread-crumb {
-	border:1px solid #E0E0E0;
+	border:1px solid #3E3E40;
 	background:url(images/cat-menu-bg.png) repeat-x scroll 0 0 #3E3E40;
 }
 .bread-crumb-section {
@@ -1161,7 +1161,7 @@ form#search input {
 .textarea-wrapper{
 	border-radius: 4px 4px 4px 4px;
   box-shadow: 0 0 0 2px rgba(16, 48, 68, 0.2) inset;
-  margin: -40px 0 0 63px;
+  margin: -57px 0 0 63px;
   padding: 2px;
   position: relative;
   width: 88% !important;
@@ -1209,42 +1209,34 @@ form#search input {
 .set-comments{
 	background-color: #EDEFF4
 }
-
 .set-left {
     margin-left: 34px;
 }
-
 .set-comments-show{
 	margin-top:-29px;
 	margin-left:40px;
 	word-wrap: break-word;
 }
-
 .set-topper{
 	margin-top:-2px !important;
 }
-
 .set-comment-area{
 	width:526px !important;
+	height:32px;
 }
-
 .rating-news{
 	margin-left:500px !important;
 }
-
 .set-fonts a{
 	font-size: 13px !important;
 	font-weight: 600 !important;
 }
-
 #set-top {
 	margin-top: -25px;
 }
-
 .set-padding{
 	padding-bottom:20px !important;
 }
-	
 .comments-rss-show {
     color: #333333;
     font-family: Arial;
@@ -1254,7 +1246,6 @@ form#search input {
     padding-right: 10px;
     text-align: justify;
 }
-
 .comments-rss-header {
   margin-top: -20px !important;
 }
@@ -1356,4 +1347,133 @@ form#search input {
 .service-validate-submit > input {
     margin-left: -53px;
 }
+#user_timezone{
+	width:595px !important;
+}
 
+.align-button{
+	float:right;
+	margin-top:-10px;
+}
+.hide-overflow{
+	overflow:hidden !important;
+}
+/*CSS for dark skin*/
+.dark-skin #main-wrapper-dark{
+	height: 0px;
+}
+.review .overview-new{
+	/*background: none repeat scroll 0 0 transparent !important;*/
+	border: none !important;
+}
+.title.margin-zero,.arrow.margin-zero{
+	margin: 0px !important;
+}
+ul.item-list li{
+	border-bottom: 1px solid #323232;
+  border-top: 1px solid #1C1C1C;
+  color: #777777;
+}
+.dark-skin .section-arrow{
+	top:41px;
+}
+#top-menu.darkskin{
+	background-color: #9ACD32 ;
+}
+
+.dark-skin .page-content div#subnav.item-list-tabs {
+    border: 1px solid #313131;
+}
+.dark-skin div.item-list-tabs ul li.selected a, .dark-skin div.item-list-tabs ul li.current a, .dark-skin div#subnav.item-list-tabs {
+    background: none repeat scroll 0 0 #292929;
+}
+.page-content div.item-list-tabs ul li:first-child{
+	border: none;
+}
+.review .overview-wrapper{
+	background: none repeat scroll 0 0 #292929;
+}
+
+.page-content ul.item-list.activity-list li, .page-content ul.item-list li {
+    background: none repeat scroll 0 0 #292929;
+    border: 1px solid #292929;
+}
+
+.contact-section-bottom-button {
+    background-color: #1E1E1E;
+    border: 1px solid #424242;
+}
+
+.section-bottom, .contact-section-bottom {
+    background-color: #292929 !important;
+    border: 1px solid #424242 !important;
+}
+
+
+.page-content table.forum tr td.td-question a.topic-title.set-color-title{
+	color:#fff;
+}
+
+.page-content table.forum td.set-border-color{
+	border:1px solid #424242;
+}
+
+table thead tr.set-background-head{
+	background-color:#232323;
+}
+
+.page-content table.forum td{
+	background:#292929;
+}
+
+.page-content table.forum thead tr th.set-border{
+	border:1px solid #424242;
+}
+
+.dark-skin .search-loop .inner {
+    margin-left: -10px;
+    padding-bottom: 20px;
+    padding-right: 8px;
+}
+
+.overview-new.set-background.nopadding-top{
+	background:none repeat scroll 0 0 #4A4A4C !important;
+}
+
+#bbpress-forums div.bbp-forum-header, #bbpress-forums div.bbp-topic-header, #bbpress-forums div.bbp-reply-header {
+    background-color: #5B5B5E;
+}
+
+.section-bottom1.set-color{
+	background:none repeat scroll 0 0 #232323;
+}
+
+.page-content #bbpress-forums .topic, .page-content #bbpress-forums .reply{
+	background:none repeat scroll 0 0 #292929;
+}
+
+.set-shades-color {
+    background-color: #5B5B5E !important;
+}
+
+.set-border-content{
+	border:1px solid #424242;
+}
+
+#bbpress-forums ul.bbp-lead-topic, #bbpress-forums ul.bbp-topics, #bbpress-forums ul.bbp-forums, #bbpress-forums ul.bbp-replies, #bbpress-forums ul.bbp-search-results{
+	border:none;
+
+}
+
+.overview-new.no-background{
+	background: none !important;
+}
+
+#set-border-background{
+	background-color: #292929 !important;
+  border: 1px solid #424242 !important;
+}
+
+#set-font-color{
+	color:#888 !important;
+}

@@ -9,7 +9,7 @@
   - else
     - @updated = false
   / vote and answer box starts
-  %li{:class=>"items-linked-new"}
+  %li{:class=>"items-linked-new", :id =>"set-border-background"}
     .q_ff-container
       .q_ff
         %span{:class => "q_f"}
@@ -20,7 +20,7 @@
           = question.answers_count
         %span{:class => "q_fs_1"}
           answers
-      .q_ff-bottom
+      .q_ff-bottom#set-font-color
         %span
           = question.countquestions.sum(:qus_count).to_i
         views
@@ -33,7 +33,7 @@
           -else
             = pjax_link_to title, "question", question_path(question), :title => truncate(strip_tags(question.body), :length => 200),:class => "avoid_link_color",:style=>"text-decoration:none;"
         .grid_14.ms_fr
-          %span.s1_q_i
+          %span.s1_q_i#set-font-color
             = truncate(strip_tags(question.body), :length => 180)
         %ul.tags2.head-left.items-tags-adj
           - question.tags.each do |tag|

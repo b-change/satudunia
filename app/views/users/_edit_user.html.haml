@@ -4,7 +4,7 @@
 	}
 = form_for (@user),:url=>{:action => "update"}, :html => {:class => "standard-form", :multipart => true, :id => "edit-user-form"} do |f|
 	.overview-wrapper
-		.overview-new
+		.overview-new.no-background
 			.left-panel
 				#basic-details-section.register-section
 					= f.label :name, "Name*"
@@ -26,6 +26,7 @@
 					= f.select :hiv_condition, ["Negative","Positive"],{:selected => @user.hiv_condition}, :class => "select-class1"
 					= f.label "Bio"
 					= f.text_area :bio, :style => "width: 250px",:placeholder=>"Please Enter Comment"
+		%br
 		.contact-section-bottom-button
 			= f.submit "Save", :class=>"contact-button contact-button-single", :id=> "align"
 	%br.clearer/

@@ -1,6 +1,6 @@
 = form_for (@user),:url=>{:action => "update"}, :html => {:class => "standard-form", :multipart => true, :id => "edit-user-form-privacy"} do |f|
 	.overview-wrapper
-		.overview-new
+		.overview-new.no-background
 			.left-panel
 				.category
 					.catname
@@ -22,6 +22,6 @@
 					= f.check_box :hide_realname
 					Hide my Real Name to other users
 				%br
-		.contact-section-bottom
+		.contact-section-bottom-button
 			= f.submit "Save", :class=>"contact-button contact-button-single"
-		%br
+	%br.clearer/

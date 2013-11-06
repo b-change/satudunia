@@ -20,7 +20,7 @@
 		%meta{'http-equiv' => "Content-Language", :content => "en-US"}
 		%meta{'http-equiv' => "imagetoolbar", :content => "no"}
 		/ favicon
-		= favicon_link_tag 'favicon.ico'
+		= favicon_link_tag 'small-beingme-logo.png'
 		/ CSS
 		= stylesheet_link_tag "experimental/experimental"
 		= stylesheet_link_tag "reveal.css"
@@ -32,7 +32,7 @@
 		= csrf_meta_tag
 
 
-		%body
+		%body.dark-skin
 			/ page loader starts
 			- if check_pre_loader
 				#div-load
@@ -49,8 +49,10 @@
 						#logo-wrapper
 							#logo
 								/ logo and section header area
-								%a{:href => experimental_index_path,:title=>"Plus Home",:title=>"Plus Home"}
-									%img#site-logo{:alt => "plus", :src => "/assets/plus/logo.png"}/
+								%a{:href => root_path,:title=>"Plus Home",:title=>"Plus Home"}
+									/ %img#site-logo{:alt => "plus", :src => "/assets/plus/logo.png"}/
+									%img#site-logo{:alt => "plus", :src => "/assets/beingme-logo.png"}/
+									
 									%img#site-logo-iphone{:alt => "plus", :src => "/assets/plus/logo.png"}/
 									%img#site-logo-ipad{:alt => "plus", :src => "/assets/plus/logo.png"}/
 							%br.clearer/
@@ -65,21 +67,21 @@
 				#cat-menu.cat-menu
 					%a.home-link{:href => root_path,:title=>"Plus Home",:title=>"Plus Home"}  
 					%ul#menu-main-menu
-						%li
-							%a{:href => "archive-a.html"} Layouts
-							%ul
-								%li
-									%a{:href => "archive-a.html"} Archive Layout A
-								%li
-									%a{:href => "archive-b.html"} Archive Layout B
-								%li
-									%a{:href => "archive-c.html"} Archive Layout C
-								%li
-									%a{:href => "archive-d.html"} Archive Layout D
-								%li
-									%a{:href => "archive-e.html"} Archive Layout E
-								%li
-									%a{:href => "archive-f.html"} Archive Layout F
+						/ %li
+						/ 	%a{:href => "archive-a.html"} Layouts
+						/ 	%ul
+						/ 		%li
+						/ 			%a{:href => "archive-a.html"} Archive Layout A
+						/ 		%li
+						/ 			%a{:href => "archive-b.html"} Archive Layout B
+						/ 		%li
+						/ 			%a{:href => "archive-c.html"} Archive Layout C
+						/ 		%li
+						/ 			%a{:href => "archive-d.html"} Archive Layout D
+						/ 		%li
+						/ 			%a{:href => "archive-e.html"} Archive Layout E
+						/ 		%li
+						/ 			%a{:href => "archive-f.html"} Archive Layout F
 						%li
 							/%a{:href => "single-review-numbers.html"} Service Areas
 							=link_to 'Service Areas', service_providers_path
@@ -135,7 +137,7 @@
 						%option{:value => "review-directory-a.html"} Review Directory layout A
 						%option{:value => "review-directory-b.html"} Review Directory layout B
 					#random-article
-						%a{:href => index_experimental_experimental_index_path, :title => "Random Article"}
+						%a{:href => experimental_index_path, :title => "Random Article"}
 							%img{:alt => "Random Article", :src => "/assets/experimental/images/random-article.png"}/
 				%br.clearer.hide-responsive-small/
 				.cat-menu.tax
@@ -157,7 +159,7 @@
 						- unless params[:controller]=="experimental/experimental" && params[:action]=="index"
 							= render "experimental/partials/bread_crumb_experimental"
 						- unless check_valid
-							= render "experimental/partials/social_side_bar"
+							=# render "experimental/partials/social_side_bar"
 						- flash.each do |name, msg|
 							- if msg.is_a?(String)
 								- if flash[:alert] == "rpx_invalid"
