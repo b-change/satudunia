@@ -5,440 +5,457 @@ require 'magent_web'
 #require 'bug_hunter'
 
 Rails.application.routes.draw do
-  
-  resources :badge_comments
-
-  get "survey/index"
-
-  devise_for(:users,:path=>"/members", :path_names => { :sign_in => "login", :sign_out => "logout"}, :controllers => {:registrations => 'users'}) do
-    
-    match "login" => "devise/sessions#new", :as => :new_user_session 
-    match "logout" => "devise/sessions#destroy", :as => :destroy_user_session
-    match "/reset-password", :to => "devise/unlocks#new", :as => :new_user_unlock
+	scope '/admin' do
+  	resources :invite_codes
   end
-  devise_for(:users, :controllers => { :omniauth_callbacks => "multiauth/sessions"})
-  
-  match '/groups/:group_id/check_custom_domain' => 'groups#check_custom_domain',
-  :as => 'check_custom_domain'
-  match '/groups/:group_id/reset_custom_domain' => 'groups#reset_custom_domain',
-   :method => :post, :as => 'reset_custom_domain'
-  # for user index
-  # match '/members' =>"users#index" , :method=>:get, 
-  match '/connect' => 'users#social_connect', :method => :get, :as => :social_connect
-  match '/invitations/accept' => 'invitations#accept', :method => :get, :as => :accept_invitation
-  match '/disconnect_twitter_group' => 'groups#disconnect_twitter_group', :method => :get
-  match '/group_twitter_request_token' => 'groups#group_twitter_request_token', :method => :get
-  match 'confirm_age_welcome' => 'welcome#confirm_age', :as => :confirm_age_welcome
-  match '/change_language_filter' => 'welcome#change_language_filter', :as => :change_language_filter
-  match '/register' => 'users#new', :as => :new_user
-  match '/register' => 'users#create', :as => :register
-  match '/signup' => 'users#new', :as => :signup
-  match '/plans' => 'doc#plans', :as => :plans
-  match '/chat' => 'doc#chat', :as => :chat
-  match '/shapado_feedback' => 'welcome#feedback', :as => :feedback
-  match '/switch_mobile_view' => 'welcome#switch_mobile_view'
-  match '/feedback' => 'welcome#fake_feedback'
-  match '/send_feedback' => 'welcome#send_shapado_feedback', :as => :send_feedback
-  match '/send_shapado_feedback' => 'welcome#send_feedback', :as => :send_feedback
-  match '/profile/settings' => 'users#edit', :as => :settings
-  match '/tos' => 'manage_terms#public_terms', :as => :tos
-  match '/privacy' => 'manage_privacy#public_privacy', :as => :privacy
-  match '/widgets/embedded/:id' => 'widgets#embedded', :as => :embedded_widget
-  match '/suggestions' => 'users#suggestions', :as => :suggestions
-  match '/activity' => 'activities#index', :as => :activities
-  # match '/contact' => 'contact#index', :as => :contact
-  match '/activities/:id' => 'activities#show', :as => :activity, :method => :get
 
-  match '/update_stripe' => 'invoices#webhook', :method => :post
+	resources :badge_comments
+	resources :feedback
 
-  match '/eula' => 'manage_eulas#public_eula'
-  match '/privacy-policy' => 'manage_privacy#public_privacy'
-  #match '/terms-of-use' => 'manage_terms#public_terms'
-  #match '/about' => 'manage_abouts#public_about'
-  #match '/faq' => 'manage_faqs#public_faq'
-  match '/first-auth/:auth_provider' => 'home#auth_popup1'
-  match '/second-auth/:auth_provider' => 'home#auth_popup2'
-  match '/third-auth/:auth_provider' => 'home#auth_popup3'
+	get "survey/index"
 
-  get "mobile/index"
+	devise_for(:users,:path=>"/members", :path_names => { :sign_in => "login", :sign_out => "logout"}, :controllers => {:registrations => 'users'}) do
 
-  match '/users/auth/:provider' => 'users#auth', :as => :auth_users
+		match "login" => "devise/sessions#new", :as => :new_user_session
+		match "logout" => "devise/sessions#destroy", :as => :destroy_user_session
+		match "/reset-password", :to => "devise/unlocks#new", :as => :new_user_unlock
+	end
+	devise_for(:users, :controllers => { :omniauth_callbacks => "multiauth/sessions"})
 
-  match '/facebook' => "facebook#index", :as => :facebook, :method => :any
-  match '/facebook/enable_page' => 'facebook#enable_page', :as => :enable_page_facebook
+	match '/groups/:group_id/check_custom_domain' => 'groups#check_custom_domain',
+	:as => 'check_custom_domain'
+	match '/groups/:group_id/reset_custom_domain' => 'groups#reset_custom_domain',
+	 :method => :post, :as => 'reset_custom_domain'
+	# for user index
+	# match '/members' =>"users#index" , :method=>:get,
+	match '/connect' => 'users#social_connect', :method => :get, :as => :social_connect
+	match '/invitations/accept' => 'invitations#accept', :method => :get, :as => :accept_invitation
+	match '/disconnect_twitter_group' => 'groups#disconnect_twitter_group', :method => :get
+	match '/group_twitter_request_token' => 'groups#group_twitter_request_token', :method => :get
+	match 'confirm_age_welcome' => 'welcome#confirm_age', :as => :confirm_age_welcome
+	match '/change_language_filter' => 'welcome#change_language_filter', :as => :change_language_filter
+	match '/register' => 'users#new', :as => :new_user
+	match '/register' => 'users#create', :as => :register
+	match '/signup' => 'users#new', :as => :signup
+	match '/plans' => 'doc#plans', :as => :plans
+	match '/chat' => 'doc#chat', :as => :chat
+	match '/shapado_feedback' => 'welcome#feedback', :as => :feedback
+	match '/switch_mobile_view' => 'welcome#switch_mobile_view'
+	match '/feedback' => 'welcome#fake_feedback'
+	match '/send_feedback' => 'welcome#send_shapado_feedback', :as => :send_feedback
+	match '/send_shapado_feedback' => 'welcome#send_feedback', :as => :send_feedback
+	match '/profile/settings' => 'users#edit', :as => :settings
+	match '/tos' => 'manage_terms#public_terms', :as => :tos
+	match '/privacy' => 'manage_privacy#public_privacy', :as => :privacy
+	match '/widgets/embedded/:id' => 'widgets#embedded', :as => :embedded_widget
+	match '/suggestions' => 'users#suggestions', :as => :suggestions
+	match '/activity' => 'activities#index', :as => :activities
+	# match '/contact' => 'contact#index', :as => :contact
+	match '/activities/:id' => 'activities#show', :as => :activity, :method => :get
 
-  mount MagentWeb.app => ENV["MAGENT_WEB_PATH"]
+	match '/update_stripe' => 'invoices#webhook', :method => :post
+
+	match '/eula' => 'manage_eulas#public_eula'
+	match '/privacy/policy' => 'manage_privacy#public_privacy'
+	#match '/terms-of-use' => 'manage_terms#public_terms'
+	#match '/about' => 'manage_abouts#public_about'
+	#match '/faq' => 'manage_faqs#public_faq'
+	match '/first-auth/:auth_provider' => 'home#auth_popup1'
+	match '/second-auth/:auth_provider' => 'home#auth_popup2'
+	match '/third-auth/:auth_provider' => 'home#auth_popup3'
+
+	get "mobile/index"
+
+	match '/users/auth/:provider' => 'users#auth', :as => :auth_users
+
+	match '/facebook' => "facebook#index", :as => :facebook, :method => :any
+	match '/facebook/enable_page' => 'facebook#enable_page', :as => :enable_page_facebook
+
+	mount MagentWeb.app => ENV["MAGENT_WEB_PATH"]
 #  mount BugHunter.app => ENV["BUGHUNTER_PATH"]
 
-  match '/facts' => redirect("/")
-  match '/users/:id/:slug' => redirect("/users/%{slug}"), :as => :user_se_url, :id => /\d+/
-  
-  # match '/members' => 'users#index', :as =>:users
-  # match '/members/:id' => 'users#show', :as =>:user
+	match '/facts' => redirect("/")
+	match '/users/:id/:slug' => redirect("/users/%{slug}"), :as => :user_se_url, :id => /\d+/
 
-  resources :users, :path=>"/members", :except=>[:new] do
-    collection do
-      get :autocomplete_for_user_login
-      post :connect
-      get :follow_tags
-      get :unfollow_tags
-      get :leave
-      get :join
-      post :connect
-      get :new_password
-      get :change_question
-    end
+	# match '/members' => 'users#index', :as =>:users
+	# match '/members/:id' => 'users#show', :as =>:user
 
-    member do
-      get :feed
-      get :expertise
-      get :preferred
-      get :by_me
-      get :contributed
-      post :unfollow
-      post :follow
-      get :answers
-      get :follows
-      get :activity
-      get :survey
-    end
-  end
-  # match 'towns' => 'towns#index'
-  get 'faq' =>"manage_faqs#public_faq"
-  get 'experimental/about' => "manage_abouts#experimental_about"
-  get 'question/:question_id/votesup/:vote_up'=>"votes#create",:as=>:vote_question_up
-  get 'question/:question_id/votesdown/:vote_down'=>"votes#create",:as=>:vote_question_down
-  resources :countquestions
-  resources :badges
-  resources :news_letter, :path=>'/newsletter'
+	resources :users, :path=>"/members", :except=>[:new] do
+		collection do
+			get :autocomplete_for_user_login
+			post :connect
+			get :follow_tags
+			get :unfollow_tags
+			get :leave
+			get :join
+			post :connect
+			get :new_password
+			get :change_question
+		end
 
-  resources :searches, :path => "search", :as => "search"
-  
-  resources :contact do
-    collection do
-      post :send_contact_us
-    end
-  end
-  
-  get '/services-map/:country' =>"service_providers#country" , :as => :country_services_map
-  match 'provider_validate' => "service_providers#provider_validate", :as => :provider_validate,:via =>[:post]
+		member do
+			get :feed
+			get :expertise
+			get :preferred
+			get :by_me
+			get :contributed
+			post :unfollow
+			post :follow
+			get :answers
+			get :follows
+			get :activity
+			get :survey
+		end
+	end
+	# match 'towns' => 'towns#index'
+	get 'faq' =>"manage_faqs#public_faq"
+	get 'experimental/about' => "manage_abouts#experimental_about"
+	get 'question/:question_id/votesup/:vote_up'=>"votes#create",:as=>:vote_question_up
+	get 'question/:question_id/votesdown/:vote_down'=>"votes#create",:as=>:vote_question_down
+	resources :countquestions
+	resources :badges
+	resources :news_letter, :path=>'/newsletter'
 
-  resources :service_providers, :except => [:show], :path=>'services-map'
-  get '/services-map/:id/:slug' => "service_providers#show", :as=>:service_map_provider
-  resources :news 
-  match "/news/:id/rating" => "news#rating"
-  match "/announcements/:id/rating" => "announcements#rating"
-  resources :polls
+	resources :searches, :path => "search", :as => "search"
 
-  resources :pages do
-    member do
-      get :js
-      get :css
-    end
-  end
-  match "/admin/announcements"=> "announcements#index"
-  resources :announcements do
-    collection do
-      get :hide
-      get :announce, :path=>"/"
-    end
-  end
+	get 'contact-us' => 'contact#index', :as => :contact
 
-  resources :imports do
-    collection do
-      post :send_confirmation
-    end
-  end
+	resources :contact do
+		collection do
+			post :send_contact_us
+		end
+	end
 
-  get '/questions/:id/:slug' => 'questions#show', :as => :se_url, :id => /\d+/
-  post '/questions/:id/start_reward' => "reward#start", :as => :start_reward
-  get '/questions/:id/close_reward' => "reward#close", :as => :close_reward
+	get '/services-map/:country' =>"service_providers#country" , :as => :country_services_map
+	match 'provider_validate' => "service_providers#provider_validate", :as => :provider_validate,:via =>[:post]
 
-  match '/answers(.format)' => 'answers#index', :as => :answers
-  match '/answers_tab(.format)' => 'answers#answers_tab', :as => :answers
-  
-  
+	resources :service_providers, :except => [:show], :path=>'services-map'
+	get '/services-map/:id/:slug' => "service_providers#show", :as=>:service_map_provider
+	resources :news
+	match "/news/:id/rating" => "news#rating"
+	match "/announcements/:id/rating" => "announcements#rating"
+	resources :polls
 
-  # can be used in future 
-  # scope('questions') do
-  #   resources :tags, :constraints => { :id => /\S+/ }
-  # end
+	resources :pages do
+		member do
+			get :js
+			get :css
+		end
+	end
+	match "/admin/announcements"=> "announcements#index"
+	resources :announcements do
+		collection do
+			get :hide
+			get :announce, :path=>"/"
+		end
+	end
 
-  resources :tags, :constraints => { :id => /\S+/ }
+	resources :imports do
+		collection do
+			post :send_confirmation
+		end
+	end
+
+	get '/questions/:id/:slug' => 'questions#show', :as => :se_url, :id => /\d+/
+	post '/questions/:id/start_reward' => "reward#start", :as => :start_reward
+	get '/questions/:id/close_reward' => "reward#close", :as => :close_reward
+
+	match '/answers(.format)' => 'answers#index', :as => :answers
+	match '/answers_tab(.format)' => 'answers#answers_tab', :as => :answers
 
 
-  match 'questions/unanswered' => redirect("/questions?unanswered=1")
 
-  match 'question/:id' => 'questions#show', :as => :question
-  #match 'questions/ask-a-question' => "questions#new", :as => :new_question
+	# can be used in future
+	# scope('questions') do
+	#   resources :tags, :constraints => { :id => /\S+/ }
+	# end
 
-  match '/questions/:question_id/comments/:id' => 'comments#show', :as=>:question_comment, :path=>'/question/:question_id/comments/:id'
+	resources :tags, :constraints => { :id => /\S+/ }
 
-  resources :questions, :except => [:show, :new] do
-    # some routes written by vivek
-    resources :votes
-    resources :flags
-    collection do
-      get :tags_for_autocomplete
-      get :related_questions
-      get 'page/:page', :action => :index
-      match '/:filter' => 'questions#index', :as => :filtered, :constraints => { :filter => /all|unanswered|by_me|feed|preferred|contributed|expertise/ }
-    end
 
-    member do
-      get :solve
-      get :unsolve
-      get :flag
-      get :follow
-      get :unfollow
-      get :history
-      get :revert
-      get :diff
-      get :move
-      put :move_to
-      get :retag
-      put :retag_to
-      get :remove_attachment
-      get :twitter_share
-    end
+	match 'questions/unanswered' => redirect("/questions?unanswered=1")
 
-    resources :comments, :except=> [:show] do
-      resources :votes
-    end
-    
-    resources :answers do
-      resources :votes
-      resources :flags
-      member do
-        get :favorite
-        get :unfavorite
-        get :flag
-        get :history
-        get :diff
-        get :revert
-      end
-      collection do
-        get :answers_tab
-      end
+	match 'question/:id' => 'questions#show', :as => :question
+	#match 'questions/ask-a-question' => "questions#new", :as => :new_question
 
-      resources :comments do
-        resources :votes
-      end
-    end
+	match '/questions/:question_id/comments/:id' => 'comments#show', :as=>:question_comment, :path=>'/question/:question_id/comments/:id'
 
-    resources :close_requests
-    resources :open_requests
-  end
-  get '/question_ajax' =>"questions#question_ajax"
-  get '/search_ajax' => 'searches#search_ajax'
-  post '/question_search'=>'questions#question_search#index'
+	resources :questions, :except => [:show, :new] do
+		# some routes written by vivek
+		resources :votes
+		resources :flags
+		collection do
+			get :tags_for_autocomplete
+			get :related_questions
+			get 'page/:page', :action => :index
+			match '/:filter' => 'questions#index', :as => :filtered, :constraints => { :filter => /all|unanswered|by_me|feed|preferred|contributed|expertise/ }
+		end
 
-  match 'questions/tags/:tags' => 'tags#show', :as => :question_tag
-  match 'questions/tagged/:tags' => redirect { |env, req| "/questions/tags/#{req.params[:tags].gsub(' ', '+')}" }, :tags => /.+/ #support se url
+		member do
+			get :solve
+			get :unsolve
+			get :flag
+			get :follow
+			get :unfollow
+			get :history
+			get :revert
+			get :diff
+			get :move
+			put :move_to
+			get :retag
+			put :retag_to
+			get :remove_attachment
+			get :twitter_share
+		end
 
-  resources :groups do
-    collection do
-      get :autocomplete_for_group_slug
-      get :add_to_facebook
-      post :join
-    end
+		resources :comments, :except=> [:show] do
+			resources :votes
+		end
 
-    member do
-      get :allow_custom_ads
-      get :disallow_custom_ads
-      post :close
-      post :update_card
-      get :accept
+		resources :answers do
+			resources :votes
+			resources :flags
+			member do
+				get :favorite
+				get :unfavorite
+				get :flag
+				get :history
+				get :diff
+				get :revert
+			end
+			collection do
+				get :answers_tab
+			end
 
-      post :upgrade
-      post :downgrade
-      post :set_columns
-    end
-  end
+			resources :comments do
+				resources :votes
+			end
+		end
 
-  resources :invitations do
-    member do
-      post :revoke
-      post :resend
-    end
-  end
+		resources :close_requests
+		resources :open_requests
+	end
+	get '/question_ajax' =>"questions#question_ajax"
+	get '/search_ajax' => 'searches#search_ajax'
+	post '/question_search'=>'questions#question_search#index'
 
-  resources :invoices do
-    member do
-      get :success
-    end
-    collection do
-      get :auto_update
-      get :upcoming
-    end
-  end
+	match 'questions/tags/:tags' => 'tags#show', :as => :question_tag
+	match 'questions/tagged/:tags' => redirect { |env, req| "/questions/tags/#{req.params[:tags].gsub(' ', '+')}" }, :tags => /.+/ #support se url
 
-  resources :survey
-  resources :tier_sample
-  match '/survey/sample/tier-sample' => 'tier_sample#index'
+	resources :groups do
+		collection do
+			get :autocomplete_for_group_slug
+			get :add_to_facebook
+			post :join
+		end
 
-  scope '/survey/sample/' do
-  resources :tier1
+		member do
+			get :allow_custom_ads
+			get :disallow_custom_ads
+			post :close
+			post :update_card
+			get :accept
 
-  resources :tier2
+			post :upgrade
+			post :downgrade
+			post :set_columns
+		end
+	end
 
-  resources :tier3
+	resources :invitations do
+		member do
+			post :revoke
+			post :resend
+		end
+	end
 
-  resources :tier4
+	resources :invoices do
+		member do
+			get :success
+		end
+		collection do
+			get :auto_update
+			get :upcoming
+		end
+	end
 
-  resources :tier5
+	resources :survey
+	resources :tier_sample
+	match '/survey/sample/tier-sample' => 'tier_sample#index'
 
-  resources :tier6
+	scope '/survey/sample/' do
+	resources :tier1
 
-  resources :tier7
-  end
+	resources :tier2
 
-  scope '/manage' do
-    resources :members
-    resources :service_categories
-    resources :providers
-    resources :manage_news
-    resources :manage_polls
-    resources :manage_terms
-    resources :manage_abouts
-    resources :manage_eulas
-    resources :manage_privacy
-    resources :manage_faqs
-    resources :manage_contacts
-  end
-  
-  scope '/admin' do
-    resources :widgets do
-      member do
-        post :move
-      end
-    end
-    resources :themes do
-      member do
-        get :remove_bg_image
-        put :apply
-        get :ready
-        get :download
-      end
-      collection do
-        post :import
-      end
-    end
-    resources :constrains_configs,:path => "requirements"
-  end
+	resources :tier3
 
-  scope '/manage', :as => 'manage' do
-    controller 'admin/manage' do
-      match 'dashboard' => :dashboard
-      match 'edit_card' => :edit_card
-      match 'properties' => :properties
-      match 'theme' => :theme
-      match 'actions' => :actions
-      match 'stats' => :stats
-      match 'reputation' => :reputation
-      match 'invitations' => :invitations
-      match 'access' => :access
-    end
-  end
-  scope '/admin', :as => 'manage' do
-    controller 'admin/manage' do
-      match 'social' => :social
-      match 'appearance' => :appearance
-      match 'close_group' => :close_group, :path => "close-group"
-      match 'content' => :content
-      match 'rewards' => :rewards
-    end
-  end
-  match '/manage/properties/:tab' => 'admin/manage#properties', :as => :manage_properties_tab
-  match '/admin/index' => 'admin/manage#dashboard', :as => :admin_dashboard
-  match '/admin/config' => 'admin/manage#properties', :as => :admin_config
-  match '/admin/service-providers' => 'service_categories#index', :as => :service_providers_index
-  match '/admin/service-providers/providers' => 'providers#index', :as => :manage_service_providers
-  match '/admin/news/list' => 'manage_news#index'
-  match '/admin/faq' => 'manage_faqs#index'
-  match '/admin/polls' => 'manage_polls#index'
-  match '/admin/contact-us' => 'manage_contacts#index', :as => :manage_contact_us
-  match '/admin' => 'admin/manage#dashboard'
-  match '/admin/cms/terms-of-use' => 'manage_terms#index', :as => :cms_terms
-  match '/admin/cms/about-us' => 'manage_abouts#index', :as => :cms_abouts
-  match '/admin/cms/eula' => 'manage_eulas#index', :as => :cms_eula
-  match '/admin/cms/privacy-policy' => 'manage_privacy#index', :as => :cms_privacy
+	resources :tier4
 
-  match '/admin/cms/edit/terms-of-use' => 'manage_terms#edit', :as => :cms_edit_terms
-  match '/admin/cms/edit/about-us' => 'manage_abouts#edit', :as => :cms_edit_abouts
-  match '/admin/cms/edit/eula' => 'manage_eulas#edit', :as => :cms_edit_eula
-  match '/admin/cms/edit/privacy-policy' => 'manage_privacy#edit', :as => :cms_edit_privacy
+	resources :tier5
 
-  match '/admin/user-access' => 'admin/manage#access', :as => :admin_user_access
-  match '/admin/members' => 'members#index', :as => :admin_members
-  match '/admin/invitations' => 'admin/manage#invitations', :as => :admin_manage_invitations
+	resources :tier6
 
-  match '/admin/flags' => 'flags#admin_index', :as => :admin_manage_flags
+	resources :tier7
+	end
 
-  namespace :moderate do
-    resources :questions do
-      collection do
-        get :flagged
-        get :to_close
-        get :to_open
-        post :manage
-      end
-      member do
-        get :banning
-        put :ban
+	scope '/manage' do
+		resources :members
+		resources :service_categories
+		resources :providers
+		resources :manage_news
+		resources :manage_polls
+		resources :manage_terms
+		resources :manage_abouts
+		resources :manage_eulas
+		resources :manage_privacy
+		resources :manage_faqs
+		resources :manage_contacts
+	end
 
-        get :closing
-        put :close
-        get :opening
-        put :open
-      end
-    end
-    resources :answers do
-      collection do
-        post :manage
-      end
-      member do
-        get :banning
-        put :ban
-      end
-    end
-    resources :users, :path=>"/members"
-  end
+	scope '/admin' do
+		resources :widgets do
+			member do
+				post :move
+			end
+		end
+		resources :themes do
+			member do
+				get :remove_bg_image
+				put :apply
+				get :ready
+				get :download
+			end
+			collection do
+				post :import
+			end
+		end
+		resources :constrains_configs,:path => "requirements"
+	end
 
-   # experimetal routes
-  scope :module => "experimental" do
-    resources :experimental, :path => "/" do
-      collection do
-        get :index,:path=>"/index"
-        get :index_experimental,:path=>"/index1"
-        get :public_about,:path=>"/about"
-        get :rss_feed,:path=>"rss"
-        get :terms
-        get :faq
-        get :partners
-        get :show_member
-        get '/questions/ask-a-question' => 'experimental#ask_question', :as => :ask_question
-        get 'questions/:id' => 'experimental#question_show', :as => :question_show
-        get :profile
-        get :profile_settings, :path=> "/profile/settings"
-        get :features
-        get :events
-        get :crowdfunding 
-        get :dashboard, :path=> "/profile/dashboard"
-        get 'social/:via' => :social ,:as=> :social
-        get :comments_rss
-        # get :announce, :path=> "/announcements"
-        # experimental routes
-        get "*a", :to => "experimental#routing_error"
-      end
-    end
-  end 
-  match '/moderate' => 'moderate/questions#index'
+	scope '/manage', :as => 'manage' do
+		controller 'admin/manage' do
+			match 'dashboard' => :dashboard
+			match 'edit_card' => :edit_card
+			match 'properties' => :properties
+			match 'theme' => :theme
+			match 'actions' => :actions
+			match 'stats' => :stats
+			match 'reputation' => :reputation
+			match 'invitations' => :invitations
+			match 'access' => :access
+		end
+	end
+	scope '/admin', :as => 'manage' do
+		controller 'admin/manage' do
+			match 'social' => :social
+			match 'appearance' => :appearance
+			match 'close_group' => :close_group, :path => "close-group"
+			match 'content' => :content
+			match 'rewards' => :rewards
+		end
+	end
+	match '/manage/properties/:tab' => 'admin/manage#properties', :as => :manage_properties_tab
+	match '/admin/index' => 'admin/manage#dashboard', :as => :admin_dashboard
+	match '/admin/config' => 'admin/manage#properties', :as => :admin_config
+	match '/admin/service-providers' => 'service_categories#index', :as => :service_providers_index
+	match '/admin/service-providers/providers' => 'providers#index', :as => :manage_service_providers
+	match '/admin/news/list' => 'manage_news#index'
+	match '/admin/faq' => 'manage_faqs#index'
+	match '/admin/polls' => 'manage_polls#index'
+	match '/admin/contact-us' => 'manage_contacts#index', :as => :manage_contact_us
+	match '/admin' => 'admin/manage#dashboard'
+	match '/admin/cms/terms-of-use' => 'manage_terms#index', :as => :cms_terms
+	match '/admin/cms/about-us' => 'manage_abouts#index', :as => :cms_abouts
+	match '/admin/cms/eula' => 'manage_eulas#index', :as => :cms_eula
+	match '/admin/cms/privacy-policy' => 'manage_privacy#index', :as => :cms_privacy
+
+	match '/admin/cms/edit/terms-of-use' => 'manage_terms#edit', :as => :cms_edit_terms
+	match '/admin/cms/edit/about-us' => 'manage_abouts#edit', :as => :cms_edit_abouts
+	match '/admin/cms/edit/eula' => 'manage_eulas#edit', :as => :cms_edit_eula
+	match '/admin/cms/edit/privacy-policy' => 'manage_privacy#edit', :as => :cms_edit_privacy
+
+	match '/admin/user-access' => 'admin/manage#access', :as => :admin_user_access
+	match '/admin/members' => 'members#index', :as => :admin_members
+	match '/admin/invitations' => 'admin/manage#invitations', :as => :admin_manage_invitations
+
+	match '/admin/flags' => 'flags#admin_index', :as => :admin_manage_flags
+
+	namespace :moderate do
+		resources :questions do
+			collection do
+				get :flagged
+				get :to_close
+				get :to_open
+				post :manage
+			end
+			member do
+				get :banning
+				put :ban
+
+				get :closing
+				put :close
+				get :opening
+				put :open
+			end
+		end
+		resources :answers do
+			collection do
+				post :manage
+			end
+			member do
+				get :banning
+				put :ban
+			end
+		end
+		resources :users, :path=>"/members"
+	end
+	match 'tier1_index'=>"tier1#tier1_index",:controller=>:tier1,:as=>'tier1_index'
+	match 'tier2_index'=>"tier2#tier2_index",:controller=>:tier2,:as=>'tier2_index'
+	match 'tier3_index'=>"tier3#tier3_index",:controller=>:tier3,:as=>'tier3_index'
+	match 'tier4_index'=>"tier4#tier4_index",:controller=>:tier4,:as=>'tier4_index'
+	root :to => 'experimental/experimental#index_experimental'
+	 # experimetal routes
+	scope :module => "experimental" do
+		resources :experimental, :path => "/" do
+			collection do
+				get :index,:path=>"/index1"
+				get :index_experimental,:path=>"/index"
+				get :public_about,:path=>"/about"
+				get :rss_feed,:path=>"rss"
+				get :terms_condition, :path=> "/profile/participate-research"
+				get :terms, :path=> "privacy/terms-of-use"
+				get :faq
+				get :partners
+				get :show_member
+				get '/questions/ask-a-question' => 'experimental#ask_question', :as => :ask_question
+				get 'questions/:id' => 'experimental#question_show', :as => :question_show
+				get :profile
+				get :profile_settings, :path=> "/profile/settings"
+				get :features
+				get :events
+				get :crowdfunding
+				get :dashboard, :path=> "/profile/dashboard"
+				get 'social/:via' => :social ,:as=> :social
+				get :comments_rss
+				get :show_numbers_service
+				get :profile_tiers, :path=>"/profile/tiers"
+				get :concern_about_privacy, :path=>"/concern-about-privacy"
+				post :knowledge_count
+				get :registration
+				# get :announce, :path=> "/announcements"
+				# experimental routes
+				get "*a", :to => "experimental#routing_error"
+
+			end
+		end
+	end
+	match '/moderate' => 'moderate/questions#index'
 #   match '/search' => 'searches#index', :as => :search
-  match '/about' => 'groups#show', :as => :about
-  root :to => 'experimental/experimental#index'
-  #match '/:controller(/:action(/:id))'
-  match '*a', :to => 'public_errors#routing'
+	match '/about' => 'groups#show', :as => :about
+
+	#match '/:controller(/:action(/:id))'
+	match '*a', :to => 'public_errors#routing'
 
 
 end

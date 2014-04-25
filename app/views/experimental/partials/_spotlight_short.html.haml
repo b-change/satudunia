@@ -1,93 +1,131 @@
+:css
+	.nivo-box{
+		height: 150px !important;
+	}
+%br
 #spotlight-wrapper
-  .ribbon-shadow-left  
-  .section-wrapper
-    / spotlight section header
-    .section
-      %i.icon-flashlight
-      In The Spotlight
-  .ribbon-shadow-right  
-  .section-arrow  
-  .spotlight
-    #spotlight-slider.spotslider-index1
-      / begin spotlight slider
-      %ul{:style=>"height:555px;"}
-        %li
-          .post-panel
-            .category
-              .ribbon-shadow-left  
-              / .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-movie-light.png) no-repeat 0px 0px;"}  
-              .catname
-                ="<i class='icon-help'></i>Question & Answer".html_safe
-              .category-arrow  
-            %a.darken{:href => "/questions"}
-              %img{:alt => "Question & Answer",:title=>"Question & Answer", :height => "170", :src => "/assets/experimental/images/questions.jpg", :width => "300"}/
-            .inner
-              %h2
-                %a{:href => "/questions"}
-                -unless current_group.block_one_header.blank?
-                  = current_group.block_one_header.html_safe rescue ""
-              .excerpt.full-align-style
-                = current_group.block_one_info.html_safe rescue "" 
-            .more-bar
-              .arrow-catpanel-top  
-              / .rating-wrapper.small
-              /   .number.color3 42%
-              .comments
-                %a{:href => "single-review-numbers.html", :title => "Comment on The Bourne Legacy"} 0 Views
-              .more
-                %a{:href => "/questions"} More
-        %li
-          .post-panel.right
-            .category
-              .ribbon-shadow-left  
-              / .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-fashion-light.png) no-repeat 0px 0px;"}  
-              .catname
-                ="<i class='icon-location'></i>Services Map".html_safe
-              .category-arrow  
-            %a.darken{:href => service_providers_path}
-              %img{:alt => "Services Map",:title=>"Services Map", :height => "170", :src => "/assets/experimental/images/services_maps.jpg", :width => "300"}/
-            .inner
-              %h2
-                %a{:href => service_providers_path}
-                  =current_group.block_two_header.html_safe rescue ""
-              .excerpt.full-align-style
-                = current_group.block_two_info.html_safe rescue ""
-            .more-bar
-              .arrow-catpanel-top  
-              / .rating-wrapper.small
-              /   .letter.color3 C
-              .comments
-                %a{:href => "single-review-numbers.html", :title => "Comment on 5 Colorful Watches From Zappos for under $50"} 0 Views
-              .more
-                %a{:href => service_providers_path} More
-          .clearer
-        %li
-          .post-panel
-            .category
-              .ribbon-shadow-left  
-              / .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-restaurant-light.png) no-repeat 0px 0px;"}  
-              .catname
-                ="<i class='icon-circled-help'></i>Knowledge Base".html_safe
-              .category-arrow  
-            %a.darken{:href => "http://plus-us.net/wiki/Main_Page"}
-              %img{:alt => "Knowledge Base",:title=>"Knowledge Base", :height => "170", :src => "/assets/experimental/images/knowledge_based.jpg", :width => "300"}/
-            .inner
-              %h2
-                %a{:href => "http://plus-us.net/wiki/Main_Page"} 
-                  =current_group.block_three_header.html_safe rescue ""
-              .excerpt.full-align-style
-                =current_group.block_three_info.html_safe rescue ""
-            .more-bar
-              .arrow-catpanel-top  
-              / .rating-wrapper.small
-              /   .stars.yellow
-              /     .star.full  
-              /     .star.full  
-              /     .star.half  
-              /     .star  
-              /     .star  
-              .comments
-                %a{:href => "http://plus-us.net/wiki/Main_Page", :title => "Comment on Sugar Rush: Banana Stracciatella Gelato from Eataly"} 0 Views
-              .more
-                %a{:href => "http://plus-us.net/wiki/Main_Page"} More
-          .clearer
+	.ribbon-shadow-left
+	.section-wrapper
+		/ spotlight section header
+		.section
+			%i.icon-flashlight
+			In The Spotlight
+			%button.nextspot.floatright{:style=>"z-index:9;display:none;"} >
+			%button.prevspot.floatright{:style=>"z-index:9;display:none;"} <
+
+
+	.ribbon-shadow-right
+	.section-arrow
+	%br
+	.spotlight
+		#spotlight-slider.spotslider-index1
+			/ begin spotlight slider
+			%ul{:style=>"height:555px;"}
+				%li
+					.post-panel
+						.category
+							.ribbon-shadow-left
+							/ .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-movie-light.png) no-repeat 0px 0px;"}
+							.catname
+								="<i class='icon-help'></i>Question & Answer".html_safe
+							.category-arrow
+						%a.darken{:href => "/questions"}
+							%img{:alt => "Question & Answer",:title=>"Question & Answer", :height => "170", :src => "/assets/experimental/images/questions-new.png", :width => "300"}/
+						.inner
+							%h2
+								%a{:href => "/questions"}
+								-unless current_group.block_one_header.blank?
+									= current_group.block_one_header.html_safe rescue ""
+							.excerpt.full-align-style
+								= current_group.block_one_info.html_safe rescue ""
+						.more-bar
+							.arrow-catpanel-top
+							/ .rating-wrapper.small
+							/   .number.color3 42%
+							.comments
+								%a{:href => "/questions", :title => "Comment on The Bourne Legacy"} #{show_counts("questions_index")}Views
+							.more
+								%a{:href => "/questions"} Ask Questions, find answers
+				%li
+					.post-panel.right
+						.category
+							.ribbon-shadow-left
+							/ .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-fashion-light.png) no-repeat 0px 0px;"}
+							.catname
+								="<i class='icon-location'></i>Services Map".html_safe
+							.category-arrow
+						%a.darken{:href => service_providers_path}
+							%img{:alt => "Services Map",:title=>"Services Map", :height => "170", :src => "/assets/experimental/images/MAP-THUMB.jpg", :width => "300"}/
+						.inner
+							%h2
+								%a{:href => service_providers_path}
+									=current_group.block_two_header.html_safe rescue ""
+							.excerpt.full-align-style
+								= current_group.block_two_info.html_safe rescue ""
+							%br
+							%br
+							%br
+						.more-bar#more-services
+							.arrow-catpanel-top
+							/ .rating-wrapper.small
+							/   .letter.color3 C
+							.comments
+								%a{:href => service_providers_path, :title => "Comment on 5 Colorful Watches From Zappos for under $50"} #{show_counts("service_providers_index")} Views
+							.more
+								%a{:href => service_providers_path}  Find assistance nearby
+					.clearer
+				%li
+					.post-panel
+						.category
+							.ribbon-shadow-left
+							/ .icon{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-restaurant-light.png) no-repeat 0px 0px;"}
+							.catname
+								="<i class='icon-circled-help'></i>Knowledge Base".html_safe
+							.category-arrow
+						%a.darken{:href => "http://being-me.net/wiki/Main_Page"}
+							%img{:alt => "Knowledge Base",:title=>"Knowledge Base", :height => "170", :src => "/assets/experimental/images/KNOWLEDGE-THUMB.jpg", :width => "300"}/
+						.inner
+							%h2
+								%a{:href => "http://being-me.net/wiki/Main_Page"}
+									=current_group.block_three_header.html_safe rescue ""
+							.excerpt.full-align-style
+								=current_group.block_three_info.html_safe rescue ""
+							%br
+							/ %br
+							/ %br
+						.more-bar
+							.arrow-catpanel-top
+							/ .rating-wrapper.small
+							/   .stars.yellow
+							/     .star.full
+							/     .star.full
+							/     .star.half
+							/     .star
+							/     .star
+							.comments
+								%a{:href => "http://being-me.net/wiki/Main_Page", :title => "Comment on Sugar Rush: Banana Stracciatella Gelato from Eataly"} #{show_counts("knowledge_base_count")} Views
+							.more#knowledgebase
+								%a{:href => "http://being-me.net/wiki/Main_Page",:target => :blank}  Understand the basics
+					.clearer
+		.show-bubbles
+			.active#move-right-bubble{rel: "0"} 1
+			%div#move-left-bubble{rel: "1"} 2
+
+:javascript
+	$("#knowledgebase").click(function(){
+		$.ajax({
+			url: '/knowledge_count',
+			beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+			method: 'post',
+
+		});
+	});
+	$('#move-right-bubble,#move-left-bubble').click(function(){
+		$('.show-bubbles div').each(function(){
+			$(this).removeClass('active');
+		})
+		$(this).addClass('active');
+
+	})
+
+

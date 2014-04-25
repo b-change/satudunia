@@ -17,7 +17,7 @@ class ManagePrivacyController < ApplicationController
   end
 
   def public_privacy
-    add_breadcrumb "Privacy Policy", privacy_path.gsub("/","") 
+    add_breadcrumb "Privacy / Policy", privacy_path.gsub("/","")
     @privacy = StaticPage.where(:static_key => 'privacy').first
     @questions = Question.all
     render :layout => "experiment"

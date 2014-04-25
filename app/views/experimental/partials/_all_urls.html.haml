@@ -1,7 +1,7 @@
 #bbpress-forums.set-question
 	.post-1343.topic.type-topic.status-publish.odd.bbp-parent-forum-1322.bbp-parent-topic-1343.bbp-reply-position-1.user-id-494.topic-author
 		- if @questions_search.nil? && @answers_search.nil? && @tags_search.nil? && @service_providers_search.nil?
-			= render "experimental/partials/empty_record_message.html"
+			= render "experimental/partials/empty_record_message.html" unless (params[:action]=="routing_error")
 		- else
 			- unless @questions_search.nil?
 				-@questions_search.each do |route1|

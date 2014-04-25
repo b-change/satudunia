@@ -47,7 +47,6 @@ gem 'redis-rails'
 gem 'html_truncator'
 # using entypo icons
 gem 'entypo-rails', github: 'lwe/entypo-rails'
-
 # utils
 gem 'whatlanguage', '1.0.0'
 gem 'uuidtools', '~> 2.1.1'
@@ -76,7 +75,7 @@ gem 'omniauth', '~> 0.3.0'
 gem 'oa-openid', '~> 0.3.0', :require => 'omniauth/openid'
 gem 'oa-oauth', '~> 0.3.0', :require => 'omniauth/oauth'
 
-gem 'multiauth', :git => 'http://github.com/dcu/multiauth.git'
+gem 'multiauth', :git => 'https://github.com/dcu/multiauth.git'
 
 gem 'orm_adapter'
 gem 'devise', '~> 1.4.0'
@@ -100,6 +99,7 @@ gem 'yui-compressor'
 gem 'jquery-rails'
 
 group :deploy do
+  gem 'rvm-capistrano'
   gem 'capistrano', '2.9.0', :require => false
   gem 'ricodigo-capistrano-recipes', '~> 0.1.3', :require => false
   gem 'unicorn', '4.1.1', :require => false
@@ -109,7 +109,7 @@ end
 group :scripts do
   gem 'eventmachine', '~> 0.12.10' #'1.0.0'
   gem 'em-websocket', '~> 0.3.0'
-  gem 'twitter', '1.7.2'
+  #gem 'twitter', '1.7.2'
 end
 
 group :test do

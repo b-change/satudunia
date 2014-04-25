@@ -31,6 +31,7 @@ class ApplicationController < ActionController::Base
   before_filter :check_mobile_logout
   before_filter :get_service_providers
   before_filter :get_tags_and_questions
+  before_filter :check_user_terms#,:except=>[:terms_condition,:edit]
 
 
   has_mobile_fu :mobile_enabled
@@ -258,14 +259,26 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource_or_scope)
+
     self.current_user.logged!(self.current_group)
 
     # to redirect if login from admin template
     if session["from_admin_login"]
       admin_path
     else
-      questions_path
+      if current_user.sign_in_count == 1
+        terms_condition_experimental_index_path
+      
+      else 
+        if current_user.accept_terms.nil?
+          flash[:notice] = "Please answer the consent form"
+          terms_condition_experimental_index_path
+        else 
+          settings_path
+        end
+      end    
     end
+  end
     
     # self.current_user.logged!(self.current_group)
     # if resource_or_scope.is_a? User
@@ -273,7 +286,7 @@ class ApplicationController < ActionController::Base
     # else
     #   super(resource_or_scope)
     # end
-  end
+
 
   def share_variables
     Thread.current[:current_group] = current_group
@@ -330,6 +343,15 @@ class ApplicationController < ActionController::Base
   def login_breadcrumb
     if params[:controller]=="devise/sessions" && params[:action]=="new"
       add_breadcrumb "login", "login"    
+    end
+  end
+
+  def check_user_terms
+    if current_user && params[:confirmation_token].present?
+    # if current_user.accept_terms.nil?
+      flash[:notice] = "Please answer the consent form"
+      redirect_to terms_condition_experimental_index_path and return
+    #  end
     end
   end
 end

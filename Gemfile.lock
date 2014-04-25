@@ -10,6 +10,7 @@ GIT
       tzinfo
       uuidtools (>= 2.1.1)
 
+
 GIT
   remote: git://github.com/dcu/poirot.git
   revision: 032f2549c29ad33fbbed4bf9eadc12bb41473e7c
@@ -70,14 +71,6 @@ GIT
     rdiscount (1.6.8)
 
 GIT
-  remote: http://github.com/dcu/multiauth.git
-  revision: 76b936077d887c8e67248ec2894a408084f66d2c
-  specs:
-    multiauth (0.2.7)
-      omniauth
-      rails (>= 3.0.0)
-
-GIT
   remote: https://git.gitorious.org/social_widgets/social_widgets.git
   revision: e6f1f40d7027c3bd2ec50714cdb285d409170f79
   specs:
@@ -93,6 +86,14 @@ GIT
       mongo (>= 1.0)
 
 GIT
+  remote: https://github.com/dcu/multiauth.git
+  revision: 76b936077d887c8e67248ec2894a408084f66d2c
+  specs:
+    multiauth (0.2.7)
+      omniauth
+      rails (>= 3.0.0)
+
+GIT
   remote: https://github.com/rails/sass-rails.git
   revision: bdfeb7ba71eae9ab0b214190319e109bbb0a9fe7
   branch: 3-2-stable
@@ -101,17 +102,6 @@ GIT
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-
-PATH
-  remote: twitter-1.7.2
-  specs:
-    twitter (1.7.2)
-      faraday (~> 0.7.4)
-      faraday_middleware (~> 0.7.0)
-      hashie (~> 1.1.0)
-      multi_json (~> 1.0.0)
-      multi_xml (~> 0.4.0)
-      simple_oauth (~> 0.1.5)
 
 GEM
   remote: http://rubygems.org/
@@ -230,8 +220,6 @@ GEM
       addressable (~> 2.2)
       multipart-post (~> 1.1)
       rack (~> 1.1)
-    faraday_middleware (0.7.0)
-      faraday (~> 0.7.3)
     ffaker (1.14.0)
     ffi (1.0.11)
     fssm (0.2.9)
@@ -240,7 +228,6 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     haml (3.1.4)
-    hashie (1.1.0)
     highline (1.6.11)
     hike (1.2.1)
     hpricot (0.8.6)
@@ -466,6 +453,8 @@ GEM
       sexp_processor (~> 3.0)
     rubyntlm (0.1.1)
     rubyzip (0.9.4)
+    rvm-capistrano (1.4.1)
+      capistrano (>= 2.0.0)
     sanitize (2.0.3)
       nokogiri (>= 1.4.4, < 1.6)
     sass (3.1.16)
@@ -476,7 +465,6 @@ GEM
       multi_json (~> 1.0)
       rubyzip
     sexp_processor (3.2.0)
-    simple_oauth (0.1.9)
     simplecov (0.6.1)
       multi_json (~> 1.0)
       simplecov-html (~> 0.5.3)
@@ -613,6 +601,7 @@ DEPENDENCIES
   ruby-stemmer (~> 0.8.2)
   ruby_parser
   rubyzip (= 0.9.4)
+  rvm-capistrano
   sanitize (= 2.0.3)
   sass (>= 3.1.10)
   sass-rails!
@@ -622,7 +611,6 @@ DEPENDENCIES
   stripe
   therubyracer
   tunnlr_connector!
-  twitter!
   twitter-text (= 1.1.8)
   twitter_oauth
   uglifier

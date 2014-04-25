@@ -1,45 +1,50 @@
 - tags = (@tags_experimental.map(&:name) - @random_tags_experimental.first(3))
 
 .widget-wrapper
-  .widget
-    #tabbed-reviews-compact.complex-list.compact
-      %ul.tabnav
-        %li
-          %a{:href => "#tabs-compact-tag3"} #{tags[0].gsub("_"," ")}
-        %li
-          %a{:href => "#tabs-compact-tag4"} #{tags[1].gsub("_"," ")}
-        %li
-          %a{:href => "#tabs-compact-tag5"} #{tags[2].gsub("_"," ")}
-      %br.clearer/
-      .tabdiv-wrapper
-        #tabs-compact-tag3.tabdiv
-          %ul
-            - get_questions_from_tag(tags[0]).first(5).each do |title|
-              %li
-                - unless Question.where(:tags =>tags[0]).blank?
-                  .rating-wrapper.small 
-                    .number.color4 7.4
-                = link_to title,question_path(title.downcase.gsub(" ","-"))
-                %br.clearer/
-              %li.last
-        #tabs-compact-tag4.tabdiv
-          %ul
-            - get_questions_from_tag(tags[1]).first(5).each do |title|
-              %li
-                - unless Question.where(:tags =>tags[1]).blank?
-                  .rating-wrapper.small 
-                    .number.color4 7.4
-                = link_to title,question_path(title.downcase.gsub(" ","-"))
-                
-                %br.clearer/
-              %li.last
-        #tabs-compact-tag5.tabdiv
-          %ul
-            - get_questions_from_tag(tags[2]).first(5).each do |title|
-              %li
-                - unless Question.where(:tags =>tags[2]).blank?
-                  .rating-wrapper.small 
-                    .number.color4 7.4
-                = link_to title,question_path(title.downcase.gsub(" ","-"))
-                %br.clearer/
-              %li.last
+	.widget
+		#tabbed-reviews-compact.complex-list.compact
+			%ul.tabnav
+				%li
+					%a{:href => "#tabs-compact-tag3"} #{tags[0].gsub("_"," ")}
+				%li
+					%a{:href => "#tabs-compact-tag4"} #{tags[1].gsub("_"," ")}
+				%li
+					%a{:href => "#tabs-compact-tag5"} #{tags[2].gsub("_"," ")}
+			%br.clearer/
+			.tabdiv-wrapper
+				#tabs-compact-tag3.tabdiv
+					%ul
+						- get_questions_from_tag(tags[0]).first(5).each do |title|
+							%li
+								- unless Question.where(:tags =>tags[0]).blank?
+									.rating-wrapper.small 
+										.number.color4 7.4
+									= link_to title,question_path(title.downcase.gsub(" ","-"))
+								-else
+									= title
+								%br.clearer/
+							%li.last
+				#tabs-compact-tag4.tabdiv
+					%ul
+						- get_questions_from_tag(tags[1]).first(5).each do |title|
+							%li
+								- unless Question.where(:tags =>tags[1]).blank?
+									.rating-wrapper.small 
+										.number.color4 7.4
+									= link_to title,question_path(title.downcase.gsub(" ","-"))
+								-else
+									= title
+								%br.clearer/
+							%li.last
+				#tabs-compact-tag5.tabdiv
+					%ul
+						- get_questions_from_tag(tags[2]).first(5).each do |title|
+							%li
+								- unless Question.where(:tags =>tags[2]).blank?
+									.rating-wrapper.small 
+										.number.color4 7.4
+									= link_to title,question_path(title.downcase.gsub(" ","-"))
+								-else
+									= title
+								%br.clearer/
+							%li.last

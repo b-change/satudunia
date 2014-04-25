@@ -1,0 +1,136 @@
+.clearer.hide-responsive
+%br.hide-responsive/
+#flash
+.main-content-left
+	.page-content.review.single-post
+		/ %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+		.review-content
+			.ribbon-shadow-left
+			.section-wrapper
+				.section
+					.comment-bubble
+					/ making title stronger
+					.section-for-header
+						/%i.icon-vcard
+						RESEARCH : INFORMATION SHEET AND CONSENT FORM
+		=form_for current_user, :url=>settings_path do |f|
+			.overview-wrapper
+
+				.overview-new.no-background
+
+					.left-panel
+						%h2
+							%b Research
+
+						%p
+							B-Change Foundation is currently undertaking a research project to better understand how users use and engage with
+							= succeed "." do
+								%b BE
+
+						%p#tool-area
+							The study is being conducted by researchers who are interested in exploring the role of technology in community development programs. The results of the study will be shared with BE users.
+
+
+						%p
+							By ticking ‘I agree’ below:
+						%ul.disc
+							%li#tool-area
+								You give permission for these
+								%u
+									%a{href: "#",:title=>"Benjamin Hanckel, Associate Professor Alan Morris, Laurindo Garcia, Professor Eric Manalastas, Mikael Navarro, Dan Wohlfeiler, Glenn-Milo Santos, Darrin Adams and Associate Professor Kane Race",:alt=>"Benjamin Hanckel",:class=>"tool-tip"} researchers
+
+								&nbsp;to collect information about you from
+								= succeed "." do
+									%b BE
+								All information collected will be de-identified (ie. made anonymous).The results of the study may be published by one of these researchers in a form that will not identify you in any way.
+							%li
+								You can withdraw your participation from this research project at any time, without consequence, and without giving a reason(you can do this by changing the settings in your profile).
+
+
+						%p#tool-area
+							If you have any concerns about the research please contact
+
+							%u
+								%a{href: "mailto:Benjamin.J.Hanckel@student.uts.edu.au",:title=>"Benjamin Hanckel",:alt=>"Benjamin Hanckel",:class=>"tool-tip"} Benjamin Hanckel
+							or his supervisor
+							= succeed "." do
+								%u
+									%a{href: "mailto:alan.morris@uts.edu.au",:title=>"Associate Professor Alan Morris",:alt=>"Associate Professor Alan Morris",:class=>"tool-tip"} Associate Professor Alan Morris
+							If you would like to talk with someone not connected with the research you may contact the
+							%u
+								%a{href: "mailto:Research.ethics@uts.edu.au",:title=>"Research Ethics Officer",:alt=>"Research Ethics Officer",:class=>"tool-tip"} Research Ethics Officer
+							at the University of Technology, Sydney, Australia.
+
+						.category
+
+							.catname
+								Acknowledgement
+							.category-arrow
+						%br.clearer/
+						%p
+							%span.class-agree
+								= radio_button_tag 'user[accept_terms]',"true",true, :class=>"radio_class"
+								Yes, I Agree
+								= radio_button_tag 'user[accept_terms]',"false",false, :class=>"radio_class"
+								I do not agree
+								= radio_button_tag 'user[remind_me]',"true",false, :class=>"radio_class"
+								Remind Me Later
+						/ %br
+		.contact-section-bottom-button{:style=>"z-index:500; margin-top:0px !important"}
+			.janrain-sign-up
+				%a.contact-button.contact-button-single.next{href: '#', title: "Next"} Continue
+				%a.contact-button.contact-button-single.continue{href: '#', title: "Continue",style: "display:none"} Continue
+	%br.clearer/
+/side bar
+.sidebar
+	- if current_user.nil?
+		/login box
+		= render "experimental/partials/login_box"
+	-else
+		/profile box
+		= render "experimental/partials/profile_box"
+
+	/ social login box
+	= render "experimental/partials/social_login_box"
+	/ member box
+	/ = render "experimental/partials/member_box"
+	/rating box
+	= render "experimental/partials/rating_box"
+	/rating box
+	= render "experimental/partials/rating_box2"
+	/ left bar
+	/ = render "experimental/partials/left_bar"
+	/widget top
+	= render "experimental/partials/widget_top"
+	/ .clearer.hide-responsive
+	/ %br.clearer/
+	/ newly reviewd
+	/ = render "experimental/partials/newly_reviewed"
+	/popular box
+	/ = render "experimental/partials/popular_box"
+	/banner box
+	= render "experimental/partials/banner_box"
+
+
+:javascript
+	$(document).ready(function(){
+		jQuery('.contact-button-single').click(function(){
+			$(".edit_user").submit();
+		});
+
+
+		$('#user_accept_terms_true').click(function () {
+			$(".contact-button.contact-button-single.next").show();
+			$(".contact-button.contact-button-single.continue").hide();
+		});
+
+		$('#user_accept_terms_false').click(function () {
+			$(".contact-button.contact-button-single").hide();
+			$(".contact-button.contact-button-single.continue").show();
+		});
+
+		$('#user_remind_me_true').click(function () {
+			$('#user_accept_terms_true').attr('checked',false);
+			$('#user_accept_terms_false').attr('checked',false);
+		})
+	});

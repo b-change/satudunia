@@ -1,0 +1,44 @@
+/ - debugger
+.row-fluid
+	.span12
+		.box
+			.title
+				%h4
+					%span{:class => "icon16  brocco-icon-info "}
+					%span
+						Invite Code
+			.content.noPad.clearfix
+				%table{:cellpadding=>0,:cellspacing=>0,:border=>0,:class=>"responsive dynamicTable display table table-bordered",:width=>"100%"}
+					%thead
+						%tr
+							%th
+								Code
+							%th
+								Email
+
+					%tbody
+						-if @invite_codes.present?
+							-@invite_codes.each do |invite|
+								%tr
+									%td
+										= invite.code
+									%td
+										= invite.email
+						- else
+							%tr
+								%td
+									No
+
+				= form_for :invite_code,:method=>"POST",:action=>:create,:url=>'/admin/invite_codes', :html => {:class => "form"} do |f|
+					.form-row.row-fluid
+						.span12
+							.row-fluid
+								.span1
+									= label_tag "Email *"
+								.span4
+									= f.text_field :email
+					.form-row.row-fluid
+						.span12
+							.row-fluid
+								.span4
+									= f.submit "Generate-Code", :class => "btn nostyle span-new", :style => "margin-left:10px padding: 4px 10px !important; border-width: 1px !important; border-style: solid !important"

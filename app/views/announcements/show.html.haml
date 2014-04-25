@@ -3,7 +3,7 @@
 %br.hide-responsive/
 .main-content-left
 	.page-content.review.single-post
-		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+		%link{:href => "../experimental/images/misc1-160x160.jpg", :rel => "image_src"}/
 		.review-content
 			.ribbon-shadow-left
 			.section-wrapper
@@ -12,7 +12,7 @@
 			.section-arrow
 			/ post by removed from here
 			.overview-wrapper
-				.overview-new
+				.overview-new.no-background
 					- if current_user && !(@announcement.rated_by? current_user)
 						.rating-news#user-announcement-rating{:id => @announcement.id}
 					- else
@@ -39,13 +39,14 @@
 								#service_information{:style => "margin: 10px"}
 									= @announcement.message rescue ""
 									= link_to "Back", announce_announcements_path
-				%br.clearer/
-				.content-panel.post-loop
-					/ authorbox
-					= render "announcements/author_box"
-					= render 'announcements/related_box'
+			%br.clearer/
+			.content-panel.post-loop
+				/ authorbox
+				= render "announcements/author_box"
+				= render 'announcements/related_box'
 /side bar
 .sidebar
+	/login box
 	- if current_user.nil?
 		/login box
 		= render "experimental/partials/login_box"
@@ -56,21 +57,19 @@
 	/ social login box
 	= render "experimental/partials/social_login_box"
 	/ member box
-	= render "experimental/partials/member_box"
-	/rating box
-	= render "experimental/partials/rating_box"
-	/rating box
-	= render "experimental/partials/rating_box2"
+	/ = render "experimental/partials/member_box"
 	/ left bar
-	/ = render "experimental/partials/left_bar"
+	= render "experimental/partials/left_bar"
 	/widget top
 	= render "experimental/partials/widget_top"
 	/ .clearer.hide-responsive
 	/ %br.clearer/
 	/ newly reviewd
-	= render "experimental/partials/newly_reviewed"
+	/ = render "experimental/partials/newly_reviewed"
 	/popular box
 	= render "experimental/partials/popular_box"
+	/rating box
+	= render "experimental/partials/rating_box"
 	/banner box
 	= render "experimental/partials/banner_box"
 

@@ -3,14 +3,7 @@ class Tier4Controller < ApplicationController
 
   def index
     set_page_title("Tier4")
-
-    @is_disable = !current_user.profile_tier4.nil?
-    if @is_disable
-      flash[:notice] = "You have already answered this profile question"
-      @profile_tier4 = current_user.profile_tier4
-    else
-      @profile_tier4 = ProfileTier4.new
-    end
+    get_profile_support
   end
 
   def create 
@@ -24,7 +17,27 @@ class Tier4Controller < ApplicationController
     else
       flash[:error] = "Tier4 update Failed"
     end
+    if request.xhr?
+      redirect_to tier4_index_path
+    else
+      redirect_to "/survey/sample/tier4"
+    end
+    # redirect_to "/survey/sample/tier5"
+  end
 
-    redirect_to "/survey/sample/tier5"
+  def tier4_index
+    get_profile_support
+    render :layout=>false
+  end
+
+  private
+  def get_profile_support    
+     @is_disable = !current_user.profile_tier4.nil?
+    if @is_disable
+      flash[:notice] = "You have already answered this profile question"
+      @profile_tier4 = current_user.profile_tier4
+    else
+      @profile_tier4 = ProfileTier4.new
+    end
   end
 end

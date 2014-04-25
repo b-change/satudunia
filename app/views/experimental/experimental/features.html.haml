@@ -11,7 +11,7 @@
 			.ribbon-shadow-right  
 			.section-arrow  
 		.page-content.review
-			%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
+			%link{:href => "../experimental/images/movies3-160x160.jpg", :rel => "image_src"}/
 			.overview-wrapper
 				/ %h1.title Login
 				.overview-new
@@ -35,17 +35,29 @@
 					/ 				= @about.static_content.html_safe
 				
 .sidebar
+  /login box
+  - if current_user.nil?
+	/login box
 	= render "experimental/partials/login_box"
-	= render "experimental/partials/left_bar"
-	/widget top
-	= render "experimental/partials/widget_top"
-	/ .clearer.hide-responsive
-	/ %br.clearer/
-	/ newly reviewd
-	= render "experimental/partials/newly_reviewed"
-	/popular box
-	= render "experimental/partials/popular_box"
-	/rating box
-	= render "experimental/partials/rating_box"
-	/banner box
-	= render "experimental/partials/banner_box"
+  -else
+	/profile box
+	= render "experimental/partials/profile_box"
+
+  / social login box
+  = render "experimental/partials/social_login_box"
+  / member box
+  / = render "experimental/partials/member_box"
+  / left bar
+  = render "experimental/partials/left_bar"
+  /widget top
+  = render "experimental/partials/widget_top"
+  / .clearer.hide-responsive
+  / %br.clearer/
+  / newly reviewd
+  / = render "experimental/partials/newly_reviewed"
+  /popular box
+  = render "experimental/partials/popular_box"
+  /rating box
+  = render "experimental/partials/rating_box"
+  /banner box
+  = render "experimental/partials/banner"

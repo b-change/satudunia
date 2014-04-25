@@ -1,25 +1,25 @@
-.clearer.hide-responsive  
+.clearer.hide-responsive
 %br.hide-responsive/
 .main-content-left
 	%br.clearer/
 	#spotlight-wrapper
-		.ribbon-shadow-left  
+		.ribbon-shadow-left
 		.section-wrapper
 			/ spotlight section header
 			.section
-				Contact Plus+
-		.ribbon-shadow-right  
+				Contact BE
+		.ribbon-shadow-right
 		.section-arrow
 	.page-content.review
-		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
+		%link{:href => "../experimental/images/movies3-160x160.jpg", :rel => "image_src"}/
 		#register-page.page
-			
-			= form_for :contact,:method=>"POST",:action=>:create,:html=>{:class=>"standard-form"} do |f|
+
+			= form_for :contact,:method=>"POST",:action=>:create,:url=>'/contact',:html=>{:class=>"standard-form"} do |f|
 				.overview-wrapper
-					.overview-new
+					.overview-new.no-background
 						.left-panel
 							%h2
-								Contact Plus+
+								Contact BE
 							%p Registering for this site is easy, just fill in the fields below and we'll get a new account set up for you in no time.
 							#basic-details-section.register-section
 								= f.label :name, "Name*"
@@ -52,7 +52,7 @@
 										%option{:value => "Sending a general comment"} Sending a general comment
 										%option{:value => "Applying for a job"} Applying for a job
 										%option{:value => "Support"} Support
-										%option{:value => "Other"} Other  
+										%option{:value => "Other"} Other
 								.editfield
 									= f.label "Preferred method of contact"
 									%select#req_method{:prefer_contact => "req_method"}
@@ -60,27 +60,39 @@
 										%option{:value => "Phone"} Phone
 								.editfield
 									= f.label "Other Comments"
-									= f.text_area :comment, :style => "width: 250px",:placeholder=>"Please Enter Comment"    
+									= f.text_area :comment, :style => "width: 250px",:placeholder=>"Please Enter Comment"
 					.contact-section-bottom-button
 						= link_to "Cancel".html_safe, contact_index_path, :class=>"contact-button", :id=> "align"
 						= f.submit "Submit", :class=>"contact-button", :id=> "align"
 	%br.clearer/
 /side bar
 .sidebar
+	/login box
+	- if current_user.nil?
+		/login box
+		= render "experimental/partials/login_box"
+	-else
+		/profile box
+		= render "experimental/partials/profile_box"
+
+	/ social login box
+	= render "experimental/partials/social_login_box"
+	/ member box
+	/ = render "experimental/partials/member_box"
+	/ left bar
 	= render "experimental/partials/left_bar"
 	/widget top
 	= render "experimental/partials/widget_top"
 	/ .clearer.hide-responsive
 	/ %br.clearer/
 	/ newly reviewd
-	= render "experimental/partials/newly_reviewed"
+	/ = render "experimental/partials/newly_reviewed"
 	/popular box
-	= render "experimental/partials/popular_box"
+	=# render "experimental/partials/popular_box"
 	/rating box
-	= render "experimental/partials/rating_box"
+	=# render "experimental/partials/rating_box"
 	/banner box
 	= render "experimental/partials/banner_box"
-
 :css
 	#recaptcha_area, #recaptcha_table{
 		height:128px;

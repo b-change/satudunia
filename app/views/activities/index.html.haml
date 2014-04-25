@@ -13,7 +13,7 @@
     #subnav.item-list-tabs.no-ajax{:role => "navigation"}
       %ul
         %li.feed
-          %a{:href => "http://www.industrialthemes.com/made/activity/feed/", :title => "RSS Feed"} RSS
+          %a{:href => rss_feed_experimental_index_path, :title => "RSS Feed"} RSS
         %li#activity-filter-select.last
           %label{:for => "activity-filter-by"} Show:
           %select#activity-filter-by
@@ -49,13 +49,26 @@
   %br.clearer/    
 /side bar
 .sidebar
+  /login box
+  - if current_user.nil?
+    /login box
+    = render "experimental/partials/login_box"
+  -else
+    /profile box
+    = render "experimental/partials/profile_box"
+
+  / social login box
+  = render "experimental/partials/social_login_box"
+  / member box
+  / = render "experimental/partials/member_box"
+  / left bar
   = render "experimental/partials/left_bar"
   /widget top
   = render "experimental/partials/widget_top"
   / .clearer.hide-responsive
   / %br.clearer/
   / newly reviewd
-  = render "experimental/partials/newly_reviewed"
+  / = render "experimental/partials/newly_reviewed"
   /popular box
   = render "experimental/partials/popular_box"
   /rating box

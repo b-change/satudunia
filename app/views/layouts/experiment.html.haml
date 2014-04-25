@@ -2,7 +2,14 @@
 %html
 	%head
 		%title
-			= yield :title
+
+			= content_for?(:title) ? content_for(:title) : 'PLUS+ - question and answer website'
+			=# content_for(:title)
+			=# yield :title
+		%link{href: "http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css", rel: "stylesheet"}/
+		%script{src: "http://code.jquery.com/jquery-1.9.1.js"}
+		%script{src: "http://code.jquery.com/ui/1.10.3/jquery-ui.js"}
+		/ %link{href: "/resources/demos/style.css", rel: "stylesheet"}/
 		%meta{:charset => "utf-8"}
 		/ SEO
 		%meta{:content => "c8c2b08298d35939-3cae02e526e3ee84-g7e43fb21f43e2136-12", :name => "google-translate-customization"}/
@@ -20,7 +27,7 @@
 		%meta{'http-equiv' => "Content-Language", :content => "en-US"}
 		%meta{'http-equiv' => "imagetoolbar", :content => "no"}
 		/ favicon
-		= favicon_link_tag 'favicon.ico'
+		= favicon_link_tag '/assets/small-beingme-logo.png'
 		/ CSS
 		= stylesheet_link_tag "experimental/experimental"
 		= stylesheet_link_tag "reveal.css"
@@ -31,8 +38,12 @@
 		= javascript_include_tag "jquery.reveal.js"
 		= csrf_meta_tag
 
-
 		%body
+
+			/ stretch menu
+
+			- if params[:controller]=="experimental/experimental" && params[:action]=="index"
+				= render "experimental/partials/sticky_menu"
 			/ page loader starts
 			- if check_pre_loader
 				#div-load
@@ -46,76 +57,92 @@
 				#logo-bar-wrapper
 					/ begin the main header logo area
 					#logo-bar
-						#logo-wrapper
+						#logo-wrapper.set-margin-logo
 							#logo
 								/ logo and section header area
-								%a{:href => experimental_index_path,:title=>"Plus Home",:title=>"Plus Home"}
-									%img#site-logo{:alt => "plus", :src => "/assets/plus/logo.png"}/
-									%img#site-logo-iphone{:alt => "plus", :src => "/assets/plus/logo.png"}/
-									%img#site-logo-ipad{:alt => "plus", :src => "/assets/plus/logo.png"}/
+								%a{:href => root_path,:title=>"BE Home"}
+
+									%img#site-logo{:alt => "plus", :src => "/assets/BE_Hollow_White_Red.gif",height: "300",width: "400"}/
+									%img#site-logo-iphone{:alt => "plus", :src => "/assets/BE_Hollow_White_Red.gif",height: "300",width: "400"}/
+									%img#site-logo-ipad{:alt => "plus", :src => "/assets/BE_Hollow_White_Red.gif",height: "300",width: "400"}/
 							%br.clearer/
 							.subtitle
 						#ad-header
 							/ header ad
 							%a{:href => "#"}
-							%img{:src => "/assets/experimental/images/images_live/ad-top.png"}/
+							/ %img{:src => "/assets/experimental/images/images_live/ad-top.png"}/
+							&nbsp&nbspWHERE WE CAN BE OURSELVES
+							%br AND BE THERE FOR EACH OTHER
+
 						%br.clearer/
-					#logo-bar-shadow  
+					#logo-bar-shadow
 				/ end the logo area
 				#cat-menu.cat-menu
-					%a.home-link{:href => root_path,:title=>"Plus Home",:title=>"Plus Home"}  
+					%a.home-link#no-home{:href => root_path,:title=>"BE"}
 					%ul#menu-main-menu
+						%li.public_about
+							%a{:href => public_about_experimental_index_path,:title=>"About BE",:alt=>"About BE"} About BE
+						/ %li
+						/   %a{:href => "archive-a.html"} Layouts
+						/   %ul
+						/     %li
+						/       %a{:href => "archive-a.html"} Archive Layout A
+						/     %li
+						/       %a{:href => "archive-b.html"} Archive Layout B
+						/     %li
+						/       %a{:href => "archive-c.html"} Archive Layout C
+						/     %li
+						/       %a{:href => "archive-d.html"} Archive Layout D
+						/     %li
+						/       %a{:href => "archive-e.html"} Archive Layout E
+						/     %li
+						/       %a{:href => "archive-f.html"} Archive Layout F
 						%li
-							%a{:href => "archive-a.html"} Layouts
+							/%a{:href => "single-review-numbers.html"} Service Map
+							=link_to 'Services Map', service_providers_path
 							%ul
-								%li
-									%a{:href => "archive-a.html"} Archive Layout A
-								%li
-									%a{:href => "archive-b.html"} Archive Layout B
-								%li
-									%a{:href => "archive-c.html"} Archive Layout C
-								%li
-									%a{:href => "archive-d.html"} Archive Layout D
-								%li
-									%a{:href => "archive-e.html"} Archive Layout E
-								%li
-									%a{:href => "archive-f.html"} Archive Layout F
-						%li
-							/%a{:href => "single-review-numbers.html"} Service Areas
-							=link_to 'Service Areas', service_providers_path
-							%ul
-								-	get_country_name(@service_providers).each do |provider|
+								- get_country_name(@service_providers).each do |provider|
 									%li
-										= link_to "#{provider}",country_services_map_path(provider.downcase)
+										-if provider == "Kuala"
+											/ - debugger
+											= link_to "Kuala Lumpur",country_services_map_path("kuala-lumpur")
+										- else
+											= link_to "#{provider}",country_services_map_path(provider.downcase)
+						%li
+							/ - if current_user.present?
+							= link_to "Knowledge Base","http://being-me.net/wiki/Main_Page",:target => :blank
 						/ question drop starts
 						=render 'experimental/partials/default_tags'
-										
+
 						/ question drop ends
 						/ Login drop starts
+						/ %li
+						/ 	/ - if current_user.nil?
+						/ 	/   %a{:href => '/login'}
+						/ 	/     ="Login".html_safe
+						/ 	-if current_user.present?
+						/ 		= link_to "Settings","#"
+						/ 		%ul
+						/ 			- if current_user.present?
+						/ 				%li
+						/ 					%a{:href => '/profile/settings'}
+						/ 						="<i class='icon-user'></i>Profile".html_safe
+						/ 				%li
+						/ 					%a{:href => '/connect'}
+						/ 						="<i class='icon-retweet'></i>Connect".html_safe
+						/ 				%li
+						/ 					%a{:href => follows_user_path(current_user)}
+						/ 						= "<i class='icon-circled-right'></i>#{t('.following')}".html_safe
+						/ 				%li
+						/ 					%a{:href => follows_user_path(current_user)+"?sort=followers" }
+						/ 						= "<i class='icon-right'></i>#{t('.followers')}".html_safe
+						/ 				%li
+						/ 					%a{:href => '/logout' }
+						/ 						= "<i class='icon-logout'></i>#{t("layouts.application.logout")}".html_safe
+						/ / Login drop ends
 						%li
-							- if current_user.nil?
-								%a{:href => '/login'}  
-									="Login".html_safe
-							-else
-								= link_to "Settings","#"
-								%ul
-									- if current_user.present?
-										%li
-											%a{:href => '/profile/settings'}
-												="<i class='icon-user'></i>Profile".html_safe
-										%li
-											%a{:href => '/connect'}
-												="<i class='icon-retweet'></i>Connect".html_safe
-										%li
-											%a{:href => follows_user_path(current_user)}
-												= "<i class='icon-circled-right'></i>#{t('.following')}".html_safe
-										%li
-											%a{:href => follows_user_path(current_user)+"?sort=followers" }
-												= "<i class='icon-right'></i>#{t('.followers')}".html_safe  
-										%li
-											%a{:href => '/logout' }
-												= "<i class='icon-logout'></i>#{t("layouts.application.logout")}".html_safe           
-						/ Login drop ends
+							/ - if current_user.present?
+							= link_to "Stories Of Beingme","#"
 					%select#select-menu-main-menu
 						%option Category Navigation
 						%option{:value => "archive-a.html"} Layouts
@@ -135,14 +162,15 @@
 						%option{:value => "review-directory-a.html"} Review Directory layout A
 						%option{:value => "review-directory-b.html"} Review Directory layout B
 					#random-article
-						%a{:href => index_experimental_experimental_index_path, :title => "Random Article"}
-							%img{:alt => "Random Article", :src => "/assets/experimental/images/random-article.png"}/
+						%a{:href => "#", :title => "BE article"}
+							%img{ :src => "/assets/experimental/images/random-article.png"}/
 				%br.clearer.hide-responsive-small/
 				.cat-menu.tax
 					%ul#menu-sub-menu.menu
 						-if params[:controller] == "questions" || params[:controller] == "tags"
-							= render "experimental/partials/subnavigation/questions_subnavigation"
-						-elsif params[:controller] == "service_providers" 
+							/ = render "experimental/partials/subnavigation/questions_subnavigation"
+							= render "experimental/partials/subnavigation/common_subnavigation"
+						-elsif params[:controller] == "service_providers"
 							= render "experimental/partials/subnavigation/service_providers_subnavigation"
 						-else
 							= render "experimental/partials/subnavigation/common_subnavigation"
@@ -154,18 +182,18 @@
 				/ main wrapper starts from here
 				#main-wrapper
 					#main-wrapper-dark
-						- unless params[:controller]=="experimental/experimental" && params[:action]=="index"
+						- unless params[:controller]=="experimental/experimental" && params[:action]=="index" || params[:action]=="index_experimental"
 							= render "experimental/partials/bread_crumb_experimental"
 						- unless check_valid
-							= render "experimental/partials/social_side_bar"
+							=# render "experimental/partials/social_side_bar"
 						- flash.each do |name, msg|
 							- if msg.is_a?(String)
 								- if flash[:alert] == "rpx_invalid"
 									.alert.alert-error
 										%a#close.msg-alert{href: ""} ×
-										#flash_alert 
+										#flash_alert
 											This user is already registered in our website. Please login to continue.
-								- else 
+								- else
 									%div{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
 										/ %a.close{"data-dismiss" => "alert"} ×
 										= link_to "×",'',:id=>"close", :class=>"msg-alert"
@@ -183,7 +211,7 @@
 					function googleTranslateElementInit() {
 						new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true}, 'google_translate_element');
 					}
-				
+
 				/footer
 				= render "experimental/partials/footer"
 
@@ -205,18 +233,33 @@
 		= javascript_include_tag "experimental/buttons.js"
 
 		%script{:src => "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit", :type => "text/javascript"}
-
+		%script
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function()
+			{ (i[r].q=i[r].q||[]).push(arguments)}
+			,i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-37291321-5', 'b-change.org');
+			ga('send', 'pageview');
 :javascript
 	jQuery.noConflict();
-		//DOCUMENT.READY
-		jQuery(document).ready(function($) { 
 
+		jQuery(document).ready(function($) {
+			if (navigator.userAgent.indexOf('Mac OS X') != -1) {
+				jQuery("body").addClass("mac-os");
+			}
+			else {
+				jQuery("body").addClass("pc");
+			}
+			if (navigator.appVersion.indexOf("Win")!=-1) {
+				jQuery("body").addClass("window-os");
+			}
 			//loop through each post type and setup a jquery tabs object
 			jQuery('#tabbed-Restaurant-reviews > ul').tabs({ fx: { opacity: 'toggle', duration: 150 } });
 			jQuery('#tabbed-Music-reviews > ul').tabs({ fx: { opacity: 'toggle', duration: 150 } });
 			jQuery('#tabbed-Movie-reviews > ul').tabs({ fx: { opacity: 'toggle', duration: 150 } });
 			jQuery('#tabbed-Fashion-reviews > ul').tabs({ fx: { opacity: 'toggle', duration: 150 } });
-			jQuery('#tabbed-Product-reviews > ul').tabs({ fx: { opacity: 'toggle', duration: 150 } });  
+			jQuery('#tabbed-Product-reviews > ul').tabs({ fx: { opacity: 'toggle', duration: 150 } });
 			//colorbox
 			jQuery('.review .article-image a').colorbox({transition:'fade', speed:250});
 			jQuery('.single-post .content .article-image a').colorbox({transition:'fade', speed:250});
@@ -225,7 +268,7 @@
 			jQuery(".page-content a[href$='.jpg'],a[href$='.png'],a[href$='.gif']").colorbox();
 			jQuery('.page-content .gallery a').colorbox({  rel:'gallery' });
 			//initialize smooth div scroll on Don't Miss slider
-			jQuery("#dontmiss").smoothDivScroll({ 
+			jQuery("#dontmiss").smoothDivScroll({
 				autoScrollingMode: "always",
 				autoScrollingDirection: "endlessloopright",
 				autoScrollingStep: 1,
@@ -245,10 +288,10 @@
 				easingType: 'linear'
 			};
 			*/
-			jQuery().UItoTop({ easingType: 'easeOutExpo' }); 
+			jQuery().UItoTop({ easingType: 'easeOutExpo' });
 			jQuery("#ts_hide_link").click(function(){
 				jQuery('#google_translate_element').toggle(700);
-			}) 
+			})
 		});
 		//the reason they are here instead of in custom.js is because they contain php variables which can't
 		//be applied in a .js file. Also, make sure these come before the darken function.
@@ -286,10 +329,12 @@
 					visible: 3
 				});
 				jQuery(".spotslider-index1").jCarouselLite({
-					auto: 3000,
+					auto: 4000,
 					easing: "easeInOutExpo",
 					speed: 1100,
-					visible: 3
+					visible: 3,
+					btnNext: ".nextspot",
+					btnPrev: ".prevspot "
 				});
 			});
 		});
@@ -325,21 +370,21 @@
 		$('.tool-tip').tipsy({
 			delayIn: 50,
 			delayOut: 50,
-			fade: true, 
-			gravity: 'n', 
+			fade: true,
+			gravity: 'n',
 			opacity: 100
 			});
 	});
 
 	// active_tab
 	Experimental.getActiveTab("#{params[:action]}","#{params[:controller]}");
-	
+
 	(function()
-	{ 
-		var t = document.createElement('script'); 
+	{
+		var t = document.createElement('script');
 		t.type = 'text/javascript';
-		t.async = true; t.src = "/assets/experimental/turnsocialTooltip.js"; 
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(t, s); 
+		t.async = true; t.src = "/assets/experimental/turnsocialTooltip.js";
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(t, s);
 	}
 	)();
 	//use for close button of success message flash
@@ -348,3 +393,25 @@
 		jQuery("#flash_alert,#flash_notice").fadeOut(500);
 		jQuery(this).hide();
 	})
+
+	jQuery(document).ready(function(){
+		var foo = jQuery("#spotlight-wrapper").html();
+		foo = foo.replace("Slider purchase reminder", " ");
+		jQuery('#spotlight-wrapper').html(foo);
+	});
+
+	jQuery(document).ready(function(){
+		var foo = jQuery("#featured-wrapper").html();
+		if(foo.contains=="Slider purchase reminder"){
+			foo = foo.replace("Slider purchase reminder", " ");
+			jQuery('#spotlight-wrapper').html(foo);
+		}
+	});
+
+	$("#move-right-bubble").click(function(){
+		jQuery(".prevspot").trigger('click');
+	})
+
+	$('#move-left-bubble').click(function(){
+		jQuery(".nextspot").trigger('click');
+	});

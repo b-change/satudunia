@@ -1,12 +1,38 @@
+/ question drop starts
 %li
 	%a{:href => "/questions"} Questions
 	%ul
-		-Group.last.default_tags.each do |p|
-			%li
-				%a{:href => "/tags/#{p[0]}"}
-					= p[0].humanize
-				%ul
-					-p[1].each do |p1|
-						%li
-							%a{:href => "/tags/#{p1}"} 
-								= p1.humanize
+		%li
+			%a{:href => "/tags/coming_out"} Coming Out
+		%li
+			%a{:href => "/tags/family"} Family
+
+		%li
+			%a{:href => "/tags/education"} Education
+
+		%li
+			%a{:href => "/tags/employment"} Employment
+
+		%li
+			%a{:href => "/tags/health"} Health
+
+		%li
+			%a{:href => "/tags/relationships"} Relationships
+
+		%li
+			%a{:href => "/tags/sex"} Sex
+
+/ question drop ends
+
+/ %li
+/ 	%a{:href => "/questions"} Questions
+/ 	%ul
+/ 		-Group.last.default_tags.each do |p|
+/ 			%li
+/ 				%a{:href => "/tags/#{p[0]}"}
+/ 					= p[0].humanize
+/ 				%ul
+/ 					-p[1].each do |p1|
+/ 						%li
+/ 							%a{:href => "/tags/#{p1}"}
+/ 								= p1.humanize

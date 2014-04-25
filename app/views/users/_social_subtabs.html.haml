@@ -1,0 +1,45 @@
+/ %li.account_details
+/ 	= link_to "Account Details", "javascript:void(0)", :rel => "nofollow", :class => "pjax", :"data-layout" => "index", :id=>"acc-details"
+/ %li.account_settings
+/ 	= link_to "Account Settings", "javascript:void(0)", :rel => "nofollow", :class => "pjax", :"data-layout" => "index", :id=>"acc_settings"
+/ %li.email_settings
+/ 	= link_to "Email Settings", "javascript:void(0)", :rel => "nofollow", :class => "pjax", :"data-layout" => "answers", :id=>"email"
+#subnav.item-list-tabs.no-ajax{:role => "navigation"}
+	%ul
+		%li#activity-filter-select.last
+			%label{:for => "activity-filter-by"} Show:
+			%select#activity-filter-by
+				%option{:value => "-1", :id=>"acc-details"} Social Settings
+				%option{:value => "activity_update", :id=>"acc_settings"} Privacy Sttings
+				%option{:value => "new_blog_post", :id=>"email"} Email Settings
+		
+
+:javascript
+	jQuery('#activity-filter-by').live('change',function(){
+		var v = jQuery(this).val();
+	
+		if (v == -1){
+			jQuery("#social-page").show();
+			jQuery("#all_checks").hide();
+			jQuery("#password_settings").hide();
+		}
+		if (v == 'activity_update'){
+			jQuery("#social-page").hide();
+			jQuery("#all_checks").show();
+			jQuery("#password_settings").hide();
+		}
+		if (v == 'new_blog_post'){
+			jQuery("#social-page").hide();
+			jQuery("#all_checks").hide();
+			jQuery("#password_settings").show();
+		}
+	})
+
+	jQuery(function() {
+		jQuery( "#datepicker" ).datepicker({
+			dateFormat: "dd-mm-yy",
+			changeMonth: true,
+			changeYear: true,
+			yearRange: '1960:'+(new Date).getFullYear()
+		});
+	});

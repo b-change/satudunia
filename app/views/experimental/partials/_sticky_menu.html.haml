@@ -1,0 +1,193 @@
+.stretched
+  #wrapper.clearfix
+#sticky-menu.clearfix{style: "display: block; top: 0px;"}
+  .container.clearfix
+    .sticky-logo
+      %a{href: root_path}
+        %img{alt: "Beingme", src: "/assets/logo-footer.png", title: "Beingme"}/
+    .sticky-search-trigger
+      %a{href: "#"}
+        %i.icon-search
+    .sticky-menu-wrap
+      %ul.sf-js-enabled
+        %li.sub-menu
+          %a{href: concern_about_privacy_experimental_index_path}
+            %div
+              = "<i class='icon-lock'></i>Concerned about Privacy?".html_safe
+            %span Let's Start here
+
+        %li.sub-menu
+          %a{href: contact_index_path}
+            %div
+              ="<i class='icon-phone'></i>Contact Us".html_safe
+            %span Out of the Box
+
+        %li.sub-menu
+          - if current_user.nil?
+            %a{href: "#"}
+              %div
+                ="<i class='icon-login'></i>Login".html_safe
+              %span Our Awesome Works
+            %ul.sf-js-enabled{style: "display: none; visibility: hidden;"}
+              %li
+                %a{href: '/login',:title=>"Email",:alt=>"Email"}
+                  %div
+                    ="<i class='icon-mail'></i>Via E-Mail".html_safe
+              %li
+                / %a{href: "portfolio-2-sidebar.html"}
+                /   %div 2 Columns w/Sidebar
+                = link_to_rpx "<i class='icon-add-to-list'></i>Via Social".html_safe, user_session_url,:html=>{:title=>"with Janrain",:alt=>"with Janrain"}
+          - else
+            %a{href: "#"}
+              %div
+                ="<i class='icon-user'></i>Logged in as #{h(current_user.login)}".html_safe
+            %ul.sf-js-enabled{style: "display: none; visibility: hidden;"}
+              %li
+                %a{href: '/profile/settings'}
+                  %div
+                    ="<i class='icon-lock'></i>Settings".html_safe
+              %li
+                %a{href: social_connect_path}
+                  %div
+                    ="<i class='icon-retweet'></i>Connect".html_safe
+              %li
+                %a{href: follows_user_path(current_user)}
+                  %div
+                    ="<i class='icon-circled-right'></i>Following".html_safe
+              %li
+                %a{href: follows_user_path(current_user)+"?sort=followers"}
+                  %div
+                    ="<i class='icon-right'></i>Followers".html_safe
+              %li
+                %a{href: destroy_user_session_path}
+                  %div
+                    ="<i class='icon-logout'></i>SignOut".html_safe
+        -if current_user.nil?
+          %li.sub-menu
+            %a{href: "#"}
+              %div
+                ="<i class='icon-plus'></i>sign up".html_safe
+              %span Inbuilt Templates
+            %ul.sf-js-enabled{style: "display: none; visibility: hidden;"}
+              %li
+                %a{href: social_experimental_index_path(:via=>"email"),:title=>"Email",:alt=>"Email"}
+                  %div
+                    ="<i class='icon-mail'></i>Via E-Mail".html_safe
+              %li
+                %a{href: social_experimental_index_path(:via=>"networks"),:title=>"Social",:alt=>"Social"}
+                  %div
+                    ="<i class='icon-add-to-list'></i>Via Social".html_safe
+
+    / .sticky-search-area
+    /   %form#sticky-search{action: "search-results.html", method: "get"}
+    /     %input#sticky-search-input{name: "q", placeholder: "Type & Hit Enter", type: "text", value: ""}/
+    /   .sticky-search-area-close
+    /     %a{href: "#"}
+    /       %i.icon-remove
+  .other-sticky
+    .another-sticky-menu.sticky-menu-wrap
+      %ul.sf-js-enabled
+        %li.public_about.sticky-list.sub-menu
+          %a{alt: "About BE", href: "/about", title: "About BE"} About BE
+        %li.sticky-list.sub-menu
+          / %a{:href => "single-review-numbers.html"} Service Map
+          %a.sf-with-ul{href: "/services-map"}
+            Services Map
+            %span
+          %ul.sf-js-enabled.sf-shadow{style: "visibility: hidden; display: none;"}
+            %li
+              %a{href: "/services-map/malaysia"} Malaysia
+        %li.sticky-list.sub-menu
+          %a.sf-with-ul{href: "/questions"}
+            Questions
+            %span.sf-sub-indicator
+          %ul.sf-js-enabled.sf-shadow{style: "display: none; visibility: hidden;"}
+            %li
+              %a{href: "/tags/coming_out"} Coming Out
+            %li
+              %a{href: "/tags/family"} Family
+            %li
+              %a{href: "/tags/education"} Education
+            %li
+              %a{href: "/tags/employment"} Employment
+            %li
+              %a{href: "/tags/health"} Health
+            %li
+              %a{href: "/tags/relationships"} Relationships
+            %li
+              %a{href: "/tags/sex"} Sex
+        %li.sticky-list.sub-menu
+          / - if current_user.present?
+          %a{href: "http://being-me.net/wiki/Main_Page", target: "blank"} Knowledge Base
+
+= javascript_include_tag "experimental/upslider.js"
+= javascript_include_tag "experimental/upcustom.js"
+
+#myModal.reveal-modal.show-box
+  / %h1 Modal Title
+  %p
+    =# link_to "<i class='icon-key'></i>Sign Up with Email".html_safe,signup_path,:html=>{:title=>"Sign up",:class=>"tool-tip"}
+    = link_to "<i class='icon-key'></i>Sign Up with Email".html_safe,social_experimental_index_path(:via=>"email"),:html=>{:title=>"Sign up",:class=>"tool-tip"}
+    %br
+    %br
+
+    = link_to "<i class='icon-key'></i>Sign Up with Social+ Networks".html_safe,social_experimental_index_path(:via=>"networks")
+  %a.close-reveal-modal#close-box
+    %img{:alt => "close", :src => "http://cdn.rpxnow.com/rel/img/43f137c98b7a6562f6ad5f076fce376b.png", :style => "width: 34px; top: -4px; right: -4px; position: absolute; height: 34px; cursor: pointer;"}/
+=javascript_include_rpx(user_session_url)
+
+
+:javascript
+  jQuery(document).ready(function($) {
+
+    var portfolioCarousel = $("#widget-portfolio-1");
+
+    portfolioCarousel.carouFredSel({
+        width : "100%",
+        height : "auto",
+        circular : false,
+        responsive : true,
+        infinite : false,
+        auto : false,
+        items : {
+            width : 280,
+            visible: {
+                max: 1
+            }
+        },
+        scroll : {
+            wipe : true
+        },
+        prev : {
+            button : "#widget-portfolio-1-prev",
+            key : "left"
+        },
+        next : {
+            button : "#widget-portfolio-1-next",
+            key : "right"
+        },
+        onCreate : function () {
+            $(window).on('resize', function(){
+                portfolioCarousel.parent().add(portfolioCarousel).css('height', portfolioCarousel.children().first().outerHeight() + 'px');
+            }).trigger('resize');
+        }
+    });
+
+  });
+  $("#sticky-menu").css("display","none");
+  jQuery(".rpxnow").click(function(){
+    jQuery("#myModal").hide();
+  })
+  jQuery(".rpxnow_lightbox_container > img").live('click',function(){
+    jQuery(".reveal-modal-bg").hide();
+  });
+  jQuery(".fancybox").click(function(){
+    jQuery("#myModal").show();
+  });
+  jQuery(document).ready(function(){
+    if("#{session[:sign_up_session]}"=="action_new" ){
+      jQuery('a.fancybox').trigger('click');
+    }
+  });
+-if session[:sign_up_session].present?
+  -session[:sign_up_session].clear

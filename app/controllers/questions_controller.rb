@@ -79,7 +79,7 @@ class QuestionsController < ApplicationController
     else
       find_questions
     end
-    if params[:ques]=="search_questions" 
+    if params[:ques]=="search_questions"
       @ques = []
         Question.all.each do |question|
           if question.title.include?(params[:type]) || question.body.include?(params[:type])
@@ -128,7 +128,7 @@ class QuestionsController < ApplicationController
   end
 
   def related_questions
-    
+
     @question = nil
     if params[:id]
       @question = current_group.questions.by_slug(params[:id])
@@ -215,7 +215,7 @@ class QuestionsController < ApplicationController
     end
     # counting question counter
     # related question tags
-    @relatedQuestion = current_group.questions.where(:tags=>@question.tags).not_in(_id:[@question.id]) 
+    @relatedQuestion = current_group.questions.where(:tags=>@question.tags).not_in(_id:[@question.id])
     if current_group.current_theme.has_questions_show_html?
       @template_format = 'mustache'
       request.format = :mustache
@@ -261,7 +261,7 @@ class QuestionsController < ApplicationController
       format.json  { render :json => @question.to_json(:except => %w[_keywords slug watchers]) }
       format.atom
     end
-    
+
 
   end
 
@@ -377,6 +377,9 @@ class QuestionsController < ApplicationController
         Jobs::Tags.async.question_retagged(@question.id, @question.tags, [], Time.now).commit!
 
         current_group.on_activity(:ask_question)
+        # if !@question.removed_tags.reject!(&:empty?).blank?
+
+        # if !@question.removed_tags.reject!(&:empty?).blank?
         if !@question.removed_tags.blank?
           flash[:warning] = I18n.t("questions.model.messages.tags_not_added",
                                    :tags => @question.removed_tags.join(", "),
@@ -397,8 +400,8 @@ class QuestionsController < ApplicationController
         format.js {render :json => {:success => true, :message => flash[:notice], :html => html} }
       else
         @question.errors.add(:captcha, "is invalid") unless recaptcha_valid?
-        format.html { 
-          # render :action => "new" 
+        format.html {
+          # render :action => "new"
           redirect_to ask_question_experimental_index_path
           flash[:alert] = "Question Not Created"
         }
@@ -458,7 +461,7 @@ class QuestionsController < ApplicationController
   # DELETE /questions/1.xml
   # action added for new ajax search show
   def question_search
-    
+
     @body_id = "page3"
     # sorting question with the tabs
     @questionsHot = Question.where(:activity_at => {"$gt" => 5.days.ago}).order_by(current_order)
@@ -469,10 +472,10 @@ class QuestionsController < ApplicationController
     # sorting question with the tabs
     @params = params[:hidden_keys].split(",")
     @tags = current_group.tags
-    @questions = Question.where(:group_id=>current_group.id).in(_id:@params).page(params["page"]).order_by(current_order) 
+    @questions = Question.where(:group_id=>current_group.id).in(_id:@params).page(params["page"]).order_by(current_order)
 
     if @questions.empty? || @questions.where(:title=>/params[:search_ajax]/i).blank?
-      
+
       # creation of session
       session[:newQuestionValue] = params[:search_ajax];
       redirect_to ask_question_experimental_index_path
@@ -505,7 +508,7 @@ class QuestionsController < ApplicationController
   end
   # action question_ajax
   def question_ajax
-    
+
     if params[:ques]=="search_questions"
       # @questionArray = []
       # Question.all.each do |question|
@@ -518,8 +521,8 @@ class QuestionsController < ApplicationController
       respond_to do |format|
         format.js{render "/experimental/experimental/ajax_entry"}
       end
-    
-   
+
+
     else
       @query=params[:queryData]
       case @query
@@ -540,7 +543,7 @@ class QuestionsController < ApplicationController
      end
   end
   # action question_ajax
-  
+
   def solve
     @answer = @question.answers.find(params[:answer_id])
     @question.answer = @answer

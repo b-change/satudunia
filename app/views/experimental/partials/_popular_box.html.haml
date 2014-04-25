@@ -1,21 +1,21 @@
-.widget-wrapper
-  .widget
-    #tabbed-posts.complex-list
-      %ul.tabnav
-        %li
-          %a{:href => "#tabs-comments"} Comments
-      .tabdiv-wrapper
-        #tabs-comments.tabdiv
-          %br.clearer
-          - if @questions
-            - fetch_latest_comments.each do |comment|   
-              %ul
-                %li
-                  = link_to (question_path(comment._parent)) do
-                    = truncate(comment.body, :length=>30)
-                    %span -
-                    %span= comment.user.login
+/ .widget-wrapper
+/   .widget
+/     #tabbed-posts.complex-list
+/       %ul.tabnav
+/         %li
+/           %a{:href => "#tabs-comments"} Comments
+/       .tabdiv-wrapper
+/         #tabs-comments.tabdiv
+/           %br.clearer
+/           - if @questions
+/             - fetch_latest_comments.each do |comment|
+/               %ul
+/                 %li
+/                   = link_to (question_path(comment._parent)) do
+/                     = truncate(comment.body, :length=>30)
+/                     %span -
+/                     %span= comment.user.login
 
 
 
-        
+/

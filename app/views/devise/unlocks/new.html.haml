@@ -1,59 +1,59 @@
-.clearer.hide-responsive  
+.clearer.hide-responsive
 %br.hide-responsive/
 .main-content-left
-  %br.clearer/
-  #spotlight-wrapper
-    .ribbon-shadow-left  
-    .section-wrapper
-      / spotlight section header
-      .section
-        Resend Password Instructions
-    .ribbon-shadow-right  
-    .section-arrow  
-  .page-content.review
-    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
-    #register-page.page
-      = form_for resource, :as => resource_name, :url => unlock_path(resource_name), :html => {:class => "standard-form", :id=>"unlock_form_new"} do |f|
-        .overview-wrapper
-          .overview-new
-            .left-panel
-              .section-width-ext1
-                %h2
-                  After several attempts to log who are not successful the account is locked for safety, here you can unlock.
-              
-                = f.error_messages
-                #basic-details-section.register-section.padd-bottom1
-                  = f.label :email,"Email*"
-                  = f.text_field :email, :class=>"input-class-new", :placeholder => "Please Enter Your Registered Email"
-                  .fancylist
-                    %ul
-                      %li
-                        = link_to "<i class='icon-login'></i>Sign in".html_safe, new_session_path(resource_name)
-                      %li
-                        = link_to "<i class='icon-plus'></i>Sign up".html_safe, new_user_path
-          .section-bottom
-            / %a.button_link.floatright.red{:href =>  unlock_path(resource_name)}
-            /   %span <i class='icon-circled-cross'></i>Cancel 
-            / %a.button_link.floatright{:href =>unlock_path(resource_name)}
-            /   %span <i class='icon-check'></i>Resend unlock instructions
-            = button_tag "Cancel", :class=>"label-ext floatright"
-            = f.submit "Resend unlock instructions", :class=>"label-ext floatright"
-          %br
+	%br.clearer/
+	#spotlight-wrapper
+		.ribbon-shadow-left
+		.section-wrapper
+			/ spotlight section header
+			.section
+				Resend Password Instructions
+		.ribbon-shadow-right
+		.section-arrow
+	.page-content.review
+		%link{:href => "../experimental/images/movies3-160x160.jpg", :rel => "image_src"}/
+		#register-page.page
+			= form_for resource, :as => resource_name, :url => unlock_path(resource_name), :html => {:class => "standard-form", :id=>"unlock_form_new"} do |f|
+				.overview-wrapper
+					.overview-new
+						.left-panel
+							.section-width-ext1
+								%h2
+									Your account will be locked for security reasons if you fail to log in successfully. Instruction to unlock your account can be found here
+
+								= f.error_messages
+								#basic-details-section.register-section.padd-bottom1
+									= f.label :email,"Email*"
+									= f.text_field :email, :class=>"input-class-new", :placeholder => "Please Enter Your Registered Email"
+									.fancylist
+										%ul
+											%li
+												= link_to "<i class='icon-login'></i>Sign in".html_safe, new_session_path(resource_name)
+											%li
+												= link_to "<i class='icon-plus'></i>Sign up".html_safe, new_user_path
+					.section-bottom
+						/ %a.button_link.floatright.red{:href =>  unlock_path(resource_name)}
+						/   %span <i class='icon-circled-cross'></i>Cancel
+						/ %a.button_link.floatright{:href =>unlock_path(resource_name)}
+						/   %span <i class='icon-check'></i>Resend unlock instructions
+						= button_tag "Cancel", :class=>"label-ext floatright"
+						= f.submit "Resend unlock instructions", :class=>"label-ext floatright"
+					%br
 / side bar
 .sidebar
-  = render "experimental/partials/login_box"
+	= render "experimental/partials/login_box"
 
 
 :javascript
-  jQuery("#unlock_form_new").validate({
-    rules:{
-      "user[email]":{
-        required:true
-      }
-    },
-    messages:{
-      "user[email]":{
-        required:"Email Can't be Blank"
-      }
-    }
-  });
+	jQuery("#unlock_form_new").validate({
+		rules:{
+			"user[email]":{
+				required:true
+			}
+		},
+		messages:{
+			"user[email]":{
+				required:"Email Can't be Blank"
+			}
+		}
+	});

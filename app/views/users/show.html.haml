@@ -1,23 +1,22 @@
 - config = @user.config_for(current_group)
 
-.clearer.hide-responsive  
+.clearer.hide-responsive
 %br.hide-responsive/
 .main-content-left
 	#content.page-content
 		.review-content
 			.ribbon-shadow-left
 			.section-wrapper
-				.section-header
-
-					Members Profile :: #{@user.login}
+				.section
+					.section-for-header	Members Profile :: #{@user.login}
 			.section-arrow
 			/ post by removed from here
 		#item-header.qa-q-item-tags{:role=>"complementary"}
 			#item-header-avatar
 				%a{:style=>"float:left;"}
 					-if @user.use_gravatar?
-						= image_tag avatar_user_path(@user),:size=>'140x140',:class => "avatar" 
-					-else                       
+						= image_tag avatar_user_path(@user),:size=>'140x140',:class => "avatar"
+					-else
 						= image_tag(default_avatar_url('big'), :class=>"avatar")
 			#item-header-content
 				%h2
@@ -25,7 +24,7 @@
 					= link_to "#{@user.login}", user_path(@user)
 				/ .item-meta
 				/ 	%span{:class=>"activity"}
-				/ 		Joined 
+				/ 		Joined
 				/ 		= t("time.ago", :time => time_ago_in_words(config.joined_at))
 				.user-nicename
 					Website:
@@ -36,17 +35,17 @@
 				.a6
 					= image_tag "plus/a1.png"
 					%span
-						Country: 
+						Country:
 						= user_country(@user)
 					%br
 					= image_tag "plus/a2.png"
 					%span
-						Age: 
+						Age:
 						= user_age(@user)
 					%br
 					/ -if current_user != @user && @user.member_of?(current_group)
 					/ 	.follow
-					/ 		= follow_user_link(@user) 
+					/ 		= follow_user_link(@user)
 		#item-nav
 			#object-nav.item-list-tabs{:id=>"firstElement"}
 				%ul
@@ -55,7 +54,7 @@
 					= tab_entry "li", t('global.following'), follows_user_path(@user), {:selected => "selected"}
 					= tab_entry "li", t(:activity, :scope => "activerecord.models"), activity_user_path(@user), {:selected => "selected"}, {:class => "activity"}
 					= tab_entry "li", "Survey", survey_user_path(@user), {:selected => "selected"}, {:class => "activity"}
-			
+
 			#subnav.item-list-tabs.no-ajax{:role => "navigation"}
 				%ul
 					= render "users/show/user_#{params[:action]}_filters"
@@ -64,8 +63,35 @@
 				= render "users/show/user_#{params[:action]}_content"
 
 .sidebar
-	= render "experimental/partials/left_bar"
-	= render "followers"
+	- if current_user.nil?
+		/login box
+		= render "experimental/partials/login_box"
+	-else
+		/profile box
+		= render "experimental/partials/profile_box"
+
+	/ social login box
+	= render "experimental/partials/social_login_box"
+	/ member box
+	/ = render "experimental/partials/member_box"
+	/rating box
+	= render "experimental/partials/rating_box"
+	/rating box
+	= render "experimental/partials/rating_box2"
+	/ left bar
+	/ = render "experimental/partials/left_bar"
+	/widget top
+	= render "experimental/partials/widget_top"
+	/ .clearer.hide-responsive
+	/ %br.clearer/
+	/ newly reviewd
+	/ = render "experimental/partials/newly_reviewed"
+	/popular box
+	/ = render "experimental/partials/popular_box"
+	/banner box
+	= render "experimental/partials/banner_box"
+
+
 :javascript
 	$(window).load(function (){
 

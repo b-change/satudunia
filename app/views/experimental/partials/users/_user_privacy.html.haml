@@ -1,27 +1,51 @@
-= form_for (@user),:url=>{:action => "update"}, :html => {:class => "standard-form", :multipart => true, :id => "edit-user-form-privacy"} do |f|
-	.overview-wrapper
+= form_for (@user),:url=>{:action => "update"}, :html => {:class => "exp-contact-form", :multipart => true, :id => "edit-user-form"} do |f|
+	.overview-wrapper#all_checks
 		.overview-new
 			.left-panel
 				.category
 					.catname
 						Privacy
 					.category-arrow
-				.checkbox1
-					= f.check_box :hide_hiv_condition
-					Hide my HIV Condition to other users
+				/ .checkbox1
+				/ 	= f.check_box :hide_hiv_condition
+				/ 	Hide my HIV Condition to other users, should also be under HIV status field in the profile page.
+				/ 	= f.hidden_field :hidden_value, :value => "2"
 				%br
 				.checkbox1
 					= f.check_box :hide_country
-					Hide my Country to other users
+					Hide my Country to other users.
 				%br
 				.checkbox1
 					= f.check_box :hide_age
-					Hide my Age to other users
+					Hide my Age to other users.
 				%br
 				.checkbox1
 					= f.check_box :hide_realname
-					Hide my Real Name to other users
+					Hide my Real Name to other users.
 				%br
-		.contact-section-bottom
-			= f.submit "Save", :class=>"contact-button contact-button-single"
-		%br
+		.contact-section-bottom-button
+			= f.submit "Save", :class=>"contact-button contact-button-single", :id=> "align"
+	%br.clearer/
+	.overview-wrapper#password_settings{:style =>"display:none"}
+		.overview-new
+			.left-panel     
+				
+				%br
+					= f.label :email, "Email", :class => "label"
+					= f.text_field :email, :class => "input-class1"
+				%br
+					= f.label :password, "Password", :class => "label"
+					= f.password_field :password, :class => "input-class1"
+				%br
+					= f.label :password_confirmation, "confirm-password", :class => "label"
+					= f.password_field :password_confirmation, :class => "input-class1"
+				%br
+					= f.label :current_password, "current-password", :class => "label"
+					= f.password_field :current_password, :class => "input-class1"
+				%br
+		.contact-section-bottom-button
+			= f.submit "Save", :class=>"contact-button contact-button-single", :id=> "align"
+#details_page{:style =>"display:none"}
+	= render "users/edit_user_privacy"
+
+%br.clearer/

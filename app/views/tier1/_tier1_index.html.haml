@@ -1,0 +1,252 @@
+.main-content-left
+	.page-content.review.single-post
+		%link{:href => "../experimental/images/misc1-160x160.jpg", :rel => "image_src"}/
+		.review-content
+			/ .section-arrow
+			/ post by removed from here
+			.show-category
+				.show-catname
+					Tier1
+				.show-category-arrow
+			.content-panel
+				.the-content.justify-content
+					= form_for @profile_support, :url => {:controller => :tier1, :action => :create},:html => {:class => "exp-contact-form"}, :method => :post,:remote=>true do |f|
+						%p{:class => "ask2"}
+							= f.label "About Me",:class => "label"
+						= f.text_area :about_me, :disabled => @is_disable, :class=>"textarea",:rows=>"5", :style => "width: 580px"
+						%p{:class => "ask2"}
+							= f.label "Country",:class => "label"
+						= f.text_field :location_country, :disabled => @is_disable, :class=>"input-class", :style => "width: 580px"
+						%p{:class => "ask2"}
+							= f.label "State/Province",:class => "label"
+						= f.text_field :location_state, :disabled => @is_disable, :class=>"input-class", :style => "width: 580px"
+						%p{:class => "ask2"}
+							= f.label "City",:class => "label"
+						= f.text_field :location_city, :disabled => @is_disable, :class=>"input-class", :style => "width: 580px"
+						%p{:class => "ask2"}
+							= f.label "Country Birth Place",:class => "label"
+						= f.text_field :birth_place_country, :disabled => @is_disable, :class=>"input-class", :style => "width: 580px"
+						%p{:class => "ask2"}
+							= f.label "State/Province Birth Place",:class => "label"
+						= f.text_field :birth_place_state, :disabled => @is_disable, :class=>"input-class", :style => "width: 580px"
+						%p{:class => "ask2"}
+							=  f.label "City Birth Place",:class => "label"
+						= f.text_field :birth_place_city, :disabled => @is_disable, :class=>"input-class", :style => "width: 580px"
+						%p{:class => "ask2"}
+							= f.label "Race",:class => "label"
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_support", "race", "Asian", :disabled => @is_disable) 
+										Asian
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_support", "race", "Caucasian", :disabled => @is_disable) 
+										Caucasian
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_support", "race", "African", :disabled => @is_disable) 
+										African
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_support", "race", "Latino", :disabled => @is_disable) 
+										Latino
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_support", "race", "Pasific Islander", :disabled => @is_disable) 
+										Pasific Islander
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_support", "race", "Middle Eastern", :disabled => @is_disable)
+										Middle Eastern
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_support", "race", "Mixed", :disabled => @is_disable) 
+										Mixed
+							
+						%p{:class => "ask2"}
+							= f.label "Gender",:class => "label"
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_support", "gender", "Male", :disabled => @is_disable) 
+										Male 
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_support", "gender", "Female", :disabled => @is_disable)
+										Female 
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_support", "gender", "FTM", :disabled => @is_disable) 
+										FTM 
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_support", "gender", "MTF", :disabled => @is_disable) 
+										MTF 
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_support", "gender", "Intersex", :disabled => @is_disable) 
+										Intersex 
+
+						%p{:class => "ask2"}
+							= f.label "Date of birth",:class => "label"
+						= date_select("profile_support", "birth_date", :start_year => 1940, :end_year => 2013, :order => [:day, :month, :year], :disabled => @is_disable)
+						%p{:class => "ask2"}
+							= f.label "Hide my age",:class => "label"
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_support", "show_age", true, :disabled => @is_disable)
+										yes
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_support", "show_age", false, :disabled => @is_disable)
+										no
+
+						%p{:class => "ask2"}
+							= f.label "Interested In", :class=>"label"
+						%table
+							%tr
+								%td
+									.checkbox
+										= check_box_tag("profile_support[interested_in][]", "Men", false, :class=> "text_field", :disabled => @is_disable)
+										Men 
+						%table
+							%tr
+								%td
+									.checkbox
+										= check_box_tag("profile_support[interested_in][]", "Women", false, :class=> "text_field", :disabled => @is_disable)
+										Women
+						%table
+							%tr
+								%td
+									.checkbox 
+										= check_box_tag("profile_support[interested_in][]", "FTM", false, :class=> "text_field", :disabled => @is_disable)
+										FTM
+						%table
+							%tr
+								%td
+									.checkbox
+										= check_box_tag("profile_support[interested_in][]", "MTF", false, :class=> "text_field", :disabled => @is_disable) 
+										MTF
+						%table
+							%tr
+								%td
+									.checkbox
+										= check_box_tag("profile_support[interested_in][]", "Intersex", false, :class=> "text_field", :disabled => @is_disable) 
+										Intersex 
+
+						%p{:class => "ask2"}
+							= f.label "Languages you read and write",:class=>"label"
+						%table
+							%tr
+								%td
+									.checkbox
+										= check_box_tag("profile_support[languages][]", "بية", false, :class=> "text_field", :disabled => @is_disable)
+										بية
+						%table
+							%tr
+								%td
+									.checkbox
+										= check_box_tag("profile_support[languages][]", "中文(简体)", false, :class=> "text_field", :disabled => @is_disable)
+										中文(简体)   
+						%table
+							%tr
+								%td
+									.checkbox
+										= check_box_tag("profile_support[languages][]", "中文(香港)", false, :class=> "text_field", :disabled => @is_disable)
+										中文(香港) 
+						%table
+							%tr
+								%td
+									.checkbox
+										= check_box_tag("profile_support[languages][]", "中文(台灣)", false, :class=> "text_field", :disabled => @is_disable)
+										中文(台灣) 
+						%table
+							%tr
+								%td
+									.checkbox
+										= check_box_tag("profile_support[languages][]", "Nederlands ", false, :class=> "text_field", :disabled => @is_disable)
+										Nederlands 
+						%table
+							%tr
+								%td
+									.checkbox
+										= check_box_tag("profile_support[languages][]", "English", false, :class=> "text_field", :disabled => @is_disable)
+										English 
+						%table
+							%tr
+								%td
+									.checkbox
+										= check_box_tag("profile_support[languages][]", "Filipino", false, :class=> "text_field", :disabled => @is_disable)
+										Filipino 
+						%table
+							%tr
+								%td
+									.checkbox
+										= check_box_tag("profile_support[languages][]", "Français", false, :class=> "text_field", :disabled => @is_disable)
+										Français
+						%br
+						.contact-section-bottom-button#set-left-margin
+							- unless @is_disable
+								= link_to "<i class='icon-check'></i>Submit".html_safe, "javascript:void(0)", :class => "contact-button", :id => "ask_question_link", :style => "margin-bottom: 10px;margin-left: 540px;"
+						
+							
+.sidebar
+	- if current_user.nil?
+		/login box
+		=# render "experimental/partials/login_box"
+	-else
+		/profile box
+		=# render "experimental/partials/profile_box"
+
+	/ social login box
+	=# render "experimental/partials/social_login_box"
+	/ member box
+	/= render "experimental/partials/member_box"
+	/rating box
+	=# render "experimental/partials/rating_box"
+	/rating box
+	=# render "experimental/partials/rating_box2"
+	/ left bar
+	/ = render "experimental/partials/left_bar"
+	/widget top
+	=# render "experimental/partials/widget_top"
+	/ .clearer.hide-responsive
+	/ %br.clearer/
+	/ newly reviewd
+	/= render "experimental/partials/newly_reviewed"
+	/popular box
+	=# render "experimental/partials/popular_box"
+	/banner box
+	=# render "experimental/partials/banner_box"
+:javascript
+	jQuery("#ask_question_link").click(function (){
+		//oops
+		jQuery("#new_profile_support").submit();
+	});

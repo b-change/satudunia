@@ -16,6 +16,13 @@
     %td
       = form_tag(member_path(membership), :class => "form-horizontal", :id => "form_user_#{member.id}", :method => :put) do         
         = select_tag :role, options_for_select(locales_roles, membership.role)
+    %td 
+      - if (member.accept_terms == "true")
+        Yes
+      - elsif (member.accept_terms == "false")
+        No
+      - else
+        N.A
     %td
       = link_to "<span class='icon12 icomoon-icon-pencil'></span>".html_safe, "#", :class => "tip", :title => "Update User", :id => "update_user_#{member.id}"
       = link_to "<span class='icon12 icomoon-icon-remove'></span>".html_safe, member_path(membership), :method => :delete, :confirm => "Are you sure? This User will no longer exist"

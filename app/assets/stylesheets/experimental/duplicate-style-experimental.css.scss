@@ -163,6 +163,7 @@ form.exp-contact-form-new{
 }
 .overview-new.nopadding-top.padding-about {
     padding: 15px;
+    background: none !important;
 }
 .tags1_3_1 {
     display: inherit;
@@ -230,3 +231,38 @@ form.exp-contact-form-new{
 .goog-te-menu-value > span{
 	font-size: 15px !important;
 }
+
+/*services map styles for new tab change*/
+#tabs-frontpage .item-list-services{
+  background: none repeat scroll 0 0 transparent;
+  border: 0 none;
+  margin: 25px 0 0px;
+}
+#tabs-frontpage div.item-list-services ul li {
+  border: 1px solid #E0E0E0;
+  border-bottom: 0px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding: 0px;
+}
+#tabs-frontpage .item-list-services ul li a {
+  display: block;
+  padding: 8px 15px;
+  text-decoration: none;
+  font-size: 15px;
+}
+#tabs-frontpage .item-list-services ul li:first-child{
+  margin-left: 0px;
+}
+#tabs-frontpage div.item-list-services ul li {
+  float: left;
+  list-style-type: none;
+  margin: 5px 0 0 5px;
+}
+#tabs-frontpage ul.tab-nav-ser li a:active, #tabs-frontpage ul.tab-nav-ser li.ui-tabs-selected a {
+  color:#222 !important;
+  background:#FFF !important;
+  border:1px solid #E0E0E0;
+  border-bottom:0px;
+}
+/*services map styles for new tab change*/

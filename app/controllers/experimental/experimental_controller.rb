@@ -19,7 +19,7 @@ class Experimental::ExperimentalController < ApplicationController
   # code from the plus template in order to set current order
 
   def index
-    # add_breadcrumb "Index", 'index' 
+    # add_breadcrumb "Index", 'index'
     @active_member = Membership.where(state: "active").limit(3)
     @announcements = Announcement.all
     @news = News.all
@@ -53,12 +53,12 @@ class Experimental::ExperimentalController < ApplicationController
 
   # action public about
   def public_about
-    
-    add_breadcrumb "About", (public_about_experimental_index_path).gsub("/","")
-    @title = "about plus+"
+
+    add_breadcrumb "About BE", (public_about_experimental_index_path).gsub("/","")
+    @title = "about beingme"
   	@about = StaticPage.where(:static_key => 'about').first
     @about_user = User.find(@about.user_id) if @about.user_id?
-    
+
     # fetching data data to show in related box
     @tos = StaticPage.where(:static_key => 'tos').first
     @eula = StaticPage.where(:static_key => 'eula').first
@@ -75,8 +75,9 @@ class Experimental::ExperimentalController < ApplicationController
     add_breadcrumb "RSS", 'rss'
   end
   # terms of use
-  def terms    
-    add_breadcrumb "Terms of Service", terms_experimental_index_path.gsub("/","") 
+  def terms
+    add_breadcrumb "Privacy", "/privacy/policy"
+    add_breadcrumb "Terms of Service", "terms-of-use"
     @title = "terms of use"
     @tos = StaticPage.where(:static_key => 'tos').first
     @questions = Question.all
@@ -90,6 +91,11 @@ class Experimental::ExperimentalController < ApplicationController
   #partners action
   def partners
 
+  end
+
+  def terms_condition
+    add_breadcrumb "Profile", "settings"
+    add_breadcrumb "Participate in Research", "participate-research"
   end
 
   # action for admin tab
@@ -109,7 +115,7 @@ class Experimental::ExperimentalController < ApplicationController
   end
   # community experimental
   def community
-    
+
   end
   # before filter action
   def check_age
@@ -130,7 +136,7 @@ class Experimental::ExperimentalController < ApplicationController
   end
 
   def show_member
-    
+
     @caseVarible = params[:dataSend]
     case @caseVarible
       when "newest"
@@ -151,21 +157,22 @@ class Experimental::ExperimentalController < ApplicationController
 
 
   def profile_settings
-    
+
   end
   def ask_question
     add_breadcrumb "Ask Question", "ask-a-question"
-    @question = Question.new(params[:question]) 
+    @question = Question.new(params[:question])
     Question.update_ask_question_views
   end
   #ERROR PAGE FOR EXPERIMENTAL
   def routing_error
+    add_breadcrumb "404 Page not found","routing_error"
     if params[:query]!="" && params[:query].present?
       @questions_search = Question.where(:title=> /#{params[:query]}/i)
       @answers_search = Answer.where(:body=> /#{params[:query]}/i)
       @tags_search = Tag.where(:name=> /#{params[:query]}/i)
       @service_providers_search = ServiceProvider.where(:name=> /#{params[:query]}/i)
-    end  
+    end
     render :file => "#{Rails.root}/public/404.html", :status => 404
   end
 
@@ -174,7 +181,7 @@ class Experimental::ExperimentalController < ApplicationController
   end
   # action events
   def events
-    @title="Events"   
+    @title="Events"
   end
   #action crowd funding
   def crowdfunding
@@ -193,7 +200,7 @@ class Experimental::ExperimentalController < ApplicationController
     @following = ""
     respond_to do |format|
       format.html
-      # format.json { render :json => @resources } 
+      # format.json { render :json => @resources }
       format.js{render "/experimental/experimental/ajax_entry"}
     end
   end
@@ -201,7 +208,6 @@ class Experimental::ExperimentalController < ApplicationController
   #action_social starts from here
   def social
     @title="social login"
-    
   end
 
   #action_social ends here
@@ -215,11 +221,11 @@ class Experimental::ExperimentalController < ApplicationController
           @resources = Question.all.order(:created_at=>:desc).page(params["page"]).per(15)
           @questions = @resources
         else
-          #@resources = Question.all.page(params["page"]).per(15) 
+          #@resources = Question.all.page(params["page"]).per(15)
           #.order_by(current_order).page(params["page"]).per(session[:per_page].blank? ? 2 : session[:per_page])
           @resources = nil
       end
-    end  
+    end
   end
 
   def comments_rss
@@ -230,6 +236,34 @@ class Experimental::ExperimentalController < ApplicationController
       format.atom
     end
   end
-  
+  def profile_tiers
+    # debugger
+    add_breadcrumb "Profile Tiers","tiers"
+    set_page_title("Surveys")
+    @surveys= current_user.profile_tiers
+    @survey1= current_user.profile_support
+    @survey2 = current_user.profile_tier2
+    @survey3 = current_user.profile_tier3
+    @survey4 = current_user.profile_tier4
+    @survey5 = current_user.profile_tier5
+    @survey6 = current_user.profile_tier6
+    @survey7 = current_user.profile_tier7
+  end
 
+  def concern_about_privacy
+    add_breadcrumb "concern about privacy", (concern_about_privacy_experimental_index_path).gsub("/","")
+  end
+  def knowledge_count
+    @knowledge_base_count_views = ViewsCount.where(:type => "knowledge_base_count").first
+    if @knowledge_base_count_views == nil
+      ViewsCount.create(:type => "knowledge_base_count", :count => 150)
+    else
+      @knowledge_base_count_views.count += 1
+      @knowledge_base_count_views.save
+    end
+    render :nothing => true
+  end
+
+  def registration
+  end
 end

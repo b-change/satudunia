@@ -33,7 +33,7 @@ en:
       title: Sign up as a new user
       submit: Sign up
       join_group: Join %{group}
-      description: Become a part of this community to ask, answer and learn!
+      description: BE part of this community to ask, answer and learn!
     edit:
       title: Settings
       submit: Save

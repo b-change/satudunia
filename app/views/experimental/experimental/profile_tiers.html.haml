@@ -1,0 +1,96 @@
+.clearer.hide-responsive
+%br.hide-responsive/
+.main-content-left
+	.page-content.review.single-post
+		%link{:href => "../experimental/images/misc1-160x160.jpg", :rel => "image_src"}/
+		.review-content
+			.ribbon-shadow-left
+			.section-wrapper
+				.section-header
+					Profile Tiers
+			.section-arrow
+		#item-nav
+			#object-nav.item-list-tabs{:id=>"firstElement"}
+				%ul
+					%li
+						%a#back{:href=>"/profile/settings", :class=>"loader-adjust-set"}
+							Back
+
+					%li.selected
+						%a#tier1{:href=>"javascript:void(0)",:data_send=>"profile", :class=>"loader-adjust-profile"}
+							Tier1
+							.loader.show-inline
+					/ %li
+					/ 	%a#tier2{:href=>"javascript:void(0)", :class=>"loader-adjust-profile"}
+					/ 		Tier2
+					/ 		.loader.show-inline
+					/ %li
+					/ 	%a#tier3{:href=>"javascript:void(0)", :class=>"loader-adjust-profile"}
+					/ 		Tier3
+					/ 		.loader.show-inline
+					/ %li
+					/ 	%a#tier4{:href=>"javascript:void(0)", :class=>"loader-adjust-profile"}
+					/ 		Tier4
+					/ 		.loader.show-inline
+		#subtabs
+			.activity_sub_tabs
+				#subnav.item-list-tabs.no-ajax{:role => "navigation"}
+					/ %ul
+					/ 	%li#activity-filter-select.last
+					/ 		%label{:for => "activity-filter-by"} Show:
+					/ 		%select#activity-filter-by
+					/ 			%option{:value => "all"} All
+					#activity_tab1
+						#members-dir-list.members.dir-list#activity_tab{:style =>"display:none"}
+							%ul#members-list.items-list
+								=# render "users/show/user_activity_content"
+						.review-content#user_profile_tab
+							=# render "users/edit"
+							/ %h1{:style=>"background:none; border:none"}
+							/   = link_to @user.display_name, user_path(@user)
+
+.sidebar
+	/login box
+	- if current_user.nil?
+		/login box
+		= render "experimental/partials/login_box"
+	-else
+		/profile box
+		= render "experimental/partials/profile_box"
+
+	/ social login box
+	= render "experimental/partials/social_login_box"
+	/ member box
+	/ = render "experimental/partials/member_box"
+	/ left bar
+	= render "experimental/partials/left_bar"
+	/widget top
+	= render "experimental/partials/widget_top"
+	/ .clearer.hide-responsive
+	/ %br.clearer/
+	/ newly reviewd
+	/ = render "experimental/partials/newly_reviewed"
+	/popular box
+	/ = render "experimental/partials/popular_box"
+	/rating box
+	= render "experimental/partials/rating_box"
+	/banner box
+	= render "experimental/partials/banner_box"
+
+:javascript
+	$(document).ready(function(){
+		$.ajax({
+			url: "/tier1_index"
+		});
+		//tabs click event
+		$("#tier1,#tier2,#tier3,#tier4").click(function(){
+			$.ajax({
+				url: "/"+$(this).attr('id')+"_index"
+			});
+		});
+		jQuery("#object-nav_firstElement > ul > li").click(function(){
+			jQuery("#object-nav_firstElement > ul > li").removeClass('selected');
+			jQuery(this).addClass('selected');
+		});
+	});
+

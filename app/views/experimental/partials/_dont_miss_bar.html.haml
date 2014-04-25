@@ -46,11 +46,11 @@
 		/ - else
 		.bg2_1
 			= form_tag "#{question_search_path}",:id => "search" do
-				= text_field_tag "search_ajax", "What is your question?", :class => "search-tag",:alt => "What is your question?",:autocomplete=>"off","data-show"=>"What is your question?"
+				= text_field_tag "search_ajax", "What is your question?", :class => "search-tag",:alt => "What is your question?",:autocomplete=>"off","data-show"=>"What is your question?",:style=>"font-family:BebasNeueRegular;font-size:21px;color:#868686;", onfocus: "if(this.value=='What is your question?') this.value='';"
 				= hidden_field_tag "hidden_keys"
 				= button_tag "search",:class=>"search-btn"
-	#dontmiss-email.signup
-		%h3 Get Our Newsletter
+	#dontmiss-email.signup.miss-background
+		%h3#change-fonts GET OUR NEWSLETTER
 		%form#feedburner_subscribe.subscribe{:action => "http://feedburner.google.com/fb/a/mailverify", :method => "post", :onsubmit => "window.open('http://feedburner.google.com/fb/a/mailverify?uri=brianmcculloh/dtMq', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true", :target => "popupwindow"}
 			.email-wrapper
 				%input{:name => "email", :type => "text"}/
@@ -62,7 +62,7 @@
 :css
 	@media screen and (-webkit-min-device-pixel-ratio:0) { 
 	  #search-container { width:605px; left: 275px;z-index: 1;} 
-	  form#search input{width: 600px; padding-left: 12px;}
+	  form#search input{padding-left: 12px;}
 	} 
 :javascript 
 	jQuery(document).ready(function(){			

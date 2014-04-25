@@ -1,71 +1,100 @@
 .clearer.hide-responsive  
 %br.hide-responsive/
 .main-content-left
-  .page-content.review.single-post
-    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
-    .review-content
-      .ribbon-shadow-left
-      .section-wrapper
-        .section-header
-          Tier 5
-      .section-arrow
-      / post by removed from here
-      .content-panel
-        .the-content.justify-content
-          = form_for @profile_tier5, :url => {:controller => :tier5, :action => :create},:html => {:class => "exp-contact-form"}, :method => :post do |f|
-            %p{:class => "ask2"}
-              = f.label "Occupation", :class=>"label"
-            = f.text_field :occupation, :disabled => @is_disable, :class=>"input-class"
-            %p{:class => "ask2"}
-              = f.label "Religion", :class=>"label"
-            = f.text_field :religion, :disabled => @is_disable, :class=>"input-class"
-            %p{:class => "ask2"}
-              = f.label "Drink Alcohol", :class=>"label"
-            %table
-              %tr
-                %td
-                  .checkbox
-                    = radio_button("profile_tier5", "is_drink_alcohol", true, :disabled => @is_disable)
-                    Yes
-            %table
-              %tr
-                %td
-                  .checkbox
-                    = radio_button("profile_tier5", "is_drink_alcohol", false, :disabled => @is_disable)
-                    No
-            %p{:class => "ask2"}
-              = label_tag "Smoker"
-            %table
-              %tr
-                %td
-                  .checkbox
-                    = radio_button("profile_tier5", "is_smoker", true, :disabled => @is_disable)
-                    Yes
-            %table
-              %tr
-                %td
-                  .checkbox
-                    = radio_button("profile_tier5", "is_smoker", false, :disabled => @is_disable)
-                    No
-            %p{:class => "ask2"}
-              = f.label "Music", :class=>"label"
-            = f.text_area :music, :disabled => @is_disable, :rows => 5, :style => "width: 630px",:class=>"textarea"
-            %p{:class => "ask2"}
-              = f.label "Books", :class=> "label"
-            = f.text_area :books, :disabled => @is_disable, :rows => 5, :style => "width: 630px",:class=>"textarea"
-            %p{:class => "ask2"}
-              = f.label "Movies", :class=> "label"
-            = f.text_area :movies, :disabled => @is_disable, :rows => 5, :style => "width: 630px",:class=>"textarea"
-            %p{:class => "ask2"}
-              = f.label "Other interests and hobbies ", :class=> "label"
-            = f.text_area :other_interest, :disabled => @is_disable, :rows => 5, :style => "width: 630px",:class=>"textarea"
+	.page-content.review.single-post
+		%link{:href => "../experimental/images/misc1-160x160.jpg", :rel => "image_src"}/
+		.review-content
+			.ribbon-shadow-left
+			.section-wrapper
+				.section-header
+					Tier 5
+			.section-arrow
+			/ post by removed from here
+			.content-panel
+				.the-content.justify-content
+					= form_for @profile_tier5, :url => {:controller => :tier5, :action => :create},:html => {:class => "exp-contact-form"}, :method => :post do |f|
+						%p{:class => "ask2"}
+							= f.label "Occupation", :class=>"label"
+						= f.text_field :occupation, :disabled => @is_disable, :class=>"input-class"
+						%p{:class => "ask2"}
+							= f.label "Religion", :class=>"label"
+						= f.text_field :religion, :disabled => @is_disable, :class=>"input-class"
+						%p{:class => "ask2"}
+							= f.label "Drink Alcohol", :class=>"label"
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier5", "is_drink_alcohol", true, :disabled => @is_disable)
+										Yes
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier5", "is_drink_alcohol", false, :disabled => @is_disable)
+										No
+						%p{:class => "ask2"}
+							= label_tag "Smoker"
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier5", "is_smoker", true, :disabled => @is_disable)
+										Yes
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier5", "is_smoker", false, :disabled => @is_disable)
+										No
+						%p{:class => "ask2"}
+							= f.label "Music", :class=>"label"
+						= f.text_area :music, :disabled => @is_disable, :rows => 5, :style => "width: 630px",:class=>"textarea"
+						%p{:class => "ask2"}
+							= f.label "Books", :class=> "label"
+						= f.text_area :books, :disabled => @is_disable, :rows => 5, :style => "width: 630px",:class=>"textarea"
+						%p{:class => "ask2"}
+							= f.label "Movies", :class=> "label"
+						= f.text_area :movies, :disabled => @is_disable, :rows => 5, :style => "width: 630px",:class=>"textarea"
+						%p{:class => "ask2"}
+							= f.label "Other interests and hobbies ", :class=> "label"
+						= f.text_area :other_interest, :disabled => @is_disable, :rows => 5, :style => "width: 630px",:class=>"textarea"
 
-            %p
-            - unless @is_disable
-              = link_to "<i class='icon-check'></i>Submit".html_safe, "javascript:void(0)", :class => "submit-button", :id => "ask_question_link", :style => "margin-bottom: 10px;"
+						%p
+						- unless @is_disable
+							= link_to "<i class='icon-check'></i>Submit".html_safe, "javascript:void(0)", :class => "submit-button", :id => "ask_question_link", :style => "margin-bottom: 10px;"
 .sidebar
-  = render "experimental/partials/left_bar"
+	- if current_user.nil?
+		/login box
+		= render "experimental/partials/login_box"
+	-else
+		/profile box
+		= render "experimental/partials/profile_box"
+
+	/ social login box
+	= render "experimental/partials/social_login_box"
+	/ member box
+	/ = render "experimental/partials/member_box"
+	/rating box
+	= render "experimental/partials/rating_box"
+	/rating box
+	= render "experimental/partials/rating_box2"
+	/ left bar
+	/ = render "experimental/partials/left_bar"
+	/widget top
+	= render "experimental/partials/widget_top"
+	/ .clearer.hide-responsive
+	/ %br.clearer/
+	/ newly reviewd
+	/ = render "experimental/partials/newly_reviewed"
+	/popular box
+	= render "experimental/partials/popular_box"
+	/banner box
+	= render "experimental/partials/banner_box"
+
+
+	
 :javascript
-  jQuery("#ask_question_link").click(function (){
-    jQuery("#new_profile_tier5,#edit_profile_tier5").submit();
-  });
+	jQuery("#ask_question_link").click(function (){
+		jQuery("#new_profile_tier5,#edit_profile_tier5").submit();
+	});

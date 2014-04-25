@@ -1,8 +1,8 @@
-.clearer.hide-responsive  
+.clearer.hide-responsive
 %br.hide-responsive/
 .main-content-left
 	.page-content.review.single-post
-		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+		%link{:href => "../experimental/images/misc1-160x160.jpg", :rel => "image_src"}/
 		.review-content
 			.ribbon-shadow-left
 			.section-wrapper
@@ -12,27 +12,28 @@
 					/ making title stronger
 					.section-for-header
 						%i.icon-vcard
-						= @title.upcase
-			.section-arrow 
-		/ content area 
-		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
-		.overview-wrapper
+						=# @title.upcase
+						About BE
+			.section-arrow
+		/ content area
+		%link{:href => "../experimental/images/movies3-160x160.jpg", :rel => "image_src"}/
+		.overview-wrapper.set-background
 			/ %h1.title Login
-			.overview-new.nopadding-top.padding-about
+			.overview-new.nopadding-top.padding-about#change-color
 				.excerpt-new1.justify-content.nopadding-top
 					%p.filter-content-new
 						%h2
-							About Plus+
+							About BE
 						.pullquote-wrapper.left
-							.pullquote.prociono.set-padding-right  Living positively, together
-						%p 
+							.pullquote.prociono.set-padding-right  Where we can be ourselves and be there for each other.
+						%p
 							= @about.static_content.html_safe
-			/ Please remove padding bottom class when you furthe use to show content			
+			/ Please remove padding bottom class when you furthe use to show content
 			.section-bottom
 				.category.qa-q-item-tags#logo-wrapper
 					.catname
 						Tags
-					.category-arrow  
+					.category-arrow
 				.tags-list-about#set-margin
 					%span.tags1_2.set-fonts
 						%a{:href => "/tags/technology"} Sample1
@@ -58,33 +59,44 @@
 			/ %br.clearer/
 			.content-panel.post-loop.set-box-margin
 				/ authorbox
-				= render "experimental/partials/author_box"
+				=# render "experimental/partials/author_box"
 				/ related partial
-				= render "experimental/partials/related_box"
+				=# render "experimental/partials/related_box"
 	%br.clearer/
 .sidebar
 	- if current_user.nil?
+		/login box
 		= render "experimental/partials/login_box"
-		= render "experimental/partials/social_login_box"
-	/ social login box	
-	= render "experimental/partials/left_bar"
+	-else
+		/profile box
+		= render "experimental/partials/profile_box"
+
+	/ social login box
+	= render "experimental/partials/social_login_box"
+	/ member box
+	- unless current_user.nil?
+		= render "experimental/partials/member_box"
+	/rating box
+	=# render "experimental/partials/rating_box"
+	/rating box
+	=# render "experimental/partials/rating_box2"
+	/ left bar
+	/ = render "experimental/partials/left_bar"
 	/widget top
 	= render "experimental/partials/widget_top"
 	/ .clearer.hide-responsive
 	/ %br.clearer/
 	/ newly reviewd
-	= render "experimental/partials/newly_reviewed"
+	/ = render "experimental/partials/newly_reviewed"
 	/popular box
-	= render "experimental/partials/popular_box"
-	/rating box
-	= render "experimental/partials/rating_box"
+	=# render "experimental/partials/popular_box"
 	/banner box
 	= render "experimental/partials/banner_box"
 
 :javascript
 	jQuery.noConflict();
-		jQuery(document).ready(function() { 
-		
+		jQuery(document).ready(function() {
+
 			jQuery('#related > ul').tabs({ fx: { opacity: 'toggle', duration: 150 } });
-			
+
 		});

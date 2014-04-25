@@ -16,6 +16,10 @@
 //= require vendor/jHtmlArea.js
 //= require app/modules/editor.js
 //= require 'experimental/jquery.validate'
-//= require 'experimental/jquery.tipsy'  
+//= require 'experimental/jquery.tipsy'
 //= require 'experimental/addthis_widget.js'
 //= require 'experimental/turnsocialTooltip.js'
+//= require 'jquery.autosize.js'
+//= require 'jquery.autosize.min.js'
+//= require 'experimental/mcVideoPlugin'
+//= require 'experimental/js-image-slider'

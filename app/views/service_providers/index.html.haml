@@ -1,32 +1,31 @@
 - services_array = []
 - if params[:country].blank?
 	- @serviceProviders.each do |services_area|
-		- services_array << [strip_tags(services_area.name.gsub(",","")),strip_tags(services_area.description.gsub(",","")) ,strip_tags(services_area.telephone) + " " + strip_tags(services_area.email),strip_tags(services_area.address.gsub(",",""))]
+		- services_array << [strip_tags(services_area.name.gsub(",","")),strip_tags(services_area.telephone) + " " + strip_tags(services_area.email),strip_tags(services_area.address.gsub(",",""))]
 
 - else
 	- @service_providers.where(:country => "#{params[:country]}".humanize).each do |services_area|
-		- services_array << [strip_tags(services_area.name.gsub(",","")),strip_tags(services_area.description.gsub(",","")) ,strip_tags(services_area.telephone) + " " + strip_tags(services_area.email),strip_tags(services_area.address.gsub(",",""))]
-
+		- services_array << [strip_tags(services_area.name.gsub(",","")),strip_tags(services_area.telephone) + " " + strip_tags(services_area.email),strip_tags(services_area.address.gsub(",",""))]
 #map
 	%figure{:class => "p5"}
 		#services_map{:style => "width:auto; height:450px"}
-.clearer.hide-responsive  
+.clearer.hide-responsive
 %br.hide-responsive/
 .main-content-left
 	.page-content.review.single-post
-		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+		%link{:href => "../experimental/images/misc1-160x160.jpg", :rel => "image_src"}/
 		.review-content
 			.ribbon-shadow-left
 			.section-wrapper
 				.section
 					.comment-bubble
-						%a{:title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"} 
+						%a{:title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"}
 							= @serviceProviders.count
 					/ making title stronger
 					.section-for-header
 						%i.icon-location
 						Services Map
-			.section-arrow 
+			.section-arrow
 	%form#content.page-content
 		#members-directory-form.dir-form{:action => "/services-map"}
 			/ %h3 Mapping
@@ -49,61 +48,66 @@
 					%select#activity-filter-by
 						%option{:value => ""} All
 						-get_country_name(@service_providers).each do |provider|
-							%option{:value => "#{provider}"} 
-								= link_to "#{provider}",country_services_map_path(provider.downcase)
+							%option{:value => "#{provider}"}
+								-if provider == "Kuala"
+									= link_to "Kuala Lumpur",country_services_map_path("Kuala-Lumpur")
+								- else
+									= link_to "#{provider}",country_services_map_path(provider.downcase)
 	#return-data-ajax.services-top-adj
 		= render "experimental/partials/provider"
 	.post-loop.directory
-		.ribbon-shadow-left  
+		.ribbon-shadow-left
 		.section-wrapper
 			.section
-				Available Countries
-		.ribbon-shadow-right  
-		.section-arrow 
+				Available Cities
+		.ribbon-shadow-right
+		.section-arrow
 		/ county box partial
-		= render "experimental/partials/country_box"       
+		= render "experimental/partials/country_box"
 	%br.clearer/
-	.page-content.review.single-post
-		.review-content
-			.ribbon-shadow-left
-			.section-wrapper
-				.section
-					.comment-bubble
-						%a{:href => service_providers_path(:anchor => "disqus_thread")} Link
-					/ making title stronger
-					.section-for-header
-						Disqus
-			.section-arrow 
-			.overview-wrapper
-				.overview-new
-					.left-panel
-						#disqus_thread
-						:javascript
-							/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-							var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
+	%br.clearer/
+	/ .page-content.review.single-post
+	/ 	.review-content
+	/ 		.ribbon-shadow-left
+	/ 		.section-wrapper
+	/ 			.section
+	/ 				.comment-bubble
+	/ 					%a{:href => service_providers_path(:anchor => "disqus_thread")} Link
+	/ 				/ making title stronger
+	/ 				.section-for-header
+	/ 					Disqus
+	/ 		.section-arrow
+	/ 		%br.clearer/
+	/ 		.overview-wrapper
+	/ 			.overview-new.no-background
+	/ 				.left-panel
+	/ 					#disqus_thread
+	/ 					:javascript
+	/ 						/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+	/ 						var disqus_shortname = 'beingmedev'; // required: replace example with your forum shortname
+	/ 						/* * * DON'T EDIT BELOW THIS LINE * * */
+	/ 						(function() {
+	/ 							var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	/ 							dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	/ 							(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	/ 						})();
+	/ 					%noscript
+	/ 						Please enable JavaScript to view the
+	/ 						%a{href: "http://disqus.com/?ref_noscript"} comments powered by Disqus.
+	/ 					%a.dsq-brlink{href: "http://disqus.com"}
+	/ 						comments powered by
+	/ 						%span.logo-disqus Disqus
+	/ 					:javascript
+	/ 						var disqus_shortname = 'beingmedev'; // required: replace example with your forum shortname
+	/ 						// required: replace example with your forum shortname
+	/ 						(function () {
+	/ 							var s = document.createElement('script'); s.async = true;
+	/ 							s.type = 'text/javascript';
+	/ 							s.src = '//'+disqus_shortname+'.disqus.com/count.js';
+	/ 							(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+	/ 						}());
 
-							/* * * DON'T EDIT BELOW THIS LINE * * */
-							(function() {
-								var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-								dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js'; 
-								(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); 
-							})();
-						%noscript 
-							Please enable JavaScript to view the 
-							%a{:href => "http://disqus.com/?ref_noscript"} comments powered by Disqus
-						%a.dsq-brlink{:href => "http://disqus.com"}
-							comments powered by
-							%span.logo-disqus Disqus
-						:javascript
-							var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
-							// required: replace example with your forum shortname
-							(function () {
-								var s = document.createElement('script'); s.async = true;
-								s.type = 'text/javascript';
-								s.src = '//'+disqus_shortname+'.disqus.com/count.js';
-								(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-							}());
-	%br.clearer/
+	/ 		%br.clearer/
 /side bar
 .sidebar
 	- if current_user.nil?
@@ -112,13 +116,15 @@
 	-else
 		/profile box
 		= render "experimental/partials/profile_box"
+
+	/ social login box
 	= render "experimental/partials/social_login_box"
 	/ member box
-	= render "experimental/partials/member_box"
+	/ = render "experimental/partials/member_box"
 	/rating box
-	= render "experimental/partials/rating_box"
+	=# render "experimental/partials/rating_box"
 	/rating box
-	= render "experimental/partials/rating_box2"
+	=# render "experimental/partials/rating_box2"
 	/ left bar
 	/ = render "experimental/partials/left_bar"
 	/widget top
@@ -126,29 +132,30 @@
 	/ .clearer.hide-responsive
 	/ %br.clearer/
 	/ newly reviewd
-	= render "experimental/partials/newly_reviewed"
+	/ = render "experimental/partials/newly_reviewed"
 	/popular box
-	= render "experimental/partials/popular_box"
+	=# render "experimental/partials/popular_box"
 	/banner box
 	= render "experimental/partials/banner_box"
+
 
 
 %script{:src => "http://maps.googleapis.com/maps/api/js?key=AIzaSyBmJE9KrYdmPiW16lAHDJOiCvS1Fwen7BU&sensor=true"}
 
 :javascript
 	jQuery(document).ready(function(jQ){
-		jQ("#content").submit(function(e){			
+		jQ("#content").submit(function(e){
 			e.preventDefault()
-			jQuery.ajax({     
+			jQuery.ajax({
 				url:'/services-map',
 				data: jQ('form#content').serialize(),
-				dataType:"script",				
+				dataType:"script",
 				success:function(successObject){
 					jQuery(".loader").removeClass("ajax-loader");
 				}
 			});
 		})
-		//jQ('#activity-filter-by').change(function(){			
+		//jQ('#activity-filter-by').change(function(){
 			//jQ('#content').submit();
 		//})
 
@@ -158,80 +165,85 @@
 		})
 
 		jQuery('#members_search').keypress(function(e) {
-						
+
 			if (e.which == '13') {
 				jQuery('#members_search_submit').click();
 			}
 		});
-		
-	})	
-	var geocoder;
-	var map;
-	var markersArray = [];
-	var bounds;
-	var infowindow =  new google.maps.InfoWindow({
-			content: ''
-	});
 
-	//plot initial point using geocode instead of coordinates (works just fine)
-	function initialize() {
+	})
+	function mainMapFunction(raw_locations_string){
+		var geocoder;
+		var map;
+		var markersArray = [];
+		var bounds;
+		var infowindow =  new google.maps.InfoWindow({
+				content: ''
+		});
+		//plot initial point using geocode instead of coordinates (works just fine)
+		function initialize() {
 			geocoder = new google.maps.Geocoder();
 			bounds = new google.maps.LatLngBounds ();
 			var myOptions = {
-					zoom: 2, 
+					zoom: 2,
 					mapTypeId: google.maps.MapTypeId.ROADMAP,
 					navigationControlOptions: {
 							style: google.maps.NavigationControlStyle.SMALL
 					}
 			};
-			map = new google.maps.Map(document.getElementById("services_map"), myOptions);		
+			map = new google.maps.Map(document.getElementById("services_map"), myOptions);
 
 			plotMarkers();
-	}
-	
-	var locationsArray = eval('#{raw services_array}'); 
-	function plotMarkers(){
+		}
+
+		var locationsArray = eval(raw_locations_string);
+		function plotMarkers(){
 			var i;
 			for(i = 0; i < locationsArray.length; i++){
 					codeAddresses(locationsArray[i]);
 			}
+		}
+		function codeAddresses(address){
+				geocoder.geocode( { 'address': address[2]}, function(results, status) {
+						if (status == google.maps.GeocoderStatus.OK) {
+								marker = new google.maps.Marker({
+										map: map,
+										position: results[0].geometry.location
+								});
+
+								google.maps.event.addListener(marker, 'click', function() {
+										var formattedAddress =  "<b>" + address[0] + "</b> <br/>" + address[1] ;
+										infowindow.setContent(formattedAddress);
+										infowindow.open(map, this);
+								});
+
+								bounds.extend(results[0].geometry.location);
+
+								markersArray.push(marker);
+						}
+						else{
+								// alert("Geocode was not successful for the following reason: " + status);
+						}
+
+						map.fitBounds(bounds);
+						map.setZoom(12)
+				});
+		}
+		initialize();
 	}
-	function codeAddresses(address){
-			geocoder.geocode( { 'address': address[3]}, function(results, status) { 
-					if (status == google.maps.GeocoderStatus.OK) {
-							marker = new google.maps.Marker({
-									map: map,
-									position: results[0].geometry.location
-							});
-
-							google.maps.event.addListener(marker, 'click', function() {
-									var formattedAddress =  "<b>" + address[0] + "</b> <br/>" + address[1] + "<br/>" +"<b>" + address[2] + "</b>" ;
-									infowindow.setContent(formattedAddress);
-									infowindow.open(map, this);
-							});
-
-							bounds.extend(results[0].geometry.location);
-
-							markersArray.push(marker); 
-					}
-					else{
-							// alert("Geocode was not successful for the following reason: " + status);
-					}
-
-					map.fitBounds(bounds);
-			});
-	}
-
-	google.maps.event.addDomListener(window, 'load', initialize);
+	google.maps.event.addDomListener(window, 'load', mainMapFunction('#{raw services_array}'));
 	//searching by dropdown
 	jQuery(document).ready(function(jQ){
+		setTimeout(function () {
+			jQ("#activity-filter-by").trigger('change');
+		}, 1000);
 		jQ("#activity-filter-by").on('change',function(){
 			var valueTaker = jQ('#activity-filter-by').val();
 			jQuery(".loader").addClass("ajax-loader");
-			jQuery.ajax({     
+			jQuery.ajax({
 				url:'/services-map',
 				data: { country: valueTaker,type: "textbox_search",pate: ""},
-				dataType:"script",				
+				dataType:"script",
 				success:function(successObject){
 					jQuery(".loader").removeClass("ajax-loader");
 				}
@@ -241,11 +253,11 @@
 		jQ("#members_search").on('keyup',function(){
 			var valueTaker = jQ('#members_search').val();
 			var coun = jQ('#activity-filter-by').val();
-	 		jQuery(".loader").addClass("ajax-loader");
-			jQuery.ajax({     
+			jQuery(".loader").addClass("ajax-loader");
+			jQuery.ajax({
 				url:'/services-map',
 				data: { service_search: valueTaker,country: coun},
-				dataType:"script",				
+				dataType:"script",
 				success:function(successObject){
 					jQuery(".loader").removeClass("ajax-loader");
 				}
@@ -256,14 +268,42 @@
 		jQ(".members_search_clear").on('click',function(){
 			jQ('#members_search').val('');
 			var valueTaker = jQ('#members_search').val();
-	 		jQuery(".loader").addClass("ajax-loader");
-			jQuery.ajax({     
+			jQuery(".loader").addClass("ajax-loader");
+			jQuery.ajax({
 				url:'/services-map',
 				data: { country: valueTaker,type: "textbox_search",pate: ""},
-				dataType:"script",				
+				dataType:"script",
 				success:function(successObject){
 					jQuery(".loader").removeClass("ajax-loader");
 				}
 			});
 		})
 	});
+
+	function success(position) {
+
+		var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+		var options = {
+			zoom: 10,
+			center: coords,
+			mapTypeControl: false,
+			navigationControlOptions: {
+				style: google.maps.NavigationControlStyle.SMALL
+			},
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		var map = new google.maps.Map(document.getElementById("services_map"), options);
+
+		var marker = new google.maps.Marker({
+				position: coords,
+				map: map,
+				title:"You are here!"
+		});
+	}
+
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(success);
+	} else {
+		error('Geo Location is not supported');
+	}

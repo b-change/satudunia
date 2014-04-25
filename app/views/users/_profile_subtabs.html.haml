@@ -34,3 +34,12 @@
 			jQuery("#password_settings").show();
 		}
 	})
+
+	jQuery(function() {
+		jQuery( "#datepicker" ).datepicker({
+			dateFormat: "dd-mm-yy",
+			changeMonth: true,
+			changeYear: true,
+			yearRange: '1960:'+(new Date).getFullYear()
+		});
+	});

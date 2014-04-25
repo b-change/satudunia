@@ -1,14 +1,16 @@
 / %ul{:id => "slider21", :style => "position: relative;"}
 / 	%li{:class => "pager ps1"}
 / 		%ul
+
 #return-data-ajax
-	%ul#activity-stream.activity-list.item-list
-		-if @resources.empty?
-			=# render "shared/empty", :type => "activities", :url => ""
-			= render "experimental/partials/empty_record_message.html"
-		-else
-			-@paginator = @resources
-			= render :partial =>"pagination/pagination",:locals => {:paginationType=>"activities"}
+	-if @resources.empty?
+		=# render "shared/empty", :type => "activities", :url => ""
+		= render "experimental/partials/empty_record_message.html"
+	-else
+		-@paginator = @resources
+		= render :partial =>"pagination/pagination",:locals => {:paginationType=>"activities"}
+		%ul#activity-stream.activity-list.item-list
+		
 			- @resources.each do |activity|
 				-if activity[:target_type] || activity[:trackable_type]
 					
@@ -55,5 +57,5 @@
 								- else
 									= pjax_link_to activity.target_name, activity.url_for_trackable(request.host), activity.params_for_trackable
 					.clear
-			= render :partial =>"pagination/pagination",:locals => {:paginationType=>"activities"}
+		= render :partial =>"pagination/pagination",:locals => {:paginationType=>"activities"}
 

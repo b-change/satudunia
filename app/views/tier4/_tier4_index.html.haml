@@ -1,0 +1,76 @@
+.main-content-left
+	.page-content.review.single-post
+		%link{:href => "../experimental/images/misc1-160x160.jpg", :rel => "image_src"}/
+		.review-content
+			.show-category
+				.show-catname
+					Tier 4
+				.show-category-arrow
+			.content-panel
+				.the-content.justify-content
+					= form_for @profile_tier4, :url => {:controller => :tier4, :action => :create},:html => {:class => "exp-contact-form"}, :method => :post,:remote=>true do |f|
+						%p{:class => "ask2"}
+							= f.label "Height", :class=> "label"
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier4", "height_measurement", "inches", :disabled => @is_disable)
+										inches
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier4", "height_measurement", "cm", :disabled => @is_disable)
+										cm
+						= f.text_field :height, :disabled => @is_disable, :class=>"input-class", :style => "width: 580px"
+						%p{:class => "ask2"}
+							= f.label "Weight",:class=>"label"
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier4", "weight_measurement", "kgs", :disabled => @is_disable)
+										kgs
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier4", "weight_measurement", "lbs", :disabled => @is_disable)
+										lbs
+						= f.text_field :weight, :disabled => @is_disable, :class=>"input-class", :style => "width: 580px"
+						%p{:class => "ask2"}
+							= f.label "Build", :class=>"label"
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier4", "body_build", "Lean", :disabled => @is_disable)
+										Lean
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier4", "body_build", "Athletic", :disabled => @is_disable)
+										Athletic
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier4", "body_build", "Muscular", :disabled => @is_disable)
+										Muscular
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier4", "body_build", "Chub", :disabled => @is_disable)
+										Chub
+							
+						%br
+						.contact-section-bottom-button#set-left-margin
+							- unless @is_disable
+								= link_to "<i class='icon-check'></i>Submit".html_safe, "javascript:void(0)", :class => "contact-button", :id => "ask_question_link", :style => "margin-bottom: 10px;margin-left: 540px;"
+:javascript
+	jQuery("#ask_question_link").click(function (){
+		jQuery("#new_profile_tier4,#edit_profile_tier4").submit();
+	});

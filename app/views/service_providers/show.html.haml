@@ -1,10 +1,10 @@
 %script{:src => "http://maps.googleapis.com/maps/api/js?key=AIzaSyBmJE9KrYdmPiW16lAHDJOiCvS1Fwen7BU&sensor=true"}
 
-.clearer.hide-responsive  
+.clearer.hide-responsive
 %br.hide-responsive/
 #main-holder.main-content-left
 	.page-content.review.single-post
-		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+		%link{:href => "../experimental/images/misc1-160x160.jpg", :rel => "image_src"}/
 		.review-content
 			.ribbon-shadow-left
 			.section-wrapper
@@ -15,22 +15,70 @@
 					.section-for-header
 						%i.icon-numbered-list
 						= @service_provider.name
-			.section-arrow 
+			.section-arrow
+		.overview-wrapper
+			.overview-new
+				.left-panel#set-margin-item-tags
+					.section-width
+						%h2
+					#item-header.qa-q-item-tags{:role=>"complementary"}
+						#item-header-avatar
+							%a{:style=>"float:left;"}
+								= image_tag(default_avatar_url('big'), :class=>"avatar")
+						#item-header-content
+							%h2
+								= @service_provider.name
+							.user-nicename
+								%b Address:
+								= @service_provider.address
+							.user-nicename
+								%b website:
+								= link_to "#{@service_provider.url}"
+		%br.clearer/
+		/ #item-header.qa-q-item-tags{:role=>"complementary"}
+		/ 	#item-header-avatar
+		/ 		%a{:style=>"float:left;"}
+		/ 			= image_tag(default_avatar_url('big'), :class=>"avatar")
+		/ 	#item-header-content
+		/ 		%h2
+		/ 			= @service_provider.name
+		/ 		.user-nicename
+		/ 			%b Address:
+		/ 			= @service_provider.address
+		/ 		.user-nicename
+		/ 			%b website:
+		/ 			= link_to "#{@service_provider.url}"
 	#tabs-frontpage
-		%ul.tabnav.ui-tabs-nav
-			%li.ui-tabs-selected
-				%a{:href => "#Profile",:id=>"profile-tab"} Profile
-			%li
-				%a{:href => "#TreatmentPrices"} Treatment & Prices
-			%li
-				%a{:href => "#Staff"} Staff
-			%li
-				%a{:href => "#Review"} Review
-			%li
-				%a{:href => "#Map" ,:id => "map-tab"} Map
-			- unless current_user.nil?
+		.item-list-services
+			%ul.tab-nav-ser.ui-tabs-nav
+				%li.ui-tabs-selected
+					%a{:href => "#Profile",:id=>"profile-tab"} Profile
 				%li
-					%a{:href => "#Validate" ,:id => "validate-tab", :class=>"fancybox", "data-reveal-id"=>"myModalShow"} Validate
+					%a{:href => "#TreatmentPrices"} Treatment & Prices
+				%li
+					%a{:href => "#Staff"} Staff
+				%li
+					%a{:href => "#Review"} Review
+				%li
+					%a{:href => "#Map" ,:id => "map-tab"} Map
+				- unless current_user.nil?
+					%li
+						%a{:href => "#Validate" ,:id => "validate-tab", :class=>"fancybox", "data-reveal-id"=>"myModalShow"} Validate
+
+		/ %ul.tabnav.ui-tabs-nav
+		/ 	%li.ui-tabs-selected
+		/ 		%a{:href => "#Profile",:id=>"profile-tab"} Profile
+		/ 	%li
+		/ 		%a{:href => "#TreatmentPrices"} Treatment & Prices
+		/ 	%li
+		/ 		%a{:href => "#Staff"} Staff
+		/ 	%li
+		/ 		%a{:href => "#Review"} Review
+		/ 	%li
+		/ 		%a{:href => "#Map" ,:id => "map-tab"} Map
+		/ 	- unless current_user.nil?
+		/ 		%li
+		/ 			%a{:href => "#Validate" ,:id => "validate-tab", :class=>"fancybox", "data-reveal-id"=>"myModalShow"} Validate
 		/ top contact bar
 		= render "service_providers/partials/contact_bar"
 		.tabdiv-wrapper
@@ -68,7 +116,7 @@
 						%br
 						%br
 					.correct-service
-						Are the services correct? 
+						Are the services correct?
 						%br.clearer
 						%span
 							= f.label "Yes"
@@ -78,7 +126,7 @@
 						%br
 						%br
 					.prices-service
-						Are the prices correct? 
+						Are the prices correct?
 						%br.clearer
 						%span
 							= f.label "Yes"
@@ -91,10 +139,10 @@
 				%br
 				.service-validate-submit
 					= f.submit "Submit", :html=>{:title=>"Submit",:class=>"tool-tip"}
-				
+
 		%a.close-reveal-modal#close-box1
 			%img{:alt => "close", :src => "http://cdn.rpxnow.com/rel/img/43f137c98b7a6562f6ad5f076fce376b.png", :style => "width: 34px; top: -22px; right: -25px; position: absolute; height: 34px; cursor: pointer;"}/
-				
+
 /side bar
 .sidebar
 	- if current_user.nil?
@@ -103,10 +151,11 @@
 	-else
 		/profile box
 		= render "experimental/partials/profile_box"
+
 	/ social login box
 	= render "experimental/partials/social_login_box"
 	/ member box
-	= render "experimental/partials/member_box"
+	/ = render "experimental/partials/member_box"
 	/rating box
 	= render "experimental/partials/rating_box"
 	/rating box
@@ -118,29 +167,34 @@
 	/ .clearer.hide-responsive
 	/ %br.clearer/
 	/ newly reviewd
-	= render "experimental/partials/newly_reviewed"
+	/ = render "experimental/partials/newly_reviewed"
 	/popular box
-	= render "experimental/partials/popular_box"
+	/ = render "experimental/partials/popular_box"
 	/banner box
 	= render "experimental/partials/banner_box"
 
+
 :javascript
 	jQuery(document).ready(function($){
-		$("#tab_overview").show();		
+		$("#tab_overview").show();
 		$(".ui-tabs-nav li").click(function(){
 			var thisVar = $(this);
 			var idTaker = thisVar.attr("data-find");
 			// removing all active tabs
-			$(".ui-tabs-nav li").removeClass("ui-tabs-active"); 
+			$(".ui-tabs-nav li").removeClass("ui-tabs-active");
 			// adding active class
 			$("."+idTaker).addClass("ui-tabs-active");
 			$(".class-hide").hide();
 			$("#"+idTaker).show();
-		});		
+		});
 		// click function ends here
 
 		$("#validate-tab").click(function(){
 			$("#myModalShow").show();
+		})
+
+		$("#show-contact").click(function(){
+			$("#myModalShow1").show();
 		})
 
 		var geocoder;
@@ -156,21 +210,21 @@
 				geocoder = new google.maps.Geocoder();
 				bounds = new google.maps.LatLngBounds ();
 				var myOptions = {
-						zoom: 2, 
+						zoom: 2,
 						mapTypeControl:false,
 						mapTypeId: google.maps.MapTypeId.ROADMAP,
 						zoomControlOptions: {
-				    style: google.maps.ZoomControlStyle.LARGE
-				  }
+						style: google.maps.ZoomControlStyle.LARGE
+					}
 
-					
+
 				};
-			
+
 				map = new google.maps.Map(document.getElementById("services_map_2"), myOptions);
 
 				plotMarkers();
 		}
-		
+
 		var locationsArray = [['#{escape_javascript @service_provider.name.gsub(",","")}','#{escape_javascript @service_provider.telephone}' + " " + '#{escape_javascript @service_provider.email}','#{escape_javascript @service_provider.address.gsub(",","")}']]
 		function plotMarkers(){
 				var i;
@@ -179,7 +233,7 @@
 				}
 		}
 		function codeAddresses(address){
-				geocoder.geocode( { 'address': address[2]}, function(results, status) { 
+				geocoder.geocode( { 'address': address[2]}, function(results, status) {
 						if (status == google.maps.GeocoderStatus.OK) {
 								marker = new google.maps.Marker({
 										map: map,
@@ -195,7 +249,7 @@
 
 								bounds.extend(results[0].geometry.location);
 
-								markersArray.push(marker); 
+								markersArray.push(marker);
 						}
 						else{
 								//alert("Geocode was not successful for the following reason: " + status);
@@ -207,8 +261,8 @@
 
 		google.maps.event.addDomListener(window, 'load', initialize);
 	});
-	
-	
-	
-	
-	
+
+
+
+
+

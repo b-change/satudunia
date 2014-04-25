@@ -1,12 +1,105 @@
 .BW_contact.panel_wrapper.panel_wrapper_border
-  %span.icon
-  .inner_content
-    .contact_holder
-      .contact_green
-        ="Contact Clinic"
-    %span.tel
-      %span.pseudoLink
-        ="Show numbers"
-    %span.adr.clinic_address
-      %span{:property=>"address"} 
-        =@service_provider.address
+	%span.icon
+	.inner_content
+		/ .contact_holder
+		/   .contact_green#change-call-button
+		/     ="Call to click"
+		.contact_holder{:style=>"margin-top:10px;"}
+			.contact-button.contact-button-single.shift-service{:style=>"height:auto;width:159px;"}
+				="Call to Click:"
+				-if @service_provider.telephone.present?
+					=@service_provider.telephone
+		%span.tel
+			%span.pseudoLink
+				/ = "Show numbers"
+				%a{:href => "#Validate" ,:id => "show-contact", :class=>"fancybox", "data-reveal-id"=>"myModalShow1"} Show numbers
+		.adr.clinic_address{:style=>"width:330px;"}
+			%span{:property=>"address"}
+				= @service_provider.address
+				=#@service_provider.address   }
+
+#myModalShow1.reveal-modal.show-box1{:style=>"opacity: 1; visibility: visible; margin-left: -410px; top: 20px ; width: 50%;display:none;background-color: #FFFFFF;"}
+	/ %h1 Modal Title
+	#contact-box
+
+		.image_holder
+			=link_to image_tag("plus/clinic/20130408_2040121-consultation.jpg"),"#"
+
+		#box_white
+			%h2
+				%span.icon{:style =>"background-position: 0 -798px; width:0px;"}
+				%label{:style => "color:#3587BA;"} Call
+				= @service_provider.name
+			#pnlPhone.phone_text.panel_wrapper.panel_orange{:style=>"background: none repeat scroll 0 0 #F3D089;"}
+				.text_link
+					%span.icon
+					%span.pseudoLink
+						Text this number to
+						%br my phone for free
+				.phone_number_holder
+					%span#LiteralPhone.phone_number
+						-if @service_provider.telephone.present?
+							= @service_provider.telephone
+					%span#lblClinicOpen
+						The clinic is
+						%b open
+						today until 9pm (local time in Singapore)
+						%br Local time at the clinic now is 7:26pm
+			.phone_help
+				%b
+					No answer?
+				%a{href: "/consumer/consultationform.aspx?cid=91&rid=2&dcid=230&location=4368&rpos=0&sids=111667&clinicid=127037&fcid=140&link=27", target: "_parent"} Click here to send an email instead
+			#pnlMain.comment.jq_main.panel_wrapper
+				.jq_feedback
+					= form_for :feedback,:method=>"POST", :url => feedback_index_path,:id=>"feedback_form",:remote=>true do |f|
+						%h3{:style=>"color:#555555;font-size: 17px;font-weight: bold;line-height: 21px;"}
+							Your Feedback
+						%p Please tell us about the customer service you received on this call
+
+						= f.text_area :your_feedback,:class=>"input" ,:label => "Your Feedback", :type => "text",:cols => "52", :rows => "2"
+						%span#rfvComment.error_msg{:style => "color:#5E5E5E;display:none;"} Required Field
+						.number_left
+							%label I made an appointment with the clinic
+							%br
+								%span.tick
+									%input#cbMadeAppointment{:name => "cbMadeAppointment", :type => "checkbox"}
+										%span.mobile
+
+								%br
+									%span.size0 (optional)
+						.number_right
+							%label Name
+							%span.mobile
+							%br
+								= f.text_field :name,:class=>"input" ,:label => "Name", :type => "text" ,:maxlength => "100",:size=>"23"
+						.tandc
+							Your contact details are shared with the clinic - read full Terms &amp; Conditions
+							<a target="_blank" =""="" href="/ViewTerms.aspx">
+							here
+							\.
+						%a
+							= f.submit "save" ,:id=> "save_feedback",:class=>"btn-style"
+						.clear
+
+
+
+
+			#pnl-show-message{:style=>"display:none"}
+				Thank you for the feedback
+
+
+
+
+	%a.close-reveal-modal#close-box1
+		%img{:alt => "close", :src => "http://cdn.rpxnow.com/rel/img/43f137c98b7a6562f6ad5f076fce376b.png", :style => "width: 34px; top: -22px; right: -25px; position: absolute; height: 34px; cursor: pointer;"}/
+
+:javascript
+
+	jQuery(document).ready(function(){
+		jQuery('#save_feedback').click(function(){
+			jQuery('form#feedback_form').submit();
+			jQuery(this).attr("value", "");
+			jQuery('#pnlMain').hide();
+			jQuery('#pnl-show-message').show();
+		})
+	})

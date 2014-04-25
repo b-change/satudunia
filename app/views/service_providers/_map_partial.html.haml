@@ -1,0 +1,74 @@
+= render :partial=>"services_array"
+'#{raw services_array}'
+:javascript
+	var geocoder;
+	var map;
+	var markersArray = [];
+	var bounds;
+	var infowindow =  new google.maps.InfoWindow({
+			content: ''
+	});
+
+	//plot initial point using geocode instead of coordinates (works just fine)
+	function initialize() {
+			geocoder = new google.maps.Geocoder();
+			bounds = new google.maps.LatLngBounds ();
+			var myOptions = {
+					zoom: 2, 
+					mapTypeId: google.maps.MapTypeId.ROADMAP,
+					navigationControlOptions: {
+							style: google.maps.NavigationControlStyle.SMALL
+					}
+			};
+			map = new google.maps.Map(document.getElementById("services_map"), myOptions);
+			plotMarkers();
+	}
+	var locationsArray = eval('#{raw services_array}'); 
+	function plotMarkers(){
+			var i;
+			for(i = 0; i < locationsArray.length; i++){
+					codeAddresses(locationsArray[i]);
+			}
+	}
+	function codeAddresses(address){
+			geocoder.geocode( { 'address': address[3]}, function(results, status) { 
+					if (status == google.maps.GeocoderStatus.OK) {
+							marker = new google.maps.Marker({
+									map: map,
+									position: results[0].geometry.location
+							});
+
+							google.maps.event.addListener(marker, 'click', function() {
+									var formattedAddress =  "<b>" + address[0] + "</b> <br/>" + address[1] + "<br/>" +"<b>" + address[2] + "</b>" ;
+									infowindow.setContent(formattedAddress);
+									infowindow.open(map, this);
+							});
+
+							bounds.extend(results[0].geometry.location);
+
+							markersArray.push(marker); 
+					}
+					else{
+						alert("Geocode was not successful for the following reason: " + status);
+					}
+
+					map.fitBounds(bounds);
+			});
+	}
+
+	google.maps.event.addDomListener(window, 'load', initialize);
+	//searching by dropdown
+	jQuery(document).ready(function(jQ){
+		jQ("#activity-filter-by").on('change',function(){
+			var valueTaker = jQ('#activity-filter-by').val();
+			jQuery(".loader").addClass("ajax-loader");
+			jQuery.ajax({     
+				url:'/services-map',
+				data: { country: valueTaker,type: "textbox_search",pate: ""},
+				dataType:"script",				
+				success:function(successObject){
+					jQuery(".loader").removeClass("ajax-loader");
+				}
+			});
+		})
+	}); 

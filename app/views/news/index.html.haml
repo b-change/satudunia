@@ -1,67 +1,67 @@
 .clearer.hide-responsive  
 %br.hide-responsive/
 .main-content-left
-  .page-content.review.single-post
-    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
-    .review-content
-      .ribbon-shadow-left
-      .section-wrapper
-        .section
-          .comment-bubble
-            %a{:title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"}
-              = @news.count
-          / making title stronger
-          .section-for-header
-            /%i.icon-vcard
-            News 
-      .section-arrow 
-  .post-loop#set-page
-    #announcement-ajax-div
-      = render :partial => "news"
+	.page-content.review.single-post
+		%link{:href => "../experimental/images/misc1-160x160.jpg", :rel => "image_src"}/
+		.review-content
+			.ribbon-shadow-left
+			.section-wrapper
+				.section
+					.comment-bubble
+						%a{:title => "Comment on Made Magazine Is The First Responsive Theme Released By IndustrialThemes"}
+							= @news.count
+
+					.section-for-header
+						/%i.icon-vcard
+						News
+			.section-arrow
+	.post-loop#set-page
+		#announcement-ajax-div
+			= render :partial => "news"
+
 /side bar
 .sidebar
-  - if current_user.nil?
-    /login box
-    = render "experimental/partials/login_box"
-  -else
-    /profile box
-    = render "experimental/partials/profile_box"
+	- if current_user.nil?
+		/login box
+		= render "experimental/partials/login_box"
+	-else
+		/profile box
+		= render "experimental/partials/profile_box"
 
-  / social login box
-  = render "experimental/partials/social_login_box"
-  / member box
-  = render "experimental/partials/member_box"
-  /rating box
-  = render "experimental/partials/rating_box"
-  /rating box
-  = render "experimental/partials/rating_box2"
-  / left bar
-  / = render "experimental/partials/left_bar"
-  /widget top
-  = render "experimental/partials/widget_top"
-  / .clearer.hide-responsive
-  / %br.clearer/
-  / newly reviewd
-  = render "experimental/partials/newly_reviewed"
-  /popular box
-  = render "experimental/partials/popular_box"
-  /banner box
-  = render "experimental/partials/banner_box"
+	/ social login box
+	= render "experimental/partials/social_login_box"
+	/ member box
+	/ = render "experimental/partials/member_box"
+	/rating box
+	/ = render "experimental/partials/rating_box"
+	/rating box
+	= render "experimental/partials/rating_box2"
+	/ left bar
+	/ = render "experimental/partials/left_bar"
+	/widget top
+	= render "experimental/partials/widget_top"
+	/ .clearer.hide-responsive
+	/ %br.clearer/
+	/ newly reviewd
+	/ = render "experimental/partials/newly_reviewed"
+	/popular box
+	/ = render "experimental/partials/popular_box"
+	/banner box
+	= render "experimental/partials/banner_box"
 :javascript
-  jQuery(document).ready(function(jQ){
-    jQ('#pagination-digg  a').live('click',function(e){
-      e.preventDefault();
-      jQuery.ajax({
-        url:jQ(this).attr('href'),
-        dataType:"script"
-      })
-    })
-  })
+	jQuery(document).ready(function(jQ){
+		jQ('#pagination-digg  a').live('click',function(e){
+			e.preventDefault();
+			jQuery.ajax({
+				url:jQ(this).attr('href'),
+				dataType:"script"
+			})
+		})
+	})
 
-  jQuery( document ).ajaxStart(function() {
-    jQuery(".section-arrow").addClass("ajax-loader");
-  });
-  jQuery( document ).ajaxStart(function() {
-    jQuery(".section-arrow").removeClass("ajax-loader");
-  });
-    
+	jQuery( document ).ajaxStart(function() {
+		jQuery(".section-arrow").addClass("ajax-loader");
+	});
+	jQuery( document ).ajaxStart(function() {
+		jQuery(".section-arrow").removeClass("ajax-loader");
+	});

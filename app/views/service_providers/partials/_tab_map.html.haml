@@ -17,15 +17,18 @@
 				bounds2 = new google.maps.LatLngBounds ();
 
 				var myOptions = {
-						zoom: 2, 
+						zoom: 2,
 						mapTypeId: google.maps.MapTypeId.ROADMAP,
-					
+						zoomControlOptions: {
+							style: google.maps.ZoomControlStyle.LARGE
+						}
+
 				};
 				map2 = new google.maps.Map(document.getElementById("services_map"), myOptions);
 
 				plotMarkers();
-		}		
-		var locationsArray = [['#{escape_javascript @service_provider.name.gsub(",","")}','#{escape_javascript @service_provider.description.gsub(",","")}' ,'#{escape_javascript @service_provider.telephone}' + " " + '#{escape_javascript @service_provider.email}','#{escape_javascript @service_provider.address.gsub(",","")}']]
+		}
+		var locationsArray = [['#{escape_javascript @service_provider.name.gsub(",","")}' ,'#{escape_javascript @service_provider.telephone}' + " " + '#{escape_javascript @service_provider.email}','#{escape_javascript @service_provider.address.gsub(",","")}']]
 
 		function plotMarkers(){
 				var i;
@@ -35,7 +38,7 @@
 		}
 
 		function codeAddresses(address){
-				geocoder2.geocode( { 'address': address[3]}, function(results, status) { 
+				geocoder2.geocode( { 'address': address[2]}, function(results, status) {
 						if (status == google.maps.GeocoderStatus.OK) {
 								marker = new google.maps.Marker({
 										map: map2,
@@ -44,14 +47,14 @@
 
 								google.maps.event.addListener(marker, 'click', function() {
 
-										var formattedAddress =  "<b>" + address[0] + "</b> <br/>" + address[1] + "<br/>" +"<b>" + address[2] + "</b>" ;
+										var formattedAddress =  "<b>" + address[0] + "</b> <br/>" + address[1] ;
 										infowindow.setContent(formattedAddress);
 										infowindow.open(map2, this);
 								});
 
 								bounds2.extend(results[0].geometry.location);
 
-								markersArray2.push(marker); 
+								markersArray2.push(marker);
 						}
 						else{
 								//alert("Geocode was not successful for the following reason: " + status);
@@ -61,11 +64,12 @@
 						map2.setZoom(10)
 				});
 		}
-			
-	jQuery(document).ready(function($){
-		
-		$('#Map').show('slow',function(){
-			google.maps.event.addDomListener(window, 'load', initialize2);
-		})
 
-	});
+
+		jQuery(document).ready(function($){
+
+			$('#Map').show('slow',function(){
+				google.maps.event.addDomListener(window, 'load', initialize2);
+			})
+
+	 	});

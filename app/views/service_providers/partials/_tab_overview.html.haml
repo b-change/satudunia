@@ -1,193 +1,610 @@
-.content-wrapper
-  .left_holder
-    .provider_gallery
-      .mainbox
-        =link_to image_tag("plus/clinic/19-brochure.jpg"),"#"
-      .caption
-        %p{:style=>"text-align:center; font-weight:bolder; font-size:14px; "}
-          = @service_provider.name
-          Team
-    .BW_opening{:id => ""}
-      %h4
-        %span Opening Hours
-      .open_time{:content => "Mo 09:30-17:30", :property => "openingHours"}
-        %span.day Mon
-        %span.hour   9:30 -   5:30pm
-      .open_time{:content => "Tu 09:30-17:30", :property => "openingHours"}
-        %span.day Tue
-        %span.hour   9:30 -   5:30pm
-      .open_time{:content => "We 09:30-17:30", :property => "openingHours"}
-        %span.day Wed
-        %span.hour   9:30 -   5:30pm
-      .open_time{:content => "Th 09:30-17:30", :property => "openingHours"}
-        %span.day Thu
-        %span.hour   9:30 -   5:30pm
-      .open_time{:content => "Fr 09:30-17:30", :property => "openingHours"}
-        %span.day Fri
-        %span.hour   9:30 -   5:30pm
-      .open_time{:content => "Sa 09:30-13:30", :property => "openingHours"}
-        %span.day Sat
-        %span.hour   9:30 -   1:30pm
-      .open_time
-        %span.day Sun
-        %span.hour
-    / bm opeinings ends
-    #services_map_2{:style => "width:265px; height:250px"}
-      %span.pseudoLink{:onclick => "JavaScript:wcBrochureTriggerTab('tab_map');"} 
-      Click to see larger map for
-      =@service_provider.name
-    / bm maps ends here
-  .right_holder
-    #providerDetails_providerDetailsTabOverview_divTreatments.BW_treatment.BW_bordertop
-      %span.icon
-      .inner_content{:property => "medicalSpecialty", :typeof => "MedicalSpecialty"}
-        %p{:style=>"margin:0px;"}
-          %b{:property => "name"}
-            Plastic Surgeon Consultation
-            %span
-              %b Price On Request
-        %div{:property => "description"}
-    #providerDetails_providerDetailsTabOverview_divReviews.BW_Feedback.BW_bordertop
-      %span.icon
-      .inner_content{:style=>"width: 300px;"}
-        %span.h4-alternate-wos
-          %span
-            %span{:property => "aggregateRating", :typeof => "AggregateRating"}>
-              %span.rateholder
-                %span{:content => "100", :property => "bestRating"}
-                %span{:content => "0", :property => "worstRating"}
-                %span.rate.rate90{:content => "90", :property => "ratingValue"}
-                = succeed "from" do
-                  %span{:content => "1", :property => "ratingCount"}
-                1 review
-            Reviews & Feedback
-        .mini_review
-          .review_text
-            %span Extremely professional - I happened to be quite lucky as there was a team of Doctors who w...
-            %span.reviewer Sat, Malaysia, 22 Apr 13
-        %div{:style => "clear:both"}
-        .details_bar
-          %span.com  
-          %a.brochure_link.rev{:href => "JavaScript:void(wcBrochureTriggerTab('tab_reviews'));", :title => "1 users have posted a review of the clinic on WhatClinic.com"}
-            %span.bubble> 1
-            Review
-          %a.brochure_link.rec{:href => "JavaScript:void(wcBrochureTriggerTab('tab_reviews'));", :title => "2 users have recommended this clinic"}
-            %span.bubble> 2
-            Recommended
-    #divAbout.description.BW_about.BW_bordertop
-      %span.icon
-      .inner_content{:style=>"width: 300px; text-align:justify;"}
-        %span.h4-alternate-wos
-          %span
-            About
-            =@service_provider.name 
-            Team
-        %div{:property => "description"}
-          %p
-            =@service_provider.review_text
-          %span.button.contact_green.jq_contact{:linkrel => "cid=1&rid=2&dcid=230&location=4312&rpos=0&sids=105010&clinicid=117419&link=4", :trackrel => "4"}
-            Get Quote
-        / .accred_images
-        /   %img{:src => "/images/accreditations/453_american_cleft_palate-craniofacial_association.png", :title => "Singapore International Cleft-Craniofacial Team is a member of the American Cleft Palate-Craniofacial Association"}/
-    .BW_special.BW_bordertop
-      #providerDetails_providerDetailsTabOverview_divClinicTypes.type.tick_section{:title => "business"}
-        %span.h4-alternate
-          %span Provides
-        .category
-          %span.icon_span
-            %span.icon_checked
-          %p Orthodontic Services
-          %span.icon_span
-            %span.icon_checked
-          %p Ear Nose and Throat
-          %span.icon_span
-            %span.icon_checked
-          %p Plastic Surgery
-          %span.icon_span
-            %span.icon_checked
-          %p Psychology
-        %a{:href => "Javascript:wcBrochureTriggerTab('tab_prices');"} Treatments & prices
-      #providerDetails_providerDetailsTabOverview_divPremises_services.tick_section
-        %span.h4-alternate
-          %span Premises
-        %div
-          %span.icon_span
-            %span.icon_checked
-          %p Parking
-          %span.icon_span
-            %span.icon_checked
-          %p Accessible to disabled people
-          %span.icon_span
-            %span.icon_checked
-          %p Public transport access
-          %span.icon_span
-            %span.icon_checked
-          %p Wheelchair accessible toilet
-          %span.icon_span
-            %span.icon_checked
-          %p Access without steps
-          %span.icon_span
-            %span.icon_checked
-          %p Disabled parking
-          %span.icon_span
-            %span.icon_checked
-          %p Patient bathroom
-          %span.icon_span
-            %span.icon_checked
-          %p On-site pharmacy
-      #providerDetails_providerDetailsTabOverview_divInsurance.tick_section{:style => "margin-right:0px;"}
-        %span.h4-alternate
-          %span Insurance
-        %div
-          %span.icon_span
-            %span.icon_checked
-          %p Private Patients Welcome
-          %span.icon_span
-            %span.icon_checked
-          %p Dental Plans Accepted - Paperwork to be provided by patients
-    #providerDetails_providerDetailsTabOverview_divClinic_services.BW_additionalInfo.BW_bordertop
-      %span.h4-alternate
-        %span Clinic Services
-      %div
-        %ul
-        %span.icon_span
-          %span.icon_checked>
-          Emergency service
-        %span.icon_span
-          %span.icon_checked>
-          Text message reminders
-        %span.icon_span
-          %span.icon_checked>
-          Home visits
-    #providerDetails_providerDetailsTabOverview_divTravel_services.BW_additionalInfo.BW_bordertop
-      %span.h4-alternate
-        %span Travel Services
-      %div
-        %ul
-        %span.icon_span
-          %span.icon_checked>
-          Local travel - Complimentary shuttle bus service between Camden Medical Centre and Orchard MRT station
-    #providerDetails_providerDetailsTabOverview_divLanguage.BW_additionalInfo.BW_bordertop
-      %span
-        %span Languages spoken
-      %div
-        %ul.languges
-        %span.icon_span{:property => "language"}
-          %span.icon_checked>
-          Chinese
-        %span.icon_span{:property => "language"}
-          %span.icon_checked>
-          English
-        %span.icon_span{:property => "language"}
-          %span.icon_checked>
-          Malay
-    #providerDetails_providerDetailsTabOverview_divAccreditations.BW_additionalInfo.BW_bordertop
-      %span
-        %span Accreditations
-      .affiliation.vcard
-        %ul
-        %span.icon_span.fn.org
-          %span.icon_checked>
-          ACPCA - American Cleft Palate-Craniofacial Association (US) 
-    .clear
-    / right ends here
+.content-wrapper#hide-overflow
+	.left_holder
+		/ .provider_gallery
+		/   .mainbox
+		/     =link_to image_tag("plus/clinic/19-brochure.jpg"),"#"
+		.main-content-left#service-provider-show
+			.page-content.review
+				%link{href: "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", rel: "image_src"}/
+				.overview-wrapper#overview-top
+					%h1.title #{@service_provider.name}
+					.overview#set-border-none
+						.arrow-catpanel-bottom  
+						.left-panel
+							/ .article-image.video
+							/ 	%iframe{allowfullscreen: "", frameborder: "0", height: "197", src: "http://www.youtube.com/embed/sftuxbvGwiU", width: "350"}
+							
+							.category
+								.ribbon-shadow-left  
+								.catname
+									Quick Stats
+								.category-arrow  
+							%br.clearer/
+		.provider_gallery
+			.mainbox
+				=link_to image_tag("plus/clinic/19-brochure.jpg"),"#"
+		.caption
+		%p{:style=>"text-align:center; font-weight:bolder; font-size:14px; "}
+			= @service_provider.name
+			Team
+		.BW_opening{:id => ""}
+			%h4
+				%span Opening Hours
+			.open_time{:content => "Mo 09:30-17:30", :property => "openingHours"}
+				%span.day Mon
+				%span.hour   9:30 -   5:30pm
+			.open_time{:content => "Tu 09:30-17:30", :property => "openingHours"}
+				%span.day Tue
+				%span.hour   9:30 -   5:30pm
+			.open_time{:content => "We 09:30-17:30", :property => "openingHours"}
+				%span.day Wed
+				%span.hour   9:30 -   5:30pm
+			.open_time{:content => "Th 09:30-17:30", :property => "openingHours"}
+				%span.day Thu
+				%span.hour   9:30 -   5:30pm
+			.open_time{:content => "Fr 09:30-17:30", :property => "openingHours"}
+				%span.day Fri
+				%span.hour   9:30 -   5:30pm
+			.open_time{:content => "Sa 09:30-13:30", :property => "openingHours"}
+				%span.day Sat
+				%span.hour   9:30 -   1:30pm
+			.open_time
+				%span.day Sun
+				%span.hour
+		/ bm opeinings ends
+		#services_map_2{:style => "width:265px; height:250px"}
+			%span.pseudoLink{:onclick => "JavaScript:wcBrochureTriggerTab('tab_map');"} 
+			Click to see larger map for
+			=@service_provider.name
+		/ bm maps ends here
+	.right_holder
+		#providerDetails_providerDetailsTabOverview_divTreatments.BW_treatment.BW_bordertop
+			%span.icon
+			.inner_content{:property => "medicalSpecialty", :typeof => "MedicalSpecialty"}
+				#inner-set-margin
+					%p{:style=>"margin:0px;"}
+						%b{:property => "name"}
+							Plastic Surgeon Consultation
+							%span
+								%b Price On Request
+					%div{:property => "description"}
+		#providerDetails_providerDetailsTabOverview_divReviews.BW_Feedback.BW_bordertop
+			%span.icon
+			.inner_content{:style=>"width: 300px;"}
+				%span.h4-alternate-wos
+					%span
+						%span{:property => "aggregateRating", :typeof => "AggregateRating"}>
+							%span.rateholder
+								%span{:content => "100", :property => "bestRating"}
+								%span{:content => "0", :property => "worstRating"}
+								%span.rate.rate90{:content => "90", :property => "ratingValue"}
+								= succeed "from" do
+									%span{:content => "1", :property => "ratingCount"}
+								1 review
+						Reviews & Feedback
+				.mini_review
+					.review_text
+						%span Extremely professional - I happened to be quite lucky as there was a team of Doctors who w...
+						%span.reviewer Sat, Malaysia, 22 Apr 13
+				%div{:style => "clear:both"}
+				.details_bar
+					%span.com  
+					%a.brochure_link.rev{:href => "JavaScript:void(wcBrochureTriggerTab('tab_reviews'));", :title => "1 users have posted a review of the clinic on WhatClinic.com"}
+						%span.bubble> 1
+						Review
+					%a.brochure_link.rec{:href => "JavaScript:void(wcBrochureTriggerTab('tab_reviews'));", :title => "2 users have recommended this clinic"}
+						%span.bubble> 2
+						Recommended
+		#divAbout.description.BW_about.BW_bordertop
+			%span.icon
+			.inner_content{:style=>"width: 300px; text-align:justify;"}
+				%span.h4-alternate-wos
+					%span
+						About
+						=@service_provider.name 
+						Team
+				%div{:property => "description"}
+					%p
+						=@service_provider.review_text
+					%span.button.contact_green.jq_contact{:linkrel => "cid=1&rid=2&dcid=230&location=4312&rpos=0&sids=105010&clinicid=117419&link=4", :trackrel => "4"}
+						Get Quote
+				/ .accred_images
+				/   %img{:src => "/images/accreditations/453_american_cleft_palate-craniofacial_association.png", :title => "Singapore International Cleft-Craniofacial Team is a member of the American Cleft Palate-Craniofacial Association"}/
+		.BW_special.BW_bordertop
+			#providerDetails_providerDetailsTabOverview_divClinicTypes.type.tick_section{:title => "business"}
+				%span.h4-alternate
+					%span Provides
+				.category
+					%span.icon_span
+						%span.icon_checked
+					%p Orthodontic Services
+					%span.icon_span
+						%span.icon_checked
+					%p Ear Nose and Throat
+					%span.icon_span
+						%span.icon_checked
+					%p Plastic Surgery
+					%span.icon_span
+						%span.icon_checked
+					%p Psychology
+				%a{:href => "Javascript:wcBrochureTriggerTab('tab_prices');"} Treatments & prices
+			#providerDetails_providerDetailsTabOverview_divPremises_services.tick_section
+				%span.h4-alternate
+					%span Premises
+				%div
+					%span.icon_span
+						%span.icon_checked
+					%p Parking
+					%span.icon_span
+						%span.icon_checked
+					%p Accessible to disabled people
+					%span.icon_span
+						%span.icon_checked
+					%p Public transport access
+					%span.icon_span
+						%span.icon_checked
+					%p Wheelchair accessible toilet
+					%span.icon_span
+						%span.icon_checked
+					%p Access without steps
+					%span.icon_span
+						%span.icon_checked
+					%p Disabled parking
+					%span.icon_span
+						%span.icon_checked
+					%p Patient bathroom
+					%span.icon_span
+						%span.icon_checked
+					%p On-site pharmacy
+			#providerDetails_providerDetailsTabOverview_divInsurance.tick_section{:style => "margin-right:0px;"}
+				%span.h4-alternate
+					%span Insurance
+				%div
+					%span.icon_span
+						%span.icon_checked
+					%p Private Patients Welcome
+					%span.icon_span
+						%span.icon_checked
+					%p Dental Plans Accepted - Paperwork to be provided by patients
+		#providerDetails_providerDetailsTabOverview_divClinic_services.BW_additionalInfo.BW_bordertop
+			%span.h4-alternate
+				%span Clinic Services
+			%div
+				%ul
+				%span.icon_span
+					%span.icon_checked>
+					Emergency service
+				%span.icon_span
+					%span.icon_checked>
+					Text message reminders
+				%span.icon_span
+					%span.icon_checked>
+					Home visits
+		#providerDetails_providerDetailsTabOverview_divTravel_services.BW_additionalInfo.BW_bordertop
+			%span.h4-alternate
+				%span Travel Services
+			%div
+				%ul
+				%span.icon_span
+					%span.icon_checked>
+					Local travel - Complimentary shuttle bus service between Camden Medical Centre and Orchard MRT station
+		#providerDetails_providerDetailsTabOverview_divLanguage.BW_additionalInfo.BW_bordertop
+			%span
+				%span Languages spoken
+			%div
+				%ul.languges
+				%span.icon_span{:property => "language"}
+					%span.icon_checked>
+					Chinese
+				%span.icon_span{:property => "language"}
+					%span.icon_checked>
+					English
+				%span.icon_span{:property => "language"}
+					%span.icon_checked>
+					Malay
+		#providerDetails_providerDetailsTabOverview_divAccreditations.BW_additionalInfo.BW_bordertop
+			%span
+				%span Accreditations
+			.affiliation.vcard
+				%ul
+				%span.icon_span.fn.org
+					%span.icon_checked>
+					ACPCA - American Cleft Palate-Craniofacial Association (US) 
+		.clear
+		/ right ends here
+
+/ .content-wrapper
+/ 	.left_holder
+/ 		.review
+/ 			.overview-wrapper
+/ 				.category
+/ 					.catname
+/ 						= @service_provider.name
+/ 					.category-arrow  
+		
+/ 		.provider_gallery
+/ 			.mainbox
+/ 				=link_to image_tag("plus/clinic/19-brochure.jpg"),"#"
+/ 			.caption
+/ 				%p{:style=>"text-align:center; font-weight:bolder; font-size:14px; "}
+/ 					= @service_provider.name
+/ 					Team
+/ 		.BW_opening{:id => ""}
+/ 			%h4
+/ 				%span Opening Hours
+/ 			.open_time{:content => "Mo 09:30-17:30", :property => "openingHours"}
+/ 				%span.day Mon
+/ 				%span.hour   9:30 -   5:30pm
+/ 			.open_time{:content => "Tu 09:30-17:30", :property => "openingHours"}
+/ 				%span.day Tue
+/ 				%span.hour   9:30 -   5:30pm
+/ 			.open_time{:content => "We 09:30-17:30", :property => "openingHours"}
+/ 				%span.day Wed
+/ 				%span.hour   9:30 -   5:30pm
+/ 			.open_time{:content => "Th 09:30-17:30", :property => "openingHours"}
+/ 				%span.day Thu
+/ 				%span.hour   9:30 -   5:30pm
+/ 			.open_time{:content => "Fr 09:30-17:30", :property => "openingHours"}
+/ 				%span.day Fri
+/ 				%span.hour   9:30 -   5:30pm
+/ 			.open_time{:content => "Sa 09:30-13:30", :property => "openingHours"}
+/ 				%span.day Sat
+/ 				%span.hour   9:30 -   1:30pm
+/ 			.open_time
+/ 				%span.day Sun
+/ 				%span.hour
+/ 		/ bm opeinings ends
+/ 		#services_map_2{:style => "width:265px; height:250px"}
+/ 			%span.pseudoLink{:onclick => "JavaScript:wcBrochureTriggerTab('tab_map');"} 
+/ 			Click to see larger map for
+/ 			=@service_provider.name
+/ 		/ bm maps ends here
+/ 	.right_holder
+/ 		#providerDetails_providerDetailsTabOverview_divTreatments.BW_treatment.BW_bordertop{:style=>"margin-top:58px;"}
+/ 			%span.icon
+/ 			.inner_content{:property => "medicalSpecialty", :typeof => "MedicalSpecialty"}
+/ 				%p{:style=>"margin:0px;"}
+/ 					%b{:property => "name"}
+/ 						Plastic Surgeon Consultation
+/ 						%span
+/ 							%b Price On Request
+/ 				%div{:property => "description"}
+/ 		#providerDetails_providerDetailsTabOverview_divReviews.BW_Feedback.BW_bordertop
+/ 			%span.icon
+/ 			.inner_content{:style=>"width: 300px;"}
+/ 				%span.h4-alternate-wos
+/ 					%span
+/ 						%span{:property => "aggregateRating", :typeof => "AggregateRating"}>
+/ 							%span.rateholder
+/ 								%span{:content => "100", :property => "bestRating"}
+/ 								%span{:content => "0", :property => "worstRating"}
+/ 								%span.rate.rate90{:content => "90", :property => "ratingValue"}
+/ 								= succeed "from" do
+/ 									%span{:content => "1", :property => "ratingCount"}
+/ 								1 review
+/ 						Reviews & Feedback
+/ 				.mini_review
+/ 					.review_text
+/ 						%span Extremely professional - I happened to be quite lucky as there was a team of Doctors who w...
+/ 						%span.reviewer Sat, Malaysia, 22 Apr 13
+/ 				%div{:style => "clear:both"}
+/ 				.details_bar
+/ 					%span.com  
+/ 					%a.brochure_link.rev{:href => "JavaScript:void(wcBrochureTriggerTab('tab_reviews'));", :title => "1 users have posted a review of the clinic on WhatClinic.com"}
+/ 						%span.bubble> 1
+/ 						Review
+/ 					%a.brochure_link.rec{:href => "JavaScript:void(wcBrochureTriggerTab('tab_reviews'));", :title => "2 users have recommended this clinic"}
+/ 						%span.bubble> 2
+/ 						Recommended
+/ 		#divAbout.description.BW_about.BW_bordertop
+/ 			%span.icon
+/ 			.inner_content{:style=>"width: 300px; text-align:justify;"}
+/ 				%span.h4-alternate-wos
+/ 					%span
+/ 						About
+/ 						=@service_provider.name 
+/ 						Team
+/ 				%div{:property => "description"}
+/ 					%p
+/ 						=@service_provider.review_text
+/ 					%span.button.contact_green.jq_contact{:linkrel => "cid=1&rid=2&dcid=230&location=4312&rpos=0&sids=105010&clinicid=117419&link=4", :trackrel => "4"}
+/ 						Get Quote
+/ 				/ .accred_images
+/ 				/   %img{:src => "/images/accreditations/453_american_cleft_palate-craniofacial_association.png", :title => "Singapore International Cleft-Craniofacial Team is a member of the American Cleft Palate-Craniofacial Association"}/
+/ 		/ .BW_special.BW_bordertop
+/ 		/   #providerDetails_providerDetailsTabOverview_divClinicTypes.type.tick_section{:title => "business"}
+/ 		/     %span.h4-alternate
+/ 		/       %span Provides
+/ 		/     .category
+/ 		/       %span.icon_span
+/ 		/         %span.icon_checked
+/ 		/       %p Orthodontic Services
+/ 		/       %span.icon_span
+/ 		/         %span.icon_checked
+/ 		/       %p Ear Nose and Throat
+/ 		/       %span.icon_span
+/ 		/         %span.icon_checked
+/ 		/       %p Plastic Surgery
+/ 		/       %span.icon_span
+/ 		/         %span.icon_checked
+/ 		/       %p Psychology
+/ 		/     %a{:href => "Javascript:wcBrochureTriggerTab('tab_prices');"} Treatments & prices
+/ 		/   #providerDetails_providerDetailsTabOverview_divPremises_services.tick_section
+/ 		/     %span.h4-alternate
+/ 		/       %span Premises
+/ 		/     %div
+/ 		/       %span.icon_span
+/ 		/         %span.icon_checked
+/ 		/       %p Parking
+/ 		/       %span.icon_span
+/ 		/         %span.icon_checked
+/ 		/       %p Accessible to disabled people
+/ 		/       %span.icon_span
+/ 		/         %span.icon_checked
+/ 		/       %p Public transport access
+/ 		/       %span.icon_span
+/ 		/         %span.icon_checked
+/ 		/       %p Wheelchair accessible toilet
+/ 		/       %span.icon_span
+/ 		/         %span.icon_checked
+/ 		/       %p Access without steps
+/ 		/       %span.icon_span
+/ 		/         %span.icon_checked
+/ 		/       %p Disabled parking
+/ 		/       %span.icon_span
+/ 		/         %span.icon_checked
+/ 		/       %p Patient bathroom
+/ 		/       %span.icon_span
+/ 		/         %span.icon_checked
+/ 		/       %p On-site pharmacy
+/ 		/   #providerDetails_providerDetailsTabOverview_divInsurance.tick_section{:style => "margin-right:0px;"}
+/ 		/     %span.h4-alternate
+/ 		/       %span Insurance
+/ 		/     %div
+/ 		/       %span.icon_span
+/ 		/         %span.icon_checked
+/ 		/       %p Private Patients Welcome
+/ 		/       %span.icon_span
+/ 		/         %span.icon_checked
+/ 		/       %p Dental Plans Accepted - Paperwork to be provided by patients
+/ 		/ #providerDetails_providerDetailsTabOverview_divClinic_services.BW_additionalInfo.BW_bordertop
+/ 		/   %span.h4-alternate
+/ 		/     %span Clinic Services
+/ 		/   %div
+/ 		/     %ul
+/ 		/     %span.icon_span
+/ 		/       %span.icon_checked>
+/ 		/       Emergency service
+/ 		/     %span.icon_span
+/ 		/       %span.icon_checked>
+/ 		/       Text message reminders
+/ 		/     %span.icon_span
+/ 		/       %span.icon_checked>
+/ 		/       Home visits
+/ 		/ #providerDetails_providerDetailsTabOverview_divTravel_services.BW_additionalInfo.BW_bordertop
+/ 		/   %span.h4-alternate
+/ 		/     %span Travel Services
+/ 		/   %div
+/ 		/     %ul
+/ 		/     %span.icon_span
+/ 		/       %span.icon_checked>
+/ 		/       Local travel - Complimentary shuttle bus service between Camden Medical Centre and Orchard MRT station
+/ 		/ #providerDetails_providerDetailsTabOverview_divLanguage.BW_additionalInfo.BW_bordertop
+/ 		/   %span
+/ 		/     %span Languages spoken
+/ 		/   %div
+/ 		/     %ul.languges
+/ 		/     %span.icon_span{:property => "language"}
+/ 		/       %span.icon_checked>
+/ 		/       Chinese
+/ 		/     %span.icon_span{:property => "language"}
+/ 		/       %span.icon_checked>
+/ 		/       English
+/ 		/     %span.icon_span{:property => "language"}
+/ 		/       %span.icon_checked>
+/ 		/       Malay
+/ 		/ #providerDetails_providerDetailsTabOverview_divAccreditations.BW_additionalInfo.BW_bordertop
+/ 		/   %span
+/ 		/     %span Accreditations
+/ 		/   .affiliation.vcard
+/ 		/     %ul
+/ 		/     %span.icon_span.fn.org
+/ 		/       %span.icon_checked>
+/ 		/       ACPCA - American Cleft Palate-Craniofacial Association (US) 
+/ 		/ .clear
+/ 		/ right ends here
+
+
+/ .content-wrapper
+/   .left_holder
+/     .provider_gallery
+/       .mainbox
+/         =link_to image_tag("plus/clinic/19-brochure.jpg"),"#"
+/       .caption
+/         %p{:style=>"text-align:center; font-weight:bolder; font-size:14px; "}
+/           = @service_provider.name
+/           Team
+/     .BW_opening{:id => ""}
+/       %h4
+/         %span Opening Hours
+/       .open_time{:content => "Mo 09:30-17:30", :property => "openingHours"}
+/         %span.day Mon
+/         %span.hour   9:30 -   5:30pm
+/       .open_time{:content => "Tu 09:30-17:30", :property => "openingHours"}
+/         %span.day Tue
+/         %span.hour   9:30 -   5:30pm
+/       .open_time{:content => "We 09:30-17:30", :property => "openingHours"}
+/         %span.day Wed
+/         %span.hour   9:30 -   5:30pm
+/       .open_time{:content => "Th 09:30-17:30", :property => "openingHours"}
+/         %span.day Thu
+/         %span.hour   9:30 -   5:30pm
+/       .open_time{:content => "Fr 09:30-17:30", :property => "openingHours"}
+/         %span.day Fri
+/         %span.hour   9:30 -   5:30pm
+/       .open_time{:content => "Sa 09:30-13:30", :property => "openingHours"}
+/         %span.day Sat
+/         %span.hour   9:30 -   1:30pm
+/       .open_time
+/         %span.day Sun
+/         %span.hour
+/     / bm opeinings ends
+/     #services_map_2{:style => "width:265px; height:250px"}
+/       %span.pseudoLink{:onclick => "JavaScript:wcBrochureTriggerTab('tab_map');"} 
+/       Click to see larger map for
+/       =@service_provider.name
+/     / bm maps ends here
+/   .right_holder
+/     #providerDetails_providerDetailsTabOverview_divTreatments.BW_treatment.BW_bordertop
+/       %span.icon
+/       .inner_content{:property => "medicalSpecialty", :typeof => "MedicalSpecialty"}
+/         %p{:style=>"margin:0px;"}
+/           %b{:property => "name"}
+/             Plastic Surgeon Consultation
+/             %span
+/               %b Price On Request
+/         %div{:property => "description"}
+/     #providerDetails_providerDetailsTabOverview_divReviews.BW_Feedback.BW_bordertop
+/       %span.icon
+/       .inner_content{:style=>"width: 300px;"}
+/         %span.h4-alternate-wos
+/           %span
+/             %span{:property => "aggregateRating", :typeof => "AggregateRating"}>
+/               %span.rateholder
+/                 %span{:content => "100", :property => "bestRating"}
+/                 %span{:content => "0", :property => "worstRating"}
+/                 %span.rate.rate90{:content => "90", :property => "ratingValue"}
+/                 = succeed "from" do
+/                   %span{:content => "1", :property => "ratingCount"}
+/                 1 review
+/             Reviews & Feedback
+/         .mini_review
+/           .review_text
+/             %span Extremely professional - I happened to be quite lucky as there was a team of Doctors who w...
+/             %span.reviewer Sat, Malaysia, 22 Apr 13
+/         %div{:style => "clear:both"}
+/         .details_bar
+/           %span.com  
+/           %a.brochure_link.rev{:href => "JavaScript:void(wcBrochureTriggerTab('tab_reviews'));", :title => "1 users have posted a review of the clinic on WhatClinic.com"}
+/             %span.bubble> 1
+/             Review
+/           %a.brochure_link.rec{:href => "JavaScript:void(wcBrochureTriggerTab('tab_reviews'));", :title => "2 users have recommended this clinic"}
+/             %span.bubble> 2
+/             Recommended
+/     #divAbout.description.BW_about.BW_bordertop
+/       %span.icon
+/       .inner_content{:style=>"width: 300px; text-align:justify;"}
+/         %span.h4-alternate-wos
+/           %span
+/             About
+/             =@service_provider.name 
+/             Team
+/         %div{:property => "description"}
+/           %p
+/             =@service_provider.review_text
+/           %span.button.contact_green.jq_contact{:linkrel => "cid=1&rid=2&dcid=230&location=4312&rpos=0&sids=105010&clinicid=117419&link=4", :trackrel => "4"}
+/             Get Quote
+/         / .accred_images
+/         /   %img{:src => "/images/accreditations/453_american_cleft_palate-craniofacial_association.png", :title => "Singapore International Cleft-Craniofacial Team is a member of the American Cleft Palate-Craniofacial Association"}/
+/     .BW_special.BW_bordertop
+/       #providerDetails_providerDetailsTabOverview_divClinicTypes.type.tick_section{:title => "business"}
+/         %span.h4-alternate
+/           %span Provides
+/         .category
+/           %span.icon_span
+/             %span.icon_checked
+/           %p Orthodontic Services
+/           %span.icon_span
+/             %span.icon_checked
+/           %p Ear Nose and Throat
+/           %span.icon_span
+/             %span.icon_checked
+/           %p Plastic Surgery
+/           %span.icon_span
+/             %span.icon_checked
+/           %p Psychology
+/         %a{:href => "Javascript:wcBrochureTriggerTab('tab_prices');"} Treatments & prices
+/       #providerDetails_providerDetailsTabOverview_divPremises_services.tick_section
+/         %span.h4-alternate
+/           %span Premises
+/         %div
+/           %span.icon_span
+/             %span.icon_checked
+/           %p Parking
+/           %span.icon_span
+/             %span.icon_checked
+/           %p Accessible to disabled people
+/           %span.icon_span
+/             %span.icon_checked
+/           %p Public transport access
+/           %span.icon_span
+/             %span.icon_checked
+/           %p Wheelchair accessible toilet
+/           %span.icon_span
+/             %span.icon_checked
+/           %p Access without steps
+/           %span.icon_span
+/             %span.icon_checked
+/           %p Disabled parking
+/           %span.icon_span
+/             %span.icon_checked
+/           %p Patient bathroom
+/           %span.icon_span
+/             %span.icon_checked
+/           %p On-site pharmacy
+/       #providerDetails_providerDetailsTabOverview_divInsurance.tick_section{:style => "margin-right:0px;"}
+/         %span.h4-alternate
+/           %span Insurance
+/         %div
+/           %span.icon_span
+/             %span.icon_checked
+/           %p Private Patients Welcome
+/           %span.icon_span
+/             %span.icon_checked
+/           %p Dental Plans Accepted - Paperwork to be provided by patients
+/     #providerDetails_providerDetailsTabOverview_divClinic_services.BW_additionalInfo.BW_bordertop
+/       %span.h4-alternate
+/         %span Clinic Services
+/       %div
+/         %ul
+/         %span.icon_span
+/           %span.icon_checked>
+/           Emergency service
+/         %span.icon_span
+/           %span.icon_checked>
+/           Text message reminders
+/         %span.icon_span
+/           %span.icon_checked>
+/           Home visits
+/     #providerDetails_providerDetailsTabOverview_divTravel_services.BW_additionalInfo.BW_bordertop
+/       %span.h4-alternate
+/         %span Travel Services
+/       %div
+/         %ul
+/         %span.icon_span
+/           %span.icon_checked>
+/           Local travel - Complimentary shuttle bus service between Camden Medical Centre and Orchard MRT station
+/     #providerDetails_providerDetailsTabOverview_divLanguage.BW_additionalInfo.BW_bordertop
+/       %span
+/         %span Languages spoken
+/       %div
+/         %ul.languges
+/         %span.icon_span{:property => "language"}
+/           %span.icon_checked>
+/           Chinese
+/         %span.icon_span{:property => "language"}
+/           %span.icon_checked>
+/           English
+/         %span.icon_span{:property => "language"}
+/           %span.icon_checked>
+/           Malay
+/     #providerDetails_providerDetailsTabOverview_divAccreditations.BW_additionalInfo.BW_bordertop
+/       %span
+/         %span Accreditations
+/       .affiliation.vcard
+/         %ul
+/         %span.icon_span.fn.org
+/           %span.icon_checked>
+/           ACPCA - American Cleft Palate-Craniofacial Association (US) 
+/     .clear
+/     / right ends here

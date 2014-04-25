@@ -4,33 +4,34 @@
 	}
 - question_body = find_and_preserve(shapado_auto_link(markdown(@question.body.present? ? @question.body : @question.title)))
 
-.clearer.hide-responsive  
+.clearer.hide-responsive
 %br.hide-responsive/
 #main-wrapper-dark
 	.main-content-left
 		.page-content.review.single-post
-			%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+			%link{:href => "../experimental/images/misc1-160x160.jpg", :rel => "image_src"}/
 			.overview-wrapper
 				/ %h1.title Login
-				.overview-new.nopadding-top
+				.overview-new.set-background.nopadding-top
 					.overview1.nopadding-top
-						.section-bottom1
+						.section-bottom1.set-color
 							.category.qa-q-item-tags
 								.catname
 									Question
-								.category-arrow 
+								.category-arrow
 						.create-question-button
-							%a.button_link{href: ask_question_experimental_index_path}
-								%span Create New Question
-								
+							/ %a.button_link{href: ask_question_experimental_index_path}
+							%a.contact-button.contact-button-single.next{href: "/questions/ask-a-question", style: "opacity: 1;"}
+								%span Ask A New Question
+
 					.content-panel#set-top
-						.the-content
+						.the-content.set-border-content
 							#bbpress-forums.set-question
-								%ul#topic-1343-replies.forums.bbp-replies
+								%ul#topic-1343-replies.forums.bbp-replies.set-border-content
 									%li.bbp-body
 										#post-1343.bbp-reply-header
 											.bbp-meta
-												
+
 												%span.bbp-reply-post-date PostedOn: #{@question.created_at.to_datetime.strftime("%d %b %Y - %I:%M %p")}
 												/ %a.bbp-reply-permalink{:href => "http://www.industrialthemes.com/made/bbpress/topic/super-sticky-topic-inside-bbpress-forum/#post-1343", :title => "Super Sticky Topic Inside bbPress Forum"} #1343
 											/ .bbp-meta
@@ -49,13 +50,13 @@
 												/ .bbp-author-role Keymaster
 											/ .bbp-reply-author
 											.bbp-reply-content
-												%h6.title  
+												%h6.title
 													=@title.upcase
 											.bbp-reply-content.services-top-adj
 												%p= @question.body.html_safe rescue ""
 											/ .bbp-reply-content
 										/ .reply
-							
+
 						.excerpt-new.justify-content#show245
 							= render "experimental/partials/comments_ajax_partial"
 						.panel-comments.set-left{:id => "question-comment-panel"}
@@ -67,13 +68,13 @@
 										%img.avatar.user-1227-avatar.avatar-50.photo{:alt => "Profile picture of zicrainnyRV", :height => "30", :src => "http://gravatar.com/avatar/5a0a1a5e96f190c339221f66d7b09b00?d=http://www.industrialthemes.com/made/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg&s=50&r=G", :width => "30"}/
 									= f.text_area :body, :size=>"0", :placeholder => "write a comment...", :id=> "enter-comment"
 						.clear
-					
+				%br.clearer/
 				.show-questions-answer
 					= render :partial => "answers/plus_answer"
 		%br.clearer/
 		.main-content-left#your-answer
 			.page-content.review.single-post
-				%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+				%link{:href => "../experimental/images/misc1-160x160.jpg", :rel => "image_src"}/
 				.review-content
 					.ribbon-shadow-left
 					.section-wrapper
@@ -84,56 +85,45 @@
 							.section-for-header
 								/%i.icon-vcard
 								Your Answer
-					.section-arrow 
+					.section-arrow
 					.overview-wrapper
 						/ %h1.title Login
-						.overview-new.nopadding-top
-							.overview1.nopadding-top
-								.excerpt-new.justify-content
-									%p.filter-content-new
-										/ %h1.title 
-										/   =@title.upcase
-									%p
-										
-										= form_for([@question,@answer],:method=>:post,:url=>question_answers_path(@question.slug),remote: true,:html => {:multipart => true,:name=>'answer_form',:id=>'answer_form',:class=>'exp-contact-form'}) do |f|
-											=# f.text_area :body, :class => "wysiwyg_editor",:size=>"40x20"
-											=# f.label :body, "Your Answer", :class=>"label"
-											=# f.text_area :body, :class => "text-default wysiwyg_editor textarea-class"
-											- if current_user.use_gravatar?
-												=link_to image_tag avatar_user_path(current_user),:size=>'30x30'
-											- else
-												%img.avatar.user-1227-avatar.avatar-50.photo{:alt => "Profile picture of zicrainnyRV", :height => "50", :src => "http://gravatar.com/avatar/5a0a1a5e96f190c339221f66d7b09b00?d=http://www.industrialthemes.com/made/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg&s=50&r=G", :width => "50"}/
-											=# f.text_area :body, :size=>"20x3", :style => "margin: 10px; width: 560px;"
-											.textarea-wrapper
-												= f.text_area :body, :size=>"0", :placeholder => "write your answer...", :class=> "textarea"
-												.post-actions
-													- if current_user.present?
-														.logged-in.auth-section
-															%section
-																.temp-post.btn
-																	%button.btn.disqus-btn{:id=>"question-ans"}
-																		Post as
-																		%span{"data-role" => "username"} 
-																			= current_user.login
-											/ = render :partial => 'shared/rich_text_partial'
-											%br.clearer/
-											/ %p
-											/ 	= link_to "<i class='icon-paper-plane'></i>Post your Answer".html_safe,"javascript:void(0)", :class => "submit-button", :id => "edit-user-link",:title => "Post your Answer",:onclick=>"document.answer_form.submit();"
-					/ 	.contact-section-bottom-button
+						.overview-new.no-background
+							/ .overview1.nopadding-top
+							.excerpt-new.justify-content
+								%p.filter-content-new
+									/ %h1.title
+									/   =@title.upcase
+								%p
 
-					/ 		/ = link_to "Cancel".html_safe, question_path(@question), :class=>"contact-button", :id=> "align"
-					/ 		/ = link_to "Submit".html_safe, "javascript:void(0);", :id => "edit-user-link", :class=>"contact-button", :id=> "align",:title => "Post your Answer",:onclick=>"document.answer_form.submit();"
-					/ %br.clearer/
-					/ %br.clearer/
-					/ .signoff-wrapper
-					/ 	.signoff Not the answer you're looking for? Browse other questions tag related to the question or #{link_to "create page for question", "/question/ask_a_question"}.
-		
-		%br.clearer/
-		%br
-		%br
+									= form_for([@question,@answer],:method=>:post,:url=>question_answers_path(@question.slug),remote: true,:html => {:multipart => true,:name=>'answer_form',:id=>'answer_form',:class=>'exp-contact-form'}) do |f|
+										=# f.text_area :body, :class => "wysiwyg_editor",:size=>"40x20"
+										=# f.label :body, "Your Answer", :class=>"label"
+										=# f.text_area :body, :class => "text-default wysiwyg_editor textarea-class"
+										- if current_user.use_gravatar?
+											=link_to image_tag avatar_user_path(current_user),:size=>'50x50'
+										- else
+											%img.avatar.user-1227-avatar.avatar-50.photo{:alt => "Profile picture of zicrainnyRV", :height => "50", :src => "http://gravatar.com/avatar/5a0a1a5e96f190c339221f66d7b09b00?d=http://www.industrialthemes.com/made/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg&s=50&r=G", :width => "50"}/
+										=# f.text_area :body, :size=>"20x3", :style => "margin: 10px; width: 560px;"
+										.textarea-wrapper
+											= f.text_area :body, :size=>"0", :placeholder => "write your answer...", :class=> "textarea"
+											.post-actions
+												- if current_user.present?
+													.logged-in.auth-section
+														%section
+															.temp-post.btn
+																%button.btn.disqus-btn{:id=>"question-ans"}
+																	Post as
+																	%span{"data-role" => "username"}
+																		= current_user.login
+											/ = render :partial => 'shared/rich_text_partial'
+											/ %br.clearer/
+					%br.clearer/
+
+
 		.main-content-left#set-page
 			.page-content.review.single-post
-				%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+				%link{:href => "../experimental/images/misc1-160x160.jpg", :rel => "image_src"}/
 				.review-content
 					.ribbon-shadow-left
 					.section-wrapper
@@ -142,30 +132,30 @@
 								%a{:href => question_path(@question, :anchor => "disqus_thread")} Link
 							/ making title stronger
 							.section-for-header
-								Disqus
-					.section-arrow 
+								Disqus Comments
+					.section-arrow
+					%br.clearer/
 					.overview-wrapper
-						.overview-new
+						.overview-new.no-background
 							.left-panel
 								#disqus_thread
 								:javascript
 									/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-									var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
-
+									var disqus_shortname = 'beingmedev'; // required: replace example with your forum shortname
 									/* * * DON'T EDIT BELOW THIS LINE * * */
 									(function() {
 										var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-										dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js'; 
-										(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); 
+										dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+										(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 									})();
-								%noscript 
-									Please enable JavaScript to view the 
-									%a{:href => "http://disqus.com/?ref_noscript"} comments powered by Disqus
-								%a.dsq-brlink{:href => "http://disqus.com"}
+								%noscript
+									Please enable JavaScript to view the
+									%a{href: "http://disqus.com/?ref_noscript"} comments powered by Disqus.
+								%a.dsq-brlink{href: "http://disqus.com"}
 									comments powered by
 									%span.logo-disqus Disqus
 								:javascript
-									var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
+									var disqus_shortname = 'beingmedev'; // required: replace example with your forum shortname
 									// required: replace example with your forum shortname
 									(function () {
 										var s = document.createElement('script'); s.async = true;
@@ -173,8 +163,9 @@
 										s.src = '//'+disqus_shortname+'.disqus.com/count.js';
 										(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
 									}());
-		%br.clearer/	
-	
+				%br.clearer/
+		%br.clearer/
+
 
 .sidebar
 	- if current_user.nil?
@@ -187,11 +178,11 @@
 	/ social login box
 	= render "experimental/partials/social_login_box"
 	/ member box
-	= render "experimental/partials/member_box"
+	=# render "experimental/partials/member_box"
 	/rating box
-	= render "experimental/partials/rating_box"
+	=# render "experimental/partials/rating_box"
 	/rating box
-	= render "experimental/partials/rating_box2"
+	=# render "experimental/partials/rating_box2"
 	/ left bar
 	/ = render "experimental/partials/left_bar"
 	/widget top
@@ -199,9 +190,9 @@
 	/ .clearer.hide-responsive
 	/ %br.clearer/
 	/ newly reviewd
-	= render "experimental/partials/newly_reviewed"
+	=# render "experimental/partials/newly_reviewed"
 	/popular box
-	= render "experimental/partials/popular_box"
+	=# render "experimental/partials/popular_box"
 	/banner box
 	= render "experimental/partials/banner_box"
 
@@ -238,7 +229,7 @@
 		Editor.setup(jQuery(".markdown_editor, .wysiwyg_editor"));
 		var tabContainers = jQuery('div.tabs4 > div');
 			tabContainers.hide().filter(':first').show();
-			
+
 			jQuery('div.tabs4 ul.tabNavigation a').click(function () {
 				tabContainers.hide();
 				tabContainers.filter(this.hash).show();
@@ -259,14 +250,14 @@
 			//   var idTakerComment = thisVar.attr("data-tag");
 			//   hideAnswerComment(idTakerComment);
 			//   return false;
-			// } 
+			// }
 			// else{
 				jQuery('#cancel-question-comment-link').trigger("click");
 				return false;
 			// }
-			
+
 		}
-		
+
 	});
 	jQuery("#answer_body").click(function(){
 		jQuery(".post-actions").show()
@@ -280,12 +271,14 @@
 				if(textVal.length <= 0){}
 				else{
 					jQuery('form#answer_form').submit();
-					jQuery(this).attr("value", "");					
+					jQuery(this).attr("value", "");
+					jQuery('#answer_body').val('').trigger('autosize.resize');
+
 					return false;
 				}
 			}
 		});
-		
+
 		jQuery('#question-ans').click(function(e) {
 			e.preventDefault();
 			textVal=jQuery.trim(jQuery("#answer_body").val());
@@ -293,6 +286,9 @@
 			else{
 				jQuery('form#answer_form').submit();
 				jQuery(this).attr("value", "");
+				jQuery('#answer_body').val('').trigger('autosize.resize');
+				return false;
 			}
 		})
+		jQuery('#answer_body').autosize();
 	});

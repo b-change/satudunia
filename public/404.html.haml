@@ -1,66 +1,87 @@
-.clearer.hide-responsive  
+.clearer.hide-responsive
 %br.hide-responsive/
 .main-content-left
-	/ .page-content.review
-	.page-content.review.single-post
-		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
-		.ribbon-shadow-left  
-		.section-wrapper
-			.section
-				404 - Page Not Found
-		
-		.section-arrow 
-	.page-content.review
-		.overview-new
-			.left-panel 
-				.content-panel#set-page
-					%h1.error That just happened.
-					%p
-						We could not find the page that you requested. It is possible that it was deleted since the last time you viewed it, or that you typed in the wrong URL. In any case, we want you to find what you are looking for, so we offer you the following options:
-					%p
-					.home
-						1. Go back to the
-						%a{:href => "/"} Home
-						and start your journey over.
-					.menu 2. Use the menu above to locate the section you wish to view.
-					.search 3. Search our site:
-					%br/
-					.searchform
-						/ SEARCH
-						%form#search404{:action => "/routing_error", :method => "get"}
-							%input#s{:name => "query", :onblur => "if (this.value == '') {this.value = 'search';}", :onfocus => "if (this.value == 'search') {this.value = '';}", :type => "text", :value => "search"}/
-					.note
-						Enter keyword(s) and press enter
-		= render 'experimental/partials/all_urls'
-		/ - if @routes!=nil && @routes.count==0
-		/ 	= render "experimental/partials/empty_record_message.html"
-		
-	%br/
-.sidebar
-	/profile box
-	= render "experimental/partials/profile_box"
-	/ left bar
-	= render "experimental/partials/left_bar"
-	/widget top
-	= render "experimental/partials/widget_top"
-	/ .clearer.hide-responsive
-	/ %br.clearer/
-	/ newly reviewd
-	= render "experimental/partials/newly_reviewed"
-	/popular box
-	= render "experimental/partials/popular_box"
+  / .page-content.review
+  .page-content.review.single-post
+    %link{:href => "../experimental/images/misc1-160x160.jpg", :rel => "image_src"}/
+    .ribbon-shadow-left
+    .section-wrapper
+      .section
+        404 - Page Not Found
 
-/ .clearer.hide-responsive  
+    .section-arrow
+  .page-content.review
+    .overview-new
+      .left-panel
+        .content-panel#set-page
+          %h1.error That just happened.
+          %p
+            We could not find the page that you requested. It is possible that it was deleted since the last time you viewed it, or that you typed in the wrong URL. In any case, we want you to find what you are looking for, so we offer you the following options:
+          %p
+          .home
+            1. Go back to the
+            %a{:href => "/"} Home
+            and start your journey over.
+          .menu 2. Use the menu above to locate the section you wish to view.
+          .menu-contact
+            = image_tag ("/assets/experimental/images/contact1.jpg")
+            .menu-list
+              3.
+              = link_to "Contact us", "contact-us"
+
+          .search 4. Search our site:
+          %br/
+          .searchform
+            / SEARCH
+            %form#search404{:action => "/routing_error", :method => "get"}
+              %input#s{:name => "query", :onblur => "if (this.value == '') {this.value = 'search';}", :onfocus => "if (this.value == 'search') {this.value = '';}", :type => "text", :value => "search"}/
+          .note
+            Enter keyword(s) and press enter
+    = render 'experimental/partials/all_urls'
+    / - if @routes!=nil && @routes.count==0
+    /   = render "experimental/partials/empty_record_message.html"
+
+  %br/
+.sidebar
+  - if current_user.nil?
+    /login box
+    = render "experimental/partials/login_box"
+  -else
+    /profile box
+    = render "experimental/partials/profile_box"
+
+  / social login box
+  = render "experimental/partials/social_login_box"
+  / member box
+  / = render "experimental/partials/member_box"
+  /rating box
+  = render "experimental/partials/rating_box"
+  /rating box
+  = render "experimental/partials/rating_box2"
+  / left bar
+  / = render "experimental/partials/left_bar"
+  /widget top
+  = render "experimental/partials/widget_top"
+  / .clearer.hide-responsive
+  / %br.clearer/
+  / newly reviewd
+  / = render "experimental/partials/newly_reviewed"
+  /popular box
+  / = render "experimental/partials/popular_box"
+  /banner box
+  = render "experimental/partials/banner_box"
+
+/ .clearer.hide-responsive
 / %br.hide-responsive/
 / #main-wrapper-dark
 / .main-content-left
 /   .page-content.review.single-post
 /     %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
-/     .ribbon-shadow-left  
+/     .ribbon-shadow-left
 /     .section-wrapper
 /       .section
 /         404 - Page Not Found
-/     .section-arrow  
+/     .section-arrow
 /   .page-content.review
 /     .overview-wrapper
 /       .overview-new

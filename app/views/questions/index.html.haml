@@ -1,8 +1,8 @@
-.clearer.hide-responsive  
+.clearer.hide-responsive
 %br.hide-responsive/
 .main-content-left
 	.page-content.review.single-post
-		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+		%link{:href => "../experimental/images/misc1-160x160.jpg", :rel => "image_src"}/
 		.review-content
 			.ribbon-shadow-left
 			.section-wrapper
@@ -13,8 +13,8 @@
 					/ making title stronger
 					.section-for-header
 						/%i.icon-vcard
-						Questions and Answers  
-			.section-arrow 
+						Questions and Answers
+			.section-arrow
 	#content.page-content
 		%form#members-directory-form.dir-form{:action => "", :method => "post"}
 			/ %h3 Questions
@@ -25,6 +25,7 @@
 				%input#members_search_submit{:name => "members_search_submit", :type => "reset", :value => "x", :style=>"opacity:1;"}/
 		.create-question-button.create-button
 			%a.button_link{href: ask_question_experimental_index_path}
+
 				%span Create New Question
 		.item-list-tabs.activity-type-tabs.table-margin{:role => "navigation"}
 			%ul
@@ -39,7 +40,7 @@
 					%label{:for => "members-order-by"} Order By:
 					%select#activity-filter-by.activity-filter
 						%option{:value => "newest-question-show"} Newest
-						%option{:value => "hot-question-show"} Hot 
+						%option{:value => "hot-question-show"} Hot
 						%option{:value => "featured-question-show"} Featured
 						%option{:value => "votes-question-show"} Votes
 						%option{:value => "unanswered-question-show"} Unanswered
@@ -50,9 +51,9 @@
 			%label
 				%input#question_under_search.search_textbox_height{:name => "s", :placeholder => "Search Questions...", :type => "text"}/
 			/ %input#members_search_submit{:name => "members_search_submit", :type => "submit", :value => "Search"}/
-			%input#members_search_submit_below{:name => "members_search_submit", :type => "reset", :value => "x", :style=>"opacity:1;"}/	
+			%input#members_search_submit_below{:name => "members_search_submit", :type => "reset", :value => "x", :style=>"opacity:1;"}/
 	.page-content.review.single-post
-		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+		%link{:href => "../experimental/images/misc1-160x160.jpg", :rel => "image_src"}/
 		.review-content
 			.ribbon-shadow-left
 			.section-wrapper
@@ -63,31 +64,31 @@
 					.section-for-header
 						/%i.icon-vcard
 						Other Topics
-			.section-arrow 
+			.section-arrow
 	/ .cat-menu.tax{:style=>"margin-top:-30px"}
 	/ 	%ul#menu-sub-menu.menu
 	/ 		= render "experimental/partials/subnavigation/questions_subnavigation"
-	
+
 	.post-loop.directory
 		.post-panel.wide{:style=>"margin-top:-25px"}
 			.header
 				.more
 					%a{:href => "#"} More
 				%h2{:style => "background:url(http://www.industrialthemes.com/made/wp-content/themes/made/images/review-product-dark.png) no-repeat 0px 0px;"} Topics
-				.arrow-catpanel-bottom  
-			%a.title.first{:href => "/tags/Disclosure", :style => "color:#262626"} Disclosure
-			%a.title.alt{:href => "/tags/drugs", :style => "color:#262626"} Drugs 
-			%a.title{:href => "/tags/first-diagnosis", :style => "color:#262626"} First Diagnosis
-			%a.title.alt{:href => "/tags/maintaining-treatment", :style => "color:#262626"} Maintaining Treatment
-			%a.title{:href => "/tags/relationships", :style => "color:#262626"} Relationships
-			%a.title.alt{:href => "/tags/sex", :style => "color:#262626"} Sex 
-			%a.title{:href => "/tags/starting-medication", :style => "color:#262626"} Starting Medication
-			%a.title.alt{:href => "/tags/starting-treatment", :style => "color:#262626"} Starting Treatment
-			%a.title{:href => "/tags/travel", :style => "color:#262626"} Travel
-			%a.title.alt.last{:href => "/tags/well-being", :style => "color:#262626"} Well-being
+				.arrow-catpanel-bottom
+			%a.title.first{:href => "/tags/coming_out", :style => "color:#9A9A9A"} Coming Out
+			%a.title.alt{:href => "/tags/education", :style => "color:#9A9A9A"} Education
+			%a.title{:href => "/tags/employment", :style => "color:#9A9A9A"} Employment
+			%a.title.alt{:href => "/tags/health", :style => "color:#9A9A9A"} Health
+			%a.title{:href => "/tags/relationships", :style => "color:#9A9A9A"} Relationships
+			%a.title.alt{:href => "/tags/sex", :style => "color:#9A9A9A"} Sex
+			/ %a.title{:href => "/tags/starting-medication", :style => "color:#9A9A9A"} Starting Medication
+			/ %a.title.alt{:href => "/tags/starting-treatment", :style => "color:#9A9A9A"} Starting Treatment
+			/ %a.title{:href => "/tags/travel", :style => "color:#9A9A9A"} Travel
+			/ %a.title.alt.last{:href => "/tags/well-being", :style => "color:#9A9A9A"} Well-being
 		%br.clearer/
 	.page-content.review.single-post
-		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+		%link{:href => "../experimental/images/misc1-160x160.jpg", :rel => "image_src"}/
 		.review-content
 			.ribbon-shadow-left
 			.section-wrapper
@@ -96,31 +97,30 @@
 						%a{:href => questions_path(:anchor => "disqus_thread")} Link
 					/ making title stronger
 					.section-for-header
-						Disqus
-			.section-arrow 
+						General Comments
+			.section-arrow
+			%br.clearer/
 			.overview-wrapper
-				.overview-new
+				.overview-new.no-background
 					.left-panel
 						#disqus_thread
 						:javascript
 							/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-							var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
-							
-
+							var disqus_shortname = 'beingmedev'; // required: replace example with your forum shortname
 							/* * * DON'T EDIT BELOW THIS LINE * * */
 							(function() {
 								var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-								dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js'; 
-								(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); 
+								dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+								(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 							})();
-						%noscript 
-							Please enable JavaScript to view the 
-							%a{:href => "http://disqus.com/?ref_noscript"} comments powered by Disqus
-						%a.dsq-brlink{:href => "http://disqus.com"}
+						%noscript
+							Please enable JavaScript to view the
+							%a{href: "http://disqus.com/?ref_noscript"} comments powered by Disqus.
+						%a.dsq-brlink{href: "http://disqus.com"}
 							comments powered by
 							%span.logo-disqus Disqus
 						:javascript
-							var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
+							var disqus_shortname = 'beingmedev'; // required: replace example with your forum shortname
 							// required: replace example with your forum shortname
 							(function () {
 								var s = document.createElement('script'); s.async = true;
@@ -128,7 +128,8 @@
 								s.src = '//'+disqus_shortname+'.disqus.com/count.js';
 								(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
 							}());
-	%br.clearer/
+			%br.clearer/
+
 
 .sidebar
 	- if current_user.nil?
@@ -141,11 +142,11 @@
 	/ social login box
 	= render "experimental/partials/social_login_box"
 	/ member box
-	= render "experimental/partials/member_box"
+	/ = render "experimental/partials/member_box"
 	/rating box
-	= render "experimental/partials/rating_box"
+	=# render "experimental/partials/rating_box"
 	/rating box
-	= render "experimental/partials/rating_box2"
+	=# render "experimental/partials/rating_box2"
 	/ left bar
 	/ = render "experimental/partials/left_bar"
 	/widget top
@@ -153,18 +154,19 @@
 	/ .clearer.hide-responsive
 	/ %br.clearer/
 	/ newly reviewd
-	= render "experimental/partials/newly_reviewed"
+	/ = render "experimental/partials/newly_reviewed"
 	/popular box
-	= render "experimental/partials/popular_box"
+	=# render "experimental/partials/popular_box"
 	/banner box
 	= render "experimental/partials/banner_box"
+
 :css
 	#question_bottom_search {
 		margin-top: -5px ;
 	}
 
 :javascript
-	// get ajax data by sort 
+	// get ajax data by sort
 	Experimental.getAjaxData(" change","#activity-filter-by","/question_ajax","GET","question_ajax","question_ajax",".loader","","","","search_questions");
 	//get ajax data by sort  using pagination
 	Experimental.getAjaxData("click","#questions_pagination .pagination-ajax","/question_ajax","GET","question_ajax","question_ajax",".loader","","","yes","#activity-filter-by");
@@ -172,7 +174,7 @@
 		jQ('#pagination-digg  a').live('click',function(e){
 			e.preventDefault();
 		})
-		
+
 	})
 
 	jQuery(document).ready(function(){
@@ -181,20 +183,20 @@
 			var ques_search =jQuery.trim(v);
 			e.preventDefault();
 				jQuery(".loader").addClass("ajax-loader");
-				jQuery.ajax({           
+				jQuery.ajax({
 					url:'/question_ajax',
 						data:{ type: ques_search,queryData:"queryData",ques:"search_questions",idLoad: "question_ajax",nameOfPartial:"question_ajax",page:""},
 						dataType:"script",
-						error:function(errorObject){    
+						error:function(errorObject){
 
 					},
 					success:function(successObject){
 					jQuery(".loader").removeClass("ajax-loader");
-						
+
 					}
 				});
 		})
-		// get ajax data by sort 
+		// get ajax data by sort
 			Experimental.getAjaxData("click ","#members_search_submit, #members_search_submit_below","/question_ajax","GET","question_ajax","question_ajax",".loader","","","","search_questions");
 			//get ajax data by sort  using pagination
 			Experimental.getAjaxData("click","#questions_pagination .pagination-ajax","/question_ajax","GET","question_ajax","question_ajax",".loader","","","yes","#activity-filter-by");
@@ -205,7 +207,7 @@
 			})
 		jQuery('#members_search_submit_below').click(function(){
 			jQuery('#question_under_search').val("");
-		})	
+		})
 	});
 
 

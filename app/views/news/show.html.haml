@@ -3,7 +3,7 @@
 %br.hide-responsive/
 .main-content-left
 	.page-content.review.single-post
-		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+		%link{:href => "../experimental/images/misc1-160x160.jpg", :rel => "image_src"}/
 		.review-content
 			.ribbon-shadow-left
 			.section-wrapper
@@ -20,34 +20,36 @@
 					= @news.news_title
 				.section-arrow
 			/ post by removed from here
-			.overview-new
-				.section-bottom1
-					- if current_user && !(@news.rated_by? current_user)
-						.rating-news#user-news-rating{:id => @news.id}
-					- else
-						.rating-news#no-login-user-news-rating{:id => @news.id}
-					.category.qa-q-item-tags
-						.catname
-							#{@news.created_at.strftime("%d %b %Y")}
-						.category-arrow
-				.left-panel
-					.the-content.justify-content			
-						.userDescription
-							.basicInfo{:style => "margin-left: 10px !important"}
-								%h2
-									= @news.news_title
-								%small
-									by #{@news.user.name} on #{@news.created_at.strftime("%d %b %Y - %I:%M %p")}
-						- if @news.has_news_image?
-							= image_tag news_image_path(@news,"small"), :alt => @news.slug, :class => 'gravatar', :style => "margin: 10px", :size=>'500x400'
-						#service_information{:style => "margin: 10px"}
-							= @news.news_body.html_safe
-		
+			.overview-wrapper
+				.overview-new.no-background
+					.section-bottom1
+						- if current_user && !(@news.rated_by? current_user)
+							.rating-news#user-news-rating{:id => @news.id}
+						- else
+							.rating-news#no-login-user-news-rating{:id => @news.id}
+						.category.qa-q-item-tags
+							.catname
+								#{@news.created_at.strftime("%d %b %Y")}
+							.category-arrow
+					.left-panel
+						.the-content.justify-content			
+							.userDescription
+								.basicInfo{:style => "margin-left: 10px !important"}
+									%h2
+										= @news.news_title
+									%small
+										by #{@news.user.name} on #{@news.created_at.strftime("%d %b %Y - %I:%M %p")}
+							- if @news.has_news_image?
+								= image_tag news_image_path(@news,"small"), :alt => @news.slug, :class => 'gravatar', :style => "margin: 10px", :size=>'500x400'
+							#service_information{:style => "margin: 10px"}
+								= @news.news_body.html_safe
 			
-			/ authorbox box partial 
-			= render "news/author_box"
-			/ related box partial 
-			= render "news/related_box"
+			%br.clearer/
+			.content-panel.post-loop
+				/ authorbox box partial 
+				= render "news/author_box"
+				/ related box partial 
+				= render "news/related_box"
 			.clearer.hide-responsive  
 			%br.hide-responsive/
 /side bar
@@ -62,7 +64,7 @@
 	/ social login box
 	= render "experimental/partials/social_login_box"
 	/ member box
-	= render "experimental/partials/member_box"
+	/ = render "experimental/partials/member_box"
 	/rating box
 	= render "experimental/partials/rating_box"
 	/rating box
@@ -74,7 +76,7 @@
 	/ .clearer.hide-responsive
 	/ %br.clearer/
 	/ newly reviewd
-	= render "experimental/partials/newly_reviewed"
+	/ = render "experimental/partials/newly_reviewed"
 	/popular box
 	= render "experimental/partials/popular_box"
 	/banner box

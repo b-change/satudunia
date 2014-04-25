@@ -34,13 +34,28 @@
             .form-row.row-fluid
               .span12
                 .row-fluid
-                  = form.label "Description", :class => "form-label span4"
-                  = form.text_area :description, :class => "span8"
+                  = form.label "Type", :class => "form-label span4"
+                  = form.text_area :type, :class => "span8"
+            .form-row.row-fluid
+              .span12
+                .row-fluid
+                  = form.label "Contact person", :class => "form-label span4"
+                  = form.text_field :contact, :class => "span8"
+            .form-row.row-fluid
+              .span12
+                .row-fluid
+                  = form.label "Languages", :class => "form-label span4"
+                  = form.text_field :languages, :class => "span8"
             .form-row.row-fluid
               .span12
                 .row-fluid
                   = form.label "Address", :class => "form-label span4"
                   = form.text_field :address, :class => "span8"
+            .form-row.row-fluid
+              .span12
+                .row-fluid
+                  = form.label "City", :class => "form-label span4"
+                  = form.text_field :city, :class => "span8"
             .form-row.row-fluid
               .span12
                 .row-fluid
@@ -54,13 +69,18 @@
             .form-row.row-fluid
               .span12
                 .row-fluid
+                  = form.label "Email", :class => "form-label span4"
+                  = form.text_field :email, :class => "span8"
+            .form-row.row-fluid
+              .span12
+                .row-fluid
                   = form.label "Website", :class => "form-label span4"
                   = form.text_field :url, :class => "span8"
             .form-row.row-fluid
               .span12
                 .row-fluid
-                  = form.label "Email", :class => "form-label span4"
-                  = form.text_field :email, :class => "span8"
+                  = form.label "Services Offered", :class => "form-label span4"
+                  = form.text_field :services, :class => "span8"
             .form-row.row-fluid
               .span12
                 .row-fluid
@@ -79,22 +99,26 @@
             %tr
               %th
                 Name
-              %th{:width => "30%"}
-                Description
-              %th{:width => "20%"}
+              %th
+                Type
+              %th
+                Contact person
+              %th
+                Languages
+              %th{:width => "100%"}
                 Address
+              %th
+                City
               %th
                 Country
               %th
                 Telephone
               %th
+                Email
+              %th
                 Website
               %th
-                Email
-              %th 
-                Category
-              %th{:width => "5%"}
-                Action
+                Services offered
           %tbody
             -@providers.each_with_index do |provider|
               = render :partial => "providers/provider", :object => provider
@@ -108,14 +132,14 @@
   return false;
   });
 
-  // JQuery Dialog            
+  // JQuery Dialog
   $('#dialog').dialog({
   autoOpen: false,
   modal: true,
   dialogClass: 'dialog',
   buttons: {
-  "Close": function() { 
-  $(this).dialog("close"); 
+  "Close": function() {
+  $(this).dialog("close");
   }
   }
   });
@@ -131,8 +155,8 @@
     modal: true,
     dialogClass: 'dialog',
     buttons: {
-    "Close": function() { 
-    $(this).dialog("close"); 
+    "Close": function() {
+    $(this).dialog("close");
     }
     }
     });

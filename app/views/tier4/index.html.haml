@@ -1,81 +1,107 @@
 .clearer.hide-responsive  
 %br.hide-responsive/
 .main-content-left
-  .page-content.review.single-post
-    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
-    .review-content
-      .ribbon-shadow-left
-      .section-wrapper
-        .section-header
-          Tier 4
-      .section-arrow
-      / post by removed from here
-      .content-panel
-        .the-content.justify-content
-          = form_for @profile_tier4, :url => {:controller => :tier4, :action => :create},:html => {:class => "exp-contact-form"}, :method => :post do |f|
-            %p{:class => "ask2"}
-              = f.label "Height", :class=> "label"
-            %table
-              %tr
-                %td
-                  .checkbox
-                    = radio_button("profile_tier4", "height_measurement", "inches", :disabled => @is_disable)
-                    inches
-            %table
-              %tr
-                %td
-                  .checkbox
-                    = radio_button("profile_tier4", "height_measurement", "cm", :disabled => @is_disable)
-                    cm
-            = f.text_field :height, :disabled => @is_disable, :class=>"input-class"
-            %p{:class => "ask2"}
-              = f.label "Weight",:class=>"label"
-            %table
-              %tr
-                %td
-                  .checkbox
-                    = radio_button("profile_tier4", "weight_measurement", "kgs", :disabled => @is_disable)
-                    kgs
-            %table
-              %tr
-                %td
-                  .checkbox
-                    = radio_button("profile_tier4", "weight_measurement", "lbs", :disabled => @is_disable)
-                    lbs
-            = f.text_field :weight, :disabled => @is_disable, :class=>"input-class"
-            %p{:class => "ask2"}
-              = f.label "Build", :class=>"label"
-            %table
-              %tr
-                %td
-                  .checkbox
-                    = radio_button("profile_tier4", "body_build", "Lean", :disabled => @is_disable)
-                    Lean
-            %table
-              %tr
-                %td
-                  .checkbox
-                    = radio_button("profile_tier4", "body_build", "Athletic", :disabled => @is_disable)
-                    Athletic
-            %table
-              %tr
-                %td
-                  .checkbox
-                    = radio_button("profile_tier4", "body_build", "Muscular", :disabled => @is_disable)
-                    Muscular
-            %table
-              %tr
-                %td
-                  .checkbox
-                    = radio_button("profile_tier4", "body_build", "Chub", :disabled => @is_disable)
-                    Chub
-              
-            %br
-            - unless @is_disable
-              = link_to "<i class='icon-check'></i>Submit".html_safe, "javascript:void(0)", :class => "submit-button", :id => "ask_question_link", :style => "margin-bottom: 10px;"
+	.page-content.review.single-post
+		%link{:href => "../experimental/images/misc1-160x160.jpg", :rel => "image_src"}/
+		.review-content
+			.ribbon-shadow-left
+			.section-wrapper
+				.section-header
+					Tier 4
+			.section-arrow
+			/ post by removed from here
+			.content-panel
+				.the-content.justify-content
+					= form_for @profile_tier4, :url => {:controller => :tier4, :action => :create},:html => {:class => "exp-contact-form"}, :method => :post do |f|
+						%p{:class => "ask2"}
+							= f.label "Height", :class=> "label"
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier4", "height_measurement", "inches", :disabled => @is_disable)
+										inches
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier4", "height_measurement", "cm", :disabled => @is_disable)
+										cm
+						= f.text_field :height, :disabled => @is_disable, :class=>"input-class"
+						%p{:class => "ask2"}
+							= f.label "Weight",:class=>"label"
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier4", "weight_measurement", "kgs", :disabled => @is_disable)
+										kgs
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier4", "weight_measurement", "lbs", :disabled => @is_disable)
+										lbs
+						= f.text_field :weight, :disabled => @is_disable, :class=>"input-class"
+						%p{:class => "ask2"}
+							= f.label "Build", :class=>"label"
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier4", "body_build", "Lean", :disabled => @is_disable)
+										Lean
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier4", "body_build", "Athletic", :disabled => @is_disable)
+										Athletic
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier4", "body_build", "Muscular", :disabled => @is_disable)
+										Muscular
+						%table
+							%tr
+								%td
+									.checkbox
+										= radio_button("profile_tier4", "body_build", "Chub", :disabled => @is_disable)
+										Chub
+							
+						%br
+						- unless @is_disable
+							= link_to "<i class='icon-check'></i>Submit".html_safe, "javascript:void(0)", :class => "submit-button", :id => "ask_question_link", :style => "margin-bottom: 10px;"
 .sidebar
-  = render "experimental/partials/left_bar"
+	- if current_user.nil?
+		/login box
+		= render "experimental/partials/login_box"
+	-else
+		/profile box
+		= render "experimental/partials/profile_box"
+
+	/ social login box
+	= render "experimental/partials/social_login_box"
+	/ member box
+	/= render "experimental/partials/member_box"
+	/rating box
+	= render "experimental/partials/rating_box"
+	/rating box
+	= render "experimental/partials/rating_box2"
+	/ left bar
+	/ = render "experimental/partials/left_bar"
+	/widget top
+	= render "experimental/partials/widget_top"
+	/ .clearer.hide-responsive
+	/ %br.clearer/
+	/ newly reviewd
+	/= render "experimental/partials/newly_reviewed"
+	/popular box
+	= render "experimental/partials/popular_box"
+	/banner box
+	= render "experimental/partials/banner_box"
 :javascript
-  jQuery("#ask_question_link").click(function (){
-    jQuery("#new_profile_tier4,#edit_profile_tier4").submit();
-  });
+	jQuery("#ask_question_link").click(function (){
+		jQuery("#new_profile_tier4,#edit_profile_tier4").submit();
+	});

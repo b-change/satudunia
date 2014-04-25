@@ -1,122 +1,159 @@
 :css
-  .profile_tabs{
-    (-bracket-:hack;
-      width:auto;
-    );
-  }
-  .chrome_loader{
-    (-bracket-:hack;
-      margin:-20px 0px 0px 95px;
-    );
-  }
+	.profile_tabs{
+		(-bracket-:hack;
+			width:auto;
+		);
+	}
+	.chrome_loader{
+		(-bracket-:hack;
+			margin:-20px 0px 0px 95px;
+		);
+	}
 
-.clearer.hide-responsive  
+.clearer.hide-responsive
 %br.hide-responsive/
 .main-content-left
-  #content.page-content
-    .review-content
-      .ribbon-shadow-left
-      .section-wrapper
-        .section-header
-          Dashboard
-      .section-arrow
-      / post by removed from here
-    #item-header.qa-q-item-tags{:role=>"complementary"}
-      #item-header-avatar
-        %a{:style=>"float:left;"}
-          -if @user.use_gravatar?
-            = image_tag avatar_user_path(@user),:size=>'140x140',:class => "avatar" 
-          -else                       
-            = image_tag(default_avatar_url('big'), :class=>"avatar")
-      #item-header-content
-        %h2
-          = link_to "#{user_realname(@user)}", user_path(@user)
-        .item-meta
-          %span{:class=>"activity"}
-            Joined 
-            = t("time.ago", :time => time_ago_in_words(current_user.created_at))
-            =# t("time.ago", :time => time_ago_in_words(config.joined_at))
-        .user-nicename
-          Website:
-          = link_to @user.website, @user.website
-        .user-nicename
-          = link_to "<span>HIV Condition: #{user_hiv_condition(@user)}</span>".html_safe, "#", :class => "qwest_tag1"
-          =# link_to "<span>Edit Profile</span>".html_safe, settings_path, :class => "qwest_tag15"
-        .extra-tags
-          - unless @user.profile_tiers.blank?
-            = link_to "<span>Sample</span>".html_safe, "#", :class => "qwest_tag12"
-          -unless @user.profile_support.nil?
-            = link_to "<span>Tier 1</span>".html_safe, "#", :class => "qwest_tag12"
-          - for i in 2..7 do
-            -unless eval "@user.profile_tier#{i}.nil?"
-              = link_to "<span>Tier #{i}</span>".html_safe, "#", :class => "qwest_tag12"
-        .a6
-          = image_tag "plus/a1.png"
-          %span
-            Country: 
-            = user_country(@user)
-          %br
-          = image_tag "plus/a2.png"
-          %span
-            Age: 
-            = user_age(@user)
-    #item-nav
-      #object-nav.item-list-tabs{:id=>"firstElement"}
-        %ul
-          %li.selected.user-xprofile
-            %a{:href=>"javascript:void(0)",:id=>"questions-ajax",:class=>"profile_tabs"}
-              Questions
-              %span
-                = (@questions.blank?)? 0 : @questions.count
-              .loader.chrome_loader
-          %li.user-xprofile
-            %a{:href=>"javascript:void(0)",:id=>"answer-ajax",:class=>"profile_tabs"}
-              answers
-              %span
-                = (@answers.blank?)? 0 : @answers.count
-              .loader.chrome_loader
-          %li.user-following
-            %a{:href=>"javascript:void(0)",:id=>"following-ajax",:class=>"profile_tabs"}
-              following
-              %span
-                0
-              .loader.chrome_loader
-          %li.user-xprofile
-            %a{:href=>"javascript:void(0)",:id=>"starred-ajax",:class=>"profile_tabs"}
-              starred
-              %span
-                0
-              .loader.chrome_loader
-      #subnav.item-list-tabs.no-ajax{:role => "navigation"}
-        %ul
-          = render "users/show/user_dashboard_subtab"
-    / main div for setting ajax data
-    #members-dir-list.members.dir-list.content_div
-      = render "users/show/user_#{params[:action]}_content"
-    #members-dir-list.members.dir-list.follows_div{:style=>"display:none"}
-      / %ul#members-list.items-list
-      /   = render "users/show/user_follows_content"
+	#content.page-content
+		.review-content
+			.ribbon-shadow-left
+			.section-wrapper
+				.section
+					.section-for-header
+						Dashboard
+			.section-arrow
+			/ post by removed from here
+	.page-content.review.single-post
+		%link{:href => "../experimental/images/misc1-160x160.jpg", :rel => "image_src"}/
+		.overview-wrapper
+			.overview-new
+				.left-panel#set-margin-item-tags
+					#item-header.qa-q-item-tags{:role=>"complementary"}
+						#item-header-avatar
+							%a{:style=>"float:left;"}
+								-if @user.use_gravatar?
+									= image_tag avatar_user_path(@user),:size=>'140x140',:class => "avatar"
+								-else
+									= image_tag(default_avatar_url('big'), :class=>"avatar")
+						#item-header-content
+							%h2
+								= link_to "#{user_realname(@user)}", user_path(@user)
+							.item-meta
+								%span{:class=>"activity"}
+									Joined
+									= t("time.ago", :time => time_ago_in_words(current_user.created_at))
+									=# t("time.ago", :time => time_ago_in_words(config.joined_at))
+							.user-nicename
+								= link_to "<span>HIV Condition: #{user_hiv_condition(@user)}</span>".html_safe, "#", :class => "qwest_tag1"
+								=# link_to "<span>Edit Profile</span>".html_safe, settings_path, :class => "qwest_tag15"
+							.extra-tags
+								- unless @user.profile_tiers.blank?
+									= link_to "<span>Sample</span>".html_safe, "#", :class => "qwest_tag12"
+								-unless @user.profile_support.nil?
+									= link_to "<span>Tier 1</span>".html_safe, "#", :class => "qwest_tag12"
+								- for i in 2..7 do
+									-unless eval "@user.profile_tier#{i}.nil?"
+										= link_to "<span>Tier #{i}</span>".html_safe, "#", :class => "qwest_tag12"
+							.a6
+								= image_tag "plus/a1.png", :class=> "shift-left-margin"
+								%span
+									Country:
+									= user_country(@user)
+								%br
+								= image_tag "plus/a2.png", :class=> "shift-left-margin"
+								%span
+									Age:
+									-if @user.birthday.present?
+										= (Date.today.year)-(@user.birthday.year)
+										year
+									-else
+
+										= user_age(@user)
+										-unless user_age(@user)=="unknown"
+											year
+
+		#item-nav
+			#object-nav.item-list-tabs{:id=>"firstElement"}
+				%ul
+					%li.selected.user-xprofile
+						%a{:href=>"javascript:void(0)",:id=>"questions-ajax",:class=>"profile_tabs"}
+							Questions
+							%span
+								= (@questions.blank?)? 0 : @questions.count
+							.loader.chrome_loader
+					%li.user-xprofile
+						%a{:href=>"javascript:void(0)",:id=>"answer-ajax",:class=>"profile_tabs"}
+							answers
+							%span
+								= (@answers.blank?)? 0 : @answers.count
+							.loader.chrome_loader
+					%li.user-following
+						%a{:href=>"javascript:void(0)",:id=>"following-ajax",:class=>"profile_tabs"}
+							following
+							%span
+								0
+							.loader.chrome_loader
+					%li.user-xprofile
+						%a{:href=>"javascript:void(0)",:id=>"starred-ajax",:class=>"profile_tabs"}
+							starred
+							%span
+								0
+							.loader.chrome_loader
+			#subnav.item-list-tabs.no-ajax{:role => "navigation"}
+				%ul
+					= render "users/show/user_dashboard_subtab"
+		/ main div for setting ajax data
+		#members-dir-list.members.dir-list.content_div
+			= render "users/show/user_#{params[:action]}_content"
+		#members-dir-list.members.dir-list.follows_div{:style=>"display:none"}
+			/ %ul#members-list.items-list
+			/   = render "users/show/user_follows_content"
 .sidebar
-  = render "experimental/partials/user_info"
+	- if current_user.nil?
+		/login box
+		= render "experimental/partials/login_box"
+	-else
+		/profile box
+		= render "experimental/partials/profile_box"
+
+	/ social login box
+	= render "experimental/partials/social_login_box"
+	/ member box
+	= render "experimental/partials/member_box"
+	/rating box
+	= render "experimental/partials/rating_box"
+	/rating box
+	= render "experimental/partials/rating_box2"
+	/ left bar
+	/ = render "experimental/partials/left_bar"
+	/widget top
+	= render "experimental/partials/widget_top"
+	/ .clearer.hide-responsive
+	/ %br.clearer/
+	/ newly reviewd
+	= render "experimental/partials/newly_reviewed"
+	/popular box
+	/ = render "experimental/partials/popular_box"
+	/banner box
+	= render "experimental/partials/banner_box"
 
 :javascript
-  jQuery("#object-nav_firstElement > ul > li").click(function(){
-    jQuery("#object-nav_firstElement > ul > li").removeClass('selected');
-    jQuery(this).addClass('selected');
-  });
-  // ajax function for answer and answer pagination
-  Experimental.getAjaxData("click","#answer-ajax,#answers_pagination .pagination-ajax","/profile/dashboard","GET","return-data-ajax","answer","#answer-ajax .loader","subnav ul","users/show/user_dashboard_subtab","yes");
-  // ajax function for question and question pagination
-  Experimental.getAjaxData("click","#questions-ajax,#questions_pagination .pagination-ajax","/profile/dashboard","GET","return-data-ajax","questions","#questions-ajax .loader","subnav ul","users/show/user_dashboard_subtab","yes");
-  // ajax function for follwing and following pagination
-  Experimental.getAjaxData("click","#following-ajax","/users/#{current_user.id}/follows","GET","return-data-ajax","user_follows_content","#following-ajax .loader","subnav ul","users/show/user_dashboard_subtab","");
-  // ajax function for answer sort
-  Experimental.getAjaxData("change","#activity-filter-by-answer","/profile/dashboard","GET","return-data-ajax","answer","#answer-ajax .loader","subnav ul","users/show/user_dashboard_subtab","");
-  /// ajax function for question sort
-  Experimental.getAjaxData("change","#activity-filter-by-question","/profile/dashboard","GET","return-data-ajax","questions","#questions-ajax .loader","subnav ul","users/show/user_dashboard_subtab","");
-  
-  jQuery(document).ready(function(jQ){
-    jQ('#pagination-digg  a').live('click',function(e){
-      e.preventDefault();
-    })
-  })
+	jQuery("#object-nav_firstElement > ul > li").click(function(){
+		jQuery("#object-nav_firstElement > ul > li").removeClass('selected');
+		jQuery(this).addClass('selected');
+	});
+	// ajax function for answer and answer pagination
+	Experimental.getAjaxData("click","#answer-ajax,#answers_pagination .pagination-ajax","/profile/dashboard","GET","return-data-ajax","answer","#answer-ajax .loader","subnav ul","users/show/user_dashboard_subtab","yes");
+	// ajax function for question and question pagination
+	Experimental.getAjaxData("click","#questions-ajax,#questions_pagination .pagination-ajax","/profile/dashboard","GET","return-data-ajax","questions","#questions-ajax .loader","subnav ul","users/show/user_dashboard_subtab","yes");
+	// ajax function for follwing and following pagination
+	Experimental.getAjaxData("click","#following-ajax","/members/#{current_user.id}/follows","GET","return-data-ajax","user_follows_content","#following-ajax .loader","subnav ul","users/show/user_dashboard_subtab","");
+	// ajax function for answer sort
+	Experimental.getAjaxData("change","#activity-filter-by-answer","/profile/dashboard","GET","return-data-ajax","answer","#answer-ajax .loader","subnav ul","users/show/user_dashboard_subtab","");
+	/// ajax function for question sort
+	Experimental.getAjaxData("change","#activity-filter-by-question","/profile/dashboard","GET","return-data-ajax","questions","#questions-ajax .loader","subnav ul","users/show/user_dashboard_subtab","");
+
+	jQuery(document).ready(function(jQ){
+		jQ('#pagination-digg  a').live('click',function(e){
+			e.preventDefault();
+		})
+	})

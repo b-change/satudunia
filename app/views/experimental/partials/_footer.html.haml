@@ -1,232 +1,139 @@
 #footer-wrapper
-  / begin footer wrapper
-  #footer
-    .footer-menu
-      %a.home-link{:href => root_path}  
-      %ul#menu-footer-menu.menu
-        %li
-          %a{:href => public_about_experimental_index_path, :title=>"About", :alt=>"About"} About Plus
-        %li
-          %a{:href => questions_path, :title=>"Questions", :alt=>"Questions"} Questions
-        %li
-          %a{:href => "/services-map", :title=>"Services Map", :alt=>"Services Map"} Services Map
-        %li
-          %a{:href => partners_experimental_index_path,:title=>"Partners",:alt=>"Partners"} Partners
-        %li
-          %a{:href => "/users", :title=>"Community", :alt=>"Community"} Community
-        %li
-          = link_to "Contact",contact_index_path
-        %li
-          %a{:href => ask_question_experimental_index_path, :title=>"Ask a Question", :alt=>"Ask a Question"} Ask a Question
-    %br.clearer/
-    .inner
-      .panel
-        .complex-list.all_reviews.small
-          .widget
-            %h2 Reviewed This Week
-            %ul
-              %li.first
-                .floatleft
-                  %a.thumbnail.darken.small{:href => "single-review-numbers.html", :title => "A Sandwich a Day: Fried Scallops from Brucie"}
-                    %img{:alt => "restaurants7", :height => "40", :src => "#{local_path_experimental}restaurants7-40x40.jpg", :width => "40"}/
-                .floatleft
-                  %a.post-title{:href => "single-review-numbers.html", :title => "A Sandwich a Day: Fried Scallops from Brucie"} A Sandwich a Day: Fried Scallops from Brucie
-                  %br.clearer/
-                  .icon
-                    //%img{:alt => "icon", :height => "16", :src => "#{local_path_experimental}review-restaurant-dark.png", :width => "16"}/
-                  .rating-wrapper.small
-                    .stars.yellow
-                      .star.full  
-                      .star.full  
-                      .star  
-                      .star  
-                      .star  
-                %br.clearer/
-              %li
-                .floatleft
-                  %a.thumbnail.darken.video.small{:href => "single-review-numbers.html", :title => "Yohji Yamamoto Autumn (Fall) / Winter 2012 men's"}
-                    %img{:alt => "fashion4", :height => "40", :src => "#{local_path_experimental}fashion4-40x40.jpg", :width => "40"}/
-                .floatleft
-                  %a.post-title{:href => "single-review-numbers.html", :title => "Yohji Yamamoto Autumn (Fall) / Winter 2012 men's"} Yohji Yamamoto Autumn (Fall) / Winter 2012 men's
-                  %br.clearer/
-                  .icon
-                    //%img{:alt => "icon", :height => "16", :src => "#{local_path_experimental}review-fashion-dark.png", :width => "16"}/
-                  .rating-wrapper.small
-                    .letter.color4 B+
-                %br.clearer/
-              %li
-                .floatleft
-                  %a.thumbnail.darken.small{:href => "single-review-numbers.html", :title => "Gotye – Mirrors"}
-                    %img{:alt => "rock concert", :height => "40", :src => "#{local_path_experimental}photodune-277307-rock-concert-s-40x40.jpg", :width => "40"}/
-                .floatleft
-                  %a.post-title{:href => "single-review-numbers.html", :title => "Gotye – Mirrors"} Gotye – Mirrors
-                  %br.clearer/
-                  .icon
-                    //%img{:alt => "icon", :height => "16", :src => "#{local_path_experimental}review-music-dark.png", :width => "16"}/
-                  .rating-wrapper.small
-                    .number.color4 7.4
-                %br.clearer/
-              %li
-                .floatleft
-                  %a.thumbnail.darken.video.small{:href => "single-review-numbers.html", :title => "The Hobbit: An Unexpected Journey"}
-                    %img{:alt => "movies3", :height => "40", :src => "#{local_path_experimental}movies3-40x40.jpg", :width => "40"}/
-                .floatleft
-                  %a.post-title{:href => "single-review-numbers.html", :title => "The Hobbit: An Unexpected Journey"} The Hobbit: An Unexpected Journey
-                  %br.clearer/
-                  .icon
-                    //%img{:alt => "icon", :height => "16", :src => "#{local_path_experimental}review-movie-dark.png", :width => "16"}/
-                  .rating-wrapper.small
-                    .number.color5 88%
-                %br.clearer/
-              %li
-                .floatleft
-                  %a.thumbnail.darken.video.small{:href => "single-review-numbers.html", :title => "Coffee Common: Bringing Coffee Power to the People"}
-                    %img{:alt => "restaurants9", :height => "40", :src => "#{local_path_experimental}restaurants9-40x40.jpg", :width => "40"}/
-                .floatleft
-                  %a.post-title{:href => "single-review-numbers.html", :title => "Coffee Common: Bringing Coffee Power to the People"} Coffee Common: Bringing Coffee Power to the People
-                  %br.clearer/
-                  .icon
-                    //%img{:alt => "icon", :height => "16", :src => "#{local_path_experimental}review-restaurant-dark.png", :width => "16"}/
-                  .rating-wrapper.small
-                    .stars.yellow
-                      .star.full  
-                      .star.full  
-                      .star.full  
-                      .star.full  
-                      .star.half  
-                %br.clearer/
-              %li.last  
-              / easiest way to hide the last border - i know, it's hacky
-      .panel
-        .widget
-          #tabbed-Movie-reviews.simple-list.review-cats
-            .review-header Questions By Category
-            %ul.tabnav
-              %li
-                %a.first{:href => "#tabs-genre_1"} Tag 1
-              %li
-                %a{:href => "#tabs-genre_2"} Tag 2
-              %li
-                %a{:href => "#tabs-genre_3"} Tag 3
-              %li
-                %a{:href => "#tabs-genre_4"} Tag 4
-            %br.clearer/
-            .tabdiv-wrapper
-              #tabs-genre_1.tabdiv
-                %ul
-                  - tags_collection_footer[0].each do |tag|
-                    %li
-                      = link_to "#{tag.name}", tag_path(tag.name) rescue ""
-                  %li.last  
-              #tabs-genre_2.tabdiv
-                %ul
-                  - tags_collection_footer[1].each do |tag|
-                    %li
-                      = link_to "#{tag.name}", tag_path(tag.name) rescue ""
-                  %li.last  
-              #tabs-genre_3.tabdiv
-                %ul
-                  - tags_collection_footer[2].each do |tag|
-                    %li
-                      = link_to "#{tag.name}", tag_path(tag.name) rescue ""
-                  %li.last  
-              #tabs-genre_4.tabdiv
-                %ul
-                  - tags_collection_footer[3].each do |tag|
-                    %li
-                      = link_to "#{tag.name}", tag_path(tag.name) rescue ""
-                  %li.last  
-        .widget
-          %h2 Meta
-          %ul.list-show-widget
-            - if current_user && current_user.owner_of?(current_group)
-              %li
-                = link_to "Site Admin", "/admin",:target=>"_blank"
-            - if user_signed_in?
-              %li
-                = link_to t("layouts.application.logout"), destroy_user_session_path
-            - else
-              %li
-                = link_to "Log in", destroy_user_session_path
+	/ begin footer wrapper
+	#footer
+		.footer-menu
+			%a.home-link{:href => root_path}
+			%ul#menu-footer-menu.menu
+				%li
+					%a{:href => public_about_experimental_index_path, :title=>"About BE", :alt=>"About BE"} About BE
+				%li
+					%a{:href => questions_path, :title=>"Questions", :alt=>"Questions"} Questions
+				%li
+					%a{:href => "/services-map", :title=>"Services Map", :alt=>"Services Map"} Services Map
+				/ %li
+				/ 	%a{:href => partners_experimental_index_path,:title=>"Partners",:alt=>"Partners"} Partners
+				/ %li
+				/ 	%a{:href => "/users", :title=>"Community", :alt=>"Community"} Community
+				%li
+					= link_to "Contact",contact_path
+				%li
+					= link_to "Terms of use",terms_experimental_index_path,:title=>"Terms of Use",:alt=>"Terms of Use"
+				%li
+					= link_to "Privacy Policy","/privacy/policy",:title=>"privacy-policy",:alt=>"privacy-policy"
+				/ %li
+				/ 	%a{:href => ask_question_experimental_index_path, :title=>"Ask a Question", :alt=>"Ask a Question"} Ask a Question
+		%br.clearer/
+		.inner
+			.panel
+				.complex-list.all_reviews.small
+					.widget
+						%h2 Reviewed This Week
 
-            %li
-              = link_to "Comments RSS",comments_rss_experimental_index_path(:atom)
-              = image_tag 'rss.png',alt: "Rss"
-            %li
-              = link_to "Service Providers RSS",service_providers_path(:atom)
-              = image_tag 'rss.png',alt: "Rss"  
-            %li
-              = link_to "Questions and Answers RSS",questions_path(:atom)
-              = image_tag 'rss.png',alt: "Rss"
-      .panel
-        .widget
-          %h2 Latest Tweets
-          %a.twitter-timeline{"data-widget-id" => "360398649064316928",:height=>"600px",:width=>"250px",:href => "https://twitter.com/neelesh_v"} Tweets by @neelesh_v
+			.panel
 
-          :javascript
-            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";js.async=true;fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-          .tweet.query.complex-list
-          .footer-fix 
-      .panel.right
-        .widget
-          .textwidget
-            %p
-              %img{:alt => "logo", :src => "/assets/plus/footer_logo.png"}/
-            - unless @footer.blank?
-              %p 
-                =  truncate(@footer.footer_content.sub("\n","<br>"), :omission => "", :length => 833).html_safe rescue ""
-              /added links below plus/
-              .widget
-                %h2 links
-                %ul
-                  %li
-                    = image_tag("sw-facebook17.png")
-                    = link_to "Like Us", "#"
-                  %li
-                    = image_tag("sw-twitter17.png")
-                    = link_to "Follow Us", "#"
-                  %li
-                    = image_tag("sw-twitter17.png")
-                    = link_to "Jobs on Twitter", "#"
-                  %li
-                    = image_tag("rss.png")
-                    = link_to "RSS", "#"
-                  %li
-                    = image_tag("youtube.png")
-                    = link_to "Youtube", ""
-                  %li
-                    = image_tag("mail.png")
-                    = link_to "Contact Us", "#"
-        
-      %br.clearer/
-    .copyright
-      .ribbon-shadow-left  
-      .floatleft
-        Copyright 2013 All Rights Reserved
-        | 
-        %a{:href=>terms_experimental_index_path}
-          Terms of Use
-        |
-        %a{:href=>"/privacy-policy"}
-          Privacy Policy
-        
-      .floatright
-        .floatleft
-          .textwidget
-            / %p
-            /   Theme by
-            /   = succeed "." do
-            /     %a{:href => "http://www.industrialthemes.com"} Industrial Themes
-      %br.clearer/
-      .ribbon-shadow-right 
+				.widget
+					%h2 Meta
+					%ul.list-show-widget
+						- if current_user && current_user.owner_of?(current_group)
+							%li
+								= link_to "Site Admin", "/admin",:target=>"_blank"
+						- if user_signed_in?
+							%li
+								= link_to t("layouts.application.logout"), destroy_user_session_path
+						- else
+							%li
+								= link_to "Log in", destroy_user_session_path
+
+						%li
+							= link_to "Comments RSS",comments_rss_experimental_index_path(:atom)
+							= image_tag 'rss.png',alt: "Rss"
+						%li
+							= link_to "Service Providers RSS",service_providers_path(:atom)
+							= image_tag 'rss.png',alt: "Rss"
+						%li
+							= link_to "Questions and Answers RSS",questions_path(:atom)
+							= image_tag 'rss.png',alt: "Rss"
+			.panel
+				.widget
+					%h2 Latest Tweets
+
+
+					%a.twitter-timeline{"data-widget-id" => "406032174916186112", href: "https://twitter.com/BChangeNow"} Tweets by @BChangeNow
+					:javascript
+						!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+					.tweet.query.complex-list
+					.footer-fix
+			.panel.right
+				.widget
+					.textwidget
+						%p
+							/ %img{:alt => "logo", :src => "/assets/plus/footer_logo.png"}/
+							%img#site-logo{:alt => "plus", :src => "/assets/logo-footer.png"}/
+
+						%p.arrange-footer
+							Where we can be ourselves and be there for each other.
+							%br/
+							%br/
+							BE is a new web-app designed to support the well-being of young people of diverse sexual orientations and gender identities, including but not limited to young lesbians, gay men, bisexual and transgender people.
+							%br/
+							%br/
+							/ Where we can be ourselves and be there for each other.
+						- unless @footer.blank?
+							/ %p
+							/   =  truncate(@footer.footer_content.sub("\n","<br>"), :omission => "", :length => 833).html_safe rescue ""
+
+							/added links below plus/
+							.widget
+								%h2 links
+								%ul
+									%li
+										= image_tag("sw-facebook17.png")
+										= link_to "Like Us", "#"
+									%li
+										= image_tag("sw-twitter17.png")
+										= link_to "Follow Us", "#"
+									%li
+										= image_tag("sw-twitter17.png")
+										= link_to "Jobs on Twitter", "#"
+									%li
+										= image_tag("rss.png")
+										= link_to "RSS", "#"
+									%li
+										= image_tag("youtube.png")
+										= link_to "Youtube", ""
+									%li
+										= image_tag("mail.png")
+										= link_to "Contact Us", "#"
+
+			%br.clearer/
+		.copyright
+			.ribbon-shadow-left
+			.floatleft
+				/ Copyright 2013 All Rights Reserved
+				© 2014 B-Change Foundation. All Rights Reserved.
+				|
+				%a{:href=>terms_experimental_index_path}
+					Terms of Use
+				|
+				%a{:href=>"/privacy/policy"}
+					Privacy Policy
+
+			.floatright
+				.floatleft
+					.textwidget
+						/ %p
+						/   Theme by
+						/   = succeed "." do
+						/     %a{:href => "http://www.industrialthemes.com"} Industrial Themes
+			%br.clearer/
+			.ribbon-shadow-right
 
 :javascript
-  window.setTimeout(function(){
-    // alert("asdf");
-    jQuery(".twitter-timeline").contents().find("body").find(".stream").css({"overflow":"hidden"});
-    jQuery(".twitter-timeline").contents().find("body").find(".tweet").css({"padding":"15px 8px 6px"});
-    jQuery(".twitter-timeline").contents().find("body").find(".thm-dark").css({'background': 'none', 'border': 'none'});
-    jQuery(".twitter-timeline").contents().find("body").find(".timeline-footer").css({'display': 'none'});
-    jQuery(".twitter-timeline").contents().find("body").find(".timeline-header").css({'display': 'none'});
-  }, 3000);
+	window.setTimeout(function(){
+		// alert("asdf");
+		jQuery(".twitter-timeline").contents().find("body").find(".tweet").css({"padding":"15px 8px 6px"});
+		jQuery(".twitter-timeline").contents().find("body").find(".thm-dark").css({'background': 'none', 'border': 'none'});
+		jQuery(".twitter-timeline").contents().find("body").find(".timeline-footer").css({'display': 'none'});
+		jQuery(".twitter-timeline").contents().find("body").find(".timeline-header").css({'display': 'none'});
+	}, 3000);
 

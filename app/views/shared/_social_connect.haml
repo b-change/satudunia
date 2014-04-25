@@ -1,63 +1,64 @@
-.clearer.hide-responsive  
+.clearer.hide-responsive
 %br.hide-responsive/
 .main-content-left
-  .page-content.review.single-post
-    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
-    .review-content
-      .ribbon-shadow-left
-      .section-wrapper
-        .section-header Connect
-      .section-arrow
-      .overview-new.nopadding-top.padding-about
-        .content-panel
-          .the-content
-            / old plus content
-            %h1
-              = t('invitations.accept.find_friends')
-            .connect-options
-              %ul.social-provider-list
-                %li= link_to t('.find_friends_facebook'), '/users/auth/facebook', :class => 'facebook', :id => 'facebook_auth' unless current_user.facebook_login?
-                %li= link_to t('.find_friends_twitter'), '/users/auth/twitter', :class => 'twitter', :id => 'twitter_auth' unless current_user.twitter_id?
-                %li= link_to t('.find_friends_linked_in'),'/users/auth/linked_in', :class => 'linkedin', :id => 'linked_in_auth' unless current_user.linked_in_login?
-                %li= link_to t('.find_friends_identica'),'/users/auth/identica', :class => 'identica', :id => 'identica_auth' unless current_user.identica_login?
+	.page-content.review.single-post
+		%link{:href => "../experimental/images/misc1-160x160.jpg", :rel => "image_src"}/
+		.review-content
+			.ribbon-shadow-left
+			.section-wrapper
+				.section
+					.section-for-header Connect
+			.section-arrow
+			.overview-new.nopadding-top.padding-about
+				.content-panel
+					.the-content
+						/ old plus content
+						%h1
+							= t('invitations.accept.find_friends')
+						.connect-options
+							%ul.social-provider-list
+								%li= link_to t('.find_friends_facebook'), '/users/auth/facebook', :class => 'facebook', :id => 'facebook_auth' unless current_user.facebook_login?
+								%li= link_to t('.find_friends_twitter'), '/users/auth/twitter', :class => 'twitter', :id => 'twitter_auth' unless current_user.twitter_id?
+								%li= link_to t('.find_friends_linked_in'),'/users/auth/linked_in', :class => 'linkedin', :id => 'linked_in_auth' unless current_user.linked_in_login?
+								%li= link_to t('.find_friends_identica'),'/users/auth/identica', :class => 'identica', :id => 'identica_auth' unless current_user.identica_login?
 
-            - if params[:controller] != 'invitations'
-              %h1
-                = t('shared.social_connect.or_connect')
-              %ul
-                %li= link_to 'Google','/users/auth/open_id?openid_url=https://www.google.com/accounts/o8/id', :class => 'google', :id => 'google_auth'
+						- if params[:controller] != 'invitations'
+							%h1
+								= t('shared.social_connect.or_connect')
+							%ul
+								%li= link_to 'Google','/users/auth/open_id?openid_url=https://www.google.com/accounts/o8/id', :class => 'google', :id => 'google_auth'
 
-              %p
-                - User.where(:email => current_user.email, :_id.ne => current_user.id).each do |same_user|
-                  =link_to "merge #{same_user.login} into this account", connect_users_path(:target_id => same_user.id), :method => :post
+							%p
+								- User.where(:email => current_user.email, :_id.ne => current_user.id).each do |same_user|
+									=link_to "merge #{same_user.login} into this account", connect_users_path(:target_id => same_user.id), :method => :post
 
 
 /side bar
 .sidebar
-  - if current_user.nil?
-    /login box
-    = render "experimental/partials/login_box"
-  -else
-    /profile box
-    = render "experimental/partials/profile_box"
+	- if current_user.nil?
+		/login box
+		= render "experimental/partials/login_box"
+	-else
+		/profile box
+		= render "experimental/partials/profile_box"
 
-  / social login box
-  = render "experimental/partials/social_login_box"
-  / member box
-  = render "experimental/partials/member_box"
-  /rating box
-  = render "experimental/partials/rating_box"
-  /rating box
-  = render "experimental/partials/rating_box2"
-  / left bar
-  / = render "experimental/partials/left_bar"
-  /widget top
-  = render "experimental/partials/widget_top"
-  / .clearer.hide-responsive
-  / %br.clearer/
-  / newly reviewd
-  = render "experimental/partials/newly_reviewed"
-  /popular box
-  = render "experimental/partials/popular_box"
-  /banner box
-  = render "experimental/partials/banner_box"
+	/ social login box
+	= render "experimental/partials/social_login_box"
+	/ member box
+	/ = render "experimental/partials/member_box"
+	/rating box
+	= render "experimental/partials/rating_box"
+	/rating box
+	= render "experimental/partials/rating_box2"
+	/ left bar
+	/ = render "experimental/partials/left_bar"
+	/widget top
+	= render "experimental/partials/widget_top"
+	/ .clearer.hide-responsive
+	/ %br.clearer/
+	/ newly reviewd
+	/ = render "experimental/partials/newly_reviewed"
+	/popular box
+	/ = render "experimental/partials/popular_box"
+	/banner box
+	= render "experimental/partials/banner_box"

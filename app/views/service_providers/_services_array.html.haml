@@ -1,0 +1,8 @@
+- services_array = []
+- if params[:country].blank?
+	- @serviceProviders.each do |services_area|
+		- services_array << [strip_tags(services_area.name.gsub(",",""))strip_tags(services_area.telephone) + " " + strip_tags(services_area.email),strip_tags(services_area.address.gsub(",",""))]
+
+- else
+	- @service_providers.where(:country => "#{params[:country]}".humanize).each do |services_area|
+		- services_array << [strip_tags(services_area.name.gsub(",","")),strip_tags(services_area.telephone) + " " + strip_tags(services_area.email),strip_tags(services_area.address.gsub(",",""))]

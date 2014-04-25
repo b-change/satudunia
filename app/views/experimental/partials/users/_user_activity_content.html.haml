@@ -1,10 +1,11 @@
 .activity-page#return-data-ajax
-	%ul#activity-stream.activity-list.item-list
-		-if @resources.blank?
-			= render "experimental/partials/empty_record_message.html"
-		-else
-			-@paginator = @resources
-			= render :partial =>"pagination/pagination",:locals => {:paginationType=>"activities"}
+	-if @resources.blank?
+		= render "experimental/partials/empty_record_message.html"
+	-else
+		-@paginator = @resources
+		= render :partial =>"pagination/pagination",:locals => {:paginationType=>"activities"}
+		%ul#activity-stream.activity-list.item-list
+		
 			- @resources.each do |activity|
 				-if activity[:target_type] || activity[:trackable_type]
 					
@@ -36,7 +37,7 @@
 							.activity-header
 								%p
 									%a.view.activity-time-since
-										= pjax_link_to activity.user.display_name, "user", user_path(activity.user), :style=>"padding-left:15px"
+										= pjax_link_to activity.user.login, "user", user_path(activity.user), :style=>"padding-left:15px"
 										=# activity.humanize_action.capitalize
 									.show-activity
 										%a.view.activity-time-since{:href => "#", :title => "View Discussion"}
@@ -51,7 +52,7 @@
 								- else
 									= pjax_link_to activity.target_name, activity.url_for_trackable(request.host), activity.params_for_trackable
 					.clear
-			= render :partial =>"pagination/pagination",:locals => {:paginationType=>"activities"}
+		= render :partial =>"pagination/pagination",:locals => {:paginationType=>"activities"}
 
 
 

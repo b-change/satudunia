@@ -16,6 +16,7 @@ class ServiceProvidersController < ApplicationController
   end
 
   def show
+    @feedback= Feedback.new
     @service_provider = ServiceProvider.by_slug(params[:slug])
     @service_provider_validate = ServiceProviderValidate.new
     @title=  @service_provider.try(:name)
@@ -27,6 +28,8 @@ class ServiceProvidersController < ApplicationController
       set_page_title(@service_provider.name)
     end
   end
+
+
   
   def create
     @provider = ServiceProvider.new(params[:service_provider])

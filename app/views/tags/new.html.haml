@@ -1,28 +1,28 @@
 .clearer.hide-responsive  
 %br.hide-responsive/
 .main-content-left
-  .page-content.review.single-post
-    %link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
-    .review-content
-      .ribbon-shadow-left
-      .section-wrapper
-        .section-header Tags
-      .section-arrow
-      .content-panel
-        .the-content
-          / old plus content
-          %h1 Tags
-        .container-new-plus
-          = render "form"
-          
-        .save_footer{:style => "margin-top: 30px;margin-left: 0px"}
-          = link_to "<i class='icon-thumbs-up'></i>Create Tag".html_safe, "javascript:void(0)", :class => "submit-button", :id => "new_tag_create"
-      
+	.page-content.review.single-post
+		%link{:href => "../experimental/images/misc1-160x160.jpg", :rel => "image_src"}/
+		.review-content
+			.ribbon-shadow-left
+			.section-wrapper
+				.section-header Tags
+			.section-arrow
+			.content-panel
+				.the-content
+					/ old plus content
+					%h1 Tags
+				.container-new-plus
+					= render "form"
+					
+				.save_footer{:style => "margin-top: 30px;margin-left: 0px"}
+					= link_to "<i class='icon-thumbs-up'></i>Create Tag".html_safe, "javascript:void(0)", :class => "submit-button", :id => "new_tag_create"
+			
 :javascript
-  jQuery('#new_tag_create').click(function(){
-    jQuery('#new-tag-form').submit();
-  });
-  
+	jQuery('#new_tag_create').click(function(){
+		jQuery('#new-tag-form').submit();
+	});
+	
 
 
 
@@ -51,11 +51,11 @@
 /     .clear
 /   .save_footer{:style => "margin-top: 30px;margin-left: 0px"}
 /     = link_to "<span>Create Tag</span>".html_safe, "javascript:void(0)", :class => "ask_tag5", :id => "new_tag_create"
-      
+			
 / :javascript
 /   $('#new_tag_create').click(function(){
 /     $('#new-tag-form').submit();
 /   });
-  
+	
 
 

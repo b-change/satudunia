@@ -2,23 +2,15 @@ namespace :update_tags do
   desc "To update Default tags"
   task :updateDefaultTags => :environment do
 
-    Tag.destroy_all
-    ["casual_partners","family","friends","regular_partners","partying","sex","situation","compliance","regular_access_to_medication","dating","family","friends","minimising-risk","safer_sex","accessing_medication","cost","selecting_medication","side_effects","clinics","cost","doctors","migration","tourism","fitness","nutrition","health_checks","health_insurance","inclusion_&_iscrimination"].each do |tag|
+    ["casual_partners","family","friends","regular_partners","partying","sex","situation","compliance","regular_access_to_medication","dating","family","friends","minimising-risk","safer_sex","accessing_medication","cost","selecting_medication","side_effects","clinics","cost","doctors","migration","tourism","fitness","nutrition","health_checks","health_insurance","inclusion_&_iscrimination","technology","business","science","politics","religion","sports","entertainment","gaming","lifestyle","offbeat","sexy_baby","sexy","testing-tags","new_tag1","test_tag1","sexman","medication","disclosure","coming_out","education","employment","health","relationships"].each do |tag|
       Tag.create(:name => tag)
     end
-    @tags={:disclosure=>["casual_partners","family","friends","regular_partners"],
-    :drugs=>["partying","sex"],:first_diagnosis=>["situation"],
-    :maintaining_treatment=>["compliance","regular_access_to_medication"],
-    :relationships=>["dating","family","friends"],:sex=>["minimizing-risk","safer_sex"],
-    :starting_medication=>["accessing_medication","cost","selecting_medication",
-    "side_effects"],:starting_treatment=>["clinics","cost","doctors"],
-    :travel=>["migration","tourism"],:well_being=>["fitness","nutrition"],
-    :work=>["health_checks","health_insurance","inclusion_&_iscrimination"]}
+    @tags=["casual_partners","family","friends","regular_partners","partying","sex","situation","compliance","regular_access_to_medication","dating","family","friends","minimising-risk","safer_sex","accessing_medication","cost","selecting_medication","side_effects","clinics","cost","doctors","migration","tourism","fitness","nutrition","health_checks","health_insurance","inclusion_&_iscrimination","technology","business","science","politics","religion","sports","entertainment","gaming","lifestyle","offbeat","sexy_baby","sexy","testing-tags","new_tag1","test_tag1","sexman","medication","disclosure","coming_out","education","employment","health","relationships"]
     # conditional statemnets
     if Group.last.update_attributes(:default_tags=>@tags)
       puts "Default tags updated"
     else
-      Puts "Something went wrong"
+      puts "Something went wrong"
     end
   end
 
@@ -126,7 +118,6 @@ namespace :update_tags do
     #   # conditional statement ends here
     # end
     # # loop ends here
-    Question.destroy_all
     User.first.questions.create!(:title => 'Why did the IRS issue internal guidance regarding offshore activities now?', :body => "IRS Criminal Investigation has determined preliminary acceptance into the voluntary disclosure program", :tags=>"disclosure", :group_id=>Group.first.id)
     User.first.questions.create!(:title => 'Why should I make a voluntary disclosure?', :body => "Taxpayers with undisclosed foreign accounts or entities should make a voluntary disclosure because it enables them to become compliant, avoid substantial civil penalties and generally eliminate the risk of criminal prosecution.", :tags=>"disclosure", :group_id=>Group.first.id)
     User.first.questions.create!(:title => 'Will I have to file or amend my old tax returns?', :body => "In addition, any inaccurate returns for any of the 6 years must be amended by the taxpayer.", :tags=>"disclosure", :group_id=>Group.first.id)

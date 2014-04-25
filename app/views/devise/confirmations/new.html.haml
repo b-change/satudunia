@@ -1,12 +1,62 @@
-%h2
-  Resend confirmation instructions
-= form_for  resource, :as => resource_name, :url => confirmation_path(resource_name) do |f|
-  = f.error_messages
-  %p
-    = f.label :email
-  %p
-    = f.text_field :email
-  %p
-    = f.submit "Resend confirmation instructions"
+.clearer.hide-responsive  
+%br.hide-responsive/
+#flash
+.main-content-left   
+	.page-content.review.single-post
+		%link{:href => "../experimental/images/misc1-160x160.jpg", :rel => "image_src"}/
+		.review-content
+			.ribbon-shadow-left
+			.section-wrapper
+				.section
+					.comment-bubble
+					/ making title stronger
+					.section-for-header
+						/%i.icon-vcard
+						Confirmation
+		.overview-wrapper
+			.overview-new.nopadding-top.padding-about#change-color
+				.excerpt-new1.justify-content.nopadding-top
+					#tool-area
+						#top-text
 
-= render :partial => "shared/devise_links"
+							%h2
+								Resend confirmation instructions
+							= form_for  resource, :as => resource_name, :url => confirmation_path(resource_name) do |f|
+								%p
+									= f.error_messages
+								%p
+									= f.label :email
+								%p
+									= f.text_field :email
+								%p
+									= f.submit "Resend confirmation instructions"
+
+.sidebar
+	- if current_user.nil?
+		/login box
+		= render "experimental/partials/login_box"
+	-else
+		/profile box
+		= render "experimental/partials/profile_box"
+
+	/ social login box
+	= render "experimental/partials/social_login_box"
+	/ member box
+	/= render "experimental/partials/member_box"
+	/rating box
+	= render "experimental/partials/rating_box"
+	/rating box
+	= render "experimental/partials/rating_box2"
+	/ left bar
+	/ = render "experimental/partials/left_bar"
+	/widget top
+	= render "experimental/partials/widget_top"
+	/ .clearer.hide-responsive
+	/ %br.clearer/
+	/ newly reviewd
+	/= render "experimental/partials/newly_reviewed"
+	/popular box
+	= render "experimental/partials/popular_box"
+	/banner box
+	= render "experimental/partials/banner_box"
+//= render :partial => "shared/devise_links"

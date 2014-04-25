@@ -10,7 +10,7 @@ class User
   include Shapado::Models::Networks
 
   devise :database_authenticatable, :recoverable, :registerable, :rememberable,:rpx_connectable,
-         :lockable, :token_authenticatable, :encryptable, :trackable, :omniauthable, :encryptor => :restful_authentication_sha1
+         :lockable,:token_authenticatable, :confirmable, :encryptable, :trackable, :omniauthable, :encryptor => :restful_authentication_sha1
 
   ROLES = %w[user moderator admin]
   LANGUAGE_FILTERS = %w[any user] + AVAILABLE_LANGUAGES
@@ -19,19 +19,23 @@ class User
   identity :type => String
   field :login,                     :type => String, :limit => 40
   index :login
-
+  field :code,                      :type => String
+  field :accept_terms,              :type => String
+  field :remind_me,                 :type => String
   field :name,                      :type => String, :limit => 100, :default => '', :null => true
-
+  field :first_name,                :type => String, :limit => 100, :default => '', :null => true
+  field :last_name,                 :type => String, :limit => 100, :default => '', :null => true
   field :bio,                       :type => String, :limit => 200
   field :website,                   :type => String, :limit => 200
   field :location,                  :type => String, :limit => 200
-  field :birthday,                  :type => Time
+  field :birthday,                  :type => Date
   field :user_age,                  :type => String
-
+  field :date,											:type => DateTime
   field :identity_url,              :type => String
   index :identity_url
 
   field :facebook_profile_url,      :type => String
+  field :confirmed_at,              :type => Time
   field :linkedin_profile_url,      :type => String
   field :twitter_profile_url,       :type => String
   field :google_plus_profile_url,   :type => String
@@ -132,7 +136,7 @@ class User
 
   validates_length_of       :name,     :maximum => 100
 
-  validates_presence_of     :email,    :if => lambda { |e| !e.openid_login? && !e.twitter_login? }
+  validates_presence_of     :email,    :if => :test_user
   validates_uniqueness_of   :email,    :if => lambda { |e| e.anonymous || (!e.openid_login? && !e.twitter_login?) }
   validates_length_of       :email,    :in => 6..100, :allow_nil => true, :if => lambda { |e| !e.email.blank? }
 
@@ -145,6 +149,14 @@ class User
   #before_save :update_languages
 
   attr_accessible :remember_me
+
+
+  def test_user
+  	if  self.rpx_identifier.present?
+  		return false
+
+  	end
+  end
 
   def custom_domain_owned_groups
     groups = Group.where(:owner_id => self.id)
@@ -920,10 +932,10 @@ Time.zone.now ? 1 : 0)
   def self.recent_users(limit = 5)
     User.order_by(%W[created_at desc]).limit(limit)
   end
-  
+
   def username
     login ? login : 'Not Available'
-  end 
+  end
 
   protected
   def update_languages
@@ -973,14 +985,22 @@ Time.zone.now ? 1 : 0)
   # rpx success
   def before_rpx_auto_create(rpx_user)
     # self[:login]=rpx_user[:username] if rpx_user[:username]
+
     if rpx_user[:email]
+
       @registered_user = User.where(:email => rpx_user[:email])
       if @registered_user.present?
         redirect_to '/members/login'
       else
         self[:login]=rpx_user[:username] if rpx_user[:username]
       end
+    else
+
+    	self[:login]=rpx_user[:username] if rpx_user[:username]
+
+
     end
-  end  
+
+  end
 
 end

@@ -1,0 +1,46 @@
+:css
+	.standard-form input[type="text"] {
+		width: 87%;
+	}
+
+= form_for (@user),:url=>{:action => "update"}, :html => {:class => "standard-form", :multipart => true, :id => "edit-user-form"} do |f|
+	.overview-wrapper
+		.overview-new.no-background
+			.left-panel
+				#basic-details-section.register-section
+					/ = f.label :name, "Name*"
+					/ = f.text_field :name,:placeholder=>"Please Enter Name",:id=>"signup_username"
+					= f.label :first_name, "First Name*"
+					= f.text_field :first_name,:placeholder=>"Please Enter First Name"
+					= f.hidden_field :hidden_value, :value => "2"
+					= f.label :last_name, "Last Name*" 
+					= f.text_field :last_name, :placeholder=>"Please Enter Last Name"
+					= f.label "Login*"
+					= f.text_field :login,:placeholder=>"Please Enter Company Name"
+					= f.label "Website"
+					= f.text_field :name,:placeholder=>"Please Enter Website"
+					= f.label "Birthday"
+					/ = f.date_select :date, order: [:day,:month,:year]
+					/ - if @user.date.present?
+					/ 	=f.text_field :date, :id=>"datepicker", :value=>@user.date.strftime("%d-%m-%y")
+					/ - else
+					/ 	=f.text_field :date, :id=>"datepicker"
+					/ = f.label "Upload Avatar"
+					/ = f.date_select :birthday, (:order = {:day, :month, :year})
+					= f.date_select :birthday, {:order => [:day, :month, :year],:prompt => true, :start_year => 1960, :end_year => Time.now.year}, :class=>"birthday-select"
+					%br
+					%br
+					= f.file_field :avatar
+				#profile-details-section.register-section
+					= f.label "Country"
+					.select-text-adj
+						= f.country_select :country_name,[ 'Singapore' ]
+					/ = f.text_field :country_name,:placeholder=>"Please Enter Country"
+					/ = f.label " Hiv Status"
+					/ = f.select :hiv_condition, ["Negative","Positive","I don't know","Prefer not to disclose"],{:selected => @user.hiv_condition}, :class => "select-class1"
+					= f.label "Bio"
+					= f.text_area :bio, :style => "width: 250px",:placeholder=>"Please Enter Comment"
+		
+		.contact-section-bottom-button
+			= f.submit "Save", :class=>"contact-button contact-button-single", :id=> "align"
+	%br.clearer/

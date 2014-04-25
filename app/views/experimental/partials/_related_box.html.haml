@@ -1,65 +1,65 @@
 #related.margin-related
 	%ul.tabnav.ui-tabs-nav
-		%li.title Related:
-		%li.arrow  
-		%li
-			%a{:href => "#tab1", :title => "Category 1"} Plus+
-		%li
-			%a{:href => "#tab2", :title => "Category 2"} Articles
+		%li.title.margin-zero Related:
+		%li.arrow.margin-zero
 		%li.ui-tabs-selected
-			%a{:href => "#tab3", :title => "Category 3"} News
-	%br.clearer/
-	.tabdiv-wrapper
-		#tab1.tabdiv.ui-tabs-panel.ui-tabs-hide.tab-plus
-			.post-loop.directory.post-panel
-				- filter_updated_at.each do |e|
-					=render :partial => e.static_key
-			/ %br.clearer.hide-responsive
-		#tab2.tabdiv.ui-tabs-panel.ui-tabs-hide{:style => ""}
-			- article_count = @articles.count
-			- @articles.each_with_index do |article, index|
-				- cycle_class_article = cycle("", "", "right")
-				.panel{:class=>cycle_class_article}
-					.rating-wrapper.small
-						.stars.yellow
-							.star.full  
-							.star.full  
-							.star.full  
-							.star
-							.star
-					%a.darken.small.video{:href => "single-review-numbers.html"}
-						- if article.has_article_image?
-							=# image_tag news_image_path(news,"small"), :height => 70,:width=>100, :alt => news.slug
-						-else
-							%img{:alt => "misc2", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc2-110x70.jpg", :style => "opacity: 1;", :width => "110"}/         
-					/ %a.post-title{:href => "single-review-numbers.html"} Coffee Common: Bringing Coffee Power to the People
-					= link_to truncate(strip_tags(article.article_title.capitalize),:length=>70), "#",:class=>"post-title"
-				- if index%2 != 0
-					.clear-responsive
-				- if (cycle_class_article == "right") || (article_count - index  == 1 && article_count%3 != 0)
-					%br.clearer.hide-responsive
+			%a{:href => "#tab1", :title => "Category 1"}
+		/ %li
+		/ 	%a{:href => "#tab2", :title => "Category 2"} Articles
+		/ %li.ui-tabs-selected
+		/ 	%a{:href => "#tab3", :title => "Category 3"} News
+	/ %br.clearer/
+	/ .tabdiv-wrapper
+	/ 	#tab1.tabdiv.ui-tabs-panel.tab-plus{:style => ""}
+	/ 		.post-loop.directory.post-panel
+	/ 			- filter_updated_at.each do |e|
+	/ 				=render :partial => e.static_key
+	/ 		%br.clearer.hide-responsive
+	/ 	#tab2.tabdiv.ui-tabs-panel.ui-tabs-hide{:style => ""}
+	/ 		- article_count = @articles.count
+	/ 		- @articles.each_with_index do |article, index|
+	/ 			- cycle_class_article = cycle("", "", "right")
+	/ 			.panel{:class=>cycle_class_article}
+	/ 				.rating-wrapper.small
+	/ 					.stars.yellow
+	/ 						.star.full
+	/ 						.star.full
+	/ 						.star.full
+	/ 						.star
+	/ 						.star
+	/ 				%a.darken.small.video{:href => "single-review-numbers.html"}
+	/ 					- if article.has_article_image?
+	/ 						=# image_tag news_image_path(news,"small"), :height => 70,:width=>100, :alt => news.slug
+	/ 					-else
+	/ 						%img{:alt => "misc2", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc2-110x70.jpg", :style => "opacity: 1;", :width => "110"}/
+	/ 				/ %a.post-title{:href => "single-review-numbers.html"} Coffee Common: Bringing Coffee Power to the People
+	/ 				= link_to truncate(strip_tags(article.article_title.capitalize),:length=>70), "#",:class=>"post-title"
+	/ 			- if index%2 != 0
+	/ 				.clear-responsive
+	/ 			- if (cycle_class_article == "right") || (article_count - index  == 1 && article_count%3 != 0)
+	/ 				%br.clearer.hide-responsive
 
-		#tab3.tabdiv.ui-tabs-panel{:style => ""}
-			- news_count = @news.count
-			- @news.each_with_index do |news,index|
-				- cycle_class_news = cycle("", "", "right-news") # cycle class cycle_class
-				.panel{:class=>cycle_class_news}
-					.rating-wrapper.small
-						.stars.yellow
-							.star.full  
-							.star.full  
-							.star.full  
-							.star
-							.star
-					.rating-wrapper.small
-					%a.darken.small{:href => news_path(news.slug)}
-						- if news.has_news_image?
-							= image_tag news_image_path(news,"small"), :height => 70,:width=>100, :alt => news.slug
-						-else
-							%img{:alt => "misc2", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc2-110x70.jpg", :style => "opacity: 1;", :width => "110"}/           
-					/ %a.post-title{:href => "single-review-numbers.html"} Built On The Swagger Framework, Made Is Rock-Solid
-					= link_to truncate(strip_tags(news.news_title.capitalize),:length=>70), news_path(news.slug),:class=>"post-title"         
-				- if index%2 != 0
-					.clear-responsive
-				- if (cycle_class_news == "right-news") || (news_count - index == 1 && news_count%3 != 0)
-					%br.clearer.hide-responsive
+	/ 	#tab3.tabdiv.ui-tabs-panel{:style => ""}
+	/ 		- news_count = @news.count
+	/ 		- @news.each_with_index do |news,index|
+	/ 			- cycle_class_news = cycle("", "", "right-news") # cycle class cycle_class
+	/ 			.panel{:class=>cycle_class_news}
+	/ 				.rating-wrapper.small
+	/ 					.stars.yellow
+	/ 						.star.full
+	/ 						.star.full
+	/ 						.star.full
+	/ 						.star
+	/ 						.star
+	/ 				.rating-wrapper.small
+	/ 				%a.darken.small{:href => news_path(news.slug)}
+	/ 					- if news.has_news_image?
+	/ 						= image_tag news_image_path(news,"small"), :height => 70,:width=>100, :alt => news.slug
+	/ 					-else
+	/ 						%img{:alt => "misc2", :height => "70", :src => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc2-110x70.jpg", :style => "opacity: 1;", :width => "110"}/
+	/ 				/ %a.post-title{:href => "single-review-numbers.html"} Built On The Swagger Framework, Made Is Rock-Solid
+	/ 				= link_to truncate(strip_tags(news.news_title.capitalize),:length=>70), news_path(news.slug),:class=>"post-title"
+	/ 			- if index%2 != 0
+	/ 				.clear-responsive
+	/ 			- if (cycle_class_news == "right-news") || (news_count - index == 1 && news_count%3 != 0)
+	/ 				%br.clearer.hide-responsive

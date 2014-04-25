@@ -3,31 +3,43 @@
 
 %br.clearer/
 / .overview-wrapper
-/ 	.overview-new
-/ 		.left-panel		
+/   .overview-new
+/     .left-panel   
 			
 = form_for (@user),:url=>{:action => "update"}, :html => {:class => "exp-contact-form", :multipart => true, :id => "edit-user-form"} do |f|
 	.overview-wrapper#all_checks{:style =>"display:none"}
 		.overview-new
-			.left-panel	
-				.checkbox1
-					= f.check_box :hide_hiv_condition
-					Hide my HIV Condition to other users
-				.checkbox1
+			.left-panel
+				.category
+					.catname
+						Privacy
+					.category-arrow
+				/ .checkbox1					
+				/ 	= f.check_box :hide_hiv_condition
+				/ 	Hide my HIV Condition to other users, should also be under HIV status field in the profile page.
+					
+				%br
+				.checkbox1					
 					= f.check_box :hide_country
-					Hide my Country to other users
+					Hide my Country to other users.
+					
+				%br
 				.checkbox1
 					= f.check_box :hide_age
-					Hide my Age to other users
+					Hide my Age to other users.
+					
+				%br
 				.checkbox1
 					= f.check_box :hide_realname
-					Hide my Real Name to other users
+					Hide my Real Name to other users.
+					
+				%br
 		.contact-section-bottom-button
 			= f.submit "Save", :class=>"contact-button contact-button-single", :id=> "align"
 	%br.clearer/
 	.overview-wrapper#password_settings{:style =>"display:none"}
 		.overview-new
-			.left-panel			
+			.left-panel     
 				
 				%br
 					= f.label :email, "Email", :class => "label"
@@ -48,39 +60,39 @@
 
 		
 / :javascript
-/ 	jQuery(window).load(function(){
-/ 		jQuery('#edit-user-link').click(function(){
-/ 			jQuery('#edit-user-form').submit();
-/ 		});
-/ 	});
+/   jQuery(window).load(function(){
+/     jQuery('#edit-user-link').click(function(){
+/       jQuery('#edit-user-form').submit();
+/     });
+/   });
 
 / #details_page
-/ 	%br
-/ 		= big_avatar_img @user, :size => 140
-/ 		= f.file_field :avatar
-/ 	%br
-/ 		= f.label :name, "Name*", :class => "label"
-/ 		= f.text_field :name, :class => "input-class1"
-/ 	%br
-/ 		= f.label :login, "Login*", :class => "label"
-/ 		= f.text_field :login, :class => "input-class1"
-/ 	%br
-/ 		= f.label :website, "Website", :class => "label"
-/ 		= f.text_field :website, :class => "input-class1"
-/ 	%br
-/ 		= f.label "Date", :class => "label"
-/ 		%br
-/ 		= f.text_field :user_age
-/ 	%br
-/ 		= f.label :country_name, "Country", :class => "label"
-/ 		= f.text_field :country_name, :class => "input-class1"
-/ 	%br
-/ 		= f.label :hiv_condition, "HIV", :class => "label"
-/ 		= f.select :hiv_condition, ["Negative","Positive"],{:selected => @user.hiv_condition}, :class => "select-class1"
-/ 	%br
-/ 		= f.label :bio, "Bio", :class=>"label"
-/ 	.search4
-/ 		= f.text_area :bio, :style => "font-size: 13px; width:600px;"
+/   %br
+/     = big_avatar_img @user, :size => 140
+/     = f.file_field :avatar
+/   %br
+/     = f.label :name, "Name*", :class => "label"
+/     = f.text_field :name, :class => "input-class1"
+/   %br
+/     = f.label :login, "Login*", :class => "label"
+/     = f.text_field :login, :class => "input-class1"
+/   %br
+/     = f.label :website, "Website", :class => "label"
+/     = f.text_field :website, :class => "input-class1"
+/   %br
+/     = f.label "Date", :class => "label"
+/     %br
+/     = f.text_field :user_age
+/   %br
+/     = f.label :country_name, "Country", :class => "label"
+/     = f.text_field :country_name, :class => "input-class1"
+/   %br
+/     = f.label :hiv_condition, "HIV", :class => "label"
+/     = f.select :hiv_condition, ["Negative","Positive"],{:selected => @user.hiv_condition}, :class => "select-class1"
+/   %br
+/     = f.label :bio, "Bio", :class=>"label"
+/   .search4
+/     = f.text_area :bio, :style => "font-size: 13px; width:600px;"
 / .save_footer#footer-button
-/ 	= f.submit "Save".html_safe, :class => "submit-button", :id => "edit-user-link"
+/   = f.submit "Save".html_safe, :class => "submit-button", :id => "edit-user-link"
 / %br

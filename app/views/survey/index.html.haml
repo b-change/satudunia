@@ -5,7 +5,7 @@
 		.section-wrapper
 			.section-header Surveys
 		.section-arrow
-		
+
 		- if @surveys.blank?
 			%h3
 				No Recent  Yet
@@ -28,50 +28,50 @@
 		- if @survey7.present?
 			= render "survey7"
 		%br.clearer/
-	.main-content-left
-		.page-content.review.single-post
-			%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
-			.review-content
-				.ribbon-shadow-left
-				.section-wrapper
-					.section
-						.comment-bubble
-							
-							%a{:href => "/survey#disqus_thread"} Link
-						/ making title stronger
-						.section-for-header
-							Disqus
-				.section-arrow 
-				.overview-wrapper
-				.overview-new
-					.left-panel
-						#disqus_thread
-						:javascript
-							/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-							var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
+	/ .main-content-left
+	/ 	.page-content.review.single-post
+	/ 		%link{:href => "../experimental/images/misc1-160x160.jpg", :rel => "image_src"}/
+	/ 		.review-content
+	/ 			.ribbon-shadow-left
+	/ 			.section-wrapper
+	/ 				.section
+	/ 					.comment-bubble
 
-							/* * * DON'T EDIT BELOW THIS LINE * * */
-							(function() {
-								var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-								dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js'; 
-								(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); 
-							})();
-						%noscript 
-							Please enable JavaScript to view the 
-							%a{:href => "http://disqus.com/?ref_noscript"} comments powered by Disqus
-						%a.dsq-brlink{:href => "http://disqus.com"}
-							comments powered by
-							%span.logo-disqus Disqus
-						:javascript
-							var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
-							// required: replace example with your forum shortname
-							(function () {
-								var s = document.createElement('script'); s.async = true;
-								s.type = 'text/javascript';
-								s.src = '//'+disqus_shortname+'.disqus.com/count.js';
-								(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-							}());
-	%br.clearer/		
+	/ 						%a{:href => "/survey#disqus_thread"} Link
+	/ 					/ making title stronger
+	/ 					.section-for-header
+	/ 						Disqus
+	/ 			.section-arrow
+	/ 			.overview-wrapper
+	/ 			.overview-new
+	/ 				.left-panel
+	/ 					#disqus_thread
+	/ 					:javascript
+	/ 						/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+	/ 						var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
+
+	/ 						/* * * DON'T EDIT BELOW THIS LINE * * */
+	/ 						(function() {
+	/ 							var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	/ 							dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	/ 							(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	/ 						})();
+	/ 					%noscript
+	/ 						Please enable JavaScript to view the
+	/ 						%a{:href => "http://disqus.com/?ref_noscript"} comments powered by Disqus
+	/ 					%a.dsq-brlink{:href => "http://disqus.com"}
+	/ 						comments powered by
+	/ 						%span.logo-disqus Disqus
+	/ 					:javascript
+	/ 						var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
+	/ 						// required: replace example with your forum shortname
+	/ 						(function () {
+	/ 							var s = document.createElement('script'); s.async = true;
+	/ 							s.type = 'text/javascript';
+	/ 							s.src = '//'+disqus_shortname+'.disqus.com/count.js';
+	/ 							(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+	/ 						}());
+	/ %br.clearer/
 .sidebar
 	- if current_user.nil?
 		/login box
@@ -83,7 +83,7 @@
 	/ social login box
 	= render "experimental/partials/social_login_box"
 	/ member box
-	= render "experimental/partials/member_box"
+	/ = render "experimental/partials/member_box"
 	/rating box
 	= render "experimental/partials/rating_box"
 	/rating box
@@ -95,7 +95,7 @@
 	/ .clearer.hide-responsive
 	/ %br.clearer/
 	/ newly reviewd
-	= render "experimental/partials/newly_reviewed"
+	/ = render "experimental/partials/newly_reviewed"
 	/popular box
 	= render "experimental/partials/popular_box"
 	/banner box

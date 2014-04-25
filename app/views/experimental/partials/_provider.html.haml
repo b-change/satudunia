@@ -4,10 +4,10 @@
 			#pag-top.pagination
 				-@paginator = @serviceProviders
 				/ pagination_top
-				= render :partial =>"pagination/pagination",:locals => {:paginationType=>"serviceProviders"}
+				= render :partial =>"pagination/pagination",:locals => {:paginationType=>"Service Providers"}
 	.post-loop.search-loop.services-top-adj
 		- @serviceProviders.all.each do |provider|
-			
+
 			- next if provider.blank?
 			.post-panel{:style=>"border-top:1px solid #E0E0E0;"}
 				.post-thumbnail
@@ -32,4 +32,4 @@
 		#forums-dir-list-newest.dir-list
 			#pag-top.pagination
 				-@paginator = @serviceProviders
-				= render :partial =>"pagination/pagination",:locals => {:paginationType=>"serviceProviders"}
+				= render :partial =>"pagination/pagination",:locals => {:paginationType=>"Service Providers"}

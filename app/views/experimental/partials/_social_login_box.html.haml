@@ -6,28 +6,14 @@
 					%i.icon-key
 					Login With Social Networks
 			.login-form
-				/ =embed_rpx user_session_url
-				/ =link_to "AOL","/social"
-				/ ="&nbsp;".html_safe
-				/ =link_to image_tag("/assets/experimental/images/social_icons/facebook.png"),"/social",:class=>"social-icons"
-				/ ="&nbsp;".html_safe
-				/ =link_to image_tag("/assets/experimental/images/social_icons/linkedin.png"),"/social",:class=>"social-icons"
-				/ ="&nbsp;".html_safe
-				/ =link_to image_tag("/assets/experimental/images/social_icons/twitter.png"),"/social",:class=>"social-icons"
-				/ ="&nbsp;".html_safe
-				/ %br
-				/ =link_to image_tag("/assets/experimental/images/social_icons/google.png"),"/social",:class=>"social-icons"
-				/ ="&nbsp;".html_safe
-				/ =link_to image_tag("/assets/experimental/images/social_icons/yahoo.png"),"/social",:class=>"social-icons"
-				/ ="&nbsp;".html_safe
-				/ =link_to image_tag("/assets/experimental/images/social_icons/linkedin.png"),"/social",:class=>"social-icons"
-				/ ="&nbsp;".html_safe
-				/ =link_to "Twitter","/social"
+				
 
 				- if params[:controller] == "service_providers" && params[:action] == "show"
 					= link_to  image_tag("/assets/experimental/images/social_icons/social_widget.png",:width=>"270", :id=>"set-width"),social_experimental_index_path(:via=>"networks")
 				- else
 					= link_to_rpx  image_tag("/assets/experimental/images/social_icons/social_widget.png",:width=>"270", :id=>"set-width"),user_session_url
+				%p.login-submit
+					=link_to "<i class='icon-lock'></i>Concerned about privacy?".html_safe, concern_about_privacy_experimental_index_path
 :javascript
 
 	jQuery(".social-icons").mouseover(function(){

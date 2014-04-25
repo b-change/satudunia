@@ -1,9 +1,9 @@
-.clearer.hide-responsive  
+.clearer.hide-responsive
 %br.hide-responsive/
 #main-wrapper-dark
 	.main-content-left
 		.page-content.review.single-post
-			%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+			%link{:href => "../experimental/images/misc1-160x160.jpg", :rel => "image_src"}/
 			.review-content
 				.ribbon-shadow-left
 				.section-wrapper
@@ -14,8 +14,8 @@
 						.section-for-header
 							%i.icon-bookmark
 							Badges
-				.section-arrow 
-			/ content area 
+				.section-arrow
+			/ content area
 		#content.page-content.badges-title-adj
 			/ %form#members-directory-form.dir-form{:action => "/badges"}
 			#members-dir-search.dir-search{:role => "search"}
@@ -41,13 +41,13 @@
 							%option{:value => "bronze"} Bronze
 		.page-content.review
 			.overview-wrapper
-				
-				.overview-new
+
+				.overview-new.no-background
 					%h2.justify-content.badges-description-adj
 						= t("badges.index.description")
 					.left-panel
 						.badges#badges_ajax
-							
+
 							%table
 								- @badges.sort_by{|b| b.name}.each do |badge|
 									%tr
@@ -74,7 +74,7 @@
 		- if current_user
 			.main-content-left
 				.page-content.review.single-post
-					%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+					%link{:href => "../experimental/images/misc1-160x160.jpg", :rel => "image_src"}/
 					.review-content
 						.ribbon-shadow-left
 						.section-wrapper
@@ -86,9 +86,9 @@
 								/ making title stronger
 								.section-for-header
 									PLUS+ Comments
-						.section-arrow 
+						.section-arrow
 						.overview-wrapper
-							.overview-new
+							.overview-new.no-background
 								.left-panel
 									%h2.comment-count-font #{@badge_comments_count.count} comments
 									%br/
@@ -103,71 +103,79 @@
 										%i.icon-mail.fontSize
 										Subscribe via email
 										.floatright PLUS+ Comments
-							
-							
+
+
 
 		%br.clearer/
-		.main-content-left
-			.page-content.review.single-post
-				%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
-				.review-content
-					.ribbon-shadow-left
-					.section-wrapper
-						.section
-							.comment-bubble
-								%a{:href => badges_path(:anchor => "disqus_thread")} Link
-							/ making title stronger
-							.section-for-header
-								Disqus
-					.section-arrow 
-					.overview-wrapper
-						.overview-new
-							.left-panel
-								#disqus_thread
-								:javascript
-									/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-									var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
-
-									/* * * DON'T EDIT BELOW THIS LINE * * */
-									(function() {
-										var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-										dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js'; 
-										(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); 
-									})();
-								%noscript 
-									Please enable JavaScript to view the 
-									%a{:href => "http://disqus.com/?ref_noscript"} comments powered by Disqus
-								%a.dsq-brlink{:href => "http://disqus.com"}
-									comments powered by
-									%span.logo-disqus Disqus
-								:javascript
-									var disqus_shortname = 'plusbchange'; // required: replace example with your forum shortname
-									// required: replace example with your forum shortname
-									(function () {
-										var s = document.createElement('script'); s.async = true;
-										s.type = 'text/javascript';
-										s.src = '//'+disqus_shortname+'.disqus.com/count.js';
-										(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-									}());
+		/ .main-content-left
+		/ 	.page-content.review.single-post
+		/ 		%link{:href => "../experimental/images/misc1-160x160.jpg", :rel => "image_src"}/
+		/ 		.review-content
+		/ 			.ribbon-shadow-left
+		/ 			.section-wrapper
+		/ 				.section
+		/ 					.comment-bubble
+		/ 						%a{:href => badges_path(:anchor => "disqus_thread")} Link
+		/ 					/ making title stronger
+		/ 					.section-for-header
+		/ 						Disqus
+		/ 			.section-arrow
+		/ 			%br.clearer/
+		/ 			.overview-wrapper
+		/ 				.overview-new.no-background
+		/ 					.left-panel
+		/ 						#disqus_thread
+		/ 						:javascript
+		/ 							/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+		/ 							var disqus_shortname = 'beingmedev'; // required: replace example with your forum shortname
+		/ 							/* * * DON'T EDIT BELOW THIS LINE * * */
+		/ 							(function() {
+		/ 								var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		/ 								dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		/ 								(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+		/ 							})();
+		/ 						%noscript
+		/ 							Please enable JavaScript to view the
+		/ 							%a{href: "http://disqus.com/?ref_noscript"} comments powered by Disqus.
+		/ 						%a.dsq-brlink{href: "http://disqus.com"}
+		/ 							comments powered by
+		/ 							%span.logo-disqus Disqus
+		/ 						:javascript
+		/ 							var disqus_shortname = 'beingmedev'; // required: replace example with your forum shortname
+		/ 							// required: replace example with your forum shortname
+		/ 							(function () {
+		/ 								var s = document.createElement('script'); s.async = true;
+		/ 								s.type = 'text/javascript';
+		/ 								s.src = '//'+disqus_shortname+'.disqus.com/count.js';
+		/ 								(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+		/ 							}());
+		/ 			%br.clearer/
 
 .sidebar
+	/login box
 	- if current_user.nil?
 		/login box
 		= render "experimental/partials/login_box"
 	-else
 		/profile box
 		= render "experimental/partials/profile_box"
+
+	/ social login box
+	= render "experimental/partials/social_login_box"
+	/ member box
+	/ = render "experimental/partials/member_box"
+	/ left bar
 	= render "experimental/partials/left_bar"
 	/widget top
 	= render "experimental/partials/widget_top"
 	/ .clearer.hide-responsive
 	/ %br.clearer/
 	/ newly reviewd
-	= render "experimental/partials/newly_reviewed"
+	/ = render "experimental/partials/newly_reviewed"
 	/popular box
-	= render "experimental/partials/popular_box"
+	/ = render "experimental/partials/popular_box"
 	/rating box
-	/ = render "experimental/partials/rating_box"
+	= render "experimental/partials/rating_box"
 	/banner box
 	= render "experimental/partials/banner_box"
 
@@ -176,19 +184,19 @@
 
 	jQuery(document).ready(function(){
 		jQuery('#members_clear_field').click( function () {
-			jQuery('#members_search').val(""); 
+			jQuery('#members_search').val("");
 		});
 		jQuery('#members_search,#members_search1').keyup(function(e) {
 			var badge_search = jQuery(this).val();
 			e.preventDefault();
-			
+
 			if((badge_search!= "")&&(e.which!= '32')){
 				jQuery(".loader").addClass("ajax-loader");
-				jQuery.ajax({           
+				jQuery.ajax({
 					url:'/badges?nameOfPartial=badges_list&idLoad=badges_ajax',
 					data:{ badge_search: badge_search},
 					dataType:"script",
-					error:function(errorObject){                
+					error:function(errorObject){
 
 					},
 					success:function(successObject){
@@ -199,23 +207,23 @@
 					}
 				});
 			}
-			
+
 		})
 
-	
+
 		jQuery("#activity-filter-by,#members_clear_field").on('change  click',function(e){
 			if(jQuery(this).hasClass('cancel_search')){}
 			else{
 				jQuery(".loader").addClass("ajax-loader");
 				valueTaker= jQuery("#activity-filter-by").val();
-				jQuery.ajax({     
+				jQuery.ajax({
 					url:'/badges?nameOfPartial=badges_list&idLoad=badges_ajax',
 					data: { tab: valueTaker},
-					dataType:"script",				
+					dataType:"script",
 					success:function(successObject){
 						jQuery(".loader").removeClass("ajax-loader");
 						jQuery('#members_clear_field').addClass("cancel_search");
-						
+
 					}
 				});
 			}
@@ -227,16 +235,16 @@
 			if(jQuery.trim(v).length<1){
 				jQuery(".loader").addClass("ajax-loader");
 				valueTaker= jQuery("#activity-filter-by").val();
-				jQuery.ajax({     
+				jQuery.ajax({
 					url:'/badges?nameOfPartial=badges_list&idLoad=badges_ajax',
 					data: { tab: valueTaker},
-					dataType:"script",				
+					dataType:"script",
 					success:function(successObject){
 						if(jQuery(this).hasClass('bottom_searchbox')){
-							
+
 						}
 						jQuery(".loader").removeClass("ajax-loader");
-						
+
 					}
 				});
 			}

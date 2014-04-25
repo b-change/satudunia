@@ -1,55 +1,55 @@
 .widget-wrapper
-  .widget
-    .section-wrapper
-      .section 
-        %i.icon-key
-        Login
-    .login-form
-      = form_for resource, :url => session_path(resource), :html => {:class => "form"} do |f|
-        %p.login-username
-          %label{:for => "user_login"} Username
-          =f.text_field :email, :class => "input",:placeholder=>"Username", :id=>"set-width"
-          / %input#user_login.input{:name => "log", :size => "20", :type => "text", :value => ""}/
-        %p.login-password
-          %label{:for => "user_pass"} Password
-          =f.password_field :password, :class => "",:placeholder=>"Password", :id=>"set-width"
-          - if params[:pp] && params[:format] != 'mobile'
-            = hidden_field_tag :pp, 1
-          / %input#user_pass.input{:name => "pwd", :size => "20", :type => "password", :value => ""}/
-          = f.hidden_field :admin, :value=>"user-experiment"
-        %p.login-remember
-          -if devise_mapping.rememberable?
-            %span{:style=>"top:5px; position:relative; top: 2px;"}
-              =f.check_box :remember_me,:class=>"check-box-style",:id=>"rememberme"
-            %span
-              Remember Me
-            %span{:style=>"float:right; margin-right:8px;"}
-              = button_tag "<i class='icon-login'></i>Login".html_safe,:type=>"submit"   
-            
-        %p.login-submit
-          %br
-            =link_to "<i class='icon-lock'></i>Can't Access your account?".html_safe,"/reset-password"
+	.widget
+		.section-wrapper
+			.section
+				%i.icon-key
+				Login
+		.login-form
+			= form_for resource, :url => session_path(resource), :html => {:class => "form"} do |f|
+				%p.login-username
+					%label{:for => "user_login"} User Name
+					=f.text_field :email, :class => "input",:placeholder=>"Username", :id=>"set-width"
+					/ %input#user_login.input{:name => "log", :size => "20", :type => "text", :value => ""}/
+				%p.login-password
+					%label{:for => "user_pass"} Password
+					=f.password_field :password, :class => "",:placeholder=>"Password", :id=>"set-width"
+					- if params[:pp] && params[:format] != 'mobile'
+						= hidden_field_tag :pp, 1
+					/ %input#user_pass.input{:name => "pwd", :size => "20", :type => "password", :value => ""}/
+					= f.hidden_field :admin, :value=>"user-experiment"
+				%p.login-remember
+					-if devise_mapping.rememberable?
+						%span{:style=>"top:5px; position:relative; top: 2px;"}
+							=f.check_box :remember_me,:class=>"check-box-style",:id=>"rememberme"
+						%span
+							Remember Me
+						%span{:style=>"float:right; margin-right:8px;"}
+							= button_tag "<i class='icon-login'></i>Login".html_safe,:type=>"submit"
+				%br
+				%p.login-submit
+					=link_to "<i class='icon-login'></i>&nbspFirst time? Sign-up now".html_safe, "/concern-about-privacy"
+				%p.login-submit
+					=link_to "<i class='icon-lock'></i>&nbspForgot your login/password?".html_safe,"/reset-password"
 
 :javascript
-  // client side validations
-  jQuery("#new_user").validate({
-      rules:{
-        "user[email]":{
-          required:true
-        },
+	// client side validations
+	jQuery("#new_user").validate({
+			rules:{
+				"user[email]":{
+					required:true
+				},
 
-        "user[password]":{
-          required:true
-        }
-      },
-      messages:{
-        "user[email]":{
-          required:"Username Can't be Blank"
-        },
+				"user[password]":{
+					required:true
+				}
+			},
+			messages:{
+				"user[email]":{
+					required:"Username Can't be Blank"
+				},
 
-        "user[password]":{
-          required:"Password Can't be Blank"
-        }
-      }
-  });
-  
+				"user[password]":{
+					required:"Password Can't be Blank"
+				}
+			}
+	});

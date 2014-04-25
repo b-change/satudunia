@@ -1,40 +1,54 @@
 #top-menu-wrapper
 	/ begin top menu
-	.ribbon-shadow-left  
-	#top-menu
+	.ribbon-shadow-left
+	#top-menu.darkskin
 		.container.mid
 			.menu
 				%ul#menu-top-menu
-					%li
-						%a{:href => public_about_experimental_index_path,:title=>"About Plus",:alt=>"About Plus",:class=>"tool-tip"} 
-							="<i class='icon-text-doc'></i>About Plus".html_safe
-					%li
-						%a{:href => questions_path,:title=>"Questions",:alt=>"Questions",:class=>"tool-tip"} 
-							="<i class='icon-help'></i>Questions".html_safe
-					%li
-						%a{:href => service_providers_path,:title=>"Services Map",:alt=>"Services Map",:class=>"tool-tip"} 
-							="<i class='icon-location'></i>Services map".html_safe
-					%li
-						%a{:href => contact_index_path,:title=>"Contact",:alt=>"Contact",:class=>"tool-tip"} 
-							="<i class='icon-phone'></i>Contact".html_safe
 					/ %li
-					/ 	%a{:href => partners_experimental_index_path,:title=>"Partners",:alt=>"Partners"} Partners
+					/   %a{:href => public_about_experimental_index_path,:title=>"About Plus",:alt=>"About Plus",:class=>"tool-tip"}
+					/     ="<i class='icon-text-doc'></i>About Beingme".html_safe
+					/ %li
+					/   %a{:href => questions_path,:title=>"Questions",:alt=>"Questions",:class=>"tool-tip"}
+					/     ="<i class='icon-help'></i>Questions".html_safe
+					/ %li
+					/   %a{:href => service_providers_path,:title=>"Services Map",:alt=>"Services Map",:class=>"tool-tip"}
+					/     ="<i class='icon-location'></i>Services map".html_safe
+					/ %li
+					/   %a{:href => contact_index_path,:title=>"Contact",:alt=>"Contact",:class=>"tool-tip"}
+					/     ="<i class='icon-phone'></i>Contact".html_safe
+
+					/ %li
+					/   %a{:href => ask_question_experimental_index_path,:title=>"Ask a Question",:alt=>"Ask a Question",:class=>"tool-tip"}
+					/     ="<i class='icon-circled-help'></i>Ask a Question".html_safe
 					%li
-						%a{:href => ask_question_experimental_index_path,:title=>"Ask a Question",:alt=>"Ask a Question",:class=>"tool-tip"} 
-							="<i class='icon-circled-help'></i>Ask a Question".html_safe
+						%a{:href => concern_about_privacy_experimental_index_path,:title=>"Concerned about Privacy",:alt=>"Concerned about Privacy",:class=>"tool-tip"}
+							="<i class='icon-lock'></i>Concerned about Privacy?".html_safe
 					%li
+						%a{:href => contact_index_path,:title=>"Contact Us",:alt=>"Contact Us",:class=>"tool-tip"}
+							="<i class='icon-phone'></i>Contact Us".html_safe
+
+					%li
+
 						- if current_user.nil?
-							%a{:href => '/login',:title=>"Sign in",:alt=>"sign in",:class=>"tool-tip",:title=>"Sign in"}  
+							%a{:href => '#'}
 								="<i class='icon-login'></i>Login".html_safe
+							%ul
+								%li
+									%a{:href => '/login',:title=>"Email",:alt=>"Email"}
+										="<i class='icon-mail'></i>Via E-Mail".html_safe
+								%li
+
+									= link_to_rpx "<i class='icon-add-to-list'></i>Via Social".html_safe, user_session_url,:html=>{:title=>"with Janrain",:alt=>"with Janrain"}
 						-else
-							= link_to "<i class='icon-user'></i>Login as #{h(current_user.login)}".html_safe,"#",:style=>"color:#027DB2;"
+							= link_to "<i class='icon-user'></i>Logged in as #{h(current_user.login)}".html_safe,"#",:style=>"color:#027DB2;"
 							%ul
 								/ %li
-								/ 	= link_to "<i class='icon-user'></i>#{current_user.login}".html_safe , user_path(current_user)
+								/   = link_to "<i class='icon-user'></i>#{current_user.login}".html_safe , user_path(current_user)
 								%li
-									= link_to "<i class='icon-lock'></i>Settings".html_safe, "/profile/settings"								
+									= link_to "<i class='icon-lock'></i>Settings".html_safe, "/profile/settings"
 								%li
-									
+
 									= link_to "<i class='icon-retweet'></i>#{t('.connect')}".html_safe, social_connect_path
 								%li
 									= link_to "<i class='icon-circled-right'></i>#{t('.following')}".html_safe, follows_user_path(current_user)
@@ -45,12 +59,46 @@
 
 					-if current_user.nil?
 						%li
-							=# link_to_rpx "<i class='icon-plus'></i>sign up".html_safe, user_session_url,:html=>{:title=>"Sign up ",:class=>"tool-tip"}
-							= link_to "<i class='icon-plus'></i>sign up".html_safe,"#",:html=>{:title=>"Sign up"}, :class=>"fancybox","data-reveal-id"=>"myModal"
+							/ = link_to "<i class='icon-plus'></i>sign up".html_safe,"#",:html=>{:title=>"Sign up"}, :class=>"fancybox","data-reveal-id"=>"myModal"
+							= link_to "<i class='icon-plus'></i>sign up".html_safe,"#"
+							%ul
+								%li
+									%a{:href => social_experimental_index_path(:via=>"email"),:title=>"Email",:alt=>"Email"}
+										="<i class='icon-mail'></i>Via E-Mail".html_safe
+								%li
+									%a{:href => social_experimental_index_path(:via=>"networks"),:title=>"Social",:alt=>"Social"}
+										="<i class='icon-add-to-list'></i>Via Social".html_safe
 
-							=# link_to "<i class='icon-plus'></i>sign up".html_safe,"/signup",:html=>{:title=>"Sign up",:class=>"tool-tip"}
+					-if current_user.nil?
+						%li
+							= link_to "<i class='icon-plus'></i>Invitation".html_safe,"#"
+							%ul
+								%li
+									/ = link_to "<i class='icon-plus'></i>sign up".html_safe,"#",:html=>{:title=>"Sign up"}, :class=>"fancybox","data-reveal-id"=>"myModal"
+									= link_to "<i class='icon-plus'></i>Register".html_safe,"#"
+									%ul
+										%li
+											%a{:href => social_experimental_index_path(:via=>"email"),:title=>"Email",:alt=>"Email"}
+												="<i class='icon-mail'></i>Via E-Mail".html_safe
+										%li
+											%a{:href => social_experimental_index_path(:via=>"networks"),:title=>"Social",:alt=>"Social"}
+												="<i class='icon-add-to-list'></i>Via Social".html_safe
+								%li
+									= link_to "<i class='icon-login'></i>Login".html_safe,"#"
 
-								
+									%ul
+										%li
+											%a{:href => '/login',:title=>"Email",:alt=>"Email"}
+												="<i class='icon-mail'></i>Via E-Mail".html_safe
+										%li
+
+											= link_to_rpx "<i class='icon-add-to-list'></i>Via Social".html_safe, user_session_url,:html=>{:title=>"with Janrain",:alt=>"with Janrain"}
+
+
+
+
+
+
 			%select#select-menu-top-menu
 				%option Page Navigation
 				%option{:value => "page-jquery-extras.html"} jQuery Extras
@@ -66,13 +114,9 @@
 				%option{:value => "404.html"} Custom 404 Page
 				%option{:value => "page-full-width.html"} Full-Width Page
 				%option{:value => "page-contributors.html"} Contributors Listing
-		#top-widget
-			.top-social
-				%a.rss{:href => rss_feed_experimental_index_path}
-				%a.facebook{:href =>"https://www.facebook.com/pages/B-Change/123954514355408",:title=>"Facebook b-change Home",:alt=>"Facebook b-change Home",:target=>"_blank",:class=>"tool-tip"}  
-				/ %a.facebook{:href =>"javascript:void(0)",:onclick=>"fb_share()"}  
-				%a.twitter{:href =>"javascript:void(0)",:onclick=>"twitter_twit()"}  
-				
+
+
+
 		#search
 			.wrapper
 				.inner
@@ -80,7 +124,7 @@
 					%form#searchformtop{:action => "search.html", :method => "get"}
 						%input#s{:name => "s", :onblur => "if (this.value == '') {this.value = 'search';}", :onfocus => "if (this.value == 'search') {this.value = '';}", :type => "text", :value => "search"}/
 		%br.clearer/
-	.ribbon-shadow-right 
+	.ribbon-shadow-right
 #myModal.reveal-modal.show-box
 	/ %h1 Modal Title
 	%p
@@ -88,7 +132,7 @@
 		= link_to "<i class='icon-key'></i>Sign Up with Email".html_safe,social_experimental_index_path(:via=>"email"),:html=>{:title=>"Sign up",:class=>"tool-tip"}
 		%br
 		%br
-		
+
 		= link_to "<i class='icon-key'></i>Sign Up with Social+ Networks".html_safe,social_experimental_index_path(:via=>"networks")
 	%a.close-reveal-modal#close-box
 		%img{:alt => "close", :src => "http://cdn.rpxnow.com/rel/img/43f137c98b7a6562f6ad5f076fce376b.png", :style => "width: 34px; top: -4px; right: -4px; position: absolute; height: 34px; cursor: pointer;"}/
@@ -103,4 +147,10 @@
 	jQuery(".fancybox").click(function(){
 		jQuery("#myModal").show();
 	});
-
+	jQuery(document).ready(function(){
+		if("#{session[:sign_up_session]}"=="action_new" ){
+			jQuery('a.fancybox').trigger('click');
+		}
+	});
+-if session[:sign_up_session].present?
+	-session[:sign_up_session].clear

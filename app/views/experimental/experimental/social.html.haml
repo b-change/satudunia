@@ -17,11 +17,11 @@
 		filter:alpha(opacity=40);
 	}
 
-.clearer.hide-responsive  
+.clearer.hide-responsive
 %br.hide-responsive/
 .main-content-left
 	.page-content.review.single-post
-		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/misc1-160x160.jpg", :rel => "image_src"}/
+		%link{:href => "../experimental/images/misc1-160x160.jpg", :rel => "image_src"}/
 		.review-content
 			.ribbon-shadow-left
 			.section-wrapper
@@ -32,25 +32,32 @@
 					.section-for-header
 						%i.icon-vcard
 						= @title.upcase
-			.section-arrow 
+			.section-arrow
 			.disclaimer{:style=> "border: 1px solid #E0E0E0;"}
 				Disclaimer: This summary is not a part of the Terms of Use and is not a legal document.It is simply a reference for understanding the full terms.
 				%small .
-			%br 
-		/ content area 
-		%link{:href => "http://www.industrialthemes.com/made/wp-content/uploads/2012/06/movies3-160x160.jpg", :rel => "image_src"}/
+			%br
+		/ content area
+		%link{:href => "../experimental/images/movies3-160x160.jpg", :rel => "image_src"}/
 		/ %br.hide-responsive/
 		.overview-wrapper
 			.overview-new
 				.left-panel
+					%h3
+						3-Step First Registration Orientation
+						%p.floatleft
+							Here is a quick summary of key facts that you need to know as you register for BE.
+
+		.overview-wrapper
+			.overview-new
+				.left-panel
 					%h2
-						Purpose
-					.tags-list-about
+						1. Purpose
+					#lipsum.tags-list-about
 						%p
-							1. Purpose The aim of PLUS is to enhance connections between gay, bisexual men and transgender people living with HIV
-							so that we can help each other and understand that we are not alone. PLUS operates under a Policy of Inclusion where people affected by HIV,
-							or interested to learn more about HIV, are welcome to join the discussion once they become registered members. Upon registration,
-							it is assumed that all users acknowledge that PLUS is primarily a space for the empowerment of people livin with HIV, led by people living with HIV. 
+							The aim of BE is to support the well-being of young people who are exploring their sexual orientation and gender identity. The service will provide information about the diverse lives of gay, lesbian, bisexual and transgender people, as well as people who are simply curious about sexual orientations and/or gender identities.
+						%p
+							BE operates under a Policy of Inclusion where people of various sexual orientations, gender identities, ages, ethnicity, socio-economic status and religions are welcome to join the discussion once they become registered members. Upon registration, it is assumed that all users acknowledge that BE is primarily a space for the empowerment of young people who are exploring their sexual orientation and gender identity including, but not limited to, people who identify as gay, lesbian, bisexual and transgender or curious.
 							%br
 							%span.class-agree
 								=check_box_tag("check1", value = "1", checked = false, options = {:autocomplete=>"off"})
@@ -61,21 +68,28 @@
 			.overview-new
 				.left-panel
 					%h2
-						Values
-					.tags-list-about
+						2. Values
+					#lipsum.tags-list-about
 						%p
-							2. Values
-							PLUS is being managed under guidance of some core values, which we ask all registered users to acknowledge.
-							The core values the PLUS team seeks to upload with the Website and Services are:
-							%br
-							Cooperation: work to help each other
-							Dignity: treat each other with mutual respect
-							Diversity: seek to create a vibrant space where multiple, sometimes differing perspectives can thrive.
-							Privacy: respect people’s right to private information and freedom from interference.
-							Health & Well-being: seek to deliver up-to-date information that supports physical and mental health.
-							Fair and Equitable Access: seek to ensure that all people living with HIV or affected by HIV have access to services that support health and well-being, without prejudice.
-							Informed Choice: respect people'≈s ability to make their own decisions when they are supplied with relevant information and advice, without duress.
-							%br
+							BE operates with the guidance of some core values, which we ask all registered users to honour.
+						%p
+							The core values the BE team seeks to uphold with the Website and Services are:
+							%ul.disc
+								%li
+									Cooperation: work to help each other
+								%li
+									Dignity: treat each other with mutual respect
+								%li
+									Diversity: seek to create a vibrant space where multiple, sometimes differing perspectives can thrive.
+								%li
+									Privacy: respect people’s right to private information and freedom from interference.
+								%li
+									Health & Well-being: seek to deliver up-to-date information that supports physical and mental health.
+								%li
+									Fair and Equitable Access: seek to ensure that all people, regardless of sexual orientation, gender identity, age, ethnicity, socio-economic status or religion have access to services that support health and well-being, without prejudice.
+								%li
+									Informed Choice: respect people’s ability to make their own decisions when they are supplied with relevant information and advice, without compulsion or duress.
+
 							%span.class-agree
 								=check_box_tag("check2", value = "1", checked = false, options = {:autocomplete=>"off"})
 								Yes, I Acknowledge
@@ -85,62 +99,105 @@
 			.overview-new
 				.left-panel
 					%h2
-						Code of Conduct
+						3. Code of Conduct
 					.tags-list-about
 						%p
-							3. Code of Conduct
-							All registered users to PLUS are given access to the basic Website and Services upon acceptance of the Terms of Use that includes a Code of Conduct.
-							PLUS registered users agree to act under a Code of Conduct, summarised as follows:
-							%br
-							Act with responsibility - You take responsibility for your contributions to the Website.
-							Act with civility - You support an environment of mutual respect and do not harass other users.
-							Do no harm - You do not damage or cause injury to other registered users of the Website or our technology infrastructure.
-							Observe the Terms of Use and Policies - You adhere to the below Terms of Use and to the applicable community policies when you visit
-							our sites or participate in our communities.
-							%br
-							Read the full test of the Terms of Use (including Code of Conduct and Privacy Policy).
-							%br 
+							All registered users to BE are given access to the basic Website and Services upon acceptance of the Terms of Use that includes a Code of Conduct.
+						%p
+							BE registered users agree to act under a Code of Conduct, summarised as follows:
+							%ul.disc
+								%li
+									Act with responsibility – You take responsibility for your contributions to the Website.
+								%li
+									Act with respect – You support an environment of mutual respect and do not harass other users.
+								%li
+									Do no harm (? possible to change to a positive) – You do not damage or cause injury to other registered users of the Website or our technology infrastructure.
+								%li
+									Observe the Terms of Use and Policies – You adhere to the below Terms of Use and to the applicable community policies when you visit our sites or participate in our communities.
+
 							%span.class-agree
 								=check_box_tag("check3", value = "1", checked = false, options = {:autocomplete=>"off"})
 								Yes, I Accept
-			.contact-section-bottom-button{:style=>"z-index:500; margin-top:0px !important; display:none"} 
-				.janrain-sign-up{:style=>"display:none;"}
-					
-					- if params[:via]=="email"
-						%a.contact-button.contact-button-single{href: signup_path, title: "Sign up with email"} Next
-					- else
-						= link_to_rpx "Next", user_session_url,:html=>{:title=>"Sign up with Janrain",:class=>"contact-button contact-button-single"}
-	
-			
+			=# form_tag ('/signup')  do
+			- if params[:via]=="email"
+				= form_tag('/signup', {:onSubmit => 'return validateForm()'} )do
+					/ - if params[:via]=="email"
+					.overview-new
+						.left-panel
+							%h2
+								Please Enter Your Invite Code
+							%p
+								%label{:for => "invite_code"} InviteCode:
+								= text_field_tag :invite_code, params[:invite_code], :placeholder => "Enter Invite Code"
+					.contact-section-bottom-button.button-margin{:style=>"z-index:500; margin-top:0px !important; display:none"}
+						.janrain-sign-up{:style=>"display:none;"}
 
+
+							%p
+								- if params[:via]=="email"
+
+									- session[:signup]="email"
+									- if session[:signup]
+										= submit_tag "Next", :class=>"contact-button contact-button-single set-button-margin", :id=>"email-button"
+
+
+			- else
+
+				.overview-new
+					.left-panel
+						%h2
+							Please Enter Your Invite Code
+						%p
+							%label{:for => "invite_code"} InviteCode:
+							= text_field_tag :invite_code, session[:invite_code],:placeholder => "Enter Invite Code"
+				.contact-section-bottom-button.button-margin{:style=>"z-index:500; margin-top:0px !important; display:none"}
+					.janrain-sign-up{:style=>"display:none;"}
+						%p
+							= link_to "Next", "#",:title=>"Sign up with Janrain",:class=>"contact-button contact-button-single set-button-margin" ,:id=>"frogen-next"
+							/ = link_to_rpx "Next", user_session_url(),:html=>{:style=>"display:none",:title=>"Sign up with Janrain",:class=>"contact-button contact-button-single set-button-margin" ,:id=>"janrain-next"}
 			.content-panel.post-loop
 				/ authorbox
 				= render "experimental/partials/author_box"
 				/ related partial
 				/ = render "experimental/partials/related_box"
+
+
+
 	%br.clearer
 .sidebar
-	= render "experimental/partials/login_box"
+	/login box
+	- if current_user.nil?
+		/login box
+		= render "experimental/partials/login_box"
+	-else
+		/profile box
+		= render "experimental/partials/profile_box"
+
+	/ social login box
+	= render "experimental/partials/social_login_box"
+	/ member box
+	/ = render "experimental/partials/member_box"
+	/ left bar
 	= render "experimental/partials/left_bar"
 	/widget top
 	= render "experimental/partials/widget_top"
 	/ .clearer.hide-responsive
 	/ %br.clearer/
 	/ newly reviewd
-	= render "experimental/partials/newly_reviewed"
+	/ = render "experimental/partials/newly_reviewed"
 	/popular box
-	= render "experimental/partials/popular_box"
+	/ = render "experimental/partials/popular_box"
 	/rating box
 	= render "experimental/partials/rating_box"
 	/banner box
 	= render "experimental/partials/banner_box"
-
+= link_to_rpx "Next", user_session_url(),:html=>{:style=>"display:none",:title=>"Sign up with Janrain",:class=>"contact-button contact-button-single set-button-margin" ,:id=>"janrain-next"}
 :javascript
 	jQuery.noConflict();
-		jQuery(document).ready(function() { 
-		
+		jQuery(document).ready(function() {
+
 			jQuery('#related > ul').tabs({ fx: { opacity: 'toggle', duration: 150 } });
-			
+
 		});
 		var calculateClick = 0;
 		jQuery(".class-agree input").click(function(){
@@ -153,10 +210,30 @@
 			if(calculateClick==3){
 				jQuery(".contact-section-bottom-button").show()
 				jQuery(".janrain-sign-up").fadeIn("slow");
-				
+
 			}
 			else{
 				jQuery(".janrain-sign-up").fadeOut("slow");
-				
+
 			}
 		});
+
+	jQuery("#email-button").click(function(){
+		if( $("#invite_code").val().length == 0 ) {
+			alert("Please enter Invite Code");
+			return false;
+		}
+	});
+
+	jQuery("#frogen-next").click(function(){
+
+		if(jQuery("#invite_code").val()== ""){
+			alert("Please enter Invite Code");
+			return false;
+		}else{
+			$('#janrain-next').click();
+		}
+
+	});
+
+

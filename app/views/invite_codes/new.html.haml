@@ -1,0 +1,7 @@
+= form_for :invite_code,:method=>"POST",:action=>:create,:url=>'/invite_code',:html=>{:class=>"standard-form"} do |f|
+
+  %p
+    = f.label :code, "code*"
+    = f.text_field :code,:placeholder=>"Please Enter Code",:id=>"signup_userCode"
+  %p
+    = f.submit "Submit", :class=>"contact-button", :id=> "align"
